@@ -37,7 +37,7 @@ import {
   AvatarImage,
 } from "../../../components/ui/avatar";
 import { Separator } from "../../../components/ui/separator";
-import AdvancedCalendar from "../../../components/AdvancedCalendar";
+import OptimizedAvailabilityCalendar from "../../../components/OptimizedAvailabilityCalendar";
 import { cn } from "../../../lib/utils";
 
 // Mock data with Sainab Helper persona from flow.md
@@ -58,7 +58,7 @@ const mockUpcomingAppointments = [
     memberName: "Zahra Mitglied", // Persona 2: mitglied@email.com
     anliegen: "Psychologische Beratung",
     description: "Unterstützung bei Stress und Überforderung",
-    scheduledAt: new Date("2025-09-30T10:00:00"),
+    scheduledAt: new Date("2025-10-25T10:00:00"),
     duration: 45,
     meetingLink: "https://meet.jit.si/beratung-sainab-001",
   },
@@ -67,7 +67,7 @@ const mockUpcomingAppointments = [
     memberName: "Fatima HelperMitglied", // Persona 3: helpermitglied@email.com
     anliegen: "Schwangerschaftsbegleitung",
     description: "Begleitung in der Frühschwangerschaft",
-    scheduledAt: new Date("2025-10-05T16:30:00"),
+    scheduledAt: new Date("2025-10-28T16:30:00"),
     duration: 45,
     meetingLink: "https://meet.jit.si/beratung-sainab-002",
   },
@@ -199,27 +199,38 @@ export default function HelperDashboard() {
     setAvailableSlots(slots);
   }, [availability]);
 
-  const handleCreateTimeSlot = (date: Date, start: string, end: string) => {
-    const dateStr = date.toISOString().split("T")[0];
-    const newSlot = {
+  const handleCreateTimeSlot = (slot: {
+    dayOfWeek: number;
+    startTime: string;
+    endTime: string;
+    isAvailable: boolean;
+  }) => {
+    const dateStr = new Date(2025, 9, 20 + slot.dayOfWeek)
+      .toISOString()
+      .split("T")[0];
+    const newSlotObj = {
       id: generateId(),
-      start,
-      end,
-      available: true,
+      start: slot.startTime,
+      end: slot.endTime,
+      available: slot.isAvailable,
       booked: false,
     };
 
     setAvailableSlots((prev) => ({
       ...prev,
-      [dateStr]: [...(prev[dateStr] || []), newSlot],
+      [dateStr]: [...(prev[dateStr] || []), newSlotObj],
     }));
   };
 
-  const handleDeleteTimeSlot = (slotId: string, date: Date) => {
-    const dateStr = date.toISOString().split("T")[0];
+  const handleDeleteTimeSlot = (dayOfWeek: number, startTime: string) => {
+    const dateStr = new Date(2025, 9, 20 + dayOfWeek)
+      .toISOString()
+      .split("T")[0];
     setAvailableSlots((prev) => ({
       ...prev,
-      [dateStr]: (prev[dateStr] || []).filter((slot) => slot.id !== slotId),
+      [dateStr]: (prev[dateStr] || []).filter(
+        (slot) => slot.start !== startTime
+      ),
     }));
   };
 
@@ -435,7 +446,7 @@ export default function HelperDashboard() {
                   <AvatarImage
                     src={
                       authUser?.user_metadata?.avatar_url ||
-                      "https://i.pravatar.cc/150?u=sainab-helper"
+                      "https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=150&h=150&fit=crop&crop=face"
                     }
                   />
                   <AvatarFallback className="bg-warm-100 text-warm-700 text-lg font-semibold">
@@ -444,7 +455,7 @@ export default function HelperDashboard() {
                 </Avatar>
                 <div>
                   <h1 className="text-2xl font-bold text-gray-900">
-                    Hallo {user?.vorname || "Helferin"}!
+                    Salam {user?.vorname || "Helferin"}!
                   </h1>
                   <p className="text-gray-600">
                     {new Intl.DateTimeFormat("de-DE", {
@@ -928,13 +939,40 @@ export default function HelperDashboard() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <AdvancedCalendar
-                      mode="availability"
-                      availableSlots={availableSlots}
-                      isEditing={isEditingAvailability}
-                      onTimeSlotCreate={handleCreateTimeSlot}
-                      onTimeSlotDelete={handleDeleteTimeSlot}
-                    />
+                    {/* Convert availableSlots object to array for OptimizedAvailabilityCalendar */}
+                    {(() => {
+                      const slotsArray: Array<{
+                        dayOfWeek: number;
+                        startTime: string;
+                        endTime: string;
+                        isAvailable: boolean;
+                      }> = [];
+
+                      Object.entries(availableSlots).forEach(
+                        ([dateStr, slots]) => {
+                          const date = new Date(dateStr);
+                          const dayOfWeek = (date.getDay() + 6) % 7; // Convert to Monday = 0
+
+                          (slots as any[]).forEach((slot) => {
+                            slotsArray.push({
+                              dayOfWeek,
+                              startTime: slot.start,
+                              endTime: slot.end,
+                              isAvailable: slot.available,
+                            });
+                          });
+                        }
+                      );
+
+                      return (
+                        <OptimizedAvailabilityCalendar
+                          availableSlots={slotsArray}
+                          isEditing={isEditingAvailability}
+                          onTimeSlotCreate={handleCreateTimeSlot}
+                          onTimeSlotDelete={handleDeleteTimeSlot}
+                        />
+                      );
+                    })()}
                   </CardContent>
                 </Card>
               </motion.div>

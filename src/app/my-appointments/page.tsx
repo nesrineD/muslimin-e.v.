@@ -40,7 +40,7 @@ const mockAllAppointments = [
     type: "Psychologische Beratung",
     helperName: "Sainab Helper", // Persona 1: helper@email.com
     memberName: "",
-    date: new Date("2025-09-30T10:00:00"),
+    date: new Date("2025-10-25T10:00:00"),
     description: "Unterstützung bei Stress und Überforderung",
     meetingLink: "https://meet.jit.si/beratung-zahra-001",
     role: "member" as const,
@@ -73,7 +73,7 @@ const mockAllAppointments = [
     type: "Sozialberatung",
     helperName: "Fatima HelperMitglied", // Persona 3: helpermitglied@email.com
     memberName: "",
-    date: new Date("2025-10-07T11:00:00"),
+    date: new Date("2025-10-28T11:00:00"),
     description: "Beratung zu Familienfragen",
     meetingLink: "https://meet.jit.si/beratung-zahra-002",
     role: "member" as const,

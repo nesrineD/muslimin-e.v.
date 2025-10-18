@@ -46,11 +46,16 @@ export default function BookingFlow() {
   ];
 
   const availableSlots = [
-    { date: "2024-12-14", time: "10:00", helper_name: "Sainab H." },
-    { date: "2024-12-14", time: "14:30", helper_name: "Fatima H." },
-    { date: "2024-12-15", time: "09:00", helper_name: "Sainab H." },
-    { date: "2024-12-15", time: "11:15", helper_name: "Fatima H." },
-    { date: "2024-12-15", time: "16:30", helper_name: "Sainab H." },
+    { date: "2025-10-18", time: "10:00", helper_name: "Sainab H." },
+    { date: "2025-10-18", time: "14:30", helper_name: "Fatima H." },
+    { date: "2025-10-19", time: "09:00", helper_name: "Sainab H." },
+    { date: "2025-10-19", time: "11:15", helper_name: "Fatima H." },
+    { date: "2025-10-19", time: "16:30", helper_name: "Sainab H." },
+    { date: "2025-10-21", time: "10:30", helper_name: "Fatima H." },
+    { date: "2025-10-21", time: "15:00", helper_name: "Sainab H." },
+    { date: "2025-10-22", time: "09:30", helper_name: "Fatima H." },
+    { date: "2025-10-22", time: "13:45", helper_name: "Sainab H." },
+    { date: "2025-10-23", time: "11:00", helper_name: "Fatima H." },
   ];
 
   const nextStep = () => setCurrentStep((prev) => Math.min(prev + 1, 4));
@@ -150,7 +155,7 @@ export default function BookingFlow() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
         {categories.map((category) => {
           const isSelected = bookingData.category_id === category.id;
           const getIcon = (categoryName: string) => {
@@ -171,7 +176,7 @@ export default function BookingFlow() {
           return (
             <div
               key={category.id}
-              className={`relative border-2 rounded-xl p-6 cursor-pointer transition-all duration-200 ${
+              className={`relative border-2 rounded-xl p-8 cursor-pointer transition-all duration-200 min-h-[200px] flex flex-col justify-center items-center ${
                 isSelected
                   ? "border-warm-500 bg-warm-50 shadow-md"
                   : "border-gray-200 hover:border-warm-300 hover:shadow-sm"
@@ -203,23 +208,23 @@ export default function BookingFlow() {
                 </div>
               )}
 
-              <div className="flex items-start space-x-4">
+              <div className="w-full text-center space-y-4">
                 {/* Icon */}
-                <div className="text-3xl flex-shrink-0">
+                <div className="text-5xl mb-4 flex justify-center">
                   {getIcon(category.name)}
                 </div>
 
                 {/* Content */}
-                <div className="flex-1 min-w-0">
+                <div className="w-full px-2">
                   <h3
-                    className={`font-semibold text-lg mb-2 ${
+                    className={`font-semibold text-lg mb-3 text-center w-full leading-tight min-h-[3rem] flex items-center justify-center ${
                       isSelected ? "text-warm-800" : "text-gray-900"
                     }`}
                   >
                     {category.name}
                   </h3>
                   <p
-                    className={`text-sm leading-relaxed ${
+                    className={`text-sm leading-relaxed mb-4 text-center px-1 ${
                       isSelected ? "text-warm-700" : "text-gray-600"
                     }`}
                   >
@@ -228,7 +233,7 @@ export default function BookingFlow() {
 
                   {/* Helper count */}
                   <div
-                    className={`mt-3 text-xs font-medium ${
+                    className={`text-xs font-medium text-center ${
                       isSelected ? "text-sage-600" : "text-gray-500"
                     }`}
                   >

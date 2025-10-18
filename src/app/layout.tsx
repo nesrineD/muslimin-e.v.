@@ -3,10 +3,10 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
-import { QueryProvider } from "@/providers/query-provider";
 import { AuthProvider } from "@/hooks/useAuth";
 import { Toaster } from "@/components/ui/toaster";
 import { CookieBanner } from "@/components/layout/cookie-banner";
+import { PWAPromptBanner } from "@/components/PWAPromptBanner";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -125,17 +125,16 @@ export default function RootLayout({ children }: RootLayoutProps) {
         className={`${inter.className} antialiased min-h-screen flex flex-col`}
         suppressHydrationWarning
       >
-        <QueryProvider>
-          <AuthProvider>
-            <div className="flex min-h-screen flex-col">
-              <Header />
-              <main className="flex-1">{children}</main>
-              <Footer />
-            </div>
-            <Toaster />
-            <CookieBanner />
-          </AuthProvider>
-        </QueryProvider>
+        <AuthProvider>
+          <PWAPromptBanner />
+          <div className="flex min-h-screen flex-col">
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </div>
+          <Toaster />
+          <CookieBanner />
+        </AuthProvider>
       </body>
     </html>
   );

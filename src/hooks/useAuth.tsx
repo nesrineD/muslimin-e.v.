@@ -18,6 +18,12 @@ type User = {
     avatar_url?: string;
     vorname?: string;
     nachname?: string;
+    telefon?: string;
+    adresse?: string;
+    plz?: string;
+    stadt?: string;
+    interessen?: string;
+    sichtbarkeit?: "ja" | "plz" | "nein";
   };
 };
 
@@ -41,7 +47,14 @@ const mockUsers: Record<string, User> = {
       full_name: "Sainab Helper",
       vorname: "Sainab",
       nachname: "Helper",
-      avatar_url: "https://i.pravatar.cc/150?u=sainab-helper",
+      avatar_url:
+        "https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=150&h=150&fit=crop&crop=face",
+      telefon: "+49 30 12345678",
+      adresse: "Hermannstraße 45",
+      plz: "12049",
+      stadt: "Berlin Neukölln",
+      interessen: "Psychologische Beratung, Traumatherapie, Familienberatung",
+      sichtbarkeit: "ja",
     },
   },
   "mitglied@email.com": {
@@ -52,7 +65,14 @@ const mockUsers: Record<string, User> = {
       full_name: "Zahra Mitglied",
       vorname: "Zahra",
       nachname: "Mitglied",
-      avatar_url: "https://i.pravatar.cc/150?u=zahra-mitglied",
+      avatar_url:
+        "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&h=150&fit=crop&crop=face",
+      telefon: "+49 30 23456789",
+      adresse: "Sonnenallee 123",
+      plz: "12045",
+      stadt: "Berlin Neukölln",
+      interessen: "Frauensport, Gemeinsame Aktivitäten, Deutschkurse",
+      sichtbarkeit: "plz",
     },
   },
   "helpermitglied@email.com": {
@@ -63,13 +83,35 @@ const mockUsers: Record<string, User> = {
       full_name: "Fatima HelperMitglied",
       vorname: "Fatima",
       nachname: "HelperMitglied",
-      avatar_url: "https://i.pravatar.cc/150?u=fatima-helpermitglied",
+      avatar_url:
+        "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face",
+      telefon: "+49 30 34567890",
+      adresse: "Karl-Marx-Straße 78",
+      plz: "12043",
+      stadt: "Berlin Neukölln",
+      interessen: "Sozialberatung, Schwangerschaftsbegleitung, Jugendarbeit",
+      sichtbarkeit: "ja",
+    },
+  },
+  "mitglied2@email.com": {
+    id: "mitglied-amina-004",
+    email: "mitglied2@email.com",
+    is_helper: false, // Amina is only a member, not registered as helper, no booked appointments
+    user_metadata: {
+      full_name: "Amina Mitglied",
+      vorname: "Amina",
+      nachname: "Mitglied",
+      avatar_url:
+        "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=150&h=150&fit=crop&crop=face",
+      telefon: "+49 30 45678901",
+      adresse: "Weserstraße 56",
+      plz: "12047",
+      stadt: "Berlin Neukölln",
+      interessen: "Sprachkurse, Kulturelle Veranstaltungen, Kinderbetreuung",
+      sichtbarkeit: "nein",
     },
   },
 };
-
-// Default to first persona for demo
-const mockUser: User = mockUsers["helper@email.com"];
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
@@ -121,14 +163,30 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     return true; // Login successful
   };
 
-  const signOut = async () => {
+  const signOut = async (): Promise<void> => {
+    console.log("signOut: Starting logout process...");
     setLoading(true);
-    setTimeout(() => {
+
+    try {
+      // Simulate API call delay
+      await new Promise((resolve) => setTimeout(resolve, 500));
+
+      // Clear user data
       setUser(null);
       localStorage.removeItem("auth-status");
       localStorage.removeItem("current-user-email");
+
+      // Clear any other auth-related localStorage items
+      localStorage.removeItem("demo_current_user");
+
+      console.log(
+        "signOut: Logout completed successfully, localStorage cleared"
+      );
+    } catch (error) {
+      console.error("signOut: Error during logout:", error);
+    } finally {
       setLoading(false);
-    }, 500);
+    }
   };
 
   const registerAsHelper = async (categories: string[]): Promise<boolean> => {

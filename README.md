@@ -11,15 +11,83 @@
 
 Die Muslimin-Beratung Plattform ermöglicht es Vereinsmitgliedern, schnell und unkompliziert Termine für verschiedene Beratungsangebote zu buchen. Das System fokussiert sich auf **Datenschutz**, **Benutzerfreundlichkeit** und **professionelle Beratungsdienstleistungen**.
 
-### 🎯 Kernfunktionen (Aktueller MVP-Stand)
+### ✨ Features
 
-- ✅ **Interaktive Mitgliederkarte** mit datenschutzkonformen PLZ-Kreisen
-- ✅ **Google Maps Integration** mit datenschutzfreundlicher Darstellung
-- ✅ **Responsive Design** mit warmer Farbpalette
-- ✅ **Mock-Data System** für Demo und Entwicklung
-- ⏳ **Magic Link Authentication** (in Entwicklung)
-- ⏳ **Terminbuchungssystem** (geplant)
-- ⏳ **E-Mail-Benachrichtigungen** (geplant)
+### ✅ Implementiert (MVP 0.2.0)
+
+**Benutzeroberfläche & Design**
+
+- ✅ Responsive Homepage mit rollenbasierter Feature-Anzeige
+- ✅ Sage-Gradient Design System (Header, Footer, Buttons)
+- ✅ Optimierte Verfügbarkeits-Kalender mit 16-h-Slots (6:00-21:00 CEST)
+- ✅ Vergrößerte, bessere positionierte Logo-Navigation (h-16)
+- ✅ "Salam"-Grußsystem für kulturelle Authentizität
+
+**Benutzer & Authentifizierung**
+
+- ✅ Mock-Authentifizierung mit 4 Test-Nutzern
+- ✅ Vereinsmitglieder-Verwaltung (Mock-Daten)
+- ✅ Rollenbasierte Zugriffskontrolle (Member, Helper, Member+Helper, Admin)
+
+**Funktionen**
+
+- ✅ Interaktive Mitgliederkarte mit PLZ-Datenschutz
+- ✅ Helper-Verfügbarkeits-Management mit verbessertem UI
+- ⏳ Helper-Registrierung und Verifizierung
+- ⏳ Terminbuchungssystem
+- ⏳ E-Mail-Benachrichtigungen (Brevo Integration)
+- ⏳ Jitsi Meet Integration
+
+### 📱 PWA Features (Geplant)
+
+- Service Worker für Offline-Funktionalität
+- App-Installation auf mobilen Geräten
+- Push-Benachrichtigungen
+
+## 🎨 Design System
+
+### Farbpalette
+
+```
+Sage (Primary):
+- sage-50: #f8faf7
+- sage-100: #eff1ed
+- sage-700: #0d6f52
+- sage-800: #0a4f38
+
+Cream (Secondary): #f5ede5
+Warm: #c98c61
+Coral (Accent): #f57c5c
+```
+
+### Komponenten-Updates
+
+**Header & Navigation**
+
+- Logo-Größe: `h-16` (desktop), `h-14` (mobile)
+- Background: Sage-Gradient (`from-sage-50 to-sage-100/50` normal, intensiver beim Scrollen)
+- Container-Höhe: `h-20` für bessere Proportion
+
+**Kalender (/helper/availability)**
+
+- Slot-Größe: `min-h-[60px]` (7.5x größer als vorher)
+- Scrollbares Layout: `maxHeight: 700px` für 16-h Ansicht
+- Sticky Header & Time Labels für bessere Navigation
+- Größere, lesbarere Zeitanzeige
+- Farbcodierte Verfügbarkeitsstatus
+
+**Footer**
+
+- Background: Sage-Gradient upward (`from-sage-100/30 to-sage-50/50`)
+- Border: `border-sage-200` (matching Header)
+
+## 🎯 MVP-Status
+
+**Aktueller Stand**: Frontend mit optimierter UI und verbessertem Kalender ist implementiert, Mock-Authentifizierung funktioniert.
+
+- 📊 Features: 40% implementiert
+- 🗄️ Backend: 0% (geplant mit Supabase)
+- 📱 Mobile: 90% (Responsive Design, PWA-ready)
 
 ## 🚀 Schnellstart
 
@@ -50,6 +118,48 @@ npm run dev
 
 Die Anwendung ist dann unter [http://localhost:3000](http://localhost:3000) verfügbar.
 
+## 📚 Dokumentation für Stakeholder
+
+Für nicht-technische Nutzer & Stakeholder haben wir umfassende Dokumentationen erstellt:
+
+### 🎯 [DOCUMENTATION-OVERVIEW.md](./DOCUMENTATION-OVERVIEW.md) ← **START HIER!**
+
+**Quick Guide** zu allen Dokumentationen + Testing-Tipps:
+
+- 📊 Überblick aller Dokumente & wofür sie sind
+- 🚀 Quick-Start: Welche Dokumentation für welches Szenario?
+- 👥 Die 4 Test-Accounts erklärt
+- ✅ Top-10 Testing-Checkliste
+- 💡 Tipps & Tricks für effektives Testen
+
+### 🧪 [STAKEHOLDER-TESTING-GUIDE.md](./STAKEHOLDER-TESTING-GUIDE.md)
+
+**Kompletter Testleitfaden** für alle implementierten Funktionen:
+
+- ✅ Alle 17 Seiten erklärt
+- ✅ 4 Test-Accounts mit konkreten Use Cases
+- ✅ Schritt-für-Schritt Anleitungen zum Testen
+- ✅ Checkliste für alle Features
+- ✅ Glossar der wichtigsten Begriffe
+
+### 🗺️ [USER-FLOW-GUIDE.md](./USER-FLOW-GUIDE.md)
+
+**Visueller Überblick** aller User Journeys & Navigationen:
+
+- ✅ Komplette Website-Sitemap (alle 17 Seiten)
+- ✅ 5 Komplette User Journeys (von Login bis Terminbuchung)
+- ✅ Feature-Übersicht nach Seite
+- ✅ Navigation & Seitenstruktur
+
+### ✅ [VALIDATION-CHECK.md](./VALIDATION-CHECK.md)
+
+**Validierungsdokumentation**: Code ↔ Dokumentation Konsistenz:
+
+- ✅ Alle Seiten & Features gemappt auf Quellcode
+- ✅ Test-Accounts validiert
+- ✅ Performance-Metriken
+- ✅ Browser-Kompatibilität
+
 ## 🧪 Demo & Test-Accounts
 
 ### Haupt-Test-User (aus flow.md)
@@ -74,17 +184,40 @@ Die Anwendung enthält **20 zusätzliche Mock-Mitglieder** verteilt über ganze 
 - **Nürnberg (90402)**: Safiya M.
 - **Weitere Städte**: Hannover, Dresden, Essen, Bremen, Bonn, Erfurt, Karlsruhe
 
-### Demo-Features testen
+### Demo Features
 
-```javascript
-// JavaScript Console - Demo-User wechseln
-MemberLocationService.setDemoUser("helper@email.com");
+```bash
+# Kalender-UI testen (Helper)
+# 1. Login mit Helper-Account: sainab@helper.de (PW: test123)
+# 2. Navigiere zu: http://localhost:3000/helper/availability
+# 3. Test: Klicke auf Zeitslots um Verfügbarkeit zu setzen
 
-// Verfügbare Demo-User anzeigen
-console.log(MemberLocationService.getDemoUsers());
+# Mitgliederkarte testen
+# 1. Login mit Member-Account: zahra@mitglied.de (PW: test123)
+# 2. Navigiere zu: http://localhost:3000/member-map
+# 3. Feature: Hover über Kreise für Mitglieder-Details
 
-// Alle Mock-Mitglieder abrufen (Demo-Modus)
-MemberLocationService.getMemberLocations().then(console.log);
+# Console Test
+console.log("Helper Verfügbarkeit gespeichert", localStorage.getItem("helper-availability"))
+```
+
+### Kalender-Interface (neu in MVP 0.2.0)
+
+Das Helper-Verfügbarkeits-Kalender wurde komplett überarbeitet:
+
+**Verbesserungen:**
+
+- 📏 Größere Zeitslots: `min-h-[60px]` (7.5x größer für bessere Klickbarkeit)
+- 🔀 Scrollbares Layout: Alle 16 Stunden (6:00-21:00 CEST) sichtbar
+- 📌 Sticky Header: Wochentage bleiben beim Scrollen sichtbar
+- 🎨 Farbcodierung: Verfügbar (grün), Gebucht (grau), Nicht verfügbar (weiß)
+- 📱 Responsive: Funktioniert auf mobilen Geräten
+
+**Zugriff:**
+
+```
+Helper Login → Dashboard → "Verfügbarkeiten verwalten"
+oder direkt: http://localhost:3000/helper/availability
 ```
 
 ## 🗺️ Interaktive Mitgliederkarte
@@ -143,10 +276,12 @@ muslimin-beratung/
 
 ### Frontend
 
-- **Next.js 14+** - React Framework mit App Router
+- **Next.js 14.2.33+** - React Framework mit App Router
 - **TypeScript 5+** - Type-safe JavaScript
-- **Tailwind CSS** - Utility-first CSS Framework
+- **Tailwind CSS** - Utility-first CSS Framework mit Custom Color Palette
 - **React Hook Form + Zod** - Formular-Validierung
+- **Framer Motion** - Animationen & Übergänge (hover, scroll, entrance effects)
+- **Lucide React** - Icon Library (Calendar, Clock, HeartHandshake, etc.)
 
 ### Maps & Location
 
@@ -312,7 +447,45 @@ const response = await MockMemberLocationService.getMemberLocations();
 console.log(response.data.members); // Alle außer Zahra
 ```
 
-## 📖 Entwicklung & Beiträge
+## � Dokumentation für Stakeholder
+
+Für nicht-technische Nutzer & Stakeholder haben wir umfassende Dokumentationen erstellt:
+
+### 🧪 [STAKEHOLDER-TESTING-GUIDE.md](./STAKEHOLDER-TESTING-GUIDE.md)
+
+**Kompletter Testleitfaden** für alle implementierten Funktionen:
+
+- ✅ Alle 17 Seiten erklärt (mit Screenshots-Beschreibungen)
+- ✅ 4 Test-Accounts mit konkreten Use Cases
+- ✅ Schritt-für-Schritt Anleitungen zum Testen
+- ✅ Checkliste für alle Features
+- ✅ Glossar der wichtigsten Begriffe
+
+**Start hier**: `STAKEHOLDER-TESTING-GUIDE.md` – perfekt für Vorstandsmitglieder & Tester
+
+### 🗺️ [USER-FLOW-GUIDE.md](./USER-FLOW-GUIDE.md)
+
+**Visueller Überblick** aller User Journeys & Navigationen:
+
+- ✅ Komplette Website-Sitemap (alle 17 Seiten)
+- ✅ 5 Komplette User Journeys (von Login bis Terminbuchung)
+- ✅ Feature-Übersicht nach Seite
+- ✅ Navigation & Seitenstruktur
+- ✅ Responsive Design Breakpoints
+
+### ✅ [VALIDATION-CHECK.md](./VALIDATION-CHECK.md)
+
+**Validierungsdokumentation**: Code ↔ Dokumentation Konsistenz:
+
+- ✅ Alle Seiten & Features gemappt auf Quellcode
+- ✅ Test-Accounts validiert
+- ✅ Performance-Metriken
+- ✅ Browser-Kompatibilität
+- ✅ Bekannte Limitierungen transparent
+
+---
+
+## �📖 Entwicklung & Beiträge
 
 ### Development Workflow
 
@@ -407,8 +580,16 @@ Dieses Projekt ist für den privaten Gebrauch durch den Muslimin-Beratung e.V. b
 
 ---
 
-**📍 Aktuelle Version**: MVP 0.1.0  
-**🚀 Letztes Update**: Oktober 2025  
+**📍 Aktuelle Version**: MVP 0.2.0  
+**🚀 Letztes Update**: Januar 2025  
 **💚 Status**: Aktive Entwicklung
+
+### 📝 Änderungen in Version 0.2.0
+
+- ✅ **Kalender-UI komplett überarbeitet**: Größere Slots (min-h-[60px]), scrollbares Layout, sticky Header
+- ✅ **Design System konsistent**: Sage-Gradient Header & Footer, unified Farbpalette
+- ✅ **Grußsystem auf "Salam" aktualisiert**: Alle Grußmeldungen sind jetzt kulturell authentisch
+- ✅ **Logo vergrößert und besser positioniert**: h-16 (desktop), h-14 (mobile), verbesserte Animationen
+- ✅ **Framer Motion Integration**: Smooth Übergänge und Animationen durchgehend
 
 > **Hinweis**: Dies ist ein MVP (Minimum Viable Product) für Stakeholder-Demos und Entwicklungszwecke. Für den Produktionseinsatz werden zusätzliche Sicherheits- und Compliance-Features implementiert.

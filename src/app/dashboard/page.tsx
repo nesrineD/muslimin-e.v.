@@ -48,7 +48,7 @@ const mockMemberAppointments = [
     id: 4,
     type: "Sozialberatung",
     helperName: "Fatima HelperMitglied", // Persona 3: helpermitglied@email.com
-    date: new Date("2025-10-05T11:00:00"),
+    date: new Date("2025-10-28T11:00:00"),
     description: "Beratung zu Behördenangelegenheiten",
     meetingLink: "https://meet.jit.si/beratung-zahra-002",
     role: "member" as const,
@@ -60,7 +60,7 @@ const mockHelperAppointments = [
     id: 2,
     type: "Psychologische Beratung",
     memberName: "Zahra Mitglied", // Persona 2: mitglied@email.com
-    date: new Date("2025-10-02T14:00:00"),
+    date: new Date("2025-10-25T10:00:00"),
     description: "Unterstützung bei Stress und Überforderung",
     meetingLink: "https://meet.jit.si/beratung-sainab-001",
     role: "helper" as const,
@@ -69,7 +69,7 @@ const mockHelperAppointments = [
     id: 3,
     type: "Sozialberatung",
     memberName: "Fatima HelperMitglied", // Persona 3: helpermitglied@email.com
-    date: new Date("2025-10-07T16:00:00"),
+    date: new Date("2025-10-28T16:00:00"),
     description: "Beratung zu Familienfragen",
     meetingLink: "https://meet.jit.si/beratung-sainab-002",
     role: "helper" as const,
@@ -491,7 +491,7 @@ export default function DashboardPage() {
                   <AvatarImage
                     src={
                       user?.user_metadata?.avatar_url ||
-                      "https://i.pravatar.cc/150?u=default-user"
+                      "https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=150&h=150&fit=crop&crop=face"
                     }
                   />
                   <AvatarFallback className="bg-emerald-100 text-emerald-700 text-lg font-semibold">

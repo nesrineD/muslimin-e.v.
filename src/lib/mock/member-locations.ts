@@ -6,55 +6,59 @@ import {
   APIError,
 } from "@/types/location";
 
-// Mock member data including existing test users from flow.md
+// Mock member data synced with authentication users from useAuth.tsx
 export const mockMembers: MemberLocation[] = [
-  // Existing test users from flow.md
+  // Sainab Helper - Sichtbarkeit: "ja" (vollständig sichtbar)
   {
-    id: "user-zahra-001",
-    first_name: "Zahra",
-    last_name: "Ahmed",
-    email: "mitglied@email.com",
-    postal_code: "10115",
-    location_visible: true,
-    display_name: "Zahra A.",
-    role: "member",
-    created_at: "2025-01-15T10:00:00.000Z",
-    updated_at: "2025-10-01T14:30:00.000Z",
-  },
-  {
-    id: "user-sainab-002",
+    id: "helper-sainab-001",
     first_name: "Sainab",
-    last_name: "Hassan",
+    last_name: "Helper",
     email: "helper@email.com",
-    postal_code: "20095",
+    postal_code: "12049", // Berlin Neukölln
     location_visible: true,
     display_name: "Sainab H.",
     role: "helper",
     created_at: "2025-02-10T09:15:00.000Z",
     updated_at: "2025-10-02T11:20:00.000Z",
   },
+  // Zahra Mitglied - Sichtbarkeit: "plz" (nur PLZ-Kreis)
   {
-    id: "user-fatima-003",
+    id: "mitglied-zahra-002",
+    first_name: "Zahra",
+    last_name: "Mitglied",
+    email: "mitglied@email.com",
+    postal_code: "12045", // Berlin Neukölln
+    location_visible: true, // PLZ-Kreis wird angezeigt
+    display_name: "PLZ 12045", // Nur PLZ anzeigen
+    role: "member",
+    created_at: "2025-01-15T10:00:00.000Z",
+    updated_at: "2025-10-01T14:30:00.000Z",
+  },
+  // Fatima HelperMitglied - Sichtbarkeit: "ja" (vollständig sichtbar)
+  {
+    id: "helpermitglied-fatima-003",
     first_name: "Fatima",
-    last_name: "El-Mansouri",
+    last_name: "HelperMitglied",
     email: "helpermitglied@email.com",
-    postal_code: "80331",
+    postal_code: "12043", // Berlin Neukölln
     location_visible: true,
-    display_name: "Fatima E.",
+    display_name: "Fatima H.",
     role: "member+helper",
     created_at: "2025-01-28T16:45:00.000Z",
     updated_at: "2025-10-03T09:10:00.000Z",
   },
+  // Amina Mitglied - Sichtbarkeit: "nein" (nicht sichtbar)
+  // Diese Nutzerin wird NICHT in der Mitgliederkarte angezeigt
 
-  // Additional mock members for realistic demo
+  // Additional mock members for realistic demo - with varied visibility settings
   {
     id: "user-amira-004",
     first_name: "Amira",
     last_name: "Mahmoud",
     email: "amira.mahmoud@example.com",
-    postal_code: "10115", // Same as Zahra for clustering demo
+    postal_code: "12045", // Berlin Neukölln - nur PLZ Kreis anzeigen
     location_visible: true,
-    display_name: "Amira M.",
+    display_name: "PLZ 12045", // Nur PLZ anzeigen
     role: "member",
     created_at: "2025-03-05T12:00:00.000Z",
     updated_at: "2025-09-28T15:45:00.000Z",
@@ -64,7 +68,7 @@ export const mockMembers: MemberLocation[] = [
     first_name: "Khadija",
     last_name: "Benali",
     email: "khadija.benali@example.com",
-    postal_code: "40210",
+    postal_code: "12047", // Berlin Neukölln
     location_visible: true,
     display_name: "Khadija B.",
     role: "helper",
@@ -76,9 +80,9 @@ export const mockMembers: MemberLocation[] = [
     first_name: "Leila",
     last_name: "Özkan",
     email: "leila.oezkan@example.com",
-    postal_code: "50667",
+    postal_code: "12049", // Berlin Neukölln - PLZ Kreis
     location_visible: true,
-    display_name: "Leila Ö.",
+    display_name: "PLZ 12049", // Nur PLZ anzeigen
     role: "member",
     created_at: "2025-04-12T14:20:00.000Z",
     updated_at: "2025-09-30T10:30:00.000Z",

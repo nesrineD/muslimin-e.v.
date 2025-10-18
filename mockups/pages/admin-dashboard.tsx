@@ -78,7 +78,7 @@ export default function AdminDashboard() {
             </div>
             <div className="flex items-center space-x-4">
               <span className="text-sm text-gray-700">
-                Hallo, {user.vorname}
+                Salam, {user.vorname}
               </span>
               <button className="bg-gray-100 text-gray-700 px-3 py-2 rounded-md text-sm hover:bg-gray-200">
                 Abmelden

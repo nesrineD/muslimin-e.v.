@@ -263,34 +263,6 @@ export default function HelperRegistrationPage() {
 
   return (
     <div className="min-h-screen bg-warm-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            <Link href="/" className="flex items-center">
-              <h1 className="text-2xl font-bold text-emerald-800">
-                Muslimin-Beratung
-              </h1>
-              <span className="ml-4 text-gray-500">
-                Als Helferin registrieren
-              </span>
-            </Link>
-            <div className="flex items-center space-x-4">
-              <span className="text-gray-700">
-                Angemeldet als: {user?.user_metadata?.vorname}{" "}
-                {user?.user_metadata?.nachname} ({user?.email})
-              </span>
-              <Link
-                href="/dashboard"
-                className="text-gray-600 hover:text-gray-800"
-              >
-                Zurück zum Dashboard
-              </Link>
-            </div>
-          </div>
-        </div>
-      </header>
-
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Welcome Message for Authenticated Member */}
         <div className="bg-emerald-50 rounded-2xl border border-emerald-200 p-6 mb-6">
@@ -298,7 +270,7 @@ export default function HelperRegistrationPage() {
             <div className="text-4xl mr-4">👋</div>
             <div>
               <h3 className="text-lg font-bold text-emerald-800">
-                Hallo {user?.user_metadata?.vorname}!
+                Salam {user?.user_metadata?.vorname}!
               </h3>
               <p className="text-emerald-700 text-sm">
                 Schön, dass Sie als Vereinsmitglied ({user?.email}) anderen

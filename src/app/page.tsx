@@ -2,505 +2,274 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import {
-  Clock,
-  Shield,
-  Users,
   Calendar,
+  MapPin,
   Heart,
-  MessageCircle,
-  Star,
-  CheckCircle,
   ArrowRight,
-  Sparkles,
-  Award,
-  TrendingUp,
-  UserCheck,
-  Video,
+  BookOpen,
+  HeartHandshake,
 } from "lucide-react";
-import { Layout } from "@/components/layout/Layout";
+import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-const fadeInUp = {
-  initial: { opacity: 0, y: 60 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, ease: "easeOut" },
-};
-
-const staggerChildren = {
-  animate: {
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const scaleIn = {
-  initial: { opacity: 0, scale: 0.8 },
-  animate: { opacity: 1, scale: 1 },
-  transition: { duration: 0.5, ease: "easeOut" },
-};
-
-const features = [
+// Member dashboard steps for booking
+const bookingSteps = [
   {
-    icon: <Clock className="w-6 h-6" />,
-    title: "Schnelle Terminbuchung",
+    number: "1",
+    title: "Anliegen auswählen",
     description:
-      "Termine in wenigen Klicks buchen. Automatische Zuweisung zu verfügbaren Helferinnen.",
-    color: "bg-stone-100 text-stone-600",
+      "Wähle dein Anliegen aus - psychologische Beratung, Sozialberatung oder Schwangerschaftsbegleitung",
+    icon: <Heart className="w-5 h-5 text-warm-500" />,
   },
   {
-    icon: <Shield className="w-6 h-6" />,
-    title: "Sichere Beratung",
+    number: "2",
+    title: "Termin finden",
     description:
-      "DSGVO-konforme Datenverarbeitung und verschlüsselte Video-Gespräche.",
-    color: "bg-sage-100 text-sage-600",
+      "Schaue dir die verfügbaren Zeiten an und wähle einen passenden Slot",
+    icon: <Calendar className="w-5 h-5 text-warm-500" />,
   },
   {
-    icon: <Users className="w-6 h-6" />,
-    title: "Fachkundige Helferinnen",
-    description:
-      "Qualifizierte Beratung in Psychologie, Sozialarbeit und Schwangerschaftsbegleitung.",
-    color: "bg-slate-100 text-slate-600",
+    number: "3",
+    title: "Termin buchen",
+    description: "Bestätige deinen Termin und erhalte alle Details per E-Mail",
+    icon: <BookOpen className="w-5 h-5 text-warm-500" />,
   },
 ];
 
-const stats = [
+// Member dashboard features
+const memberFeatures = [
   {
-    label: "Erfolgreiche Beratungen",
-    value: "500+",
-    icon: <TrendingUp className="w-5 h-5" />,
+    title: "Termin buchen",
+    description:
+      "Buche ganz einfach einen Beratungstermin in wenigen Schritten",
+    href: "/book",
+    icon: <Calendar className="w-8 h-8 text-warm-500" />,
+    color: "bg-warm-50 hover:bg-warm-100",
   },
   {
-    label: "Zufriedene Mitglieder",
-    value: "98%",
-    icon: <Star className="w-5 h-5" />,
+    title: "Beratungsstellen finden",
+    description: "Finde externe Beratungsstellen in deiner Nähe",
+    href: "/beratungsstellen",
+    icon: <MapPin className="w-8 h-8 text-sage-500" />,
+    color: "bg-sage-50 hover:bg-sage-100",
   },
   {
-    label: "Qualifizierte Helferinnen",
-    value: "50+",
-    icon: <Award className="w-5 h-5" />,
-  },
-];
-
-const testimonials = [
-  {
-    text: "Die Beratung war genau das, was ich brauchte. Schnell, professionell und einfühlsam.",
-    name: "Zahra M.",
-    role: "Vereinsmitglied",
-  },
-  {
-    text: "Als Helferin freue ich mich, anderen Frauen in schwierigen Situationen helfen zu können.",
-    name: "Sainab H.",
-    role: "Beraterin",
-  },
-  {
-    text: "Ich kann sowohl als Mitglied Hilfe erhalten als auch anderen helfen. Das System ist perfekt.",
-    name: "Fatima H.",
-    role: "Mitglied & Helferin",
+    title: "Helferin werden",
+    description: "Möchtest du anderen helfen? Registriere dich als Helferin",
+    href: "/helper/register",
+    icon: <HeartHandshake className="w-12 h-12 text-coral-500" />,
+    color: "bg-coral-50 hover:bg-coral-100",
   },
 ];
 
 export default function Home() {
-  const [ref, inView] = useInView({
-    threshold: 0.1,
-    triggerOnce: true,
-  });
+  const { user, loading } = useAuth();
+  const router = useRouter();
 
-  const [statsRef, statsInView] = useInView({
-    threshold: 0.1,
-    triggerOnce: true,
-  });
+  // Filter memberFeatures based on user status
+  const filteredMemberFeatures = user
+    ? memberFeatures.filter((feature) => {
+        // Hide "Helferin werden" for users who are already helpers
+        if (feature.title === "Helferin werden" && user.is_helper) {
+          return false;
+        }
+        return true;
+      })
+    : memberFeatures;
 
-  const [featuresRef, featuresInView] = useInView({
-    threshold: 0.1,
-    triggerOnce: true,
-  });
+  // Redirect non-members to about page
+  useEffect(() => {
+    if (!loading && !user) {
+      router.push("/about");
+    }
+  }, [user, loading, router]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-cream-50 via-white to-sage-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-8 h-8 border-4 border-sage-300 border-t-sage-600 rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-sage-600">Lade...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return null; // Will redirect to about page
+  }
 
   return (
-    <Layout>
-      {/* Hero Section with animated background */}
-      <div className="relative overflow-hidden bg-warm-50">
-        {/* Animated background elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 0.1, scale: 1 }}
-            transition={{ duration: 2, ease: "easeOut" }}
-            className="absolute top-1/4 left-1/4 w-72 h-72 bg-warm-300 rounded-full blur-3xl"
-          />
-          <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 0.1, scale: 1 }}
-            transition={{ duration: 2, delay: 0.5, ease: "easeOut" }}
-            className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cream-200 rounded-full blur-3xl"
-          />
-        </div>
+    <div className="min-h-screen bg-gradient-to-br from-cream-50 via-white to-sage-50">
+      {/* Welcome Section */}
+      <div className="container mx-auto px-4 py-12">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
+          <h1 className="text-4xl md:text-6xl font-bold text-sage-800 mb-6">
+            Salam{" "}
+            <span className="bg-gradient-to-r from-warm-500 to-coral-500 bg-clip-text text-transparent">
+              {user.user_metadata?.vorname || "liebe Schwester"}
+            </span>
+            ! 👋
+          </h1>
+          <p className="text-xl text-sage-600 max-w-3xl mx-auto leading-relaxed">
+            Schön, dass du da bist! Hier kannst du ganz einfach einen
+            Beratungstermin buchen, Beratungsstellen finden oder dich als
+            Helferin registrieren.
+          </p>
+        </motion.div>
 
-        <main className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-32">
-          <motion.div
-            initial="initial"
-            animate="animate"
-            variants={staggerChildren}
-            className="text-center"
-          >
-            <motion.div variants={fadeInUp} className="mb-8">
-              <Badge
-                variant="secondary"
-                className="mb-4 px-4 py-2 text-sm font-medium"
-              >
-                <Sparkles className="w-4 h-4 mr-2" />
-                Professionelle Beratung für Vereinsmitglieder
-              </Badge>
-            </motion.div>
-
-            <motion.h1
-              variants={fadeInUp}
-              className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight"
-            >
-              Professionelle Beratung
-              <span className="block text-sage-700">für Vereinsmitglieder</span>
-            </motion.h1>
-
-            <motion.p
-              variants={fadeInUp}
-              className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed"
-            >
-              Schnelle, vertrauliche Beratung für alle Anliegen. Nur für
-              verifizierte Vereinsmitglieder. Terminbuchung für
-              Video-Sprechstunden in wenigen Klicks.
-            </motion.p>
-
+        {/* Member Actions */}
+        <div
+          className={`grid gap-8 ${filteredMemberFeatures.length === 2 ? "md:grid-cols-2 max-w-4xl" : "md:grid-cols-3 max-w-6xl"} mx-auto mb-16`}
+        >
+          {filteredMemberFeatures.map((feature, index) => (
             <motion.div
-              variants={fadeInUp}
-              className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
+              key={index}
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+              className="group"
             >
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Button
-                  size="lg"
-                  className="text-lg px-8 py-4 h-auto shadow-lg hover:shadow-xl transition-all duration-300"
-                  asChild
+              <Link href={feature.href}>
+                <Card
+                  className={`border-0 shadow-xl ${feature.color} backdrop-blur-sm hover:shadow-2xl transition-all duration-300 group-hover:scale-105 cursor-pointer h-full`}
                 >
-                  <Link href="/login">
-                    Anmelden
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
-                </Button>
-              </motion.div>
-
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="text-lg px-8 py-4 h-auto border-2 border-sage-600 text-sage-600 hover:bg-sage-50 shadow-lg hover:shadow-xl transition-all duration-300"
-                  asChild
-                >
-                  <Link href="/beratungsstellen">
-                    <MessageCircle className="mr-2 h-5 w-5" />
-                    Beratungsstellen finden
-                  </Link>
-                </Button>
-              </motion.div>
-            </motion.div>
-          </motion.div>
-
-          {/* Stats Section */}
-          <motion.div
-            ref={statsRef}
-            initial={{ opacity: 0, y: 40 }}
-            animate={statsInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="grid md:grid-cols-3 gap-8 mt-20"
-          >
-            {stats.map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={statsInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.6, delay: 0.1 * index }}
-                whileHover={{ scale: 1.05 }}
-                className="text-center"
-              >
-                <Card className="border-0 bg-white/70 backdrop-blur-sm shadow-xl hover:shadow-2xl transition-all duration-300">
-                  <CardContent className="p-6">
-                    <div className="flex items-center justify-center w-12 h-12 mx-auto mb-4 bg-sage-500 rounded-full text-white">
-                      {stat.icon}
-                    </div>
-                    <div className="text-3xl font-bold text-gray-900 mb-2">
-                      {stat.value}
-                    </div>
-                    <div className="text-sm text-gray-600">{stat.label}</div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
-        </main>
-      </div>
-
-      {/* How It Works Section */}
-      <section className="py-20 bg-cream-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              So funktioniert es für Mitglieder
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              In nur 3 einfachen Schritten zu Ihrer professionellen Beratung
-            </p>
-          </motion.div>
-
-          <motion.div
-            variants={staggerChildren}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            className="grid md:grid-cols-3 gap-8"
-          >
-            {/* Step 1: Login */}
-            <motion.div
-              variants={scaleIn}
-              whileHover={{ scale: 1.02, y: -5 }}
-              className="group text-center"
-            >
-              <div className="relative">
-                <div className="w-20 h-20 bg-sage-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <span className="text-2xl font-bold text-white">1</span>
-                </div>
-                <div className="absolute -top-2 -right-2 w-8 h-8 bg-warm-200 rounded-full flex items-center justify-center">
-                  <UserCheck className="w-4 h-4 text-warm-600" />
-                </div>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-sage-700 transition-colors duration-300">
-                Mit Login-Daten anmelden
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                Verwenden Sie Ihre E-Mail-Adresse und erhalten Sie einen Magic
-                Link oder melden Sie sich mit Ihrem Passwort an.
-              </p>
-            </motion.div>
-
-            {/* Step 2: Book Appointment */}
-            <motion.div
-              variants={scaleIn}
-              whileHover={{ scale: 1.02, y: -5 }}
-              className="group text-center"
-            >
-              <div className="relative">
-                <div className="w-20 h-20 bg-warm-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <span className="text-2xl font-bold text-white">2</span>
-                </div>
-                <div className="absolute -top-2 -right-2 w-8 h-8 bg-cream-200 rounded-full flex items-center justify-center">
-                  <Calendar className="w-4 h-4 text-coral-500" />
-                </div>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-warm-700 transition-colors duration-300">
-                Anliegen beschreiben und Termin wählen
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                Wählen Sie Ihren Beratungstyp, beschreiben Sie kurz Ihr Anliegen
-                und buchen Sie einen verfügbaren Termin.
-              </p>
-            </motion.div>
-
-            {/* Step 3: Video Call */}
-            <motion.div
-              variants={scaleIn}
-              whileHover={{ scale: 1.02, y: -5 }}
-              className="group text-center"
-            >
-              <div className="relative">
-                <div className="w-20 h-20 bg-coral-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <span className="text-2xl font-bold text-white">3</span>
-                </div>
-                <div className="absolute -top-2 -right-2 w-8 h-8 bg-sage-200 rounded-full flex items-center justify-center">
-                  <Video className="w-4 h-4 text-sage-600" />
-                </div>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-coral-500 transition-colors duration-300">
-                Online Video-Sprechstunde wahrnehmen
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                Nehmen Sie an der sicheren Video-Sprechstunde teil und erhalten
-                Sie professionelle Beratung von qualifizierten Helferinnen.
-              </p>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            ref={featuresRef}
-            initial={{ opacity: 0, y: 40 }}
-            animate={featuresInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Warum Muslimin-Beratung wählen?
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Wir bieten einen sicheren und vertrauensvollen Raum für Ihre
-              Anliegen
-            </p>
-          </motion.div>
-
-          <motion.div
-            variants={staggerChildren}
-            initial="initial"
-            animate={featuresInView ? "animate" : "initial"}
-            className="grid md:grid-cols-3 gap-8"
-          >
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                variants={scaleIn}
-                whileHover={{ scale: 1.02, y: -5 }}
-                className="group"
-              >
-                <Card className="h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:bg-sage-50">
-                  <CardHeader className="text-center pb-4">
-                    <div
-                      className={`w-16 h-16 ${feature.color} rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}
-                    >
+                  <CardContent className="p-8 text-center space-y-4">
+                    <div className="flex justify-center mb-4">
                       {feature.icon}
                     </div>
-                    <CardTitle className="text-xl group-hover:text-sage-700 transition-colors duration-300">
+                    <h3 className="text-2xl font-bold text-sage-800 group-hover:text-sage-900 transition-colors">
                       {feature.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <CardDescription className="text-center text-gray-600 leading-relaxed">
+                    </h3>
+                    <p className="text-sage-600 leading-relaxed">
                       {feature.description}
-                    </CardDescription>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section className="py-20 bg-sage-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            ref={ref}
-            initial={{ opacity: 0, y: 40 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Was unsere Mitglieder sagen
-            </h2>
-            <p className="text-xl text-gray-600">
-              Vertrauen und Zufriedenheit stehen bei uns im Mittelpunkt
-            </p>
-          </motion.div>
-
-          <motion.div
-            variants={staggerChildren}
-            initial="initial"
-            animate={inView ? "animate" : "initial"}
-            className="grid md:grid-cols-3 gap-8"
-          >
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={index}
-                variants={fadeInUp}
-                whileHover={{ scale: 1.02 }}
-                className="group"
-              >
-                <Card className="h-full border-0 bg-white shadow-lg hover:shadow-xl transition-all duration-300 group-hover:bg-warm-50">
-                  <CardContent className="p-8">
-                    <div className="flex mb-4">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className="w-5 h-5 text-yellow-400 fill-current"
-                        />
-                      ))}
-                    </div>
-                    <blockquote className="text-gray-700 mb-6 italic leading-relaxed">
-                      "{testimonial.text}"
-                    </blockquote>
-                    <div className="flex items-center">
-                      <div className="w-10 h-10 bg-warm-500 rounded-full flex items-center justify-center text-white font-semibold mr-3">
-                        {testimonial.name.charAt(0)}
-                      </div>
-                      <div>
-                        <div className="font-medium text-gray-900">
-                          {testimonial.name}
-                        </div>
-                        <div className="text-sm text-gray-500">
-                          {testimonial.role}
-                        </div>
-                      </div>
+                    </p>
+                    <div className="flex items-center justify-center text-sage-500 group-hover:text-sage-700 transition-colors">
+                      <ArrowRight className="w-5 h-5" />
                     </div>
                   </CardContent>
                 </Card>
-              </motion.div>
-            ))}
-          </motion.div>
+              </Link>
+            </motion.div>
+          ))}
         </div>
-      </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-sage-600">
+        {/* Booking Steps */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8"
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="max-w-4xl mx-auto"
         >
-          <h2 className="text-4xl font-bold text-white mb-6">
-            Bereit für Ihre erste Beratung?
+          <h2 className="text-3xl font-bold text-center text-sage-800 mb-12">
+            So buchst du einen Termin
           </h2>
-          <p className="text-xl text-warm-100 mb-8 leading-relaxed">
-            Als Vereinsmitglied haben Sie Zugang zu professioneller Beratung.
-            Melden Sie sich an, um Termine zu buchen.
-          </p>
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+          <div className="grid gap-8 md:grid-cols-3">
+            {bookingSteps.map((step, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.8 + index * 0.2 }}
+                className="text-center relative"
+              >
+                <div className="relative z-10">
+                  <div className="w-16 h-16 bg-gradient-to-r from-warm-500 to-coral-500 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4 shadow-lg">
+                    {step.number}
+                  </div>
+                  <div className="flex justify-center mb-4">{step.icon}</div>
+                  <h3 className="text-xl font-semibold text-sage-800 mb-2">
+                    {step.title}
+                  </h3>
+                  <p className="text-sage-600 leading-relaxed text-sm">
+                    {step.description}
+                  </p>
+                </div>
+                {index < bookingSteps.length - 1 && (
+                  <div className="hidden md:block absolute top-8 left-1/2 w-full h-0.5 bg-gradient-to-r from-warm-300 to-coral-300 transform translate-x-8" />
+                )}
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.4 }}
+            className="text-center mt-12"
+          >
             <Button
               size="lg"
-              variant="secondary"
-              className="text-lg px-12 py-4 h-auto bg-white text-sage-600 hover:bg-sage-50 shadow-2xl hover:shadow-3xl transition-all duration-300"
+              className="bg-gradient-to-r from-warm-500 to-coral-500 hover:from-warm-600 hover:to-coral-600 text-white font-medium px-8 py-3 shadow-lg hover:shadow-xl transition-all duration-300"
               asChild
             >
-              <Link href="/login">
+              <Link href="/book">
                 <Calendar className="mr-2 h-5 w-5" />
-                Jetzt anmelden
+                Jetzt Termin buchen
               </Link>
             </Button>
           </motion.div>
         </motion.div>
-      </section>
-    </Layout>
+
+        {/* Community Support */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.6 }}
+          className="max-w-4xl mx-auto mt-16"
+        >
+          <Card className="border-0 shadow-xl bg-gradient-to-r from-sage-50 to-warm-50 backdrop-blur-sm">
+            <CardHeader className="text-center">
+              <CardTitle className="text-2xl font-bold text-sage-800">
+                🤗 Von Mitgliedern für Mitglieder
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="text-center space-y-6">
+              <p className="text-sage-700 leading-relaxed text-lg">
+                Liebe Schwester, du bist nicht allein! 💕 Unsere wundervolle
+                Gemeinschaft steht dir zur Seite, wann immer du Unterstützung
+                brauchst. Egal ob du dir Sorgen machst, Fragen hast oder einfach
+                jemanden zum Reden brauchst - wir sind für dich da.
+              </p>
+              <p className="text-sage-600 leading-relaxed">
+                Hier findest du ein offenes Ohr, warme Herzen und Schwestern,
+                die dich verstehen. Manchmal brauchen wir alle einen Moment der
+                Stille, ein ermutigendes Wort oder einfach das Gefühl, gehört zu
+                werden. Das ist völlig normal und okay!
+              </p>
+              <div className="flex flex-wrap justify-center gap-6 text-sm pt-4">
+                <div className="flex items-center gap-2 text-sage-600">
+                  <div className="w-2 h-2 bg-pink-400 rounded-full"></div>
+                  <span>Mit Liebe</span>
+                </div>
+                <div className="flex items-center gap-2 text-sage-600">
+                  <div className="w-2 h-2 bg-pink-400 rounded-full"></div>
+                  <span>Verständnisvoll</span>
+                </div>
+                <div className="flex items-center gap-2 text-sage-600">
+                  <div className="w-2 h-2 bg-pink-400 rounded-full"></div>
+                  <span>Herzlich willkommen</span>
+                </div>
+              </div>
+              <div className="bg-white/70 rounded-lg p-4 mt-6">
+                <p className="text-sage-700 italic text-sm">
+                  "Manchmal ist das schönste Geschenk, das wir einander machen
+                  können, einfach da zu sein und zuzuhören." 💖
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
+      </div>
+    </div>
   );
 }

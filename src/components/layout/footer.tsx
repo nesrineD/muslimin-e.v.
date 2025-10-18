@@ -5,7 +5,7 @@ import { Separator } from "@/components/ui/separator";
 
 export function Footer() {
   return (
-    <footer className="border-t bg-stone-50/50">
+    <footer className="border-t bg-gradient-to-t from-sage-100/30 to-sage-50/50 border-sage-200">
       <div className="container mx-auto px-4 py-8 md:py-12">
         <div className="grid gap-8 lg:grid-cols-4 md:grid-cols-2">
           {/* Enhanced Brand */}
@@ -18,9 +18,8 @@ export function Footer() {
               />
               <div className="flex flex-col">
                 <span className="font-bold text-lg text-sage-700">
-                  Muslimin-Beratung
+                  Muslimin e.V.
                 </span>
-                <span className="text-xs text-stone-600 font-medium">e.V.</span>
               </div>
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed">
@@ -71,7 +70,7 @@ export function Footer() {
           <div className="space-y-4">
             <h3 className="text-sm font-semibold text-slate-700 flex items-center space-x-2">
               <div className="w-1 h-4 bg-slate-600 rounded-full"></div>
-              <span>Information & Support</span>
+              <span>Information & Gemeinschaft</span>
             </h3>
             <nav className="flex flex-col space-y-3 text-sm">
               <Link
@@ -82,25 +81,32 @@ export function Footer() {
                 <span>Über uns</span>
               </Link>
               <Link
-                href="/contact"
+                href="/veranstaltungen"
                 className="text-muted-foreground hover:text-slate-700 transition-colors flex items-center space-x-2 group"
               >
                 <span className="w-1 h-1 bg-slate-400 rounded-full group-hover:scale-150 transition-transform"></span>
-                <span>Kontakt</span>
+                <span>Unsere Veranstaltungen</span>
               </Link>
               <Link
-                href="/faq"
+                href="/mitglied-werden"
                 className="text-muted-foreground hover:text-gray-700 transition-colors flex items-center space-x-2 group"
               >
                 <span className="w-1 h-1 bg-gray-400 rounded-full group-hover:scale-150 transition-transform"></span>
-                <span>Häufige Fragen</span>
+                <span>Mitglied werden</span>
               </Link>
               <Link
-                href="/privacy"
+                href="/helper/register"
                 className="text-muted-foreground hover:text-neutral-700 transition-colors flex items-center space-x-2 group"
               >
                 <span className="w-1 h-1 bg-neutral-400 rounded-full group-hover:scale-150 transition-transform"></span>
-                <span>Datenschutz</span>
+                <span>Helferin werden</span>
+              </Link>
+              <Link
+                href="/pwa-guide"
+                className="text-muted-foreground hover:text-blue-700 transition-colors flex items-center space-x-2 group"
+              >
+                <span className="w-1 h-1 bg-blue-400 rounded-full group-hover:scale-150 transition-transform"></span>
+                <span>📱 Als App installieren</span>
               </Link>
             </nav>
           </div>
@@ -126,26 +132,11 @@ export function Footer() {
                 </div>
               </div>
               <div className="group">
-                <div className="flex items-center space-x-3 p-2 rounded-lg hover:bg-slate-100/50 transition-colors cursor-pointer">
-                  <Phone className="h-4 w-4 text-slate-600 group-hover:scale-110 transition-transform" />
-                  <div className="flex flex-col">
-                    <span className="text-muted-foreground group-hover:text-slate-700 transition-colors">
-                      +49 (0) 123 456 789
-                    </span>
-                    <span className="text-xs text-gray-400">
-                      Mo-Fr 9-17 Uhr
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div className="group">
                 <div className="flex items-start space-x-3 p-2 rounded-lg hover:bg-gray-100/50 transition-colors cursor-pointer">
                   <MapPin className="h-4 w-4 text-gray-600 group-hover:scale-110 transition-transform mt-0.5" />
                   <div className="flex flex-col">
                     <span className="text-muted-foreground group-hover:text-gray-700 transition-colors">
-                      Musterstraße 123
-                      <br />
-                      12345 Musterstadt
+                      Berlin
                     </span>
                     <span className="text-xs text-gray-400">
                       Geschäftsstelle
@@ -179,13 +170,13 @@ export function Footer() {
               Impressum
             </Link>
             <Link
-              href="/privacy"
+              href="/datenschutz"
               className="hover:text-slate-600 transition-colors text-xs font-medium"
             >
               Datenschutz
             </Link>
             <Link
-              href="/terms"
+              href="/agb"
               className="hover:text-gray-600 transition-colors text-xs font-medium"
             >
               AGB

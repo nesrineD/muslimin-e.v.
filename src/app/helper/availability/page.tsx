@@ -273,12 +273,12 @@ export default function HelperAvailabilityPage() {
     const isSelected = selectedSlots.includes(slotKey);
 
     const baseClasses =
-      "h-8 border border-gray-200 cursor-pointer transition-all duration-150 text-xs flex items-center justify-center font-medium rounded-sm";
+      "border-2 cursor-pointer transition-all duration-150 text-xs flex items-center justify-center font-bold rounded-md";
 
     if (isSelected) {
       return cn(
         baseClasses,
-        "bg-blue-200 border-blue-400 ring-2 ring-blue-300"
+        "bg-blue-300 border-blue-500 ring-2 ring-blue-400 shadow-lg"
       );
     }
 
@@ -286,13 +286,19 @@ export default function HelperAvailabilityPage() {
       case "available":
         return cn(
           baseClasses,
-          "bg-green-100 text-green-800 hover:bg-green-200 border-green-300"
+          "bg-gradient-to-br from-green-100 to-green-50 text-green-800 hover:from-green-200 hover:to-green-100 border-green-400 shadow-sm hover:shadow-md"
         );
       case "booked":
-        return cn(baseClasses, "bg-gray-400 text-white cursor-not-allowed");
+        return cn(
+          baseClasses,
+          "bg-gray-500 text-white border-gray-600 cursor-not-allowed opacity-75"
+        );
       case "unavailable":
       default:
-        return cn(baseClasses, "bg-white hover:bg-gray-50 text-gray-400");
+        return cn(
+          baseClasses,
+          "bg-white hover:bg-sage-50 text-gray-400 hover:text-sage-600 border-sage-200 hover:border-sage-300"
+        );
     }
   };
 
@@ -524,23 +530,30 @@ export default function HelperAvailabilityPage() {
                 </CardTitle>
                 <CardDescription>
                   Klicken Sie auf Zeitslots um Verfügbarkeiten zu setzen.
-                  45-Minuten-Blöcke von 8:00-20:00 Uhr.
+                  45-Minuten-Blöcke von 8:00-20:00 Uhr. Scrollen Sie nach unten
+                  für weitere Zeiten.
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="overflow-x-auto">
-                  <div className="min-w-[800px]">
-                    {/* Header with days */}
-                    <div className="grid grid-cols-8 gap-1 mb-2">
-                      <div className="p-2 text-sm font-medium text-gray-500">
-                        Zeit
+                <div
+                  className="overflow-auto border border-sage-200 rounded-lg shadow-md bg-white"
+                  style={{ maxHeight: "700px" }}
+                >
+                  <div className="min-w-max">
+                    {/* Header with days - Sticky */}
+                    <div className="sticky top-0 z-10 grid grid-cols-8 gap-1 mb-0 bg-gradient-to-r from-sage-700 to-sage-800 p-2 shadow-lg">
+                      <div className="p-3 text-center text-xs font-bold text-white bg-sage-700">
+                        <div>ZEIT</div>
                       </div>
                       {daysOfWeek.map((day, index) => (
-                        <div key={day.short} className="p-2 text-center">
-                          <div className="text-sm font-medium text-gray-900">
+                        <div
+                          key={day.short}
+                          className="p-3 text-center bg-gradient-to-b from-sage-700 to-sage-800 hover:from-sage-600 hover:to-sage-700 transition-colors rounded-t-lg"
+                        >
+                          <div className="text-base font-bold text-white">
                             {day.short}
                           </div>
-                          <div className="text-xs text-gray-500">
+                          <div className="text-xs text-sage-100 mt-1 font-semibold">
                             {weekDates[index]
                               .getDate()
                               .toString()
@@ -554,17 +567,23 @@ export default function HelperAvailabilityPage() {
                       ))}
                     </div>
 
-                    {/* Time grid */}
-                    <div className="space-y-1">
+                    {/* Time grid - Scrollable */}
+                    <div className="space-y-0 bg-white">
                       {timeSlots.map((timeSlot) => (
-                        <div key={timeSlot} className="grid grid-cols-8 gap-1">
-                          <div className="p-2 text-xs text-gray-500 font-medium bg-gray-50 rounded">
+                        <div
+                          key={timeSlot}
+                          className="grid grid-cols-8 gap-1 p-1 hover:bg-sage-50/50 transition-colors border-b border-sage-100 last:border-b-0"
+                        >
+                          <div className="p-3 text-xs font-bold text-sage-800 bg-gradient-to-r from-sage-50 to-sage-100 border border-sage-200 rounded min-w-[70px] text-center">
                             {timeSlot}
                           </div>
                           {daysOfWeek.map((day, dayIndex) => (
                             <div
                               key={`${dayIndex}-${timeSlot}`}
-                              className={getSlotClassName(dayIndex, timeSlot)}
+                              className={cn(
+                                getSlotClassName(dayIndex, timeSlot),
+                                "min-h-[60px] h-auto py-3 text-xs font-semibold hover:shadow-md transition-all duration-150 rounded border-2"
+                              )}
                               onClick={() =>
                                 handleSlotClick(dayIndex, timeSlot)
                               }
@@ -577,48 +596,72 @@ export default function HelperAvailabilityPage() {
                     </div>
 
                     {/* Legend */}
-                    <div className="flex items-center justify-center space-x-6 mt-6 p-4 bg-gray-50 rounded-lg">
+                    <div className="flex items-center justify-center space-x-4 mt-6 p-4 bg-gradient-to-r from-emerald-50 to-sage-50 rounded-lg border border-sage-200">
                       <div className="flex items-center space-x-2">
-                        <div className="w-4 h-4 bg-green-100 border border-green-300 rounded-sm flex items-center justify-center text-green-800 text-xs font-bold">
+                        <div className="w-5 h-5 bg-gradient-to-br from-green-200 to-green-100 border-2 border-green-500 rounded-sm flex items-center justify-center text-green-800 text-xs font-bold">
                           ✓
                         </div>
-                        <span className="text-sm text-gray-700">Verfügbar</span>
+                        <span className="text-sm font-medium text-gray-700">
+                          Verfügbar
+                        </span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <div className="w-4 h-4 bg-gray-400 rounded-sm flex items-center justify-center text-white text-xs">
+                        <div className="w-5 h-5 bg-gray-500 rounded-sm flex items-center justify-center text-white text-xs font-bold">
                           ●
                         </div>
-                        <span className="text-sm text-gray-700">Gebucht</span>
+                        <span className="text-sm font-medium text-gray-700">
+                          Gebucht
+                        </span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <div className="w-4 h-4 bg-white border border-gray-200 rounded-sm"></div>
-                        <span className="text-sm text-gray-700">
+                        <div className="w-5 h-5 bg-white border-2 border-dashed border-sage-300 rounded-sm"></div>
+                        <span className="text-sm font-medium text-gray-700">
                           Nicht verfügbar
                         </span>
                       </div>
                     </div>
 
                     {/* Instructions */}
-                    <div className="mt-4 p-4 bg-emerald-50 rounded-lg">
-                      <h4 className="text-sm font-medium text-emerald-800 mb-2">
+                    <div className="mt-4 p-4 bg-gradient-to-r from-emerald-50 to-blue-50 rounded-lg border-l-4 border-emerald-500">
+                      <h4 className="text-sm font-bold text-emerald-800 mb-3 flex items-center">
+                        <span className="text-lg mr-2">💡</span>
                         So funktioniert's:
                       </h4>
-                      <ul className="text-sm text-emerald-700 space-y-1">
-                        <li>
-                          • <strong>Einzeln klicken:</strong> Verfügbarkeit
-                          direkt umschalten
+                      <ul className="text-sm text-emerald-700 space-y-2">
+                        <li className="flex items-start space-x-2">
+                          <span className="text-emerald-600 font-bold">•</span>
+                          <span>
+                            <strong>Einzeln klicken:</strong> Verfügbarkeit
+                            direkt umschalten
+                          </span>
                         </li>
-                        <li>
-                          • <strong>Mehrfachauswahl:</strong> Mehrere Slots
-                          auswählen und gemeinsam ändern
+                        <li className="flex items-start space-x-2">
+                          <span className="text-emerald-600 font-bold">•</span>
+                          <span>
+                            <strong>Mehrfachauswahl:</strong> Mehrere Slots
+                            auswählen und gemeinsam ändern
+                          </span>
                         </li>
-                        <li>
-                          • <strong>Schnell-Einstellungen:</strong> Typische
-                          Muster mit einem Klick setzen
+                        <li className="flex items-start space-x-2">
+                          <span className="text-emerald-600 font-bold">•</span>
+                          <span>
+                            <strong>Schnell-Einstellungen:</strong> Typische
+                            Muster mit einem Klick setzen
+                          </span>
                         </li>
-                        <li>
-                          • <strong>Auto-Save:</strong> Änderungen werden
-                          automatisch gespeichert
+                        <li className="flex items-start space-x-2">
+                          <span className="text-emerald-600 font-bold">•</span>
+                          <span>
+                            <strong>Auto-Save:</strong> Änderungen werden
+                            automatisch gespeichert
+                          </span>
+                        </li>
+                        <li className="flex items-start space-x-2">
+                          <span className="text-emerald-600 font-bold">•</span>
+                          <span>
+                            <strong>Scrollen:</strong> Nach unten für weitere
+                            Zeitslots (bis 20:00 Uhr)
+                          </span>
                         </li>
                       </ul>
                     </div>

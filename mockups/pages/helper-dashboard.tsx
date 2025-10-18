@@ -30,7 +30,11 @@ export default function HelperDashboard() {
   const [availability, setAvailability] = useState(initialAvailability);
   const [isEditing, setIsEditing] = useState(false);
 
-  const handleAvailabilityChange = (index, field, value) => {
+  const handleAvailabilityChange = (
+    index: number,
+    field: keyof (typeof initialAvailability)[0],
+    value: string
+  ) => {
     const newAvailability = [...availability];
     newAvailability[index][field] = value;
     setAvailability(newAvailability);
@@ -43,7 +47,7 @@ export default function HelperDashboard() {
     ]);
   };
 
-  const removeAvailabilitySlot = (index) => {
+  const removeAvailabilitySlot = (index: number) => {
     setAvailability(availability.filter((_, i) => i !== index));
   };
 
@@ -60,7 +64,7 @@ export default function HelperDashboard() {
             </div>
             <div className="flex items-center space-x-4">
               <span className="text-sm text-gray-700">
-                Hallo, {user.vorname} (Helferin)
+                Salam, {user.vorname} (Helferin)
               </span>
               <button className="bg-gray-100 text-gray-700 px-3 py-2 rounded-md text-sm hover:bg-gray-200">
                 Abmelden
