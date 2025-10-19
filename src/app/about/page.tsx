@@ -206,21 +206,28 @@ export default function AboutPage() {
 
         {/* Call to Action */}
         <motion.div variants={itemVariants}>
-          <Card className="border-0 shadow-xl bg-white/80 backdrop-blur-sm">
+          <Card className="border-0 shadow-xl bg-gradient-to-br from-sage-50/80 to-cream-50/80 backdrop-blur-sm">
             <CardHeader className="text-center">
               <CardTitle className="text-3xl font-bold text-sage-800 mb-4">
                 Möchten Sie Teil unserer Gemeinschaft werden?
               </CardTitle>
-              <CardDescription className="text-lg text-sage-600">
-                Entdecken Sie die Vorteile einer Mitgliedschaft und bewerben Sie
-                sich noch heute
+              <CardDescription className="text-lg text-sage-700 font-semibold mb-3">
+                🤝 Im Dienste von Ahlul-Bayt
+              </CardDescription>
+              <CardDescription className="text-base text-sage-600">
+                Entdecken Sie die Vorteile einer Mitgliedschaft und registrieren
+                Sie sich noch heute
               </CardDescription>
             </CardHeader>
             <CardContent className="text-center space-y-6">
               <p className="text-sage-700 leading-relaxed max-w-2xl mx-auto">
                 Werden Sie Teil einer unterstützenden Gemeinschaft von Frauen,
-                die sich gegenseitig helfen und gemeinsam wachsen. Ihre Reise zu
-                mehr Verbindung und Unterstützung beginnt hier.
+                die sich gegenseitig helfen und gemeinsam wachsen –{" "}
+                <span className="font-semibold text-sage-800">
+                  im Dienste von Ahlul-Bayt
+                </span>
+                . Ihre Reise zu mehr Verbindung, Unterstützung und geistlichem
+                Wachstum beginnt hier.
               </p>
               <Button
                 className="bg-gradient-to-r from-sage-600 to-warm-600 hover:from-sage-700 hover:to-warm-700 text-white font-semibold px-8 py-3 text-lg transition-all duration-300 shadow-lg hover:shadow-xl"
