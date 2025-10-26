@@ -1,316 +1,164 @@
-# Muslimin-Beratung Terminbuchungsplattform# Muslimin-Beratung - Terminbuchungsplattform (MVP)
+# Muslimin-Beratung - Terminbuchungsplattform (MVP)
 
-Eine webbasierte Terminbuchungsplattform für Vereinsmitglieder, die schnellen Zugang zu professioneller Beratung durch verifizierte Helferinnen ermöglicht.> Eine datenschutzfreundliche Terminbuchungsplattform für Vereinsmitglieder mit Fokus auf professionelle Beratung durch verifizierte Helferinnen.
+> Eine datenschutzfreundliche Terminbuchungsplattform für Vereinsmitglieder mit Fokus auf professionelle Beratung durch verifizierte Helferinnen.
 
-## 🚀 Quick Start![Next.js](https://img.shields.io/badge/Next.js-14+-black?style=flat-square&logo=next.js)
-
+![Next.js](https://img.shields.io/badge/Next.js-14+-black?style=flat-square&logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5+-blue?style=flat-square&logo=typescript)
-
-```bash![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3+-06B6D4?style=flat-square&logo=tailwindcss)
-
-# Installation![Google Maps](https://img.shields.io/badge/Google_Maps-API-4285F4?style=flat-square&logo=googlemaps)
-
-npm install
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3+-06B6D4?style=flat-square&logo=tailwindcss)
+![Google Maps](https://img.shields.io/badge/Google_Maps-API-4285F4?style=flat-square&logo=googlemaps)
 
 ## 📋 Überblick
 
-# Entwicklung starten
+Die Muslimin-Beratung Plattform ermöglicht es Vereinsmitgliedern, schnell und unkompliziert Termine für verschiedene Beratungsangebote zu buchen. Das System fokussiert sich auf **Datenschutz**, **Benutzerfreundlichkeit** und **professionelle Beratungsdienstleistungen**.
 
-npm run devDie Muslimin-Beratung Plattform ermöglicht es Vereinsmitgliedern, schnell und unkompliziert Termine für verschiedene Beratungsangebote zu buchen. Das System fokussiert sich auf **Datenschutz**, **Benutzerfreundlichkeit** und **professionelle Beratungsdienstleistungen**.
-
-
-
-# Tests ausführen### ✨ Features
-
-npm run test
+### ✨ Features
 
 ### ✅ Implementiert (MVP 0.2.0)
 
-# Build für Production
-
-npm run build**Benutzeroberfläche & Design**
-
-```
+**Benutzeroberfläche & Design**
 
 - ✅ Responsive Homepage mit rollenbasierter Feature-Anzeige
-
-Die App ist dann verfügbar unter: `http://localhost:3000`- ✅ Sage-Gradient Design System (Header, Footer, Buttons)
-
+- ✅ Sage-Gradient Design System (Header, Footer, Buttons)
 - ✅ Optimierte Verfügbarkeits-Kalender mit 16-h-Slots (6:00-21:00 CEST)
-
-## 📚 Dokumentation- ✅ Vergrößerte, bessere positionierte Logo-Navigation (h-16)
-
+- ✅ Vergrößerte, bessere positionierte Logo-Navigation (h-16)
 - ✅ "Salam"-Grußsystem für kulturelle Authentizität
-
-Alle Dokumentation befindet sich im Ordner `documentation/`:
 
 **Benutzer & Authentifizierung**
 
-- **[ENTWICKLER-LEITFADEN.md](./documentation/ENTWICKLER-LEITFADEN.md)** - Technische Setup & Architektur
+- ✅ Mock-Authentifizierung mit 4 Test-Nutzern
+- ✅ Vereinsmitglieder-Verwaltung (Mock-Daten)
+- ✅ Rollenbasierte Zugriffskontrolle (Member, Helper, Member+Helper, Admin)
 
-- **[TESTING-STRATEGY.md](./documentation/TESTING-STRATEGY.md)** - Testing-Strategie & Test-Coverage- ✅ Mock-Authentifizierung mit 4 Test-Nutzern
+**Funktionen**
 
-- **[USER-FLOW-GUIDE.md](./documentation/USER-FLOW-GUIDE.md)** - User Journeys & Flows- ✅ Vereinsmitglieder-Verwaltung (Mock-Daten)
-
-- **[VALIDATION-CHECK.md](./documentation/VALIDATION-CHECK.md)** - Daten-Validierung- ✅ Rollenbasierte Zugriffskontrolle (Member, Helper, Member+Helper, Admin)
-
-- **[STAKEHOLDER-TESTING-GUIDE.md](./documentation/STAKEHOLDER-TESTING-GUIDE.md)** - Stakeholder-Testing
-
-- **[CALENDAR-ENHANCEMENT-COMPLETE.md](./documentation/CALENDAR-ENHANCEMENT-COMPLETE.md)** - Calendar-Komponente**Funktionen**
-
-- **[TASK-STATUS-UND-OFFENE-FRAGEN.md](./documentation/TASK-STATUS-UND-OFFENE-FRAGEN.md)** - Projekt-Status
-
-- **[DOCUMENTATION-OVERVIEW.md](./documentation/DOCUMENTATION-OVERVIEW.md)** - Dokumentations-Überblick- ✅ Interaktive Mitgliederkarte mit PLZ-Datenschutz
-
+- ✅ Interaktive Mitgliederkarte mit PLZ-Datenschutz
 - ✅ Helper-Verfügbarkeits-Management mit verbessertem UI
-
-## 🏗️ Projekt-Struktur- ⏳ Helper-Registrierung und Verifizierung
-
+- ⏳ Helper-Registrierung und Verifizierung
 - ⏳ Terminbuchungssystem
+- ⏳ E-Mail-Benachrichtigungen (Brevo Integration)
+- ⏳ Jitsi Meet Integration
 
-````- ⏳ E-Mail-Benachrichtigungen (Brevo Integration)
+### 📱 PWA Features (Geplant)
 
-src/- ⏳ Jitsi Meet Integration
+- Service Worker für Offline-Funktionalität
+- App-Installation auf mobilen Geräten
+- Push-Benachrichtigungen
 
-├── app/                    # Next.js App Router
+## 🎨 Design System
 
-│   ├── (auth)/            # Login, Registration### 📱 PWA Features
+### Farbpalette
 
-│   ├── (legal)/           # Impressum, Datenschutz
+```
+Sage (Primary):
+- sage-50: #f8faf7
+- sage-100: #eff1ed
+- sage-700: #0d6f52
+- sage-800: #0a4f38
 
-│   ├── (member)/          # Member Dashboard- Service Worker für Offline-Funktionalität
-
-│   ├── helper/            # Helper Routes- App-Installation auf mobilen Geräten
-
-│   └── ...- Push-Benachrichtigungen
-
-├── components/            # React Components
-
-│   ├── calendar/          # Calendar Komponenten## 🎨 Design System
-
-│   ├── layout/            # Layout Komponenten
-
-│   ├── ui/                # UI Components (shadcn/ui)### Farbpalette
-
-│   └── ...
-
-├── hooks/                 # Custom React Hooks```
-
-├── lib/                   # Utilities & HelperSage (Primary):
-
-├── services/              # Business Logic- sage-50: #f8faf7
-
-├── types/                 # TypeScript Types- sage-100: #eff1ed
-
-└── providers/             # Context Providers- sage-700: #0d6f52
-
-```- sage-800: #0a4f38
-
-
-
-## 🛠️ Tech StackCream (Secondary): #f5ede5
-
+Cream (Secondary): #f5ede5
 Warm: #c98c61
+Coral (Accent): #f57c5c
+```
 
-- **Frontend**: Next.js 14+, React 18+, TypeScriptCoral (Accent): #f57c5c
+### Komponenten-Updates
 
-- **Styling**: Tailwind CSS```
+**Header & Navigation**
 
-- **UI Components**: shadcn/ui
-
-- **Database**: PostgreSQL (Supabase)### Komponenten-Updates
-
-- **Auth**: Supabase Auth
-
-- **Email**: Brevo**Header & Navigation**
-
-- **Video**: Jitsi Meet
-
-- **Hosting**: Vercel- Logo-Größe: `h-16` (desktop), `h-14` (mobile)
-
+- Logo-Größe: `h-16` (desktop), `h-14` (mobile)
 - Background: Sage-Gradient (`from-sage-50 to-sage-100/50` normal, intensiver beim Scrollen)
+- Container-Höhe: `h-20` für bessere Proportion
 
-## 🔐 Authentifizierung- Container-Höhe: `h-20` für bessere Proportion
+**Kalender (/helper/availability)**
 
-
-
-Die App verwendet **Magic Link Authentication** mit Supabase:**Kalender (/helper/availability)**
-
-
-
-1. User gibt E-Mail ein- Slot-Größe: `min-h-[60px]` (7.5x größer als vorher)
-
-2. Magic Link kommt per E-Mail- Scrollbares Layout: `maxHeight: 700px` für 16-h Ansicht
-
-3. Link öffnet App mit automatischem Login- Sticky Header & Time Labels für bessere Navigation
-
-4. Session wird in localStorage gespeichert- Größere, lesbarere Zeitanzeige
-
+- Slot-Größe: `min-h-[60px]` (7.5x größer als vorher)
+- Scrollbares Layout: `maxHeight: 700px` für 16-h Ansicht
+- Sticky Header & Time Labels für bessere Navigation
+- Größere, lesbarere Zeitanzeige
 - Farbcodierte Verfügbarkeitsstatus
-
-## 📋 Rollen & Berechtigungen
 
 **Footer**
 
-### Member
-
-- Termin buchen (max. 3)- Background: Sage-Gradient upward (`from-sage-100/30 to-sage-50/50`)
-
-- Eigene Termine verwalten- Border: `border-sage-200` (matching Header)
-
-- Termin stornieren (bis 2 Tage vor)
+- Background: Sage-Gradient upward (`from-sage-100/30 to-sage-50/50`)
+- Border: `border-sage-200` (matching Header)
 
 ## 🎯 MVP-Status
 
-### Helper
+**Aktueller Stand**: Frontend mit optimierter UI und verbessertem Kalender ist implementiert, Mock-Authentifizierung funktioniert.
 
-- Verfügbarkeiten verwalten**Aktueller Stand**: Frontend mit optimierter UI und verbessertem Kalender ist implementiert, Mock-Authentifizierung funktioniert.
-
-- Termine in Fachbereich einsehen
-
-- Vorabinformationen abrufen- 📊 Features: 40% implementiert
-
+- 📊 Features: 40% implementiert
 - 🗄️ Backend: 0% (geplant mit Supabase)
+- 📱 Mobile: 90% (Responsive Design, PWA-ready)
 
-### Admin- 📱 Mobile: 90% (Responsive Design, PWA-ready)
-
-- Helferinnen verifizieren
-
-- Kategorien verwalten## 🚀 Schnellstart
-
-- Beratungsstellen pflegen
+## 🚀 Schnellstart
 
 ### Voraussetzungen
 
-## 📱 Features
-
 - Node.js 18+
+- npm oder yarn
+- Google Maps API Key (für Kartenfunktion)
 
-- ✅ Responsive Design (Mobile & Desktop)- npm oder yarn
+### Installation
 
-- ✅ PWA-Installation auf Smartphone- Google Maps API Key (für Kartenfunktion)
-
-- ✅ Offline-Funktionalität
-
-- ✅ Terminverwaltung mit Kalender### Installation
-
-- ✅ E-Mail-Benachrichtigungen
-
-- ✅ Video-Call Integration (Jitsi)```bash
-
-- ✅ DSGVO-konform# Repository klonen
-
-- ✅ Barrierefreie Bedienunggit clone https://github.com/nesrineD/muslimin.beratung.git
-
+```bash
+# Repository klonen
+git clone https://github.com/nesrineD/muslimin.beratung.git
 cd muslimin-beratung
 
-## 🧪 Testing
-
 # Dependencies installieren
+npm install
 
-```bashnpm install
-
-# Unit Tests
-
-npm run test# Environment Variables konfigurieren
-
+# Environment Variables konfigurieren
 cp .env.example .env.local
+# Google Maps API Key eintragen:
+# NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your-api-key-here
 
-# Watch Mode# Google Maps API Key eintragen:
+# Entwicklungsserver starten
+npm run dev
+```
 
-npm run test:watch# NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your-api-key-here
-
-
-
-# Coverage Report# Entwicklungsserver starten
-
-npm run test:coveragenpm run dev
-
-````
-
-# E2E Tests (Playwright)
-
-npm run test:e2eDie Anwendung ist dann unter [http://localhost:3000](http://localhost:3000) verfügbar.
-
-````
+Die Anwendung ist dann unter [http://localhost:3000](http://localhost:3000) verfügbar.
 
 ## 📚 Dokumentation für Stakeholder
 
-Siehe [TESTING-STRATEGY.md](./documentation/TESTING-STRATEGY.md) für Details.
-
 Für nicht-technische Nutzer & Stakeholder haben wir umfassende Dokumentationen erstellt:
-
-## 🐛 Development
 
 ### 🎯 [DOCUMENTATION-OVERVIEW.md](./DOCUMENTATION-OVERVIEW.md) ← **START HIER!**
 
-### Projekt-Setup
+**Quick Guide** zu allen Dokumentationen + Testing-Tipps:
 
-1. Clone Repository**Quick Guide** zu allen Dokumentationen + Testing-Tipps:
-
-2. `npm install`
-
-3. Konfiguriere `.env.local` (siehe `.env.example`)- 📊 Überblick aller Dokumente & wofür sie sind
-
-4. `npm run dev`- 🚀 Quick-Start: Welche Dokumentation für welches Szenario?
-
+- 📊 Überblick aller Dokumente & wofür sie sind
+- 🚀 Quick-Start: Welche Dokumentation für welches Szenario?
 - 👥 Die 4 Test-Accounts erklärt
+- ✅ Top-10 Testing-Checkliste
+- 💡 Tipps & Tricks für effektives Testen
 
-### Code-Style- ✅ Top-10 Testing-Checkliste
-
-- **TypeScript**: Strict Mode aktiviert- 💡 Tipps & Tricks für effektives Testen
-
-- **Linting**: ESLint
-
-- **Formatting**: Prettier### 🧪 [STAKEHOLDER-TESTING-GUIDE.md](./STAKEHOLDER-TESTING-GUIDE.md)
-
-- **Components**: Funktionale Komponenten mit Hooks
+### 🧪 [STAKEHOLDER-TESTING-GUIDE.md](./STAKEHOLDER-TESTING-GUIDE.md)
 
 **Kompletter Testleitfaden** für alle implementierten Funktionen:
 
-### Git Workflow
-
-```bash- ✅ Alle 17 Seiten erklärt
-
-# Feature Branch erstellen- ✅ 4 Test-Accounts mit konkreten Use Cases
-
-git checkout -b feature/deine-feature- ✅ Schritt-für-Schritt Anleitungen zum Testen
-
+- ✅ Alle 17 Seiten erklärt
+- ✅ 4 Test-Accounts mit konkreten Use Cases
+- ✅ Schritt-für-Schritt Anleitungen zum Testen
 - ✅ Checkliste für alle Features
-
-# Commits schreiben- ✅ Glossar der wichtigsten Begriffe
-
-git commit -m "feat: kurze Beschreibung"
+- ✅ Glossar der wichtigsten Begriffe
 
 ### 🗺️ [USER-FLOW-GUIDE.md](./USER-FLOW-GUIDE.md)
 
-# Push & Pull Request
-
-git push origin feature/deine-feature**Visueller Überblick** aller User Journeys & Navigationen:
-
-````
+**Visueller Überblick** aller User Journeys & Navigationen:
 
 - ✅ Komplette Website-Sitemap (alle 17 Seiten)
-
-## 📞 Support- ✅ 5 Komplette User Journeys (von Login bis Terminbuchung)
-
+- ✅ 5 Komplette User Journeys (von Login bis Terminbuchung)
 - ✅ Feature-Übersicht nach Seite
+- ✅ Navigation & Seitenstruktur
 
-Siehe [ENTWICKLER-LEITFADEN.md](./documentation/ENTWICKLER-LEITFADEN.md) für technische Fragen.- ✅ Navigation & Seitenstruktur
+### ✅ [VALIDATION-CHECK.md](./VALIDATION-CHECK.md)
 
-## 📄 Lizenz### ✅ [VALIDATION-CHECK.md](./VALIDATION-CHECK.md)
+**Validierungsdokumentation**: Code ↔ Dokumentation Konsistenz:
 
-Dieses Projekt ist Teil der Muslimin-Beratung Initiative.**Validierungsdokumentation**: Code ↔ Dokumentation Konsistenz:
-
----- ✅ Alle Seiten & Features gemappt auf Quellcode
-
+- ✅ Alle Seiten & Features gemappt auf Quellcode
 - ✅ Test-Accounts validiert
-
-**Version**: MVP 0.1.0 - ✅ Performance-Metriken
-
-**Last Updated**: Oktober 2025 - ✅ Browser-Kompatibilität
-
-**Status**: In Entwicklung 🚧
+- ✅ Performance-Metriken
+- ✅ Browser-Kompatibilität
 
 ## 🧪 Demo & Test-Accounts
 
