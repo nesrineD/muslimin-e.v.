@@ -139,3 +139,34 @@ export function isUpcoming(date: Date): boolean {
   const weekFromNow = addDays(7);
   return date >= now && date <= weekFromNow;
 }
+
+/**
+ * Get an array of dates for a week (Monday to Sunday)
+ * This function does NOT mutate any date objects - it creates new ones
+ * 
+ * @param weekOffset - Number of weeks to offset from current week (0 = current week, 1 = next week, -1 = previous week)
+ * @returns Array of 7 Date objects representing Monday through Sunday
+ */
+export function getWeekDates(weekOffset: number = 0): Date[] {
+  const today = new Date();
+  const currentDay = today.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+  
+  // Calculate days to subtract to get to Monday (handle Sunday as 7)
+  const daysToMonday = currentDay === 0 ? 6 : currentDay - 1;
+  
+  // Calculate the Monday of the target week without mutating
+  const mondayDate = new Date(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDate() - daysToMonday + (weekOffset * 7)
+  );
+  
+  // Generate array of 7 dates starting from Monday
+  return Array.from({ length: 7 }, (_, index) => {
+    return new Date(
+      mondayDate.getFullYear(),
+      mondayDate.getMonth(),
+      mondayDate.getDate() + index
+    );
+  });
+}
