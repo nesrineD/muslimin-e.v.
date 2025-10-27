@@ -6,6 +6,7 @@ import { ChevronLeft, ChevronRight, Plus, Trash2, Clock } from "lucide-react";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
 import { cn } from "@/lib/utils";
+import { getWeekDates } from "@/lib/date-utils";
 
 interface TimeSlot {
   dayOfWeek: number; // 0-6 (Mo-Su)
@@ -33,20 +34,6 @@ const FULL_DAYS = [
 ];
 const HOURS = Array.from({ length: 16 }, (_, i) => `${i + 6}:00`); // 6:00 - 21:00 (erweitert für mehr Optionen)
 
-// Helper function to get current week dates
-const getCurrentWeekDates = () => {
-  const today = new Date();
-  const currentDay = today.getDay();
-  const monday = new Date(today);
-  monday.setDate(today.getDate() - (currentDay === 0 ? 6 : currentDay - 1));
-
-  return Array.from({ length: 7 }, (_, i) => {
-    const date = new Date(monday);
-    date.setDate(monday.getDate() + i);
-    return date;
-  });
-};
-
 export default function OptimizedAvailabilityCalendar({
   availableSlots = [],
   isEditing = false,
@@ -66,7 +53,7 @@ export default function OptimizedAvailabilityCalendar({
 
   // Initialize current week dates
   useEffect(() => {
-    setWeekDates(getCurrentWeekDates());
+    setWeekDates(getWeekDates(0));
   }, []);
 
   const handleSlotToggle = (dayOfWeek: number, hour: string) => {

@@ -45,7 +45,7 @@ import GridAvailabilityCalendar, {
   createEmptyGrid,
 } from "../../../components/calendar/GridAvailabilityCalendar";
 import { cn } from "../../../lib/utils";
-import { createFutureDate } from "../../../lib/date-utils";
+import { createFutureDate, getWeekDates } from "../../../lib/date-utils";
 
 // Mock data with Sainab Helper persona from flow.md
 const mockHelper = {
@@ -221,23 +221,7 @@ export default function HelperDashboard() {
     }
   };
 
-  const getCurrentWeekDates = () => {
-    const today = new Date();
-    const currentWeekStart = new Date(
-      today.setDate(today.getDate() - today.getDay() + 1)
-    ); // Monday
-    currentWeekStart.setDate(
-      currentWeekStart.getDate() + currentWeekOffset * 7
-    );
-
-    return Array.from({ length: 7 }, (_, index) => {
-      const date = new Date(currentWeekStart);
-      date.setDate(date.getDate() + index);
-      return date;
-    });
-  };
-
-  const weekDates = getCurrentWeekDates();
+  const weekDates = getWeekDates(currentWeekOffset);
 
   const handleWeekChange = (newOffset: number) => {
     setCurrentWeekOffset(newOffset);
