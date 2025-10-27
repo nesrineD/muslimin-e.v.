@@ -25,11 +25,12 @@ const lastDayOfWeek = lastDate.getDay();
 console.log("✓ Week ends on Sunday:", lastDayOfWeek === 0);
 
 // Test 4: Dates are consecutive
+const ONE_DAY_MS = 24 * 60 * 60 * 1000;
+const TOLERANCE_MS = 1000; // Allow 1 second tolerance
 let isConsecutive = true;
 for (let i = 0; i < weekDates.length - 1; i++) {
   const diff = weekDates[i + 1].getTime() - weekDates[i].getTime();
-  const oneDayInMs = 24 * 60 * 60 * 1000;
-  if (Math.abs(diff - oneDayInMs) > 1000) { // Allow 1 second tolerance
+  if (Math.abs(diff - ONE_DAY_MS) > TOLERANCE_MS) {
     isConsecutive = false;
     break;
   }

@@ -97,9 +97,12 @@ export function formatDateIntl(date: Date | string | null | undefined): string {
  * @returns Date object
  */
 export function addDays(days: number): Date {
-  const date = new Date();
-  date.setDate(date.getDate() + days);
-  return date;
+  const now = new Date();
+  return new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate() + days
+  );
 }
 
 /**
@@ -114,10 +117,16 @@ export function createFutureDate(
   hour: number,
   minute: number = 0
 ): Date {
-  const date = new Date();
-  date.setDate(date.getDate() + daysFromNow);
-  date.setHours(hour, minute, 0, 0);
-  return date;
+  const now = new Date();
+  return new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate() + daysFromNow,
+    hour,
+    minute,
+    0,
+    0
+  );
 }
 
 /**
