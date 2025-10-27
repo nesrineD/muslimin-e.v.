@@ -67,19 +67,19 @@ Willkommen in der Projektdokumentation! Hier findest du alle wichtigen Informati
 
 ## 📚 Alle Dateien
 
-| Datei                                                                  | Beschreibung                           | Zielgruppe               |
-| ---------------------------------------------------------------------- | -------------------------------------- | ------------------------ |
-| [ENTWICKLER-LEITFADEN.md](./ENTWICKLER-LEITFADEN.md)                   | Technische Architektur & Setup         | Developers               |
-| [NEXTJS-QUICK-UPGRADE.md](./NEXTJS-QUICK-UPGRADE.md)                   | ⭐ Quick: Next.js 14→15 Upgrade        | Developers (dringend)    |
-| [NEXTJS-UPGRADE-GUIDE.md](./NEXTJS-UPGRADE-GUIDE.md)                   | Detaillierter Next.js Upgrade          | Developers (ausführlich) |
-| [TESTING-STRATEGY.md](./TESTING-STRATEGY.md)                           | Unit, Integration, E2E Tests           | QA, Developers           |
-| [USER-FLOW-GUIDE.md](./USER-FLOW-GUIDE.md)                             | Benutzer-Journeys & Features           | PO, QA, Developers       |
-| [VALIDATION-CHECK.md](./VALIDATION-CHECK.md)                           | Daten-Validierung & Constraints        | Backend Developer        |
-| [STAKEHOLDER-TESTING-GUIDE.md](./STAKEHOLDER-TESTING-GUIDE.md)         | UAT & Stakeholder Testing              | QA, Stakeholder          |
-| [CALENDAR-ENHANCEMENT-COMPLETE.md](./CALENDAR-ENHANCEMENT-COMPLETE.md) | Calendar-Komponente Details            | Frontend Developer       |
-| [TASK-STATUS-UND-OFFENE-FRAGEN.md](./TASK-STATUS-UND-OFFENE-FRAGEN.md) | Projekt-Status & Offene Items          | PM, Team Lead            |
-| [DOCUMENTATION-OVERVIEW.md](./DOCUMENTATION-OVERVIEW.md)               | Dokumentations-Meta-Info               | Dokumentation Maintainer |
-| [MIGRATION-LOG.md](./MIGRATION-LOG.md)                                 | Dokumentations-Migration Log           | Dokumentation Maintainer |
+| Datei                                                                  | Beschreibung                    | Zielgruppe               |
+| ---------------------------------------------------------------------- | ------------------------------- | ------------------------ |
+| [ENTWICKLER-LEITFADEN.md](./ENTWICKLER-LEITFADEN.md)                   | Technische Architektur & Setup  | Developers               |
+| [NEXTJS-QUICK-UPGRADE.md](./NEXTJS-QUICK-UPGRADE.md)                   | ⭐ Quick: Next.js 14→15 Upgrade | Developers (dringend)    |
+| [NEXTJS-UPGRADE-GUIDE.md](./NEXTJS-UPGRADE-GUIDE.md)                   | Detaillierter Next.js Upgrade   | Developers (ausführlich) |
+| [TESTING-STRATEGY.md](./TESTING-STRATEGY.md)                           | Unit, Integration, E2E Tests    | QA, Developers           |
+| [USER-FLOW-GUIDE.md](./USER-FLOW-GUIDE.md)                             | Benutzer-Journeys & Features    | PO, QA, Developers       |
+| [VALIDATION-CHECK.md](./VALIDATION-CHECK.md)                           | Daten-Validierung & Constraints | Backend Developer        |
+| [STAKEHOLDER-TESTING-GUIDE.md](./STAKEHOLDER-TESTING-GUIDE.md)         | UAT & Stakeholder Testing       | QA, Stakeholder          |
+| [CALENDAR-ENHANCEMENT-COMPLETE.md](./CALENDAR-ENHANCEMENT-COMPLETE.md) | Calendar-Komponente Details     | Frontend Developer       |
+| [TASK-STATUS-UND-OFFENE-FRAGEN.md](./TASK-STATUS-UND-OFFENE-FRAGEN.md) | Projekt-Status & Offene Items   | PM, Team Lead            |
+| [DOCUMENTATION-OVERVIEW.md](./DOCUMENTATION-OVERVIEW.md)               | Dokumentations-Meta-Info        | Dokumentation Maintainer |
+| [MIGRATION-LOG.md](./MIGRATION-LOG.md)                                 | Dokumentations-Migration Log    | Dokumentation Maintainer |
 
 ---
 
