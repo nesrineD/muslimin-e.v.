@@ -1,7 +1,7 @@
 // Tests for date-utils functions
 // Focus on the new getWeekDates function to ensure it doesn't mutate dates
 
-import { getWeekDates } from "@/lib/date-utils";
+import { getWeekDates, isPast, isUpcoming } from "@/lib/date-utils";
 
 // Test constants
 const ONE_DAY_MS = 24 * 60 * 60 * 1000;
@@ -67,5 +67,49 @@ const isSameWeek = week1.every((date, index) =>
   formatDate(date) === formatDate(week2[index])
 );
 console.log("✓ Same offset returns equivalent dates:", isSameWeek);
+
+// isPast Tests
+console.log("\nisPast Tests:");
+
+// Test 9: Past date should return true
+const pastDate = new Date(Date.now() - 1000 * 60 * 60 * 24); // 1 day ago
+console.log("✓ Past date returns true:", isPast(pastDate) === true);
+
+// Test 10: Future date should return false
+const futureDate = new Date(Date.now() + 1000 * 60 * 60 * 24); // 1 day from now
+console.log("✓ Future date returns false:", isPast(futureDate) === false);
+
+// Test 11: Consistency - multiple rapid calls should give consistent results
+const testDate = new Date(Date.now() - 1000); // 1 second ago
+const result1 = isPast(testDate);
+const result2 = isPast(testDate);
+const result3 = isPast(testDate);
+console.log("✓ Consistent results on rapid calls:", result1 === result2 && result2 === result3);
+
+// Test 12: Date very close to now (edge case)
+// Create a date that's definitely in the past but very close to now
+const almostNow = new Date(Date.now() - 100); // 100ms ago
+console.log("✓ Recent past date returns true:", isPast(almostNow) === true);
+
+// isUpcoming Tests
+console.log("\nisUpcoming Tests:");
+
+// Test 13: Date within next week should return true
+const threeDaysFromNow = new Date(Date.now() + 1000 * 60 * 60 * 24 * 3);
+console.log("✓ Date in 3 days returns true:", isUpcoming(threeDaysFromNow) === true);
+
+// Test 14: Date beyond next week should return false
+const tenDaysFromNow = new Date(Date.now() + 1000 * 60 * 60 * 24 * 10);
+console.log("✓ Date in 10 days returns false:", isUpcoming(tenDaysFromNow) === false);
+
+// Test 15: Past date should return false for isUpcoming
+console.log("✓ Past date returns false for isUpcoming:", isUpcoming(pastDate) === false);
+
+// Test 16: Consistency - multiple rapid calls to isUpcoming
+const upcomingTestDate = new Date(Date.now() + 1000 * 60 * 60 * 24 * 2);
+const upcomingResult1 = isUpcoming(upcomingTestDate);
+const upcomingResult2 = isUpcoming(upcomingTestDate);
+const upcomingResult3 = isUpcoming(upcomingTestDate);
+console.log("✓ isUpcoming consistent results:", upcomingResult1 === upcomingResult2 && upcomingResult2 === upcomingResult3);
 
 console.log("\nAll date-utils tests completed!");
