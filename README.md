@@ -517,6 +517,19 @@ Das Projekt nutzt das [.specify Framework](https://specify.so) für strukturiert
 - **Funktionale Komponenten** - React Hooks Pattern
 - **Descriptive Naming** - Deutsch/Englisch gemischt erlaubt
 
+### Dependency Management
+
+Das Projekt nutzt **Renovate** für automatische Dependency-Updates:
+
+- 🤖 **Automatische PRs** - Renovate erstellt Pull Requests für veraltete Dependencies
+- 📅 **Zeitplan** - Updates werden montags vor 6:00 Uhr CEST eingereicht
+- 🔄 **Gruppierte Updates** - Zusammenhängende Pakete (z.B. React, Radix UI) werden gruppiert
+- ✅ **Automerge** - Minor und Patch Updates werden automatisch gemerged (außer v0.x)
+- 🔐 **Security Alerts** - Sicherheitslücken werden mit "security" Label markiert
+- 📦 **Lock File Maintenance** - Monatliche Aktualisierung der package-lock.json
+
+**Konfiguration**: Siehe `renovate.json` für Details
+
 ## 🔒 Sicherheit & Datenschutz
 
 ### DSGVO-Compliance
