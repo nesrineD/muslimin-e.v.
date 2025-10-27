@@ -27,6 +27,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Layout } from "@/components/layout/Layout";
 import { cn } from "@/lib/utils";
+import { getWeekDates } from "@/lib/date-utils";
 
 // Week days starting from Monday
 const daysOfWeek = [
@@ -316,23 +317,7 @@ export default function HelperAvailabilityPage() {
     }
   };
 
-  const getCurrentWeekDates = () => {
-    const today = new Date();
-    const currentWeekStart = new Date(
-      today.setDate(today.getDate() - today.getDay() + 1)
-    ); // Monday
-    currentWeekStart.setDate(
-      currentWeekStart.getDate() + currentWeekOffset * 7
-    );
-
-    return daysOfWeek.map((_, index) => {
-      const date = new Date(currentWeekStart);
-      date.setDate(date.getDate() + index);
-      return date;
-    });
-  };
-
-  const weekDates = getCurrentWeekDates();
+  const weekDates = getWeekDates(currentWeekOffset);
 
   return (
     <Layout className="bg-warm-50">

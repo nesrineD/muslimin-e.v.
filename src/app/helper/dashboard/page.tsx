@@ -37,8 +37,15 @@ import {
   AvatarImage,
 } from "../../../components/ui/avatar";
 import { Separator } from "../../../components/ui/separator";
-import OptimizedAvailabilityCalendar from "../../../components/OptimizedAvailabilityCalendar";
+import OptimizedAvailabilityCalendar from "../../../components/calendar/OptimizedAvailabilityCalendar";
+import GridAvailabilityCalendar, {
+  type AvailabilityGrid,
+  type SlotStatus,
+  createMockGrid,
+  createEmptyGrid,
+} from "../../../components/calendar/GridAvailabilityCalendar";
 import { cn } from "../../../lib/utils";
+import { createFutureDate, getWeekDates } from "../../../lib/date-utils";
 
 // Mock data with Sainab Helper persona from flow.md
 const mockHelper = {
@@ -58,7 +65,7 @@ const mockUpcomingAppointments = [
     memberName: "Zahra Mitglied", // Persona 2: mitglied@email.com
     anliegen: "Psychologische Beratung",
     description: "Unterstützung bei Stress und Überforderung",
-    scheduledAt: new Date("2025-10-25T10:00:00"),
+    scheduledAt: createFutureDate(2, 10, 0), // 2 days from now at 10:00
     duration: 45,
     meetingLink: "https://meet.jit.si/beratung-sainab-001",
   },
@@ -67,7 +74,7 @@ const mockUpcomingAppointments = [
     memberName: "Fatima HelperMitglied", // Persona 3: helpermitglied@email.com
     anliegen: "Schwangerschaftsbegleitung",
     description: "Begleitung in der Frühschwangerschaft",
-    scheduledAt: new Date("2025-10-28T16:30:00"),
+    scheduledAt: createFutureDate(5, 16, 30), // 5 days from now at 16:30
     duration: 45,
     meetingLink: "https://meet.jit.si/beratung-sainab-002",
   },
@@ -79,7 +86,7 @@ const mockMemberAppointments = [
     id: 1,
     category: "Psychologische Beratung",
     helperName: "Fatima HelperMitglied", // Another helper helping Sainab
-    scheduledAt: new Date("2025-01-02T14:00:00"),
+    scheduledAt: createFutureDate(10, 14, 0), // 10 days from now at 14:00
     description: "Sainab als Mitglied - Unterstützung bei Arbeitsbelastung",
     meetingLink: "https://meet.jit.si/beratung-sainab-member-001",
     status: "confirmed" as const,
@@ -89,7 +96,7 @@ const mockMemberAppointments = [
     id: 2,
     category: "Sozialberatung",
     helperName: "Amina Sozialberaterin",
-    scheduledAt: new Date("2025-01-05T10:00:00"),
+    scheduledAt: createFutureDate(14, 10, 0), // 14 days from now at 10:00
     description: "Behördengang Unterstützung",
     meetingLink: "https://meet.jit.si/beratung-sainab-member-002",
     status: "confirmed" as const,
@@ -136,9 +143,14 @@ export default function HelperDashboard() {
     email: mockHelper.email,
     categories: [...mockHelper.categories],
   });
-  const [availableSlots, setAvailableSlots] = useState<{
-    [key: string]: any[];
-  }>({});
+
+  // Grid-based availability state
+  const [availabilityGrid, setAvailabilityGrid] =
+    useState<AvailabilityGrid>(createMockGrid());
+  const [selectedSlots, setSelectedSlots] = useState<string[]>([]);
+  const [toggleMode, setToggleMode] = useState<"set" | "remove">("set");
+  const [currentWeekOffset, setCurrentWeekOffset] = useState(0);
+  const [isSelecting, setIsSelecting] = useState(false);
 
   // Redirect if not authenticated or not a helper
   useEffect(() => {
@@ -171,67 +183,48 @@ export default function HelperDashboard() {
   // Simulated ID generator
   const generateId = () => Math.random().toString(36).substr(2, 9);
 
-  // Initialize available slots from weekly availability
-  useEffect(() => {
-    const slots: { [key: string]: any[] } = {};
+  // Grid calendar handlers
+  const handleSlotClick = (dayIndex: number, timeSlot: string) => {
+    const slotKey = `${dayIndex}-${timeSlot}`;
+    const currentStatus =
+      availabilityGrid[dayIndex]?.[timeSlot] || "unavailable";
 
-    // Generate slots for the next 30 days
-    const today = new Date();
-    for (let i = 0; i < 30; i++) {
-      const date = new Date(today);
-      date.setDate(today.getDate() + i);
-      const dateStr = date.toISOString().split("T")[0];
-      const dayName = date.toLocaleDateString("de-DE", { weekday: "long" });
+    if (!isEditingAvailability) return;
 
-      // Find availability for this day
-      const dayAvailability = availability.find((a) => a.day === dayName);
-      if (dayAvailability) {
-        slots[dateStr] = dayAvailability.slots.map((slot) => ({
-          id: generateId(),
-          start: slot.start,
-          end: slot.end,
-          available: true,
-          booked: Math.random() > 0.8, // 20% chance of being booked (for demo)
-        }));
+    if (isSelecting) {
+      // Multi-selection mode
+      if (selectedSlots.includes(slotKey)) {
+        setSelectedSlots(selectedSlots.filter((s) => s !== slotKey));
+      } else {
+        setSelectedSlots([...selectedSlots, slotKey]);
       }
+    } else {
+      // Direct toggle mode
+      let newStatus: SlotStatus;
+
+      if (toggleMode === "set") {
+        newStatus = currentStatus === "available" ? "unavailable" : "available";
+      } else {
+        newStatus = "unavailable";
+      }
+
+      // Don't allow changing booked slots
+      if (currentStatus === "booked") return;
+
+      setAvailabilityGrid((prev) => ({
+        ...prev,
+        [dayIndex]: {
+          ...prev[dayIndex],
+          [timeSlot]: newStatus,
+        },
+      }));
     }
-
-    setAvailableSlots(slots);
-  }, [availability]);
-
-  const handleCreateTimeSlot = (slot: {
-    dayOfWeek: number;
-    startTime: string;
-    endTime: string;
-    isAvailable: boolean;
-  }) => {
-    const dateStr = new Date(2025, 9, 20 + slot.dayOfWeek)
-      .toISOString()
-      .split("T")[0];
-    const newSlotObj = {
-      id: generateId(),
-      start: slot.startTime,
-      end: slot.endTime,
-      available: slot.isAvailable,
-      booked: false,
-    };
-
-    setAvailableSlots((prev) => ({
-      ...prev,
-      [dateStr]: [...(prev[dateStr] || []), newSlotObj],
-    }));
   };
 
-  const handleDeleteTimeSlot = (dayOfWeek: number, startTime: string) => {
-    const dateStr = new Date(2025, 9, 20 + dayOfWeek)
-      .toISOString()
-      .split("T")[0];
-    setAvailableSlots((prev) => ({
-      ...prev,
-      [dateStr]: (prev[dateStr] || []).filter(
-        (slot) => slot.start !== startTime
-      ),
-    }));
+  const weekDates = getWeekDates(currentWeekOffset);
+
+  const handleWeekChange = (newOffset: number) => {
+    setCurrentWeekOffset(newOffset);
   };
 
   const formatDateTime = (date: Date) => {
@@ -939,40 +932,16 @@ export default function HelperDashboard() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    {/* Convert availableSlots object to array for OptimizedAvailabilityCalendar */}
-                    {(() => {
-                      const slotsArray: Array<{
-                        dayOfWeek: number;
-                        startTime: string;
-                        endTime: string;
-                        isAvailable: boolean;
-                      }> = [];
-
-                      Object.entries(availableSlots).forEach(
-                        ([dateStr, slots]) => {
-                          const date = new Date(dateStr);
-                          const dayOfWeek = (date.getDay() + 6) % 7; // Convert to Monday = 0
-
-                          (slots as any[]).forEach((slot) => {
-                            slotsArray.push({
-                              dayOfWeek,
-                              startTime: slot.start,
-                              endTime: slot.end,
-                              isAvailable: slot.available,
-                            });
-                          });
-                        }
-                      );
-
-                      return (
-                        <OptimizedAvailabilityCalendar
-                          availableSlots={slotsArray}
-                          isEditing={isEditingAvailability}
-                          onTimeSlotCreate={handleCreateTimeSlot}
-                          onTimeSlotDelete={handleDeleteTimeSlot}
-                        />
-                      );
-                    })()}
+                    <GridAvailabilityCalendar
+                      availabilityGrid={availabilityGrid}
+                      onSlotClick={handleSlotClick}
+                      selectedSlots={selectedSlots}
+                      weekDates={weekDates}
+                      isSelecting={isSelecting}
+                      onWeekChange={handleWeekChange}
+                      currentWeekOffset={currentWeekOffset}
+                      isEditing={isEditingAvailability}
+                    />
                   </CardContent>
                 </Card>
               </motion.div>

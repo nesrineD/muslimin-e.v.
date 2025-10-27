@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { Check, Info, Loader2, UserCheck, Users } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
+import { CATEGORY_DETAILS } from "@/lib/constants";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -16,18 +17,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { cn } from "@/lib/utils";
-
-type Category = {
-  id: string;
-  name: string;
-  description: string;
-  icon: string;
-};
 
 type FormData = {
   selectedCategories: string[];
@@ -35,35 +28,6 @@ type FormData = {
   qualifications: string;
   agreeToTerms: boolean;
 };
-
-const categories: Category[] = [
-  {
-    id: "psychological",
-    name: "Psychologische Beratung",
-    description:
-      "Unterstützung bei Stress, Angst, Depression oder anderen psychischen Belastungen",
-    icon: "🧠",
-  },
-  {
-    id: "social",
-    name: "Sozialberatung",
-    description:
-      "Hilfe bei Behördengängen, Anträgen, Kindergeld und sozialen Angelegenheiten",
-    icon: "🤝",
-  },
-  {
-    id: "pregnancy",
-    name: "Schwangerschaftsbegleitung",
-    description: "Beratung während der Schwangerschaft und nach der Geburt",
-    icon: "🤱",
-  },
-  {
-    id: "other",
-    name: "Andere Anliegen",
-    description: "Weitere Themen in denen Sie helfen möchten",
-    icon: "💬",
-  },
-];
 
 export default function HelperRegistrationPage() {
   const router = useRouter();
@@ -310,7 +274,7 @@ export default function HelperRegistrationPage() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {categories.map((category) => (
+                  {CATEGORY_DETAILS.map((category) => (
                     <Card
                       key={category.id}
                       className={cn(

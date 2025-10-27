@@ -82,11 +82,12 @@ export function Header() {
 
       // Complete the signOut first - this will clear the user state
       await signOut();
-      console.log("Sign out successful, redirecting to home...");
+      console.log("Sign out successful, redirecting to login...");
 
       // Small delay to ensure all state updates are processed
+      // Redirect to clean login page without any query parameters
       setTimeout(() => {
-        window.location.href = "/";
+        window.location.href = "/login";
       }, 50);
     } catch (error) {
       console.error("Error signing out:", error);
