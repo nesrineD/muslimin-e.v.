@@ -37,7 +37,6 @@ import {
   AvatarImage,
 } from "../../../components/ui/avatar";
 import { Separator } from "../../../components/ui/separator";
-import OptimizedAvailabilityCalendar from "../../../components/calendar/OptimizedAvailabilityCalendar";
 import GridAvailabilityCalendar, {
   type AvailabilityGrid,
   type SlotStatus,
