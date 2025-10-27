@@ -135,7 +135,8 @@ export function createFutureDate(
  * @returns true if date is in the past
  */
 export function isPast(date: Date): boolean {
-  return date < new Date();
+  const now = new Date();
+  return date < now;
 }
 
 /**
