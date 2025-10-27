@@ -3,6 +3,10 @@
 
 import { getWeekDates } from "@/lib/date-utils";
 
+// Test constants
+const ONE_DAY_MS = 24 * 60 * 60 * 1000;
+const TOLERANCE_MS = 1000; // Allow 1 second tolerance
+
 // Test helper to format date for comparison
 const formatDate = (date: Date): string => {
   return date.toISOString().split('T')[0];
@@ -25,8 +29,6 @@ const lastDayOfWeek = lastDate.getDay();
 console.log("✓ Week ends on Sunday:", lastDayOfWeek === 0);
 
 // Test 4: Dates are consecutive
-const ONE_DAY_MS = 24 * 60 * 60 * 1000;
-const TOLERANCE_MS = 1000; // Allow 1 second tolerance
 let isConsecutive = true;
 for (let i = 0; i < weekDates.length - 1; i++) {
   const diff = weekDates[i + 1].getTime() - weekDates[i].getTime();
