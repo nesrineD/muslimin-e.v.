@@ -4,6 +4,8 @@
 
 Testing-Strategie für MVP mit Fokus auf kritische User Flows, Sicherheit (RLS, Auth) und DSGVO-Compliance.
 
+> **✅ E2E Tests Status**: Vollständig implementiert mit Playwright! Siehe [E2E-TESTING-COMPLETE.md](./E2E-TESTING-COMPLETE.md) für Details.
+
 ---
 
 ## 1️⃣ Unit Tests (React Components & Utilities)

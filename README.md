@@ -575,6 +575,32 @@ npm run test:coverage
 npm run test:watch
 ```
 
+### E2E Tests (Playwright) ✨ NEU
+
+```bash
+# Alle E2E Tests ausführen
+npm run test:e2e
+
+# UI Mode (empfohlen für Development)
+npm run test:e2e:ui
+
+# Debug Mode
+npm run test:e2e:debug
+
+# Test Report anzeigen
+npm run test:e2e:report
+```
+
+**Vollständige E2E Test-Suite implementiert:**
+- ✅ Member Journey (Buchungsflow)
+- ✅ Helper Journey (Verfügbarkeiten, Termine)
+- ✅ Authentication & Authorization
+- ✅ Public Pages & UI/UX
+- ✅ Responsive Design Testing
+- ✅ PWA & Accessibility Tests
+
+Siehe [E2E-TESTING-COMPLETE.md](./documentation/E2E-TESTING-COMPLETE.md) und [TESTING-STRATEGY.md](./documentation/TESTING-STRATEGY.md) für Details.
+
 ### Test-Struktur
 
 ```
@@ -583,6 +609,13 @@ __tests__/
 ├── services/            # Service-Layer Tests
 ├── lib/                 # Utility-Tests
 └── integration/         # Integration Tests
+
+e2e/                     # E2E Tests mit Playwright ✨
+├── member-journey.spec.ts
+├── helper-journey.spec.ts
+├── authentication.spec.ts
+├── public-pages.spec.ts
+└── README.md
 ```
 
 ### Mock-Data Testing
