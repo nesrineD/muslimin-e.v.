@@ -20,6 +20,7 @@ import { MockMemberLocationService } from "@/lib/mock/member-locations";
 export class MemberLocationService {
   private static isDemoMode =
     process.env.NODE_ENV === "development" ||
+    process.env.NODE_ENV === "test" ||
     process.env.NEXT_PUBLIC_DEMO_MODE === "true";
 
   /**

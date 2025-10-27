@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
@@ -8,12 +7,6 @@ import { Toaster } from "@/components/ui/toaster";
 import { CookieBanner } from "@/components/layout/cookie-banner";
 import { PWAPromptBanner } from "@/components/PWAPromptBanner";
 import { Analytics } from "@vercel/analytics/react";
-
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-inter",
-});
 
 export const metadata: Metadata = {
   title: {
@@ -111,19 +104,13 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="de" className={inter.variable} suppressHydrationWarning>
+    <html lang="de" suppressHydrationWarning>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
         <meta name="msapplication-TileColor" content="#10b981" />
         <meta name="theme-color" content="#ffffff" />
       </head>
       <body
-        className={`${inter.className} antialiased min-h-screen flex flex-col`}
+        className="font-sans antialiased min-h-screen flex flex-col"
         suppressHydrationWarning
       >
         <AuthProvider>

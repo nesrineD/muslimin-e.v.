@@ -12,104 +12,121 @@ const formatDate = (date: Date): string => {
   return date.toISOString().split('T')[0];
 };
 
-console.log("Date Utils Tests:");
+describe("Date Utils", () => {
+  describe("getWeekDates", () => {
+    it("should return 7 dates", () => {
+      const weekDates = getWeekDates(0);
+      expect(weekDates).toHaveLength(7);
+    });
 
-// Test 1: getWeekDates returns 7 dates
-const weekDates = getWeekDates(0);
-console.log("✓ Returns 7 dates:", weekDates.length === 7);
+    it("should start week on Monday", () => {
+      const weekDates = getWeekDates(0);
+      const firstDate = weekDates[0];
+      const dayOfWeek = firstDate.getDay();
+      expect(dayOfWeek).toBe(1);
+    });
 
-// Test 2: Week starts on Monday
-const firstDate = weekDates[0];
-const dayOfWeek = firstDate.getDay();
-console.log("✓ Week starts on Monday:", dayOfWeek === 1);
+    it("should end week on Sunday", () => {
+      const weekDates = getWeekDates(0);
+      const lastDate = weekDates[6];
+      const lastDayOfWeek = lastDate.getDay();
+      expect(lastDayOfWeek).toBe(0);
+    });
 
-// Test 3: Week ends on Sunday
-const lastDate = weekDates[6];
-const lastDayOfWeek = lastDate.getDay();
-console.log("✓ Week ends on Sunday:", lastDayOfWeek === 0);
+    it("should have consecutive dates", () => {
+      const weekDates = getWeekDates(0);
+      for (let i = 0; i < weekDates.length - 1; i++) {
+        const diff = weekDates[i + 1].getTime() - weekDates[i].getTime();
+        expect(Math.abs(diff - ONE_DAY_MS)).toBeLessThan(TOLERANCE_MS);
+      }
+    });
 
-// Test 4: Dates are consecutive
-let isConsecutive = true;
-for (let i = 0; i < weekDates.length - 1; i++) {
-  const diff = weekDates[i + 1].getTime() - weekDates[i].getTime();
-  if (Math.abs(diff - ONE_DAY_MS) > TOLERANCE_MS) {
-    isConsecutive = false;
-    break;
-  }
-}
-console.log("✓ Dates are consecutive:", isConsecutive);
+    it("should not mutate original Date object", () => {
+      const beforeTest = new Date();
+      const beforeTime = beforeTest.getTime();
+      getWeekDates(0);
+      const afterTime = beforeTest.getTime();
+      expect(beforeTime).toBe(afterTime);
+    });
 
-// Test 5: No mutation - original Date() is not affected
-const beforeTest = new Date();
-const beforeTime = beforeTest.getTime();
-const testWeek = getWeekDates(0);
-const afterTime = beforeTest.getTime();
-console.log("✓ No mutation of Date object:", beforeTime === afterTime);
+    it("should handle week offset correctly", () => {
+      const currentWeek = getWeekDates(0);
+      const nextWeek = getWeekDates(1);
+      const prevWeek = getWeekDates(-1);
 
-// Test 6: Week offset works correctly
-const currentWeek = getWeekDates(0);
-const nextWeek = getWeekDates(1);
-const prevWeek = getWeekDates(-1);
+      const weekDiff = (nextWeek[0].getTime() - currentWeek[0].getTime()) / (1000 * 60 * 60 * 24);
+      const weekDiffPrev = (currentWeek[0].getTime() - prevWeek[0].getTime()) / (1000 * 60 * 60 * 24);
 
-const weekDiff = (nextWeek[0].getTime() - currentWeek[0].getTime()) / (1000 * 60 * 60 * 24);
-const weekDiffPrev = (currentWeek[0].getTime() - prevWeek[0].getTime()) / (1000 * 60 * 60 * 24);
+      expect(Math.abs(weekDiff - 7)).toBeLessThan(0.1);
+      expect(Math.abs(weekDiffPrev - 7)).toBeLessThan(0.1);
+    });
 
-console.log("✓ Next week offset (+1):", Math.abs(weekDiff - 7) < 0.1);
-console.log("✓ Previous week offset (-1):", Math.abs(weekDiffPrev - 7) < 0.1);
+    it("should return new Date objects on each call", () => {
+      const week1 = getWeekDates(0);
+      const week2 = getWeekDates(0);
+      expect(week1[0]).not.toBe(week2[0]);
+    });
 
-// Test 7: Each call returns new Date objects (not references)
-const week1 = getWeekDates(0);
-const week2 = getWeekDates(0);
-console.log("✓ Returns new Date objects:", week1[0] !== week2[0]);
+    it("should return equivalent dates with same offset", () => {
+      const week1 = getWeekDates(0);
+      const week2 = getWeekDates(0);
+      const isSameWeek = week1.every((date, index) => 
+        formatDate(date) === formatDate(week2[index])
+      );
+      expect(isSameWeek).toBe(true);
+    });
+  });
 
-// Test 8: Multiple calls with same offset return equivalent dates
-const isSameWeek = week1.every((date, index) => 
-  formatDate(date) === formatDate(week2[index])
-);
-console.log("✓ Same offset returns equivalent dates:", isSameWeek);
+  describe("isPast", () => {
+    it("should return true for past date", () => {
+      const pastDate = new Date(Date.now() - 1000 * 60 * 60 * 24); // 1 day ago
+      expect(isPast(pastDate)).toBe(true);
+    });
 
-// isPast Tests
-console.log("\nisPast Tests:");
+    it("should return false for future date", () => {
+      const futureDate = new Date(Date.now() + 1000 * 60 * 60 * 24); // 1 day from now
+      expect(isPast(futureDate)).toBe(false);
+    });
 
-// Test 9: Past date should return true
-const pastDate = new Date(Date.now() - 1000 * 60 * 60 * 24); // 1 day ago
-console.log("✓ Past date returns true:", isPast(pastDate) === true);
+    it("should return consistent results on rapid calls", () => {
+      const testDate = new Date(Date.now() - 1000); // 1 second ago
+      const result1 = isPast(testDate);
+      const result2 = isPast(testDate);
+      const result3 = isPast(testDate);
+      expect(result1).toBe(result2);
+      expect(result2).toBe(result3);
+    });
 
-// Test 10: Future date should return false
-const futureDate = new Date(Date.now() + 1000 * 60 * 60 * 24); // 1 day from now
-console.log("✓ Future date returns false:", isPast(futureDate) === false);
+    it("should return true for recent past date", () => {
+      const almostNow = new Date(Date.now() - 100); // 100ms ago
+      expect(isPast(almostNow)).toBe(true);
+    });
+  });
 
-// Test 11: Consistency - multiple rapid calls should give consistent results
-const testDate = new Date(Date.now() - 1000); // 1 second ago
-const result1 = isPast(testDate);
-const result2 = isPast(testDate);
-const result3 = isPast(testDate);
-console.log("✓ Consistent results on rapid calls:", result1 === result2 && result2 === result3);
+  describe("isUpcoming", () => {
+    it("should return true for date within next week", () => {
+      const threeDaysFromNow = new Date(Date.now() + 1000 * 60 * 60 * 24 * 3);
+      expect(isUpcoming(threeDaysFromNow)).toBe(true);
+    });
 
-// Test 12: Date very close to now (edge case)
-// Create a date that's definitely in the past but very close to now
-const almostNow = new Date(Date.now() - 100); // 100ms ago
-console.log("✓ Recent past date returns true:", isPast(almostNow) === true);
+    it("should return false for date beyond next week", () => {
+      const tenDaysFromNow = new Date(Date.now() + 1000 * 60 * 60 * 24 * 10);
+      expect(isUpcoming(tenDaysFromNow)).toBe(false);
+    });
 
-// isUpcoming Tests
-console.log("\nisUpcoming Tests:");
+    it("should return false for past date", () => {
+      const pastDate = new Date(Date.now() - 1000 * 60 * 60 * 24);
+      expect(isUpcoming(pastDate)).toBe(false);
+    });
 
-// Test 13: Date within next week should return true
-const threeDaysFromNow = new Date(Date.now() + 1000 * 60 * 60 * 24 * 3);
-console.log("✓ Date in 3 days returns true:", isUpcoming(threeDaysFromNow) === true);
+    it("should return consistent results on rapid calls", () => {
+      const upcomingTestDate = new Date(Date.now() + 1000 * 60 * 60 * 24 * 2);
+      const upcomingResult1 = isUpcoming(upcomingTestDate);
+      const upcomingResult2 = isUpcoming(upcomingTestDate);
+      const upcomingResult3 = isUpcoming(upcomingTestDate);
+      expect(upcomingResult1).toBe(upcomingResult2);
+      expect(upcomingResult2).toBe(upcomingResult3);
+    });
+  });
+});
 
-// Test 14: Date beyond next week should return false
-const tenDaysFromNow = new Date(Date.now() + 1000 * 60 * 60 * 24 * 10);
-console.log("✓ Date in 10 days returns false:", isUpcoming(tenDaysFromNow) === false);
-
-// Test 15: Past date should return false for isUpcoming
-console.log("✓ Past date returns false for isUpcoming:", isUpcoming(pastDate) === false);
-
-// Test 16: Consistency - multiple rapid calls to isUpcoming
-const upcomingTestDate = new Date(Date.now() + 1000 * 60 * 60 * 24 * 2);
-const upcomingResult1 = isUpcoming(upcomingTestDate);
-const upcomingResult2 = isUpcoming(upcomingTestDate);
-const upcomingResult3 = isUpcoming(upcomingTestDate);
-console.log("✓ isUpcoming consistent results:", upcomingResult1 === upcomingResult2 && upcomingResult2 === upcomingResult3);
-
-console.log("\nAll date-utils tests completed!");
