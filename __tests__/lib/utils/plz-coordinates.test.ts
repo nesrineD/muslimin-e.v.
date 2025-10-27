@@ -1,64 +1,83 @@
-// Basic validation tests for PLZ coordinates utility
-// Note: Full Jest setup needed for complete testing
+// Tests for PLZ coordinates utility
 
 import {
   getPLZCoordinates,
   isValidGermanPLZ,
   getAvailablePLZCodes,
   searchPLZByCity,
-  getPLZWithinRadius,
   batchGeocodePLZ,
   getPLZBounds,
-  PLZ_COORDINATES,
 } from "@/lib/utils/plz-coordinates";
 
-// Basic function validation (can be run without Jest)
-console.log("PLZ Coordinates Utility Tests:");
+describe("PLZ Coordinates Utility", () => {
+  describe("getPLZCoordinates", () => {
+    it("should return coordinates for valid Berlin PLZ", () => {
+      const berlinCoords = getPLZCoordinates("10115");
+      expect(berlinCoords).toBeDefined();
+      expect(berlinCoords?.city).toBe("Berlin");
+    });
 
-// Test 1: Valid PLZ lookup
-const berlinCoords = getPLZCoordinates("10115");
-console.log("✓ Berlin PLZ 10115:", berlinCoords?.city === "Berlin");
+    it("should return null for invalid PLZ", () => {
+      const invalidCoords = getPLZCoordinates("invalid");
+      expect(invalidCoords).toBeNull();
+    });
+  });
 
-// Test 2: Invalid PLZ handling
-const invalidCoords = getPLZCoordinates("invalid");
-console.log("✓ Invalid PLZ returns null:", invalidCoords === null);
+  describe("isValidGermanPLZ", () => {
+    it("should validate correct PLZ format", () => {
+      expect(isValidGermanPLZ("10115")).toBe(true);
+    });
 
-// Test 3: PLZ validation
-console.log("✓ Valid PLZ format:", isValidGermanPLZ("10115") === true);
-console.log("✓ Invalid PLZ format:", isValidGermanPLZ("abc") === false);
+    it("should reject invalid PLZ format", () => {
+      expect(isValidGermanPLZ("abc")).toBe(false);
+    });
+  });
 
-// Test 4: Available PLZ codes
-const availablePLZ = getAvailablePLZCodes();
-console.log("✓ Available PLZ count:", availablePLZ.length > 0);
+  describe("getAvailablePLZCodes", () => {
+    it("should return array of available PLZ codes", () => {
+      const availablePLZ = getAvailablePLZCodes();
+      expect(availablePLZ.length).toBeGreaterThan(0);
+    });
+  });
 
-// Test 5: City search
-const berlinPLZ = searchPLZByCity("Berlin");
-console.log("✓ Berlin search results:", berlinPLZ.length > 0);
+  describe("searchPLZByCity", () => {
+    it("should find PLZ codes for Berlin", () => {
+      const berlinPLZ = searchPLZByCity("Berlin");
+      expect(berlinPLZ.length).toBeGreaterThan(0);
+    });
+  });
 
-// Test 6: Batch geocoding
-const batchResults = batchGeocodePLZ(["10115", "20095", "invalid"]);
-console.log("✓ Batch geocoding:", batchResults.size === 2);
+  describe("batchGeocodePLZ", () => {
+    it("should geocode multiple PLZ codes", () => {
+      const batchResults = batchGeocodePLZ(["10115", "20095", "invalid"]);
+      expect(batchResults.size).toBe(2);
+    });
+  });
 
-// Test 7: PLZ bounds calculation
-const bounds = getPLZBounds(["10115", "20095"]);
-console.log("✓ Bounds calculation:", bounds !== null);
+  describe("getPLZBounds", () => {
+    it("should calculate bounds for multiple PLZ codes", () => {
+      const bounds = getPLZBounds(["10115", "20095"]);
+      expect(bounds).not.toBeNull();
+    });
+  });
 
-// Test coverage validation
-const mockPLZUsed = [
-  "10115",
-  "20095",
-  "80331",
-  "40210",
-  "50667",
-  "60311",
-  "70173",
-  "90402",
-  "30159",
-  "01307",
-];
-const coverage = mockPLZUsed.every((plz) => getPLZCoordinates(plz) !== null);
-console.log("✓ Mock data PLZ coverage:", coverage);
+  describe("Mock Data Coverage", () => {
+    it("should have coordinates for all mock PLZ codes", () => {
+      const mockPLZUsed = [
+        "10115",
+        "20095",
+        "80331",
+        "40210",
+        "50667",
+        "60311",
+        "70173",
+        "90402",
+        "30159",
+        "01307",
+      ];
+      const coverage = mockPLZUsed.every((plz) => getPLZCoordinates(plz) !== null);
+      expect(coverage).toBe(true);
+    });
+  });
+});
 
-console.log("All basic tests completed.");
-
-export {}; // Make this a module
