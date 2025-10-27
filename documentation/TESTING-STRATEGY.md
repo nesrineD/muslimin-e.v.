@@ -1,4 +1,4 @@
-# Testing-Strategie: Muslimin-Beratung Terminbuchungsplattform
+# Testing-Strategie: Muslimin e.V. Terminbuchungsplattform
 
 ## 🎯 Überblick
 

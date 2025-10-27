@@ -1,4 +1,4 @@
-# Entwickler-Leitfaden: Muslimin-Beratung Platform
+# Entwickler-Leitfaden: Muslimin e.V. Platform
 
 ## 📚 Inhaltsverzeichnis
 

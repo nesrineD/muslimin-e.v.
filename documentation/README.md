@@ -1,4 +1,4 @@
-# Muslimin-Beratung - Terminbuchungsplattform (MVP)
+# Muslimin e.V. - Terminbuchungsplattform (MVP)
 
 > Eine datenschutzfreundliche Terminbuchungsplattform für Vereinsmitglieder mit Fokus auf professionelle Beratung durch verifizierte Helferinnen.
 
@@ -9,7 +9,7 @@
 
 ## 📋 Überblick
 
-Die Muslimin-Beratung Plattform ermöglicht es Vereinsmitgliedern, schnell und unkompliziert Termine für verschiedene Beratungsangebote zu buchen. Das System fokussiert sich auf **Datenschutz**, **Benutzerfreundlichkeit** und **professionelle Beratungsdienstleistungen**.
+Die Muslimin e.V. Plattform ermöglicht es Vereinsmitgliedern, schnell und unkompliziert Termine für verschiedene Beratungsangebote zu buchen. Das System fokussiert sich auf **Datenschutz**, **Benutzerfreundlichkeit** und **professionelle Beratungsdienstleistungen**.
 
 ### ✨ Features
 
@@ -101,8 +101,8 @@ Coral (Accent): #f57c5c
 
 ```bash
 # Repository klonen
-git clone https://github.com/nesrineD/muslimin.beratung.git
-cd muslimin-beratung
+git clone https://github.com/nesrineD/muslimin-ev.git
+cd muslimin-ev
 
 # Dependencies installieren
 npm install
@@ -247,7 +247,7 @@ http://localhost:3000/member-map
 ## 📦 Projektstruktur
 
 ```
-muslimin-beratung/
+muslimin-ev/
 ├── src/
 │   ├── app/                    # Next.js 14 App Router
 │   │   ├── member-map/         # Mitgliederkarte Seite
@@ -403,7 +403,7 @@ const supabase = createClient(
 const { error } = await supabase.auth.signInWithOtp({
   email: "member@example.com",
   options: {
-    emailRedirectTo: "https://muslimin-beratung.de/auth/callback",
+    emailRedirectTo: "https://muslimin-ev.de/auth/callback",
   },
 });
 ```
@@ -576,7 +576,7 @@ BREVO_API_KEY=your-brevo-key
 
 ### Lizenz
 
-Dieses Projekt ist für den privaten Gebrauch durch den Muslimin-Beratung e.V. bestimmt. Alle Rechte vorbehalten.
+Dieses Projekt ist für den privaten Gebrauch durch den Muslimin e.V. bestimmt. Alle Rechte vorbehalten.
 
 ---
 

@@ -123,7 +123,7 @@ export function Footer() {
                   <Mail className="h-4 w-4 text-stone-600 group-hover:scale-110 transition-transform" />
                   <div className="flex flex-col">
                     <span className="text-muted-foreground group-hover:text-stone-700 transition-colors">
-                      info@muslimin-beratung.de
+                      info@muslimin-ev.de
                     </span>
                     <span className="text-xs text-gray-400">
                       E-Mail Support

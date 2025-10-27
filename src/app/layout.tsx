@@ -17,8 +17,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Muslimin-Beratung",
-    template: "%s | Muslimin-Beratung",
+    default: "Muslimin e.V.",
+    template: "%s | Muslimin e.V.",
   },
   description:
     "Professionelle Terminbuchungsplattform für Beratung und Unterstützung. Vertrauensvoll, diskret und kompetent.",
@@ -30,16 +30,16 @@ export const metadata: Metadata = {
     "Sozialberatung",
     "Schwangerschaftsbegleitung",
   ],
-  authors: [{ name: "Muslimin-Beratung Team" }],
-  creator: "Muslimin-Beratung",
-  publisher: "Muslimin-Beratung",
+  authors: [{ name: "Muslimin e.V. Team" }],
+  creator: "Muslimin e.V.",
+  publisher: "Muslimin e.V.",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://muslimin-beratung.vercel.app"
+    process.env.NEXT_PUBLIC_SITE_URL || "https://muslimin-ev.vercel.app"
   ),
   alternates: {
     canonical: "/",
@@ -48,14 +48,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "de_DE",
     url: "/",
-    title: "Muslimin-Beratung",
+    title: "Muslimin e.V.",
     description:
       "Professionelle Terminbuchungsplattform für Beratung und Unterstützung",
-    siteName: "Muslimin-Beratung",
+    siteName: "Muslimin e.V.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Muslimin-Beratung",
+    title: "Muslimin e.V.",
     description:
       "Professionelle Terminbuchungsplattform für Beratung und Unterstützung",
   },
@@ -90,7 +90,7 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "Muslimin-Beratung",
+    title: "Muslimin e.V.",
   },
 };
 

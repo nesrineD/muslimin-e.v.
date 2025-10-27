@@ -8,7 +8,7 @@
 
 ## 🎯 Was wurde dokumentiert?
 
-Eine vollständige, nicht-technische Dokumentation für die Muslimin-Beratung Plattform mit:
+Eine vollständige, nicht-technische Dokumentation für die Muslimin e.V. Plattform mit:
 
 ✅ **17 Seiten** der Webseite  
 ✅ **4 Test-Accounts** mit verschiedenen Rollen  
@@ -326,8 +326,8 @@ Bis dahin: Die Dokumentation lesen ist die beste Vorbereitung!
 
 Hast du Fragen oder Anmerkungen zur Dokumentation?
 
-1. **GitHub Issues**: https://github.com/nesrineD/muslimin.beratung/issues
-2. **E-Mail**: [support@muslimin-beratung.de]
+1. **GitHub Issues**: https://github.com/nesrineD/muslimin-ev/issues
+2. **E-Mail**: [support@muslimin-ev.de]
 3. **Direkter Kontakt**: [Vorstandsmitglied]
 
 ---
@@ -359,5 +359,5 @@ Hast du Fragen oder Anmerkungen zur Dokumentation?
 ---
 
 _Dokumentation erstellt: 18. Oktober 2025_  
-_Für: Muslimin-Beratung e.V._  
+_Für: Muslimin e.V._  
 _MVP Version: 0.2.0_

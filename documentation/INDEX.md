@@ -1,6 +1,6 @@
 # Dokumentations-Index
 
-Willkommen in der Projektdokumentation! Hier findest du alle wichtigen Informationen zum Muslimin-Beratung Projekt.
+Willkommen in der Projektdokumentation! Hier findest du alle wichtigen Informationen zum Muslimin e.V. Projekt.
 
 ## 📖 Dokumentation nach Kategorie
 

@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { MemberLocationMap } from "@/components/map";
 
 export const metadata: Metadata = {
-  title: "Mitgliederkarte | Muslimin-Beratung",
+  title: "Mitgliederkarte | Muslimin e.V.",
   description:
     "Finden Sie Mitglieder und Helferinnen in Ihrer Nähe auf der interaktiven Karte.",
   keywords: ["Mitglieder", "Karte", "Standort", "Beratung", "Helferinnen"],
