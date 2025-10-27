@@ -1,0 +1,75 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "timezone": "Europe/Berlin",
+  "schedule": [
+    "before 6am on Monday"
+  ],
+  "labels": [
+    "dependencies"
+  ],
+  "semanticCommits": "enabled",
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchCurrentVersion": "!/^0/",
+      "automerge": true,
+      "automergeType": "pr",
+      "automergeStrategy": "squash"
+    },
+    {
+      "groupName": "React monorepo",
+      "matchPackagePatterns": ["^react", "^react-dom"],
+      "matchUpdateTypes": ["patch", "minor"]
+    },
+    {
+      "groupName": "Next.js monorepo",
+      "matchPackageNames": ["next", "eslint-config-next"],
+      "matchUpdateTypes": ["patch", "minor"]
+    },
+    {
+      "groupName": "Radix UI packages",
+      "matchPackagePatterns": ["^@radix-ui/"],
+      "matchUpdateTypes": ["patch", "minor"]
+    },
+    {
+      "groupName": "FullCalendar packages",
+      "matchPackagePatterns": ["^@fullcalendar/"],
+      "matchUpdateTypes": ["patch", "minor"]
+    },
+    {
+      "groupName": "TypeScript and types",
+      "matchPackageNames": ["typescript"],
+      "matchPackagePatterns": ["^@types/"],
+      "matchUpdateTypes": ["patch", "minor"]
+    },
+    {
+      "groupName": "Linting and formatting",
+      "matchPackageNames": ["eslint", "prettier"],
+      "matchPackagePatterns": ["^eslint-", "^prettier-"],
+      "matchUpdateTypes": ["patch", "minor"]
+    },
+    {
+      "groupName": "Tailwind CSS packages",
+      "matchPackageNames": ["tailwindcss", "autoprefixer", "postcss"],
+      "matchPackagePatterns": ["^tailwind"],
+      "matchUpdateTypes": ["patch", "minor"]
+    }
+  ],
+  "vulnerabilityAlerts": {
+    "labels": [
+      "security"
+    ],
+    "automerge": false
+  },
+  "prConcurrentLimit": 5,
+  "prHourlyLimit": 2,
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": [
+      "before 6am on the first day of the month"
+    ]
+  }
+}
