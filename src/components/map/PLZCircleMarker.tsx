@@ -29,7 +29,7 @@ export const PLZCircleMarker: React.FC<PLZCircleMarkerProps> = ({
             lng: firstMemberCoords.lng,
           }
         : null,
-    [firstMemberCoords?.lat, firstMemberCoords?.lng]
+    [firstMemberCoords]
   );
   const plz = firstMember?.postal_code || "";
 
