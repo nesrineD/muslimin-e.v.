@@ -20,15 +20,16 @@ export const PLZCircleMarker: React.FC<PLZCircleMarkerProps> = ({
 
   // Calculate center and PLZ from members using useMemo to avoid dependency issues
   const firstMember = members[0];
+  const firstMemberCoords = firstMember?.coordinates;
   const center = useMemo(
     () =>
-      firstMember?.coordinates
+      firstMemberCoords
         ? {
-            lat: firstMember.coordinates.lat,
-            lng: firstMember.coordinates.lng,
+            lat: firstMemberCoords.lat,
+            lng: firstMemberCoords.lng,
           }
         : null,
-    [firstMember?.coordinates?.lat, firstMember?.coordinates?.lng]
+    [firstMemberCoords?.lat, firstMemberCoords?.lng]
   );
   const plz = firstMember?.postal_code || "";
 
