@@ -34,15 +34,14 @@
       "description": "Security updates - always create PRs immediately",
       "matchDatasources": ["npm"],
       "matchUpdateTypes": ["patch", "minor", "major"],
-      "vulnerabilitySeverity": "high",
       "labels": ["security", "priority"],
       "schedule": ["at any time"],
       "automerge": false
     },
     {
       "groupName": "React monorepo",
-      "matchPackagePatterns": ["^react", "^react-dom"],
-      "matchUpdateTypes": ["patch", "minor"]
+      "matchUpdateTypes": ["patch", "minor"],
+      "matchPackageNames": ["/^react/", "/^react-dom/"]
     },
     {
       "groupName": "Next.js monorepo",
@@ -51,30 +50,32 @@
     },
     {
       "groupName": "Radix UI packages",
-      "matchPackagePatterns": ["^@radix-ui/"],
-      "matchUpdateTypes": ["patch", "minor"]
+      "matchUpdateTypes": ["patch", "minor"],
+      "matchPackageNames": ["/^@radix-ui//"]
     },
     {
       "groupName": "FullCalendar packages",
-      "matchPackagePatterns": ["^@fullcalendar/"],
-      "matchUpdateTypes": ["patch", "minor"]
+      "matchUpdateTypes": ["patch", "minor"],
+      "matchPackageNames": ["/^@fullcalendar//"]
     },
     {
       "groupName": "TypeScript and types",
-      "matchPackageNames": ["typescript"],
-      "matchPackagePatterns": ["^@types/"],
+      "matchPackageNames": ["typescript", "/^@types//"],
       "matchUpdateTypes": ["patch", "minor"]
     },
     {
       "groupName": "Linting and formatting",
-      "matchPackageNames": ["eslint", "prettier"],
-      "matchPackagePatterns": ["^eslint-", "^prettier-"],
+      "matchPackageNames": ["eslint", "prettier", "/^eslint-/", "/^prettier-/"],
       "matchUpdateTypes": ["patch", "minor"]
     },
     {
       "groupName": "Tailwind CSS packages",
-      "matchPackageNames": ["tailwindcss", "autoprefixer", "postcss"],
-      "matchPackagePatterns": ["^tailwind"],
+      "matchPackageNames": [
+        "tailwindcss",
+        "autoprefixer",
+        "postcss",
+        "/^tailwind/"
+      ],
       "matchUpdateTypes": ["patch", "minor"]
     }
   ],
