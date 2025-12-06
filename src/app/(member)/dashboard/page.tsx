@@ -17,6 +17,7 @@ import {
   Heart,
   Settings,
   Home,
+  type LucideIcon,
 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import {
@@ -32,6 +33,19 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import { Layout } from "@/components/layout/Layout";
 import { cn } from "@/lib/utils";
+
+// Type definitions
+interface Appointment {
+  id: number;
+  type: string;
+  helperName?: string;
+  memberName?: string;
+  date: Date;
+  description?: string;
+  meetingLink?: string;
+  status?: string;
+  role: "member" | "helper";
+}
 
 // Mock data with personas from flow.md
 const mockMemberAppointments = [
@@ -230,7 +244,7 @@ export default function DashboardPage() {
     subtitle: string;
     badge?: string;
     href: string;
-    icon: any;
+    icon: LucideIcon;
     className?: string;
     disabled?: boolean;
   }) => (
@@ -281,7 +295,7 @@ export default function DashboardPage() {
   }: {
     title: string;
     value: string | number;
-    icon: any;
+    icon: LucideIcon;
     color: string;
   }) => (
     <Card className="bg-white/70 backdrop-blur-sm">
@@ -303,7 +317,7 @@ export default function DashboardPage() {
     type,
   }: {
     title: string;
-    appointments: any[];
+    appointments: Appointment[];
     type: "member" | "helper";
   }) => (
     <Card className="shadow-lg border-0 bg-white/70 backdrop-blur-sm">

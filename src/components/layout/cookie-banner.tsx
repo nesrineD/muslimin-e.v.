@@ -6,6 +6,15 @@ import { Card, CardContent } from "@/components/ui/card";
 import { X, Cookie, Settings } from "lucide-react";
 import Link from "next/link";
 
+// Type definitions
+interface CookieSettings {
+  necessary: boolean;
+  functional: boolean;
+  analytics: boolean;
+  marketing: boolean;
+  timestamp: string;
+}
+
 export function CookieBanner() {
   const [showBanner, setShowBanner] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
@@ -45,7 +54,7 @@ export function CookieBanner() {
     setShowBanner(false);
   };
 
-  const saveSettings = (settings: any) => {
+  const saveSettings = (settings: CookieSettings) => {
     localStorage.setItem(
       "cookie-consent",
       JSON.stringify({
@@ -131,7 +140,7 @@ function CookieSettings({
   onSave,
   onCancel,
 }: {
-  onSave: (settings: any) => void;
+  onSave: (settings: CookieSettings) => void;
   onCancel: () => void;
 }) {
   const [settings, setSettings] = useState({

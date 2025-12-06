@@ -149,7 +149,7 @@ export const GoogleMap: React.FC<GoogleMapProps> = ({
             if (React.isValidElement(child)) {
               return React.cloneElement(child, {
                 map: mapInstanceRef.current,
-              } as any);
+              } as Partial<typeof child.props>);
             }
             return child;
           })}

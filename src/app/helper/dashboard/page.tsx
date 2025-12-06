@@ -19,6 +19,7 @@ import {
   Home,
   BarChart3,
   Edit3,
+  type LucideIcon,
 } from "lucide-react";
 import { useAuth } from "../../../hooks/useAuth";
 import { Layout } from "../../../components/layout/Layout";
@@ -45,6 +46,18 @@ import GridAvailabilityCalendar, {
 } from "../../../components/calendar/GridAvailabilityCalendar";
 import { cn } from "../../../lib/utils";
 import { createFutureDate, getWeekDates } from "../../../lib/date-utils";
+
+// Type definitions
+interface Appointment {
+  id: number;
+  type: string;
+  memberName?: string;
+  date: Date;
+  description?: string;
+  meetingLink?: string;
+  status?: string;
+  role: "member" | "helper";
+}
 
 // Mock data with Sainab Helper persona from flow.md
 const mockHelper = {
@@ -318,7 +331,7 @@ export default function HelperDashboard() {
     subtitle: string;
     badge?: string;
     href?: string;
-    icon: any;
+    icon: LucideIcon;
     className?: string;
     disabled?: boolean;
     onClick?: () => void;
@@ -402,7 +415,7 @@ export default function HelperDashboard() {
   }: {
     title: string;
     value: string | number;
-    icon: any;
+    icon: LucideIcon;
     color: string;
     description?: string;
   }) => (
