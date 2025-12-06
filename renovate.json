@@ -11,6 +11,17 @@
     "dependencies"
   ],
   "semanticCommits": "enabled",
+  "osvVulnerabilityAlerts": true,
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "labels": [
+      "security"
+    ],
+    "automerge": false,
+    "schedule": [
+      "at any time"
+    ]
+  },
   "packageRules": [
     {
       "matchUpdateTypes": ["minor", "patch"],
@@ -20,6 +31,15 @@
       "automergeStrategy": "squash"
     },
     {
+      "description": "Security updates - always create PRs immediately",
+      "matchDatasources": ["npm"],
+      "matchUpdateTypes": ["patch", "minor", "major"],
+      "vulnerabilitySeverity": "high",
+      "labels": ["security", "priority"],
+      "schedule": ["at any time"],
+      "automerge": false
+    },
+    {
       "groupName": "React monorepo",
       "matchPackagePatterns": ["^react", "^react-dom"],
       "matchUpdateTypes": ["patch", "minor"]
@@ -27,7 +47,7 @@
     {
       "groupName": "Next.js monorepo",
       "matchPackageNames": ["next", "eslint-config-next"],
-      "matchUpdateTypes": ["patch", "minor"]
+      "matchUpdateTypes": ["patch", "minor", "major"]
     },
     {
       "groupName": "Radix UI packages",
@@ -58,12 +78,6 @@
       "matchUpdateTypes": ["patch", "minor"]
     }
   ],
-  "vulnerabilityAlerts": {
-    "labels": [
-      "security"
-    ],
-    "automerge": false
-  },
   "prConcurrentLimit": 5,
   "prHourlyLimit": 2,
   "lockFileMaintenance": {
