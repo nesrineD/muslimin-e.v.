@@ -679,7 +679,7 @@ Das Projekt nutzt **Renovate** für automatische Dependency-Updates:
 - 🔄 **Gruppierte Updates** - Zusammenhängende Pakete (z.B. React, Radix UI) werden gruppiert
 - ✅ **Automerge** - Minor und Patch Updates werden automatisch gemerged (außer v0.x)
 - 🔐 **OSV Vulnerability Scanning** - Automatische Erkennung von Schwachstellen via OSV-Datenbank
-- 🎯 **Priorisierte Security PRs** - High-Severity Vulnerabilities erhalten "priority" Label
+- 🏷️ **Security Labels** - Sicherheits-PRs erhalten "security" Label
 - 📦 **Lock File Maintenance** - Monatliche Aktualisierung der package-lock.json
 
 **Konfiguration**: Siehe `renovate.json` und `RENOVATE-CONFIGURATION.md` für Details
