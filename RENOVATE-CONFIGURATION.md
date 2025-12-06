@@ -31,26 +31,7 @@ Enables scanning against the [Open Source Vulnerabilities (OSV) database](https:
 - **`automerge: false`**: Security updates require manual review before merging
 - **`labels: ["security"]`**: Tags security PRs for easy identification
 
-#### 3. Security Updates Package Rule
-```json
-{
-  "description": "Security updates - always create PRs immediately",
-  "matchDatasources": ["npm"],
-  "matchUpdateTypes": ["patch", "minor", "major"],
-  "labels": ["security", "priority"],
-  "schedule": ["at any time"],
-  "automerge": false
-}
-```
-
-This rule ensures that:
-- Security vulnerabilities in npm packages trigger PR creation immediately
-- All update types (patch, minor, major) are included for security fixes
-- Security PRs are labeled with both `security` and `priority`
-- Schedule restrictions don't block security updates
-- Works in conjunction with `osvVulnerabilityAlerts` and `vulnerabilityAlerts` configuration
-
-#### 4. Next.js Major Updates
+#### 3. Next.js Major Updates
 ```json
 {
   "groupName": "Next.js monorepo",
@@ -61,7 +42,7 @@ This rule ensures that:
 
 Changed from `["patch", "minor"]` to include `"major"` updates, ensuring critical security fixes in major versions are not skipped.
 
-> **Note**: Package patterns use the regex format `/^pattern/` in the configuration, which is Renovate's migration format for better pattern matching.
+> **Note**: Package patterns use the regex format `/^pattern/` in the configuration for flexible matching. The security updates are handled by the global `osvVulnerabilityAlerts` and `vulnerabilityAlerts` configuration rather than a separate package rule to avoid redundancy.
 
 ## Current Vulnerabilities
 

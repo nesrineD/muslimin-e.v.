@@ -31,17 +31,9 @@
       "automergeStrategy": "squash"
     },
     {
-      "description": "Security updates - always create PRs immediately",
-      "matchDatasources": ["npm"],
-      "matchUpdateTypes": ["patch", "minor", "major"],
-      "labels": ["security", "priority"],
-      "schedule": ["at any time"],
-      "automerge": false
-    },
-    {
       "groupName": "React monorepo",
       "matchUpdateTypes": ["patch", "minor"],
-      "matchPackageNames": ["/^react/", "/^react-dom/"]
+      "matchPackageNames": ["/^react$/", "/^react-dom$/"]
     },
     {
       "groupName": "Next.js monorepo",
@@ -51,16 +43,16 @@
     {
       "groupName": "Radix UI packages",
       "matchUpdateTypes": ["patch", "minor"],
-      "matchPackageNames": ["/^@radix-ui//"]
+      "matchPackageNames": ["/^@radix-ui/"]
     },
     {
       "groupName": "FullCalendar packages",
       "matchUpdateTypes": ["patch", "minor"],
-      "matchPackageNames": ["/^@fullcalendar//"]
+      "matchPackageNames": ["/^@fullcalendar/"]
     },
     {
       "groupName": "TypeScript and types",
-      "matchPackageNames": ["typescript", "/^@types//"],
+      "matchPackageNames": ["typescript", "/^@types/"],
       "matchUpdateTypes": ["patch", "minor"]
     },
     {
