@@ -95,7 +95,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const registerAsHelper = async (categories: string[]): Promise<boolean> => {
+  const registerAsHelper = async (): Promise<boolean> => {
     if (!user) return false;
 
     setLoading(true);
