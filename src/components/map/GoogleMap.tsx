@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useEffect } from "react";
-import { useGoogleMaps } from "@/hooks/useGoogleMaps";
+import { useGoogleMaps, useMapEvents } from "@/hooks/useGoogleMaps";
 
 interface GoogleMapProps {
   apiKey: string;
