@@ -184,7 +184,7 @@ export function useMapMarkers(map: google.maps.Map | null) {
  */
 export function useMapEvents(map: google.maps.Map | null) {
   const addListener = useCallback(
-    (event: string, handler: (event: any) => void) => {
+    (event: string, handler: (event: google.maps.MapMouseEvent) => void) => {
       if (!map) return null;
       return google.maps.event.addListener(map, event, handler);
     },

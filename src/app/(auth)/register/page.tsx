@@ -11,7 +11,6 @@ import {
   User,
   Loader2,
   UserPlus,
-  Check,
   Heart,
   Shield,
   CheckCircle2,

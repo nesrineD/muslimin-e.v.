@@ -324,7 +324,6 @@ export const MemberLocationMap: React.FC<MemberLocationMapProps> = ({
           <div className="absolute top-4 right-4 z-20">
             <MemberListPopup
               members={selectedPLZMembers}
-              position={selectedPLZMembers[0].coordinates!}
               onClose={handleClosePopup}
               onMemberSelect={handleMemberClick}
             />

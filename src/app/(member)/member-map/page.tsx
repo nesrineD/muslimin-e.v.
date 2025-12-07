@@ -258,8 +258,8 @@ export default function MemberMapPage() {
                 <p>
                   Nur Mitglieder, die ihre Standortfreigabe aktiviert haben,
                   werden auf der Karte angezeigt. Namen werden anonymisiert
-                  dargestellt (z.B. "Zahra N."). Die genaue Adresse wird nicht
-                  preisgegeben - nur die PLZ-Region.
+                  dargestellt (z.B. &quot;Zahra N.&quot;). Die genaue Adresse
+                  wird nicht preisgegeben - nur die PLZ-Region.
                 </p>
               </div>
             </div>

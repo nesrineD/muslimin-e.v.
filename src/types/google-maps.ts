@@ -1,6 +1,8 @@
 // Google Maps JavaScript API types
 // Extended type definitions for development
 
+/* eslint-disable @typescript-eslint/no-namespace */
+
 export {}; // Make this a module
 
 declare global {
@@ -14,7 +16,7 @@ declare global {
         constructor(mapDiv: Element, opts?: MapOptions);
         addListener(
           eventName: string,
-          handler: (event: any) => void
+          handler: (event: MapMouseEvent) => void
         ): MapsEventListener;
         setCenter(latlng: LatLng | LatLngLiteral): void;
         setZoom(zoom: number): void;
@@ -52,7 +54,7 @@ declare global {
         getZIndex(): number;
         addListener(
           eventName: string,
-          handler: (event: any) => void
+          handler: (event: MapMouseEvent) => void
         ): MapsEventListener;
       }
 
@@ -121,7 +123,7 @@ declare global {
         getBounds(): LatLngBounds;
         addListener(
           eventName: string,
-          handler: (event: any) => void
+          handler: (event: MapMouseEvent) => void
         ): MapsEventListener;
       }
 
@@ -223,18 +225,6 @@ declare global {
         className?: string;
       }
 
-      interface Size {
-        width: number;
-        height: number;
-        widthUnit?: string;
-        heightUnit?: string;
-      }
-
-      interface Point {
-        x: number;
-        y: number;
-      }
-
       interface Padding {
         top: number;
         right: number;
@@ -290,16 +280,16 @@ declare global {
       // Event namespace
       namespace event {
         function addListener(
-          instance: any,
+          instance: object,
           eventName: string,
-          handler: (event: any) => void
+          handler: (event: MapMouseEvent) => void
         ): MapsEventListener;
         function removeListener(listener: MapsEventListener): void;
-        function clearListeners(instance: any, eventName?: string): void;
+        function clearListeners(instance: object, eventName?: string): void;
         function trigger(
-          instance: any,
+          instance: object,
           eventName: string,
-          ...args: any[]
+          ...args: unknown[]
         ): void;
       }
     }

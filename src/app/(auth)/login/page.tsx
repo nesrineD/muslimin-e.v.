@@ -110,7 +110,7 @@ function LoginContent() {
         setErrors({ general: "E-Mail oder Passwort falsch" });
         setIsLoading(false);
       }
-    } catch (error) {
+    } catch {
       setErrors({
         general: "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
       });

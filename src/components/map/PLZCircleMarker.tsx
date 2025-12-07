@@ -1,42 +1,44 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useMemo } from "react";
 import { MemberLocationWithCoordinates } from "@/types/location";
 
 interface PLZCircleMarkerProps {
   members: MemberLocationWithCoordinates[];
   map?: google.maps.Map;
   onClick?: (plz: string, members: MemberLocationWithCoordinates[]) => void;
-  onInfoCardClick?: (member: MemberLocationWithCoordinates) => void;
   isSelected?: boolean;
+  onInfoCardClick?: (member: MemberLocationWithCoordinates) => void;
 }
 
 export const PLZCircleMarker: React.FC<PLZCircleMarkerProps> = ({
   members,
   map,
   onClick,
-  onInfoCardClick,
   isSelected = false,
+  onInfoCardClick,
 }) => {
   const circleRef = useRef<google.maps.Circle | null>(null);
 
-  // Calculate center and PLZ from members
+  // Calculate center and PLZ from members using useMemo to avoid dependency issues
   const firstMember = members[0];
-  const center = firstMember?.coordinates
-    ? {
-        lat: firstMember.coordinates.lat,
-        lng: firstMember.coordinates.lng,
-      }
-    : null;
+  const firstMemberCoords = firstMember?.coordinates;
+  const center = useMemo(
+    () =>
+      firstMemberCoords
+        ? {
+            lat: firstMemberCoords.lat,
+            lng: firstMemberCoords.lng,
+          }
+        : null,
+    [firstMemberCoords]
+  );
   const plz = firstMember?.postal_code || "";
 
   useEffect(() => {
     if (!map || !center) return;
 
     const memberCount = members.length;
-    const helperCount = members.filter(
-      (m) => m.role === "helper" || m.role === "member+helper"
-    ).length;
 
     // Calculate circle radius based on member count (600-1200m range - größer!)
     const baseRadius = 600; // Von 400 auf 600 erhöht
@@ -78,9 +80,6 @@ export const PLZCircleMarker: React.FC<PLZCircleMarkerProps> = ({
     const clickListener = circle.addListener("click", () => {
       onClick?.(plz, members);
     });
-
-    // Set tooltip title for the circle - this creates a native Google Maps tooltip
-    const tooltipText = `PLZ ${plz} - ${memberCount} ${memberCount === 1 ? "Mitglied" : "Mitglieder"}${helperCount > 0 ? `, ${helperCount} ${helperCount === 1 ? "Helferin" : "Helferinnen"} verfügbar` : ""}`;
 
     circleRef.current = circle;
 
