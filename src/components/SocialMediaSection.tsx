@@ -1,118 +1,251 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Instagram, Facebook, Linkedin } from "lucide-react";
-import { SOCIAL_LINKS } from "@/lib/constants";
-import { Button } from "@/components/ui/button";
+import { Instagram, Youtube, MessageCircle } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 interface SocialMediaSectionProps {
-  variant?: "default" | "compact" | "footer";
+  variant?: "card" | "compact" | "footer";
+  title?: string;
+  subtitle?: string;
+  showTitle?: boolean;
+  showHeader?: boolean;
+  showLabels?: boolean;
   className?: string;
 }
 
-const iconMap = {
-  Instagram: Instagram,
-  Facebook: Facebook,
-  Linkedin: Linkedin,
-};
+const DEFAULT_TITLE = "Folge uns auf Social Media";
+const DEFAULT_SUBTITLE = "Aktuelle Termine, Hinweise und Live-Updates.";
+
+const SOCIAL_MEDIA = [
+  {
+    name: "Instagram",
+    icon: Instagram,
+    url: "https://www.instagram.com/muslimin.de/",
+    bgGradient: "from-pink-50 to-pink-100",
+    hoverGradient: "hover:from-pink-100 hover:to-pink-200",
+    iconColor: "text-pink-600",
+    textColor: "text-pink-700",
+    hoverTextColor: "group-hover:text-pink-800",
+    borderColor: "border-pink-200",
+    hoverBorderColor: "hover:border-pink-300",
+  },
+  {
+    name: "TikTok",
+    icon: null, // Custom TT icon
+    url: "https://www.tiktok.com/@muslimin.ev",
+    bgGradient: "from-gray-50 to-gray-100",
+    hoverGradient: "hover:from-gray-100 hover:to-gray-200",
+    iconColor: "bg-gray-800",
+    textColor: "text-gray-700",
+    hoverTextColor: "group-hover:text-gray-800",
+    borderColor: "border-gray-200",
+    hoverBorderColor: "hover:border-gray-300",
+  },
+  {
+    name: "YouTube",
+    icon: Youtube,
+    url: "https://www.youtube.com/@muslimin-ev",
+    bgGradient: "from-red-50 to-red-100",
+    hoverGradient: "hover:from-red-100 hover:to-red-200",
+    iconColor: "text-red-600",
+    textColor: "text-red-700",
+    hoverTextColor: "group-hover:text-red-800",
+    borderColor: "border-red-200",
+    hoverBorderColor: "hover:border-red-300",
+  },
+  {
+    name: "WhatsApp",
+    icon: MessageCircle,
+    url: "https://whatsapp.com/channel/0029VaN2y5qIt5rsURhd1o2Y",
+    bgGradient: "from-green-50 to-green-100",
+    hoverGradient: "hover:from-green-100 hover:to-green-200",
+    iconColor: "text-green-600",
+    textColor: "text-green-700",
+    hoverTextColor: "group-hover:text-green-800",
+    borderColor: "border-green-200",
+    hoverBorderColor: "hover:border-green-300",
+  },
+];
 
 export function SocialMediaSection({
-  variant = "default",
+  variant = "card",
+  title = DEFAULT_TITLE,
+  subtitle = DEFAULT_SUBTITLE,
+  showTitle = true,
+  showHeader = true,
+  showLabels = true,
   className = "",
 }: SocialMediaSectionProps) {
-  const isFooter = variant === "footer";
-  const isCompact = variant === "compact";
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5 },
+    },
+  };
 
-  if (isCompact) {
+  type Social = (typeof SOCIAL_MEDIA)[number];
+
+  function SocialButton({
+    social,
+    variant = "default",
+  }: {
+    social: Social;
+    variant?: "default" | "compact" | "footer" | "card";
+  }) {
+    const Icon = social.icon;
+
+    const baseClasses =
+      "inline-flex items-center justify-center transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:ring-offset-2";
+
+    if (variant === "footer") {
+      return (
+        <a
+          href={social.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`${baseClasses} h-8 w-8 rounded-full bg-white/60 hover:bg-white shadow-sm hover:shadow-md ring-1 ring-sage-200/70 flex items-center justify-center group`}
+          aria-label={`Folge uns auf ${social.name}`}
+          title={social.name}
+        >
+          {Icon ? (
+            <Icon className="h-4 w-4 text-sage-600 group-hover:text-sage-800 transition-colors" />
+          ) : (
+            <span className="text-[9px] font-semibold text-white bg-gray-800 rounded-sm px-1 py-0.5 leading-none group-hover:bg-black transition-colors">
+              TT
+            </span>
+          )}
+        </a>
+      );
+    }
+
+    if (variant === "compact") {
+      return (
+        <motion.a
+          href={social.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className={`${baseClasses} w-10 h-10 rounded-xl bg-white border border-sage-100 text-sage-600 hover:text-sage-800 hover:border-sage-300 shadow-sm hover:shadow-md`}
+          aria-label={`Folge uns auf ${social.name}`}
+          title={social.name}
+        >
+          {Icon ? (
+            <Icon className="h-5 w-5" />
+          ) : (
+            <span className="text-[10px] font-bold text-white bg-gray-800 rounded px-1 py-0.5">
+              TT
+            </span>
+          )}
+        </motion.a>
+      );
+    }
+
+    // card / default
     return (
-      <div className={`flex items-center gap-2 ${className}`}>
-        {SOCIAL_LINKS.map((social) => {
-          const Icon = iconMap[social.icon as keyof typeof iconMap];
-          return (
-            <motion.a
-              key={social.platform}
-              href={social.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={social.ariaLabel}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              className="text-sage-600 hover:text-clay-500 transition-colors"
-            >
-              <Icon className="h-5 w-5" />
-            </motion.a>
-          );
-        })}
-      </div>
+      <motion.a
+        href={social.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        whileHover={{ scale: 1.02, y: -2 }}
+        whileTap={{ scale: 0.98 }}
+        className={`flex items-center justify-center p-4 rounded-xl bg-gradient-to-br ${social.bgGradient} ${social.hoverGradient} transition-all duration-300 group shadow-sm hover:shadow-md border ${social.borderColor} ${social.hoverBorderColor} w-full`}
+        aria-label={`Folge uns auf ${social.name}`}
+        title={social.name}
+      >
+        {Icon ? (
+          <Icon
+            className={`w-6 h-6 ${social.iconColor} mr-3 transition-transform group-hover:scale-110`}
+          />
+        ) : (
+          <div
+            className={`w-6 h-6 ${social.iconColor} rounded flex items-center justify-center mr-3 transition-transform group-hover:scale-110`}
+          >
+            <span className="text-white font-bold text-[10px]">TT</span>
+          </div>
+        )}
+        {showLabels && (
+          <span
+            className={`font-semibold ${social.textColor} ${social.hoverTextColor}`}
+          >
+            {social.name}
+          </span>
+        )}
+      </motion.a>
     );
   }
 
-  if (isFooter) {
+  if (variant === "footer") {
     return (
-      <div className={`space-y-3 ${className}`}>
-        <h3 className="text-sm font-semibold text-white flex items-center space-x-2">
-          <div className="w-1 h-4 bg-white rounded-full"></div>
-          <span>Folgen Sie uns</span>
-        </h3>
-        <div className="flex gap-3">
-          {SOCIAL_LINKS.map((social) => {
-            const Icon = iconMap[social.icon as keyof typeof iconMap];
-            return (
-              <motion.a
-                key={social.platform}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={social.ariaLabel}
-                whileHover={{ scale: 1.1, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                className="flex items-center justify-center w-9 h-9 rounded-lg bg-sage-800 text-sand-100 hover:bg-clay-500 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-sage-700"
-              >
-                <Icon className="h-5 w-5" />
-              </motion.a>
-            );
-          })}
+      <ul
+        className={`flex flex-wrap items-center gap-2 ${className}`}
+        aria-label={title}
+      >
+        {SOCIAL_MEDIA.map((social) => (
+          <li key={social.name}>
+            <SocialButton social={social} variant="footer" />
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
+  if (variant === "compact") {
+    return (
+      <div className={`space-y-4 ${className}`}>
+        {showTitle && (
+          <div className="text-center">
+            <h3 className="text-lg font-bold text-sage-800">{title}</h3>
+            {subtitle && <p className="text-sm text-sage-600">{subtitle}</p>}
+          </div>
+        )}
+        <div className="flex justify-center gap-3 flex-wrap">
+          {SOCIAL_MEDIA.map((social) => (
+            <SocialButton key={social.name} social={social} variant="compact" />
+          ))}
         </div>
       </div>
     );
   }
 
-  // Default variant
   return (
-    <div className={`space-y-4 ${className}`}>
-      <h3 className="text-lg font-semibold text-charcoal-800 flex items-center space-x-2">
-        <div className="w-1.5 h-6 bg-sage-500 rounded-full"></div>
-        <span>Folgen Sie uns auf Social Media</span>
-      </h3>
-      <div className="flex flex-wrap gap-3">
-        {SOCIAL_LINKS.map((social) => {
-          const Icon = iconMap[social.icon as keyof typeof iconMap];
-          return (
-            <motion.div
-              key={social.platform}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <Button
-                asChild
-                variant="outline"
-                className="hover:bg-sage-50 hover:border-sage-300 hover:text-sage-700 transition-colors focus-visible:ring-2 focus-visible:ring-sage-500"
-              >
-                <a
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.ariaLabel}
-                  className="flex items-center space-x-2"
-                >
-                  <Icon className="h-4 w-4" />
-                  <span>{social.platform}</span>
-                </a>
-              </Button>
-            </motion.div>
-          );
-        })}
-      </div>
-    </div>
+    <motion.div
+      variants={itemVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      className={`w-full ${className}`}
+    >
+      <Card className="border-sage-200 shadow-lg bg-white/80 backdrop-blur-sm hover:shadow-xl transition-all duration-500 overflow-hidden">
+        {showHeader && (
+          <CardHeader className="text-center pb-2">
+            <CardTitle className="text-2xl md:text-3xl font-bold text-sage-800">
+              {title}
+            </CardTitle>
+            {subtitle && (
+              <CardDescription className="text-base text-sage-600 mt-2">
+                {subtitle}
+              </CardDescription>
+            )}
+          </CardHeader>
+        )}
+        <CardContent className="pt-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {SOCIAL_MEDIA.map((social) => (
+              <SocialButton key={social.name} social={social} variant="card" />
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+    </motion.div>
   );
 }

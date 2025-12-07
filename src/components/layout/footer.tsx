@@ -1,181 +1,113 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Mail, MapPin } from "lucide-react";
+import { Mail, MapPin, ChevronRight } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { SocialMediaSection } from "@/components/SocialMediaSection";
-import {
-  NAV_LINKS,
-  MEMBER_NAV_LINKS,
-  LEGAL_LINKS,
-  CONTACT_INFO,
-  TRUST_TEXT,
-} from "@/lib/constants";
+import { LEGAL_LINKS } from "@/lib/constants";
+
+const NAV_LINKS = [
+  { label: "Über uns", href: "/uber-uns" },
+  { label: "Veranstaltungen", href: "/veranstaltungen" },
+  { label: "Projekte", href: "/projekte" },
+  { label: "Mitglied werden", href: "/mitglied-werden" },
+  { label: "Spenden", href: "/spenden" },
+];
 
 export function Footer() {
   return (
-    <footer
-      className="border-t bg-gradient-to-t from-sage-700 via-sage-600 to-sage-500 border-sage-800 text-white"
-      role="contentinfo"
-    >
-      <div className="container mx-auto px-4 py-8 md:py-12">
-        <div className="grid gap-8 lg:grid-cols-4 md:grid-cols-2">
-          {/* Brand Section */}
-          <div className="space-y-4">
-            <Link
-              href="/"
-              className="flex items-center space-x-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-sage-600 rounded-lg"
-              aria-label="Zur Startseite"
-            >
+    <footer className="border-t border-sage-200/80 bg-gradient-to-b from-white via-cream-50/50 to-sage-50/80" role="contentinfo">
+      <div className="container mx-auto px-4 py-10">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="space-y-3">
+            <Link href="/" className="inline-flex items-center gap-2.5 group">
               <Image
                 src="/images/muslimin-logo.svg"
                 alt="Muslimin e.V. Logo"
-                width={48}
-                height={48}
-                className="h-12 w-auto transition-all duration-300 group-hover:scale-105 group-hover:drop-shadow-md"
+                width={44}
+                height={44}
+                className="h-11 w-auto transition-all duration-300 group-hover:scale-105"
               />
-              <div className="flex flex-col">
-                <span className="font-bold text-lg text-white drop-shadow-sm">
-                  Muslimin e.V.
-                </span>
-              </div>
-            </Link>
-            <p className="text-sm text-sand-100 leading-relaxed drop-shadow-sm">
-              {TRUST_TEXT.tagline}
-              <br />
-              <span className="text-white font-medium">
-                {TRUST_TEXT.values}
+              <span className="font-semibold text-base text-sage-800 group-hover:text-sage-700 transition-colors">
+                Muslimin e.V.
               </span>
+            </Link>
+
+            <p className="text-sm text-sage-600/90 max-w-xs">
+              Muslimischer Frauen- & Mädchenverein – Gemeinschaft, Bildung & Hilfe seit 2011
             </p>
-            <div className="flex items-center space-x-2 text-xs text-sand-200 drop-shadow-sm">
-              <div className="w-2 h-2 bg-white rounded-full"></div>
-              <span>{TRUST_TEXT.gdprCompliant}</span>
+
+            <div className="pt-1">
+              <SocialMediaSection variant="footer" showTitle={false} />
             </div>
           </div>
 
-          {/* Navigation Links */}
-          <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-white flex items-center space-x-2">
-              <div className="w-1 h-4 bg-white rounded-full"></div>
-              <span>Navigation</span>
+          <nav aria-label="Footer Navigation">
+            <h3 className="text-xs font-bold text-sage-800 uppercase tracking-wider mb-3 flex items-center gap-2">
+              <span className="w-1 h-4 bg-sage-600 rounded-full" />
+              Navigation
             </h3>
-            <nav className="flex flex-col space-y-3 text-sm" aria-label="Footer-Navigation">
+            <ul className="space-y-2.5">
               {NAV_LINKS.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-sand-100 hover:text-sand-50 transition-colors flex items-center space-x-2 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sand-300 rounded"
-                >
-                  <span className="w-1 h-1 bg-sand-300 rounded-full group-hover:scale-150 transition-transform"></span>
-                  <span>{link.label}</span>
-                </Link>
-              ))}
-              {MEMBER_NAV_LINKS.slice(0, 2).map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-sand-100 hover:text-sand-50 transition-colors flex items-center space-x-2 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sand-300 rounded"
-                >
-                  <span className="w-1 h-1 bg-sand-300 rounded-full group-hover:scale-150 transition-transform"></span>
-                  <span>{link.label}</span>
-                </Link>
-              ))}
-              <Link
-                href="/helper/register"
-                className="text-clay-200 hover:text-clay-100 transition-colors flex items-center space-x-2 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clay-300 rounded font-medium"
-              >
-                <span className="w-1 h-1 bg-clay-300 rounded-full group-hover:scale-150 transition-transform"></span>
-                <span>Helferin werden</span>
-              </Link>
-            </nav>
-          </div>
-
-          {/* Contact Information */}
-          <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-white flex items-center space-x-2">
-              <div className="w-1 h-4 bg-white rounded-full"></div>
-              <span>Kontakt</span>
-            </h3>
-            <div className="space-y-4 text-sm">
-              <div className="group">
-                <a
-                  href={`mailto:${CONTACT_INFO.email}`}
-                  className="flex items-center space-x-3 p-2 rounded-lg hover:bg-sage-700/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sand-300"
-                  aria-label={`E-Mail an ${CONTACT_INFO.email} senden`}
-                >
-                  <Mail className="h-4 w-4 text-sand-100 group-hover:scale-110 transition-transform" />
-                  <div className="flex flex-col">
-                    <span className="text-sand-100 group-hover:text-white transition-colors">
-                      {CONTACT_INFO.email}
-                    </span>
-                    <span className="text-xs text-sand-200">E-Mail Support</span>
-                  </div>
-                </a>
-              </div>
-              <div className="group">
-                <div className="flex items-start space-x-3 p-2 rounded-lg">
-                  <MapPin className="h-4 w-4 text-sand-100 mt-0.5" />
-                  <div className="flex flex-col">
-                    <span className="text-sand-100">
-                      {CONTACT_INFO.location}
-                    </span>
-                    <span className="text-xs text-sand-200">
-                      {CONTACT_INFO.locationDetail}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Social Media & Legal */}
-          <div className="space-y-6">
-            <SocialMediaSection variant="footer" />
-            
-            <div className="space-y-3">
-              <h3 className="text-sm font-semibold text-white flex items-center space-x-2">
-                <div className="w-1 h-4 bg-white rounded-full"></div>
-                <span>Rechtliches</span>
-              </h3>
-              <nav className="flex flex-col space-y-2 text-sm" aria-label="Rechtliche Links">
-                {LEGAL_LINKS.map((link) => (
+                <li key={link.href}>
                   <Link
-                    key={link.href}
                     href={link.href}
-                    className="text-sand-100 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sand-300 rounded"
+                    className="flex items-center gap-2 text-sm text-sage-600 hover:text-sage-800 hover:translate-x-0.5 transition-all"
                   >
+                    <ChevronRight className="h-3.5 w-3.5 text-sage-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <span className="group-hover:font-medium transition-all">{link.label}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div>
+            <h3 className="text-xs font-bold text-sage-800 uppercase tracking-wider mb-3 flex items-center gap-2">
+              <span className="w-1 h-4 bg-sage-600 rounded-full" />
+              Kontakt
+            </h3>
+            <address className="not-italic space-y-2.5 text-sm">
+              <a
+                href="mailto:info@muslimin-ev.de"
+                className="flex items-center gap-2 text-sage-600 hover:text-sage-800 transition-colors"
+              >
+                <Mail className="h-4 w-4 text-sage-500 flex-shrink-0" />
+                info@muslimin-ev.de
+              </a>
+              <p className="flex items-start gap-2 text-sage-600">
+                <MapPin className="h-4 w-4 text-sage-500 mt-0.5 flex-shrink-0" />
+                Berlin, Deutschland
+              </p>
+            </address>
+          </div>
+
+          <div>
+            <h3 className="text-xs font-bold text-sage-800 uppercase tracking-wider mb-3 flex items-center gap-2">
+              <span className="w-1 h-4 bg-sage-600 rounded-full" />
+              Rechtliches
+            </h3>
+            <ul className="space-y-2.5 text-sm">
+              {LEGAL_LINKS.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="text-sage-600 hover:text-sage-800 transition-colors block">
                     {link.label}
                   </Link>
-                ))}
-              </nav>
-            </div>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
-        <Separator className="my-8 bg-sage-800" />
+        <Separator className="my-6 bg-sage-200/60" />
 
-        <div className="flex flex-col sm:flex-row justify-between items-center text-sm text-sand-200">
-          <div className="flex flex-col sm:flex-row items-center space-y-1 sm:space-y-0 sm:space-x-4">
-            <p className="flex items-center space-x-2 text-white">
-              <span>{TRUST_TEXT.copyright}</span>
-              <span className="hidden sm:inline">•</span>
-              <span className="text-xs text-sand-100">{TRUST_TEXT.rightsReserved}</span>
-            </p>
-            <div className="flex items-center space-x-1 text-xs text-sand-100">
-              <div className="w-1 h-1 bg-white rounded-full"></div>
-              <span className="text-sand-300">{TRUST_TEXT.legalStatus}</span>
-            </div>
-          </div>
-          <div className="flex space-x-4 mt-4 sm:mt-0">
-            {LEGAL_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="hover:text-white transition-colors text-xs font-medium text-sand-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sand-300 rounded"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
+        <div className="flex flex-col gap-2 text-xs text-sage-500/80 md:flex-row md:items-center md:justify-between">
+          <span>© {new Date().getFullYear()} Muslimin e.V. Alle Rechte vorbehalten.</span>
+          <span className="flex items-center gap-2">
+            <span className="hidden md:inline text-sage-400">•</span>
+            <span className="flex items-center gap-1.5 font-medium text-sage-600">
+              Gemeinnützig anerkannt • DSGVO-konform • Seit 2011
+            </span>
+          </span>
         </div>
       </div>
     </footer>

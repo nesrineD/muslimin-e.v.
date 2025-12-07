@@ -100,8 +100,8 @@ export function Header() {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
         isScrolled
-          ? "bg-gradient-to-b from-sage-600 via-sage-700 to-sage-800 backdrop-blur-md border-b border-sage-500 shadow-sage-lg"
-          : "bg-gradient-to-b from-sage-600/95 via-sage-700/90 to-sage-800/85 backdrop-blur-sm border-b border-sage-500/70"
+          ? "bg-gradient-to-b from-cream-50 to-sage-50/80 backdrop-blur-md border-b border-sage-200 shadow-lg"
+          : "bg-gradient-to-b from-cream-50/80 to-sage-50/50 backdrop-blur-sm border-b border-sage-200/70"
       }`}
       role="banner"
     >
@@ -127,7 +127,7 @@ export function Header() {
               />
             </motion.div>
             <div className="flex flex-col">
-              <span className="font-bold text-xl text-white drop-shadow-sm">
+              <span className="font-bold text-xl text-sage-700 group-hover:text-coral-600 transition-all duration-300">
                 Muslimin e.V.
               </span>
             </div>
@@ -135,31 +135,107 @@ export function Header() {
         </motion.div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-1" role="navigation" aria-label="Hauptnavigation">
+        <nav
+          className="hidden md:flex items-center space-x-1"
+          role="navigation"
+          aria-label="Hauptnavigation"
+        >
           {/* Public Navigation - Only visible when NOT logged in */}
-          {!user &&
-            NAV_LINKS.map((link) => (
+          {!user && (
+            <>
               <motion.div
-                key={link.href}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
                 <Button
                   variant="ghost"
                   asChild
-                  className="text-sand-50 hover:bg-sage-700/50 hover:text-sand-100 transition-colors duration-200 px-4 py-2 font-medium focus-visible:ring-2 focus-visible:ring-sand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-sage-600"
+                  className="hover:bg-sage-50 hover:text-sage-700 transition-colors duration-200 px-3 py-2 font-medium text-sm"
                 >
-                  <Link href={link.href} className="flex items-center space-x-2">
-                    {link.icon === "HeartHandshake" && (
-                      <HeartHandshake className="h-4 w-4" />
-                    )}
-                    {link.icon === "Bell" && <Bell className="h-4 w-4" />}
-                    {link.icon === "Sparkles" && <Sparkles className="h-4 w-4" />}
-                    <span>{link.label}</span>
+                  <Link
+                    href="/uber-uns"
+                    className="flex items-center space-x-2"
+                  >
+                    <BookOpen className="h-4 w-4" />
+                    <span>Über uns</span>
                   </Link>
                 </Button>
               </motion.div>
-            ))}
+
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Button
+                  variant="ghost"
+                  asChild
+                  className="hover:bg-coral-50 hover:text-coral-700 transition-colors duration-200 px-3 py-2 font-medium text-sm"
+                >
+                  <Link
+                    href="/veranstaltungen"
+                    className="flex items-center space-x-2"
+                  >
+                    <Calendar className="h-4 w-4" />
+                    <span>Veranstaltungen</span>
+                  </Link>
+                </Button>
+              </motion.div>
+
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Button
+                  variant="ghost"
+                  asChild
+                  className="hover:bg-warm-50 hover:text-warm-700 transition-colors duration-200 px-3 py-2 font-medium text-sm"
+                >
+                  <Link
+                    href="/projekte"
+                    className="flex items-center space-x-2"
+                  >
+                    <HeartHandshake className="h-4 w-4" />
+                    <span>Projekte</span>
+                  </Link>
+                </Button>
+              </motion.div>
+
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Button
+                  variant="ghost"
+                  asChild
+                  className="hover:bg-sage-50 hover:text-sage-700 transition-colors duration-200 px-3 py-2 font-medium text-sm"
+                >
+                  <Link
+                    href="/mitglied-werden"
+                    className="flex items-center space-x-2"
+                  >
+                    <Sparkles className="h-4 w-4" />
+                    <span>Mitglied</span>
+                  </Link>
+                </Button>
+              </motion.div>
+
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Button
+                  variant="ghost"
+                  asChild
+                  className="hover:bg-coral-50 hover:text-coral-700 transition-colors duration-200 px-3 py-2 font-medium text-sm"
+                >
+                  <Link href="/spenden" className="flex items-center space-x-2">
+                    <HeartHandshake className="h-4 w-4" />
+                    <span>Spenden</span>
+                  </Link>
+                </Button>
+              </motion.div>
+            </>
+          )}
 
           {/* Member-only Navigation - Only visible when logged in */}
           {user &&
@@ -174,8 +250,13 @@ export function Header() {
                   asChild
                   className="text-sand-50 hover:bg-sage-700/50 hover:text-sand-100 transition-colors duration-200 px-4 py-2 font-medium focus-visible:ring-2 focus-visible:ring-sand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-sage-600"
                 >
-                  <Link href={link.href} className="flex items-center space-x-2">
-                    {link.icon === "BookOpen" && <BookOpen className="h-4 w-4" />}
+                  <Link
+                    href={link.href}
+                    className="flex items-center space-x-2"
+                  >
+                    {link.icon === "BookOpen" && (
+                      <BookOpen className="h-4 w-4" />
+                    )}
                     {link.icon === "MapPin" && <MapPin className="h-4 w-4" />}
                     {link.icon === "Map" && <Map className="h-4 w-4" />}
                     <span>{link.label}</span>
@@ -212,7 +293,10 @@ export function Header() {
           ) : user ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
                   <Button
                     variant="ghost"
                     className="flex items-center space-x-2 text-sand-50 hover:bg-sage-700/50 hover:text-sand-100 px-3 py-2 focus-visible:ring-2 focus-visible:ring-sand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-sage-600"
@@ -238,7 +322,10 @@ export function Header() {
                 <div className="px-2 py-1.5 text-sm font-medium text-charcoal-700">
                   {user.email}
                   {user.is_helper && (
-                    <Badge variant="secondary" className="ml-2 text-xs bg-sage-100 text-sage-700">
+                    <Badge
+                      variant="secondary"
+                      className="ml-2 text-xs bg-sage-100 text-sage-700"
+                    >
                       Helferin
                     </Badge>
                   )}
@@ -384,7 +471,9 @@ export function Header() {
                           <HeartHandshake className="h-4 w-4" />
                         )}
                         {link.icon === "Bell" && <Bell className="h-4 w-4" />}
-                        {link.icon === "Sparkles" && <Sparkles className="h-4 w-4" />}
+                        {link.icon === "Sparkles" && (
+                          <Sparkles className="h-4 w-4" />
+                        )}
                         <span>{link.label}</span>
                       </div>
                       <p className="line-clamp-2 text-sm leading-snug text-charcoal-600 group-hover:text-sage-600">
@@ -414,8 +503,12 @@ export function Header() {
                         className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-sage-100 focus:bg-sage-100 focus-visible:ring-2 focus-visible:ring-sage-500 group min-h-[44px]"
                       >
                         <div className="text-sm font-medium leading-none text-charcoal-800 group-hover:text-sage-700 flex items-center space-x-2">
-                          {link.icon === "BookOpen" && <BookOpen className="h-4 w-4" />}
-                          {link.icon === "MapPin" && <MapPin className="h-4 w-4" />}
+                          {link.icon === "BookOpen" && (
+                            <BookOpen className="h-4 w-4" />
+                          )}
+                          {link.icon === "MapPin" && (
+                            <MapPin className="h-4 w-4" />
+                          )}
                           {link.icon === "Map" && <Map className="h-4 w-4" />}
                           <span>{link.label}</span>
                         </div>
