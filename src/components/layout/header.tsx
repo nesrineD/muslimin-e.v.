@@ -100,8 +100,8 @@ export function Header() {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
         isScrolled
-          ? "bg-gradient-to-b from-sage-50 to-sage-100/50 backdrop-blur-md border-b border-sage-200 shadow-lg"
-          : "bg-gradient-to-b from-sage-50/80 to-sage-100/30 backdrop-blur-sm border-b border-sage-200/70"
+          ? "bg-gradient-to-b from-cream-50 to-sage-50/80 backdrop-blur-md border-b border-sage-200 shadow-lg"
+          : "bg-gradient-to-b from-cream-50/80 to-sage-50/50 backdrop-blur-sm border-b border-sage-200/70"
       }`}
     >
       <div className="container mx-auto px-4 flex h-20 items-center">
@@ -127,7 +127,7 @@ export function Header() {
               />
             </motion.div>
             <div className="flex flex-col">
-              <span className="font-bold text-xl text-sage-700 group-hover:text-warm-600 transition-all duration-300">
+              <span className="font-bold text-xl text-sage-700 group-hover:text-coral-600 transition-all duration-300">
                 Muslimin e.V.
               </span>
             </div>
@@ -146,10 +146,13 @@ export function Header() {
                 <Button
                   variant="ghost"
                   asChild
-                  className="hover:bg-coral-50 hover:text-coral-500 transition-colors duration-200 px-4 py-2 font-medium"
+                  className="hover:bg-sage-50 hover:text-sage-700 transition-colors duration-200 px-3 py-2 font-medium text-sm"
                 >
-                  <Link href="/about" className="flex items-center space-x-2">
-                    <HeartHandshake className="h-4 w-4" />
+                  <Link
+                    href="/uber-uns"
+                    className="flex items-center space-x-2"
+                  >
+                    <BookOpen className="h-4 w-4" />
                     <span>Über uns</span>
                   </Link>
                 </Button>
@@ -162,14 +165,14 @@ export function Header() {
                 <Button
                   variant="ghost"
                   asChild
-                  className="hover:bg-warm-50 hover:text-warm-700 transition-colors duration-200 px-4 py-2 font-medium"
+                  className="hover:bg-coral-50 hover:text-coral-700 transition-colors duration-200 px-3 py-2 font-medium text-sm"
                 >
                   <Link
                     href="/veranstaltungen"
                     className="flex items-center space-x-2"
                   >
-                    <Bell className="h-4 w-4" />
-                    <span>Unsere Veranstaltungen</span>
+                    <Calendar className="h-4 w-4" />
+                    <span>Veranstaltungen</span>
                   </Link>
                 </Button>
               </motion.div>
@@ -181,14 +184,49 @@ export function Header() {
                 <Button
                   variant="ghost"
                   asChild
-                  className="hover:bg-sage-50 hover:text-sage-700 transition-colors duration-200 px-4 py-2 font-medium"
+                  className="hover:bg-warm-50 hover:text-warm-700 transition-colors duration-200 px-3 py-2 font-medium text-sm"
+                >
+                  <Link
+                    href="/projekte"
+                    className="flex items-center space-x-2"
+                  >
+                    <HeartHandshake className="h-4 w-4" />
+                    <span>Projekte</span>
+                  </Link>
+                </Button>
+              </motion.div>
+
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Button
+                  variant="ghost"
+                  asChild
+                  className="hover:bg-sage-50 hover:text-sage-700 transition-colors duration-200 px-3 py-2 font-medium text-sm"
                 >
                   <Link
                     href="/mitglied-werden"
                     className="flex items-center space-x-2"
                   >
                     <Sparkles className="h-4 w-4" />
-                    <span>Mitglied Werden</span>
+                    <span>Mitglied</span>
+                  </Link>
+                </Button>
+              </motion.div>
+
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Button
+                  variant="ghost"
+                  asChild
+                  className="hover:bg-coral-50 hover:text-coral-700 transition-colors duration-200 px-3 py-2 font-medium text-sm"
+                >
+                  <Link href="/spenden" className="flex items-center space-x-2">
+                    <HeartHandshake className="h-4 w-4" />
+                    <span>Spenden</span>
                   </Link>
                 </Button>
               </motion.div>

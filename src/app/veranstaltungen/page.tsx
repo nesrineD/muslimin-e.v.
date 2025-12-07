@@ -1,155 +1,117 @@
 "use client";
 
+import type { Metadata } from "next";
+import { EventCard } from "@/components/landing/EventCard";
+import { SocialMediaCTA } from "@/components/landing/SocialMediaCTA";
 import { motion } from "framer-motion";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
+import { containerVariants, itemVariants } from "@/lib/animations";
+
+type EventFormat = "Online" | "Präsenz";
+
+interface Event {
+  id: string;
+  name: string;
+  description: string;
+  regularity: string;
+  targetAudience: string;
+  format: EventFormat;
+  icon: string;
+}
+
+const EVENTS: Event[] = [
+  {
+    id: "monatsvortrag",
+    name: "Monatsvortrag",
+    description:
+      "Jeden letzten Sonntag eines Monats lädt Muslimin e.V. zu einer offenen Runde ein. Frauen verschiedener Altersgruppen und Konfessionen treffen sich seit 2013, um am 'Monatsvortrag' teilzunehmen. Hierbei werden verschiedene Themen angesprochen, wobei der Vortrag als Input für die anschließende Diskussionsrunde dient. Wir möchten einen Raum für Dialoge zwischen Frauen schaffen. Es werden sowohl religiöse als auch nicht-religiöse Inhalte behandelt. Daher laden wir gerne neben islamischen Geistlichen auch Experten aus den jeweiligen Gebieten (z.B. Medizin, Naturwissenschaften, Ernährung usw.) als Rednerinnen ein.",
+    regularity: "Jeden letzten Sonntag im Monat",
+    targetAudience: "Frauen aller Altersgruppen und Konfessionen",
+    format: "Präsenz",
+    icon: "🎤",
+  },
+  {
+    id: "online-vortrag",
+    name: "Online-Vortragsformat",
+    description:
+      "Besondere Zeiten erfordern besondere Formate. Angesichts der Corona-Pandemie sind wir mit unseren monatlichen Vorträgen zu Online-Veranstaltungen auf Zoom umgestiegen. Aufgrund der hohen, positiven Resonanz von Teilnehmerinnen auf bundesweiter Ebene bieten wir an jedem zweiten Dienstagabend eines Monats beginnend mit dem Bittgebet der Fürbitte (Dua Tawassul) einen lehrreichen Online-Vortrag an. Ein großer Vorteil: Gelehrte und Experten aus unterschiedlichen Ländern stehen uns als Redner zur Verfügung.",
+    regularity: "Jeden 2. Dienstagabend im Monat",
+    targetAudience: "Bundesweit - Alle Interessierten",
+    format: "Online",
+    icon: "💻",
+  },
+  {
+    id: "ramadan-connects",
+    name: "Ramadan Connects",
+    description:
+      "Der heilige Monat Ramadan ist der neunte Monat des islamischen Kalenders. Damit wir das Gemeinschaftsgefühl stärken, findet jährlich ein gemeinsames Fastenbrechen unter Schwestern statt. Häufig in Kooperation mit anderen Frauenvereinen Berlins planen wir diese Veranstaltung. Gesellschaftsrelevante Themen werden durch Vorträge, Sketches, Gedichte, Poetry Slams etc. kreativ umgesetzt. Musikalische Einlagen (Nasheeds) schaffen eine spirituelle Atmosphäre. Nach dem gemeinsamen Fastenbrechen können Gäste verschiedene Verkaufs- und Informationsstände besuchen und sich mit Schwestern aus unterschiedlichen Gemeinden Berlins vernetzen.",
+    regularity: "Jährlich während Ramadan",
+    targetAudience: "Alle Schwestern - oft in Kooperation",
+    format: "Präsenz",
+    icon: "🌙",
+  },
+  {
+    id: "aschura",
+    name: "Aschura-Frauenveranstaltung",
+    description:
+      "Die jährliche Aschura-Veranstaltung für Frauen und Mädchen ist ein fester Bestandteil unserer Arbeit. Anlass der Trauerzeremonie ist der Todestag vom Enkel des Propheten (F.), Imam Husain (F.), der mit seiner Familie und seinen engsten Gefährten am 10. Muharram sein Leben auf heldenhafte Weise für den Erhalt des Glaubens und der Gerechtigkeit hingab. Lehreiche Vorträge, Trauergesänge (Latmiya), Audienzen (Ziyarat), Theaterstücke, Gedichte uvm. bilden den Inhalt des Programms und schaffen eine spirituelle Atmosphäre im Gedenken an den Herrn der Märtyrer (F.).",
+    regularity: "Jährlich nach dem 10. Muharram",
+    targetAudience: "Frauen und Mädchen",
+    format: "Präsenz",
+    icon: "🕯️",
+  },
+  {
+    id: "koran",
+    name: "Koranunterricht für Frauen und Mädchen",
+    description:
+      "Seit 2014 finden ein- bis zweimal jährlich Kurse des Koranunterrichts statt und erfreuen sich großer Beliebtheit. In vier verschiedenen Kursen mit unterschiedlichen Fähigkeitsstufen erlernen die Schülerinnen - je nach persönlichem Wissensniveau - das Lesen der arabischen Schrift bzw. die Tajweed-Regeln: Anfänger-Kurs (Arabisches Alphabet), A-Kurs (Fließendes Lesen), B-Kurs (Tajweed-Regeln), C-Kurs (Längen- und Pausenregeln). Der Kurs umfasst 12 Unterrichtseinheiten à 90 Minuten. Zum Abschluss legen die Schülerinnen eine kleine Prüfung ab und erhalten Urkunden und Geschenke. Ziel ist es, die Schülerinnen zu ermutigen, sich mit dem Koran in seiner Originalschrift auseinanderzusetzen.",
+    regularity: "1-2x jährlich, 12 Wochen à 90 Min.",
+    targetAudience: "Frauen und Mädchen aller Levels",
+    format: "Präsenz",
+    icon: "📖",
+  },
+];
 
 export default function VeranstaltungenPage() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 },
-    },
-  };
-
-  // Events grouped by month
-  const eventsByMonth = {
-    "September 2025": [
-      {
-        id: 4,
-        title: "Herbstkonferenz September 2025",
-        date: "27. September 2025",
-        flyer: "/images/veranstaltungen/herbstkonferenz-september-2025.jpeg",
-      },
-    ],
-    "August 2025": [
-      {
-        id: 3,
-        title: "Workshop August 2025",
-        date: "15. August 2025",
-        flyer: "/images/veranstaltungen/workshop-august-2025.jpeg",
-      },
-    ],
-    "Juni 2025": [
-      {
-        id: 2,
-        title: "Sommerfest Juni 2025",
-        date: "21. Juni 2025",
-        flyer: "/images/veranstaltungen/sommerfest-juni-2025.jpeg",
-      },
-      {
-        id: 1,
-        title: "Frauenkreis Juni 2025",
-        date: "11. Juni 2025",
-        flyer: "/images/veranstaltungen/frauenkreis-juni-2025.jpeg",
-      },
-    ],
-  };
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-cream-50 via-white to-sage-50">
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-        className="container mx-auto px-4 py-12"
-      >
-        {/* Header */}
-        <motion.div variants={itemVariants} className="text-center mb-16">
-          <h1 className="text-4xl md:text-6xl font-bold text-sage-800 mb-6">
-            <span className="bg-gradient-to-r from-warm-500 to-coral-500 bg-clip-text text-transparent">
-              Unsere Veranstaltungen
-            </span>
+    <motion.main
+      className="min-h-screen bg-gradient-to-br from-cream-50 via-white to-sage-50"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      {/* Hero Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <motion.div
+          variants={itemVariants}
+          className="max-w-4xl mx-auto text-center"
+        >
+          <h1 className="text-5xl md:text-6xl font-bold text-sage-800 mb-6">
+            Unsere Veranstaltungen
           </h1>
-          <p className="text-xl text-sage-600 max-w-3xl mx-auto leading-relaxed">
-            Entdecken Sie unsere kommenden Events und Workshops.
+          <p className="text-xl text-warm-600">
+            Entdecke die vielen Möglichkeiten, Teil unserer Gemeinschaft zu
+            werden
           </p>
         </motion.div>
+      </section>
 
-        {/* Events by Month */}
-        <div className="max-w-6xl mx-auto space-y-12">
-          {Object.entries(eventsByMonth).map(([month, events]) => (
-            <motion.div key={month} variants={itemVariants}>
-              <h2 className="text-3xl font-bold text-sage-800 mb-8 text-center">
-                {month}
-              </h2>
-              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {events.map((event) => (
-                  <motion.div
-                    key={event.id}
-                    variants={itemVariants}
-                    className="group"
-                  >
-                    <Card className="border-0 shadow-xl bg-white/80 backdrop-blur-sm hover:shadow-2xl transition-all duration-300 group-hover:scale-[1.02]">
-                      <CardHeader className="pb-4">
-                        {/* Flyer Image - Made bigger */}
-                        <div className="relative w-full h-96 rounded-lg overflow-hidden bg-gray-100">
-                          <Image
-                            src={event.flyer}
-                            alt={`Flyer für ${event.title}`}
-                            fill
-                            className="object-cover group-hover:scale-105 transition-transform duration-300"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          />
-                        </div>
-                      </CardHeader>
-                      <CardContent className="space-y-4">
-                        <div>
-                          <CardTitle className="text-lg font-bold text-sage-800 group-hover:text-warm-700 transition-colors mb-2">
-                            {event.title}
-                          </CardTitle>
-                          <p className="text-sage-600 font-medium">
-                            {event.date}
-                          </p>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Info Section */}
-        <motion.div variants={itemVariants} className="mt-16">
-          <Card className="border-0 shadow-xl bg-white/80 backdrop-blur-sm">
-            <CardHeader>
-              <CardTitle className="text-center text-2xl font-bold text-sage-800">
-                Haben Sie Fragen zu unseren Veranstaltungen?
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="text-center space-y-4">
-              <p className="text-sage-700 leading-relaxed max-w-2xl mx-auto">
-                Kontaktieren Sie uns gerne für weitere Informationen oder wenn
-                Sie eigene Veranstaltungsideen haben. Wir freuen uns auf Ihre
-                Teilnahme!
-              </p>
-              <Button
-                variant="outline"
-                className="border-sage-300 text-sage-700 hover:bg-sage-50 hover:border-sage-400 transition-all duration-300"
-                asChild
-              >
-                <a href="mailto:info@muslimin-ev.de">Kontakt aufnehmen</a>
-              </Button>
-            </CardContent>
-          </Card>
+      {/* Events Grid */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
+        <motion.div variants={itemVariants} className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {EVENTS.map((event) => (
+              <EventCard key={event.id} {...event} />
+            ))}
+          </div>
         </motion.div>
-      </motion.div>
-    </div>
+      </section>
+
+      {/* Social Media CTA */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <motion.div variants={itemVariants} className="max-w-4xl mx-auto">
+          <SocialMediaCTA />
+        </motion.div>
+      </section>
+    </motion.main>
   );
 }
