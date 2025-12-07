@@ -7,15 +7,12 @@ import { motion } from "framer-motion";
 import {
   Calendar,
   Clock,
-  HandHeart,
-  Plus,
   Video,
   ArrowRight,
   CheckCircle,
   AlertCircle,
   Users,
   Heart,
-  Settings,
   Home,
   type LucideIcon,
 } from "lucide-react";

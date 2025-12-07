@@ -297,7 +297,7 @@ export default function GridAvailabilityCalendar({
           <div className="mt-4 p-4 bg-gradient-to-r from-emerald-50 to-blue-50 rounded-lg border-l-4 border-emerald-500">
             <h4 className="text-sm font-bold text-emerald-800 mb-3 flex items-center">
               <span className="text-lg mr-2">💡</span>
-              So funktioniert's:
+              So funktioniert&apos;s:
             </h4>
             <ul className="text-sm text-emerald-700 space-y-2">
               <li className="flex items-start space-x-2">

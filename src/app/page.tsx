@@ -262,8 +262,8 @@ export default function Home() {
               </div>
               <div className="bg-white/70 rounded-lg p-4 mt-6">
                 <p className="text-sage-700 italic text-sm">
-                  "Manchmal ist das schönste Geschenk, das wir einander machen
-                  können, einfach da zu sein und zuzuhören." 💖
+                  &quot;Manchmal ist das schönste Geschenk, das wir einander
+                  machen können, einfach da zu sein und zuzuhören.&quot; 💖
                 </p>
               </div>
             </CardContent>

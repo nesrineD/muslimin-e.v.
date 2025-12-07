@@ -8,6 +8,7 @@ interface PLZCircleMarkerProps {
   map?: google.maps.Map;
   onClick?: (plz: string, members: MemberLocationWithCoordinates[]) => void;
   isSelected?: boolean;
+  onInfoCardClick?: (member: MemberLocationWithCoordinates) => void;
 }
 
 export const PLZCircleMarker: React.FC<PLZCircleMarkerProps> = ({
@@ -15,6 +16,7 @@ export const PLZCircleMarker: React.FC<PLZCircleMarkerProps> = ({
   map,
   onClick,
   isSelected = false,
+  onInfoCardClick,
 }) => {
   const circleRef = useRef<google.maps.Circle | null>(null);
 

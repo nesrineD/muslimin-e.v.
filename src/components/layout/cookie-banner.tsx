@@ -199,7 +199,15 @@ function CookieSettings({
       </div>
 
       <div className="flex gap-2 pt-2">
-        <Button onClick={() => onSave(settings)} className="flex-1">
+        <Button
+          onClick={() =>
+            onSave({
+              ...settings,
+              timestamp: new Date().toISOString(),
+            })
+          }
+          className="flex-1"
+        >
           Einstellungen speichern
         </Button>
         <Button variant="outline" onClick={onCancel}>
