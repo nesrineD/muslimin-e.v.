@@ -3,32 +3,17 @@
 import { motion } from "framer-motion";
 import { Copy, Check, AlertCircle } from "lucide-react";
 import { useState } from "react";
+import { containerVariants, itemVariants } from "@/lib/animations";
 
 // Bank details from environment variables
 // IMPORTANT: These must be configured in .env.local before production deployment
 const BANK_IBAN = process.env.NEXT_PUBLIC_BANK_IBAN || "";
 const BANK_BIC = process.env.NEXT_PUBLIC_BANK_BIC || "";
 const BANK_ACCOUNT_HOLDER = process.env.NEXT_PUBLIC_BANK_ACCOUNT_HOLDER || "Muslimin e.V.";
-const PAYPAL_BUTTON_ID = process.env.NEXT_PUBLIC_PAYPAL_DONATE_BUTTON_ID || "";
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
-};
 
 export default function SpendenPage() {
   const [copied, setCopied] = useState<string | null>(null);
+  const paypalButtonId = process.env.NEXT_PUBLIC_PAYPAL_BUTTON_ID;
 
   const copyToClipboard = (text: string, id: string) => {
     navigator.clipboard.writeText(text);
@@ -82,11 +67,11 @@ export default function SpendenPage() {
               <p className="text-warm-600 mb-6">
                 Schnell und sicher online spenden
               </p>
-              {PAYPAL_BUTTON_ID ? (
+              {paypalButtonId ? (
                 <motion.a
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  href={`https://www.paypal.com/donate?hosted_button_id=${PAYPAL_BUTTON_ID}`}
+                  href={`https://www.paypal.com/donate?hosted_button_id=${paypalButtonId}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block px-6 py-3 bg-gradient-to-r from-sage-600 to-warm-600 text-white rounded-lg font-semibold hover:shadow-lg transition-shadow"
@@ -94,9 +79,13 @@ export default function SpendenPage() {
                   Jetzt spenden
                 </motion.a>
               ) : (
-                <div className="flex items-center gap-2 text-warm-600 text-sm">
-                  <AlertCircle className="w-4 h-4" />
-                  <span>PayPal-Spenden werden bald verfügbar sein</span>
+                <div className="space-y-3">
+                  <p className="text-sm text-warm-600 italic">
+                    PayPal-Spenden werden derzeit konfiguriert.
+                  </p>
+                  <p className="text-sm text-warm-600">
+                    In der Zwischenzeit nutzen Sie bitte die Banküberweisung.
+                  </p>
                 </div>
               )}
             </motion.div>

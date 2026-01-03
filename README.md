@@ -699,16 +699,8 @@ Das Projekt nutzt **Renovate** für automatische Dependency-Updates:
 ```bash
 # .env.local (NICHT in Git!)
 
-# Supabase Backend
-NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
-SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
-
-# Email Service
-BREVO_API_KEY=your-brevo-key
-
-# Google Maps
-NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your-api-key
+# PayPal Donation Configuration
+NEXT_PUBLIC_PAYPAL_BUTTON_ID=your-paypal-button-id
 
 # Bank Details for Donations (REQUIRED for production)
 # WICHTIG: Ersetze die Platzhalter-Werte mit echten Bankdaten vor Deployment
@@ -716,11 +708,19 @@ NEXT_PUBLIC_BANK_IBAN=DE12 3012 0000 0123456789
 NEXT_PUBLIC_BANK_BIC=DEUTDE33
 NEXT_PUBLIC_BANK_ACCOUNT_HOLDER=Muslimin e.V.
 
-# PayPal
-NEXT_PUBLIC_PAYPAL_DONATE_BUTTON_ID=YOUR_BUTTON_ID
+# Google Maps API (for location features)
+NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your-api-key
+
+# Supabase Configuration
+NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+
+# Brevo Email Configuration
+BREVO_API_KEY=your-brevo-key
 ```
 
-**Hinweis:** Eine `.env.example` Datei mit allen erforderlichen Variablen ist im Repository enthalten.
+> **Hinweis:** Kopiere `.env.example` zu `.env.local` und fülle die Werte aus. Erhalte deinen PayPal Button ID unter: https://www.paypal.com/donate/buttons/manage
 
 ## 📈 Roadmap
 

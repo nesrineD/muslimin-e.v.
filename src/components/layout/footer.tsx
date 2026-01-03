@@ -128,7 +128,7 @@ export function Footer() {
                 >
                   <ChevronRight className="h-3.5 w-3.5 text-sage-400 opacity-0 group-hover:opacity-100 transition-opacity" />
                   <span className="group-hover:font-medium transition-all">
-                    Satzung
+                    AGB
                   </span>
                 </Link>
               </li>
