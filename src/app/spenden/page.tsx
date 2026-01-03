@@ -1,8 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Copy, Check } from "lucide-react";
+import { Copy, Check, AlertCircle } from "lucide-react";
 import { useState } from "react";
+
+// Bank details from environment variables
+// IMPORTANT: These must be configured in .env.local before production deployment
+const BANK_IBAN = process.env.NEXT_PUBLIC_BANK_IBAN || "";
+const BANK_BIC = process.env.NEXT_PUBLIC_BANK_BIC || "";
+const BANK_ACCOUNT_HOLDER = process.env.NEXT_PUBLIC_BANK_ACCOUNT_HOLDER || "Muslimin e.V.";
+const PAYPAL_BUTTON_ID = process.env.NEXT_PUBLIC_PAYPAL_DONATE_BUTTON_ID || "";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -75,16 +82,23 @@ export default function SpendenPage() {
               <p className="text-warm-600 mb-6">
                 Schnell und sicher online spenden
               </p>
-              <motion.a
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                href="https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_ID"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block px-6 py-3 bg-gradient-to-r from-sage-600 to-warm-600 text-white rounded-lg font-semibold hover:shadow-lg transition-shadow"
-              >
-                Jetzt spenden
-              </motion.a>
+              {PAYPAL_BUTTON_ID ? (
+                <motion.a
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  href={`https://www.paypal.com/donate?hosted_button_id=${PAYPAL_BUTTON_ID}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block px-6 py-3 bg-gradient-to-r from-sage-600 to-warm-600 text-white rounded-lg font-semibold hover:shadow-lg transition-shadow"
+                >
+                  Jetzt spenden
+                </motion.a>
+              ) : (
+                <div className="flex items-center gap-2 text-warm-600 text-sm">
+                  <AlertCircle className="w-4 h-4" />
+                  <span>PayPal-Spenden werden bald verfügbar sein</span>
+                </div>
+              )}
             </motion.div>
 
             {/* Bank Transfer */}
@@ -100,49 +114,48 @@ export default function SpendenPage() {
               <p className="text-warm-600 mb-6">
                 Direkte Überweisung auf unser Konto
               </p>
-              <div className="space-y-3 text-sm bg-warm-50 p-4 rounded-lg border border-warm-200">
-                <div className="flex justify-between items-center">
-                  <span className="font-semibold text-warm-700">IBAN:</span>
-                  <button
-                    onClick={() =>
-                      copyToClipboard("DE12 3012 0000 0123456789", "iban")
-                    }
-                    className="flex items-center gap-2 px-3 py-1 bg-white rounded hover:bg-warm-100 transition-colors"
-                  >
-                    <span className="font-mono text-sage-900">
-                      DE12 3012 0000 0123456789
+              {BANK_IBAN ? (
+                <div className="space-y-3 text-sm bg-warm-50 p-4 rounded-lg border border-warm-200">
+                  <div className="flex justify-between items-center">
+                    <span className="font-semibold text-warm-700">IBAN:</span>
+                    <button
+                      onClick={() => copyToClipboard(BANK_IBAN, "iban")}
+                      className="flex items-center gap-2 px-3 py-1 bg-white rounded hover:bg-warm-100 transition-colors"
+                    >
+                      <span className="font-mono text-sage-900">
+                        {BANK_IBAN}
+                      </span>
+                      {copied === "iban" ? (
+                        <Check className="w-4 h-4 text-warm-600" />
+                      ) : (
+                        <Copy className="w-4 h-4 text-warm-600" />
+                      )}
+                    </button>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="font-semibold text-warm-700">BIC:</span>
+                    <button
+                      onClick={() => copyToClipboard(BANK_BIC, "bic")}
+                      className="flex items-center gap-2 px-3 py-1 bg-white rounded hover:bg-warm-100 transition-colors"
+                    >
+                      <span className="font-mono text-sage-900">{BANK_BIC}</span>
+                      {copied === "bic" ? (
+                        <Check className="w-4 h-4 text-warm-600" />
+                      ) : (
+                        <Copy className="w-4 h-4 text-warm-600" />
+                      )}
+                    </button>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="font-semibold text-warm-700">
+                      Empfänger:
                     </span>
-                    {copied === "iban" ? (
-                      <Check className="w-4 h-4 text-warm-600" />
-                    ) : (
-                      <Copy className="w-4 h-4 text-warm-600" />
-                    )}
-                  </button>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="font-semibold text-warm-700">BIC:</span>
-                  <button
-                    onClick={() => copyToClipboard("DEUTDE33", "bic")}
-                    className="flex items-center gap-2 px-3 py-1 bg-white rounded hover:bg-warm-100 transition-colors"
-                  >
-                    <span className="font-mono text-sage-900">DEUTDE33</span>
-                    {copied === "bic" ? (
-                      <Check className="w-4 h-4 text-warm-600" />
-                    ) : (
-                      <Copy className="w-4 h-4 text-warm-600" />
-                    )}
-                  </button>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="font-semibold text-warm-700">
-                    Empfänger:
-                  </span>
-                  <button
-                    onClick={() => copyToClipboard("Muslimin e.V.", "name")}
+                    <button
+                      onClick={() => copyToClipboard(BANK_ACCOUNT_HOLDER, "name")}
                     className="flex items-center gap-2 px-3 py-1 bg-white rounded hover:bg-warm-100 transition-colors"
                   >
                     <span className="font-mono text-sage-900">
-                      Muslimin e.V.
+                      {BANK_ACCOUNT_HOLDER}
                     </span>
                     {copied === "name" ? (
                       <Check className="w-4 h-4 text-warm-600" />
@@ -152,6 +165,17 @@ export default function SpendenPage() {
                   </button>
                 </div>
               </div>
+              ) : (
+                <div className="flex items-center gap-2 text-warm-600 text-sm bg-warm-50 p-4 rounded-lg border border-warm-200">
+                  <AlertCircle className="w-5 h-5" />
+                  <div>
+                    <p className="font-semibold">Bankverbindung wird aktualisiert</p>
+                    <p className="text-xs mt-1">
+                      Die Bankdaten werden in Kürze verfügbar sein. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns direkt.
+                    </p>
+                  </div>
+                </div>
+              )}
             </motion.div>
           </div>
         </motion.div>
