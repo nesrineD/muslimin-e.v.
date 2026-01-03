@@ -187,8 +187,13 @@ export function SocialMediaSection({
   if (variant === "footer") {
     return (
       <ul
+<<<<<<< HEAD
         className={`flex flex-wrap items-center gap-2 ${className}`}
         aria-label={title}
+=======
+        className="flex flex-wrap items-center gap-2"
+        aria-label="Folgen Sie uns auf Social Media Kanälen"
+>>>>>>> a42d618 (fix: improve accessibility of footer social media links)
       >
         {SOCIAL_MEDIA.map((social) => (
           <li key={social.name}>
