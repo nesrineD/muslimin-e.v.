@@ -7,7 +7,6 @@ import { motion } from "framer-motion";
 import {
   Calendar,
   Clock,
-  HandHeart,
   Plus,
   Video,
   ArrowRight,
@@ -15,9 +14,6 @@ import {
   AlertCircle,
   Users,
   Heart,
-  Settings,
-  Home,
-  BarChart3,
   Edit3,
   type LucideIcon,
 } from "lucide-react";
@@ -26,7 +22,6 @@ import { Layout } from "../../../components/layout/Layout";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from "../../../components/ui/card";
@@ -37,27 +32,13 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "../../../components/ui/avatar";
-import { Separator } from "../../../components/ui/separator";
 import GridAvailabilityCalendar, {
   type AvailabilityGrid,
   type SlotStatus,
   createMockGrid,
-  createEmptyGrid,
 } from "../../../components/calendar/GridAvailabilityCalendar";
 import { cn } from "../../../lib/utils";
 import { createFutureDate, getWeekDates } from "../../../lib/date-utils";
-
-// Type definitions
-interface Appointment {
-  id: number;
-  type: string;
-  memberName?: string;
-  date: Date;
-  description?: string;
-  meetingLink?: string;
-  status?: string;
-  role: "member" | "helper";
-}
 
 // Mock data with Sainab Helper persona from flow.md
 const mockHelper = {
@@ -145,7 +126,7 @@ export default function HelperDashboard() {
   const [user, setUser] = useState(mockHelper);
   const [appointments] = useState(mockUpcomingAppointments);
   const [memberAppointments] = useState(mockMemberAppointments);
-  const [availability, setAvailability] = useState(mockWeeklyAvailability);
+  const [availability] = useState(mockWeeklyAvailability);
   const [isEditingAvailability, setIsEditingAvailability] = useState(false);
   const [isEditingProfile, setIsEditingProfile] = useState(false);
   const [activeRole, setActiveRole] = useState<"member" | "helper">("helper");
@@ -160,9 +141,9 @@ export default function HelperDashboard() {
   const [availabilityGrid, setAvailabilityGrid] =
     useState<AvailabilityGrid>(createMockGrid());
   const [selectedSlots, setSelectedSlots] = useState<string[]>([]);
-  const [toggleMode, setToggleMode] = useState<"set" | "remove">("set");
+  const [toggleMode] = useState<"set" | "remove">("set");
   const [currentWeekOffset, setCurrentWeekOffset] = useState(0);
-  const [isSelecting, setIsSelecting] = useState(false);
+  const [isSelecting] = useState(false);
 
   // Redirect if not authenticated or not a helper
   useEffect(() => {
@@ -191,9 +172,6 @@ export default function HelperDashboard() {
       </Layout>
     );
   }
-
-  // Simulated ID generator
-  const generateId = () => Math.random().toString(36).substr(2, 9);
 
   // Grid calendar handlers
   const handleSlotClick = (dayIndex: number, timeSlot: string) => {
@@ -949,7 +927,6 @@ export default function HelperDashboard() {
                       onSlotClick={handleSlotClick}
                       selectedSlots={selectedSlots}
                       weekDates={weekDates}
-                      isSelecting={isSelecting}
                       onWeekChange={handleWeekChange}
                       currentWeekOffset={currentWeekOffset}
                       isEditing={isEditingAvailability}

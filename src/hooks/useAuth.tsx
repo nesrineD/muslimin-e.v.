@@ -14,7 +14,7 @@ type AuthContextType = {
   loading: boolean;
   signIn: (email: string, password: string) => Promise<boolean>;
   signOut: () => Promise<void>;
-  registerAsHelper: (categories: string[]) => Promise<boolean>;
+  registerAsHelper: () => Promise<boolean>;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -95,7 +95,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const registerAsHelper = async (_categories: string[]): Promise<boolean> => {
+  const registerAsHelper = async (): Promise<boolean> => {
     if (!user) return false;
 
     setLoading(true);
