@@ -96,7 +96,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const registerAsHelper = async (
-    selectedCategories: string[]
+    selectedCategories: string[] // eslint-disable-line @typescript-eslint/no-unused-vars
   ): Promise<boolean> => {
     if (!user) return false;
 
@@ -114,7 +114,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (currentEmail) {
       // In a real app, this would update the database and save selectedCategories
       mockUsers[currentEmail] = updatedUser;
-      console.log("Helper registered with categories:", selectedCategories);
     }
 
     setLoading(false);
