@@ -9,7 +9,7 @@ const TOLERANCE_MS = 1000; // Allow 1 second tolerance
 
 // Test helper to format date for comparison
 const formatDate = (date: Date): string => {
-  return date.toISOString().split('T')[0];
+  return date.toISOString().split("T")[0];
 };
 
 console.log("Date Utils Tests:");
@@ -42,7 +42,7 @@ console.log("✓ Dates are consecutive:", isConsecutive);
 // Test 5: No mutation - original Date() is not affected
 const beforeTest = new Date();
 const beforeTime = beforeTest.getTime();
-const testWeek = getWeekDates(0);
+getWeekDates(0); // Ensure no mutation
 const afterTime = beforeTest.getTime();
 console.log("✓ No mutation of Date object:", beforeTime === afterTime);
 
@@ -51,8 +51,10 @@ const currentWeek = getWeekDates(0);
 const nextWeek = getWeekDates(1);
 const prevWeek = getWeekDates(-1);
 
-const weekDiff = (nextWeek[0].getTime() - currentWeek[0].getTime()) / (1000 * 60 * 60 * 24);
-const weekDiffPrev = (currentWeek[0].getTime() - prevWeek[0].getTime()) / (1000 * 60 * 60 * 24);
+const weekDiff =
+  (nextWeek[0].getTime() - currentWeek[0].getTime()) / (1000 * 60 * 60 * 24);
+const weekDiffPrev =
+  (currentWeek[0].getTime() - prevWeek[0].getTime()) / (1000 * 60 * 60 * 24);
 
 console.log("✓ Next week offset (+1):", Math.abs(weekDiff - 7) < 0.1);
 console.log("✓ Previous week offset (-1):", Math.abs(weekDiffPrev - 7) < 0.1);
@@ -63,8 +65,8 @@ const week2 = getWeekDates(0);
 console.log("✓ Returns new Date objects:", week1[0] !== week2[0]);
 
 // Test 8: Multiple calls with same offset return equivalent dates
-const isSameWeek = week1.every((date, index) => 
-  formatDate(date) === formatDate(week2[index])
+const isSameWeek = week1.every(
+  (date, index) => formatDate(date) === formatDate(week2[index])
 );
 console.log("✓ Same offset returns equivalent dates:", isSameWeek);
 
@@ -84,7 +86,10 @@ const testDate = new Date(Date.now() - 1000); // 1 second ago
 const result1 = isPast(testDate);
 const result2 = isPast(testDate);
 const result3 = isPast(testDate);
-console.log("✓ Consistent results on rapid calls:", result1 === result2 && result2 === result3);
+console.log(
+  "✓ Consistent results on rapid calls:",
+  result1 === result2 && result2 === result3
+);
 
 // Test 12: Date very close to now (edge case)
 // Create a date that's definitely in the past but very close to now
@@ -96,20 +101,32 @@ console.log("\nisUpcoming Tests:");
 
 // Test 13: Date within next week should return true
 const threeDaysFromNow = new Date(Date.now() + 1000 * 60 * 60 * 24 * 3);
-console.log("✓ Date in 3 days returns true:", isUpcoming(threeDaysFromNow) === true);
+console.log(
+  "✓ Date in 3 days returns true:",
+  isUpcoming(threeDaysFromNow) === true
+);
 
 // Test 14: Date beyond next week should return false
 const tenDaysFromNow = new Date(Date.now() + 1000 * 60 * 60 * 24 * 10);
-console.log("✓ Date in 10 days returns false:", isUpcoming(tenDaysFromNow) === false);
+console.log(
+  "✓ Date in 10 days returns false:",
+  isUpcoming(tenDaysFromNow) === false
+);
 
 // Test 15: Past date should return false for isUpcoming
-console.log("✓ Past date returns false for isUpcoming:", isUpcoming(pastDate) === false);
+console.log(
+  "✓ Past date returns false for isUpcoming:",
+  isUpcoming(pastDate) === false
+);
 
 // Test 16: Consistency - multiple rapid calls to isUpcoming
 const upcomingTestDate = new Date(Date.now() + 1000 * 60 * 60 * 24 * 2);
 const upcomingResult1 = isUpcoming(upcomingTestDate);
 const upcomingResult2 = isUpcoming(upcomingTestDate);
 const upcomingResult3 = isUpcoming(upcomingTestDate);
-console.log("✓ isUpcoming consistent results:", upcomingResult1 === upcomingResult2 && upcomingResult2 === upcomingResult3);
+console.log(
+  "✓ isUpcoming consistent results:",
+  upcomingResult1 === upcomingResult2 && upcomingResult2 === upcomingResult3
+);
 
 console.log("\nAll date-utils tests completed!");

@@ -13,21 +13,13 @@ import {
   AlertCircle,
   Users,
   Heart,
-  Home,
   type LucideIcon,
 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Separator } from "@/components/ui/separator";
 import { Layout } from "@/components/layout/Layout";
 import { cn } from "@/lib/utils";
 
@@ -183,25 +175,6 @@ export default function DashboardPage() {
     return timeDiff > 0 && timeDiff <= 15 * 60 * 1000; // 15 minutes in milliseconds
   };
 
-  const getTimeUntilAppointment = (appointmentDate: Date) => {
-    const now = new Date();
-    const timeDiff = appointmentDate.getTime() - now.getTime();
-
-    if (timeDiff <= 0) return "Der Termin hat bereits begonnen";
-
-    const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor(
-      (timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-    );
-    const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
-
-    if (days > 0) return `in ${days} Tag${days > 1 ? "en" : ""}`;
-    if (hours > 0) return `in ${hours} Stunde${hours > 1 ? "n" : ""}`;
-    return `in ${minutes} Minute${minutes > 1 ? "n" : ""}`;
-  };
-
-  const currentAppointments =
-    activeRole === "member" ? memberAppointments : helperAppointments;
   const remainingBookings =
     3 -
     (memberAppointments.length +
@@ -209,23 +182,6 @@ export default function DashboardPage() {
   const nextAppointment = [...memberAppointments, ...helperAppointments].sort(
     (a, b) => a.date.getTime() - b.date.getTime()
   )[0];
-
-  const containerVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-  };
 
   // Reusable Components
   const QuickAction = ({

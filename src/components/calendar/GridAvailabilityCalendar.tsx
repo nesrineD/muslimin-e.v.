@@ -39,7 +39,6 @@ interface GridAvailabilityCalendarProps {
   onSlotClick?: (dayIndex: number, timeSlot: string) => void;
   selectedSlots?: string[];
   weekDates: Date[];
-  isSelecting?: boolean;
   onWeekChange?: (offset: number) => void;
   currentWeekOffset?: number;
   isEditing?: boolean;
@@ -50,7 +49,6 @@ export default function GridAvailabilityCalendar({
   onSlotClick,
   selectedSlots = [],
   weekDates,
-  isSelecting = false,
   onWeekChange,
   currentWeekOffset = 0,
   isEditing = false,

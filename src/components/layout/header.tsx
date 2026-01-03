@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import {
   User,
   Menu,
@@ -15,7 +15,6 @@ import {
   ChevronDown,
   User2,
   Calendar,
-  Settings,
   LogOut,
   BarChart3,
   Clock,
@@ -43,7 +42,6 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSigningOut, setIsSigningOut] = useState(false);
   const { user, loading, signOut } = useAuth();
-  const router = useRouter();
 
   // Reset signing out state when user changes
   useEffect(() => {
@@ -115,9 +113,11 @@ export function Header() {
               transition={{ type: "spring", stiffness: 300, damping: 15 }}
               className="relative flex items-center justify-center"
             >
-              <img
+              <Image
                 src="/images/muslimin-logo.svg"
                 alt="Muslimin e.V. Logo"
+                width={64}
+                height={64}
                 className="h-16 w-auto transition-all duration-300 group-hover:drop-shadow-xl"
               />
               <motion.div
@@ -439,9 +439,11 @@ export function Header() {
           <SheetContent className="bg-white">
             <SheetHeader>
               <SheetTitle className="text-left flex items-center space-x-3">
-                <img
+                <Image
                   src="/images/muslimin-logo.svg"
                   alt="Muslimin e.V. Logo"
+                  width={56}
+                  height={56}
                   className="h-14 w-auto"
                 />
                 <div className="flex flex-col">
