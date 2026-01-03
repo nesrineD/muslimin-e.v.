@@ -6,6 +6,7 @@ import { useState } from "react";
 import { containerVariants, itemVariants } from "@/lib/animations";
 export default function SpendenPage() {
   const [copied, setCopied] = useState<string | null>(null);
+  const paypalButtonId = process.env.NEXT_PUBLIC_PAYPAL_BUTTON_ID;
 
   const copyToClipboard = (text: string, id: string) => {
     navigator.clipboard.writeText(text);
@@ -59,16 +60,27 @@ export default function SpendenPage() {
               <p className="text-warm-600 mb-6">
                 Schnell und sicher online spenden
               </p>
-              <motion.a
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                href="https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_ID"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block px-6 py-3 bg-gradient-to-r from-sage-600 to-warm-600 text-white rounded-lg font-semibold hover:shadow-lg transition-shadow"
-              >
-                Jetzt spenden
-              </motion.a>
+              {paypalButtonId ? (
+                <motion.a
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  href={`https://www.paypal.com/donate?hosted_button_id=${paypalButtonId}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block px-6 py-3 bg-gradient-to-r from-sage-600 to-warm-600 text-white rounded-lg font-semibold hover:shadow-lg transition-shadow"
+                >
+                  Jetzt spenden
+                </motion.a>
+              ) : (
+                <div className="space-y-3">
+                  <p className="text-sm text-warm-600 italic">
+                    PayPal-Spenden werden derzeit konfiguriert.
+                  </p>
+                  <p className="text-sm text-warm-600">
+                    In der Zwischenzeit nutzen Sie bitte die Banküberweisung.
+                  </p>
+                </div>
+              )}
             </motion.div>
 
             {/* Bank Transfer */}
