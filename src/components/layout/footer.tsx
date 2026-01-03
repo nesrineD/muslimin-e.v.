@@ -34,7 +34,7 @@ export function Footer() {
             </Link>
             <Link
               href="/uber-uns"
-              className="text-sm text-sage-600/90 hover:text-sage-800 leading-relaxed transition-colors block max-w-xs"
+              className="text-sm text-sage-600/90 hover:text-sage-800 leading-relaxed transition-all block max-w-xs hover:underline underline-offset-2 decoration-sage-400/60 hover:decoration-sage-600"
             >
               Muslimischer Frauen- & Mädchenverein – Gemeinschaft, Bildung &
               Hilfe seit 2011
