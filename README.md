@@ -698,12 +698,23 @@ Das Projekt nutzt **Renovate** für automatische Dependency-Updates:
 
 ```bash
 # .env.local (NICHT in Git!)
+
+# PayPal Donation Configuration
+NEXT_PUBLIC_PAYPAL_BUTTON_ID=your-paypal-button-id
+
+# Google Maps API (for location features)
 NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your-api-key
+
+# Supabase Configuration
 NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+
+# Brevo Email Configuration
 BREVO_API_KEY=your-brevo-key
 ```
+
+> **Hinweis:** Kopiere `.env.example` zu `.env.local` und fülle die Werte aus. Erhalte deinen PayPal Button ID unter: https://www.paypal.com/donate/buttons/manage
 
 ## 📈 Roadmap
 

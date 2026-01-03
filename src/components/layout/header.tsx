@@ -18,6 +18,7 @@ import {
   LogOut,
   BarChart3,
   Clock,
+  Heart,
 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
@@ -225,7 +226,7 @@ export function Header() {
                   className="hover:bg-coral-50 hover:text-coral-700 transition-colors duration-200 px-3 py-2 font-medium text-sm"
                 >
                   <Link href="/spenden" className="flex items-center space-x-2">
-                    <HeartHandshake className="h-4 w-4" />
+                    <Heart className="h-4 w-4" />
                     <span>Spenden</span>
                   </Link>
                 </Button>

@@ -1,16 +1,22 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import SpendenPage from "./page";
 
-// Mock framer-motion
-jest.mock("framer-motion", () => ({
-  motion: {
-    main: ({ children, ...props }: any) => <main {...props}>{children}</main>,
-    div: ({ children, ...props }: any) => <div {...props}>{children}</div>,
-    a: ({ children, ...props }: any) => <a {...props}>{children}</a>,
-  },
-}));
+// Mock the environment variable before importing the component
+const mockEnv = {
+  NEXT_PUBLIC_PAYPAL_BUTTON_ID: undefined as string | undefined,
+};
+
+jest.mock('next/dist/build/webpack/loaders/next-flight-loader/module-proxy', () => ({}));
+
+// Mock process.env
+Object.defineProperty(process.env, 'NEXT_PUBLIC_PAYPAL_BUTTON_ID', {
+  get: () => mockEnv.NEXT_PUBLIC_PAYPAL_BUTTON_ID,
+  set: (value) => { mockEnv.NEXT_PUBLIC_PAYPAL_BUTTON_ID = value; },
+  configurable: true,
+});
+
+import SpendenPage from "./page";
 
 // Mock lucide-react icons
 jest.mock("lucide-react", () => ({
@@ -22,6 +28,8 @@ describe("SpendenPage", () => {
   beforeEach(() => {
     // Clear console.error mock if we need to test error scenarios
     jest.clearAllMocks();
+    // Reset env to undefined before each test
+    mockEnv.NEXT_PUBLIC_PAYPAL_BUTTON_ID = undefined;
   });
 
   describe("Page Rendering", () => {
@@ -58,23 +66,36 @@ describe("SpendenPage", () => {
       ).toBeInTheDocument();
     });
 
-    it("displays PayPal donation button with correct link", () => {
+    it("displays PayPal donation button with correct link when env var is set", () => {
+      mockEnv.NEXT_PUBLIC_PAYPAL_BUTTON_ID = "TEST_BUTTON_ID";
       render(<SpendenPage />);
       const paypalLink = screen.getByRole("link", { name: /jetzt spenden/i });
       expect(paypalLink).toHaveAttribute(
         "href",
-        "https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_ID"
+        "https://www.paypal.com/donate?hosted_button_id=TEST_BUTTON_ID"
       );
       expect(paypalLink).toHaveAttribute("target", "_blank");
       expect(paypalLink).toHaveAttribute("rel", "noopener noreferrer");
     });
 
-    it("PayPal link opens in new tab for security", () => {
+    it("PayPal link opens in new tab for security when env var is set", () => {
+      mockEnv.NEXT_PUBLIC_PAYPAL_BUTTON_ID = "TEST_BUTTON_ID";
       render(<SpendenPage />);
       const paypalLink = screen.getByRole("link", { name: /jetzt spenden/i });
       // Verify security attributes
       expect(paypalLink).toHaveAttribute("target", "_blank");
       expect(paypalLink).toHaveAttribute("rel", "noopener noreferrer");
+    });
+
+    it("displays fallback message when PayPal button ID is not configured", () => {
+      mockEnv.NEXT_PUBLIC_PAYPAL_BUTTON_ID = undefined;
+      render(<SpendenPage />);
+      expect(
+        screen.getByText(/paypal-spenden werden derzeit konfiguriert/i)
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText(/in der zwischenzeit nutzen sie bitte die banküberweisung/i)
+      ).toBeInTheDocument();
     });
   });
 
@@ -345,7 +366,8 @@ describe("SpendenPage", () => {
       });
     });
 
-    it("external links have proper security attributes", () => {
+    it("external links have proper security attributes when PayPal is configured", () => {
+      mockEnv.NEXT_PUBLIC_PAYPAL_BUTTON_ID = "TEST_BUTTON_ID";
       render(<SpendenPage />);
       const paypalLink = screen.getByRole("link", { name: /jetzt spenden/i });
       expect(paypalLink).toHaveAttribute("rel", "noopener noreferrer");
