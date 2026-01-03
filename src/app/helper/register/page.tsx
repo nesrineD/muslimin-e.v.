@@ -110,7 +110,7 @@ export default function HelperRegistrationPage() {
     try {
       // Call registerAsHelper from auth context
       console.log("Registering user as helper...");
-      const success = await registerAsHelper();
+      const success = await registerAsHelper(data.selectedCategories);
 
       if (success) {
         console.log("Helper registration successful:", data);
