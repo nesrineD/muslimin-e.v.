@@ -37,12 +37,19 @@ interface CTACard {
 
 const ctaCards: CTACard[] = [
   {
-    icon: <BookOpen className="w-12 h-12" />,
-    title: "Über uns",
+    icon: <Heart className="w-12 h-12" />,
+    title: "Mitglied werden",
     description:
-      "Erfahre mehr über Muslimin e.V., unsere Geschichte und Philosophie",
-    href: "/uber-uns",
+      "Werde Teil unserer Gemeinschaft und unterstütze unsere Mission",
+    href: "/mitglied-werden",
     color: "from-emerald-50 to-emerald-100 hover:to-emerald-200",
+  },
+  {
+    icon: <Users className="w-12 h-12" />,
+    title: "Spenden",
+    description: "Unterstütze unsere Arbeit mit einer Spende",
+    href: "/spenden",
+    color: "from-sage-50 to-sage-100 hover:to-sage-200",
   },
   {
     icon: <Calendar className="w-12 h-12" />,
@@ -60,19 +67,12 @@ const ctaCards: CTACard[] = [
     color: "from-warm-50 to-warm-100 hover:to-warm-200",
   },
   {
-    icon: <Heart className="w-12 h-12" />,
-    title: "Mitglied werden",
+    icon: <BookOpen className="w-12 h-12" />,
+    title: "Über uns",
     description:
-      "Werde Teil unserer Gemeinschaft und unterstütze unsere Mission",
-    href: "/mitglied-werden",
+      "Erfahre mehr über Muslimin e.V., unsere Geschichte und Philosophie",
+    href: "/uber-uns",
     color: "from-emerald-50 to-emerald-100 hover:to-emerald-200",
-  },
-  {
-    icon: <Users className="w-12 h-12" />,
-    title: "Spenden",
-    description: "Unterstütze unsere Arbeit mit einer Spende",
-    href: "/spenden",
-    color: "from-sage-50 to-sage-100 hover:to-sage-200",
   },
 ];
 
@@ -106,15 +106,52 @@ export default function PublicLandingPage() {
             unserer Gemeinschaft.
           </p>
 
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Link
-              href="/uber-uns"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-emerald-600 to-sage-600 text-white rounded-lg font-semibold hover:shadow-lg transition-shadow text-lg"
-            >
-              Mehr über uns erfahren
-              <ArrowRight className="w-5 h-5" />
-            </Link>
-          </motion.div>
+          <div className="flex flex-col items-center gap-4">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 w-full sm:w-auto">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Link
+                  href="/mitglied-werden"
+                  className="inline-flex w-full sm:w-auto items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-emerald-600 to-sage-600 text-white rounded-lg font-semibold hover:shadow-lg transition-shadow text-lg"
+                >
+                  Mitgliedschaft starten
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+              </motion.div>
+
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Link
+                  href="/spenden"
+                  className="inline-flex w-full sm:w-auto items-center justify-center gap-3 px-8 py-4 bg-white text-emerald-700 border-2 border-emerald-200 rounded-lg font-semibold hover:shadow-lg transition-shadow text-lg"
+                >
+                  Jetzt spenden
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+              </motion.div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 text-sm text-sage-600">
+              <Link href="/uber-uns" className="underline underline-offset-4">
+                Mehr über uns
+              </Link>
+              <span className="hidden sm:inline">•</span>
+              <Link href="/impressum" className="underline underline-offset-4">
+                Impressum
+              </Link>
+              <span className="hidden sm:inline">•</span>
+              <Link
+                href="/datenschutz"
+                className="underline underline-offset-4"
+              >
+                Datenschutz
+              </Link>
+            </div>
+          </div>
         </motion.div>
       </section>
 
@@ -129,7 +166,7 @@ export default function PublicLandingPage() {
           </p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-max">
-            {ctaCards.map((card, index) => (
+            {ctaCards.map((card) => (
               <motion.div
                 key={card.title}
                 variants={itemVariants}
