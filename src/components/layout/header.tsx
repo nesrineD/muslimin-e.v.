@@ -214,7 +214,7 @@ export function Header() {
                     className="flex items-center space-x-2"
                   >
                     <Sparkles className="h-4 w-4" />
-                    <span>Mitglied</span>
+                    <span>Mitglied werden</span>
                   </Link>
                 </Button>
               </motion.div>
