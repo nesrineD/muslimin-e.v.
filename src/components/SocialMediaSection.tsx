@@ -90,7 +90,7 @@ export function SocialMediaSection({
     return (
       <ul
         className="flex flex-wrap items-center gap-2"
-        aria-label="Social Media"
+        aria-label="Folgen Sie uns auf Social Media Kanälen"
       >
         {SOCIAL_MEDIA.map((social) => {
           const Icon = social.icon;
