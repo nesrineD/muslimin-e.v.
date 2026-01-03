@@ -15,6 +15,7 @@ import {
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { SocialMediaSection } from "@/components/SocialMediaSection";
 
 // Member dashboard steps for booking
 const bookingSteps = [
@@ -81,10 +82,10 @@ export default function Home() {
       })
     : memberFeatures;
 
-  // Redirect non-members to about page
+  // Redirect non-members to public landing page
   useEffect(() => {
     if (!loading && !user) {
-      router.push("/about");
+      router.push("/public-landing");
     }
   }, [user, loading, router]);
 
@@ -100,7 +101,7 @@ export default function Home() {
   }
 
   if (!user) {
-    return null; // Will redirect to about page
+    return null; // Will redirect to public landing page
   }
 
   return (
@@ -266,6 +267,31 @@ export default function Home() {
                   machen können, einfach da zu sein und zuzuhören.&quot; 💖
                 </p>
               </div>
+            </CardContent>
+          </Card>
+        </motion.div>
+
+        {/* Social Media CTA for Members */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.8 }}
+          className="max-w-4xl mx-auto mt-16"
+        >
+          <Card className="border-2 border-sage-300 shadow-xl bg-gradient-to-br from-white via-sage-50/30 to-cream-50/30 hover:shadow-2xl transition-all duration-500">
+            <CardHeader className="text-center">
+              <CardTitle className="text-2xl font-bold text-sage-800 mb-2">
+                📱 Bleib verbunden auf Social Media!
+              </CardTitle>
+              <p className="text-sage-600">
+                Verpasse keine Updates, Flyer und Live-Events mehr
+              </p>
+            </CardHeader>
+            <CardContent>
+              <SocialMediaSection variant="compact" showTitle={false} />
+              <p className="text-center text-sm text-sage-500 mt-4">
+                Aktuelle Termine • Inspirierende Inhalte • Community-Updates
+              </p>
             </CardContent>
           </Card>
         </motion.div>
