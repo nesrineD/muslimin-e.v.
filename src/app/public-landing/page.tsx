@@ -263,7 +263,7 @@ export default function PublicLandingPage() {
               href="/uber-uns"
               className="inline-flex items-center gap-2 px-6 py-3 bg-white text-emerald-600 rounded-lg font-semibold hover:shadow-lg transition-shadow"
             >
-              Los geht's
+              Los geht&apos;s
               <ArrowRight className="w-4 h-4" />
             </Link>
           </motion.div>

@@ -1,14 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  BookOpen,
-  Users,
-  Heart,
-  Sparkles,
-  Target,
-  FileText,
-} from "lucide-react";
+import { BookOpen, Users, Heart, Sparkles } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { SocialMediaSection } from "@/components/SocialMediaSection";
 
