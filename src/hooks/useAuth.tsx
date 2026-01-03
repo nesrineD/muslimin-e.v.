@@ -14,7 +14,7 @@ type AuthContextType = {
   loading: boolean;
   signIn: (email: string, password: string) => Promise<boolean>;
   signOut: () => Promise<void>;
-  registerAsHelper: () => Promise<boolean>;
+  registerAsHelper: (selectedCategories: string[]) => Promise<boolean>;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -95,7 +95,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const registerAsHelper = async (): Promise<boolean> => {
+  const registerAsHelper = async (
+    selectedCategories: string[] // eslint-disable-line @typescript-eslint/no-unused-vars
+  ): Promise<boolean> => {
     if (!user) return false;
 
     setLoading(true);
@@ -110,7 +112,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     // Update localStorage with new user data
     const currentEmail = localStorage.getItem("current-user-email");
     if (currentEmail) {
-      // In a real app, this would update the database
+      // In a real app, this would update the database and save selectedCategories
       mockUsers[currentEmail] = updatedUser;
     }
 
