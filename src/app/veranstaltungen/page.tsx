@@ -1,6 +1,5 @@
 "use client";
 
-import type { Metadata } from "next";
 import { EventCard } from "@/components/landing/EventCard";
 import { SocialMediaCTA } from "@/components/landing/SocialMediaCTA";
 import { motion } from "framer-motion";

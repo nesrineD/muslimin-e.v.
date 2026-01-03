@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 
 interface EventCardProps {
-  id: string;
   name: string;
   description: string;
   regularity: string;
@@ -13,7 +12,6 @@ interface EventCardProps {
 }
 
 export function EventCard({
-  id,
   name,
   description,
   regularity,
@@ -32,7 +30,9 @@ export function EventCard({
 
       <div className="space-y-2 text-sm">
         <div>
-          <span className="font-semibold text-emerald-900">📅 Regelmäßigkeit:</span>
+          <span className="font-semibold text-emerald-900">
+            📅 Regelmäßigkeit:
+          </span>
           <p className="text-sage-700">{regularity}</p>
         </div>
         <div>

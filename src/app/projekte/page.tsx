@@ -1,8 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Heart, MapPin, Users } from "lucide-react";
-import type { Metadata } from "next";
+import { Heart, Users } from "lucide-react";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -122,7 +121,7 @@ export default function ProjektePage() {
 
                 {campaign.impact && (
                   <p className="text-warm-600 font-semibold italic">
-                    "{campaign.impact}"
+                    &ldquo;{campaign.impact}&rdquo;
                   </p>
                 )}
               </motion.div>
