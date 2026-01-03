@@ -449,12 +449,87 @@ export default function MitgliedWerdenPage() {
           </div>
         </motion.div>
 
+<<<<<<< HEAD
         {/* Social Media Section */}
         <motion.div variants={itemVariants} className="mt-20">
           <SocialMediaSection
             title="Bleib mit uns verbunden"
             subtitle="Folge uns für Updates und Einblicke in unsere Gemeinschaft"
           />
+=======
+        {/* Social Media CTA */}
+        <motion.div variants={itemVariants} className="mt-20">
+          <Card className="border-2 border-sage-300 shadow-xl bg-gradient-to-br from-white via-sage-50/30 to-cream-50/30 hover:shadow-2xl transition-all duration-500">
+            <CardHeader className="text-center">
+              <CardTitle className="text-3xl font-bold mb-2">
+                <span className="bg-gradient-to-r from-sage-700 via-sage-500 to-sage-600 bg-clip-text text-transparent">
+                  📱 Folge uns auf Social Media!
+                </span>
+              </CardTitle>
+              <p className="text-lg text-charcoal-600">
+                Bleib informiert über Veranstaltungen, Projekte und
+                Community-Updates
+              </p>
+            </CardHeader>
+            <CardContent>
+              <div className="text-center space-y-4">
+                <p className="text-sage-600 max-w-2xl mx-auto">
+                  Erhalte aktuelle Flyer, Termine und inspirierende Inhalte
+                  direkt auf dein Handy. Sei Teil unserer digitalen Gemeinschaft!
+                </p>
+                <div className="pt-4">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="flex justify-center gap-4 flex-wrap"
+                  >
+                    {[
+                      {
+                        name: "Instagram",
+                        url: "https://www.instagram.com/muslimin.de/",
+                        color: "from-pink-50 to-pink-100 hover:from-pink-100 hover:to-pink-200",
+                        textColor: "text-pink-700",
+                      },
+                      {
+                        name: "TikTok",
+                        url: "https://www.tiktok.com/@muslimin.ev",
+                        color: "from-gray-50 to-gray-100 hover:from-gray-100 hover:to-gray-200",
+                        textColor: "text-gray-700",
+                      },
+                      {
+                        name: "YouTube",
+                        url: "https://www.youtube.com/@muslimin-ev",
+                        color: "from-red-50 to-red-100 hover:from-red-100 hover:to-red-200",
+                        textColor: "text-red-700",
+                      },
+                      {
+                        name: "WhatsApp",
+                        url: "https://whatsapp.com/channel/0029VaN2y5qIt5rsURhd1o2Y",
+                        color: "from-green-50 to-green-100 hover:from-green-100 hover:to-green-200",
+                        textColor: "text-green-700",
+                      },
+                    ].map((social, idx) => (
+                      <motion.a
+                        key={idx}
+                        href={social.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.05, y: -3 }}
+                        whileTap={{ scale: 0.95 }}
+                        className={`px-6 py-3 rounded-xl bg-gradient-to-br ${social.color} transition-all duration-300 shadow-md hover:shadow-lg border-2 border-transparent hover:border-sage-300`}
+                      >
+                        <span className={`font-semibold ${social.textColor}`}>
+                          {social.name}
+                        </span>
+                      </motion.a>
+                    ))}
+                  </motion.div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+>>>>>>> 521e39d (feat: add social media CTAs and enhance conversion across all pages)
         </motion.div>
       </motion.div>
     </div>

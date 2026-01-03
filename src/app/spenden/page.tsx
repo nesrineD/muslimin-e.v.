@@ -1,9 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Copy, Check } from "lucide-react";
+import { Copy, Check, Heart, TrendingUp, Shield } from "lucide-react";
 import { useState } from "react";
 import { containerVariants, itemVariants } from "@/lib/animations";
+import { SocialMediaSection } from "@/components/SocialMediaSection";
+
 export default function SpendenPage() {
   const [copied, setCopied] = useState<string | null>(null);
   const paypalButtonId = process.env.NEXT_PUBLIC_PAYPAL_BUTTON_ID;
@@ -27,17 +29,52 @@ export default function SpendenPage() {
           variants={itemVariants}
           className="max-w-4xl mx-auto text-center"
         >
-          <h1 className="text-5xl md:text-6xl font-bold text-sage-800 mb-6">
-            Unterstütze unsere Arbeit
+          {/* Trust Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-100 text-emerald-800 rounded-full text-sm font-medium mb-6"
+          >
+            <Shield className="w-4 h-4" />
+            Gemeinnützig • 100% transparente Verwendung
+          </motion.div>
+
+          <h1 className="text-5xl md:text-6xl font-bold mb-6">
+            <span className="bg-gradient-to-r from-emerald-800 via-sage-700 to-warm-600 bg-clip-text text-transparent">
+              Deine Spende verändert Leben 💚
+            </span>
           </h1>
-          <p className="text-xl text-warm-600 mb-8">
-            Jede Spende hilft Menschen in Not und unterstützt unsere
-            Gemeinschaft
+          <p className="text-xl md:text-2xl text-sage-700 mb-6 font-medium">
+            Jeder Beitrag hilft Frauen in Not und stärkt unsere Gemeinschaft
           </p>
-          <p className="text-lg text-warm-500 max-w-2xl mx-auto">
-            Wir sind ein gemeinnütziger Verein und möchten transparent über die
-            Verwendung deiner Spende berichten.
+          <p className="text-lg text-sage-600 max-w-2xl mx-auto mb-8">
+            Wir sind ein gemeinnützig anerkannter Verein und berichten
+            transparent über die Verwendung jeder Spende. 80% fließen direkt in
+            Hilfsprojekte.
           </p>
+
+          {/* Quick Impact Stats */}
+          <div className="flex flex-wrap items-center justify-center gap-6 text-sm">
+            <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm">
+              <TrendingUp className="w-4 h-4 text-emerald-600" />
+              <span className="font-semibold text-sage-800">
+                80% direkte Hilfe
+              </span>
+            </div>
+            <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm">
+              <Heart className="w-4 h-4 text-coral-500" />
+              <span className="font-semibold text-sage-800">
+                500+ Begünstigte/Jahr
+              </span>
+            </div>
+            <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm">
+              <Shield className="w-4 h-4 text-sage-600" />
+              <span className="font-semibold text-sage-800">
+                DSGVO-konform
+              </span>
+            </div>
+          </div>
         </motion.div>
       </section>
 
@@ -291,6 +328,22 @@ export default function SpendenPage() {
           >
             Kontakt aufnehmen
           </a>
+        </motion.div>
+      </section>
+
+      {/* Social Media CTA */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-sage-50 via-cream-50 to-sage-50">
+        <motion.div variants={itemVariants} className="max-w-6xl mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="text-4xl font-bold text-sage-800 mb-4">
+              Folge uns auf Social Media! 📱
+            </h2>
+            <p className="text-lg text-sage-600 max-w-2xl mx-auto">
+              Bleib auf dem Laufenden über unsere Projekte und sieh, wie deine
+              Spende wirkt
+            </p>
+          </div>
+          <SocialMediaSection variant="compact" showTitle={false} />
         </motion.div>
       </section>
     </motion.main>
