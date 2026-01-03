@@ -102,7 +102,7 @@ export const MemberMarker: React.FC<MemberMarkerProps> = ({
       markerRef.current.setIcon(markerIcon);
       markerRef.current.setZIndex(isSelected ? 1000 : 100);
     }
-  }, [isSelected, member.first_name]);
+  }, [isSelected, member.first_name, map]);
 
   // This component doesn't render anything visible - the marker is added to the map
   return null;

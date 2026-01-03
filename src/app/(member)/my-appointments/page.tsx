@@ -33,6 +33,19 @@ import {
 import { Layout } from "@/components/layout/Layout";
 import { cn } from "@/lib/utils";
 
+// Type definitions
+interface Appointment {
+  id: number;
+  type: string;
+  helperName?: string;
+  memberName?: string;
+  date: Date;
+  description?: string;
+  meetingLink?: string;
+  status?: string;
+  role: "member" | "helper";
+}
+
 // Mock data with personas from flow.md
 const mockAllAppointments = [
   {
@@ -178,7 +191,7 @@ export default function MyAppointmentsPage() {
   );
 
   // AppointmentCard Component
-  const AppointmentCard = ({ appointment }: { appointment: any }) => (
+  const AppointmentCard = ({ appointment }: { appointment: Appointment }) => (
     <Card
       className={cn(
         "transition-all duration-200 hover:shadow-md",

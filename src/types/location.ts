@@ -84,7 +84,7 @@ export interface APIError {
   success: false;
   error: string;
   code: string;
-  details?: any;
+  details?: unknown;
   timestamp: string;
 }
 

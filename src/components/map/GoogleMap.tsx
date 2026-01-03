@@ -1,11 +1,7 @@
 "use client";
 
-import React, { useRef, useEffect, useCallback } from "react";
-import {
-  useGoogleMaps,
-  useMapMarkers,
-  useMapEvents,
-} from "@/hooks/useGoogleMaps";
+import React, { useRef, useEffect } from "react";
+import { useGoogleMaps, useMapEvents } from "@/hooks/useGoogleMaps";
 
 interface GoogleMapProps {
   apiKey: string;
@@ -15,7 +11,6 @@ interface GoogleMapProps {
   children?: React.ReactNode;
   onMapLoad?: (map: google.maps.Map) => void;
   onMapClick?: (event: google.maps.MapMouseEvent) => void;
-  onMarkerClick?: (markerId: string, marker: google.maps.Marker) => void;
 }
 
 export const GoogleMap: React.FC<GoogleMapProps> = ({
@@ -26,7 +21,6 @@ export const GoogleMap: React.FC<GoogleMapProps> = ({
   children,
   onMapLoad,
   onMapClick,
-  onMarkerClick,
 }) => {
   const mapRef = useRef<HTMLDivElement>(null);
   const { isLoaded, isLoading, error, createMap } = useGoogleMaps({
@@ -149,7 +143,7 @@ export const GoogleMap: React.FC<GoogleMapProps> = ({
             if (React.isValidElement(child)) {
               return React.cloneElement(child, {
                 map: mapInstanceRef.current,
-              } as any);
+              } as Partial<typeof child.props>);
             }
             return child;
           })}

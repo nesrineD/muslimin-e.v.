@@ -708,12 +708,14 @@ Das Projekt nutzt **Renovate** für automatische Dependency-Updates:
 
 - 🤖 **Automatische PRs** - Renovate erstellt Pull Requests für veraltete Dependencies
 - 📅 **Zeitplan** - Updates werden montags vor 6:00 Uhr CEST eingereicht
+- 🚨 **Sofortige Security-Updates** - Sicherheitslücken werden unabhängig vom Zeitplan sofort behandelt
 - 🔄 **Gruppierte Updates** - Zusammenhängende Pakete (z.B. React, Radix UI) werden gruppiert
 - ✅ **Automerge** - Minor und Patch Updates werden automatisch gemerged (außer v0.x)
-- 🔐 **Security Alerts** - Sicherheitslücken werden mit "security" Label markiert
+- 🔐 **OSV Vulnerability Scanning** - Automatische Erkennung von Schwachstellen via OSV-Datenbank
+- 🏷️ **Security Labels** - Sicherheits-PRs erhalten "security" Label
 - 📦 **Lock File Maintenance** - Monatliche Aktualisierung der package-lock.json
 
-**Konfiguration**: Siehe `renovate.json` für Details
+**Konfiguration**: Siehe `renovate.json` und `RENOVATE-CONFIGURATION.md` für Details
 
 ## 🔒 Sicherheit & Datenschutz
 

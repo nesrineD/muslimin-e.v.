@@ -344,7 +344,7 @@ export default function PWAGuidePage() {
                 <p className="text-gray-600">
                   Sie können die App jederzeit wie jede andere App von Ihrem
                   Gerät löschen. Halten Sie das App-Icon gedrückt und wählen Sie
-                  "App entfernen" oder "Deinstallieren".
+                  &quot;App entfernen&quot; oder &quot;Deinstallieren&quot;.
                 </p>
               </CardContent>
             </Card>

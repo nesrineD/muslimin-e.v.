@@ -6,7 +6,6 @@ import { MemberCard } from "./MemberCard";
 
 interface MemberListPopupProps {
   members: MemberLocationWithCoordinates[];
-  position: { lat: number; lng: number };
   onClose?: () => void;
   onMemberSelect?: (member: MemberLocationWithCoordinates) => void;
   className?: string;
@@ -14,7 +13,6 @@ interface MemberListPopupProps {
 
 export const MemberListPopup: React.FC<MemberListPopupProps> = ({
   members,
-  position,
   onClose,
   onMemberSelect,
   className = "",
