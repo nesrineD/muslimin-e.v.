@@ -12,6 +12,8 @@
     "test:e2e:headed": "playwright test --headed",
     "test:e2e:debug": "playwright test --debug",
     "test:e2e:report": "playwright show-report"
+    "lint:fix": "eslint . --fix"
+
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.10",

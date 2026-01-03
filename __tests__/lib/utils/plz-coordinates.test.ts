@@ -6,10 +6,8 @@ import {
   isValidGermanPLZ,
   getAvailablePLZCodes,
   searchPLZByCity,
-  getPLZWithinRadius,
   batchGeocodePLZ,
   getPLZBounds,
-  PLZ_COORDINATES,
 } from "@/lib/utils/plz-coordinates";
 
 // Basic function validation (can be run without Jest)

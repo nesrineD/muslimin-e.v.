@@ -9,19 +9,12 @@ import {
   Clock,
   Video,
   ArrowLeft,
-  Filter,
   MoreVertical,
   User,
   Users,
 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {

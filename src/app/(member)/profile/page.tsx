@@ -5,8 +5,6 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import {
   User,
-  Mail,
-  Phone,
   MapPin,
   Camera,
   Save,
@@ -27,7 +25,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
@@ -71,7 +68,7 @@ export default function ProfilePage() {
         title: "Profil gespeichert",
         description: "Ihre Profildaten wurden erfolgreich aktualisiert.",
       });
-    } catch (error) {
+    } catch {
       toast({
         title: "Fehler",
         description:

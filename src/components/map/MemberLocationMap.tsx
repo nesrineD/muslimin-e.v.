@@ -295,7 +295,6 @@ export const MemberLocationMap: React.FC<MemberLocationMapProps> = ({
                 map={map || undefined}
                 isSelected={isSelected}
                 onClick={() => handlePLZClick(firstMember.postal_code!, group)}
-                onInfoCardClick={handleMemberClick}
               />
             );
           })}

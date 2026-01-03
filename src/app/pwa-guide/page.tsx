@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
 import {
   Smartphone,
   Download,
@@ -27,8 +26,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 export default function PWAGuidePage() {
-  const [activeStep, setActiveStep] = useState(0);
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {

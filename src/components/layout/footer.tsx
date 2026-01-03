@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { HeartHandshake, Mail, Phone, MapPin } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import { Mail, MapPin } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 
 export function Footer() {
@@ -11,9 +11,11 @@ export function Footer() {
           {/* Enhanced Brand */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center space-x-3 group">
-              <img
+              <Image
                 src="/images/muslimin-logo.svg"
                 alt="Muslimin e.V. Logo"
+                width={48}
+                height={48}
                 className="h-12 w-auto transition-all duration-300 group-hover:scale-105 group-hover:drop-shadow-md"
               />
               <div className="flex flex-col">
