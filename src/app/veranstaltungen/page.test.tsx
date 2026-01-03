@@ -5,8 +5,8 @@ import VeranstaltungenPage from '@/app/veranstaltungen/page'
 // Mock framer-motion to avoid animation issues in tests
 jest.mock('framer-motion', () => ({
   motion: {
-    main: ({ children, ...props }: any) => <main {...props}>{children}</main>,
-    div: ({ children, ...props }: any) => <div {...props}>{children}</div>,
+    main: ({ children, ...props }: React.HTMLAttributes<HTMLElement>) => <main {...props}>{children}</main>,
+    div: ({ children, ...props }: React.HTMLAttributes<HTMLDivElement>) => <div {...props}>{children}</div>,
   },
   containerVariants: {},
   itemVariants: {},
