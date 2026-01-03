@@ -86,6 +86,7 @@ export function Footer() {
               <span className="w-1 h-4 bg-sage-600 rounded-full" />
               Rechtliches
             </h3>
+<<<<<<< HEAD
             <ul className="space-y-2.5 text-sm">
               {LEGAL_LINKS.map((link) => (
                 <li key={link.href}>
@@ -94,6 +95,42 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
+=======
+            <ul className="space-y-2.5">
+              <li>
+                <Link
+                  href="/impressum"
+                  className="flex items-center gap-2 text-sm text-sage-600 hover:text-sage-800 hover:translate-x-0.5 transition-all group"
+                >
+                  <ChevronRight className="h-3.5 w-3.5 text-sage-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <span className="group-hover:font-medium transition-all">
+                    Impressum
+                  </span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/datenschutz"
+                  className="flex items-center gap-2 text-sm text-sage-600 hover:text-sage-800 hover:translate-x-0.5 transition-all group"
+                >
+                  <ChevronRight className="h-3.5 w-3.5 text-sage-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <span className="group-hover:font-medium transition-all">
+                    Datenschutz
+                  </span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/agb"
+                  className="flex items-center gap-2 text-sm text-sage-600 hover:text-sage-800 hover:translate-x-0.5 transition-all group"
+                >
+                  <ChevronRight className="h-3.5 w-3.5 text-sage-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <span className="group-hover:font-medium transition-all">
+                    AGB
+                  </span>
+                </Link>
+              </li>
+>>>>>>> aeacac5 (Update src/components/layout/footer.tsx)
             </ul>
           </div>
         </div>
