@@ -10,17 +10,11 @@ jest.mock('framer-motion', () => ({
   },
 }))
 
-// Create a clipboard mock that Jest can track
-const mockWriteText = jest.fn(() => Promise.resolve());
-
 // Mock navigator.clipboard for copy-to-clipboard tests
 Object.defineProperty(navigator, 'clipboard', {
   value: {
-    writeText: mockWriteText,
+    writeText: jest.fn(() => Promise.resolve()),
   },
   writable: true,
   configurable: true,
 })
-
-// Export for tests that need to access it
-global.mockWriteText = mockWriteText;

@@ -24,7 +24,9 @@ export default function SpendenPage() {
   const [copied, setCopied] = useState<string | null>(null);
 
   const copyToClipboard = (text: string, id: string) => {
-    navigator.clipboard.writeText(text);
+    navigator.clipboard.writeText(text).catch((err) => {
+      console.error('Failed to copy to clipboard:', err);
+    });
     setCopied(id);
     setTimeout(() => setCopied(null), 2000);
   };

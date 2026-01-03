@@ -1,18 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import SpendenPage from "./page";
 
-// Access the global mock
-declare global {
-  var mockWriteText: jest.Mock;
-}
-
 // Mock framer-motion
 jest.mock("framer-motion", () => ({
   motion: {
-    main: ({ children, variants, initial, animate, ...props }: any) => <main {...props}>{children}</main>,
-    div: ({ children, variants, whileHover, ...props }: any) => <div {...props}>{children}</div>,
-    a: ({ children, whileHover, whileTap, ...props }: any) => <a {...props}>{children}</a>,
+    main: ({ children, ...props }: any) => <main {...props}>{children}</main>,
+    div: ({ children, ...props }: any) => <div {...props}>{children}</div>,
+    a: ({ children, ...props }: any) => <a {...props}>{children}</a>,
   },
 }));
 
@@ -24,7 +20,8 @@ jest.mock("lucide-react", () => ({
 
 describe("SpendenPage", () => {
   beforeEach(() => {
-    // Nothing needed here - we'll use spies in individual tests
+    // Clear console.error mock if we need to test error scenarios
+    jest.clearAllMocks();
   });
 
   describe("Page Rendering", () => {
