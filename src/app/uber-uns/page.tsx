@@ -4,28 +4,9 @@ import { motion } from "framer-motion";
 import { BookOpen, Users, Heart, Sparkles } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { SocialMediaSection } from "@/components/SocialMediaSection";
+import { containerVariants, itemVariants } from "@/lib/animations";
 
 export default function UberUnsPage() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 },
-    },
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-cream-50 via-white to-sage-50 relative overflow-hidden">
       {/* Animated Background Elements */}
