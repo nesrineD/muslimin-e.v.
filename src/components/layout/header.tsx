@@ -16,7 +16,6 @@ import {
   BarChart3,
   Clock,
   Map,
-  Heart,
   ChevronDown,
 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";

@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { Copy, Check, Heart, TrendingUp, Shield } from "lucide-react";
 import { useState } from "react";
 import { containerVariants, itemVariants } from "@/lib/animations";
-import { SocialMediaSection } from "@/components/SocialMediaSection";
 
 export default function SpendenPage() {
   const [copied, setCopied] = useState<string | null>(null);

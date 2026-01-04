@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import {
-  Heart,
   Users,
   Baby,
   BookOpen,
@@ -138,10 +137,10 @@ export default function AboutPage() {
             </div>
             <div className="max-w-4xl mx-auto">
               <blockquote className="border-l-4 border-coral-500 pl-6 italic text-xl text-sage-700 my-8">
-                "Inspiriert von den großen Vorbildern Sayeda Fatima (a) und
+                &ldquo;Inspiriert von den großen Vorbildern Sayeda Fatima (a) und
                 Sayeda Zainab (a), möchten wir einen Raum schaffen, in dem
                 Frauen ihre spirituelle, intellektuelle und soziale Entwicklung
-                fördern können."
+                fördern können.&rdquo;
               </blockquote>
               <div className="space-y-6 text-lg text-sage-600 leading-relaxed">
                 <p>
