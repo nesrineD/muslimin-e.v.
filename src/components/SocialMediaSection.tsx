@@ -206,6 +206,7 @@ export function SocialMediaSection({
 
   if (variant === "compact") {
     return (
+<<<<<<< HEAD
       <div className={`space-y-4 ${className}`}>
         {showTitle && (
           <div className="text-center">
@@ -217,6 +218,30 @@ export function SocialMediaSection({
           {SOCIAL_MEDIA.map((social) => (
             <SocialButton key={social.name} social={social} variant="compact" />
           ))}
+=======
+      <div className={`space-y-3 ${className}`}>
+        <h3 className="text-sm font-semibold text-charcoal-700 flex items-center space-x-2">
+          <div className="w-1 h-4 bg-sage-600 rounded-full"></div>
+          <span>Folgen Sie uns</span>
+        </h3>
+        <div className="flex gap-3">
+          {SOCIAL_LINKS.map((social) => {
+            const Icon = iconMap[social.icon as keyof typeof iconMap];
+            return (
+              <motion.a
+                key={social.name}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.1, y: -3 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex items-center justify-center w-9 h-9 rounded-lg bg-sage-100 text-sage-700 hover:bg-clay-100 hover:text-clay-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:ring-offset-2"
+              >
+                <Icon className="h-5 w-5" />
+              </motion.a>
+            );
+          })}
+>>>>>>> 9e88c6d (Improve contrast ratios for WCAG AA compliance)
         </div>
       </div>
     );

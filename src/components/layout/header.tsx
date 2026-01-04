@@ -104,8 +104,13 @@ export function Header() {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
         isScrolled
+<<<<<<< HEAD
           ? "bg-gradient-to-b from-cream-50 to-sage-50/80 backdrop-blur-md border-b border-sage-200 shadow-lg"
           : "bg-gradient-to-b from-cream-50/80 to-sage-50/50 backdrop-blur-sm border-b border-sage-200/70"
+=======
+          ? "bg-gradient-to-b from-sage-600 via-sage-700 to-sage-800 backdrop-blur-md border-b border-sage-500 shadow-sage-lg"
+          : "bg-gradient-to-b from-sage-600/95 via-sage-700/90 to-sage-800/85 backdrop-blur-sm border-b border-sage-500/70"
+>>>>>>> 0132816 (Improve contrast ratios for WCAG AA compliance)
       }`}
       role="banner"
     >
@@ -131,7 +136,11 @@ export function Header() {
               />
             </motion.div>
             <div className="flex flex-col">
+<<<<<<< HEAD
               <span className="font-bold text-xl text-sage-700 group-hover:text-coral-600 transition-all duration-300">
+=======
+              <span className="font-bold text-xl text-white drop-shadow-sm">
+>>>>>>> 0132816 (Improve contrast ratios for WCAG AA compliance)
                 Muslimin e.V.
               </span>
             </div>
