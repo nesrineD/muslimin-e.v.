@@ -11,18 +11,86 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Mandatory Brand Colors - Sage-dominant palette
         sage: {
           "50": "#f6f7f6",
           "100": "#e3e6e3",
           "200": "#c7cdc7",
           "300": "#a1aba1",
           "400": "#7d887d",
-          "500": "#5b6960",
+          "500": "#5b6960", // Primary - Sage
           "600": "#495449",
           "700": "#3c443c",
           "800": "#323732",
           "900": "#2b2f2b",
+          DEFAULT: "#5b6960",
         },
+        sand: {
+          "50": "#faf8f5",
+          "100": "#f5f1ec",
+          "200": "#ebe4d9",
+          "300": "#e0d6c6",
+          "400": "#d4cbb8", // Sand/Cream background
+          "500": "#c9bfaa",
+          "600": "#b5a892",
+          "700": "#9a8b74",
+          "800": "#7d7159",
+          "900": "#635b48",
+          DEFAULT: "#d4cbb8",
+        },
+        cream: {
+          "50": "#f1e9de",
+          "100": "#ebe1d4",
+          "200": "#d4cbb8", // Matches Sand 400
+          "300": "#c7bba6",
+          "400": "#baab94",
+          "500": "#ad9b82",
+          "600": "#9c8a70",
+          "700": "#8b795e",
+          "800": "#7a684c",
+          "900": "#69573a",
+          DEFAULT: "#d4cbb8",
+        },
+        charcoal: {
+          "50": "#f8f9fa",
+          "100": "#e9ecef",
+          "200": "#dee2e6",
+          "300": "#ced4da",
+          "400": "#adb5bd",
+          "500": "#6c757d",
+          "600": "#495057",
+          "700": "#343a40",
+          "800": "#2a2f32", // Text/contrast
+          "900": "#212529",
+          DEFAULT: "#2a2f32",
+        },
+        clay: {
+          "50": "#faf5f2",
+          "100": "#f4ebe5",
+          "200": "#e8d6ca",
+          "300": "#dcc2af",
+          "400": "#d0ad94",
+          "500": "#9c604d", // CTA/accent
+          "600": "#8d5644",
+          "700": "#7d4c3b",
+          "800": "#6e4232",
+          "900": "#5e3829",
+          DEFAULT: "#9c604d",
+        },
+        coral: {
+          "50": "#faf5f2",
+          "100": "#f4ebe5",
+          "200": "#e8d6ca",
+          "300": "#dcc2af",
+          "400": "#d0ad94",
+          "500": "#9c604d", // Matches Clay 500
+          "600": "#8a5545",
+          "700": "#784a3d",
+          "800": "#663f35",
+          "900": "#54342d",
+          DEFAULT: "#9c604d",
+        },
+        // Legacy warm tones - keep for backward compatibility
         warm: {
           "50": "#fefaf7",
           "100": "#fdf2e7",
@@ -35,42 +103,7 @@ const config: Config = {
           "800": "#955925",
           "900": "#7a4b22",
         },
-        coral: {
-          "50": "#f1e9de",
-          "100": "#d4cbb8",
-          "200": "#c2b5a0",
-          "300": "#b09f88",
-          "400": "#9e8970",
-          "500": "#9c604d",
-          "600": "#8a5545",
-          "700": "#784a3d",
-          "800": "#663f35",
-          "900": "#54342d",
-        },
-        cream: {
-          "50": "#f1e9de",
-          "100": "#ebe1d4",
-          "200": "#d4cbb8",
-          "300": "#c7bba6",
-          "400": "#baab94",
-          "500": "#ad9b82",
-          "600": "#9c8a70",
-          "700": "#8b795e",
-          "800": "#7a684c",
-          "900": "#69573a",
-        },
-        charcoal: {
-          "50": "#f8f9fa",
-          "100": "#e9ecef",
-          "200": "#dee2e6",
-          "300": "#ced4da",
-          "400": "#adb5bd",
-          "500": "#6c757d",
-          "600": "#495057",
-          "700": "#343a40",
-          "800": "#2a2f32",
-          "900": "#212529",
-        },
+        // Semantic aliases - shadcn/ui compatible
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -111,6 +144,16 @@ const config: Config = {
           "4": "hsl(var(--chart-4))",
           "5": "hsl(var(--chart-5))",
         },
+      },
+      boxShadow: {
+        "sage-sm": "0 1px 2px 0 rgb(91 105 96 / 0.05)",
+        sage: "0 1px 3px 0 rgb(91 105 96 / 0.1), 0 1px 2px -1px rgb(91 105 96 / 0.1)",
+        "sage-md":
+          "0 4px 6px -1px rgb(91 105 96 / 0.1), 0 2px 4px -2px rgb(91 105 96 / 0.1)",
+        "sage-lg":
+          "0 10px 15px -3px rgb(91 105 96 / 0.1), 0 4px 6px -4px rgb(91 105 96 / 0.1)",
+        "sage-xl":
+          "0 20px 25px -5px rgb(91 105 96 / 0.1), 0 8px 10px -6px rgb(91 105 96 / 0.1)",
       },
       borderRadius: {
         lg: "var(--radius)",
