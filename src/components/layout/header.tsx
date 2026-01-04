@@ -86,8 +86,8 @@ export function Header() {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
         isScrolled
-          ? "bg-gradient-to-b from-cream-50 to-sage-50/80 backdrop-blur-md border-b border-sage-200 shadow-lg"
-          : "bg-gradient-to-b from-cream-50/80 to-sage-50/50 backdrop-blur-sm border-b border-sage-200/70"
+          ? "bg-white/90 backdrop-blur-lg border-b border-sage-200/60 shadow-sm"
+          : "bg-transparent border-b border-transparent"
       }`}
       role="banner"
     >
@@ -172,7 +172,7 @@ export function Header() {
                 <Button
                   variant="ghost"
                   asChild
-                  className="text-sand-50 hover:bg-sage-700/50 hover:text-sand-100 transition-colors duration-200 px-4 py-2 font-medium focus-visible:ring-2 focus-visible:ring-sand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-sage-600"
+                  className="text-sage-700 hover:bg-sage-700/80 hover:text-sand-100 transition-colors duration-200 px-4 py-2 font-medium focus-visible:ring-2 focus-visible:ring-sand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-sage-600"
                 >
                   <Link
                     href={link.href}
@@ -223,7 +223,7 @@ export function Header() {
                 >
                   <Button
                     variant="ghost"
-                    className="flex items-center space-x-2 text-sand-50 hover:bg-sage-700/50 hover:text-sand-100 px-3 py-2 focus-visible:ring-2 focus-visible:ring-sand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-sage-600"
+                    className="flex items-center space-x-2 text-sage-700 hover:bg-sage-700/50 hover:text-sand-100 px-3 py-2 focus-visible:ring-2 focus-visible:ring-sage-300 focus-visible:ring-offset-2 focus-visible:ring-offset-sage-600"
                     aria-label="Benutzerprofil-Menü öffnen"
                   >
                     <div className="flex items-center space-x-2">
@@ -233,7 +233,7 @@ export function Header() {
                       <span className="text-sm font-medium">
                         {user.user_metadata?.vorname || "Mitglied"}
                       </span>
-                      <ChevronDown className="h-4 w-4 text-sand-300" />
+                      <ChevronDown className="h-4 w-4 text-sage-500" />
                     </div>
                   </Button>
                 </motion.div>
@@ -321,12 +321,13 @@ export function Header() {
             </DropdownMenu>
           ) : (
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-              <Button
-                variant="ghost"
-                asChild
-                className="text-sand-50 hover:bg-sage-700/50 hover:text-sand-100 transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-sand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-sage-600"
-              >
-                <Link href="/login" className="flex items-center space-x-2">
+                                <Button
+                                  variant="ghost"
+                                  asChild
+                                  className="text-sage-700 hover:bg-sage-700/50 hover:text-sand-100 transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-sage-300 focus-visible:ring-offset-2 focus-visible:ring-offset-sage-600"
+                                >
+                                  <Link href="/login" className="flex items-center space-x-2">
+                      
                   <User className="h-4 w-4" />
                   <span>Anmelden</span>
                 </Link>

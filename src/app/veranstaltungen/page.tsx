@@ -73,13 +73,14 @@ const EVENTS: Event[] = [
 export default function VeranstaltungenPage() {
   return (
     <motion.main
-      className="min-h-screen bg-gradient-to-br from-cream-50 via-white to-sage-50"
+      className="min-h-screen bg-gradient-to-br from-sand-50 via-white to-sage-50"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
     >
+      <div className="container mx-auto px-4">
       {/* Hero Section */}
-      <section className="py-20 md:py-24 px-4 sm:px-6 lg:px-8">
+      <section className="py-20 md:py-24">
         <motion.div
           variants={itemVariants}
           className="max-w-4xl mx-auto text-center"
@@ -95,7 +96,7 @@ export default function VeranstaltungenPage() {
       </section>
 
       {/* Events Grid */}
-      <section className="py-16 md:py-20 px-4 sm:px-6 lg:px-8">
+      <section className="py-16 md:py-20">
         <motion.div variants={itemVariants} className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {EVENTS.map((event) => (
@@ -106,7 +107,7 @@ export default function VeranstaltungenPage() {
       </section>
 
       {/* Social Media CTA */}
-      <section className="py-20 md:py-24 px-4 sm:px-6 lg:px-8 bg-white">
+      <section className="py-20 md:py-24 bg-white">
         <motion.div variants={itemVariants} className="max-w-4xl mx-auto">
           <SocialMediaSection
             variant="card"
@@ -115,6 +116,7 @@ export default function VeranstaltungenPage() {
           />
         </motion.div>
       </section>
+      </div>
     </motion.main>
   );
 }

@@ -43,7 +43,7 @@ export default function AboutPage() {
   };
 
   return (
-    <div className="bg-cream-50">
+    <div className="bg-sand-50">
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -53,12 +53,12 @@ export default function AboutPage() {
         {/* Hero Section */}
         <motion.section
           variants={itemVariants}
-          className="text-center py-20 lg:py-28 bg-gradient-to-b from-white to-cream-100"
+          className="text-center py-20 lg:py-28 bg-gradient-to-b from-white to-sand-100"
         >
           <div className="container mx-auto px-4">
             <h1 className="text-4xl md:text-6xl font-bold text-sage-800 mb-4">
               Über{" "}
-              <span className="bg-gradient-to-r from-coral-500 to-warm-500 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-sage-500 to-sage-600 bg-clip-text text-transparent">
                 Muslimin e.V.
               </span>
             </h1>
@@ -71,7 +71,7 @@ export default function AboutPage() {
         {/* Wer sind wir? Section */}
         <motion.section
           variants={itemVariants}
-          className="py-20 lg:py-24"
+          className="py-20 lg:py-24 bg-sand-50"
         >
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
@@ -85,7 +85,7 @@ export default function AboutPage() {
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
               <div className="p-6">
-                <Users className="h-12 w-12 text-coral-500 mx-auto mb-4" />
+                <Users className="h-12 w-12 text-sage-500 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold text-sage-800 mb-2">
                   Vielfalt
                 </h3>
@@ -94,7 +94,7 @@ export default function AboutPage() {
                 </p>
               </div>
               <div className="p-6">
-                <BookOpen className="h-12 w-12 text-coral-500 mx-auto mb-4" />
+                <BookOpen className="h-12 w-12 text-sage-500 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold text-sage-800 mb-2">
                   Bildung
                 </h3>
@@ -103,7 +103,7 @@ export default function AboutPage() {
                 </p>
               </div>
               <div className="p-6">
-                <Handshake className="h-12 w-12 text-coral-500 mx-auto mb-4" />
+                <Handshake className="h-12 w-12 text-sage-500 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold text-sage-800 mb-2">
                   Engagement
                 </h3>
@@ -112,7 +112,7 @@ export default function AboutPage() {
                 </p>
               </div>
               <div className="p-6">
-                <Baby className="h-12 w-12 text-coral-500 mx-auto mb-4" />
+                <Baby className="h-12 w-12 text-sage-500 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold text-sage-800 mb-2">
                   Familienfreundlich
                 </h3>
@@ -136,9 +136,9 @@ export default function AboutPage() {
               </h2>
             </div>
             <div className="max-w-4xl mx-auto">
-              <blockquote className="border-l-4 border-coral-500 pl-6 italic text-xl text-sage-700 my-8">
-                &ldquo;Inspiriert von den großen Vorbildern Sayeda Fatima (a) und
-                Sayeda Zainab (a), möchten wir einen Raum schaffen, in dem
+              <blockquote className="border-l-4 border-sage-500 pl-6 italic text-xl text-sage-700 my-8">
+                &ldquo;Inspiriert von den großen Vorbildern Sayeda Fatima (a)
+                und Sayeda Zainab (a), möchten wir einen Raum schaffen, in dem
                 Frauen ihre spirituelle, intellektuelle und soziale Entwicklung
                 fördern können.&rdquo;
               </blockquote>
@@ -175,7 +175,7 @@ export default function AboutPage() {
         {/* Kernziele Section */}
         <motion.section
           variants={itemVariants}
-          className="py-20 lg:py-24"
+          className="py-20 lg:py-24 bg-sand-50"
         >
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
@@ -187,26 +187,26 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              <Card className="text-center p-8 border-2 border-transparent hover:border-coral-200 hover:shadow-lg transition-all">
-                <Goal className="h-12 w-12 text-coral-500 mx-auto mb-4" />
+              <Card className="text-center p-8 border-2 border-transparent hover:border-sage-200 hover:shadow-lg transition-all">
+                <Goal className="h-12 w-12 text-sage-500 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold text-sage-800 mb-2">
                   Religiöse Bildung
                 </h3>
               </Card>
-              <Card className="text-center p-8 border-2 border-transparent hover:border-coral-200 hover:shadow-lg transition-all">
-                <Lightbulb className="h-12 w-12 text-coral-500 mx-auto mb-4" />
+              <Card className="text-center p-8 border-2 border-transparent hover:border-sage-200 hover:shadow-lg transition-all">
+                <Lightbulb className="h-12 w-12 text-sage-500 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold text-sage-800 mb-2">
                   Muslimische Identität
                 </h3>
               </Card>
-              <Card className="text-center p-8 border-2 border-transparent hover:border-coral-200 hover:shadow-lg transition-all">
-                <Users className="h-12 w-12 text-coral-500 mx-auto mb-4" />
+              <Card className="text-center p-8 border-2 border-transparent hover:border-sage-200 hover:shadow-lg transition-all">
+                <Users className="h-12 w-12 text-sage-500 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold text-sage-800 mb-2">
                   Austausch & Dialog
                 </h3>
               </Card>
-              <Card className="text-center p-8 border-2 border-transparent hover:border-coral-200 hover:shadow-lg transition-all">
-                <ShieldCheck className="h-12 w-12 text-coral-500 mx-auto mb-4" />
+              <Card className="text-center p-8 border-2 border-transparent hover:border-sage-200 hover:shadow-lg transition-all">
+                <ShieldCheck className="h-12 w-12 text-sage-500 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold text-sage-800 mb-2">
                   Geschützter Raum
                 </h3>
@@ -218,17 +218,29 @@ export default function AboutPage() {
         {/* Social Media Section */}
         <motion.section
           variants={itemVariants}
-          className="py-20 lg:py-24 bg-white"
+          className="py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-sage-50 via-cream-50 to-sage-50"
         >
-          <div className="container mx-auto px-4">
-            <SocialMediaSection variant="card" context="about" />
+          <div className="container mx-auto">
+            <div className="text-center mb-8">
+              <h2 className="text-4xl font-bold text-sage-800 mb-4">
+                Folge uns auf Social Media! 📱
+              </h2>
+              <p className="text-lg text-sage-600 max-w-2xl mx-auto">
+                Bleib auf dem Laufenden mit aktuellen Flyern, Terminen und
+                Live-Updates
+              </p>
+            </div>
+            <SocialMediaSection variant="compact" showTitle={false} />
           </div>
         </motion.section>
 
         {/* Call to Action */}
-        <motion.section variants={itemVariants} className="py-20 lg:py-24">
+        <motion.section
+          variants={itemVariants}
+          className="py-20 lg:py-24 bg-sand-50"
+        >
           <div className="container mx-auto px-4">
-            <Card className="border-0 shadow-xl bg-gradient-to-br from-sage-600 to-coral-500 text-white">
+            <Card className="border-0 shadow-xl bg-gradient-to-br from-sage-600 to-sage-700 text-white">
               <CardHeader className="text-center">
                 <CardTitle className="text-3xl font-bold mb-2">
                   Werden Sie Teil unserer Gemeinschaft
@@ -239,7 +251,7 @@ export default function AboutPage() {
               </CardHeader>
               <CardContent className="text-center">
                 <Button
-                  className="bg-white text-coral-600 hover:bg-cream-50 font-semibold px-8 py-3 text-lg transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className="bg-white text-sage-600 hover:bg-cream-50 font-semibold px-8 py-3 text-lg transition-all duration-300 shadow-lg hover:shadow-xl"
                   asChild
                 >
                   <Link href="/mitglied-werden">Jetzt Mitglied werden</Link>
