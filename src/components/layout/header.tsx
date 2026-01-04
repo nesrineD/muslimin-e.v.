@@ -9,15 +9,14 @@ import {
   Menu,
   HeartHandshake,
   BookOpen,
-  Sparkles,
-  Bell,
   MapPin,
-  ChevronDown,
   User2,
   Calendar,
   LogOut,
   BarChart3,
   Clock,
+  Map,
+  ChevronDown,
 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
@@ -37,6 +36,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { NAV_LINKS, MEMBER_NAV_LINKS } from "@/lib/constants";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -46,10 +46,8 @@ export function Header() {
   // Reset signing out state when user changes
   useEffect(() => {
     if (user) {
-      console.log("User logged in, resetting isSigningOut state");
       setIsSigningOut(false);
     } else {
-      console.log("User logged out, ensuring isSigningOut is false");
       setIsSigningOut(false);
     }
   }, [user]);
@@ -65,25 +63,12 @@ export function Header() {
 
   const handleSignOut = async () => {
     if (isSigningOut) {
-      console.log("Sign out already in progress, ignoring...");
-      return; // Prevent multiple clicks
+      return;
     }
 
     try {
-      console.log(
-        "Starting sign out process for user:",
-        user?.email,
-        "is_helper:",
-        user?.is_helper
-      );
       setIsSigningOut(true);
-
-      // Complete the signOut first - this will clear the user state
       await signOut();
-      console.log("Sign out successful, redirecting to login...");
-
-      // Small delay to ensure all state updates are processed
-      // Redirect to clean login page without any query parameters
       setTimeout(() => {
         window.location.href = "/login";
       }, 50);
@@ -93,6 +78,7 @@ export function Header() {
       alert("Fehler beim Abmelden. Bitte versuchen Sie es erneut.");
     }
   };
+
   return (
     <motion.header
       initial={{ y: -100, opacity: 0 }}
@@ -100,14 +86,19 @@ export function Header() {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
         isScrolled
-          ? "bg-gradient-to-b from-sage-50 to-sage-100/50 backdrop-blur-md border-b border-sage-200 shadow-lg"
-          : "bg-gradient-to-b from-sage-50/80 to-sage-100/30 backdrop-blur-sm border-b border-sage-200/70"
+          ? "bg-gradient-to-b from-cream-50 to-sage-50/80 backdrop-blur-md border-b border-sage-200 shadow-lg"
+          : "bg-gradient-to-b from-cream-50/80 to-sage-50/50 backdrop-blur-sm border-b border-sage-200/70"
       }`}
+      role="banner"
     >
       <div className="container mx-auto px-4 flex h-20 items-center">
-        {/* Enhanced Logo */}
-        <motion.div whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.95 }}>
-          <Link href="/" className="flex items-center space-x-3 mr-8 group">
+        {/* Logo */}
+        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+          <Link
+            href="/"
+            className="flex items-center space-x-3 mr-8 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-sage-600 rounded-lg"
+            aria-label="Zur Startseite"
+          >
             <motion.div
               whileHover={{ rotate: 2, scale: 1.08 }}
               transition={{ type: "spring", stiffness: 300, damping: 15 }}
@@ -120,189 +111,110 @@ export function Header() {
                 height={64}
                 className="h-16 w-auto transition-all duration-300 group-hover:drop-shadow-xl"
               />
-              <motion.div
-                initial={{ scale: 0, opacity: 0 }}
-                whileHover={{ scale: 1, opacity: 0.6 }}
-                className="absolute inset-0 bg-sage-500/10 rounded-lg blur-sm"
-              />
             </motion.div>
             <div className="flex flex-col">
-              <span className="font-bold text-xl text-sage-700 group-hover:text-warm-600 transition-all duration-300">
+              <span className="font-bold text-xl text-sage-700 group-hover:text-coral-600 transition-all duration-300">
                 Muslimin e.V.
               </span>
             </div>
           </Link>
         </motion.div>
 
-        {/* Direct Navigation Links */}
-        <nav className="hidden md:flex items-center space-x-1">
+        {/* Desktop Navigation */}
+        <nav
+          className="hidden md:flex items-center space-x-1"
+          role="navigation"
+          aria-label="Hauptnavigation"
+        >
           {/* Public Navigation - Only visible when NOT logged in */}
           {!user && (
             <>
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Button
-                  variant="ghost"
-                  asChild
-                  className="hover:bg-coral-50 hover:text-coral-500 transition-colors duration-200 px-4 py-2 font-medium"
-                >
-                  <Link href="/about" className="flex items-center space-x-2">
-                    <HeartHandshake className="h-4 w-4" />
-                    <span>Über uns</span>
-                  </Link>
-                </Button>
-              </motion.div>
-
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Button
-                  variant="ghost"
-                  asChild
-                  className="hover:bg-warm-50 hover:text-warm-700 transition-colors duration-200 px-4 py-2 font-medium"
-                >
-                  <Link
-                    href="/veranstaltungen"
-                    className="flex items-center space-x-2"
-                  >
-                    <Bell className="h-4 w-4" />
-                    <span>Unsere Veranstaltungen</span>
-                  </Link>
-                </Button>
-              </motion.div>
-
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Button
-                  variant="ghost"
-                  asChild
-                  className="hover:bg-sage-50 hover:text-sage-700 transition-colors duration-200 px-4 py-2 font-medium"
-                >
-                  <Link
-                    href="/mitglied-werden"
-                    className="flex items-center space-x-2"
-                  >
-                    <Sparkles className="h-4 w-4" />
-                    <span>Mitglied Werden</span>
-                  </Link>
-                </Button>
-              </motion.div>
-            </>
-          )}
-
-          {/* Member-only Navigation - Only visible when logged in */}
-          {user && (
-            <>
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Button
-                  variant="ghost"
-                  asChild
-                  className="hover:bg-warm-50 hover:text-warm-700 transition-colors duration-200 px-4 py-2 font-medium"
-                >
-                  <Link href="/book" className="flex items-center space-x-2">
-                    <BookOpen className="h-4 w-4" />
-                    <span>Termin buchen</span>
-                  </Link>
-                </Button>
-              </motion.div>
-
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Button
-                  variant="ghost"
-                  asChild
-                  className="hover:bg-warm-50 hover:text-warm-700 transition-colors duration-200 px-4 py-2 font-medium"
-                >
-                  <Link
-                    href="/beratungsstellen"
-                    className="flex items-center space-x-2"
-                  >
-                    <MapPin className="h-4 w-4" />
-                    <span>Beratungsstellen</span>
-                  </Link>
-                </Button>
-              </motion.div>
-
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Button
-                  variant="ghost"
-                  asChild
-                  className="hover:bg-warm-50 hover:text-warm-700 transition-colors duration-200 px-4 py-2 font-medium"
-                >
-                  <Link
-                    href="/member-map"
-                    className="flex items-center space-x-2"
-                  >
-                    <svg
-                      className="h-4 w-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                      />
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                      />
-                    </svg>
-                    <span>Mitgliederkarte</span>
-                  </Link>
-                </Button>
-              </motion.div>
-
-              {/* Show "Helferin werden" only for members who are NOT yet helpers */}
-              {!user.is_helper && (
+              {NAV_LINKS.map((link) => (
                 <motion.div
+                  key={link.href}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
                   <Button
-                    variant="ghost"
+                    variant={
+                      "primary" in link && link.primary
+                        ? link.href === "/mitglied-werden"
+                          ? "default"
+                          : "outline"
+                        : "ghost"
+                    }
                     asChild
-                    className="hover:bg-coral-50 hover:text-coral-700 transition-colors duration-200 px-4 py-2 font-medium"
+                    className={`transition-colors duration-200 px-3 py-2 font-medium text-sm ${
+                      "primary" in link && link.primary
+                        ? link.href === "/mitglied-werden"
+                          ? "bg-gradient-to-r from-sage-600 to-coral-600 text-white hover:from-sage-700 hover:to-coral-700 shadow-sm"
+                          : "border-coral-300 text-coral-700 hover:bg-coral-50 hover:text-coral-800"
+                        : "hover:bg-sage-50 hover:text-sage-700"
+                    }`}
                   >
-                    <Link
-                      href="/helper/register"
-                      className="flex items-center space-x-2"
-                    >
-                      <HeartHandshake className="h-5 w-5" />
-                      <span>Helferin werden</span>
+                    <Link href={link.href}>
+                      <span>{link.label}</span>
                     </Link>
                   </Button>
                 </motion.div>
-              )}
+              ))}
             </>
+          )}
+
+          {/* Member-only Navigation - Only visible when logged in */}
+          {user &&
+            MEMBER_NAV_LINKS.map((link) => (
+              <motion.div
+                key={link.href}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Button
+                  variant="ghost"
+                  asChild
+                  className="text-sand-50 hover:bg-sage-700/50 hover:text-sand-100 transition-colors duration-200 px-4 py-2 font-medium focus-visible:ring-2 focus-visible:ring-sand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-sage-600"
+                >
+                  <Link
+                    href={link.href}
+                    className="flex items-center space-x-2"
+                  >
+                    {link.icon === "BookOpen" && (
+                      <BookOpen className="h-4 w-4" />
+                    )}
+                    {link.icon === "MapPin" && <MapPin className="h-4 w-4" />}
+                    {link.icon === "Map" && <Map className="h-4 w-4" />}
+                    <span>{link.label}</span>
+                  </Link>
+                </Button>
+              </motion.div>
+            ))}
+
+          {/* Helper CTA for members who are NOT yet helpers */}
+          {user && !user.is_helper && (
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
+              <Button
+                asChild
+                className="bg-clay-500 hover:bg-clay-600 text-sand-50 font-medium shadow-md hover:shadow-lg transition-all duration-200 focus-visible:ring-2 focus-visible:ring-sand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-sage-600"
+              >
+                <Link
+                  href="/helper/register"
+                  className="flex items-center space-x-2"
+                >
+                  <HeartHandshake className="h-4 w-4" />
+                  <span>Helferin werden</span>
+                </Link>
+              </Button>
+            </motion.div>
           )}
         </nav>
 
         <div className="flex-1" />
 
-        {/* Desktop Auth Buttons */}
+        {/* Desktop Auth Section */}
         <div className="hidden md:flex items-center space-x-2">
           {loading && !user && !isSigningOut ? (
-            <div className="text-sm text-muted-foreground">Lade...</div>
+            <div className="text-sm text-sand-200">Lade...</div>
           ) : user ? (
-            // Angemeldeter Benutzer - Profile Dropdown
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <motion.div
@@ -311,61 +223,66 @@ export function Header() {
                 >
                   <Button
                     variant="ghost"
-                    className="flex items-center space-x-2 hover:bg-warm-50 hover:text-warm-700 px-3 py-2"
+                    className="flex items-center space-x-2 text-sand-50 hover:bg-sage-700/50 hover:text-sand-100 px-3 py-2 focus-visible:ring-2 focus-visible:ring-sand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-sage-600"
+                    aria-label="Benutzerprofil-Menü öffnen"
                   >
                     <div className="flex items-center space-x-2">
-                      <div className="w-8 h-8 bg-sage-100 rounded-full flex items-center justify-center">
-                        <User2 className="h-4 w-4 text-sage-600" />
+                      <div className="w-8 h-8 bg-sand-200 rounded-full flex items-center justify-center">
+                        <User2 className="h-4 w-4 text-sage-700" />
                       </div>
                       <span className="text-sm font-medium">
                         {user.user_metadata?.vorname || "Mitglied"}
                       </span>
-                      <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                      <ChevronDown className="h-4 w-4 text-sand-300" />
                     </div>
                   </Button>
                 </motion.div>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-56" align="end" side="bottom">
-                <div className="px-2 py-1.5 text-sm font-medium text-muted-foreground">
+              <DropdownMenuContent
+                className="w-56 bg-sand-50 border-sage-200"
+                align="end"
+                side="bottom"
+              >
+                <div className="px-2 py-1.5 text-sm font-medium text-charcoal-700">
                   {user.email}
                   {user.is_helper && (
-                    <Badge variant="secondary" className="ml-2 text-xs">
+                    <Badge
+                      variant="secondary"
+                      className="ml-2 text-xs bg-sage-100 text-sage-700"
+                    >
                       Helferin
                     </Badge>
                   )}
                 </div>
-                <DropdownMenuSeparator />
+                <DropdownMenuSeparator className="bg-sage-200" />
 
-                {/* Member Dashboard */}
                 <DropdownMenuItem asChild>
                   <Link
                     href="/dashboard"
-                    className="flex items-center space-x-2 cursor-pointer"
+                    className="flex items-center space-x-2 cursor-pointer focus-visible:ring-2 focus-visible:ring-sage-500"
                   >
                     <BarChart3 className="h-4 w-4" />
                     <span>Mein Dashboard</span>
                   </Link>
                 </DropdownMenuItem>
 
-                {/* My Appointments */}
                 <DropdownMenuItem asChild>
                   <Link
                     href="/my-appointments"
-                    className="flex items-center space-x-2 cursor-pointer"
+                    className="flex items-center space-x-2 cursor-pointer focus-visible:ring-2 focus-visible:ring-sage-500"
                   >
                     <Calendar className="h-4 w-4" />
                     <span>Meine Termine</span>
                   </Link>
                 </DropdownMenuItem>
 
-                {/* Helper Availability - Only for registered helpers */}
                 {user.is_helper && (
                   <>
-                    <DropdownMenuSeparator />
+                    <DropdownMenuSeparator className="bg-sage-200" />
                     <DropdownMenuItem asChild>
                       <Link
                         href="/helper/availability"
-                        className="flex items-center space-x-2 cursor-pointer"
+                        className="flex items-center space-x-2 cursor-pointer focus-visible:ring-2 focus-visible:ring-sage-500"
                       >
                         <Clock className="h-4 w-4" />
                         <span>Verfügbarkeiten</span>
@@ -374,20 +291,18 @@ export function Header() {
                   </>
                 )}
 
-                <DropdownMenuSeparator />
+                <DropdownMenuSeparator className="bg-sage-200" />
 
-                {/* Profile */}
                 <DropdownMenuItem asChild>
                   <Link
                     href="/profile"
-                    className="flex items-center space-x-2 cursor-pointer"
+                    className="flex items-center space-x-2 cursor-pointer focus-visible:ring-2 focus-visible:ring-sage-500"
                   >
                     <User className="h-4 w-4" />
                     <span>Mein Profil</span>
                   </Link>
                 </DropdownMenuItem>
 
-                {/* Sign Out */}
                 <DropdownMenuItem
                   onClick={(event) => {
                     event.preventDefault();
@@ -397,7 +312,7 @@ export function Header() {
                     }
                   }}
                   disabled={isSigningOut}
-                  className="flex items-center space-x-2 cursor-pointer text-coral-600 focus:text-coral-700 hover:text-coral-700 hover:bg-coral-50"
+                  className="flex items-center space-x-2 cursor-pointer text-clay-600 focus:text-clay-700 hover:text-clay-700 hover:bg-clay-50 focus-visible:ring-2 focus-visible:ring-clay-500"
                 >
                   <LogOut className="h-4 w-4" />
                   <span>{isSigningOut ? "Abmelden..." : "Abmelden"}</span>
@@ -405,24 +320,18 @@ export function Header() {
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
-            // Nicht angemeldeter Benutzer
-            <>
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              <Button
+                variant="ghost"
+                asChild
+                className="text-sand-50 hover:bg-sage-700/50 hover:text-sand-100 transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-sand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-sage-600"
               >
-                <Button
-                  variant="ghost"
-                  asChild
-                  className="hover:bg-warm-50 hover:text-warm-700 transition-colors duration-200"
-                >
-                  <Link href="/login">
-                    <User className="h-4 w-4 mr-2" />
-                    Anmelden
-                  </Link>
-                </Button>
-              </motion.div>
-            </>
+                <Link href="/login" className="flex items-center space-x-2">
+                  <User className="h-4 w-4" />
+                  <span>Anmelden</span>
+                </Link>
+              </Button>
+            </motion.div>
           )}
         </div>
 
@@ -430,13 +339,17 @@ export function Header() {
         <Sheet>
           <SheetTrigger asChild className="md:hidden">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button variant="ghost" size="icon" className="hover:bg-warm-50">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="text-sand-50 hover:bg-sage-700/50 focus-visible:ring-2 focus-visible:ring-sand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-sage-600"
+                aria-label="Mobilmenü öffnen"
+              >
                 <Menu className="h-5 w-5" />
-                <span className="sr-only">Menu öffnen</span>
               </Button>
             </motion.div>
           </SheetTrigger>
-          <SheetContent className="bg-white">
+          <SheetContent className="bg-sand-50 border-l-sage-300 overflow-y-auto">
             <SheetHeader>
               <SheetTitle className="text-left flex items-center space-x-3">
                 <Image
@@ -450,12 +363,12 @@ export function Header() {
                   <span className="text-lg font-bold text-sage-700">
                     Muslimin e.V.
                   </span>
-                  <span className="text-xs text-gray-500">
+                  <span className="text-xs text-charcoal-600">
                     Vertrauliche Unterstützung
                   </span>
                 </div>
               </SheetTitle>
-              <SheetDescription className="text-left text-gray-600">
+              <SheetDescription className="text-left text-charcoal-600">
                 Navigation & Services
               </SheetDescription>
             </SheetHeader>
@@ -468,144 +381,70 @@ export function Header() {
               {/* Public Navigation - Only visible when NOT logged in */}
               {!user && (
                 <>
-                  <motion.div
-                    whileHover={{ x: 5 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <Link
-                      href="/about"
-                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-coral-50 focus:bg-coral-50 group"
+                  {NAV_LINKS.map((link) => (
+                    <motion.div
+                      key={link.href}
+                      whileHover={{ x: 5 }}
+                      transition={{ type: "spring", stiffness: 300 }}
                     >
-                      <div className="text-sm font-medium leading-none group-hover:text-coral-500 flex items-center space-x-2">
-                        <HeartHandshake className="h-4 w-4" />
-                        <span>Über uns</span>
-                      </div>
-                      <p className="line-clamp-2 text-sm leading-snug text-muted-foreground group-hover:text-coral-600/80">
-                        Mission und Werte kennenlernen
-                      </p>
-                    </Link>
-                  </motion.div>
-
-                  <motion.div
-                    whileHover={{ x: 5 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <Link
-                      href="/veranstaltungen"
-                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-warm-50 focus:bg-warm-50 group"
-                    >
-                      <div className="text-sm font-medium leading-none group-hover:text-warm-700 flex items-center space-x-2">
-                        <Bell className="h-4 w-4" />
-                        <span>Unsere Veranstaltungen</span>
-                      </div>
-                      <p className="line-clamp-2 text-sm leading-snug text-muted-foreground group-hover:text-warm-600/80">
-                        Kommende Events und Aktivitäten
-                      </p>
-                    </Link>
-                  </motion.div>
-
-                  <motion.div
-                    whileHover={{ x: 5 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <Link
-                      href="/mitglied-werden"
-                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-sage-50 focus:bg-sage-50 group"
-                    >
-                      <div className="text-sm font-medium leading-none group-hover:text-sage-700 flex items-center space-x-2">
-                        <Sparkles className="h-4 w-4" />
-                        <span>Mitglied Werden</span>
-                      </div>
-                      <p className="line-clamp-2 text-sm leading-snug text-muted-foreground group-hover:text-sage-600/80">
-                        Werden Sie Teil unserer Gemeinschaft
-                      </p>
-                    </Link>
-                  </motion.div>
+                      <Link
+                        href={link.href}
+                        className={`block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors group ${
+                          "primary" in link && link.primary
+                            ? "hover:bg-coral-50 focus:bg-coral-50"
+                            : "hover:bg-sage-50 focus:bg-sage-50"
+                        }`}
+                      >
+                        <div
+                          className={`text-sm font-medium leading-none flex items-center space-x-2 ${
+                            "primary" in link && link.primary
+                              ? "group-hover:text-coral-700 text-coral-600 font-semibold"
+                              : "group-hover:text-sage-700"
+                          }`}
+                        >
+                          <span>{link.label}</span>
+                        </div>
+                      </Link>
+                    </motion.div>
+                  ))}
                 </>
               )}
-
               {/* Member-only Navigation - Only visible when logged in */}
               {user && (
                 <>
-                  <div className="border-t pt-4">
-                    <p className="text-xs font-medium text-muted-foreground mb-3">
+                  <div className="border-t border-sage-200 pt-4">
+                    <p className="text-xs font-medium text-charcoal-600 mb-3">
                       Mitglieder-Bereich
                     </p>
                   </div>
 
-                  <motion.div
-                    whileHover={{ x: 5 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <Link
-                      href="/book"
-                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-warm-50 focus:bg-warm-50 group"
+                  {MEMBER_NAV_LINKS.map((link) => (
+                    <motion.div
+                      key={link.href}
+                      whileHover={{ x: 5 }}
+                      transition={{ type: "spring", stiffness: 300 }}
                     >
-                      <div className="text-sm font-medium leading-none group-hover:text-warm-700 flex items-center space-x-2">
-                        <BookOpen className="h-4 w-4" />
-                        <span>Termin buchen</span>
-                      </div>
-                      <p className="line-clamp-2 text-sm leading-snug text-muted-foreground group-hover:text-warm-600/80">
-                        Vereinbaren Sie einen Beratungstermin
-                      </p>
-                    </Link>
-                  </motion.div>
+                      <Link
+                        href={link.href}
+                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-sage-100 focus:bg-sage-100 focus-visible:ring-2 focus-visible:ring-sage-500 group min-h-[44px]"
+                      >
+                        <div className="text-sm font-medium leading-none text-charcoal-800 group-hover:text-sage-700 flex items-center space-x-2">
+                          {link.icon === "BookOpen" && (
+                            <BookOpen className="h-4 w-4" />
+                          )}
+                          {link.icon === "MapPin" && (
+                            <MapPin className="h-4 w-4" />
+                          )}
+                          {link.icon === "Map" && <Map className="h-4 w-4" />}
+                          <span>{link.label}</span>
+                        </div>
+                        <p className="line-clamp-2 text-sm leading-snug text-charcoal-600 group-hover:text-sage-600">
+                          {link.description}
+                        </p>
+                      </Link>
+                    </motion.div>
+                  ))}
 
-                  <motion.div
-                    whileHover={{ x: 5 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <Link
-                      href="/beratungsstellen"
-                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-warm-50 focus:bg-warm-50 group"
-                    >
-                      <div className="text-sm font-medium leading-none group-hover:text-warm-700 flex items-center space-x-2">
-                        <MapPin className="h-4 w-4" />
-                        <span>Beratungsstellen</span>
-                      </div>
-                      <p className="line-clamp-2 text-sm leading-snug text-muted-foreground group-hover:text-warm-600/80">
-                        Externe Beratungsstellen finden
-                      </p>
-                    </Link>
-                  </motion.div>
-
-                  <motion.div
-                    whileHover={{ x: 5 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <Link
-                      href="/member-map"
-                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-warm-50 focus:bg-warm-50 group"
-                    >
-                      <div className="text-sm font-medium leading-none group-hover:text-warm-700 flex items-center space-x-2">
-                        <svg
-                          className="h-4 w-4"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                          />
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                          />
-                        </svg>
-                        <span>Mitgliederkarte</span>
-                      </div>
-                      <p className="line-clamp-2 text-sm leading-snug text-muted-foreground group-hover:text-warm-600/80">
-                        Mitglieder und Helferinnen in Ihrer Nähe finden
-                      </p>
-                    </Link>
-                  </motion.div>
-
-                  {/* Show "Helferin werden" only for members who are NOT yet helpers */}
                   {!user.is_helper && (
                     <motion.div
                       whileHover={{ x: 5 }}
@@ -613,13 +452,13 @@ export function Header() {
                     >
                       <Link
                         href="/helper/register"
-                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-coral-50 focus:bg-coral-50 group"
+                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-clay-50 focus:bg-clay-50 focus-visible:ring-2 focus-visible:ring-clay-500 group min-h-[44px]"
                       >
-                        <div className="text-sm font-medium leading-none group-hover:text-coral-700 flex items-center space-x-2">
-                          <HeartHandshake className="h-5 w-5 text-coral-500" />
+                        <div className="text-sm font-medium leading-none text-clay-700 group-hover:text-clay-800 flex items-center space-x-2">
+                          <HeartHandshake className="h-5 w-5 text-clay-500" />
                           <span>Helferin werden</span>
                         </div>
-                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground group-hover:text-coral-600/80">
+                        <p className="line-clamp-2 text-sm leading-snug text-charcoal-600 group-hover:text-clay-600">
                           Als Helferin registrieren und Beratung anbieten
                         </p>
                       </Link>
@@ -628,26 +467,24 @@ export function Header() {
                 </>
               )}
 
-              <div className="border-t pt-4 space-y-2">
+              <div className="border-t border-sage-200 pt-4 space-y-2">
                 {loading && !user && !isSigningOut ? (
-                  <div className="text-sm text-muted-foreground text-center">
+                  <div className="text-sm text-charcoal-600 text-center">
                     Lade...
                   </div>
                 ) : user ? (
-                  // Angemeldeter Benutzer - Mobile
                   <>
-                    <div className="text-sm text-muted-foreground text-center mb-4">
+                    <div className="text-sm text-charcoal-700 text-center mb-4 font-medium">
                       Willkommen, {user.user_metadata?.vorname || "Mitglied"}
                     </div>
 
-                    {/* Member Dashboard */}
                     <motion.div
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
                       <Button
                         variant="outline"
-                        className="w-full justify-start hover:bg-warm-50 hover:border-warm-200"
+                        className="w-full justify-start hover:bg-sage-100 hover:border-sage-300 min-h-[44px] focus-visible:ring-2 focus-visible:ring-sage-500"
                         asChild
                       >
                         <Link href="/dashboard">
@@ -657,14 +494,13 @@ export function Header() {
                       </Button>
                     </motion.div>
 
-                    {/* My Appointments */}
                     <motion.div
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
                       <Button
                         variant="outline"
-                        className="w-full justify-start hover:bg-warm-50 hover:border-warm-200"
+                        className="w-full justify-start hover:bg-sage-100 hover:border-sage-300 min-h-[44px] focus-visible:ring-2 focus-visible:ring-sage-500"
                         asChild
                       >
                         <Link href="/my-appointments">
@@ -674,11 +510,10 @@ export function Header() {
                       </Button>
                     </motion.div>
 
-                    {/* Helper Dashboard - Only for registered helpers */}
                     {user.is_helper && (
                       <>
-                        <div className="border-t pt-2 mt-2">
-                          <div className="text-xs text-muted-foreground text-center mb-2">
+                        <div className="border-t border-sage-200 pt-2 mt-2">
+                          <div className="text-xs text-charcoal-600 text-center mb-2 font-medium">
                             Helferin-Bereich
                           </div>
                           <motion.div
@@ -687,7 +522,7 @@ export function Header() {
                           >
                             <Button
                               variant="outline"
-                              className="w-full justify-start hover:bg-sage-50 hover:border-sage-200"
+                              className="w-full justify-start hover:bg-sage-100 hover:border-sage-300 min-h-[44px] focus-visible:ring-2 focus-visible:ring-sage-500"
                               asChild
                             >
                               <Link href="/helper/availability">
@@ -700,14 +535,13 @@ export function Header() {
                       </>
                     )}
 
-                    {/* Profile */}
                     <motion.div
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
                       <Button
                         variant="outline"
-                        className="w-full justify-start hover:bg-warm-50 hover:border-warm-200"
+                        className="w-full justify-start hover:bg-sage-100 hover:border-sage-300 min-h-[44px] focus-visible:ring-2 focus-visible:ring-sage-500"
                         asChild
                       >
                         <Link href="/profile">
@@ -717,7 +551,6 @@ export function Header() {
                       </Button>
                     </motion.div>
 
-                    {/* Sign Out */}
                     <motion.div
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
@@ -726,7 +559,7 @@ export function Header() {
                         variant="outline"
                         onClick={handleSignOut}
                         disabled={isSigningOut}
-                        className="w-full justify-start hover:bg-coral-50 hover:border-coral-200 hover:text-coral-600"
+                        className="w-full justify-start hover:bg-clay-50 hover:border-clay-200 hover:text-clay-700 min-h-[44px] focus-visible:ring-2 focus-visible:ring-clay-500"
                       >
                         <LogOut className="h-4 w-4 mr-2" />
                         {isSigningOut ? "Abmelden..." : "Abmelden"}
@@ -734,24 +567,21 @@ export function Header() {
                     </motion.div>
                   </>
                 ) : (
-                  // Nicht angemeldeter Benutzer - Mobile
-                  <>
-                    <motion.div
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <Button
+                      variant="outline"
+                      className="w-full justify-start hover:bg-sage-100 hover:border-sage-300 min-h-[44px] focus-visible:ring-2 focus-visible:ring-sage-500"
+                      asChild
                     >
-                      <Button
-                        variant="outline"
-                        className="w-full justify-start hover:bg-warm-50 hover:border-warm-200"
-                        asChild
-                      >
-                        <Link href="/login">
-                          <User className="h-4 w-4 mr-2" />
-                          Anmelden
-                        </Link>
-                      </Button>
-                    </motion.div>
-                  </>
+                      <Link href="/login">
+                        <User className="h-4 w-4 mr-2" />
+                        Anmelden
+                      </Link>
+                    </Button>
+                  </motion.div>
                 )}
               </div>
             </motion.div>

@@ -15,6 +15,7 @@ import {
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { SocialMediaSection } from "@/components/SocialMediaSection";
 
 // Member dashboard steps for booking
 const bookingSteps = [
@@ -81,10 +82,10 @@ export default function Home() {
       })
     : memberFeatures;
 
-  // Redirect non-members to about page
+  // Redirect non-members to public landing page
   useEffect(() => {
     if (!loading && !user) {
-      router.push("/about");
+      router.push("/public-landing");
     }
   }, [user, loading, router]);
 
@@ -100,7 +101,7 @@ export default function Home() {
   }
 
   if (!user) {
-    return null; // Will redirect to about page
+    return null; // Will redirect to public landing page
   }
 
   return (
@@ -268,6 +269,27 @@ export default function Home() {
               </div>
             </CardContent>
           </Card>
+        </motion.div>
+
+        {/* Social Media CTA for Members */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.8 }}
+          className="max-w-6xl mx-auto mt-16"
+        >
+          <section className="py-8 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-sage-50 via-cream-50 to-sage-50 rounded-2xl shadow-xl">
+            <div className="text-center mb-8">
+              <h2 className="text-4xl font-bold text-sage-800 mb-4">
+                Folge uns auf Social Media! 📱
+              </h2>
+              <p className="text-lg text-sage-600 max-w-2xl mx-auto">
+                Bleib auf dem Laufenden mit aktuellen Flyern, Terminen und
+                Live-Updates
+              </p>
+            </div>
+            <SocialMediaSection variant="compact" showTitle={false} />
+          </section>
         </motion.div>
       </div>
     </div>

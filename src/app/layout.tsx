@@ -17,80 +17,18 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Muslimin e.V.",
-    template: "%s | Muslimin e.V.",
+    default: "Muslimin e.V. – Muslimischer Mädchen- und Frauenverein",
+    template: "%s – Muslimin e.V.",
   },
   description:
-    "Professionelle Terminbuchungsplattform für Beratung und Unterstützung. Vertrauensvoll, diskret und kompetent.",
-  keywords: [
-    "Beratung",
-    "Terminbuchung",
-    "Muslimin",
-    "Psychologische Beratung",
-    "Sozialberatung",
-    "Schwangerschaftsbegleitung",
-  ],
-  authors: [{ name: "Muslimin e.V. Team" }],
+    "Ein aktiver muslimischer Mädchen- und Frauenverein mit Beratung, Beratungsstellen und Veranstaltungen.",
   creator: "Muslimin e.V.",
   publisher: "Muslimin e.V.",
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://muslimin-ev.vercel.app"
-  ),
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
     type: "website",
     locale: "de_DE",
-    url: "/",
-    title: "Muslimin e.V.",
-    description:
-      "Professionelle Terminbuchungsplattform für Beratung und Unterstützung",
+    url: "https://muslimin-ev.vercel.app",
     siteName: "Muslimin e.V.",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Muslimin e.V.",
-    description:
-      "Professionelle Terminbuchungsplattform für Beratung und Unterstützung",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-  manifest: "/manifest.json",
-  icons: {
-    icon: [
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-    ],
-    apple: [
-      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
-    ],
-    other: [
-      {
-        rel: "mask-icon",
-        url: "/safari-pinned-tab.svg",
-        color: "#10b981",
-      },
-    ],
-  },
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: "default",
-    title: "Muslimin e.V.",
   },
 };
 

@@ -93,9 +93,9 @@ export default function PWAGuidePage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sage-50 via-white to-warm-50">
+    <div className="min-h-screen bg-gradient-to-br from-cream-50 via-white to-sage-50">
       <motion.div
-        className="container mx-auto px-4 py-12"
+        className="container mx-auto px-4 py-16 md:py-20"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -107,42 +107,42 @@ export default function PWAGuidePage() {
               <div className="w-20 h-20 bg-gradient-to-r from-sage-500 to-warm-500 rounded-2xl flex items-center justify-center shadow-lg">
                 <Smartphone className="w-10 h-10 text-white" />
               </div>
-              <div className="absolute -top-2 -right-2 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+              <div className="absolute -top-2 -right-2 w-8 h-8 bg-coral-600 rounded-full flex items-center justify-center">
                 <Download className="w-4 h-4 text-white" />
               </div>
             </div>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">
             Muslimin als{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-sage-600 to-warm-600">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-charcoal-800 via-sage-700 to-coral-700">
               Mobile App
             </span>{" "}
             nutzen
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-sage-600 max-w-3xl mx-auto leading-relaxed">
             Installieren Sie unsere Website als App auf Ihrem Smartphone für
             schnelleren Zugriff, Offline-Funktionen und ein app-ähnliches
-            Erlebnis. Kostenlos und ohne App Store!
+            Erlebnis. Ohne App Store!
           </p>
         </motion.div>
 
         {/* Benefits Section */}
         <motion.div className="mb-16" variants={itemVariants}>
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-charcoal-800 mb-12">
             Warum als App installieren?
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             <Card className="text-center border-sage-200 hover:border-sage-300 transition-all duration-300 hover:shadow-lg">
               <CardHeader>
-                <div className="w-16 h-16 bg-gradient-to-r from-blue-100 to-blue-200 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Smartphone className="w-8 h-8 text-blue-600" />
+                <div className="w-16 h-16 bg-gradient-to-r from-sage-100 to-sage-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Smartphone className="w-8 h-8 text-sage-700" />
                 </div>
                 <CardTitle className="text-sage-800">
                   Schneller Zugriff
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600">
+                <p className="text-sage-600">
                   Direkter Zugriff vom Home-Bildschirm, ohne Browser öffnen zu
                   müssen
                 </p>
@@ -151,13 +151,13 @@ export default function PWAGuidePage() {
 
             <Card className="text-center border-sage-200 hover:border-sage-300 transition-all duration-300 hover:shadow-lg">
               <CardHeader>
-                <div className="w-16 h-16 bg-gradient-to-r from-green-100 to-green-200 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Monitor className="w-8 h-8 text-green-600" />
+                <div className="w-16 h-16 bg-gradient-to-r from-cream-100 to-cream-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Monitor className="w-8 h-8 text-sage-700" />
                 </div>
                 <CardTitle className="text-sage-800">App-Erlebnis</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600">
+                <p className="text-sage-600">
                   Vollbild-Modus ohne Browser-Interface für fokussierte Nutzung
                 </p>
               </CardContent>
@@ -165,15 +165,15 @@ export default function PWAGuidePage() {
 
             <Card className="text-center border-sage-200 hover:border-sage-300 transition-all duration-300 hover:shadow-lg">
               <CardHeader>
-                <div className="w-16 h-16 bg-gradient-to-r from-purple-100 to-purple-200 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Download className="w-8 h-8 text-purple-600" />
+                <div className="w-16 h-16 bg-gradient-to-r from-warm-100 to-warm-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Download className="w-8 h-8 text-warm-700" />
                 </div>
                 <CardTitle className="text-sage-800">
                   Offline verfügbar
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600">
+                <p className="text-sage-600">
                   Grundfunktionen auch ohne Internetverbindung nutzbar
                 </p>
               </CardContent>
@@ -183,7 +183,7 @@ export default function PWAGuidePage() {
 
         {/* Installation Guide */}
         <motion.div className="mb-16" variants={itemVariants}>
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-charcoal-800 mb-12">
             Installations-Anleitung
           </h2>
 
@@ -279,103 +279,6 @@ export default function PWAGuidePage() {
               </div>
             </TabsContent>
           </Tabs>
-        </motion.div>
-
-        {/* FAQ Section */}
-        <motion.div className="mb-16" variants={itemVariants}>
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
-            Häufig gestellte Fragen
-          </h2>
-
-          <div className="max-w-3xl mx-auto space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-sage-800">
-                  Ist die Installation kostenlos?
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">
-                  Ja, die Installation ist vollkommen kostenlos. Es handelt sich
-                  um eine Progressive Web App (PWA), die direkt von unserer
-                  Website installiert wird.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-sage-800">
-                  Brauche ich den App Store?
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">
-                  Nein, die App wird direkt aus dem Browser installiert. Sie
-                  müssen weder den App Store noch Google Play Store verwenden.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-sage-800">
-                  Wie viel Speicherplatz wird benötigt?
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">
-                  Die App benötigt nur wenige MB Speicherplatz und ist viel
-                  kleiner als traditionelle Apps aus dem App Store.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-sage-800">
-                  Was passiert wenn ich die App nicht mehr möchte?
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">
-                  Sie können die App jederzeit wie jede andere App von Ihrem
-                  Gerät löschen. Halten Sie das App-Icon gedrückt und wählen Sie
-                  &quot;App entfernen&quot; oder &quot;Deinstallieren&quot;.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-sage-800">
-                  Ich sehe keine Option zur Installation
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-gray-600 space-y-2">
-                  <p>Mögliche Ursachen und Lösungen:</p>
-                  <ul className="list-disc pl-6 space-y-1">
-                    <li>
-                      Stellen Sie sicher, dass Sie den richtigen Browser
-                      verwenden (Safari für iOS, Chrome für Android)
-                    </li>
-                    <li>
-                      Aktualisieren Sie Ihren Browser auf die neueste Version
-                    </li>
-                    <li>
-                      Bei iOS: Verwenden Sie Safari, nicht Chrome oder andere
-                      Browser
-                    </li>
-                    <li>
-                      Prüfen Sie, ob Sie bereits eine ältere Version installiert
-                      haben
-                    </li>
-                  </ul>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
         </motion.div>
 
         {/* Call to Action */}

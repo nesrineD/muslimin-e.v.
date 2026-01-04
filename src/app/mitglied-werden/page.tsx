@@ -1,69 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
-import {
-  Sparkles,
-  Heart,
-  Users,
-  Shield,
-  Gift,
-  CheckCircle,
-} from "lucide-react";
+import { Sparkles, Heart, Users, Shield, CheckCircle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { useToast } from "@/hooks/use-toast";
+import { SocialMediaSection } from "@/components/SocialMediaSection";
 
 export default function MitgliedWerdenPage() {
-  const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState({
-    vorname: "",
-    nachname: "",
-    email: "",
-    telefon: "",
-    geburtsdatum: "",
-    standort: "",
-    interessen: "",
-  });
-
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    toast({
-      title: "Willkommen in unserer Schwesternschaft! 🌟",
-      description:
-        "Wir haben Ihre Anfrage erhalten und werden uns bald bei Ihnen melden.",
-    });
-
-    // Reset form
-    setFormData({
-      vorname: "",
-      nachname: "",
-      email: "",
-      telefon: "",
-      geburtsdatum: "",
-      standort: "",
-      interessen: "",
-    });
-
-    setIsSubmitting(false);
-  };
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -84,357 +27,375 @@ export default function MitgliedWerdenPage() {
     },
   };
 
-  const benefits = [
-    {
-      icon: Heart,
-      title: "Vertrauliche Beratung",
-      description:
-        "Zugang zu kostenloser, professioneller Beratung durch verifizierte Helferinnen",
-      color: "text-coral-500",
-    },
-    {
-      icon: Users,
-      title: "Starke Gemeinschaft",
-      description:
-        "Verbindung zu über 50 Mitgliedern und Teilnahme an Veranstaltungen im Dienste von Ahl Albyt",
-      color: "text-warm-500",
-    },
-    {
-      icon: Shield,
-      title: "Geschützter Raum",
-      description:
-        "Sichere und vertrauliche Atmosphäre für alle Gespräche und Beratungen",
-      color: "text-sage-500",
-    },
-    {
-      icon: Gift,
-      title: "Kostenlos",
-      description:
-        "Alle Leistungen sind völlig kostenfrei - keine versteckten Gebühren",
-      color: "text-blue-500",
-    },
-  ];
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-cream-50 via-white to-sage-50">
+    <div className="min-h-screen bg-gradient-to-br from-cream-50 via-white to-sage-50 relative overflow-hidden">
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.03, 0.06, 0.03],
+            rotate: [0, 90, 0],
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -top-1/4 -left-1/4 w-1/2 h-1/2 bg-gradient-to-br from-sage-300 to-sage-100 rounded-full blur-3xl"
+        />
+        <motion.div
+          animate={{
+            scale: [1, 1.3, 1],
+            opacity: [0.03, 0.05, 0.03],
+            rotate: [0, -90, 0],
+          }}
+          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-gradient-to-tl from-warm-200 to-cream-100 rounded-full blur-3xl"
+        />
+      </div>
+
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="container mx-auto px-4 py-12"
+        className="container mx-auto px-4 py-12 relative z-10"
       >
         {/* Hero Section with Warm Invitation */}
         <motion.div variants={itemVariants} className="text-center mb-16">
-          <h1 className="text-4xl md:text-6xl font-bold text-sage-800 mb-8">
-            <span className="bg-gradient-to-r from-sage-500 to-warm-500 bg-clip-text text-transparent">
+          <motion.h1
+            className="text-4xl md:text-6xl font-bold mb-8"
+            whileHover={{ scale: 1.02 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
+            <span className="bg-gradient-to-r from-sage-600 via-sage-400 to-sage-500 bg-clip-text text-transparent animate-gradient">
               Willkommen, liebe Schwester!
             </span>
-          </h1>
+          </motion.h1>
 
           <div className="max-w-4xl mx-auto space-y-6">
-            <p className="text-2xl md:text-3xl text-warm-600 font-semibold leading-relaxed">
+            <motion.p
+              className="text-2xl md:text-3xl text-sage-700 font-semibold leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+            >
               💝 Werden Sie Teil unserer warmherzigen Schwesternschaft
-            </p>
+            </motion.p>
 
-            <div className="bg-gradient-to-r from-coral-50 to-warm-50 rounded-2xl p-8 border border-coral-100">
-              <p className="text-xl text-sage-700 leading-relaxed mb-6">
-                <span className="text-2xl">🌸</span> Bei{" "}
-                <strong>Muslimin e.V.</strong> finden Sie nicht nur
-                Unterstützung, sondern echte Schwesternschaft. Hier sind Sie
-                verstanden, geschätzt und niemals allein.
+            <motion.div
+              className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 border-2 border-sage-300 shadow-xl hover:shadow-2xl transition-all duration-500 hover:border-sage-400"
+              whileHover={{ y: -5 }}
+            >
+              <p className="text-xl text-sage-800 leading-relaxed mb-6">
+                <motion.span
+                  className="text-2xl inline-block"
+                  animate={{ rotate: [0, 10, -10, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+                >
+                  🌸
+                </motion.span>{" "}
+                Bei{" "}
+                <strong className="text-sage-600 font-bold">
+                  Muslimin e.V.
+                </strong>{" "}
+                finden Sie nicht nur Unterstützung, sondern echte
+                Schwesternschaft. Hier sind Sie verstanden, geschätzt und
+                niemals allein.
               </p>
 
-              <p className="text-lg text-sage-600 leading-relaxed mb-4">
+              <p className="text-lg text-charcoal-600 leading-relaxed mb-4">
                 Unsere Gemeinschaft ist ein Ort der Wärme, des Vertrauens und
                 der gegenseitigen Stärkung. Hier können Sie authentisch sein,
                 Ihre Sorgen teilen und Ihre Träume verfolgen.
               </p>
 
-              <p className="text-lg text-warm-700 font-medium">
-                <span className="text-xl">✨</span> Lassen Sie uns gemeinsam
-                wachsen, lachen und uns gegenseitig inspirieren!
+              <p className="text-lg text-sage-700 font-semibold">
+                <motion.span
+                  className="text-xl inline-block"
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Infinity,
+                    repeatDelay: 2,
+                  }}
+                >
+                  ✨
+                </motion.span>{" "}
+                Lassen Sie uns gemeinsam wachsen, lachen und uns gegenseitig
+                inspirieren!
               </p>
-            </div>
+            </motion.div>
 
-            <p className="text-lg text-sage-600">
+            <motion.p
+              className="text-lg text-charcoal-600"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+            >
               Füllen Sie einfach das Formular unten aus und beginnen Sie Ihre
               Reise mit uns. Wir freuen uns so sehr darauf, Sie kennenzulernen!
               🤗
-            </p>
+            </motion.p>
           </div>
         </motion.div>
 
-        {/* Benefits Section */}
+        {/* Membership Types Section */}
         <motion.div variants={itemVariants} className="mb-16">
-          <h2 className="text-3xl font-bold text-center text-sage-800 mb-12">
-            Was Sie als Mitglied erwartet
-          </h2>
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {benefits.map((benefit, index) => (
-              <motion.div key={index} variants={itemVariants} className="group">
-                <Card className="h-full border-0 shadow-lg bg-white/80 backdrop-blur-sm hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-                  <CardContent className="p-6 text-center">
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-sage-100 to-warm-100 mb-4 group-hover:scale-110 transition-transform duration-300">
-                      <benefit.icon className={`w-8 h-8 ${benefit.color}`} />
-                    </div>
-                    <h3 className="text-xl font-semibold text-sage-800 mb-3">
-                      {benefit.title}
-                    </h3>
-                    <p className="text-sage-600 leading-relaxed">
-                      {benefit.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+          <motion.h2
+            className="text-3xl font-bold text-center mb-3"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <span className="bg-gradient-to-r from-sage-600 via-sage-400 to-sage-500 bg-clip-text text-transparent">
+              Mitgliedschaftstypen
+            </span>
+          </motion.h2>
+          <p className="text-center text-charcoal-500 mb-12 text-lg">
+            Wählen Sie die Mitgliedschaft, die zu Ihnen passt
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {/* Active Membership */}
+            <motion.div
+              variants={itemVariants}
+              whileHover={{ y: -8, scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <Card className="h-full border-2 border-sage-300 shadow-xl bg-gradient-to-br from-white to-sage-50/30 hover:shadow-2xl hover:border-sage-400 transition-all duration-500 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-sage-300/20 to-transparent rounded-bl-full" />
+                <CardHeader className="relative">
+                  <div className="flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-sage-500 to-sage-400 text-white mb-4 mx-auto shadow-lg">
+                    <Users className="w-8 h-8" />
+                  </div>
+                  <CardTitle className="text-2xl font-bold text-center mb-2">
+                    <span className="bg-gradient-to-r from-sage-700 to-sage-500 bg-clip-text text-transparent">
+                      Aktive Mitgliedschaft
+                    </span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="bg-sage-50 rounded-lg p-4 border-l-4 border-sage-500">
+                    <h4 className="font-semibold text-sage-800 mb-2">
+                      💡 Das solltest du mitbringen:
+                    </h4>
+                    <ul className="space-y-2 text-charcoal-600">
+                      <li className="flex items-start">
+                        <CheckCircle className="w-5 h-5 text-sage-500 mr-2 flex-shrink-0 mt-0.5" />
+                        <span>
+                          Engagement und Bereitschaft zur aktiven Mitgestaltung
+                        </span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle className="w-5 h-5 text-sage-500 mr-2 flex-shrink-0 mt-0.5" />
+                        <span>
+                          Zeit für regelmäßige Teilnahme an Vereinsarbeit
+                        </span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle className="w-5 h-5 text-sage-500 mr-2 flex-shrink-0 mt-0.5" />
+                        <span>Eigene Talente und Kompetenzen einbringen</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="bg-cream-50 rounded-lg p-4 border-l-4 border-warm-500">
+                    <h4 className="font-semibold text-sage-800 mb-2">
+                      ✨ Das erwartet dich:
+                    </h4>
+                    <ul className="space-y-2 text-charcoal-600">
+                      <li className="flex items-start">
+                        <Heart className="w-5 h-5 text-warm-500 mr-2 flex-shrink-0 mt-0.5" />
+                        <span>
+                          Mitgestaltung von Veranstaltungen und Projekten
+                        </span>
+                      </li>
+                      <li className="flex items-start">
+                        <Heart className="w-5 h-5 text-warm-500 mr-2 flex-shrink-0 mt-0.5" />
+                        <span>
+                          Persönliche Weiterentwicklung durch Verantwortung
+                        </span>
+                      </li>
+                      <li className="flex items-start">
+                        <Heart className="w-5 h-5 text-warm-500 mr-2 flex-shrink-0 mt-0.5" />
+                        <span>Stimmrecht bei Vereinsentscheidungen</span>
+                      </li>
+                      <li className="flex items-start">
+                        <Heart className="w-5 h-5 text-warm-500 mr-2 flex-shrink-0 mt-0.5" />
+                        <span>
+                          Enge Vernetzung mit anderen aktiven Mitgliedern
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Passive Membership */}
+            <motion.div
+              variants={itemVariants}
+              whileHover={{ y: -8, scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <Card className="h-full border-2 border-cream-300 shadow-xl bg-gradient-to-br from-white to-cream-50/30 hover:shadow-2xl hover:border-warm-400 transition-all duration-500 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-cream-300/20 to-transparent rounded-bl-full" />
+                <CardHeader className="relative">
+                  <div className="flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-warm-500 to-warm-400 text-white mb-4 mx-auto shadow-lg">
+                    <Shield className="w-8 h-8" />
+                  </div>
+                  <CardTitle className="text-2xl font-bold text-center mb-2">
+                    <span className="bg-gradient-to-r from-warm-700 to-warm-500 bg-clip-text text-transparent">
+                      Passive Mitgliedschaft
+                    </span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="bg-cream-50 rounded-lg p-4 border-l-4 border-warm-500">
+                    <h4 className="font-semibold text-sage-800 mb-2">
+                      💡 Das solltest du mitbringen:
+                    </h4>
+                    <ul className="space-y-2 text-charcoal-600">
+                      <li className="flex items-start">
+                        <CheckCircle className="w-5 h-5 text-warm-500 mr-2 flex-shrink-0 mt-0.5" />
+                        <span>Interesse an unserer Vereinsarbeit</span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle className="w-5 h-5 text-warm-500 mr-2 flex-shrink-0 mt-0.5" />
+                        <span>Unterstützung unserer Ziele und Werte</span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle className="w-5 h-5 text-warm-500 mr-2 flex-shrink-0 mt-0.5" />
+                        <span>Offenheit für gelegentliche Teilnahme</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="bg-sage-50 rounded-lg p-4 border-l-4 border-sage-500">
+                    <h4 className="font-semibold text-sage-800 mb-2">
+                      ✨ Das erwartet dich:
+                    </h4>
+                    <ul className="space-y-2 text-charcoal-600">
+                      <li className="flex items-start">
+                        <Heart className="w-5 h-5 text-sage-500 mr-2 flex-shrink-0 mt-0.5" />
+                        <span>
+                          Teilnahme an allen Veranstaltungen und Vorträgen
+                        </span>
+                      </li>
+                      <li className="flex items-start">
+                        <Heart className="w-5 h-5 text-sage-500 mr-2 flex-shrink-0 mt-0.5" />
+                        <span>
+                          Zugang zur Gemeinschaft ohne Verpflichtungen
+                        </span>
+                      </li>
+                      <li className="flex items-start">
+                        <Heart className="w-5 h-5 text-sage-500 mr-2 flex-shrink-0 mt-0.5" />
+                        <span>Regelmäßige Informationen über Aktivitäten</span>
+                      </li>
+                      <li className="flex items-start">
+                        <Heart className="w-5 h-5 text-sage-500 mr-2 flex-shrink-0 mt-0.5" />
+                        <span>
+                          Flexible Teilnahme je nach persönlicher Zeit
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
           </div>
+
+          <motion.div
+            className="mt-12 text-center bg-gradient-to-r from-sage-50 to-cream-50 rounded-xl p-8 border-2 border-sage-200"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+          >
+            <p className="text-lg text-sage-800 mb-4">
+              <strong>💫 Wichtig zu wissen:</strong>
+            </p>
+            <p className="text-charcoal-600 max-w-3xl mx-auto leading-relaxed">
+              Beide Mitgliedschaftstypen sind herzlich willkommen! Sie können
+              jederzeit von passiver zu aktiver Mitgliedschaft wechseln, wenn
+              Sie mehr Engagement zeigen möchten. Unsere Gemeinschaft lebt von
+              Vielfalt - ob Sie aktiv mitgestalten oder einfach Teil der
+              Schwesternschaft sein möchten, jede Schwester bereichert uns auf
+              ihre Weise.
+            </p>
+          </motion.div>
         </motion.div>
 
-        {/* Membership Form */}
-        <motion.div variants={itemVariants} id="mitglied-werden-form">
-          <Card className="border-0 shadow-2xl bg-white/90 backdrop-blur-sm">
-            <CardHeader className="text-center pb-8">
-              <div className="flex justify-center mb-4">
-                <div className="flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-coral-400 to-warm-400 text-white">
+        {/* Membership Form - External Link */}
+        <motion.div
+          variants={itemVariants}
+          id="mitglied-werden-form"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <Card className="border-2 border-sage-300 shadow-2xl bg-white hover:shadow-3xl transition-shadow duration-500 relative overflow-hidden">
+            {/* Decorative corner elements */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-sage-200/30 to-transparent rounded-bl-full" />
+            <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-cream-200/30 to-transparent rounded-tr-full" />
+
+            <CardHeader className="text-center pb-8 bg-gradient-to-br from-sage-50 via-cream-50 to-sage-50 relative">
+              <motion.div
+                className="flex justify-center mb-4"
+                whileHover={{ scale: 1.1, rotate: 10 }}
+                transition={{ type: "spring", stiffness: 400 }}
+              >
+                <div className="flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-sage-500 via-sage-400 to-sage-500 text-white shadow-lg hover:shadow-xl transition-shadow">
                   <Sparkles className="w-10 h-10" />
                 </div>
-              </div>
-              <CardTitle className="text-3xl md:text-4xl font-bold text-sage-800 mb-4">
-                🌟 Ihre Mitgliedschaftsanfrage
+              </motion.div>
+              <CardTitle className="text-3xl md:text-4xl font-bold mb-4">
+                <span className="bg-gradient-to-r from-sage-700 via-sage-500 to-sage-600 bg-clip-text text-transparent">
+                  🌟 Ihre Mitgliedschaftsanfrage
+                </span>
               </CardTitle>
-              <p className="text-lg text-sage-600 max-w-2xl mx-auto">
+              <p className="text-lg text-charcoal-600 max-w-2xl mx-auto mb-6">
                 Wir können es kaum erwarten, Sie in unserer Familie willkommen
                 zu heißen! Teilen Sie uns etwas über sich mit – jede Geschichte
                 ist einzigartig und wertvoll.
               </p>
+
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 400 }}
+              >
+                <Button
+                  asChild
+                  className="bg-gradient-to-r from-coral-500 to-warm-500 hover:from-coral-600 hover:to-warm-600 text-white font-bold py-4 px-8 rounded-xl text-xl transition-all duration-300 shadow-xl hover:shadow-2xl"
+                >
+                  <a
+                    href="https://formular.vereinsplaner.com/b8fabab2-d21c-4ee4-bdbc-95aa517acbed"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center"
+                  >
+                    <Heart className="w-6 h-6 mr-3" />
+                    Ja, ich möchte dabei sein! 🌟
+                  </a>
+                </Button>
+              </motion.div>
+
+              <div className="text-center mt-6 space-y-2">
+                <div className="flex items-center justify-center gap-3 text-sm text-sage-600">
+                  <CheckCircle className="h-5 w-5 text-green-500" />
+                  <span>Mitgliedschaft</span>
+                </div>
+                <div className="flex items-center justify-center gap-3 text-sm text-sage-600">
+                  <CheckCircle className="h-5 w-5 text-green-500" />
+                  <span>Antwort innerhalb von 2-3 Werktagen</span>
+                </div>
+              </div>
             </CardHeader>
-            <CardContent className="max-w-3xl mx-auto">
-              <form onSubmit={handleSubmit} className="space-y-8">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-3">
-                    <Label
-                      htmlFor="vorname"
-                      className="text-sage-700 font-semibold text-lg"
-                    >
-                      Vorname *
-                    </Label>
-                    <Input
-                      id="vorname"
-                      name="vorname"
-                      value={formData.vorname}
-                      onChange={handleInputChange}
-                      required
-                      className="border-sage-200 focus:border-sage-500 focus:ring-sage-500 h-12 text-lg"
-                      placeholder="Ihr schöner Vorname"
-                    />
-                  </div>
-
-                  <div className="space-y-3">
-                    <Label
-                      htmlFor="nachname"
-                      className="text-sage-700 font-semibold text-lg"
-                    >
-                      Nachname *
-                    </Label>
-                    <Input
-                      id="nachname"
-                      name="nachname"
-                      value={formData.nachname}
-                      onChange={handleInputChange}
-                      required
-                      className="border-sage-200 focus:border-sage-500 focus:ring-sage-500 h-12 text-lg"
-                      placeholder="Ihr Familienname"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-3">
-                    <Label
-                      htmlFor="email"
-                      className="text-sage-700 font-semibold text-lg"
-                    >
-                      E-Mail-Adresse *
-                    </Label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      required
-                      className="border-sage-200 focus:border-sage-500 focus:ring-sage-500 h-12 text-lg"
-                      placeholder="ihre.email@example.com"
-                    />
-                  </div>
-
-                  <div className="space-y-3">
-                    <Label
-                      htmlFor="telefon"
-                      className="text-sage-700 font-semibold text-lg"
-                    >
-                      Telefonnummer (optional)
-                    </Label>
-                    <Input
-                      id="telefon"
-                      name="telefon"
-                      type="tel"
-                      value={formData.telefon}
-                      onChange={handleInputChange}
-                      className="border-sage-200 focus:border-sage-500 focus:ring-sage-500 h-12 text-lg"
-                      placeholder="+49 123 456789"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-3">
-                    <Label
-                      htmlFor="geburtsdatum"
-                      className="text-sage-700 font-semibold text-lg"
-                    >
-                      Geburtsdatum *
-                    </Label>
-                    <Input
-                      id="geburtsdatum"
-                      name="geburtsdatum"
-                      type="date"
-                      value={formData.geburtsdatum}
-                      onChange={handleInputChange}
-                      required
-                      className="border-sage-200 focus:border-sage-500 focus:ring-sage-500 h-12 text-lg"
-                    />
-                  </div>
-
-                  <div className="space-y-3">
-                    <Label
-                      htmlFor="standort"
-                      className="text-sage-700 font-semibold text-lg"
-                    >
-                      Ihr Standort *
-                    </Label>
-                    <Input
-                      id="standort"
-                      name="standort"
-                      value={formData.standort}
-                      onChange={handleInputChange}
-                      required
-                      className="border-sage-200 focus:border-sage-500 focus:ring-sage-500 h-12 text-lg"
-                      placeholder="Ihre Stadt oder PLZ"
-                    />
-                  </div>
-                </div>
-
-                <div className="space-y-3">
-                  <Label
-                    htmlFor="interessen"
-                    className="text-sage-700 font-semibold text-lg"
-                  >
-                    Was bewegt Sie? (Optional aber sehr willkommen! 💝)
-                  </Label>
-                  <Textarea
-                    id="interessen"
-                    name="interessen"
-                    value={formData.interessen}
-                    onChange={handleInputChange}
-                    rows={5}
-                    className="border-sage-200 focus:border-sage-500 focus:ring-sage-500 text-lg"
-                    placeholder="Erzählen Sie uns gerne von sich: Was hat Sie zu uns geführt? Welche Bereiche interessieren Sie? Oder teilen Sie einfach mit, worauf Sie sich freuen... Wir hören zu! 🌸"
-                  />
-                </div>
-
-                <div className="pt-6">
-                  <Button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-coral-500 to-warm-500 hover:from-coral-600 hover:to-warm-600 text-white font-bold py-4 px-8 rounded-xl text-xl transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-[1.02]"
-                  >
-                    {isSubmitting ? (
-                      <div className="flex items-center justify-center">
-                        <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-white mr-3"></div>
-                        Ihre Anfrage wird übermittelt... ✨
-                      </div>
-                    ) : (
-                      <span className="flex items-center justify-center">
-                        <Heart className="w-6 h-6 mr-3" />
-                        Ja, ich möchte dabei sein! 🌟
-                      </span>
-                    )}
-                  </Button>
-
-                  <div className="text-center mt-6 space-y-2">
-                    <div className="flex items-center justify-center gap-3 text-sm text-sage-600">
-                      <CheckCircle className="h-5 w-5 text-green-500" />
-                      <span>Kostenlose Mitgliedschaft</span>
-                    </div>
-                    <div className="flex items-center justify-center gap-3 text-sm text-sage-600">
-                      <CheckCircle className="h-5 w-5 text-green-500" />
-                      <span>Antwort innerhalb von 2-3 Werktagen</span>
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </CardContent>
           </Card>
         </motion.div>
 
-        {/* FAQ Section */}
+        {/* Social Media Section */}
         <motion.div variants={itemVariants} className="mt-20">
-          <h2 className="text-3xl font-bold text-center text-sage-800 mb-12">
-            Häufig gestellte Fragen
-          </h2>
-          <div className="grid gap-6 md:grid-cols-2 max-w-5xl mx-auto">
-            <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
-              <CardContent className="p-6">
-                <h3 className="font-bold text-sage-800 mb-3 text-lg">
-                  💝 Kostet die Mitgliedschaft etwas?
-                </h3>
-                <p className="text-sage-600 leading-relaxed">
-                  Nein, unsere Schwesternschaft ist völlig kostenfrei! Alle
-                  Beratungsleistungen, Veranstaltungen und die Gemeinschaft sind
-                  ein Geschenk für Sie.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
-              <CardContent className="p-6">
-                <h3 className="font-bold text-sage-800 mb-3 text-lg">
-                  ⏰ Wie lange dauert die Bearbeitung?
-                </h3>
-                <p className="text-sage-600 leading-relaxed">
-                  Wir melden uns innerhalb von 2-3 Werktagen bei Ihnen. Wir
-                  nehmen uns die Zeit, jede Anfrage persönlich zu prüfen.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
-              <CardContent className="p-6">
-                <h3 className="font-bold text-sage-800 mb-3 text-lg">
-                  🌸 Wer kann Mitglied werden?
-                </h3>
-                <p className="text-sage-600 leading-relaxed">
-                  Jede Frau, die Unterstützung sucht oder anderen helfen möchte,
-                  ist herzlich willkommen – unabhängig von Herkunft oder
-                  Lebenssituation.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
-              <CardContent className="p-6">
-                <h3 className="font-bold text-sage-800 mb-3 text-lg">
-                  🔒 Ist alles wirklich vertraulich?
-                </h3>
-                <p className="text-sage-600 leading-relaxed">
-                  Absolut! Ihre Privatsphäre ist uns heilig. Alle Gespräche sind
-                  streng vertraulich und Ihre Daten werden nach höchsten
-                  Standards geschützt.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
+          <SocialMediaSection
+            title="Bleib mit uns verbunden"
+            subtitle="Folge uns für Updates und Einblicke in unsere Gemeinschaft"
+          />
         </motion.div>
       </motion.div>
     </div>
