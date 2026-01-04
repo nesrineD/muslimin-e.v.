@@ -78,7 +78,7 @@ export function CookieBanner() {
             <div className="flex-1">
               <h3 className="font-semibold mb-2">Cookie-Einstellungen</h3>
               <p className="text-sm text-muted-foreground mb-4">
-                Wir verwenden Cookies, um Ihnen die bestmögliche Nutzererfahrung
+                Wir verwenden Cookies, um dir die bestmögliche Nutzererfahrung
                 zu bieten. Notwendige Cookies sind für den Betrieb der Plattform
                 erforderlich.
               </p>
@@ -124,8 +124,9 @@ export function CookieBanner() {
             <Button
               variant="ghost"
               size="icon"
-              onClick={() => setShowBanner(false)}
+              onClick={acceptNecessary}
               className="flex-shrink-0"
+              aria-label="Nur notwendige Cookies"
             >
               <X className="h-4 w-4" />
             </Button>

@@ -1,5 +1,5 @@
 import { renderHook } from "@testing-library/react";
-import { useGoogleMapsLoader } from "@/hooks/useGoogleMaps";
+import { useGoogleMaps } from "@/hooks/useGoogleMaps";
 
 // Mock Google Maps API
 const mockGoogle = {
@@ -20,22 +20,26 @@ Object.defineProperty(window, "google", {
   writable: true,
 });
 
-describe("useGoogleMapsLoader", () => {
+describe("useGoogleMaps", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
   it("should load Google Maps API successfully", () => {
-    const { result } = renderHook(() => useGoogleMapsLoader("test-api-key"));
+    const { result } = renderHook(() =>
+      useGoogleMaps({ apiKey: "test-api-key" })
+    );
 
     expect(result.current.isLoaded).toBe(true);
     expect(result.current.isLoading).toBe(false);
     expect(result.current.error).toBeNull();
-    expect(result.current.google).toBe(mockGoogle);
+    expect(window.google).toBe(mockGoogle);
   });
 
   it("should provide createMap function", () => {
-    const { result } = renderHook(() => useGoogleMapsLoader("test-api-key"));
+    const { result } = renderHook(() =>
+      useGoogleMaps({ apiKey: "test-api-key" })
+    );
 
     expect(typeof result.current.createMap).toBe("function");
   });

@@ -74,7 +74,10 @@ export default function PublicLandingPage() {
 
   useEffect(() => {
     return scrollY.on("change", (latest) => {
-      setShowStickyBar(latest > 800);
+      setShowStickyBar((prev) => {
+        const next = latest > 800;
+        return prev === next ? prev : next;
+      });
     });
   }, [scrollY]);
 
@@ -87,10 +90,10 @@ export default function PublicLandingPage() {
     >
       {/* Sticky CTA Bar */}
       <motion.div
-        initial={{ y: -100 }}
-        animate={{ y: showStickyBar ? 0 : -100 }}
+        initial={{ y: 100 }}
+        animate={{ y: showStickyBar ? 0 : 100 }}
         transition={{ duration: 0.3 }}
-        className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-sage-600 to-charcoal-700 shadow-xl"
+        className="fixed bottom-0 left-0 right-0 z-40 bg-gradient-to-r from-sage-600 to-charcoal-700 shadow-2xl"
       >
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <span className="text-white font-semibold text-sm md:text-base">

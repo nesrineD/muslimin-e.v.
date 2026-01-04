@@ -98,13 +98,38 @@ export const CONTACT_INFO = {
  * Primary Navigation (5 items)
  */
 export const NAV_LINKS = [
-    { href: "/uber-uns", label: "Über uns", description: "Mission und Werte kennenlernen", icon: "HeartHandshake" },
-    { href: "/angebote", label: "Angebote", description: "Unsere Beratungs- und Hilfsangebote", icon: "BookOpen" },
-    { href: "/mitglied-werden", label: "Mitglied werden", primary: true, description: "Werden Sie Teil unserer Gemeinschaft", icon: "Sparkles" },
-    { href: "/spenden", label: "Spenden", primary: true, description: "Unterstützen Sie unsere Arbeit", icon: "Heart" },
-    { href: "/kontakt", label: "Kontakt", description: "Schreiben Sie uns eine Nachricht", icon: "Mail" },
+  {
+    href: "/uber-uns",
+    label: "Über uns",
+    description: "Mission und Werte kennenlernen",
+    icon: "HeartHandshake",
+  },
+  {
+    href: "/angebote",
+    label: "Angebote",
+    description: "Unsere Beratungs- und Hilfsangebote",
+    icon: "BookOpen",
+  },
+  {
+    href: "/mitglied-werden",
+    label: "Mitglied werden",
+    primary: true,
+    description: "Werden Sie Teil unserer Gemeinschaft",
+    icon: "Sparkles",
+  },
+  {
+    href: "/spenden",
+    label: "Spenden",
+    description: "Unterstützen Sie unsere Arbeit",
+    icon: "Heart",
+  },
+  {
+    href: "/kontakt",
+    label: "Kontakt",
+    description: "Schreiben Sie uns eine Nachricht",
+    icon: "Mail",
+  },
 ] as const;
-
 
 // Member Navigation (authenticated)
 export const MEMBER_NAV_LINKS = [
