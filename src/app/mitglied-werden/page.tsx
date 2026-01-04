@@ -389,65 +389,6 @@ export default function MitgliedWerdenPage() {
           </Card>
         </motion.div>
 
-        {/* FAQ Section */}
-        <motion.div variants={itemVariants} className="mt-20">
-          <h2 className="text-3xl font-bold text-center text-sage-800 mb-12">
-            Häufig gestellte Fragen
-          </h2>
-          <div className="grid gap-6 md:grid-cols-2 max-w-5xl mx-auto">
-            <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
-              <CardContent className="p-6">
-                <h3 className="font-bold text-sage-800 mb-3 text-lg">
-                  💝 Kostet die Mitgliedschaft etwas?
-                </h3>
-                <p className="text-sage-600 leading-relaxed">
-                  Nein, unsere Schwesternschaft ist völlig kostenfrei! Alle
-                  Beratungsleistungen, Veranstaltungen und die Gemeinschaft sind
-                  ein Geschenk für Sie.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
-              <CardContent className="p-6">
-                <h3 className="font-bold text-sage-800 mb-3 text-lg">
-                  ⏰ Wie lange dauert die Bearbeitung?
-                </h3>
-                <p className="text-sage-600 leading-relaxed">
-                  Wir melden uns innerhalb von 2-3 Werktagen bei Ihnen. Wir
-                  nehmen uns die Zeit, jede Anfrage persönlich zu prüfen.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
-              <CardContent className="p-6">
-                <h3 className="font-bold text-sage-800 mb-3 text-lg">
-                  🌸 Wer kann Mitglied werden?
-                </h3>
-                <p className="text-sage-600 leading-relaxed">
-                  Jede Frau, die Unterstützung sucht oder anderen helfen möchte,
-                  ist herzlich willkommen – unabhängig von Herkunft oder
-                  Lebenssituation.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
-              <CardContent className="p-6">
-                <h3 className="font-bold text-sage-800 mb-3 text-lg">
-                  🔒 Ist alles wirklich vertraulich?
-                </h3>
-                <p className="text-sage-600 leading-relaxed">
-                  Absolut! Ihre Privatsphäre ist uns heilig. Alle Gespräche sind
-                  streng vertraulich und Ihre Daten werden nach höchsten
-                  Standards geschützt.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </motion.div>
-
         {/* Social Media CTA */}
         <motion.div variants={itemVariants} className="mt-20">
           <Card className="border-2 border-sage-300 shadow-xl bg-gradient-to-br from-white via-sage-50/30 to-cream-50/30 hover:shadow-2xl transition-all duration-500">
@@ -466,7 +407,8 @@ export default function MitgliedWerdenPage() {
               <div className="text-center space-y-4">
                 <p className="text-sage-600 max-w-2xl mx-auto">
                   Erhalte aktuelle Flyer, Termine und inspirierende Inhalte
-                  direkt auf dein Handy. Sei Teil unserer digitalen Gemeinschaft!
+                  direkt auf dein Handy. Sei Teil unserer digitalen
+                  Gemeinschaft!
                 </p>
                 <div className="pt-4">
                   <motion.div
@@ -479,25 +421,29 @@ export default function MitgliedWerdenPage() {
                       {
                         name: "Instagram",
                         url: "https://www.instagram.com/muslimin.de/",
-                        color: "from-pink-50 to-pink-100 hover:from-pink-100 hover:to-pink-200",
+                        color:
+                          "from-pink-50 to-pink-100 hover:from-pink-100 hover:to-pink-200",
                         textColor: "text-pink-700",
                       },
                       {
                         name: "TikTok",
                         url: "https://www.tiktok.com/@muslimin.ev",
-                        color: "from-gray-50 to-gray-100 hover:from-gray-100 hover:to-gray-200",
+                        color:
+                          "from-gray-50 to-gray-100 hover:from-gray-100 hover:to-gray-200",
                         textColor: "text-gray-700",
                       },
                       {
                         name: "YouTube",
                         url: "https://www.youtube.com/@muslimin-ev",
-                        color: "from-red-50 to-red-100 hover:from-red-100 hover:to-red-200",
+                        color:
+                          "from-red-50 to-red-100 hover:from-red-100 hover:to-red-200",
                         textColor: "text-red-700",
                       },
                       {
                         name: "WhatsApp",
                         url: "https://whatsapp.com/channel/0029VaN2y5qIt5rsURhd1o2Y",
-                        color: "from-green-50 to-green-100 hover:from-green-100 hover:to-green-200",
+                        color:
+                          "from-green-50 to-green-100 hover:from-green-100 hover:to-green-200",
                         textColor: "text-green-700",
                       },
                     ].map((social, idx) => (

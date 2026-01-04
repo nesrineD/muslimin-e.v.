@@ -79,15 +79,15 @@ export default function VeranstaltungenPage() {
       animate="visible"
     >
       {/* Hero Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
+      <section className="py-20 md:py-24 px-4 sm:px-6 lg:px-8">
         <motion.div
           variants={itemVariants}
           className="max-w-4xl mx-auto text-center"
         >
-          <h1 className="text-5xl md:text-6xl font-bold text-sage-800 mb-6">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-charcoal-800 via-sage-700 to-coral-700 bg-clip-text text-transparent">
             Unsere Veranstaltungen
           </h1>
-          <p className="text-xl text-warm-600">
+          <p className="text-lg md:text-xl text-sage-600 max-w-2xl mx-auto">
             Entdecke die vielen Möglichkeiten, Teil unserer Gemeinschaft zu
             werden
           </p>
@@ -95,7 +95,7 @@ export default function VeranstaltungenPage() {
       </section>
 
       {/* Events Grid */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
+      <section className="py-16 md:py-20 px-4 sm:px-6 lg:px-8">
         <motion.div variants={itemVariants} className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {EVENTS.map((event) => (
@@ -106,7 +106,7 @@ export default function VeranstaltungenPage() {
       </section>
 
       {/* Social Media CTA */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+      <section className="py-20 md:py-24 px-4 sm:px-6 lg:px-8 bg-white">
         <motion.div variants={itemVariants} className="max-w-4xl mx-auto">
           <SocialMediaCTA />
         </motion.div>

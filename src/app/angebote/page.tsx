@@ -64,8 +64,8 @@ export default function AngebotePage() {
       animate="visible"
     >
       {/* Hero Section */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
-        <div className="absolute inset-0 bg-gradient-to-br from-sage-100/20 via-transparent to-emerald-100/20" />
+      <section className="relative py-20 md:py-24 px-4 sm:px-6 lg:px-8">
+        <div className="absolute inset-0 bg-gradient-to-br from-sage-100/20 via-transparent to-cream-100/20" />
 
         <motion.div
           variants={itemVariants}
@@ -80,7 +80,7 @@ export default function AngebotePage() {
             Unsere Angebote
           </motion.div>
 
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-sage-900 via-emerald-800 to-sage-900 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-charcoal-800 via-sage-700 to-coral-700 bg-clip-text text-transparent">
             Was wir anbieten
           </h1>
 
@@ -93,7 +93,7 @@ export default function AngebotePage() {
       </section>
 
       {/* Offerings Grid */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
+      <section className="py-16 md:py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {offerings.map((offering, idx) => (
@@ -156,7 +156,7 @@ export default function AngebotePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-emerald-50 via-sage-50 to-cream-50">
+      <section className="py-20 md:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-cream-50 via-sage-50 to-cream-50">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -167,8 +167,8 @@ export default function AngebotePage() {
             Bereit, aktiv zu werden?
           </h2>
           <p className="text-lg text-sage-600 mb-8 max-w-2xl mx-auto">
-            Werde Mitglied und profitiere von allen Angeboten – kostenlos und
-            unverbindlich.
+            Mit einer aktiven Mitgliedschaft zeigst du Engagement für islamische
+            Arbeit und wirkst in der Vereinsarbeit mit.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
