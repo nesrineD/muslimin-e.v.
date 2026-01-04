@@ -274,12 +274,13 @@ export default function DashboardPage() {
     type: "member" | "helper";
   }) => (
     <Card className="shadow-lg border-0 bg-white/70 backdrop-blur-sm">
-                <CardHeader>
-                  <CardTitle className="text-lg font-bold text-gray-900 flex items-center">
-                    <Calendar className="w-5 h-5 mr-2 text-sage-600" />
-                    {title}
-                  </CardTitle>
-                </CardHeader>      <CardContent>
+      <CardHeader>
+        <CardTitle className="text-lg font-bold text-gray-900 flex items-center">
+          <Calendar className="w-5 h-5 mr-2 text-sage-600" />
+          {title}
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
         {appointments.length > 0 ? (
           <div className="space-y-3">
             {appointments.map((appointment) => (

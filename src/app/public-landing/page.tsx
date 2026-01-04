@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 import { containerVariants, itemVariants } from "@/lib/animations";
 import { SocialMediaSection } from "@/components/SocialMediaSection";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 interface CTACard {
   icon: React.ReactNode;
@@ -72,14 +72,16 @@ export default function PublicLandingPage() {
   const { scrollY } = useScroll();
   const [showStickyBar, setShowStickyBar] = useState(false);
 
-  useEffect(() => {
-    return scrollY.on("change", (latest) => {
-      setShowStickyBar((prev) => {
-        const next = latest > 800;
-        return prev === next ? prev : next;
-      });
+  const handleScroll = useCallback((latest: number) => {
+    setShowStickyBar((prev) => {
+      const next = latest > 800;
+      return prev === next ? prev : next;
     });
-  }, [scrollY]);
+  }, []);
+
+  useEffect(() => {
+    return scrollY.on("change", handleScroll);
+  }, [scrollY, handleScroll]);
 
   return (
     <motion.main
@@ -94,7 +96,7 @@ export default function PublicLandingPage() {
           initial={{ y: 100 }}
           animate={{ y: showStickyBar ? 0 : 100 }}
           transition={{ duration: 0.3 }}
-          className="fixed bottom-0 left-0 right-0 z-40 bg-gradient-to-r from-sage-600 to-charcoal-700 shadow-2xl"
+          className="fixed bottom-0 left-0 right-0 z-41 bg-gradient-to-r from-sage-600 to-charcoal-700 shadow-2xl"
         >
           <div className="container mx-auto px-4 py-3 flex items-center justify-between">
             <span className="text-white font-semibold text-sm md:text-base">

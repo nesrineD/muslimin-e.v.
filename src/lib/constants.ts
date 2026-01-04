@@ -122,6 +122,7 @@ export const NAV_LINKS = [
     label: "Spenden",
     description: "Unterstützen Sie unsere Arbeit",
     icon: "Heart",
+    primary: true,
   },
   {
     href: "/kontakt",

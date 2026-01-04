@@ -87,7 +87,7 @@ export function Header() {
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
         isScrolled
           ? "bg-white/90 backdrop-blur-lg border-b border-sage-200/60 shadow-sm"
-          : "bg-transparent border-b border-transparent"
+          : "bg-white/80 backdrop-blur-sm border-b border-sage-100/40"
       }`}
       role="banner"
     >
@@ -321,13 +321,12 @@ export function Header() {
             </DropdownMenu>
           ) : (
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                                <Button
-                                  variant="ghost"
-                                  asChild
-                                  className="text-sage-700 hover:bg-sage-700/50 hover:text-sand-100 transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-sage-300 focus-visible:ring-offset-2 focus-visible:ring-offset-sage-600"
-                                >
-                                  <Link href="/login" className="flex items-center space-x-2">
-                      
+              <Button
+                variant="ghost"
+                asChild
+                className="text-sage-700 hover:bg-sage-700/50 hover:text-sand-100 transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-sage-300 focus-visible:ring-offset-2 focus-visible:ring-offset-sage-600"
+              >
+                <Link href="/login" className="flex items-center space-x-2">
                   <User className="h-4 w-4" />
                   <span>Anmelden</span>
                 </Link>
