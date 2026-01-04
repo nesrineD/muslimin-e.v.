@@ -287,7 +287,7 @@ export default function PublicLandingPage() {
             className="text-center mt-10"
           >
             <Link
-              href="/about"
+              href="/uber-uns"
               className="inline-flex items-center gap-2 text-coral-700 font-semibold hover:text-coral-800 hover:gap-3 transition-all"
             >
               Mehr über uns erfahren
