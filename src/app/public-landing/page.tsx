@@ -34,7 +34,7 @@ const ctaCards: CTACard[] = [
     description:
       "Werde Teil unserer Gemeinschaft und unterstütze unsere Mission",
     href: "/mitglied-werden",
-    color: "from-emerald-50 to-emerald-100 hover:to-emerald-200",
+    color: "from-coral-50 to-coral-100 hover:to-coral-200",
   },
   {
     icon: <Users className="w-12 h-12" />,
@@ -48,7 +48,7 @@ const ctaCards: CTACard[] = [
     title: "Veranstaltungen",
     description: "Entdecke unsere vielfältigen Veranstaltungen und Aktivitäten",
     href: "/veranstaltungen",
-    color: "from-sage-50 to-sage-100 hover:to-sage-200",
+    color: "from-cream-50 to-cream-100 hover:to-cream-200",
   },
   {
     icon: <Gift className="w-12 h-12" />,
@@ -64,7 +64,7 @@ const ctaCards: CTACard[] = [
     description:
       "Erfahre mehr über Muslimin e.V., unsere Geschichte und Philosophie",
     href: "/uber-uns",
-    color: "from-emerald-50 to-emerald-100 hover:to-emerald-200",
+    color: "from-sage-50 to-sage-100 hover:to-sage-200",
   },
 ];
 
@@ -80,7 +80,7 @@ export default function PublicLandingPage() {
 
   return (
     <motion.main
-      className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-sage-50"
+      className="min-h-screen bg-gradient-to-br from-cream-50 via-white to-sage-50"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -90,7 +90,7 @@ export default function PublicLandingPage() {
         initial={{ y: -100 }}
         animate={{ y: showStickyBar ? 0 : -100 }}
         transition={{ duration: 0.3 }}
-        className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-emerald-600 to-sage-600 shadow-xl"
+        className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-sage-600 to-charcoal-700 shadow-xl"
       >
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <span className="text-white font-semibold text-sm md:text-base">
@@ -99,7 +99,7 @@ export default function PublicLandingPage() {
           <div className="flex gap-2">
             <Link
               href="/mitglied-werden"
-              className="px-4 py-2 bg-white text-emerald-700 rounded-lg font-semibold text-sm hover:bg-emerald-50 transition-colors"
+              className="px-4 py-2 bg-white text-sage-700 rounded-lg font-semibold text-sm hover:bg-cream-100 transition-colors"
             >
               Mitglied werden
             </Link>
@@ -115,7 +115,7 @@ export default function PublicLandingPage() {
 
       {/* Enhanced Hero Section */}
       <section className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-100/20 via-transparent to-sage-100/20" />
+        <div className="absolute inset-0 bg-gradient-to-br from-sage-100/20 via-transparent to-cream-100/20" />
 
         <motion.div
           variants={itemVariants}
@@ -126,13 +126,13 @@ export default function PublicLandingPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-100 text-emerald-800 rounded-full text-sm font-medium mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-sage-100 text-sage-800 rounded-full text-sm font-medium mb-6"
           >
             <Shield className="w-4 h-4" />
             Gemeinnützig • DSGVO-konform • Seit 2011
           </motion.div>
 
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-emerald-900 via-sage-800 to-emerald-900 bg-clip-text text-transparent">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-charcoal-800 via-sage-700 to-coral-700 bg-clip-text text-transparent">
             Deine Schwesternschaft.
             <br />
             Deine Stärke.
@@ -156,7 +156,7 @@ export default function PublicLandingPage() {
               >
                 <Link
                   href="/mitglied-werden"
-                  className="inline-flex w-full sm:w-auto items-center justify-center gap-3 px-10 py-5 bg-gradient-to-r from-emerald-600 to-sage-600 text-white rounded-xl font-bold hover:shadow-2xl transition-all text-lg shadow-lg"
+                  className="inline-flex w-full sm:w-auto items-center justify-center gap-3 px-10 py-5 bg-gradient-to-r from-sage-600 to-coral-600 text-white rounded-xl font-bold hover:shadow-2xl transition-all text-lg shadow-lg"
                 >
                   <Heart className="w-6 h-6" />
                   Kostenlos Mitglied werden
@@ -170,7 +170,7 @@ export default function PublicLandingPage() {
               >
                 <Link
                   href="/spenden"
-                  className="inline-flex w-full sm:w-auto items-center justify-center gap-3 px-10 py-5 bg-white text-emerald-700 border-2 border-emerald-300 rounded-xl font-bold hover:shadow-2xl transition-all text-lg shadow-md hover:bg-emerald-50"
+                  className="inline-flex w-full sm:w-auto items-center justify-center gap-3 px-10 py-5 bg-white text-coral-700 border-2 border-coral-300 rounded-xl font-bold hover:shadow-2xl transition-all text-lg shadow-md hover:bg-coral-50"
                 >
                   <HeartHandshake className="w-6 h-6" />
                   Jetzt unterstützen
@@ -186,17 +186,17 @@ export default function PublicLandingPage() {
               className="flex flex-wrap items-center justify-center gap-4 text-sm text-sage-600 pt-2"
             >
               <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-emerald-600" />
+                <CheckCircle className="w-4 h-4 text-coral-600" />
                 <span className="font-medium">200+ aktive Mitglieder</span>
               </div>
               <span className="hidden sm:inline">•</span>
               <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-emerald-600" />
+                <CheckCircle className="w-4 h-4 text-coral-600" />
                 <span className="font-medium">50+ Veranstaltungen/Jahr</span>
               </div>
               <span className="hidden sm:inline">•</span>
               <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-emerald-600" />
+                <CheckCircle className="w-4 h-4 text-coral-600" />
                 <span className="font-medium">100% kostenlos</span>
               </div>
             </motion.div>
@@ -235,7 +235,7 @@ export default function PublicLandingPage() {
                 title: "Für Frauen & Mädchen",
                 description:
                   "Unsere Angebote richten sich an muslimische Frauen, junge Mädchen und Mütter – ein sicherer Raum für Austausch und Wachstum",
-                color: "from-emerald-50 to-emerald-100",
+                color: "from-sage-50 to-sage-100",
               },
               {
                 icon: <Heart className="w-6 h-6" />,
@@ -293,7 +293,7 @@ export default function PublicLandingPage() {
           >
             <Link
               href="/about"
-              className="inline-flex items-center gap-2 text-emerald-700 font-semibold hover:text-emerald-800 hover:gap-3 transition-all"
+              className="inline-flex items-center gap-2 text-coral-700 font-semibold hover:text-coral-800 hover:gap-3 transition-all"
             >
               Mehr über uns erfahren
               <ArrowRight className="w-5 h-5" />
@@ -312,7 +312,7 @@ export default function PublicLandingPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <span className="bg-gradient-to-r from-emerald-900 via-sage-800 to-emerald-900 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-charcoal-800 via-sage-700 to-coral-700 bg-clip-text text-transparent">
                 Folge uns & bleib verbunden! 📱
               </span>
             </motion.h2>
@@ -329,7 +329,7 @@ export default function PublicLandingPage() {
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <motion.div variants={itemVariants} className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold text-emerald-900 mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-charcoal-800 mb-4">
               Was erwartet dich als Mitglied?
             </h2>
             <p className="text-lg text-sage-600 max-w-2xl mx-auto">
@@ -377,7 +377,7 @@ export default function PublicLandingPage() {
                 key={idx}
                 variants={itemVariants}
                 whileHover={{ y: -8 }}
-                className={`p-6 rounded-2xl bg-gradient-to-br ${benefit.color} border-2 border-transparent hover:border-emerald-300 transition-all duration-300 shadow-md hover:shadow-xl`}
+                className={`p-6 rounded-2xl bg-gradient-to-br ${benefit.color} border-2 border-transparent hover:border-coral-300 transition-all duration-300 shadow-md hover:shadow-xl`}
               >
                 <div
                   className={`inline-flex items-center justify-center w-14 h-14 rounded-xl ${benefit.iconBg} text-white mb-4`}
@@ -403,7 +403,7 @@ export default function PublicLandingPage() {
           >
             <Link
               href="/mitglied-werden"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-emerald-600 to-sage-600 text-white rounded-xl font-bold hover:shadow-xl transition-all text-lg"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-sage-600 to-coral-600 text-white rounded-xl font-bold hover:shadow-xl transition-all text-lg"
             >
               Jetzt kostenlos Mitglied werden
               <ArrowRight className="w-5 h-5" />
@@ -413,10 +413,10 @@ export default function PublicLandingPage() {
       </section>
 
       {/* Donation Impact Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-sage-100/40 via-white to-emerald-50/30">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-sage-100/40 via-white to-cream-50/30">
         <motion.div variants={itemVariants} className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold text-emerald-900 mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-charcoal-800 mb-4">
               Deine Spende bewirkt Großes 💚
             </h2>
             <p className="text-lg text-sage-600 max-w-2xl mx-auto">
@@ -447,12 +447,12 @@ export default function PublicLandingPage() {
                 key={idx}
                 variants={itemVariants}
                 whileHover={{ scale: 1.05 }}
-                className="p-8 rounded-2xl bg-white border-2 border-emerald-200 hover:border-emerald-400 transition-all shadow-lg text-center"
+                className="p-8 rounded-2xl bg-white border-2 border-coral-200 hover:border-coral-400 transition-all shadow-lg text-center"
               >
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-emerald-100 text-emerald-700 mb-4">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-coral-100 text-coral-600 mb-4">
                   {item.icon}
                 </div>
-                <p className="text-4xl font-bold text-emerald-700 mb-2">
+                <p className="text-4xl font-bold text-coral-600 mb-2">
                   {item.amount}
                 </p>
                 <p className="text-sage-600 leading-relaxed">{item.impact}</p>
@@ -465,7 +465,7 @@ export default function PublicLandingPage() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-white rounded-2xl p-8 shadow-xl border-2 border-emerald-200 mb-8"
+            className="bg-white rounded-2xl p-8 shadow-xl border-2 border-coral-200 mb-8"
           >
             <div className="flex items-center justify-between mb-4">
               <div>
@@ -477,7 +477,7 @@ export default function PublicLandingPage() {
                 </p>
               </div>
               <div className="text-right">
-                <p className="text-3xl font-bold text-emerald-700">2.450€</p>
+                <p className="text-3xl font-bold text-coral-600">2.450€</p>
                 <p className="text-sm text-sage-500">von 5.000€</p>
               </div>
             </div>
@@ -487,7 +487,7 @@ export default function PublicLandingPage() {
                 whileInView={{ width: "49%" }}
                 viewport={{ once: true }}
                 transition={{ duration: 1.5, ease: "easeOut" }}
-                className="bg-gradient-to-r from-emerald-500 to-sage-500 h-4 rounded-full flex items-center justify-end pr-2"
+                className="bg-gradient-to-r from-coral-500 to-sage-500 h-4 rounded-full flex items-center justify-end pr-2"
               >
                 <TrendingUp className="w-3 h-3 text-white" />
               </motion.div>
@@ -506,7 +506,7 @@ export default function PublicLandingPage() {
           >
             <Link
               href="/spenden"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-emerald-600 to-sage-600 text-white rounded-xl font-bold hover:shadow-xl transition-all text-lg"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-sage-600 to-sage-600 text-white rounded-xl font-bold hover:shadow-xl transition-all text-lg"
             >
               <HeartHandshake className="w-6 h-6" />
               Jetzt spenden & helfen
@@ -522,7 +522,7 @@ export default function PublicLandingPage() {
       {/* CTA Cards Section - Explore More */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <motion.div variants={itemVariants} className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-emerald-900 mb-4 text-center">
+          <h2 className="text-4xl font-bold text-charcoal-800 mb-4 text-center">
             Entdecke mehr über uns
           </h2>
           <p className="text-lg text-sage-600 text-center mb-12 max-w-2xl mx-auto">
@@ -539,15 +539,15 @@ export default function PublicLandingPage() {
                 <Link href={card.href} className="h-full block">
                   <motion.div
                     whileHover={{ y: -8 }}
-                    className={`h-full p-8 rounded-xl bg-gradient-to-br ${card.color} border-2 border-emerald-200 transition-all duration-300 cursor-pointer shadow-md hover:shadow-xl`}
+                    className={`h-full p-8 rounded-xl bg-gradient-to-br ${card.color} border-2 border-coral-200 transition-all duration-300 cursor-pointer shadow-md hover:shadow-xl`}
                   >
                     <div className="flex items-start gap-4 mb-4">
-                      <div className="text-emerald-700 flex-shrink-0">
+                      <div className="text-coral-600 flex-shrink-0">
                         {card.icon}
                       </div>
                     </div>
 
-                    <h3 className="text-2xl font-bold text-emerald-900 mb-3">
+                    <h3 className="text-2xl font-bold text-charcoal-800 mb-3">
                       {card.title}
                     </h3>
 
@@ -555,7 +555,7 @@ export default function PublicLandingPage() {
                       {card.description}
                     </p>
 
-                    <div className="flex items-center gap-2 text-emerald-600 font-semibold">
+                    <div className="flex items-center gap-2 text-coral-600 font-semibold">
                       Mehr erfahren
                       <ArrowRight className="w-4 h-4" />
                     </div>
@@ -571,7 +571,7 @@ export default function PublicLandingPage() {
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-white via-cream-50/30 to-white">
         <motion.div variants={itemVariants} className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-emerald-900 mb-4">
+            <h2 className="text-4xl font-bold text-charcoal-800 mb-4">
               Häufig gestellte Fragen
             </h2>
             <p className="text-lg text-sage-600">
@@ -585,32 +585,32 @@ export default function PublicLandingPage() {
                 question: "Ist die Mitgliedschaft wirklich kostenlos?",
                 answer:
                   "Ja, absolut! Unsere Mitgliedschaft ist komplett kostenfrei. Du erhältst vollen Zugang zu allen Veranstaltungen, Beratungsangeboten und der Gemeinschaft ohne jegliche Gebühren.",
-                icon: <CheckCircle className="w-6 h-6 text-emerald-600" />,
+                icon: <CheckCircle className="w-6 h-6 text-coral-600" />,
               },
               {
                 question: "Wie werden meine Spenden verwendet?",
                 answer:
                   "80% deiner Spende fließen direkt in Hilfsprojekte, 15% in Verwaltung und 5% in Fundraising. Wir sind gemeinnützig anerkannt und veröffentlichen jährliche Transparenzberichte.",
-                icon: <Shield className="w-6 h-6 text-emerald-600" />,
+                icon: <Shield className="w-6 h-6 text-coral-600" />,
               },
               {
                 question: "Welche Vorteile habe ich als Mitglied?",
                 answer:
                   "Als Mitglied erhältst du kostenlose psychologische & soziale Beratung, Zugang zu Bildungsangeboten, Events und einer starken Schwesternschaft, die dich versteht und unterstützt.",
-                icon: <Heart className="w-6 h-6 text-emerald-600" />,
+                icon: <Heart className="w-6 h-6 text-coral-600" />,
               },
               {
                 question: "Wie kann ich aktiv mitwirken?",
                 answer:
                   "Du kannst als aktives Mitglied an der Vereinsarbeit teilnehmen, eigene Projekte initiieren, als Helferin Beratung anbieten oder einfach bei Events und Veranstaltungen dabei sein.",
-                icon: <Users className="w-6 h-6 text-emerald-600" />,
+                icon: <Users className="w-6 h-6 text-coral-600" />,
               },
             ].map((faq, idx) => (
               <motion.div
                 key={idx}
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
-                className="p-6 rounded-xl bg-white border-2 border-sage-200 hover:border-emerald-300 transition-all shadow-md"
+                className="p-6 rounded-xl bg-white border-2 border-sage-200 hover:border-coral-300 transition-all shadow-md"
               >
                 <div className="flex items-start gap-3 mb-3">
                   {faq.icon}
@@ -631,7 +631,7 @@ export default function PublicLandingPage() {
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <motion.div
           variants={itemVariants}
-          className="max-w-4xl mx-auto bg-gradient-to-r from-emerald-600 via-sage-600 to-emerald-600 rounded-3xl p-12 text-center text-white shadow-2xl"
+          className="max-w-4xl mx-auto bg-gradient-to-r from-sage-600 via-sage-600 to-emerald-600 rounded-3xl p-12 text-center text-white shadow-2xl"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -653,7 +653,7 @@ export default function PublicLandingPage() {
               >
                 <Link
                   href="/mitglied-werden"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-white text-emerald-700 rounded-xl font-bold hover:shadow-2xl transition-all text-lg"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-white text-coral-600 rounded-xl font-bold hover:shadow-2xl transition-all text-lg"
                 >
                   <Heart className="w-6 h-6" />
                   Kostenlos Mitglied werden

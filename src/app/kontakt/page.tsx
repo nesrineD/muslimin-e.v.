@@ -25,7 +25,7 @@ export default function KontaktPage() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-100 text-emerald-800 rounded-full text-sm font-medium mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-sage-100 text-sage-800 rounded-full text-sm font-medium mb-6"
           >
             <Send className="w-4 h-4" />
             Kontakt
@@ -54,10 +54,10 @@ export default function KontaktPage() {
               whileInView="visible"
               viewport={{ once: true }}
               whileHover={{ y: -4 }}
-              className="p-8 rounded-2xl bg-gradient-to-br from-emerald-50 to-emerald-100 border-2 border-emerald-200 hover:border-emerald-400 transition-all shadow-md hover:shadow-lg"
+              className="p-8 rounded-2xl bg-gradient-to-br from-coral-50 to-coral-100 border-2 border-coral-200 hover:border-coral-400 transition-all shadow-md hover:shadow-lg"
             >
               <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-emerald-500 text-white flex items-center justify-center">
+                <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-coral-500 text-white flex items-center justify-center">
                   <Mail className="w-7 h-7" />
                 </div>
                 <div>
@@ -70,7 +70,7 @@ export default function KontaktPage() {
                   </p>
                   <a
                     href={`mailto:${CONTACT_INFO.email}`}
-                    className="inline-flex items-center gap-2 text-emerald-700 font-semibold hover:text-emerald-800 hover:gap-3 transition-all"
+                    className="inline-flex items-center gap-2 text-coral-700 font-semibold hover:text-coral-800 hover:gap-3 transition-all"
                   >
                     {CONTACT_INFO.email}
                   </a>
@@ -182,7 +182,7 @@ export default function KontaktPage() {
                   Beratungstermine musst du Mitglied sein.{" "}
                   <Link
                     href="/mitglied-werden"
-                    className="text-emerald-700 font-semibold hover:underline"
+                    className="text-coral-700 font-semibold hover:underline"
                   >
                     Hier kostenlos Mitglied werden →
                   </Link>
@@ -212,7 +212,7 @@ export default function KontaktPage() {
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link
               href="/mitglied-werden"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-emerald-600 to-sage-600 text-white rounded-xl font-bold hover:shadow-2xl transition-all shadow-lg"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-sage-600 to-coral-600 text-white rounded-xl font-bold hover:shadow-2xl transition-all shadow-lg"
             >
               Jetzt kostenlos Mitglied werden
             </Link>

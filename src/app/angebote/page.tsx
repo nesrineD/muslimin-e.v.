@@ -30,8 +30,8 @@ const offerings: OfferingCard[] = [
       "Inspirierende Vorträge, Workshops und Seminare zu spirituellen und gesellschaftlichen Themen",
     zielgruppe: "Für alle Mitglieder und Interessierte",
     href: "/veranstaltungen",
-    color: "from-purple-50 to-purple-100",
-    iconBg: "bg-purple-500",
+    color: "from-sage-50 to-sage-100",
+    iconBg: "bg-sage-600",
   },
   {
     icon: <Gift className="w-8 h-8" />,
@@ -40,8 +40,8 @@ const offerings: OfferingCard[] = [
       "Aktive Teilnahme an Wohltätigkeitsprojekten und Hilfsinitiativen für Bedürftige",
     zielgruppe: "Für engagierte Mitglieder und Unterstützer",
     href: "/projekte",
-    color: "from-amber-50 to-amber-100",
-    iconBg: "bg-amber-500",
+    color: "from-warm-50 to-warm-100",
+    iconBg: "bg-warm-600",
   },
   {
     icon: <Users className="w-8 h-8" />,
@@ -50,8 +50,8 @@ const offerings: OfferingCard[] = [
       "Professionelle psychologische und soziale Beratung von verifizierten Helferinnen (nur für Mitglieder)",
     zielgruppe: "Für Vereinsmitglieder",
     href: "/book",
-    color: "from-emerald-50 to-emerald-100",
-    iconBg: "bg-emerald-500",
+    color: "from-coral-50 to-coral-100",
+    iconBg: "bg-coral-600",
   },
 ];
 
@@ -109,7 +109,7 @@ export default function AngebotePage() {
               >
                 <Link
                   href={offering.href}
-                  className={`block h-full p-8 rounded-2xl bg-gradient-to-br ${offering.color} border-2 border-transparent hover:border-emerald-300 transition-all duration-300 shadow-md hover:shadow-xl`}
+                  className={`block h-full p-8 rounded-2xl bg-gradient-to-br ${offering.color} border-2 border-transparent hover:border-coral-300 transition-all duration-300 shadow-md hover:shadow-xl`}
                 >
                   {/* Icon */}
                   <div
@@ -119,7 +119,7 @@ export default function AngebotePage() {
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-2xl font-bold text-sage-800 mb-4 group-hover:text-emerald-700 transition-colors">
+                  <h3 className="text-2xl font-bold text-sage-800 mb-4 group-hover:text-coral-700 transition-colors">
                     {offering.title}
                   </h3>
 
@@ -144,7 +144,7 @@ export default function AngebotePage() {
                   </div>
 
                   {/* CTA */}
-                  <div className="flex items-center gap-2 text-emerald-700 font-semibold group-hover:gap-3 transition-all">
+                  <div className="flex items-center gap-2 text-coral-700 font-semibold group-hover:gap-3 transition-all">
                     <span>Mehr erfahren</span>
                     <ArrowRight className="w-5 h-5" />
                   </div>
@@ -175,7 +175,7 @@ export default function AngebotePage() {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link
                 href="/mitglied-werden"
-                className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-emerald-600 to-sage-600 text-white rounded-xl font-bold hover:shadow-2xl transition-all shadow-lg"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-sage-600 to-coral-600 text-white rounded-xl font-bold hover:shadow-2xl transition-all shadow-lg"
               >
                 <BookOpen className="w-5 h-5" />
                 Jetzt Mitglied werden
@@ -186,7 +186,7 @@ export default function AngebotePage() {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link
                 href="/spenden"
-                className="inline-flex items-center gap-3 px-8 py-4 bg-white text-emerald-700 border-2 border-emerald-300 rounded-xl font-bold hover:shadow-2xl transition-all shadow-md hover:bg-emerald-50"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-white text-coral-700 border-2 border-coral-300 rounded-xl font-bold hover:shadow-2xl transition-all shadow-md hover:bg-coral-50"
               >
                 <Gift className="w-5 h-5" />
                 Unterstützen
