@@ -144,8 +144,8 @@ export default function PublicLandingPage() {
           </p>
 
           <p className="text-lg text-sage-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-            🌟 Kostenlose Mitgliedschaft • Professionelle Beratung •
-            Bildungsangebote • Spirituelles Wachstum
+            🌟 Mitgliedschaft • Professionelle Beratung • Bildungsangebote •
+            Spirituelles Wachstum
           </p>
 
           <div className="flex flex-col items-center gap-5">
@@ -159,7 +159,7 @@ export default function PublicLandingPage() {
                   className="inline-flex w-full sm:w-auto items-center justify-center gap-3 px-10 py-5 bg-gradient-to-r from-sage-600 to-coral-600 text-white rounded-xl font-bold hover:shadow-2xl transition-all text-lg shadow-lg"
                 >
                   <Heart className="w-6 h-6" />
-                  Kostenlos Mitglied werden
+                  Mitglied werden
                   <ArrowRight className="w-5 h-5" />
                 </Link>
               </motion.div>
@@ -193,11 +193,6 @@ export default function PublicLandingPage() {
               <div className="flex items-center gap-2">
                 <CheckCircle className="w-4 h-4 text-coral-600" />
                 <span className="font-medium">Regelmäßige Veranstaltungen</span>
-              </div>
-              <span className="hidden sm:inline">•</span>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-coral-600" />
-                <span className="font-medium">Kostenlos</span>
               </div>
             </motion.div>
           </div>
@@ -325,8 +320,7 @@ export default function PublicLandingPage() {
               Was erwartet dich als Mitglied?
             </h2>
             <p className="text-lg text-sage-600 max-w-2xl mx-auto">
-              Deine kostenlose Mitgliedschaft öffnet Türen zu einer starken
-              Gemeinschaft
+              Deine Mitgliedschaft öffnet Türen zu einer starken Gemeinschaft
             </p>
           </div>
 
@@ -334,7 +328,7 @@ export default function PublicLandingPage() {
             {[
               {
                 icon: <Heart className="w-8 h-8" />,
-                title: "Kostenlose Beratung",
+                title: "Beratung",
                 description:
                   "Professionelle psychologische & soziale Beratung von verifizierten Helferinnen",
                 color: "from-coral-50 to-coral-100",
@@ -397,7 +391,7 @@ export default function PublicLandingPage() {
               href="/mitglied-werden"
               className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-sage-600 to-coral-600 text-white rounded-xl font-bold hover:shadow-xl transition-all text-lg"
             >
-              Jetzt kostenlos Mitglied werden
+              Jetzt Mitglied werden
               <ArrowRight className="w-5 h-5" />
             </Link>
           </motion.div>
@@ -588,7 +582,7 @@ export default function PublicLandingPage() {
                   className="inline-flex items-center gap-2 px-8 py-4 bg-white text-coral-700 rounded-xl font-bold hover:shadow-2xl transition-all text-lg"
                 >
                   <Heart className="w-6 h-6" />
-                  Kostenlos Mitglied werden
+                  Mitglied werden
                   <ArrowRight className="w-5 h-5" />
                 </Link>
               </motion.div>

@@ -56,65 +56,99 @@ export default function AboutPage() {
         </motion.div>
 
         {/* About Section */}
-        <motion.div variants={itemVariants} className="mb-16">
+        <motion.div variants={itemVariants} className="mb-16 space-y-12">
+          {/* Wer sind wir? */}
           <Card className="border-0 shadow-xl bg-white/80 backdrop-blur-sm">
-            <CardHeader className="text-center pb-8">
+            <CardHeader>
               <CardTitle className="text-3xl font-bold text-sage-800 mb-4">
-                Von Frauen für Frauen
+                Wer sind wir?
               </CardTitle>
-              <CardDescription className="text-lg text-sage-600">
-                Wir sind eine Gemeinschaft von muslimischen Frauen, die sich
-                gegenseitig unterstützen
-              </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-8">
-              <div className="grid md:grid-cols-3 gap-8">
-                <motion.div
-                  variants={itemVariants}
-                  className="text-center p-6 rounded-2xl bg-gradient-to-br from-sage-50 to-sage-100"
-                >
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-sage-600 text-white mb-4">
-                    <Users className="w-8 h-8" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-sage-800 mb-2">
-                    Unsere Gemeinschaft
-                  </h3>
-                  <p className="text-sage-600">
-                    Mehr als 50 Mitglieder in Berlin und Umgebung
-                  </p>
-                </motion.div>
+            <CardContent className="space-y-4 text-lg text-sage-600 leading-relaxed">
+              <p>
+                Wir sind ein aktiver muslimischer Mädchen- und Frauenverein im
+                Herzen Berlins. Mitglieder verschiedenster Herkünfte und
+                Generationen sorgen im Verein für Diversität.
+              </p>
+              <p>
+                Mit facettenreichen Veranstaltungen, Vorträgen und
+                Mitgliederaktivitäten bieten wir Musliminnen in Berlin und
+                Deutschland eine Plattform um religiöses Wissen zu erlangen.
+              </p>
+              <p>
+                Darüber hinaus können sich Frauen und Mädchen ehrenamtlich für
+                religiöse und gesellschaftliche Belange von Musliminnen
+                engagieren, indem sie ihre Kompetenzen und Erfahrungen
+                einbringen und so ihr eigenes Potenzial entfalten und
+                gleichzeitig die Gemeinde stärken.
+              </p>
+              <p>
+                Mütter sind in unserem Verein sehr Willkommen. Mit einer
+                stätigen Kinderbetreuung sorgen wir innerhalb unserer Programme
+                für eine kinderfreundliche Atmosphäre.
+              </p>
+            </CardContent>
+          </Card>
 
-                <motion.div
-                  variants={itemVariants}
-                  className="text-center p-6 rounded-2xl bg-gradient-to-br from-coral-50 to-coral-100"
-                >
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-coral-500 text-white mb-4">
-                    <Heart className="w-8 h-8" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-sage-800 mb-2">
-                    Deutschsprachig
-                  </h3>
-                  <p className="text-sage-600">
-                    Islamische Veranstaltungen auf Deutsch für bessere
-                    Integration
-                  </p>
-                </motion.div>
-
-                <motion.div
-                  variants={itemVariants}
-                  className="text-center p-6 rounded-2xl bg-gradient-to-br from-warm-50 to-warm-100"
-                >
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-warm-500 text-white mb-4">
-                    <Baby className="w-8 h-8" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-sage-800 mb-2">
-                    Kinderfreundlich
-                  </h3>
-                  <p className="text-sage-600">
-                    Mit Kinderbetreuung und speziellen Kinderprogrammen
-                  </p>
-                </motion.div>
-              </div>
+          {/* Vereinsphilosophie */}
+          <Card className="border-0 shadow-xl bg-white/80 backdrop-blur-sm">
+            <CardHeader>
+              <CardTitle className="text-3xl font-bold text-sage-800 mb-4">
+                Vereinsphilosophie
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4 text-lg text-sage-600 leading-relaxed">
+              <p>
+                Unser Verein wurde 2011 zunächst mit der Absicht gegründet,
+                muslimische Frauen in Berlin und bundesweit miteinander zu
+                vernetzen und ihnen eine Stimme zu verleihen. Vor der Gründung
+                herrschte ein Mangel an Angeboten, speziell für Frauen der
+                Berliner Gemeinden, die für die religiöse Identitätsfindung und
+                die Entwicklung des Selbstbewusstseins dieser
+                Gesellschaftsgruppe wichtig sind.
+              </p>
+              <p>
+                Unsere großen Vorbilder, Sayeda Fatima (a) und ihre Tochter,
+                Sayeda Zainab (a), inspirieren uns zu unserer ehrenamtlichen
+                Arbeit im Verein, mit der wir die muslimischen Frauen in der
+                Gemeinde und für die Gesellschaft stärken wollen.
+              </p>
+              <p>
+                Dabei dient unsere Vereinsarbeit der religiösen Bildung und der
+                Stärkung der muslimisch-deutschen Identität. Darüber hinaus
+                möchten wir den Austausch über gesellschaftlich relevante Themen
+                fördern. Wir bieten daher sowohl jungen als auch älteren Frauen
+                die Möglichkeit, sich in einem geschützten Kreis und von
+                Experten angeleitet, Wissen über geschlechtsspezifische
+                Themengebiete sowie Rechtsgrundlagen anzueignen und
+                berücksichtigen dabei ihre Bedürfnisse und Interessen. Dadurch
+                entsteht eine angenehme und vertrauensvolle Atmosphäre, in der
+                man sich gegenseitig unterstützt. Wir möchten außerdem mit
+                unserer Arbeit Frauen dazu motivieren, selbst aktiv zu werden,
+                indem sie sich in die Gemeindearbeit einbringen und so die
+                Gesellschaft mitgestalten. Durch die Mitgestaltung unserer
+                Veranstaltungen sollen die Talente unserer Mitgliederinnen
+                gefördert und gefordert werden.
+              </p>
+              <p>
+                Des Weiteren suchen wir mit der Organisation und der Teilnahme
+                an Veranstaltungen, die für jeden offen stehen, den Dialog mit
+                anderen. Dadurch erhoffen wir uns, zur Aufklärung der
+                Allgemeinbevölkerung beitragen zu können.
+              </p>
+              <p>
+                Eine große Gruppe unter unseren Gästen stellen die Mütter dar.
+                Durch das Angebot der Kinderbetreuung während unserer
+                Veranstaltungen sowie der Organisation von Kinderprogrammen
+                möchten wir sie entlasten und ihnen die Möglichkeit geben,
+                entspannter an unseren Veranstaltungen teilzunehmen.
+              </p>
+              <p>
+                Wir erhoffen uns für die Zukunft die Ausweitung unserer Projekte
+                und Kooperationen, um so noch mehr Schwestern bei den
+                Herausforderungen im Leben einer Muslimin in Deutschland zu
+                unterstützen.
+              </p>
             </CardContent>
           </Card>
         </motion.div>

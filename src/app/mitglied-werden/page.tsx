@@ -379,7 +379,7 @@ export default function MitgliedWerdenPage() {
               <div className="text-center mt-6 space-y-2">
                 <div className="flex items-center justify-center gap-3 text-sm text-sage-600">
                   <CheckCircle className="h-5 w-5 text-green-500" />
-                  <span>Kostenlose Mitgliedschaft</span>
+                  <span>Mitgliedschaft</span>
                 </div>
                 <div className="flex items-center justify-center gap-3 text-sm text-sage-600">
                   <CheckCircle className="h-5 w-5 text-green-500" />
@@ -388,65 +388,6 @@ export default function MitgliedWerdenPage() {
               </div>
             </CardHeader>
           </Card>
-        </motion.div>
-
-        {/* FAQ Section */}
-        <motion.div variants={itemVariants} className="mt-20">
-          <h2 className="text-3xl font-bold text-center text-sage-800 mb-12">
-            Häufig gestellte Fragen
-          </h2>
-          <div className="grid gap-6 md:grid-cols-2 max-w-5xl mx-auto">
-            <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
-              <CardContent className="p-6">
-                <h3 className="font-bold text-sage-800 mb-3 text-lg">
-                  💝 Kostet die Mitgliedschaft etwas?
-                </h3>
-                <p className="text-sage-600 leading-relaxed">
-                  Nein, unsere Schwesternschaft ist völlig kostenfrei! Alle
-                  Beratungsleistungen, Veranstaltungen und die Gemeinschaft sind
-                  ein Geschenk für Sie.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
-              <CardContent className="p-6">
-                <h3 className="font-bold text-sage-800 mb-3 text-lg">
-                  ⏰ Wie lange dauert die Bearbeitung?
-                </h3>
-                <p className="text-sage-600 leading-relaxed">
-                  Wir melden uns innerhalb von 2-3 Werktagen bei Ihnen. Wir
-                  nehmen uns die Zeit, jede Anfrage persönlich zu prüfen.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
-              <CardContent className="p-6">
-                <h3 className="font-bold text-sage-800 mb-3 text-lg">
-                  🌸 Wer kann Mitglied werden?
-                </h3>
-                <p className="text-sage-600 leading-relaxed">
-                  Jede Frau, die Unterstützung sucht oder anderen helfen möchte,
-                  ist herzlich willkommen – unabhängig von Herkunft oder
-                  Lebenssituation.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
-              <CardContent className="p-6">
-                <h3 className="font-bold text-sage-800 mb-3 text-lg">
-                  🔒 Ist alles wirklich vertraulich?
-                </h3>
-                <p className="text-sage-600 leading-relaxed">
-                  Absolut! Ihre Privatsphäre ist uns heilig. Alle Gespräche sind
-                  streng vertraulich und Ihre Daten werden nach höchsten
-                  Standards geschützt.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
         </motion.div>
 
         {/* Social Media Section */}

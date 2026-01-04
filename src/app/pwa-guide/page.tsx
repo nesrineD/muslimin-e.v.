@@ -122,7 +122,7 @@ export default function PWAGuidePage() {
           <p className="text-lg md:text-xl text-sage-600 max-w-3xl mx-auto leading-relaxed">
             Installieren Sie unsere Website als App auf Ihrem Smartphone für
             schnelleren Zugriff, Offline-Funktionen und ein app-ähnliches
-            Erlebnis. Kostenlos und ohne App Store!
+            Erlebnis. Ohne App Store!
           </p>
         </motion.div>
 
@@ -279,103 +279,6 @@ export default function PWAGuidePage() {
               </div>
             </TabsContent>
           </Tabs>
-        </motion.div>
-
-        {/* FAQ Section */}
-        <motion.div className="mb-16" variants={itemVariants}>
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
-            Häufig gestellte Fragen
-          </h2>
-
-          <div className="max-w-3xl mx-auto space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-sage-800">
-                  Ist die Installation kostenlos?
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">
-                  Ja, die Installation ist vollkommen kostenlos. Es handelt sich
-                  um eine Progressive Web App (PWA), die direkt von unserer
-                  Website installiert wird.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-sage-800">
-                  Brauche ich den App Store?
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">
-                  Nein, die App wird direkt aus dem Browser installiert. Sie
-                  müssen weder den App Store noch Google Play Store verwenden.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-sage-800">
-                  Wie viel Speicherplatz wird benötigt?
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">
-                  Die App benötigt nur wenige MB Speicherplatz und ist viel
-                  kleiner als traditionelle Apps aus dem App Store.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-sage-800">
-                  Was passiert wenn ich die App nicht mehr möchte?
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">
-                  Sie können die App jederzeit wie jede andere App von Ihrem
-                  Gerät löschen. Halten Sie das App-Icon gedrückt und wählen Sie
-                  &quot;App entfernen&quot; oder &quot;Deinstallieren&quot;.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-sage-800">
-                  Ich sehe keine Option zur Installation
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-gray-600 space-y-2">
-                  <p>Mögliche Ursachen und Lösungen:</p>
-                  <ul className="list-disc pl-6 space-y-1">
-                    <li>
-                      Stellen Sie sicher, dass Sie den richtigen Browser
-                      verwenden (Safari für iOS, Chrome für Android)
-                    </li>
-                    <li>
-                      Aktualisieren Sie Ihren Browser auf die neueste Version
-                    </li>
-                    <li>
-                      Bei iOS: Verwenden Sie Safari, nicht Chrome oder andere
-                      Browser
-                    </li>
-                    <li>
-                      Prüfen Sie, ob Sie bereits eine ältere Version installiert
-                      haben
-                    </li>
-                  </ul>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
         </motion.div>
 
         {/* Call to Action */}
