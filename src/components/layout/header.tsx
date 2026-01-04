@@ -160,7 +160,7 @@ export function Header() {
                     asChild
                     className={`transition-colors duration-200 px-3 py-2 font-medium text-sm ${
                       "primary" in link && link.primary
-                        ? "hover:bg-emerald-50 hover:text-emerald-700 text-emerald-600 font-semibold"
+                        ? "hover:bg-coral-50 hover:text-coral-700 text-coral-600 font-semibold"
                         : "hover:bg-sage-50 hover:text-sage-700"
                     }`}
                   >
@@ -435,14 +435,14 @@ export function Header() {
                         href={link.href}
                         className={`block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors group ${
                           "primary" in link && link.primary
-                            ? "hover:bg-emerald-50 focus:bg-emerald-50"
+                            ? "hover:bg-coral-50 focus:bg-coral-50"
                             : "hover:bg-sage-50 focus:bg-sage-50"
                         }`}
                       >
                         <div
                           className={`text-sm font-medium leading-none flex items-center space-x-2 ${
                             "primary" in link && link.primary
-                              ? "group-hover:text-emerald-700 text-emerald-600 font-semibold"
+                              ? "group-hover:text-coral-700 text-coral-600 font-semibold"
                               : "group-hover:text-sage-700"
                           }`}
                         >

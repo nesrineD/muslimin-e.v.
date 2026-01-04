@@ -34,14 +34,14 @@ export default function SpendenPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-100 text-emerald-800 rounded-full text-sm font-medium mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-sage-100 text-sage-800 rounded-full text-sm font-medium mb-6"
           >
             <Shield className="w-4 h-4" />
             Gemeinnützig • 100% transparente Verwendung
           </motion.div>
 
           <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-emerald-800 via-sage-700 to-warm-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-charcoal-800 via-sage-700 to-coral-700 bg-clip-text text-transparent">
               Deine Spende verändert Leben 💚
             </span>
           </h1>
@@ -57,7 +57,7 @@ export default function SpendenPage() {
           {/* Quick Impact Stats */}
           <div className="flex flex-wrap items-center justify-center gap-6 text-sm">
             <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm">
-              <TrendingUp className="w-4 h-4 text-emerald-600" />
+              <TrendingUp className="w-4 h-4 text-coral-600" />
               <span className="font-semibold text-sage-800">
                 80% direkte Hilfe
               </span>
@@ -70,9 +70,7 @@ export default function SpendenPage() {
             </div>
             <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm">
               <Shield className="w-4 h-4 text-sage-600" />
-              <span className="font-semibold text-sage-800">
-                DSGVO-konform
-              </span>
+              <span className="font-semibold text-sage-800">DSGVO-konform</span>
             </div>
           </div>
         </motion.div>
