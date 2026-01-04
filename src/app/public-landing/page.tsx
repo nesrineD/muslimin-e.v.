@@ -303,22 +303,15 @@ export default function PublicLandingPage() {
       </section>
 
       {/* Social Media Section - Prominently Placed */}
-      <section className="py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-white via-sage-50/30 to-white">
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-sage-50 via-cream-50 to-sage-50">
         <motion.div variants={itemVariants} className="max-w-6xl mx-auto">
           <div className="text-center mb-8">
-            <motion.h2
-              className="text-3xl md:text-4xl font-bold mb-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <span className="bg-gradient-to-r from-charcoal-800 via-sage-700 to-coral-700 bg-clip-text text-transparent">
-                Folge uns & bleib verbunden! 📱
-              </span>
-            </motion.h2>
+            <h2 className="text-4xl font-bold text-sage-800 mb-4">
+              Folge uns auf Social Media! 📱
+            </h2>
             <p className="text-lg text-sage-600 max-w-2xl mx-auto">
-              Aktuelle Flyer, Termine, Live-Updates und inspirierende Inhalte –
-              täglich auf unseren Social-Media-Kanälen
+              Bleib auf dem Laufenden mit aktuellen Flyern, Terminen und
+              Live-Updates
             </p>
           </div>
           <SocialMediaSection variant="compact" showTitle={false} />
