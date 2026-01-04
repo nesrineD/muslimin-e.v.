@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Mail, MapPin, ChevronRight } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { SocialMediaSection } from "@/components/SocialMediaSection";
+<<<<<<< HEAD
 import { LEGAL_LINKS } from "@/lib/constants";
 
 const NAV_LINKS = [
@@ -12,6 +13,14 @@ const NAV_LINKS = [
   { label: "Mitglied werden", href: "/mitglied-werden" },
   { label: "Spenden", href: "/spenden" },
 ];
+=======
+import {
+  NAV_LINKS,
+  LEGAL_LINKS,
+  CONTACT_INFO,
+  TRUST_TEXT,
+} from "@/lib/constants";
+>>>>>>> a60a4b3 (feat: Webseite Umstrukturierung)
 
 export function Footer() {
   return (
@@ -31,6 +40,16 @@ export function Footer() {
                 Muslimin e.V.
               </span>
             </Link>
+<<<<<<< HEAD
+=======
+            <Link
+              href="/about"
+              className="text-sm text-sage-600/90 hover:text-sage-800 leading-relaxed transition-colors block max-w-xs"
+            >
+              Muslimischer Frauen- & Mädchenverein – Gemeinschaft, Bildung &
+              Hilfe seit 2011
+            </Link>
+>>>>>>> a60a4b3 (feat: Webseite Umstrukturierung)
 
             <p className="text-sm text-sage-600/90 max-w-xs">
               Muslimischer Frauen- & Mädchenverein – Gemeinschaft, Bildung & Hilfe seit 2011
@@ -68,11 +87,21 @@ export function Footer() {
             </h3>
             <address className="not-italic space-y-2.5 text-sm">
               <a
+<<<<<<< HEAD
                 href="mailto:info@muslimin-ev.de"
                 className="flex items-center gap-2 text-sage-600 hover:text-sage-800 transition-colors"
               >
                 <Mail className="h-4 w-4 text-sage-500 flex-shrink-0" />
                 info@muslimin-ev.de
+=======
+                href={`mailto:${CONTACT_INFO.email}`}
+                className="flex items-center gap-2 text-sage-600 hover:text-sage-800 transition-colors group"
+              >
+                <Mail className="h-4 w-4 text-sage-500 group-hover:text-sage-700 transition-colors flex-shrink-0" />
+                <span className="group-hover:underline">
+                  {CONTACT_INFO.email}
+                </span>
+>>>>>>> a60a4b3 (feat: Webseite Umstrukturierung)
               </a>
               <p className="flex items-start gap-2 text-sage-600">
                 <MapPin className="h-4 w-4 text-sage-500 mt-0.5 flex-shrink-0" />
@@ -97,6 +126,7 @@ export function Footer() {
               ))}
 =======
             <ul className="space-y-2.5">
+<<<<<<< HEAD
               <li>
                 <Link
                   href="/impressum"
@@ -131,6 +161,21 @@ export function Footer() {
                 </Link>
               </li>
 >>>>>>> aeacac5 (Update src/components/layout/footer.tsx)
+=======
+              {LEGAL_LINKS.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="flex items-center gap-2 text-sm text-sage-600 hover:text-sage-800 hover:translate-x-0.5 transition-all group"
+                  >
+                    <ChevronRight className="h-3.5 w-3.5 text-sage-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <span className="group-hover:font-medium transition-all">
+                      {link.label}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+>>>>>>> a60a4b3 (feat: Webseite Umstrukturierung)
             </ul>
           </div>
         </div>
@@ -142,7 +187,7 @@ export function Footer() {
           <span className="flex items-center gap-2">
             <span className="hidden md:inline text-sage-400">•</span>
             <span className="flex items-center gap-1.5 font-medium text-sage-600">
-              Gemeinnützig anerkannt • DSGVO-konform • Seit 2011
+              {TRUST_TEXT}
             </span>
           </span>
         </div>
