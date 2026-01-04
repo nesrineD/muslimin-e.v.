@@ -267,10 +267,14 @@ export function Header() {
               </DropdownMenuTrigger>
               <DropdownMenuContent
 <<<<<<< HEAD
+<<<<<<< HEAD
                 className="w-56 bg-sand-50 border-sage-500"
 =======
                 className="w-56 bg-sand-50 border-sage-200"
 >>>>>>> ae4cb06 (Implement Sage-dominant color palette and update navigation components)
+=======
+                className="w-56 bg-sand-50 border-sage-500"
+>>>>>>> 4c0e6dc (Apply Sage-dominant navigation (rebased on 006-webseiten-optimierung))
                 align="end"
                 side="bottom"
               >
@@ -477,10 +481,14 @@ export function Header() {
               {user && (
                 <>
 <<<<<<< HEAD
+<<<<<<< HEAD
                   <div className="border-t border-sage-500 pt-4">
 =======
                   <div className="border-t border-sage-200 pt-4">
 >>>>>>> ae4cb06 (Implement Sage-dominant color palette and update navigation components)
+=======
+                  <div className="border-t border-sage-500 pt-4">
+>>>>>>> 4c0e6dc (Apply Sage-dominant navigation (rebased on 006-webseiten-optimierung))
                     <p className="text-xs font-medium text-charcoal-600 mb-3">
                       Mitglieder-Bereich
                     </p>
@@ -536,10 +544,14 @@ export function Header() {
               )}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
               <div className="border-t border-sage-500 pt-4 space-y-2">
 =======
               <div className="border-t border-sage-200 pt-4 space-y-2">
 >>>>>>> ae4cb06 (Implement Sage-dominant color palette and update navigation components)
+=======
+              <div className="border-t border-sage-500 pt-4 space-y-2">
+>>>>>>> 4c0e6dc (Apply Sage-dominant navigation (rebased on 006-webseiten-optimierung))
                 {loading && !user && !isSigningOut ? (
                   <div className="text-sm text-charcoal-600 text-center">
                     Lade...
@@ -585,10 +597,14 @@ export function Header() {
                     {user.is_helper && (
                       <>
 <<<<<<< HEAD
+<<<<<<< HEAD
                         <div className="border-t border-sage-500 pt-2 mt-2">
 =======
                         <div className="border-t border-sage-200 pt-2 mt-2">
 >>>>>>> ae4cb06 (Implement Sage-dominant color palette and update navigation components)
+=======
+                        <div className="border-t border-sage-500 pt-2 mt-2">
+>>>>>>> 4c0e6dc (Apply Sage-dominant navigation (rebased on 006-webseiten-optimierung))
                           <div className="text-xs text-charcoal-600 text-center mb-2 font-medium">
                             Helferin-Bereich
                           </div>
