@@ -220,7 +220,7 @@ export const CONTACT_INFO = {
  * Primary Navigation (5 items)
  */
 export const NAV_LINKS = [
-  { href: "/about", label: "Über uns" },
+  { href: "/uber-uns", label: "Über uns" },
   { href: "/angebote", label: "Angebote" },
   { href: "/mitglied-werden", label: "Mitglied werden", primary: true },
   { href: "/spenden", label: "Spenden", primary: true },
@@ -248,6 +248,6 @@ export const hasAnySocialLink = () =>
 
 export const getActiveSocialLinks = () =>
   Object.entries(SOCIAL_LINKS)
-    .filter(([_, url]) => url.length > 0)
+    .filter(([, url]) => url.length > 0)
     .map(([platform, url]) => ({ platform, url }));
 >>>>>>> a60a4b3 (feat: Webseite Umstrukturierung)

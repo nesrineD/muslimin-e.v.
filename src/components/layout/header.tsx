@@ -54,10 +54,8 @@ export function Header() {
   // Reset signing out state when user changes
   useEffect(() => {
     if (user) {
-      console.log("User logged in, resetting isSigningOut state");
       setIsSigningOut(false);
     } else {
-      console.log("User logged out, ensuring isSigningOut is false");
       setIsSigningOut(false);
     }
   }, [user]);
@@ -73,27 +71,23 @@ export function Header() {
 
   const handleSignOut = async () => {
     if (isSigningOut) {
+<<<<<<< HEAD
       console.log("Sign out already in progress, ignoring...");
       return;
+=======
+      return; // Prevent multiple clicks
+>>>>>>> 04ebdb4 (feat: weitere Design Anpassungen)
     }
 
     try {
-      console.log(
-        "Starting sign out process for user:",
-        user?.email,
-        "is_helper:",
-        user?.is_helper
-      );
       setIsSigningOut(true);
 
       await signOut();
-      console.log("Sign out successful, redirecting to login...");
 
       setTimeout(() => {
         window.location.href = "/login";
       }, 50);
-    } catch (error) {
-      console.error("Error signing out:", error);
+    } catch {
       setIsSigningOut(false);
       alert("Fehler beim Abmelden. Bitte versuchen Sie es erneut.");
     }
@@ -156,11 +150,19 @@ export function Header() {
                   whileTap={{ scale: 0.98 }}
                 >
                   <Button
-                    variant="ghost"
+                    variant={
+                      "primary" in link && link.primary
+                        ? link.href === "/mitglied-werden"
+                          ? "default"
+                          : "outline"
+                        : "ghost"
+                    }
                     asChild
                     className={`transition-colors duration-200 px-3 py-2 font-medium text-sm ${
                       "primary" in link && link.primary
-                        ? "hover:bg-coral-50 hover:text-coral-700 text-coral-600 font-semibold"
+                        ? link.href === "/mitglied-werden"
+                          ? "bg-gradient-to-r from-sage-600 to-coral-600 text-white hover:from-sage-700 hover:to-coral-700 shadow-sm"
+                          : "border-coral-300 text-coral-700 hover:bg-coral-50 hover:text-coral-800"
                         : "hover:bg-sage-50 hover:text-sage-700"
                     }`}
                   >

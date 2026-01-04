@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import {
@@ -35,6 +35,14 @@ export default function ProfilePage() {
   const router = useRouter();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
+  const [isRedirecting, setIsRedirecting] = useState(false);
+
+  useEffect(() => {
+    if (!user) {
+      setIsRedirecting(true);
+      router.replace("/login");
+    }
+  }, [router, user]);
 
   // Form state
   const [profileData, setProfileData] = useState({
@@ -97,8 +105,20 @@ export default function ProfilePage() {
   };
 
   if (!user) {
-    router.push("/login");
-    return null;
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-sage-50 via-white to-warm-50">
+        <div className="container mx-auto px-4 py-10">
+          <div className="max-w-md mx-auto rounded-xl border border-sage-200 bg-white p-6 text-center shadow-sm">
+            <p className="text-sage-800 font-semibold">
+              {isRedirecting ? "Weiterleitung…" : "Bitte warten…"}
+            </p>
+            <p className="text-sm text-sage-600 mt-2">
+              Du wirst zum Login weitergeleitet.
+            </p>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (

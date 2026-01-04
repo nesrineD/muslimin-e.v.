@@ -93,9 +93,9 @@ export default function PWAGuidePage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sage-50 via-white to-warm-50">
+    <div className="min-h-screen bg-gradient-to-br from-cream-50 via-white to-sage-50">
       <motion.div
-        className="container mx-auto px-4 py-12"
+        className="container mx-auto px-4 py-16 md:py-20"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -107,19 +107,19 @@ export default function PWAGuidePage() {
               <div className="w-20 h-20 bg-gradient-to-r from-sage-500 to-warm-500 rounded-2xl flex items-center justify-center shadow-lg">
                 <Smartphone className="w-10 h-10 text-white" />
               </div>
-              <div className="absolute -top-2 -right-2 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+              <div className="absolute -top-2 -right-2 w-8 h-8 bg-coral-600 rounded-full flex items-center justify-center">
                 <Download className="w-4 h-4 text-white" />
               </div>
             </div>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">
             Muslimin als{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-sage-600 to-warm-600">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-charcoal-800 via-sage-700 to-coral-700">
               Mobile App
             </span>{" "}
             nutzen
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-sage-600 max-w-3xl mx-auto leading-relaxed">
             Installieren Sie unsere Website als App auf Ihrem Smartphone für
             schnelleren Zugriff, Offline-Funktionen und ein app-ähnliches
             Erlebnis. Kostenlos und ohne App Store!
@@ -128,21 +128,21 @@ export default function PWAGuidePage() {
 
         {/* Benefits Section */}
         <motion.div className="mb-16" variants={itemVariants}>
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-charcoal-800 mb-12">
             Warum als App installieren?
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             <Card className="text-center border-sage-200 hover:border-sage-300 transition-all duration-300 hover:shadow-lg">
               <CardHeader>
-                <div className="w-16 h-16 bg-gradient-to-r from-blue-100 to-blue-200 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Smartphone className="w-8 h-8 text-blue-600" />
+                <div className="w-16 h-16 bg-gradient-to-r from-sage-100 to-sage-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Smartphone className="w-8 h-8 text-sage-700" />
                 </div>
                 <CardTitle className="text-sage-800">
                   Schneller Zugriff
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600">
+                <p className="text-sage-600">
                   Direkter Zugriff vom Home-Bildschirm, ohne Browser öffnen zu
                   müssen
                 </p>
@@ -151,13 +151,13 @@ export default function PWAGuidePage() {
 
             <Card className="text-center border-sage-200 hover:border-sage-300 transition-all duration-300 hover:shadow-lg">
               <CardHeader>
-                <div className="w-16 h-16 bg-gradient-to-r from-green-100 to-green-200 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Monitor className="w-8 h-8 text-green-600" />
+                <div className="w-16 h-16 bg-gradient-to-r from-cream-100 to-cream-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Monitor className="w-8 h-8 text-sage-700" />
                 </div>
                 <CardTitle className="text-sage-800">App-Erlebnis</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600">
+                <p className="text-sage-600">
                   Vollbild-Modus ohne Browser-Interface für fokussierte Nutzung
                 </p>
               </CardContent>
@@ -165,15 +165,15 @@ export default function PWAGuidePage() {
 
             <Card className="text-center border-sage-200 hover:border-sage-300 transition-all duration-300 hover:shadow-lg">
               <CardHeader>
-                <div className="w-16 h-16 bg-gradient-to-r from-purple-100 to-purple-200 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Download className="w-8 h-8 text-purple-600" />
+                <div className="w-16 h-16 bg-gradient-to-r from-warm-100 to-warm-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Download className="w-8 h-8 text-warm-700" />
                 </div>
                 <CardTitle className="text-sage-800">
                   Offline verfügbar
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600">
+                <p className="text-sage-600">
                   Grundfunktionen auch ohne Internetverbindung nutzbar
                 </p>
               </CardContent>
@@ -183,7 +183,7 @@ export default function PWAGuidePage() {
 
         {/* Installation Guide */}
         <motion.div className="mb-16" variants={itemVariants}>
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-charcoal-800 mb-12">
             Installations-Anleitung
           </h2>
 

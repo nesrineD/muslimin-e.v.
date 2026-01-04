@@ -37,7 +37,7 @@ export default function SpendenPage() {
             className="inline-flex items-center gap-2 px-4 py-2 bg-sage-100 text-sage-800 rounded-full text-sm font-medium mb-6"
           >
             <Shield className="w-4 h-4" />
-            Gemeinnützig • 100% transparente Verwendung
+            Gemeinnützig anerkannt • transparente Mittelverwendung
           </motion.div>
 
           <h1 className="text-5xl md:text-6xl font-bold mb-6">
@@ -50,8 +50,8 @@ export default function SpendenPage() {
           </p>
           <p className="text-lg text-sage-600 max-w-2xl mx-auto mb-8">
             Wir sind ein gemeinnützig anerkannter Verein und berichten
-            transparent über die Verwendung jeder Spende. 80% fließen direkt in
-            Hilfsprojekte.
+            transparent über die Verwendung von Spenden. Der Schwerpunkt liegt
+            auf direkter Hilfe und Projekten.
           </p>
 
           {/* Quick Impact Stats */}
@@ -59,13 +59,13 @@ export default function SpendenPage() {
             <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm">
               <TrendingUp className="w-4 h-4 text-coral-600" />
               <span className="font-semibold text-sage-800">
-                80% direkte Hilfe
+                Fokus: direkte Hilfe
               </span>
             </div>
             <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm">
               <Heart className="w-4 h-4 text-coral-500" />
               <span className="font-semibold text-sage-800">
-                500+ Begünstigte/Jahr
+                Unterstützung für Hilfsprojekte
               </span>
             </div>
             <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm">
@@ -102,7 +102,7 @@ export default function SpendenPage() {
                   href={`https://www.paypal.com/donate?hosted_button_id=${paypalButtonId}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block px-6 py-3 bg-gradient-to-r from-sage-600 to-warm-600 text-white rounded-lg font-semibold hover:shadow-lg transition-shadow"
+                  className="inline-block px-6 py-3 bg-gradient-to-r from-sage-600 to-coral-600 text-white rounded-lg font-semibold hover:shadow-lg transition-shadow"
                 >
                   Jetzt spenden
                 </motion.a>
@@ -236,7 +236,7 @@ export default function SpendenPage() {
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <motion.div
           variants={itemVariants}
-          className="max-w-4xl mx-auto bg-gradient-to-r from-sage-600 to-warm-600 rounded-2xl p-12 text-center text-white"
+          className="max-w-4xl mx-auto bg-gradient-to-r from-sage-600 to-coral-600 rounded-2xl p-12 text-center text-white"
         >
           <h2 className="text-3xl font-bold mb-6">Deine Spende bewirkt</h2>
 
@@ -272,9 +272,9 @@ export default function SpendenPage() {
               {
                 title: "Ausgabenverteilung",
                 items: [
-                  "80% direkte Hilfe",
-                  "15% Verwaltung",
-                  "5% Fundraising",
+                  "Schwerpunkt: direkte Hilfe & Projekte",
+                  "Organisation & Verwaltung",
+                  "Kommunikation & Fundraising",
                 ],
               },
               {
@@ -322,7 +322,7 @@ export default function SpendenPage() {
           </p>
           <a
             href="mailto:info@muslimin-ev.de"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-sage-600 to-warm-600 text-white rounded-lg font-semibold hover:shadow-lg transition-shadow"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-sage-600 to-coral-600 text-white rounded-lg font-semibold hover:shadow-lg transition-shadow"
           >
             Kontakt aufnehmen
           </a>

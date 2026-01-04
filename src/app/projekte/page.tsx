@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Heart, Users } from "lucide-react";
-import { containerVariants, itemVariants } from "../../lib/animations";
+import { containerVariants, itemVariants } from "@/lib/animations";
 interface DonationCampaign {
   id: string;
   title: string;
@@ -26,7 +26,7 @@ const donationCampaigns: DonationCampaign[] = [
     ],
     icon: <Heart className="w-12 h-12" />,
     goal: "Damit du weißt, wie deine Spende verwendet wird",
-    impact: "Jede Spende rettet Leben",
+    impact: "Jede Spende hilft",
   },
   {
     id: "local-support",
@@ -53,22 +53,22 @@ export default function ProjektePage() {
       animate="visible"
     >
       {/* Hero Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
+      <section className="py-20 md:py-24 px-4 sm:px-6 lg:px-8">
         <motion.div
           variants={itemVariants}
           className="max-w-4xl mx-auto text-center"
         >
-          <h1 className="text-5xl md:text-6xl font-bold text-sage-800 mb-6">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-charcoal-800 via-sage-700 to-coral-700 bg-clip-text text-transparent">
             Unsere Projekte & Spendenaktionen
           </h1>
-          <p className="text-xl text-warm-600">
+          <p className="text-lg md:text-xl text-sage-600 max-w-2xl mx-auto">
             Unterstütze Projekte, die einen echten Unterschied machen
           </p>
         </motion.div>
       </section>
 
       {/* Donation Campaigns */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
+      <section className="py-16 md:py-20 px-4 sm:px-6 lg:px-8">
         <motion.div variants={itemVariants} className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-8">
             {donationCampaigns.map((campaign) => (
@@ -115,12 +115,12 @@ export default function ProjektePage() {
       </section>
 
       {/* Transparency Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+      <section className="py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <motion.div
           variants={itemVariants}
           className="max-w-4xl mx-auto text-center"
         >
-          <h2 className="text-4xl font-bold text-sage-800 mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-sage-800 mb-6">
             Transparenz ist uns wichtig
           </h2>
 
@@ -131,9 +131,9 @@ export default function ProjektePage() {
 
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { label: "Spender weltweit", value: "500+" },
-              { label: "Jährlich verteilte Mittel", value: "€100k+" },
-              { label: "Transparenzbericht", value: "Jährlich" },
+              { label: "Unterstützerinnen", value: "Viele" },
+              { label: "Mittel für Projekte", value: "Laufend" },
+              { label: "Transparenz", value: "Regelmäßig" },
             ].map((stat, idx) => (
               <motion.div
                 key={idx}
@@ -151,10 +151,10 @@ export default function ProjektePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
+      <section className="py-20 md:py-24 px-4 sm:px-6 lg:px-8">
         <motion.div
           variants={itemVariants}
-          className="max-w-3xl mx-auto bg-gradient-to-r from-sage-600 to-warm-600 rounded-2xl p-12 text-center text-white"
+          className="max-w-3xl mx-auto bg-gradient-to-r from-sage-600 to-coral-600 rounded-2xl p-12 text-center text-white"
         >
           <h2 className="text-3xl font-bold mb-4">Möchtest du helfen?</h2>
           <p className="text-lg mb-8 opacity-90">
@@ -162,7 +162,7 @@ export default function ProjektePage() {
           </p>
           <a
             href="/spenden"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-white text-sage-600 rounded-lg font-semibold hover:shadow-lg transition-shadow"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-white text-coral-700 rounded-lg font-semibold hover:shadow-lg transition-shadow"
           >
             Zu den Spendenmöglichkeiten
           </a>
