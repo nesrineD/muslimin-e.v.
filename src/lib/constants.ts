@@ -52,131 +52,6 @@ export const CATEGORY_DETAILS = [
 export type CategoryKey = keyof typeof CATEGORIES;
 export type CategoryValue = (typeof CATEGORIES)[CategoryKey];
 export type CategoryDetail = (typeof CATEGORY_DETAILS)[number];
-<<<<<<< HEAD
-
-<<<<<<< HEAD
-// Navigation Links
-export interface NavLink {
-  label: string;
-  href: string;
-  description?: string;
-  icon?: string;
-  requiresAuth?: boolean;
-}
-
-export const NAV_LINKS: NavLink[] = [
-  {
-    label: "Über uns",
-    href: "/about",
-    description: "Mission und Werte kennenlernen",
-    icon: "HeartHandshake",
-  },
-  {
-    label: "Unsere Veranstaltungen",
-    href: "/veranstaltungen",
-    description: "Kommende Events und Aktivitäten",
-    icon: "Bell",
-  },
-  {
-    label: "Mitglied werden",
-    href: "/mitglied-werden",
-    description: "Werden Sie Teil unserer Gemeinschaft",
-    icon: "Sparkles",
-  },
-];
-
-export const MEMBER_NAV_LINKS: NavLink[] = [
-  {
-    label: "Termin buchen",
-    href: "/book",
-    description: "Vereinbaren Sie einen Beratungstermin",
-    icon: "BookOpen",
-    requiresAuth: true,
-  },
-  {
-    label: "Beratungsstellen",
-    href: "/beratungsstellen",
-    description: "Externe Beratungsstellen finden",
-    icon: "MapPin",
-    requiresAuth: true,
-  },
-  {
-    label: "Mitgliederkarte",
-    href: "/member-map",
-    description: "Mitglieder und Helferinnen in Ihrer Nähe finden",
-    icon: "Map",
-    requiresAuth: true,
-  },
-];
-
-// Legal & Footer Links
-export const LEGAL_LINKS = [
-  {
-    label: "Impressum",
-    href: "/impressum",
-  },
-  {
-    label: "Datenschutz",
-    href: "/datenschutz",
-  },
-  {
-    label: "AGB",
-    href: "/agb",
-  },
-] as const;
-
-// Contact Information
-export const CONTACT_INFO = {
-  email: "info@muslimin-ev.de",
-  location: "Berlin",
-  locationDetail: "Geschäftsstelle",
-} as const;
-
-// Social Media Links
-export const SOCIAL_LINKS = [
-  {
-    platform: "Instagram",
-    href: "https://instagram.com/muslimin.ev",
-    ariaLabel: "Folgen Sie uns auf Instagram",
-    icon: "Instagram",
-  },
-  {
-    platform: "Facebook",
-    href: "https://facebook.com/muslimin.ev",
-    ariaLabel: "Besuchen Sie unsere Facebook-Seite",
-    icon: "Facebook",
-  },
-  {
-    platform: "LinkedIn",
-    href: "https://linkedin.com/company/muslimin-ev",
-    ariaLabel: "Verbinden Sie sich mit uns auf LinkedIn",
-    icon: "Linkedin",
-  },
-] as const;
-
-// Trust & Branding Text
-export const TRUST_TEXT = {
-  tagline: "Professionelle Beratung und Unterstützung für Vereinsmitglieder.",
-  values: "Vertraulich • Kostenfrei • Kompetent",
-  gdprCompliant: "DSGVO-konform seit 2024",
-  legalStatus: "Gemeinnützig anerkannt",
-  copyright: "© 2025 Muslimin e.V.",
-  rightsReserved: "Alle Rechte vorbehalten",
-} as const;
-
-// Helper Functions
-export const getNavLinkByHref = (href: string): NavLink | undefined => {
-  return [...NAV_LINKS, ...MEMBER_NAV_LINKS].find((link) => link.href === href);
-};
-
-export const getLegalLinkByHref = (
-  href: string
-): (typeof LEGAL_LINKS)[number] | undefined => {
-  return LEGAL_LINKS.find((link) => link.href === href);
-};
-=======
-=======
->>>>>>> ae4cb06 (Implement Sage-dominant color palette and update navigation components)
 // ============================================================================
 // NAVIGATION & WEBSITE CONFIGURATION
 // ============================================================================
@@ -223,39 +98,13 @@ export const CONTACT_INFO = {
  * Primary Navigation (5 items)
  */
 export const NAV_LINKS = [
-  { href: "/uber-uns", label: "Über uns" },
-  { href: "/angebote", label: "Angebote" },
-  { href: "/mitglied-werden", label: "Mitglied werden", primary: true },
-  { href: "/spenden", label: "Spenden", primary: true },
-  { href: "/kontakt", label: "Kontakt" },
+    { href: "/uber-uns", label: "Über uns", description: "Mission und Werte kennenlernen", icon: "HeartHandshake" },
+    { href: "/angebote", label: "Angebote", description: "Unsere Beratungs- und Hilfsangebote", icon: "BookOpen" },
+    { href: "/mitglied-werden", label: "Mitglied werden", primary: true, description: "Werden Sie Teil unserer Gemeinschaft", icon: "Sparkles" },
+    { href: "/spenden", label: "Spenden", primary: true, description: "Unterstützen Sie unsere Arbeit", icon: "Heart" },
+    { href: "/kontakt", label: "Kontakt", description: "Schreiben Sie uns eine Nachricht", icon: "Mail" },
 ] as const;
 
-/**
- * Footer Legal Links
- */
-export const LEGAL_LINKS = [
-  { href: "/impressum", label: "Impressum" },
-  { href: "/datenschutz", label: "Datenschutz" },
-] as const;
-
-/**
- * Trust Line (Footer) - DSGVO compliant, no false claims
- */
-export const TRUST_TEXT = "Gemeinnützig anerkannt • Seit 2011" as const;
-
-/**
- * Helpers für Social Links
- */
-export const hasAnySocialLink = () =>
-  Object.values(SOCIAL_LINKS).some((url) => url.length > 0);
-
-export const getActiveSocialLinks = () =>
-  Object.entries(SOCIAL_LINKS)
-    .filter(([, url]) => url.length > 0)
-    .map(([platform, url]) => ({ platform, url }));
-<<<<<<< HEAD
->>>>>>> a60a4b3 (feat: Webseite Umstrukturierung)
-=======
 
 // Member Navigation (authenticated)
 export const MEMBER_NAV_LINKS = [
@@ -281,4 +130,48 @@ export const MEMBER_NAV_LINKS = [
     requiresAuth: true,
   },
 ] as const;
->>>>>>> ae4cb06 (Implement Sage-dominant color palette and update navigation components)
+
+/**
+ * Footer Legal Links
+ */
+export const LEGAL_LINKS = [
+  { href: "/impressum", label: "Impressum" },
+  { href: "/datenschutz", label: "Datenschutz" },
+  { href: "/agb", label: "AGB" },
+] as const;
+
+/**
+ * Trust Line (Footer) - DSGVO compliant, no false claims
+ */
+export const TRUST_TEXT = "Gemeinnützig anerkannt • Seit 2011" as const;
+
+/**
+ * Helpers für Social Links
+ */
+export const hasAnySocialLink = () =>
+  Object.values(SOCIAL_LINKS).some((url) => url.length > 0);
+
+export const getActiveSocialLinks = () =>
+  Object.entries(SOCIAL_LINKS)
+    .filter(([, url]) => url.length > 0)
+    .map(([platform, url]) => ({ platform, url }));
+
+/**
+ * Build social url with simple UTM params for tracking per source
+ * Example usage: getSocialUrl(SOCIAL_LINKS.instagram, 'public-landing')
+ */
+export const getSocialUrl = (url: string, source = "site") => {
+  if (!url) return url;
+  try {
+    const u = new URL(url);
+    // append utm_source only if not present
+    if (!u.searchParams.has("utm_source")) {
+      u.searchParams.set("utm_source", source);
+      u.searchParams.set("utm_medium", "social");
+      u.searchParams.set("utm_campaign", "social_follow");
+    }
+    return u.toString();
+  } catch {
+    return url;
+  }
+};

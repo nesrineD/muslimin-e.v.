@@ -301,7 +301,6 @@ export default function PublicLandingPage() {
           </motion.div>
         </motion.div>
       </section>
-
       {/* Social Media Section - Prominently Placed */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-sage-50 via-cream-50 to-sage-50">
         <motion.div variants={itemVariants} className="max-w-6xl mx-auto">

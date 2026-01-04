@@ -18,6 +18,7 @@ interface SocialMediaSectionProps {
   showHeader?: boolean;
   showLabels?: boolean;
   className?: string;
+  context?: "public" | "about" | "events" | "member" | string;
 }
 
 const DEFAULT_TITLE = "Folge uns auf Social Media";
@@ -76,12 +77,13 @@ const SOCIAL_MEDIA = [
 
 export function SocialMediaSection({
   variant = "card",
-  title = DEFAULT_TITLE,
-  subtitle = DEFAULT_SUBTITLE,
+  title,
+  subtitle,
   showTitle = true,
   showHeader = true,
   showLabels = true,
   className = "",
+  context = "site",
 }: SocialMediaSectionProps) {
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -135,7 +137,7 @@ export function SocialMediaSection({
           rel="noopener noreferrer"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className={`${baseClasses} w-10 h-10 rounded-xl bg-white border border-sage-100 text-sage-600 hover:text-sage-800 hover:border-sage-300 shadow-sm hover:shadow-md`}
+          className={`${baseClasses} flex items-center justify-center w-9 h-9 rounded-lg bg-sage-100 text-sage-700 hover:bg-clay-100 hover:text-clay-600 shadow-sm`}
           aria-label={`Folge uns auf ${social.name}`}
           title={social.name}
         >
@@ -158,42 +160,68 @@ export function SocialMediaSection({
         rel="noopener noreferrer"
         whileHover={{ scale: 1.02, y: -2 }}
         whileTap={{ scale: 0.98 }}
-        className={`flex items-center justify-center p-4 rounded-xl bg-gradient-to-br ${social.bgGradient} ${social.hoverGradient} transition-all duration-300 group shadow-sm hover:shadow-md border ${social.borderColor} ${social.hoverBorderColor} w-full`}
+        className={`flex items-center justify-center p-6 rounded-2xl bg-gradient-to-br ${social.bgGradient} ${social.hoverGradient} transition-all duration-300 group shadow-sm hover:shadow-md border ${social.borderColor} ${social.hoverBorderColor}`}
         aria-label={`Folge uns auf ${social.name}`}
         title={social.name}
       >
         {Icon ? (
-          <Icon
-            className={`w-6 h-6 ${social.iconColor} mr-3 transition-transform group-hover:scale-110`}
-          />
-        ) : (
-          <div
-            className={`w-6 h-6 ${social.iconColor} rounded flex items-center justify-center mr-3 transition-transform group-hover:scale-110`}
+          <motion.div
+            whileHover={{ rotate: social.name === "Instagram" ? 8 : 0 }}
+            transition={{ type: "spring", stiffness: 300 }}
           >
-            <span className="text-white font-bold text-[10px]">TT</span>
-          </div>
+            <Icon className={`w-8 h-8 ${social.iconColor} mr-3`} />
+          </motion.div>
+        ) : (
+          <motion.div
+            className={`w-8 h-8 ${social.iconColor} rounded-lg flex items-center justify-center mr-3`}
+            whileHover={{ rotate: 360 }}
+            transition={{ duration: 0.5 }}
+          >
+            <span className="text-white font-bold text-sm">TT</span>
+          </motion.div>
         )}
-        {showLabels && (
+        {showLabels ? (
           <span
-            className={`font-semibold ${social.textColor} ${social.hoverTextColor}`}
+            className={`text-lg font-semibold ${social.textColor} ${social.hoverTextColor}`}
           >
             {social.name}
           </span>
+        ) : (
+          <span className="sr-only">{social.name}</span>
         )}
       </motion.a>
     );
   }
 
+  const computedTitle =
+    title ??
+    (context === "public"
+      ? DEFAULT_TITLE
+      : context === "events"
+        ? "Event-Updates & Live-Ankündigungen"
+        : context === "about"
+          ? DEFAULT_TITLE
+          : context === "member"
+            ? "Mitglieder-Kanäle & Newsletter"
+            : DEFAULT_TITLE);
+
+  const computedSubtitle =
+    subtitle ??
+    (context === "public"
+      ? DEFAULT_SUBTITLE
+      : context === "events"
+        ? "Live-Updates zu unseren Veranstaltungen"
+        : context === "about"
+          ? "Folge unseren Projekten und Berichten"
+          : context === "member"
+            ? "Exklusive Informationen für Mitglieder"
+            : DEFAULT_SUBTITLE);
+
   if (variant === "footer") {
     return (
       <ul
-<<<<<<< HEAD
         className={`flex flex-wrap items-center gap-2 ${className}`}
-        aria-label={title}
-=======
-        className="flex flex-wrap items-center gap-2"
-        aria-label="Folgen Sie uns auf Social Media Kanälen"
->>>>>>> a42d618 (fix: improve accessibility of footer social media links)
+        aria-label={computedTitle}
       >
         {SOCIAL_MEDIA.map((social) => (
           <li key={social.name}>
@@ -206,48 +234,26 @@ export function SocialMediaSection({
 
   if (variant === "compact") {
     return (
-<<<<<<< HEAD
       <div className={`space-y-4 ${className}`}>
         {showTitle && (
           <div className="text-center">
-            <h3 className="text-lg font-bold text-sage-800">{title}</h3>
-            {subtitle && <p className="text-sm text-sage-600">{subtitle}</p>}
+            <h3 className="text-lg font-bold mb-2">
+              <span className="bg-gradient-to-r from-sage-600 via-sage-500 to-sage-600 bg-clip-text text-transparent">
+                {computedTitle}
+              </span>
+            </h3>
+            <p className="text-sm text-charcoal-600">{computedSubtitle}</p>
           </div>
         )}
-        <div className="flex justify-center gap-3 flex-wrap">
+        <div className="flex justify-center gap-4 flex-wrap">
           {SOCIAL_MEDIA.map((social) => (
             <SocialButton key={social.name} social={social} variant="compact" />
           ))}
-=======
-      <div className={`space-y-3 ${className}`}>
-        <h3 className="text-sm font-semibold text-charcoal-700 flex items-center space-x-2">
-          <div className="w-1 h-4 bg-sage-600 rounded-full"></div>
-          <span>Folgen Sie uns</span>
-        </h3>
-        <div className="flex gap-3">
-          {SOCIAL_LINKS.map((social) => {
-            const Icon = iconMap[social.icon as keyof typeof iconMap];
-            return (
-              <motion.a
-                key={social.name}
-                href={social.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.1, y: -3 }}
-                whileTap={{ scale: 0.95 }}
-                className="flex items-center justify-center w-9 h-9 rounded-lg bg-sage-100 text-sage-700 hover:bg-clay-100 hover:text-clay-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:ring-offset-2"
-              >
-                <Icon className="h-5 w-5" />
-              </motion.a>
-            );
-          })}
->>>>>>> 9e88c6d (Improve contrast ratios for WCAG AA compliance)
         </div>
       </div>
     );
   }
 
-  // Default (card) variant
   return (
     <motion.div
       variants={itemVariants}
@@ -256,21 +262,27 @@ export function SocialMediaSection({
       viewport={{ once: true }}
       className={`w-full ${className}`}
     >
-      <Card className="border-sage-200 shadow-lg bg-white/80 backdrop-blur-sm hover:shadow-xl transition-all duration-500 overflow-hidden">
+      <Card className="border-2 border-sage-200 shadow-xl bg-white/90 backdrop-blur-sm hover:shadow-2xl transition-all duration-500">
         {showHeader && (
-          <CardHeader className="text-center pb-2">
-            <CardTitle className="text-2xl md:text-3xl font-bold text-sage-800">
-              {title}
-            </CardTitle>
-            {subtitle && (
-              <CardDescription className="text-base text-sage-600 mt-2">
-                {subtitle}
+          <CardHeader className="text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <CardTitle className="text-3xl font-bold text-sage-800 mb-4">
+                <span className="bg-gradient-to-r from-sage-600 via-sage-500 to-sage-600 bg-clip-text text-transparent">
+                  {computedTitle}
+                </span>
+              </CardTitle>
+              <CardDescription className="text-lg text-charcoal-600">
+                {computedSubtitle}
               </CardDescription>
-            )}
+            </motion.div>
           </CardHeader>
         )}
-        <CardContent className="pt-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <CardContent>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {SOCIAL_MEDIA.map((social) => (
               <SocialButton key={social.name} social={social} variant="card" />
             ))}
