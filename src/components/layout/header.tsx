@@ -100,8 +100,8 @@ export function Header() {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
         isScrolled
-          ? "bg-gradient-to-b from-sage-500 via-sage-600 to-sage-700 backdrop-blur-md border-b border-sage-400 shadow-sage-lg"
-          : "bg-gradient-to-b from-sage-500/95 via-sage-600/90 to-sage-700/85 backdrop-blur-sm border-b border-sage-400/70"
+          ? "bg-gradient-to-b from-sage-600 via-sage-700 to-sage-800 backdrop-blur-md border-b border-sage-500 shadow-sage-lg"
+          : "bg-gradient-to-b from-sage-600/95 via-sage-700/90 to-sage-800/85 backdrop-blur-sm border-b border-sage-500/70"
       }`}
       role="banner"
     >
@@ -127,7 +127,7 @@ export function Header() {
               />
             </motion.div>
             <div className="flex flex-col">
-              <span className="font-bold text-xl text-sand-50 group-hover:text-sand-100 transition-all duration-300">
+              <span className="font-bold text-xl text-white drop-shadow-sm">
                 Muslimin e.V.
               </span>
             </div>

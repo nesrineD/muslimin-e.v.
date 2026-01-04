@@ -50,8 +50,8 @@ export function SocialMediaSection({
   if (isFooter) {
     return (
       <div className={`space-y-3 ${className}`}>
-        <h3 className="text-sm font-semibold text-charcoal-700 flex items-center space-x-2">
-          <div className="w-1 h-4 bg-sage-600 rounded-full"></div>
+        <h3 className="text-sm font-semibold text-white flex items-center space-x-2">
+          <div className="w-1 h-4 bg-white rounded-full"></div>
           <span>Folgen Sie uns</span>
         </h3>
         <div className="flex gap-3">
@@ -66,7 +66,7 @@ export function SocialMediaSection({
                 aria-label={social.ariaLabel}
                 whileHover={{ scale: 1.1, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex items-center justify-center w-9 h-9 rounded-lg bg-sage-100 text-sage-700 hover:bg-clay-100 hover:text-clay-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:ring-offset-2"
+                className="flex items-center justify-center w-9 h-9 rounded-lg bg-sage-800 text-sand-100 hover:bg-clay-500 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-sage-700"
               >
                 <Icon className="h-5 w-5" />
               </motion.a>

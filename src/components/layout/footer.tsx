@@ -14,7 +14,7 @@ import {
 export function Footer() {
   return (
     <footer
-      className="border-t bg-gradient-to-t from-sage-600 via-sage-500 to-sage-400 border-sage-700 text-sand-50"
+      className="border-t bg-gradient-to-t from-sage-700 via-sage-600 to-sage-500 border-sage-800 text-white"
       role="contentinfo"
     >
       <div className="container mx-auto px-4 py-8 md:py-12">
@@ -34,28 +34,28 @@ export function Footer() {
                 className="h-12 w-auto transition-all duration-300 group-hover:scale-105 group-hover:drop-shadow-md"
               />
               <div className="flex flex-col">
-                <span className="font-bold text-lg text-sand-50">
+                <span className="font-bold text-lg text-white drop-shadow-sm">
                   Muslimin e.V.
                 </span>
               </div>
             </Link>
-            <p className="text-sm text-sand-100 leading-relaxed">
+            <p className="text-sm text-sand-100 leading-relaxed drop-shadow-sm">
               {TRUST_TEXT.tagline}
               <br />
-              <span className="text-sand-200 font-medium">
+              <span className="text-white font-medium">
                 {TRUST_TEXT.values}
               </span>
             </p>
-            <div className="flex items-center space-x-2 text-xs text-sand-200">
-              <div className="w-2 h-2 bg-sand-300 rounded-full"></div>
+            <div className="flex items-center space-x-2 text-xs text-sand-200 drop-shadow-sm">
+              <div className="w-2 h-2 bg-white rounded-full"></div>
               <span>{TRUST_TEXT.gdprCompliant}</span>
             </div>
           </div>
 
           {/* Navigation Links */}
           <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-sand-50 flex items-center space-x-2">
-              <div className="w-1 h-4 bg-sand-200 rounded-full"></div>
+            <h3 className="text-sm font-semibold text-white flex items-center space-x-2">
+              <div className="w-1 h-4 bg-white rounded-full"></div>
               <span>Navigation</span>
             </h3>
             <nav className="flex flex-col space-y-3 text-sm" aria-label="Footer-Navigation">
@@ -91,8 +91,8 @@ export function Footer() {
 
           {/* Contact Information */}
           <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-sand-50 flex items-center space-x-2">
-              <div className="w-1 h-4 bg-sand-200 rounded-full"></div>
+            <h3 className="text-sm font-semibold text-white flex items-center space-x-2">
+              <div className="w-1 h-4 bg-white rounded-full"></div>
               <span>Kontakt</span>
             </h3>
             <div className="space-y-4 text-sm">
@@ -102,23 +102,23 @@ export function Footer() {
                   className="flex items-center space-x-3 p-2 rounded-lg hover:bg-sage-700/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sand-300"
                   aria-label={`E-Mail an ${CONTACT_INFO.email} senden`}
                 >
-                  <Mail className="h-4 w-4 text-sand-200 group-hover:scale-110 transition-transform" />
+                  <Mail className="h-4 w-4 text-sand-100 group-hover:scale-110 transition-transform" />
                   <div className="flex flex-col">
-                    <span className="text-sand-100 group-hover:text-sand-50 transition-colors">
+                    <span className="text-sand-100 group-hover:text-white transition-colors">
                       {CONTACT_INFO.email}
                     </span>
-                    <span className="text-xs text-sand-300">E-Mail Support</span>
+                    <span className="text-xs text-sand-200">E-Mail Support</span>
                   </div>
                 </a>
               </div>
               <div className="group">
                 <div className="flex items-start space-x-3 p-2 rounded-lg">
-                  <MapPin className="h-4 w-4 text-sand-200 mt-0.5" />
+                  <MapPin className="h-4 w-4 text-sand-100 mt-0.5" />
                   <div className="flex flex-col">
                     <span className="text-sand-100">
                       {CONTACT_INFO.location}
                     </span>
-                    <span className="text-xs text-sand-300">
+                    <span className="text-xs text-sand-200">
                       {CONTACT_INFO.locationDetail}
                     </span>
                   </div>
@@ -132,8 +132,8 @@ export function Footer() {
             <SocialMediaSection variant="footer" />
             
             <div className="space-y-3">
-              <h3 className="text-sm font-semibold text-sand-50 flex items-center space-x-2">
-                <div className="w-1 h-4 bg-sand-200 rounded-full"></div>
+              <h3 className="text-sm font-semibold text-white flex items-center space-x-2">
+                <div className="w-1 h-4 bg-white rounded-full"></div>
                 <span>Rechtliches</span>
               </h3>
               <nav className="flex flex-col space-y-2 text-sm" aria-label="Rechtliche Links">
@@ -141,7 +141,7 @@ export function Footer() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="text-sand-100 hover:text-sand-50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sand-300 rounded"
+                    className="text-sand-100 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sand-300 rounded"
                   >
                     {link.label}
                   </Link>
@@ -151,17 +151,17 @@ export function Footer() {
           </div>
         </div>
 
-        <Separator className="my-8 bg-sage-700" />
+        <Separator className="my-8 bg-sage-800" />
 
         <div className="flex flex-col sm:flex-row justify-between items-center text-sm text-sand-200">
           <div className="flex flex-col sm:flex-row items-center space-y-1 sm:space-y-0 sm:space-x-4">
-            <p className="flex items-center space-x-2">
+            <p className="flex items-center space-x-2 text-white">
               <span>{TRUST_TEXT.copyright}</span>
               <span className="hidden sm:inline">•</span>
-              <span className="text-xs">{TRUST_TEXT.rightsReserved}</span>
+              <span className="text-xs text-sand-100">{TRUST_TEXT.rightsReserved}</span>
             </p>
-            <div className="flex items-center space-x-1 text-xs">
-              <div className="w-1 h-1 bg-sand-300 rounded-full"></div>
+            <div className="flex items-center space-x-1 text-xs text-sand-100">
+              <div className="w-1 h-1 bg-white rounded-full"></div>
               <span className="text-sand-300">{TRUST_TEXT.legalStatus}</span>
             </div>
           </div>
@@ -170,7 +170,7 @@ export function Footer() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="hover:text-sand-50 transition-colors text-xs font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sand-300 rounded"
+                className="hover:text-white transition-colors text-xs font-medium text-sand-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sand-300 rounded"
               >
                 {link.label}
               </Link>
