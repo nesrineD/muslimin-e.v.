@@ -222,6 +222,7 @@ export function SocialMediaSection({
     );
   }
 
+  // Default (card) variant
   return (
     <motion.div
       variants={itemVariants}

@@ -52,6 +52,7 @@ export const CATEGORY_DETAILS = [
 export type CategoryKey = keyof typeof CATEGORIES;
 export type CategoryValue = (typeof CATEGORIES)[CategoryKey];
 export type CategoryDetail = (typeof CATEGORY_DETAILS)[number];
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 // Navigation Links
@@ -174,6 +175,8 @@ export const getLegalLinkByHref = (
   return LEGAL_LINKS.find((link) => link.href === href);
 };
 =======
+=======
+>>>>>>> ae4cb06 (Implement Sage-dominant color palette and update navigation components)
 // ============================================================================
 // NAVIGATION & WEBSITE CONFIGURATION
 // ============================================================================
@@ -250,4 +253,32 @@ export const getActiveSocialLinks = () =>
   Object.entries(SOCIAL_LINKS)
     .filter(([, url]) => url.length > 0)
     .map(([platform, url]) => ({ platform, url }));
+<<<<<<< HEAD
 >>>>>>> a60a4b3 (feat: Webseite Umstrukturierung)
+=======
+
+// Member Navigation (authenticated)
+export const MEMBER_NAV_LINKS = [
+  {
+    label: "Termin buchen",
+    href: "/book",
+    description: "Vereinbaren Sie einen Beratungstermin",
+    icon: "BookOpen",
+    requiresAuth: true,
+  },
+  {
+    label: "Beratungsstellen",
+    href: "/beratungsstellen",
+    description: "Externe Beratungsstellen finden",
+    icon: "MapPin",
+    requiresAuth: true,
+  },
+  {
+    label: "Mitgliederkarte",
+    href: "/member-map",
+    description: "Mitglieder und Helferinnen in Ihrer Nähe finden",
+    icon: "Map",
+    requiresAuth: true,
+  },
+] as const;
+>>>>>>> ae4cb06 (Implement Sage-dominant color palette and update navigation components)

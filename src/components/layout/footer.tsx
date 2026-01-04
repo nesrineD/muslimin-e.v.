@@ -1,8 +1,9 @@
-import Link from "next/link";
 import Image from "next/image";
-import { Mail, MapPin, ChevronRight } from "lucide-react";
-import { Separator } from "@/components/ui/separator";
+import Link from "next/link";
+import { ChevronRight, Mail, MapPin } from "lucide-react";
+
 import { SocialMediaSection } from "@/components/SocialMediaSection";
+<<<<<<< HEAD
 <<<<<<< HEAD
 import { LEGAL_LINKS } from "@/lib/constants";
 
@@ -14,10 +15,13 @@ const NAV_LINKS = [
   { label: "Spenden", href: "/spenden" },
 ];
 =======
+=======
+import { Separator } from "@/components/ui/separator";
+>>>>>>> ae4cb06 (Implement Sage-dominant color palette and update navigation components)
 import {
-  NAV_LINKS,
-  LEGAL_LINKS,
   CONTACT_INFO,
+  LEGAL_LINKS,
+  NAV_LINKS,
   TRUST_TEXT,
 } from "@/lib/constants";
 >>>>>>> a60a4b3 (feat: Webseite Umstrukturierung)

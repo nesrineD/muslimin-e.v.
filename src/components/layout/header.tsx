@@ -17,6 +17,7 @@ import {
   Clock,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   Map,
 =======
   Heart,
@@ -24,11 +25,14 @@ import {
 =======
   ChevronDown,
 >>>>>>> a60a4b3 (feat: Webseite Umstrukturierung)
+=======
+  Map,
+>>>>>>> ae4cb06 (Implement Sage-dominant color palette and update navigation components)
 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { NAV_LINKS } from "@/lib/constants";
+import { NAV_LINKS, MEMBER_NAV_LINKS } from "@/lib/constants";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -253,7 +257,11 @@ export function Header() {
                 </motion.div>
               </DropdownMenuTrigger>
               <DropdownMenuContent
+<<<<<<< HEAD
                 className="w-56 bg-sand-50 border-sage-500"
+=======
+                className="w-56 bg-sand-50 border-sage-200"
+>>>>>>> ae4cb06 (Implement Sage-dominant color palette and update navigation components)
                 align="end"
                 side="bottom"
               >
@@ -455,12 +463,15 @@ export function Header() {
                   ))}
                 </>
               )}
-
               {/* Member-only Navigation - Only visible when logged in */}
 >>>>>>> a60a4b3 (feat: Webseite Umstrukturierung)
               {user && (
                 <>
+<<<<<<< HEAD
                   <div className="border-t border-sage-500 pt-4">
+=======
+                  <div className="border-t border-sage-200 pt-4">
+>>>>>>> ae4cb06 (Implement Sage-dominant color palette and update navigation components)
                     <p className="text-xs font-medium text-charcoal-600 mb-3">
                       Mitglieder-Bereich
                     </p>
@@ -515,7 +526,11 @@ export function Header() {
                 </>
               )}
 
+<<<<<<< HEAD
               <div className="border-t border-sage-500 pt-4 space-y-2">
+=======
+              <div className="border-t border-sage-200 pt-4 space-y-2">
+>>>>>>> ae4cb06 (Implement Sage-dominant color palette and update navigation components)
                 {loading && !user && !isSigningOut ? (
                   <div className="text-sm text-charcoal-600 text-center">
                     Lade...
@@ -560,7 +575,11 @@ export function Header() {
 
                     {user.is_helper && (
                       <>
+<<<<<<< HEAD
                         <div className="border-t border-sage-500 pt-2 mt-2">
+=======
+                        <div className="border-t border-sage-200 pt-2 mt-2">
+>>>>>>> ae4cb06 (Implement Sage-dominant color palette and update navigation components)
                           <div className="text-xs text-charcoal-600 text-center mb-2 font-medium">
                             Helferin-Bereich
                           </div>
