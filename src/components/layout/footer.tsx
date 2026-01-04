@@ -3,16 +3,14 @@ import Image from "next/image";
 import { Mail, MapPin, ChevronRight } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { SocialMediaSection } from "@/components/SocialMediaSection";
+import {
+  NAV_LINKS,
+  LEGAL_LINKS,
+  CONTACT_INFO,
+  TRUST_TEXT,
+} from "@/lib/constants";
 
 export function Footer() {
-  const navLinks = [
-    { label: "Über uns", href: "/uber-uns" },
-    { label: "Veranstaltungen", href: "/veranstaltungen" },
-    { label: "Projekte", href: "/projekte" },
-    { label: "Mitglied werden", href: "/mitglied-werden" },
-    { label: "Spenden", href: "/spenden" },
-  ];
-
   return (
     <footer className="border-t border-sage-200/80 bg-gradient-to-b from-white via-cream-50/50 to-sage-50/80">
       <div className="container mx-auto px-4 py-10">
@@ -33,7 +31,7 @@ export function Footer() {
               </span>
             </Link>
             <Link
-              href="/uber-uns"
+              href="/about"
               className="text-sm text-sage-600/90 hover:text-sage-800 leading-relaxed transition-colors block max-w-xs"
             >
               Muslimischer Frauen- & Mädchenverein – Gemeinschaft, Bildung &
@@ -53,7 +51,7 @@ export function Footer() {
               Navigation
             </h3>
             <ul className="space-y-2.5">
-              {navLinks.map((link) => (
+              {NAV_LINKS.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
@@ -77,12 +75,12 @@ export function Footer() {
             </h3>
             <address className="not-italic space-y-2.5 text-sm">
               <a
-                href="mailto:info@muslimin-ev.de"
+                href={`mailto:${CONTACT_INFO.email}`}
                 className="flex items-center gap-2 text-sage-600 hover:text-sage-800 transition-colors group"
               >
                 <Mail className="h-4 w-4 text-sage-500 group-hover:text-sage-700 transition-colors flex-shrink-0" />
                 <span className="group-hover:underline">
-                  info@muslimin-ev.de
+                  {CONTACT_INFO.email}
                 </span>
               </a>
               <p className="flex items-start gap-2 text-sage-600">
@@ -99,39 +97,19 @@ export function Footer() {
               Rechtliches
             </h3>
             <ul className="space-y-2.5">
-              <li>
-                <Link
-                  href="/impressum"
-                  className="flex items-center gap-2 text-sm text-sage-600 hover:text-sage-800 hover:translate-x-0.5 transition-all group"
-                >
-                  <ChevronRight className="h-3.5 w-3.5 text-sage-400 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <span className="group-hover:font-medium transition-all">
-                    Impressum
-                  </span>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/datenschutz"
-                  className="flex items-center gap-2 text-sm text-sage-600 hover:text-sage-800 hover:translate-x-0.5 transition-all group"
-                >
-                  <ChevronRight className="h-3.5 w-3.5 text-sage-400 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <span className="group-hover:font-medium transition-all">
-                    Datenschutz
-                  </span>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/agb"
-                  className="flex items-center gap-2 text-sm text-sage-600 hover:text-sage-800 hover:translate-x-0.5 transition-all group"
-                >
-                  <ChevronRight className="h-3.5 w-3.5 text-sage-400 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <span className="group-hover:font-medium transition-all">
-                    AGB
-                  </span>
-                </Link>
-              </li>
+              {LEGAL_LINKS.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="flex items-center gap-2 text-sm text-sage-600 hover:text-sage-800 hover:translate-x-0.5 transition-all group"
+                  >
+                    <ChevronRight className="h-3.5 w-3.5 text-sage-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <span className="group-hover:font-medium transition-all">
+                      {link.label}
+                    </span>
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
@@ -146,7 +124,7 @@ export function Footer() {
           <span className="flex items-center gap-2">
             <span className="hidden md:inline text-sage-400">•</span>
             <span className="flex items-center gap-1.5 font-medium text-sage-600">
-              Gemeinnützig anerkannt • DSGVO-konform • Seit 2011
+              {TRUST_TEXT}
             </span>
           </span>
         </div>

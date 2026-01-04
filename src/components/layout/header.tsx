@@ -9,20 +9,18 @@ import {
   Menu,
   HeartHandshake,
   BookOpen,
-  Sparkles,
-  Bell,
   MapPin,
-  ChevronDown,
   User2,
   Calendar,
   LogOut,
   BarChart3,
   Clock,
-  Heart,
+  ChevronDown,
 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { NAV_LINKS } from "@/lib/constants";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -140,97 +138,27 @@ export function Header() {
           {/* Public Navigation - Only visible when NOT logged in */}
           {!user && (
             <>
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Button
-                  variant="ghost"
-                  asChild
-                  className="hover:bg-sage-50 hover:text-sage-700 transition-colors duration-200 px-3 py-2 font-medium text-sm"
+              {NAV_LINKS.map((link) => (
+                <motion.div
+                  key={link.href}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  <Link
-                    href="/uber-uns"
-                    className="flex items-center space-x-2"
+                  <Button
+                    variant="ghost"
+                    asChild
+                    className={`transition-colors duration-200 px-3 py-2 font-medium text-sm ${
+                      "primary" in link && link.primary
+                        ? "hover:bg-emerald-50 hover:text-emerald-700 text-emerald-600 font-semibold"
+                        : "hover:bg-sage-50 hover:text-sage-700"
+                    }`}
                   >
-                    <BookOpen className="h-4 w-4" />
-                    <span>Über uns</span>
-                  </Link>
-                </Button>
-              </motion.div>
-
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Button
-                  variant="ghost"
-                  asChild
-                  className="hover:bg-coral-50 hover:text-coral-700 transition-colors duration-200 px-3 py-2 font-medium text-sm"
-                >
-                  <Link
-                    href="/veranstaltungen"
-                    className="flex items-center space-x-2"
-                  >
-                    <Calendar className="h-4 w-4" />
-                    <span>Veranstaltungen</span>
-                  </Link>
-                </Button>
-              </motion.div>
-
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Button
-                  variant="ghost"
-                  asChild
-                  className="hover:bg-warm-50 hover:text-warm-700 transition-colors duration-200 px-3 py-2 font-medium text-sm"
-                >
-                  <Link
-                    href="/projekte"
-                    className="flex items-center space-x-2"
-                  >
-                    <HeartHandshake className="h-4 w-4" />
-                    <span>Projekte</span>
-                  </Link>
-                </Button>
-              </motion.div>
-
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Button
-                  variant="ghost"
-                  asChild
-                  className="hover:bg-sage-50 hover:text-sage-700 transition-colors duration-200 px-3 py-2 font-medium text-sm"
-                >
-                  <Link
-                    href="/mitglied-werden"
-                    className="flex items-center space-x-2"
-                  >
-                    <Sparkles className="h-4 w-4" />
-                    <span>Mitglied werden</span>
-                  </Link>
-                </Button>
-              </motion.div>
-
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Button
-                  variant="ghost"
-                  asChild
-                  className="hover:bg-coral-50 hover:text-coral-700 transition-colors duration-200 px-3 py-2 font-medium text-sm"
-                >
-                  <Link href="/spenden" className="flex items-center space-x-2">
-                    <Heart className="h-4 w-4" />
-                    <span>Spenden</span>
-                  </Link>
-                </Button>
-              </motion.div>
+                    <Link href={link.href}>
+                      <span>{link.label}</span>
+                    </Link>
+                  </Button>
+                </motion.div>
+              ))}
             </>
           )}
 
@@ -507,59 +435,32 @@ export function Header() {
               {/* Public Navigation - Only visible when NOT logged in */}
               {!user && (
                 <>
-                  <motion.div
-                    whileHover={{ x: 5 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <Link
-                      href="/about"
-                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-coral-50 focus:bg-coral-50 group"
+                  {NAV_LINKS.map((link) => (
+                    <motion.div
+                      key={link.href}
+                      whileHover={{ x: 5 }}
+                      transition={{ type: "spring", stiffness: 300 }}
                     >
-                      <div className="text-sm font-medium leading-none group-hover:text-coral-500 flex items-center space-x-2">
-                        <HeartHandshake className="h-4 w-4" />
-                        <span>Über uns</span>
-                      </div>
-                      <p className="line-clamp-2 text-sm leading-snug text-muted-foreground group-hover:text-coral-600/80">
-                        Mission und Werte kennenlernen
-                      </p>
-                    </Link>
-                  </motion.div>
-
-                  <motion.div
-                    whileHover={{ x: 5 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <Link
-                      href="/veranstaltungen"
-                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-warm-50 focus:bg-warm-50 group"
-                    >
-                      <div className="text-sm font-medium leading-none group-hover:text-warm-700 flex items-center space-x-2">
-                        <Bell className="h-4 w-4" />
-                        <span>Unsere Veranstaltungen</span>
-                      </div>
-                      <p className="line-clamp-2 text-sm leading-snug text-muted-foreground group-hover:text-warm-600/80">
-                        Kommende Events und Aktivitäten
-                      </p>
-                    </Link>
-                  </motion.div>
-
-                  <motion.div
-                    whileHover={{ x: 5 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <Link
-                      href="/mitglied-werden"
-                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-sage-50 focus:bg-sage-50 group"
-                    >
-                      <div className="text-sm font-medium leading-none group-hover:text-sage-700 flex items-center space-x-2">
-                        <Sparkles className="h-4 w-4" />
-                        <span>Mitglied Werden</span>
-                      </div>
-                      <p className="line-clamp-2 text-sm leading-snug text-muted-foreground group-hover:text-sage-600/80">
-                        Werden Sie Teil unserer Gemeinschaft
-                      </p>
-                    </Link>
-                  </motion.div>
+                      <Link
+                        href={link.href}
+                        className={`block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors group ${
+                          "primary" in link && link.primary
+                            ? "hover:bg-emerald-50 focus:bg-emerald-50"
+                            : "hover:bg-sage-50 focus:bg-sage-50"
+                        }`}
+                      >
+                        <div
+                          className={`text-sm font-medium leading-none flex items-center space-x-2 ${
+                            "primary" in link && link.primary
+                              ? "group-hover:text-emerald-700 text-emerald-600 font-semibold"
+                              : "group-hover:text-sage-700"
+                          }`}
+                        >
+                          <span>{link.label}</span>
+                        </div>
+                      </Link>
+                    </motion.div>
+                  ))}
                 </>
               )}
 

@@ -1,5 +1,9 @@
 # GitHub Copilot Instructions - Muslimin e.V. Plattform
 
+Du bist ein erfahrener Full-Stack Entwickler mit Efahrung in UI/UX Design , spezialisiert auf Next.js, TypeScript und Supabase. Du arbeitest an einer webbasierten PWA-Plattform für den Muslimin e.V., die Vereinsmitgliedern Zugang zu Informationen, Mitgliederkarten und Terminbuchungen mit verifizierten Helferinnen bietet.
+
+(Siehe „Farbpalette“ weiter unten für die verbindlichen Design-Tokens.)
+
 ## Projekt-Überblick
 
 Eine webbasierte PWA-Plattform für den Muslimin e.V., die Vereinsmitgliedern Zugang zu Informationen, Mitgliederkarten und Terminbuchungen mit verifizierten Helferinnen bietet.
@@ -21,47 +25,22 @@ Eine webbasierte PWA-Plattform für den Muslimin e.V., die Vereinsmitgliedern Zu
 
 **Farbpalette**
 
-- Titel \*/
-  text-sage-800 + bg-gradient from-coral-500 to-warm-500
+**Primary Colors (verbindlich)**
 
-/_ Beschreibungen _/
-text-sage-600
+- Sage: #5B6960
+- Charcoal: #2A2F32
+- Clay/Coral: #9C604D
+- Sand/Cream: #D4CBB8
 
-/_ Cards _/
-bg-white/80 backdrop-blur-sm + border-0
+**Regeln**
 
-/_ Icon-Hintergründe (Vielfalt!) _/
-bg-sage-600 /_ Grün _/
-bg-coral-500 /_ Koralle _/
-bg-warm-500 /_ Warm-Orange _/
-
-/_ Card-Hintergründe (Vielfalt!) _/
-from-sage-50 to-sage-100 /_ Grün _/
-from-coral-50 to-coral-100 /_ Koralle _/
-from-warm-50 to-warm-10 /_ Warm _/
+- Genau **eine** dominante Action-Farbe nutzen (standardmäßig #1F6F5B) – besonders für „Mitglied werden“ & „Spenden“.
+- #9C604D (Clay/Coral) und #C8A24A (Gold) nur als Akzent (max. ca. 5–10% der UI), nicht als Fließtext.
 
 weitere Farben die zu dieser Palette passen:
+können verwendet werden, solange sie harmonisch mit den Primärfarben wirken.
 
-- Indigo-500
-- Violet-500
-- Teal-500
-- Amber-500
-- Lime-500
-- Emerald-500
-- Fuchsia-500
-- Rose-500
-- Sky-500
-- Cyan-500
-- Orange-500
-- Yellow-500
-- Purple-500
-- Pink-500
-- Blue-500
-- Green-500
-- Red-500
-  können verwendet werden, solange sie harmonisch mit den Primärfarben wirken.    
-
-  **Repo-Größe:** Mittelgroß (~50-100 Dateien)
+**Repo-Größe:** Mittelgroß (~50-100 Dateien)
 
 ## Tech Stack
 

@@ -144,7 +144,8 @@ export default function PublicLandingPage() {
           </p>
 
           <p className="text-lg text-sage-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-            🌟 Kostenlose Mitgliedschaft • Professionelle Beratung • Bildungsangebote • Spirituelles Wachstum
+            🌟 Kostenlose Mitgliedschaft • Professionelle Beratung •
+            Bildungsangebote • Spirituelles Wachstum
           </p>
 
           <div className="flex flex-col items-center gap-5">
@@ -200,6 +201,104 @@ export default function PublicLandingPage() {
               </div>
             </motion.div>
           </div>
+        </motion.div>
+      </section>
+
+      {/* "Wer sind wir?" Section - Scannbare Bullet-Points (FR-005) */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-cream-50 via-white to-sage-50/30">
+        <motion.div
+          variants={itemVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="max-w-4xl mx-auto"
+        >
+          <div className="text-center mb-10">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-4xl md:text-5xl font-bold mb-4 text-sage-800"
+            >
+              Wer sind wir?
+            </motion.h2>
+            <p className="text-lg text-sage-600 max-w-2xl mx-auto">
+              Eine Gemeinschaft, die Frauen stärkt und unterstützt – unabhängig
+              davon, wo sie gerade stehen.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {[
+              {
+                icon: <Users className="w-6 h-6" />,
+                title: "Für Frauen & Mädchen",
+                description:
+                  "Unsere Angebote richten sich an muslimische Frauen, junge Mädchen und Mütter – ein sicherer Raum für Austausch und Wachstum",
+                color: "from-emerald-50 to-emerald-100",
+              },
+              {
+                icon: <Heart className="w-6 h-6" />,
+                title: "Gemeinnützig & unabhängig",
+                description:
+                  "Seit 2011 arbeiten wir gemeinnützig und setzen uns für Bildung, Beratung und Gemeinschaft ein – mit vollem Herzen",
+                color: "from-sage-50 to-sage-100",
+              },
+              {
+                icon: <Shield className="w-6 h-6" />,
+                title: "Vertraulich & professionell",
+                description:
+                  "Alle Beratungen erfolgen diskret, DSGVO-konform und durch verifizierte Helferinnen – deine Privatsphäre ist uns wichtig",
+                color: "from-warm-50 to-warm-100",
+              },
+              {
+                icon: <HeartHandshake className="w-6 h-6" />,
+                title: "Von Schwestern für Schwestern",
+                description:
+                  "Wir sind ein Netzwerk von Frauen, die sich gegenseitig stärken, verstehen und unterstützen – authentisch und auf Augenhöhe",
+                color: "from-coral-50 to-coral-100",
+              },
+            ].map((item, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className={`p-6 rounded-xl bg-gradient-to-br ${item.color} border border-sage-200/50 hover:shadow-lg transition-all duration-300`}
+              >
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-white/80 flex items-center justify-center text-sage-700">
+                    {item.icon}
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-sage-800 mb-2">
+                      {item.title}
+                    </h3>
+                    <p className="text-sage-600 leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+            className="text-center mt-10"
+          >
+            <Link
+              href="/about"
+              className="inline-flex items-center gap-2 text-emerald-700 font-semibold hover:text-emerald-800 hover:gap-3 transition-all"
+            >
+              Mehr über uns erfahren
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+          </motion.div>
         </motion.div>
       </section>
 
@@ -548,7 +647,10 @@ export default function PublicLandingPage() {
               stärkt. Gemeinsam sind wir stärker! 💚
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
                 <Link
                   href="/mitglied-werden"
                   className="inline-flex items-center gap-2 px-8 py-4 bg-white text-emerald-700 rounded-xl font-bold hover:shadow-2xl transition-all text-lg"
@@ -558,7 +660,10 @@ export default function PublicLandingPage() {
                   <ArrowRight className="w-5 h-5" />
                 </Link>
               </motion.div>
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
                 <Link
                   href="/spenden"
                   className="inline-flex items-center gap-2 px-8 py-4 bg-transparent text-white border-2 border-white rounded-xl font-bold hover:bg-white/10 transition-all text-lg"
@@ -569,15 +674,24 @@ export default function PublicLandingPage() {
               </motion.div>
             </div>
             <div className="flex flex-wrap items-center justify-center gap-4 text-sm opacity-90 mt-8">
-              <Link href="/uber-uns" className="underline underline-offset-4 hover:opacity-100">
+              <Link
+                href="/uber-uns"
+                className="underline underline-offset-4 hover:opacity-100"
+              >
                 Mehr über uns
               </Link>
               <span>•</span>
-              <Link href="/impressum" className="underline underline-offset-4 hover:opacity-100">
+              <Link
+                href="/impressum"
+                className="underline underline-offset-4 hover:opacity-100"
+              >
                 Impressum
               </Link>
               <span>•</span>
-              <Link href="/datenschutz" className="underline underline-offset-4 hover:opacity-100">
+              <Link
+                href="/datenschutz"
+                className="underline underline-offset-4 hover:opacity-100"
+              >
                 Datenschutz
               </Link>
             </div>
