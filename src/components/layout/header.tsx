@@ -231,7 +231,7 @@ export function Header() {
                 </motion.div>
               </DropdownMenuTrigger>
               <DropdownMenuContent
-                className="w-56 bg-sand-50 border-sage-200"
+                className="w-56 bg-sand-50 border-sage-500"
                 align="end"
                 side="bottom"
               >
@@ -397,7 +397,7 @@ export function Header() {
               {/* Member-only Navigation */}
               {user && (
                 <>
-                  <div className="border-t border-sage-200 pt-4">
+                  <div className="border-t border-sage-500 pt-4">
                     <p className="text-xs font-medium text-charcoal-600 mb-3">
                       Mitglieder-Bereich
                     </p>
@@ -448,7 +448,7 @@ export function Header() {
                 </>
               )}
 
-              <div className="border-t border-sage-200 pt-4 space-y-2">
+              <div className="border-t border-sage-500 pt-4 space-y-2">
                 {loading && !user && !isSigningOut ? (
                   <div className="text-sm text-charcoal-600 text-center">
                     Lade...
@@ -493,7 +493,7 @@ export function Header() {
 
                     {user.is_helper && (
                       <>
-                        <div className="border-t border-sage-200 pt-2 mt-2">
+                        <div className="border-t border-sage-500 pt-2 mt-2">
                           <div className="text-xs text-charcoal-600 text-center mb-2 font-medium">
                             Helferin-Bereich
                           </div>
