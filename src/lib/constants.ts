@@ -127,5 +127,5 @@ export const hasAnySocialLink = () =>
 
 export const getActiveSocialLinks = () =>
   Object.entries(SOCIAL_LINKS)
-    .filter(([_, url]) => url.length > 0)
+    .filter(([, url]) => url.length > 0)
     .map(([platform, url]) => ({ platform, url }));
