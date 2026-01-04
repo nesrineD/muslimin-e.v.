@@ -85,10 +85,10 @@ export default function VeranstaltungenPage() {
           variants={itemVariants}
           className="max-w-4xl mx-auto text-center"
         >
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-charcoal-800 via-sage-700 to-coral-700 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 text-charcoal-800">
             Unsere Veranstaltungen
           </h1>
-          <p className="text-lg md:text-xl text-sage-600 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-charcoal-700 max-w-2xl mx-auto">
             Entdecke die vielen Möglichkeiten, Teil unserer Gemeinschaft zu
             werden
           </p>

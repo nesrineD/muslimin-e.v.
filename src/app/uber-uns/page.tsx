@@ -240,18 +240,18 @@ export default function AboutPage() {
           className="py-20 lg:py-24 bg-sand-50"
         >
           <div className="container mx-auto px-4">
-            <Card className="border-0 shadow-xl bg-gradient-to-br from-sage-600 to-sage-700 text-white">
+            <Card className="border-0 shadow-xl bg-clay-500 text-white">
               <CardHeader className="text-center">
                 <CardTitle className="text-3xl font-bold mb-2">
                   Werden Sie Teil unserer Gemeinschaft
                 </CardTitle>
-                <CardDescription className="text-lg text-sage-100">
+                <CardDescription className="text-lg text-white opacity-95">
                   Engagieren Sie sich, lernen Sie und wachsen Sie mit uns.
                 </CardDescription>
               </CardHeader>
               <CardContent className="text-center">
                 <Button
-                  className="bg-white text-sage-600 hover:bg-cream-50 font-semibold px-8 py-3 text-lg transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className="bg-white text-clay-600 hover:bg-sand-50 font-semibold px-8 py-3 text-lg transition-all duration-300 shadow-lg hover:shadow-xl"
                   asChild
                 >
                   <Link href="/mitglied-werden">Jetzt Mitglied werden</Link>

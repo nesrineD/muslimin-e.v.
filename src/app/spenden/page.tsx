@@ -39,15 +39,13 @@ export default function SpendenPage() {
             Gemeinnützig anerkannt • transparente Mittelverwendung
           </motion.div>
 
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-charcoal-800 via-sage-700 to-warm-600 bg-clip-text text-transparent">
-              Deine Spende verändert Leben 💚
-            </span>
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 text-charcoal-800">
+            Deine Spende verändert Leben 💚
           </h1>
-          <p className="text-xl md:text-2xl text-charcoal-700 mb-6 font-medium">
+          <p className="text-xl md:text-2xl text-charcoal-800 mb-6 font-medium">
             Jeder Beitrag hilft Frauen in Not und stärkt unsere Gemeinschaft
           </p>
-          <p className="text-lg text-charcoal-600 max-w-2xl mx-auto mb-8">
+          <p className="text-lg text-charcoal-700 max-w-2xl mx-auto mb-8">
             Wir sind ein gemeinnützig anerkannter Verein und berichten
             transparent über die Verwendung von Spenden. Der Schwerpunkt liegt
             auf direkter Hilfe und Projekten.
@@ -55,19 +53,19 @@ export default function SpendenPage() {
 
           {/* Quick Impact Stats */}
           <div className="flex flex-wrap items-center justify-center gap-6 text-sm">
-            <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-white to-warm-50 rounded-lg shadow-sm border border-warm-200">
-              <TrendingUp className="w-4 h-4 text-warm-600" />
+            <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm border border-sand-200">
+              <TrendingUp className="w-4 h-4 text-sage-600" />
               <span className="font-semibold text-charcoal-800">
                 Fokus: direkte Hilfe
               </span>
             </div>
-            <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-white to-coral-50 rounded-lg shadow-sm border border-coral-200">
-              <Heart className="w-4 h-4 text-coral-600" />
+            <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm border border-sand-200">
+              <Heart className="w-4 h-4 text-sage-600" />
               <span className="font-semibold text-charcoal-800">
                 Unterstützung für Hilfsprojekte
               </span>
             </div>
-            <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-white to-sage-50 rounded-lg shadow-sm border border-sage-200">
+            <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm border border-sand-200">
               <Shield className="w-4 h-4 text-charcoal-600" />
               <span className="font-semibold text-charcoal-800">
                 DSGVO-konform
@@ -89,13 +87,13 @@ export default function SpendenPage() {
             <motion.div
               variants={itemVariants}
               whileHover={{ y: -8 }}
-              className="p-8 bg-gradient-to-br from-white via-warm-50/30 to-sage-50/30 rounded-xl border-2 border-warm-200 hover:border-warm-400 hover:shadow-lg transition-all"
+              className="p-8 bg-white rounded-xl border-2 border-sand-200 hover:border-sage-300 hover:shadow-sage-lg transition-all"
             >
               <div className="text-5xl mb-4">💳</div>
               <h3 className="text-2xl font-bold text-charcoal-800 mb-3">
                 PayPal
               </h3>
-              <p className="text-warm-600 mb-6">
+              <p className="text-charcoal-600 mb-6">
                 Schnell und sicher online spenden
               </p>
               {paypalButtonId ? (
@@ -105,16 +103,16 @@ export default function SpendenPage() {
                   href={`https://www.paypal.com/donate?hosted_button_id=${paypalButtonId}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block px-6 py-3 bg-gradient-to-r from-warm-600 to-coral-600 text-white rounded-lg font-semibold hover:shadow-lg transition-shadow"
+                  className="inline-block px-6 py-3 bg-clay-500 hover:bg-clay-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all"
                 >
                   Jetzt spenden
                 </motion.a>
               ) : (
                 <div className="space-y-3">
-                  <p className="text-sm text-warm-600 italic">
+                  <p className="text-sm text-charcoal-600 italic">
                     PayPal-Spenden werden derzeit konfiguriert.
                   </p>
-                  <p className="text-sm text-warm-600">
+                  <p className="text-sm text-charcoal-600">
                     In der Zwischenzeit nutzen Sie bitte die Banküberweisung.
                   </p>
                 </div>
@@ -125,65 +123,65 @@ export default function SpendenPage() {
             <motion.div
               variants={itemVariants}
               whileHover={{ y: -8 }}
-              className="p-8 bg-gradient-to-br from-white via-coral-50/30 to-sage-50/30 rounded-xl border-2 border-coral-200 hover:border-coral-400 hover:shadow-lg transition-all"
+              className="p-8 bg-white rounded-xl border-2 border-sand-200 hover:border-sage-300 hover:shadow-sage-lg transition-all"
             >
               <div className="text-5xl mb-4">🏦</div>
               <h3 className="text-2xl font-bold text-charcoal-800 mb-3">
                 Banküberweisung
               </h3>
-              <p className="text-warm-600 mb-6">
+              <p className="text-charcoal-600 mb-6">
                 Direkte Überweisung auf unser Konto
               </p>
-              <div className="space-y-3 text-sm bg-gradient-to-r from-coral-50 to-warm-50 p-4 rounded-lg border border-coral-200">
+              <div className="space-y-3 text-sm bg-sand-50 p-4 rounded-lg border border-sand-200">
                 <div className="flex justify-between items-center">
-                  <span className="font-semibold text-warm-700">IBAN:</span>
+                  <span className="font-semibold text-charcoal-700">IBAN:</span>
                   <button
                     onClick={() =>
                       copyToClipboard("DE12 3012 0000 0123456789", "iban")
                     }
-                    className="flex items-center gap-2 px-3 py-1 bg-white rounded hover:bg-coral-100 transition-colors"
+                    className="flex items-center gap-2 px-3 py-1 bg-white rounded hover:bg-sand-100 transition-colors border border-sand-200"
                   >
                     <span className="font-mono text-charcoal-900">
                       DE12 3012 0000 0123456789
                     </span>
                     {copied === "iban" ? (
-                      <Check className="w-4 h-4 text-warm-600" />
+                      <Check className="w-4 h-4 text-sage-600" />
                     ) : (
-                      <Copy className="w-4 h-4 text-warm-600" />
+                      <Copy className="w-4 h-4 text-sage-600" />
                     )}
                   </button>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="font-semibold text-warm-700">BIC:</span>
+                  <span className="font-semibold text-charcoal-700">BIC:</span>
                   <button
                     onClick={() => copyToClipboard("DEUTDE33", "bic")}
-                    className="flex items-center gap-2 px-3 py-1 bg-white rounded hover:bg-coral-100 transition-colors"
+                    className="flex items-center gap-2 px-3 py-1 bg-white rounded hover:bg-sand-100 transition-colors border border-sand-200"
                   >
                     <span className="font-mono text-charcoal-900">
                       DEUTDE33
                     </span>
                     {copied === "bic" ? (
-                      <Check className="w-4 h-4 text-warm-600" />
+                      <Check className="w-4 h-4 text-sage-600" />
                     ) : (
-                      <Copy className="w-4 h-4 text-warm-600" />
+                      <Copy className="w-4 h-4 text-sage-600" />
                     )}
                   </button>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="font-semibold text-warm-700">
+                  <span className="font-semibold text-charcoal-700">
                     Empfänger:
                   </span>
                   <button
                     onClick={() => copyToClipboard("Muslimin e.V.", "name")}
-                    className="flex items-center gap-2 px-3 py-1 bg-white rounded hover:bg-coral-100 transition-colors"
+                    className="flex items-center gap-2 px-3 py-1 bg-white rounded hover:bg-sand-100 transition-colors border border-sand-200"
                   >
                     <span className="font-mono text-charcoal-900">
                       Muslimin e.V.
                     </span>
                     {copied === "name" ? (
-                      <Check className="w-4 h-4 text-warm-600" />
+                      <Check className="w-4 h-4 text-sage-600" />
                     ) : (
-                      <Copy className="w-4 h-4 text-warm-600" />
+                      <Copy className="w-4 h-4 text-sage-600" />
                     )}
                   </button>
                 </div>
@@ -224,13 +222,13 @@ export default function SpendenPage() {
               <motion.div
                 key={idx}
                 variants={itemVariants}
-                className="p-6 rounded-lg bg-gradient-to-br from-sage-50 via-warm-50 to-coral-50 border border-warm-200"
+                className="p-6 rounded-lg bg-white border-2 border-sand-200"
               >
                 <p className="text-4xl mb-3">{reason.emoji}</p>
                 <h3 className="text-xl font-bold text-charcoal-800 mb-2">
                   {reason.title}
                 </h3>
-                <p className="text-warm-600">{reason.text}</p>
+                <p className="text-charcoal-600">{reason.text}</p>
               </motion.div>
             ))}
           </div>
@@ -241,7 +239,7 @@ export default function SpendenPage() {
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <motion.div
           variants={itemVariants}
-          className="max-w-4xl mx-auto bg-gradient-to-r from-warm-600 via-sage-600 to-coral-600 rounded-2xl p-12 text-center text-white"
+          className="max-w-4xl mx-auto bg-clay-500 rounded-2xl p-12 text-center text-white shadow-xl"
         >
           <h2 className="text-3xl font-bold mb-6">Deine Spende bewirkt</h2>
 
@@ -253,12 +251,12 @@ export default function SpendenPage() {
             ].map((item, idx) => (
               <motion.div key={idx} variants={itemVariants}>
                 <p className="text-3xl font-bold mb-2">{item.amount}</p>
-                <p className="text-lg opacity-90">{item.impact}</p>
+                <p className="text-lg opacity-95">{item.impact}</p>
               </motion.div>
             ))}
           </div>
 
-          <p className="mt-8 text-lg opacity-90">
+          <p className="mt-8 text-lg opacity-95">
             (Beispielhafte Angaben - können je nach Projekt variieren)
           </p>
         </motion.div>
@@ -296,7 +294,7 @@ export default function SpendenPage() {
               <motion.div
                 key={idx}
                 variants={itemVariants}
-                className="p-6 rounded-lg bg-gradient-to-br from-sage-50 via-coral-50 to-warm-50 border border-coral-200 text-left"
+                className="p-6 rounded-lg bg-white border-2 border-sand-200 text-left"
               >
                 <h3 className="text-xl font-bold text-charcoal-800 mb-4">
                   {section.title}
@@ -304,8 +302,8 @@ export default function SpendenPage() {
                 <ul className="space-y-2">
                   {section.items.map((item, i) => (
                     <li key={i} className="flex items-start gap-2">
-                      <span className="text-warm-600 mt-1">✓</span>
-                      <span className="text-warm-600">{item}</span>
+                      <span className="text-sage-600 mt-1">✓</span>
+                      <span className="text-charcoal-600">{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -324,12 +322,12 @@ export default function SpendenPage() {
           <h2 className="text-3xl font-bold text-charcoal-800 mb-4">
             Fragen zur Spende?
           </h2>
-          <p className="text-lg text-warm-600 mb-6">
+          <p className="text-lg text-charcoal-600 mb-6">
             Kontaktiere uns direkt für weitere Informationen
           </p>
           <a
             href="mailto:info@muslimin-ev.de"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-warm-600 to-coral-600 text-white rounded-lg font-semibold hover:shadow-lg transition-shadow"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-clay-500 hover:bg-clay-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all"
           >
             Kontakt aufnehmen
           </a>

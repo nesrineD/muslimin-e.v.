@@ -58,10 +58,10 @@ export default function ProjektePage() {
           variants={itemVariants}
           className="max-w-4xl mx-auto text-center"
         >
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-charcoal-800 via-sage-700 to-coral-700 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 text-charcoal-800">
             Unsere Projekte & Spendenaktionen
           </h1>
-          <p className="text-lg md:text-xl text-sage-600 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-charcoal-700 max-w-2xl mx-auto">
             Unterstütze Projekte, die einen echten Unterschied machen
           </p>
         </motion.div>
@@ -76,35 +76,35 @@ export default function ProjektePage() {
                 key={campaign.id}
                 variants={itemVariants}
                 whileHover={{ y: -8 }}
-                className="p-8 bg-white rounded-xl border-2 border-warm-200 hover:border-warm-400 hover:shadow-lg transition-all"
+                className="p-8 bg-white rounded-xl border-2 border-sand-200 hover:border-sage-300 hover:shadow-sage-lg transition-all"
               >
-                <div className="text-warm-600 mb-4">{campaign.icon}</div>
+                <div className="text-sage-600 mb-4">{campaign.icon}</div>
 
-                <h2 className="text-2xl font-bold text-sage-800 mb-3">
+                <h2 className="text-2xl font-bold text-charcoal-800 mb-3">
                   {campaign.title}
                 </h2>
 
-                <p className="text-warm-600 mb-6">{campaign.description}</p>
+                <p className="text-charcoal-600 mb-6">{campaign.description}</p>
 
                 <div className="space-y-2 mb-6">
                   {campaign.details.map((detail, idx) => (
                     <div key={idx} className="flex items-start gap-2">
-                      <span className="text-warm-500 mt-1">✓</span>
-                      <p className="text-warm-600">{detail}</p>
+                      <span className="text-sage-500 mt-1">✓</span>
+                      <p className="text-charcoal-600">{detail}</p>
                     </div>
                   ))}
                 </div>
 
                 {campaign.goal && (
-                  <div className="p-4 bg-warm-50 rounded-lg mb-4 border border-warm-200">
-                    <p className="text-sm font-semibold text-sage-800">
+                  <div className="p-4 bg-sand-50 rounded-lg mb-4 border border-sand-200">
+                    <p className="text-sm font-semibold text-charcoal-800">
                       💡 {campaign.goal}
                     </p>
                   </div>
                 )}
 
                 {campaign.impact && (
-                  <p className="text-warm-600 font-semibold italic">
+                  <p className="text-charcoal-700 font-semibold italic">
                     &ldquo;{campaign.impact}&rdquo;
                   </p>
                 )}
@@ -120,11 +120,11 @@ export default function ProjektePage() {
           variants={itemVariants}
           className="max-w-4xl mx-auto text-center"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-sage-800 mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-charcoal-800 mb-6">
             Transparenz ist uns wichtig
           </h2>
 
-          <p className="text-lg text-warm-600 mb-8 max-w-2xl mx-auto">
+          <p className="text-lg text-charcoal-600 mb-8 max-w-2xl mx-auto">
             Wir berichten regelmäßig über die Verwendung deiner Spenden. Alle
             Projekte werden dokumentiert und überprüft.
           </p>
@@ -138,12 +138,12 @@ export default function ProjektePage() {
               <motion.div
                 key={idx}
                 variants={itemVariants}
-                className="p-6 bg-sage-50 rounded-lg border border-sage-200"
+                className="p-6 bg-sand-50 rounded-lg border border-sand-200"
               >
-                <p className="text-3xl font-bold text-sage-800 mb-2">
+                <p className="text-3xl font-bold text-sage-700 mb-2">
                   {stat.value}
                 </p>
-                <p className="text-warm-600">{stat.label}</p>
+                <p className="text-charcoal-600">{stat.label}</p>
               </motion.div>
             ))}
           </div>
@@ -154,15 +154,15 @@ export default function ProjektePage() {
       <section className="py-20 md:py-24 px-4 sm:px-6 lg:px-8">
         <motion.div
           variants={itemVariants}
-          className="max-w-3xl mx-auto bg-gradient-to-r from-sage-600 to-coral-600 rounded-2xl p-12 text-center text-white"
+          className="max-w-3xl mx-auto bg-clay-500 rounded-2xl p-12 text-center text-white shadow-xl"
         >
           <h2 className="text-3xl font-bold mb-4">Möchtest du helfen?</h2>
-          <p className="text-lg mb-8 opacity-90">
+          <p className="text-lg mb-8 opacity-95">
             Erfahre mehr über unsere Spendenmöglichkeiten
           </p>
           <a
             href="/spenden"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-white text-coral-700 rounded-lg font-semibold hover:shadow-lg transition-shadow"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-white text-clay-600 rounded-lg font-semibold hover:shadow-lg transition-shadow hover:bg-sand-50"
           >
             Zu den Spendenmöglichkeiten
           </a>
