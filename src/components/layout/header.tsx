@@ -63,7 +63,6 @@ export function Header() {
 
   const handleSignOut = async () => {
     if (isSigningOut) {
-      console.log("Sign out already in progress, ignoring...");
       return;
     }
 
