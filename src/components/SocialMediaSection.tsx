@@ -170,6 +170,25 @@ export function SocialMediaSection({
 
   type Social = (typeof SOCIAL_MEDIA)[number];
 
+  // Helper function to get rotation values based on social media name
+  const getHoverRotation = (name: string): number => {
+    const rotations: Record<string, number> = {
+      Instagram: 8,
+      TikTok: -8,
+      WhatsApp: 12,
+    };
+    return rotations[name] || 0;
+  };
+
+  const getIconRotation = (name: string): number => {
+    const rotations: Record<string, number> = {
+      Instagram: 360,
+      TikTok: -360,
+      WhatsApp: 180,
+    };
+    return rotations[name] || 0;
+  };
+
   function SocialButton({
     social,
     variant = "default",
@@ -211,14 +230,7 @@ export function SocialMediaSection({
           rel="noopener noreferrer"
           whileHover={{
             scale: 1.15,
-            rotate:
-              social.name === "Instagram"
-                ? 8
-                : social.name === "TikTok"
-                  ? -8
-                  : social.name === "WhatsApp"
-                    ? 12
-                    : 0,
+            rotate: getHoverRotation(social.name),
             y: -3,
           }}
           whileTap={{ scale: 0.95 }}
@@ -229,14 +241,7 @@ export function SocialMediaSection({
           {Icon ? (
             <motion.div
               whileHover={{
-                rotate:
-                  social.name === "Instagram"
-                    ? 360
-                    : social.name === "TikTok"
-                      ? -360
-                      : social.name === "WhatsApp"
-                        ? 180
-                        : 0,
+                rotate: getIconRotation(social.name),
                 scale: 1.2,
                 y: -2,
               }}
