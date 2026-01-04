@@ -205,8 +205,19 @@ export default function UberUnsPage() {
         </section>
 
         {/* Social Media Section */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8">
-          <SocialMediaSection />
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-sage-50 via-cream-50 to-sage-50">
+          <motion.div variants={itemVariants} className="max-w-6xl mx-auto">
+            <div className="text-center mb-8">
+              <h2 className="text-4xl font-bold text-sage-800 mb-4">
+                Folge uns auf Social Media! 📱
+              </h2>
+              <p className="text-lg text-sage-600 max-w-2xl mx-auto">
+                Bleib auf dem Laufenden mit aktuellen Flyern, Terminen und
+                Live-Updates
+              </p>
+            </div>
+            <SocialMediaSection variant="compact" showTitle={false} />
+          </motion.div>
         </section>
       </motion.main>
     </div>
