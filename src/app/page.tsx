@@ -276,24 +276,20 @@ export default function Home() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.8 }}
-          className="max-w-4xl mx-auto mt-16"
+          className="max-w-6xl mx-auto mt-16"
         >
-          <Card className="border-2 border-sage-300 shadow-xl bg-gradient-to-br from-white via-sage-50/30 to-cream-50/30 hover:shadow-2xl transition-all duration-500">
-            <CardHeader className="text-center">
-              <CardTitle className="text-2xl font-bold text-sage-800 mb-2">
-                📱 Bleib verbunden auf Social Media!
-              </CardTitle>
-              <p className="text-sage-600">
-                Verpasse keine Updates, Flyer und Live-Events mehr
+          <section className="py-8 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-sage-50 via-cream-50 to-sage-50 rounded-2xl shadow-xl">
+            <div className="text-center mb-8">
+              <h2 className="text-4xl font-bold text-sage-800 mb-4">
+                Folge uns auf Social Media! 📱
+              </h2>
+              <p className="text-lg text-sage-600 max-w-2xl mx-auto">
+                Bleib auf dem Laufenden mit aktuellen Flyern, Terminen und
+                Live-Updates
               </p>
-            </CardHeader>
-            <CardContent>
-              <SocialMediaSection variant="compact" showTitle={false} />
-              <p className="text-center text-sm text-sage-500 mt-4">
-                Aktuelle Termine • Inspirierende Inhalte • Community-Updates
-              </p>
-            </CardContent>
-          </Card>
+            </div>
+            <SocialMediaSection variant="compact" showTitle={false} />
+          </section>
         </motion.div>
       </div>
     </div>

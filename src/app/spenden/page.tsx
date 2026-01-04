@@ -337,8 +337,8 @@ export default function SpendenPage() {
               Folge uns auf Social Media! 📱
             </h2>
             <p className="text-lg text-sage-600 max-w-2xl mx-auto">
-              Bleib auf dem Laufenden über unsere Projekte und sieh, wie deine
-              Spende wirkt
+              Bleib auf dem Laufenden mit aktuellen Flyern, Terminen und
+              Live-Updates
             </p>
           </div>
           <SocialMediaSection variant="compact" showTitle={false} />
