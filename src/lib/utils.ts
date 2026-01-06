@@ -13,7 +13,8 @@ export function cn(...inputs: ClassValue[]) {
  * @param wait - The number of milliseconds to delay
  * @returns The debounced function with a cancel method
  */
-export function debounce<F extends (...args: never[]) => unknown>(
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function debounce<F extends (...args: any[]) => any>(
   func: F,
   wait: number
 ): F & { cancel: () => void } {
