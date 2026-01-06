@@ -175,6 +175,7 @@ export function SocialMediaSection({
       Instagram: 360,
       TikTok: -360,
       WhatsApp: 180,
+      YouTube: 180,
     };
     return rotations[name] || 0;
   };
