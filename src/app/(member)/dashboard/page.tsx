@@ -138,7 +138,7 @@ export default function DashboardPage() {
       <Layout>
         <div className="flex items-center justify-center min-h-screen">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-600 mx-auto mb-4"></div>
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sage-600 mx-auto mb-4"></div>
             <p className="text-gray-600">Lade Dashboard...</p>
           </div>
         </div>
@@ -276,7 +276,7 @@ export default function DashboardPage() {
     <Card className="shadow-lg border-0 bg-white/70 backdrop-blur-sm">
       <CardHeader>
         <CardTitle className="text-lg font-bold text-gray-900 flex items-center">
-          <Calendar className="w-5 h-5 mr-2 text-emerald-600" />
+          <Calendar className="w-5 h-5 mr-2 text-sage-600" />
           {title}
         </CardTitle>
       </CardHeader>
@@ -288,8 +288,8 @@ export default function DashboardPage() {
                 key={appointment.id}
                 className={cn(
                   "border rounded-lg p-4 space-y-3",
-                  type === "member" && "border-blue-200 bg-blue-50",
-                  type === "helper" && "border-emerald-200 bg-emerald-50"
+                  type === "member" && "border-sand-200 bg-sand-50",
+                  type === "helper" && "border-sage-200 bg-sage-50"
                 )}
               >
                 <div className="flex justify-between items-start">
@@ -365,7 +365,7 @@ export default function DashboardPage() {
           subtitle="Mitglieder in Ihrer Nähe finden"
           href="/member-map"
           icon={Users}
-          className="hover:border-blue-300 bg-blue-50"
+          className="hover:border-sand-300 bg-sand-50"
         />
       </div>
       {!userData.isHelper && (
@@ -375,7 +375,7 @@ export default function DashboardPage() {
             subtitle="Anderen helfen"
             href="/helper/register"
             icon={Heart}
-            className="hover:border-coral-300 bg-coral-50"
+            className="hover:border-clay-300 bg-clay-50"
           />
         </div>
       )}
@@ -395,25 +395,25 @@ export default function DashboardPage() {
           title="Verfügbare Stunden"
           value={`${userData.helperStats.availableHours}h`}
           icon={Clock}
-          color="text-emerald-600"
+          color="text-sage-600"
         />
         <StatCard
           title="Offene Anfragen"
           value={userData.helperStats.openRequests}
           icon={AlertCircle}
-          color="text-orange-600"
+          color="text-clay-600"
         />
         <StatCard
           title="Nächster Termin"
           value="Heute 16:00"
           icon={Calendar}
-          color="text-blue-600"
+          color="text-sage-600"
         />
         <StatCard
           title="Geholfen"
           value={`${userData.helperStats.totalHelped} Termine`}
           icon={CheckCircle}
-          color="text-purple-600"
+          color="text-charcoal-600"
         />
       </div>
 
@@ -443,25 +443,25 @@ export default function DashboardPage() {
   );
 
   return (
-    <Layout className="bg-warm-50">
+    <Layout className="bg-sand-50">
       <div className="min-h-screen">
         {/* Header */}
         <motion.header
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-white/80 backdrop-blur-sm shadow-sm border-b border-emerald-100"
+          className="bg-white/80 backdrop-blur-sm shadow-sm border-b border-sage-100"
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center py-6">
               <div className="flex items-center space-x-4">
-                <Avatar className="w-12 h-12 border-2 border-emerald-200">
+                <Avatar className="w-12 h-12 border-2 border-sage-200">
                   <AvatarImage
                     src={
                       user?.user_metadata?.avatar_url ||
                       "https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=150&h=150&fit=crop&crop=face"
                     }
                   />
-                  <AvatarFallback className="bg-emerald-100 text-emerald-700 text-lg font-semibold">
+                  <AvatarFallback className="bg-sage-100 text-sage-700 text-lg font-semibold">
                     {user?.user_metadata?.vorname?.charAt(0) || "M"}
                   </AvatarFallback>
                 </Avatar>
@@ -489,7 +489,7 @@ export default function DashboardPage() {
               >
                 <Badge
                   variant="secondary"
-                  className="bg-emerald-100 text-emerald-700"
+                  className="bg-sage-100 text-sage-700"
                 >
                   {remainingBookings} Termine verfügbar
                 </Badge>

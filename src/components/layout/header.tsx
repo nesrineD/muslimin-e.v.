@@ -19,6 +19,7 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
+import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -42,6 +43,7 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSigningOut, setIsSigningOut] = useState(false);
   const { user, loading, signOut } = useAuth();
+  const { toast } = useToast();
 
   // Reset signing out state when user changes
   useEffect(() => {
@@ -75,7 +77,11 @@ export function Header() {
     } catch (error) {
       console.error("Error signing out:", error);
       setIsSigningOut(false);
-      alert("Fehler beim Abmelden. Bitte versuchen Sie es erneut.");
+      toast({
+        title: "Abmelden fehlgeschlagen",
+        description: "Bitte versuche es erneut.",
+        variant: "destructive",
+      });
     }
   };
 
@@ -96,7 +102,7 @@ export function Header() {
         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
           <Link
             href="/"
-            className="flex items-center space-x-3 mr-8 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-sage-600 rounded-lg"
+            className="flex items-center space-x-3 mr-8 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-lg"
             aria-label="Zur Startseite"
           >
             <motion.div
@@ -147,8 +153,8 @@ export function Header() {
                     className={`transition-colors duration-200 px-3 py-2 font-medium text-sm ${
                       "primary" in link && link.primary
                         ? link.href === "/mitglied-werden"
-                          ? "bg-gradient-to-r from-sage-600 to-coral-600 text-white hover:from-sage-700 hover:to-coral-700 shadow-sm"
-                          : "border-coral-300 text-coral-700 hover:bg-coral-50 hover:text-coral-800"
+                          ? "bg-gradient-to-r from-sage-600 to-clay-600 text-white hover:from-sage-700 hover:to-clay-700 shadow-sm"
+                          : "border-clay-300 text-clay-700 hover:bg-clay-50 hover:text-clay-800"
                         : "hover:bg-sage-50 hover:text-sage-700"
                     }`}
                   >
@@ -172,7 +178,7 @@ export function Header() {
                 <Button
                   variant="ghost"
                   asChild
-                  className="text-sand-50 hover:bg-sage-700/50 hover:text-sand-100 transition-colors duration-200 px-4 py-2 font-medium focus-visible:ring-2 focus-visible:ring-sand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-sage-600"
+                  className="text-sage-700 hover:bg-sage-50 hover:text-sage-800 transition-colors duration-200 px-4 py-2 font-medium focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 >
                   <Link
                     href={link.href}
@@ -194,7 +200,7 @@ export function Header() {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
               <Button
                 asChild
-                className="bg-clay-500 hover:bg-clay-600 text-sand-50 font-medium shadow-md hover:shadow-lg transition-all duration-200 focus-visible:ring-2 focus-visible:ring-sand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-sage-600"
+                className="bg-clay-500 hover:bg-clay-600 text-white font-medium shadow-md hover:shadow-lg transition-all duration-200 focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 <Link
                   href="/helper/register"
@@ -213,7 +219,7 @@ export function Header() {
         {/* Desktop Auth Section */}
         <div className="hidden md:flex items-center space-x-2">
           {loading && !user && !isSigningOut ? (
-            <div className="text-sm text-sand-200">Lade...</div>
+            <div className="text-sm text-sage-600">Lade...</div>
           ) : user ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -223,7 +229,7 @@ export function Header() {
                 >
                   <Button
                     variant="ghost"
-                    className="flex items-center space-x-2 text-sand-50 hover:bg-sage-700/50 hover:text-sand-100 px-3 py-2 focus-visible:ring-2 focus-visible:ring-sand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-sage-600"
+                    className="flex items-center space-x-2 text-sage-700 hover:bg-sage-50 hover:text-sage-800 px-3 py-2 focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                     aria-label="Benutzerprofil-Menü öffnen"
                   >
                     <div className="flex items-center space-x-2">
@@ -324,7 +330,7 @@ export function Header() {
               <Button
                 variant="ghost"
                 asChild
-                className="text-sand-50 hover:bg-sage-700/50 hover:text-sand-100 transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-sand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-sage-600"
+                className="text-sage-700 hover:bg-sage-50 hover:text-sage-800 transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 <Link href="/login" className="flex items-center space-x-2">
                   <User className="h-4 w-4" />
@@ -342,7 +348,7 @@ export function Header() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="text-sand-50 hover:bg-sage-700/50 focus-visible:ring-2 focus-visible:ring-sand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-sage-600"
+                className="text-sage-700 hover:bg-sage-50 focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 aria-label="Mobilmenü öffnen"
               >
                 <Menu className="h-5 w-5" />
@@ -391,14 +397,14 @@ export function Header() {
                         href={link.href}
                         className={`block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors group ${
                           "primary" in link && link.primary
-                            ? "hover:bg-coral-50 focus:bg-coral-50"
+                            ? "hover:bg-clay-50 focus:bg-clay-50"
                             : "hover:bg-sage-50 focus:bg-sage-50"
                         }`}
                       >
                         <div
                           className={`text-sm font-medium leading-none flex items-center space-x-2 ${
                             "primary" in link && link.primary
-                              ? "group-hover:text-coral-700 text-coral-600 font-semibold"
+                              ? "group-hover:text-clay-700 text-clay-600 font-semibold"
                               : "group-hover:text-sage-700"
                           }`}
                         >

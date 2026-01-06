@@ -24,20 +24,20 @@ const bookingSteps = [
     title: "Anliegen auswählen",
     description:
       "Wähle dein Anliegen aus - psychologische Beratung, Sozialberatung oder Schwangerschaftsbegleitung",
-    icon: <Heart className="w-5 h-5 text-warm-500" />,
+    icon: <Heart className="w-5 h-5 text-clay-500" />,
   },
   {
     number: "2",
     title: "Termin finden",
     description:
       "Schaue dir die verfügbaren Zeiten an und wähle einen passenden Slot",
-    icon: <Calendar className="w-5 h-5 text-warm-500" />,
+    icon: <Calendar className="w-5 h-5 text-clay-500" />,
   },
   {
     number: "3",
     title: "Termin buchen",
     description: "Bestätige deinen Termin und erhalte alle Details per E-Mail",
-    icon: <BookOpen className="w-5 h-5 text-warm-500" />,
+    icon: <BookOpen className="w-5 h-5 text-clay-500" />,
   },
 ];
 
@@ -48,8 +48,8 @@ const memberFeatures = [
     description:
       "Buche ganz einfach einen Beratungstermin in wenigen Schritten",
     href: "/book",
-    icon: <Calendar className="w-8 h-8 text-warm-500" />,
-    color: "bg-warm-50 hover:bg-warm-100",
+    icon: <Calendar className="w-8 h-8 text-clay-500" />,
+    color: "bg-sand-50 hover:bg-warm-100",
   },
   {
     title: "Beratungsstellen finden",
@@ -62,8 +62,8 @@ const memberFeatures = [
     title: "Helferin werden",
     description: "Möchtest du anderen helfen? Registriere dich als Helferin",
     href: "/helper/register",
-    icon: <HeartHandshake className="w-12 h-12 text-coral-500" />,
-    color: "bg-coral-50 hover:bg-coral-100",
+    icon: <HeartHandshake className="w-12 h-12 text-sage-500" />,
+    color: "bg-sage-50 hover:bg-sage-100",
   },
 ];
 
@@ -91,7 +91,7 @@ export default function Home() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-cream-50 via-white to-sage-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-sand-50 via-white to-sage-50 flex items-center justify-center">
         <div className="text-center">
           <div className="w-8 h-8 border-4 border-sage-300 border-t-sage-600 rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-sage-600">Lade...</p>
@@ -105,7 +105,7 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-cream-50 via-white to-sage-50">
+    <div className="min-h-screen bg-gradient-to-br from-sand-50 via-white to-sage-50">
       {/* Welcome Section */}
       <div className="container mx-auto px-4 py-12">
         <motion.div
@@ -116,7 +116,7 @@ export default function Home() {
         >
           <h1 className="text-4xl md:text-6xl font-bold text-sage-800 mb-6">
             Salam{" "}
-            <span className="bg-gradient-to-r from-warm-500 to-coral-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-sage-500 to-sage-600 bg-clip-text text-transparent">
               {user.user_metadata?.vorname || "liebe Schwester"}
             </span>
             ! 👋
@@ -184,7 +184,7 @@ export default function Home() {
                 className="text-center relative"
               >
                 <div className="relative z-10">
-                  <div className="w-16 h-16 bg-gradient-to-r from-warm-500 to-coral-500 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4 shadow-lg">
+                  <div className="w-16 h-16 bg-gradient-to-r from-sage-500 to-sage-600 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4 shadow-lg">
                     {step.number}
                   </div>
                   <div className="flex justify-center mb-4">{step.icon}</div>
@@ -196,7 +196,7 @@ export default function Home() {
                   </p>
                 </div>
                 {index < bookingSteps.length - 1 && (
-                  <div className="hidden md:block absolute top-8 left-1/2 w-full h-0.5 bg-gradient-to-r from-warm-300 to-coral-300 transform translate-x-8" />
+                  <div className="hidden md:block absolute top-8 left-1/2 w-full h-0.5 bg-gradient-to-r from-sage-300 to-sage-400 transform translate-x-8" />
                 )}
               </motion.div>
             ))}
@@ -210,7 +210,7 @@ export default function Home() {
           >
             <Button
               size="lg"
-              className="bg-gradient-to-r from-warm-500 to-coral-500 hover:from-warm-600 hover:to-coral-600 text-white font-medium px-8 py-3 shadow-lg hover:shadow-xl transition-all duration-300"
+              className="bg-gradient-to-r from-sage-500 to-sage-600 hover:from-sage-600 hover:to-sage-700 text-white font-medium px-8 py-3 shadow-lg hover:shadow-xl transition-all duration-300"
               asChild
             >
               <Link href="/book">
@@ -228,7 +228,7 @@ export default function Home() {
           transition={{ duration: 0.8, delay: 1.6 }}
           className="max-w-4xl mx-auto mt-16"
         >
-          <Card className="border-0 shadow-xl bg-gradient-to-r from-sage-50 to-warm-50 backdrop-blur-sm">
+          <Card className="border-0 shadow-xl bg-gradient-to-r from-sage-50 to-sand-50 backdrop-blur-sm">
             <CardHeader className="text-center">
               <CardTitle className="text-2xl font-bold text-sage-800">
                 🤗 Von Mitgliedern für Mitglieder
@@ -249,15 +249,15 @@ export default function Home() {
               </p>
               <div className="flex flex-wrap justify-center gap-6 text-sm pt-4">
                 <div className="flex items-center gap-2 text-sage-600">
-                  <div className="w-2 h-2 bg-pink-400 rounded-full"></div>
+                  <div className="w-2 h-2 bg-clay-300 rounded-full"></div>
                   <span>Mit Liebe</span>
                 </div>
                 <div className="flex items-center gap-2 text-sage-600">
-                  <div className="w-2 h-2 bg-pink-400 rounded-full"></div>
+                  <div className="w-2 h-2 bg-clay-300 rounded-full"></div>
                   <span>Verständnisvoll</span>
                 </div>
                 <div className="flex items-center gap-2 text-sage-600">
-                  <div className="w-2 h-2 bg-pink-400 rounded-full"></div>
+                  <div className="w-2 h-2 bg-clay-300 rounded-full"></div>
                   <span>Herzlich willkommen</span>
                 </div>
               </div>

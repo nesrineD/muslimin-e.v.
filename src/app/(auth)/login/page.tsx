@@ -134,7 +134,7 @@ function LoginContent() {
   return (
     <Layout className="relative min-h-screen overflow-hidden">
       {/* Animated Background */}
-      <div className="absolute inset-0 bg-warm-50">
+      <div className="absolute inset-0 bg-sand-50">
         <div className="absolute inset-0 bg-coral-50/30"></div>
 
         {/* Floating Background Elements */}
@@ -148,7 +148,7 @@ function LoginContent() {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute top-20 left-10 text-warm-200/30"
+          className="absolute top-20 left-10 text-clay-200/30"
         >
           <Heart size={32} />
         </motion.div>
@@ -163,7 +163,7 @@ function LoginContent() {
             ease: "easeInOut",
             delay: 2,
           }}
-          className="absolute top-40 right-20 text-coral-200/30"
+          className="absolute top-40 right-20 text-clay-200/30"
         >
           <Sparkles size={28} />
         </motion.div>
@@ -224,15 +224,15 @@ function LoginContent() {
                 exit={{ opacity: 0, scale: 0.8, y: -20 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                <Alert className="border-warm-200 bg-warm-50/80 backdrop-blur-sm shadow-lg">
+                <Alert className="border-clay-200 bg-clay-50/80 backdrop-blur-sm shadow-lg">
                   <motion.div
                     animate={{ rotate: [0, 10, -10, 0] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   >
-                    <Info className="h-4 w-4 text-warm-600" />
+                    <Info className="h-4 w-4 text-clay-600" />
                   </motion.div>
-                  <AlertTitle className="text-warm-800">Information</AlertTitle>
-                  <AlertDescription className="text-warm-700">
+                  <AlertTitle className="text-clay-800">Information</AlertTitle>
+                  <AlertDescription className="text-clay-700">
                     Ihre Registrierung als Helferin ist eingegangen. Ein
                     Administrator wird Ihr Profil prüfen und Sie erhalten eine
                     Bestätigung per E-Mail.
@@ -301,7 +301,7 @@ function LoginContent() {
                     <div className="relative group">
                       <motion.div
                         whileHover={{ scale: 1.1 }}
-                        className="absolute left-3 top-3 text-gray-400 group-focus-within:text-emerald-600 transition-colors duration-200"
+                        className="absolute left-3 top-3 text-gray-400 group-focus-within:text-sage-600 transition-colors duration-200"
                       >
                         <Mail className="h-4 w-4" />
                       </motion.div>
@@ -312,7 +312,7 @@ function LoginContent() {
                         placeholder="ihre@email.de"
                         value={formData.email}
                         onChange={handleChange}
-                        className="pl-10 border-gray-200 focus:border-emerald-500 focus:ring-emerald-500 transition-all duration-200 bg-white/50"
+                        className="pl-10 border-gray-200 focus:border-sage-500 focus:ring-sage-500 transition-all duration-200 bg-white/50"
                         required
                       />
                     </div>
@@ -329,7 +329,7 @@ function LoginContent() {
                     <div className="relative group">
                       <motion.div
                         whileHover={{ scale: 1.1 }}
-                        className="absolute left-3 top-3 text-gray-400 group-focus-within:text-emerald-600 transition-colors duration-200"
+                        className="absolute left-3 top-3 text-gray-400 group-focus-within:text-sage-600 transition-colors duration-200"
                       >
                         <Lock className="h-4 w-4" />
                       </motion.div>
@@ -340,7 +340,7 @@ function LoginContent() {
                         placeholder="Ihr Passwort"
                         value={formData.password}
                         onChange={handleChange}
-                        className="pl-10 pr-10 border-gray-200 focus:border-emerald-500 focus:ring-emerald-500 transition-all duration-200 bg-white/50"
+                        className="pl-10 pr-10 border-gray-200 focus:border-sage-500 focus:ring-sage-500 transition-all duration-200 bg-white/50"
                         required
                       />
                       <motion.div
@@ -457,7 +457,7 @@ function LoginContent() {
                       >
                         <Link
                           href="/helper/register"
-                          className="text-warm-600 underline-offset-4 hover:underline font-medium hover:text-warm-700 transition-colors duration-200"
+                          className="text-clay-600 underline-offset-4 hover:underline font-medium hover:text-clay-700 transition-colors duration-200"
                         >
                           Als Helferin registrieren ✨
                         </Link>

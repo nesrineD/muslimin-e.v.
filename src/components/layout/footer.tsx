@@ -108,7 +108,7 @@ export function Footer() {
 
         <Separator className="my-6 bg-sage-200/60" />
 
-        <div className="flex flex-col gap-2 text-xs text-sage-500/80 md:flex-row md:items-center md:justify-between">
+        <div className="flex flex-col gap-2 text-xs text-sage-700 md:flex-row md:items-center md:justify-between">
           <span>© {new Date().getFullYear()} Muslimin e.V. Alle Rechte vorbehalten.</span>
           <span className="flex items-center gap-2">
             <span className="hidden md:inline text-sage-400">•</span>

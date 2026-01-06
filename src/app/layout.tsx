@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
+import { MotionConfig } from "framer-motion";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
@@ -64,16 +65,18 @@ export default function RootLayout({ children }: RootLayoutProps) {
         className={`${inter.className} antialiased min-h-screen flex flex-col`}
         suppressHydrationWarning
       >
-        <AuthProvider>
-          <PWAPromptBanner />
-          <div className="flex min-h-screen flex-col">
-            <Header />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </div>
-          <Toaster />
-          <CookieBanner />
-        </AuthProvider>
+        <MotionConfig reducedMotion="user">
+          <AuthProvider>
+            <PWAPromptBanner />
+            <div className="flex min-h-screen flex-col">
+              <Header />
+              <main className="flex-1">{children}</main>
+              <Footer />
+            </div>
+            <Toaster />
+            <CookieBanner />
+          </AuthProvider>
+        </MotionConfig>
         <Analytics />
       </body>
     </html>
