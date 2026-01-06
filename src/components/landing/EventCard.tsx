@@ -24,6 +24,7 @@ export function EventCard({
   icon,
 }: EventCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const contentId = `event-${name.replace(/\s+/g, "-").toLowerCase()}-content`;
 
   return (
     <motion.div
@@ -63,6 +64,9 @@ export function EventCard({
         <AnimatePresence>
           {isExpanded && (
             <motion.div
+              id={contentId}
+              role="region"
+              aria-label={`Weitere Informationen zu ${name}`}
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
@@ -90,6 +94,8 @@ export function EventCard({
 
         <motion.button
           onClick={() => setIsExpanded(!isExpanded)}
+          aria-expanded={isExpanded}
+          aria-controls={contentId}
           className="flex items-center gap-2 text-sm font-semibold text-clay-600 hover:text-clay-700 transition-colors group"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
@@ -98,6 +104,7 @@ export function EventCard({
           <motion.div
             animate={{ rotate: isExpanded ? 180 : 0 }}
             transition={{ duration: 0.2 }}
+            aria-hidden="true"
           >
             <ChevronDown className="w-4 h-4" />
           </motion.div>
