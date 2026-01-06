@@ -93,6 +93,7 @@ export function EventCard({
           className="flex items-center gap-2 text-sm font-semibold text-clay-600 hover:text-clay-700 transition-colors group"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
+          aria-expanded={isExpanded}
         >
           <span>{isExpanded ? "Weniger anzeigen" : "Mehr erfahren"}</span>
           <motion.div
