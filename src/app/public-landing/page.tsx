@@ -15,7 +15,8 @@ import {
 } from "lucide-react";
 import { containerVariants, itemVariants } from "@/lib/animations";
 import { SocialMediaSection } from "@/components/SocialMediaSection";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
+import { debounce } from "@/lib/utils";
 
 interface CTACard {
   icon: React.ReactNode;
@@ -69,9 +70,22 @@ export default function PublicLandingPage() {
     });
   }, []);
 
+  // Debounce the scroll handler to reduce frequency of state updates
+  // 100ms provides a good balance between responsiveness and performance
+  const debouncedHandleScroll = useMemo(
+    () => debounce(handleScroll, 100),
+    [handleScroll]
+  );
+
   useEffect(() => {
-    return scrollY.on("change", handleScroll);
-  }, [scrollY, handleScroll]);
+    const unsubscribe = scrollY.on("change", debouncedHandleScroll);
+    
+    // Cleanup: cancel any pending debounced calls and unsubscribe
+    return () => {
+      debouncedHandleScroll.cancel();
+      unsubscribe();
+    };
+  }, [scrollY, debouncedHandleScroll]);
 
   return (
     <motion.main
