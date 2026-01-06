@@ -74,7 +74,7 @@ export default function PublicLandingPage() {
   // 100ms provides a good balance between responsiveness and performance
   const debouncedHandleScroll = useMemo(
     () => debounce(handleScroll, 100),
-    []
+    [handleScroll]
   );
 
   useEffect(() => {
