@@ -5,7 +5,7 @@ const nextConfig = {
       {
         source: '/angebote',
         destination: '/veranstaltungen',
-        permanent: true, // 308 permanent redirect
+        permanent: false, // 307 temporary redirect
       },
     ];
   },
