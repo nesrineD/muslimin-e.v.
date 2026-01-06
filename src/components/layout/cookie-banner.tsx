@@ -112,7 +112,7 @@ export function CookieBanner() {
               )}
 
               <p className="text-xs text-muted-foreground mt-3">
-                Weitere Informationen finden Sie in unserer{" "}
+                Weitere Informationen findest du in unserer{" "}
                 <Link
                   href="/datenschutz"
                   className="underline hover:text-primary"

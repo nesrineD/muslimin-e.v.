@@ -142,9 +142,21 @@ export function Header() {
                   whileTap={{ scale: 0.98 }}
                 >
                   <Button
-                    variant="ghost"
+                    variant={
+                      "primary" in link && link.primary
+                        ? link.href === "/mitglied-werden"
+                          ? "default"
+                          : "outline"
+                        : "ghost"
+                    }
                     asChild
-                    className="transition-colors duration-200 px-3 py-2 font-medium text-sm hover:bg-sage-50 hover:text-sage-700"
+                    className={`transition-colors duration-200 px-3 py-2 font-medium text-sm ${
+                      "primary" in link && link.primary
+                        ? link.href === "/mitglied-werden"
+                          ? "bg-gradient-to-r from-sage-600 to-clay-600 text-white hover:from-sage-700 hover:to-clay-700 shadow-sm"
+                          : "border-clay-300 text-clay-700 hover:bg-clay-50 hover:text-clay-800"
+                        : "hover:bg-sage-50 hover:text-sage-700"
+                    }`}
                   >
                     <Link href={link.href}>
                       <span>{link.label}</span>
@@ -383,9 +395,19 @@ export function Header() {
                     >
                       <Link
                         href={link.href}
-                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors group hover:bg-sage-50 focus:bg-sage-50"
+                        className={`block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors group ${
+                          "primary" in link && link.primary
+                            ? "hover:bg-clay-50 focus:bg-clay-50"
+                            : "hover:bg-sage-50 focus:bg-sage-50"
+                        }`}
                       >
-                        <div className="text-sm font-medium leading-none flex items-center space-x-2 group-hover:text-sage-700">
+                        <div
+                          className={`text-sm font-medium leading-none flex items-center space-x-2 ${
+                            "primary" in link && link.primary
+                              ? "group-hover:text-clay-700 text-clay-600 font-semibold"
+                              : "group-hover:text-sage-700"
+                          }`}
+                        >
                           <span>{link.label}</span>
                         </div>
                       </Link>
