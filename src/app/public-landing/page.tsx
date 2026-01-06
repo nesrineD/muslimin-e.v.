@@ -65,7 +65,7 @@ export default function PublicLandingPage() {
 
   const handleScroll = useCallback((latest: number) => {
     setShowStickyBar((prev) => {
-      const next = latest > 1200;
+      const next = latest > 800;
       return prev === next ? prev : next;
     });
   }, []);
