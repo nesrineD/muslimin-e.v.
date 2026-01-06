@@ -42,7 +42,7 @@ export function EventCard({
             className={`rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] ${
               format === "Online"
                 ? "bg-sage-50 text-sage-800 border border-sage-200"
-                : "bg-warm-50 text-warm-800 border border-warm-200"
+                : "bg-sand-50 text-charcoal-800 border border-sand-200"
             }`}
           >
             {format === "Online" ? "💻 Online" : "📍 Präsenz"}
