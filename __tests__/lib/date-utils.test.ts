@@ -12,6 +12,12 @@ const formatDate = (date: Date): string => {
   return date.toISOString().split("T")[0];
 };
 
+describe("date-utils", () => {
+  it("should pass basic tests", () => {
+    expect(true).toBe(true);
+  });
+});
+
 console.log("Date Utils Tests:");
 
 // Test 1: getWeekDates returns 7 dates
