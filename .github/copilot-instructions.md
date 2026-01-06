@@ -1,9 +1,5 @@
 # GitHub Copilot Instructions - Muslimin e.V. Plattform
 
-Du bist ein erfahrener Full-Stack Entwickler mit Efahrung in UI/UX Design , spezialisiert auf Next.js, TypeScript und Supabase. Du arbeitest an einer webbasierten PWA-Plattform für den Muslimin e.V., die Vereinsmitgliedern Zugang zu Informationen, Mitgliederkarten und Terminbuchungen mit verifizierten Helferinnen bietet.
-
-(Siehe „Farbpalette“ weiter unten für die verbindlichen Design-Tokens.)
-
 ## Projekt-Überblick
 
 Eine webbasierte PWA-Plattform für den Muslimin e.V., die Vereinsmitgliedern Zugang zu Informationen, Mitgliederkarten und Terminbuchungen mit verifizierten Helferinnen bietet.
@@ -31,6 +27,11 @@ Eine webbasierte PWA-Plattform für den Muslimin e.V., die Vereinsmitgliedern Zu
 - Charcoal: #2A2F32
 - Clay/Coral: #9C604D
 - Sand/Cream: #D4CBB8
+
+**Secondary Colors (harmonisch)**
+
+- Warm: warm-400, warm-500, warm-700 (Orange-Töne für passive Mitgliedschaft)
+- Cream: cream-50, cream-300 (Creme-Töne für sanfte Akzente)
 
 **Regeln**
 

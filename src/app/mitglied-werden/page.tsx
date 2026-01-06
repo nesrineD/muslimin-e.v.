@@ -379,10 +379,6 @@ export default function MitgliedWerdenPage() {
               <div className="text-center mt-6 space-y-2">
                 <div className="flex items-center justify-center gap-3 text-sm text-sage-600">
                   <CheckCircle className="h-5 w-5 text-green-500" />
-                  <span>Mitgliedschaft</span>
-                </div>
-                <div className="flex items-center justify-center gap-3 text-sm text-sage-600">
-                  <CheckCircle className="h-5 w-5 text-green-500" />
                   <span>Antwort innerhalb von 2-3 Werktagen</span>
                 </div>
               </div>

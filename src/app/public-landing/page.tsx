@@ -8,11 +8,9 @@ import {
   Calendar,
   Heart,
   Users,
-  Gift,
   Shield,
   Sparkles,
   CheckCircle,
-  TrendingUp,
   HeartHandshake,
 } from "lucide-react";
 import { containerVariants, itemVariants } from "@/lib/animations";
@@ -51,14 +49,6 @@ const ctaCards: CTACard[] = [
     color: "from-sand-50 via-cream-50 to-sage-50 hover:to-sage-100",
   },
   {
-    icon: <Gift className="w-12 h-12" />,
-    title: "Projekte",
-    description:
-      "Unterstütze unsere aktuellen Spendenaktionen und Hilfsprojekte",
-    href: "/projekte",
-    color: "from-cream-50 via-sand-50 to-coral-50 hover:to-coral-100",
-  },
-  {
     icon: <BookOpen className="w-12 h-12" />,
     title: "Über uns",
     description:
@@ -74,7 +64,7 @@ export default function PublicLandingPage() {
 
   const handleScroll = useCallback((latest: number) => {
     setShowStickyBar((prev) => {
-      const next = latest > 800;
+      const next = latest > 1200;
       return prev === next ? prev : next;
     });
   }, []);
@@ -105,7 +95,7 @@ export default function PublicLandingPage() {
             <div className="flex gap-2">
               <Link
                 href="/mitglied-werden"
-                className="px-4 py-2 bg-white text-charcoal-700 rounded-lg font-semibold text-sm hover:bg-cream-100 transition-colors"
+                className="px-4 py-2 bg-transparent text-white border-2 border-white rounded-lg font-semibold text-sm hover:bg-white/10 transition-colors hidden sm:block"
               >
                 Mitglied werden
               </Link>
@@ -141,17 +131,17 @@ export default function PublicLandingPage() {
             <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-charcoal-800 via-sage-700 to-coral-600 bg-clip-text text-transparent">
               Deine Schwesternschaft.
               <br />
-              Deine Stärke.
+              Deine Stärke im Glauben.
             </h1>
 
             <p className="text-xl md:text-2xl text-charcoal-700 mb-8 font-medium max-w-3xl mx-auto">
-              Werde Teil einer wachsenden Gemeinschaft von Frauen, die sich
-              gegenseitig unterstützen, inspirieren und stärken.
+              Werde Teil einer lebendigen Gemeinschaft muslimischer Frauen. Wir
+              fördern islamische Bildung, spirituelles Wachstum und den
+              Zusammenhalt.
             </p>
 
             <p className="text-lg text-charcoal-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-              🌟 Mitgliedschaft • Professionelle Beratung • Bildungsangebote •
-              Spirituelles Wachstum
+              🌟 Islamische Vorträge • Seminare • Begegnung
             </p>
 
             <div className="flex flex-col items-center gap-5">
@@ -176,7 +166,7 @@ export default function PublicLandingPage() {
                 >
                   <Link
                     href="/spenden"
-                    className="inline-flex w-full sm:w-auto items-center justify-center gap-3 px-10 py-5 bg-gradient-to-r from-coral-50 to-sage-100 text-charcoal-700 border-2 border-coral-300 rounded-xl font-bold hover:shadow-2xl transition-all text-lg shadow-md hover:bg-coral-100"
+                    className="inline-flex w-full sm:w-auto items-center justify-center gap-3 px-10 py-5 border-2 border-sage-400 text-sage-700 rounded-xl font-semibold hover:bg-sage-50 transition-all text-lg"
                   >
                     <HeartHandshake className="w-6 h-6" />
                     Jetzt unterstützen
@@ -193,14 +183,14 @@ export default function PublicLandingPage() {
               >
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-charcoal-600" />
-                  <span className="font-medium">Aktive Gemeinschaft</span>
+                  <span className="font-medium">
+                    Muslimische Frauen-Community
+                  </span>
                 </div>
                 <span className="hidden sm:inline">•</span>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-charcoal-600" />
-                  <span className="font-medium">
-                    Regelmäßige Veranstaltungen
-                  </span>
+                  <span className="font-medium">Islamische Weiterbildung</span>
                 </div>
               </motion.div>
             </div>
@@ -244,22 +234,22 @@ export default function PublicLandingPage() {
                   icon: <Heart className="w-6 h-6" />,
                   title: "Gemeinnützig & unabhängig",
                   description:
-                    "Seit 2011 arbeiten wir gemeinnützig und setzen uns für Bildung, Beratung und Gemeinschaft ein – mit vollem Herzen",
+                    "Seit 2011 arbeiten wir gemeinnützig und setzen uns für Bildung und Gemeinschaft ein – mit vollem Herzen",
                   color: "from-coral-50 via-sage-50 to-coral-100",
-                },
-                {
-                  icon: <Shield className="w-6 h-6" />,
-                  title: "Vertraulich & professionell",
-                  description:
-                    "Alle Beratungen erfolgen diskret, DSGVO-konform und durch verifizierte Helferinnen – deine Privatsphäre ist uns wichtig",
-                  color: "from-sand-50 via-sage-50 to-sand-100",
                 },
                 {
                   icon: <HeartHandshake className="w-6 h-6" />,
                   title: "Von Schwestern für Schwestern",
                   description:
-                    "Wir sind ein Netzwerk von Frauen, die sich gegenseitig stärken, verstehen und unterstützen – authentisch und auf Augenhöhe",
+                    "Wir sind eine Schwesternschaft muslimischer Frauen, die sich im Geiste des Islam gegenseitig stärken, verstehen und unterstützen – authentisch und auf Augenhöhe",
                   color: "from-coral-50 via-sage-50 to-coral-100",
+                },
+                {
+                  icon: <Sparkles className="w-6 h-6" />,
+                  title: "Einheit in Vielfalt",
+                  description:
+                    "Mitglieder verschiedenster Herkünfte und Generationen – eine bunte Gemeinschaft, die zusammenwächst",
+                  color: "from-sand-50 via-sage-50 to-sand-100",
                 },
               ].map((item, idx) => (
                 <motion.div
@@ -304,21 +294,6 @@ export default function PublicLandingPage() {
             </motion.div>
           </motion.div>
         </section>
-        {/* Social Media Section - Prominently Placed */}
-        <section className="py-16 bg-gradient-to-br from-sage-50 via-sand-50 to-sage-50">
-          <motion.div variants={itemVariants} className="max-w-6xl mx-auto">
-            <div className="text-center mb-8">
-              <h2 className="text-4xl font-bold text-charcoal-800 mb-4">
-                Folge uns auf Social Media! 📱
-              </h2>
-              <p className="text-lg text-charcoal-700 max-w-2xl mx-auto">
-                Bleib auf dem Laufenden mit aktuellen Flyern, Terminen und
-                Live-Updates
-              </p>
-            </div>
-            <SocialMediaSection variant="compact" showTitle={false} />
-          </motion.div>
-        </section>
 
         {/* Benefits Section */}
         <section className="py-16 md:py-20">
@@ -332,15 +307,15 @@ export default function PublicLandingPage() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
                 {
-                  icon: <Heart className="w-8 h-8" />,
-                  title: "Beratung",
+                  icon: <Users className="w-8 h-8" />,
+                  title: "Starke Gemeinschaft",
                   description:
-                    "Professionelle psychologische & soziale Beratung von verifizierten Helferinnen",
-                  color: "from-coral-50 via-sage-50 to-coral-100",
-                  iconBg: "bg-gradient-to-br from-coral-600 to-sage-700",
+                    "Vernetzung mit Schwestern, die dich verstehen und unterstützen",
+                  color: "from-sand-50 via-sage-50 to-sand-100",
+                  iconBg: "bg-gradient-to-br from-sage-600 to-coral-600",
                 },
                 {
                   icon: <BookOpen className="w-8 h-8" />,
@@ -348,14 +323,6 @@ export default function PublicLandingPage() {
                   description:
                     "Workshops, Vorträge und Seminare zu spirituellen & gesellschaftlichen Themen",
                   color: "from-sage-50 via-coral-50 to-sage-100",
-                  iconBg: "bg-gradient-to-br from-sage-600 to-coral-600",
-                },
-                {
-                  icon: <Users className="w-8 h-8" />,
-                  title: "Starke Gemeinschaft",
-                  description:
-                    "Vernetzung mit Schwestern, die dich verstehen und unterstützen",
-                  color: "from-sand-50 via-sage-50 to-sand-100",
                   iconBg: "bg-gradient-to-br from-sage-600 to-coral-600",
                 },
                 {
@@ -402,115 +369,6 @@ export default function PublicLandingPage() {
                 Jetzt Mitglied werden
                 <ArrowRight className="w-5 h-5" />
               </Link>
-            </motion.div>
-          </motion.div>
-        </section>
-
-        {/* Donation Impact Section */}
-        <section className="py-16 md:py-20 bg-gradient-to-br from-sage-100/40 via-white to-sand-50/30">
-          <motion.div variants={itemVariants} className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-charcoal-800 mb-4">
-                Deine Spende bewirkt Großes 💚
-              </h2>
-              <p className="text-lg text-charcoal-700 max-w-2xl mx-auto">
-                Jeder Beitrag hilft uns, unsere Mission zu erfüllen und Frauen
-                in Not zu unterstützen
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8 mb-12">
-              {[
-                {
-                  amount: "10€",
-                  impact: "Bildungsmaterial für ein Kind",
-                  icon: <BookOpen className="w-6 h-6" />,
-                },
-                {
-                  amount: "25€",
-                  impact: "Medizinische Versorgung für 1 Person",
-                  icon: <Heart className="w-6 h-6" />,
-                },
-                {
-                  amount: "50€",
-                  impact: "Workshop für 10 Teilnehmerinnen",
-                  icon: <Users className="w-6 h-6" />,
-                },
-              ].map((item, idx) => (
-                <motion.div
-                  key={idx}
-                  variants={itemVariants}
-                  whileHover={{ scale: 1.05 }}
-                  className="p-8 rounded-2xl bg-gradient-to-br from-white via-coral-50/30 to-sage-50/30 border-2 border-coral-200 hover:border-coral-400 transition-all shadow-lg text-center"
-                >
-                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-coral-100 to-sage-200 text-charcoal-700 mb-4 shadow-sm">
-                    {item.icon}
-                  </div>
-                  <p className="text-4xl font-bold text-charcoal-800 mb-2">
-                    {item.amount}
-                  </p>
-                  <p className="text-charcoal-700 leading-relaxed">
-                    {item.impact}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Donation Goal Progress */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="bg-gradient-to-br from-white via-coral-50/20 to-sage-50/20 rounded-2xl p-8 shadow-xl border-2 border-coral-200 mb-8"
-            >
-              <div className="flex items-center justify-between mb-4">
-                <div>
-                  <h3 className="text-2xl font-bold text-charcoal-800 mb-1">
-                    Monatliches Spendenziel
-                  </h3>
-                  <p className="text-charcoal-700">
-                    Für laufende Projekte und Veranstaltungen
-                  </p>
-                </div>
-                <div className="text-right">
-                  <p className="text-3xl font-bold text-charcoal-800">2.450€</p>
-                  <p className="text-sm text-charcoal-500">von 5.000€</p>
-                </div>
-              </div>
-              <div className="w-full bg-sage-100 rounded-full h-4 mb-2">
-                <motion.div
-                  initial={{ width: 0 }}
-                  whileInView={{ width: "49%" }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 1.5, ease: "easeOut" }}
-                  className="bg-gradient-to-r from-coral-500 to-sage-500 h-4 rounded-full flex items-center justify-end pr-2"
-                >
-                  <TrendingUp className="w-3 h-3 text-white" />
-                </motion.div>
-              </div>
-              <p className="text-sm text-charcoal-500">
-                49% erreicht • 2.550€ bis zum Ziel
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="text-center"
-            >
-              <Link
-                href="/spenden"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-coral-600 to-sage-600 text-white rounded-xl font-bold hover:shadow-xl transition-all text-lg"
-              >
-                <HeartHandshake className="w-6 h-6" />
-                Jetzt spenden & helfen
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-              <p className="text-sm text-charcoal-500 mt-3">
-                100% deiner Spende kommt an • Gemeinnützig anerkannt
-              </p>
             </motion.div>
           </motion.div>
         </section>
@@ -562,7 +420,21 @@ export default function PublicLandingPage() {
             </div>
           </motion.div>
         </section>
-
+        {/* Social Media Section - Prominently Placed */}
+        <section className="py-16 bg-gradient-to-br from-sage-50 via-sand-50 to-sage-50">
+          <motion.div variants={itemVariants} className="max-w-6xl mx-auto">
+            <div className="text-center mb-8">
+              <h2 className="text-4xl font-bold text-charcoal-800 mb-4">
+                Folge uns auf Social Media! 📱
+              </h2>
+              <p className="text-lg text-charcoal-700 max-w-2xl mx-auto">
+                Bleib auf dem Laufenden mit aktuellen Flyern, Terminen und
+                Live-Updates
+              </p>
+            </div>
+            <SocialMediaSection variant="compact" showTitle={false} />
+          </motion.div>
+        </section>
         {/* Final CTA Section */}
         <section className="py-20">
           <motion.div

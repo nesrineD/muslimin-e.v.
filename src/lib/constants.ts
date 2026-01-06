@@ -105,10 +105,10 @@ export const NAV_LINKS = [
     icon: "HeartHandshake",
   },
   {
-    href: "/angebote",
-    label: "Angebote",
-    description: "Unsere Beratungs- und Hilfsangebote",
-    icon: "BookOpen",
+    href: "/veranstaltungen",
+    label: "Veranstaltungen",
+    description: "Unsere aktuellen Veranstaltungen & Highlights",
+    icon: "Calendar",
   },
   {
     href: "/mitglied-werden",
