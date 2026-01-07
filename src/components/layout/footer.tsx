@@ -1,7 +1,12 @@
+// ============================================
+// OPTIMIZED FOOTER
+// ============================================
+
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight, Mail, MapPin } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
+import { Button } from "@/components/ui/button";
 import { SocialMediaSection } from "@/components/SocialMediaSection";
 import {
   CONTACT_INFO,
@@ -12,10 +17,11 @@ import {
 
 export function Footer() {
   return (
-    <footer className="border-t border-sage-200/80 bg-gradient-to-b from-white via-cream-50/50 to-sage-50/80" role="contentinfo">
+    <footer className="border-t-2 border-sage-400 bg-white" role="contentinfo">
       <div className="container mx-auto px-4 py-10">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          <div className="space-y-3">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
+          {/* Brand Column */}
+          <div className="space-y-3 lg:col-span-1">
             <Link href="/" className="inline-flex items-center gap-2.5 group">
               <Image
                 src="/images/muslimin-logo.svg"
@@ -32,8 +38,13 @@ export function Footer() {
               href="/uber-uns"
               className="text-sm text-sage-600/90 hover:text-sage-800 leading-relaxed transition-colors block max-w-xs"
             >
-              Muslimischer Frauen- & Mädchenverein – Gemeinschaft, Bildung &
-              Hilfe seit 2011
+              <span className="block sm:hidden">
+                Frauen- & Mädchenverein seit 2011
+              </span>
+              <span className="hidden sm:block">
+                Muslimischer Frauen- & Mädchenverein – Gemeinschaft, Bildung &
+                Hilfe seit 2011
+              </span>
             </Link>
 
             <div className="pt-1">
@@ -41,51 +52,101 @@ export function Footer() {
             </div>
           </div>
 
-          <nav aria-label="Footer Navigation">
+          {/* Erkunden Column */}
+          <nav aria-label="Footer Navigation Erkunden">
             <h3 className="text-xs font-bold text-sage-800 uppercase tracking-wider mb-3 flex items-center gap-2">
               <span className="w-1 h-4 bg-sage-600 rounded-full" />
-              Navigation
+              Erkunden
             </h3>
             <ul className="space-y-2.5">
-              {NAV_LINKS.map((link) => (
+              {NAV_LINKS.slice(0, 2).map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
                     className="flex items-center gap-2 text-sm text-sage-600 hover:text-sage-800 hover:translate-x-0.5 transition-all group"
                   >
                     <ChevronRight className="h-3.5 w-3.5 text-sage-400 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    <span className="group-hover:font-medium transition-all">{link.label}</span>
+                    <span className="group-hover:font-medium transition-all">
+                      {link.label}
+                    </span>
                   </Link>
                 </li>
               ))}
             </ul>
           </nav>
 
+          {/* Unterstützen Column */}
+          <nav aria-label="Footer Navigation Unterstützen">
+            <h3 className="text-xs font-bold text-sage-800 uppercase tracking-wider mb-3 flex items-center gap-2">
+              <span className="w-1 h-4 bg-clay-600 rounded-full" />
+              Unterstützen
+            </h3>
+            <ul className="space-y-2.5">
+              <li>
+                <Link
+                  href="/spenden"
+                  className="flex items-center gap-2 text-sm text-sage-600 hover:text-sage-800 hover:translate-x-0.5 transition-all group"
+                >
+                  <ChevronRight className="h-3.5 w-3.5 text-sage-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <span className="group-hover:font-medium transition-all">
+                    Spenden
+                  </span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/mitglied-werden"
+                  className="flex items-center gap-2 text-sm text-sage-600 hover:text-sage-800 hover:translate-x-0.5 transition-all group"
+                >
+                  <ChevronRight className="h-3.5 w-3.5 text-sage-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <span className="group-hover:font-medium transition-all">
+                    Mitglied werden
+                  </span>
+                </Link>
+              </li>
+            </ul>
+          </nav>
+
+          {/* Kontakt Column */}
           <div>
             <h3 className="text-xs font-bold text-sage-800 uppercase tracking-wider mb-3 flex items-center gap-2">
-              <span className="w-1 h-4 bg-sage-600 rounded-full" />
+              <span className="w-1 h-4 bg-coral-600 rounded-full" />
               Kontakt
             </h3>
-            <address className="not-italic space-y-2.5 text-sm">
+            <address className="not-italic space-y-2.5 text-sm mb-4">
               <a
                 href={`mailto:${CONTACT_INFO.email}`}
                 className="flex items-center gap-2 text-sage-600 hover:text-sage-800 transition-colors group"
+                aria-label="E-Mail an Muslimin e.V."
               >
                 <Mail className="h-4 w-4 text-sage-500 group-hover:text-sage-700 transition-colors flex-shrink-0" />
-                <span className="group-hover:underline">
-                  {CONTACT_INFO.email}
-                </span>
+                <span className="group-hover:underline">E-Mail schreiben</span>
               </a>
               <p className="flex items-start gap-2 text-sage-600">
                 <MapPin className="h-4 w-4 text-sage-500 mt-0.5 flex-shrink-0" />
-                Berlin, Deutschland
+                Berlin
               </p>
             </address>
+
+            <Button
+              asChild
+              variant="outline"
+              size="sm"
+              className="w-full border-sage-300 hover:bg-sage-50 hover:border-sage-400 transition-colors"
+            >
+              <Link
+                href="/kontakt"
+                className="flex items-center justify-center gap-2"
+              >
+                Kontaktformular
+              </Link>
+            </Button>
           </div>
 
+          {/* Rechtliches Column */}
           <div>
             <h3 className="text-xs font-bold text-sage-800 uppercase tracking-wider mb-3 flex items-center gap-2">
-              <span className="w-1 h-4 bg-sage-600 rounded-full" />
+              <span className="w-1 h-4 bg-charcoal-600 rounded-full" />
               Rechtliches
             </h3>
             <ul className="space-y-2.5">
@@ -106,10 +167,12 @@ export function Footer() {
           </div>
         </div>
 
-        <Separator className="my-6 bg-sage-200/60" />
+        <Separator className="my-6 bg-sage-300" />
 
         <div className="flex flex-col gap-2 text-xs text-sage-700 md:flex-row md:items-center md:justify-between">
-          <span>© {new Date().getFullYear()} Muslimin e.V. Alle Rechte vorbehalten.</span>
+          <span>
+            © {new Date().getFullYear()} Muslimin e.V. Alle Rechte vorbehalten.
+          </span>
           <span className="flex items-center gap-2">
             <span className="hidden md:inline text-sage-400">•</span>
             <span className="flex items-center gap-1.5 font-medium text-sage-600">

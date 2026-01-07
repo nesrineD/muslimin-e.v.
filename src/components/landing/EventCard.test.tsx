@@ -1,5 +1,6 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { Calendar } from "lucide-react";
 import { EventCard } from "./EventCard";
 
 describe("EventCard Accessibility", () => {
@@ -10,7 +11,10 @@ describe("EventCard Accessibility", () => {
     regularity: "Weekly",
     targetAudience: "All members",
     format: "Online" as const,
-    icon: "📅",
+    icon: Calendar,
+    badges: [{ label: "Test Badge", variant: "open" as const }],
+    accessNote: "Test access note",
+    ctaLabel: "Test CTA",
   };
 
   it("button has aria-expanded attribute that reflects state", async () => {
