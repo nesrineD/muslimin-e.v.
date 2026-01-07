@@ -15,25 +15,13 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import type { LucideIcon } from "lucide-react";
+import type { BadgeVariant, EventBadge } from "@/types/events";
 
 // -----------------------------
 // Types
 // -----------------------------
 
 type EventFormat = "Online" | "Präsenz";
-
-type BadgeVariant =
-  | "open"
-  | "register"
-  | "members"
-  | "online"
-  | "presence"
-  | "limited";
-
-interface EventBadge {
-  label: string;
-  variant: BadgeVariant;
-}
 
 interface Event {
   id: string;
@@ -219,7 +207,7 @@ export default function VeranstaltungenPage() {
         {/* Sticky Category Navigation */}
         <motion.nav
           variants={itemVariants}
-          className="sticky top-0 bg-white/95 backdrop-blur-sm shadow-sm z-40 py-4 mb-8 rounded-lg"
+          className="sticky top-16 md:top-20 bg-white/95 backdrop-blur-sm shadow-sm z-40 py-4 mb-8 rounded-lg"
         >
           <div className="flex gap-2 overflow-x-auto px-4 scrollbar-hide">
             <a

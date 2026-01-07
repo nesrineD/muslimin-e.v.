@@ -4,19 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-
-type BadgeVariant =
-  | "open"
-  | "register"
-  | "members"
-  | "online"
-  | "presence"
-  | "limited";
-
-interface EventBadge {
-  label: string;
-  variant: BadgeVariant;
-}
+import type { BadgeVariant, EventBadge } from "@/types/events";
 
 interface EventCardProps {
   name: string;
@@ -24,11 +12,9 @@ interface EventCardProps {
   teaser: string;
   regularity: string;
   targetAudience: string;
-  format: "Online" | "Präsenz";
   icon: LucideIcon;
   badges: EventBadge[];
   accessNote: string;
-  ctaLabel: string;
   secondaryCtaLabel?: string;
 }
 
@@ -47,7 +33,6 @@ export function EventCard({
   teaser,
   regularity,
   targetAudience,
-  format,
   icon: IconComponent,
   badges,
   accessNote,

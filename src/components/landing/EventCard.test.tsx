@@ -10,11 +10,9 @@ describe("EventCard Accessibility", () => {
     teaser: "Short teaser text",
     regularity: "Weekly",
     targetAudience: "All members",
-    format: "Online" as const,
     icon: Calendar,
     badges: [{ label: "Test Badge", variant: "open" as const }],
     accessNote: "Test access note",
-    ctaLabel: "Test CTA",
   };
 
   it("button has aria-expanded attribute that reflects state", async () => {

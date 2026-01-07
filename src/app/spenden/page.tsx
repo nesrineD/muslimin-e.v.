@@ -8,7 +8,6 @@ import {
   Shield,
   Users,
   Landmark,
-  BookOpen,
   ArrowRight,
   ChevronDown,
   ChevronUp,
