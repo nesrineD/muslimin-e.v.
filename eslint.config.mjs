@@ -14,6 +14,19 @@ const eslintConfig = [
     ignores: [".next/**", "node_modules/**", "mockups/**", "next-env.d.ts"],
   },
   ...compat.extends("next/core-web-vitals", "next/typescript"),
+  {
+    rules: {
+      // Warn against hardcoded hex colors - use Tailwind design tokens instead
+      "no-restricted-syntax": [
+        "warn",
+        {
+          selector: "Literal[value=/#[0-9A-Fa-f]{3,8}/]",
+          message:
+            "Avoid hardcoded hex colors. Use Tailwind design tokens (e.g., bg-sage, text-charcoal) instead.",
+        },
+      ],
+    },
+  },
 ];
 
 export default eslintConfig;

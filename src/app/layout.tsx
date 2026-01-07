@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Merriweather } from "next/font/google";
 import { MotionConfig } from "framer-motion";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
@@ -13,7 +13,14 @@ import { Analytics } from "@vercel/analytics/react";
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-inter",
+  variable: "--font-body",
+});
+
+const merriweather = Merriweather({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  display: "swap",
+  variable: "--font-heading",
 });
 
 export const metadata: Metadata = {
@@ -50,7 +57,11 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="de" className={inter.variable} suppressHydrationWarning>
+    <html 
+      lang="de" 
+      className={`${inter.variable} ${merriweather.variable}`} 
+      suppressHydrationWarning
+    >
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
