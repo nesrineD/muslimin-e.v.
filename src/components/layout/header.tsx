@@ -45,7 +45,6 @@ export function Header() {
   const { user, loading, signOut } = useAuth();
   const { toast } = useToast();
 
-  // Reset signing out state when user changes
   useEffect(() => {
     if (user) {
       setIsSigningOut(false);
@@ -92,97 +91,71 @@ export function Header() {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
         isScrolled
-          ? "bg-gradient-to-b from-cream-50 to-sage-50/80 backdrop-blur-md border-b border-sage-200 shadow-lg"
-          : "bg-gradient-to-b from-cream-50/80 to-sage-50/50 backdrop-blur-sm border-b border-sage-200/70"
+          ? "bg-white border-b-2 border-sage-400 shadow-sm"
+          : "bg-white/95 backdrop-blur-sm border-b border-sage-300"
       }`}
       role="banner"
     >
-      <div className="container mx-auto px-4 flex h-20 items-center">
-        {/* Logo */}
-        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-          <Link
-            href="/"
-            className="flex items-center space-x-3 mr-8 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-lg"
-            aria-label="Zur Startseite"
-          >
-            <motion.div
-              whileHover={{ rotate: 2, scale: 1.08 }}
-              transition={{ type: "spring", stiffness: 300, damping: 15 }}
-              className="relative flex items-center justify-center"
-            >
-              <Image
-                src="/images/muslimin-logo.svg"
-                alt="Muslimin e.V. Logo"
-                width={64}
-                height={64}
-                className="h-16 w-auto transition-all duration-300 group-hover:drop-shadow-xl"
-              />
-            </motion.div>
-            <div className="flex flex-col">
-              <span className="font-bold text-xl text-sage-700 group-hover:text-coral-600 transition-all duration-300">
-                Muslimin e.V.
-              </span>
-            </div>
-          </Link>
-        </motion.div>
+      <div
+        className={`container mx-auto px-4 flex items-center transition-all duration-300 ${
+          isScrolled ? "h-16" : "h-20"
+        }`}
+      >
+        {/* Logo with Shrinking Effect */}
+        <Link
+          href="/"
+          className="flex items-center gap-3 mr-10 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:ring-offset-2 rounded-lg"
+          aria-label="Zur Startseite"
+        >
+          <Image
+            src="/images/muslimin-logo.svg"
+            alt="Muslimin e.V. Logo"
+            width={64}
+            height={64}
+            className={`w-auto transition-all duration-300 ${
+              isScrolled ? "h-12" : "h-16"
+            }`}
+          />
+          <div className="hidden sm:flex flex-col">
+            <span className="font-bold text-xl text-sage-700 group-hover:text-coral-600 transition-colors duration-300">
+              Muslimin e.V.
+            </span>
+            <span className="text-xs text-charcoal-600">
+              Frauen- & Mädchenverein Berlin
+            </span>
+          </div>
+        </Link>
 
         {/* Desktop Navigation */}
         <nav
-          className="hidden md:flex items-center space-x-1"
+          className="hidden md:flex"
           role="navigation"
           aria-label="Hauptnavigation"
         >
           {/* Public Navigation - Only visible when NOT logged in */}
           {!user && (
-            <>
+            <ul className="flex items-center gap-6">
               {NAV_LINKS.map((link) => (
-                <motion.div
-                  key={link.href}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Button
-                    variant={
-                      "primary" in link && link.primary
-                        ? link.href === "/mitglied-werden"
-                          ? "default"
-                          : "outline"
-                        : "ghost"
-                    }
-                    asChild
-                    className={`transition-colors duration-200 px-3 py-2 font-medium text-sm ${
-                      "primary" in link && link.primary
-                        ? link.href === "/mitglied-werden"
-                          ? "bg-gradient-to-r from-sage-600 to-clay-600 text-white hover:from-sage-700 hover:to-clay-700 shadow-sm"
-                          : "border-clay-300 text-clay-700 hover:bg-clay-50 hover:text-clay-800"
-                        : "hover:bg-sage-50 hover:text-sage-700"
-                    }`}
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="relative text-base font-semibold text-charcoal-700 transition-colors hover:text-coral-700 after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-coral-400 after:transition-all after:duration-200 hover:after:w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral-500 rounded-sm px-1"
                   >
-                    <Link href={link.href}>
-                      <span>{link.label}</span>
-                    </Link>
-                  </Button>
-                </motion.div>
+                    {link.label}
+                  </Link>
+                </li>
               ))}
-            </>
+            </ul>
           )}
 
           {/* Member-only Navigation - Only visible when logged in */}
-          {user &&
-            MEMBER_NAV_LINKS.map((link) => (
-              <motion.div
-                key={link.href}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Button
-                  variant="ghost"
-                  asChild
-                  className="text-sage-700 hover:bg-sage-50 hover:text-sage-800 transition-colors duration-200 px-4 py-2 font-medium focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                >
+          {user && (
+            <ul className="flex items-center gap-6">
+              {MEMBER_NAV_LINKS.map((link) => (
+                <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="flex items-center space-x-2"
+                    className="relative flex items-center gap-2 text-base font-semibold text-charcoal-700 transition-colors hover:text-clay-700 after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-clay-400 after:transition-all after:duration-200 hover:after:w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clay-500 rounded-sm px-1"
                   >
                     {link.icon === "BookOpen" && (
                       <BookOpen className="h-4 w-4" />
@@ -191,20 +164,25 @@ export function Header() {
                     {link.icon === "Map" && <Map className="h-4 w-4" />}
                     <span>{link.label}</span>
                   </Link>
-                </Button>
-              </motion.div>
-            ))}
+                </li>
+              ))}
+            </ul>
+          )}
 
           {/* Helper CTA for members who are NOT yet helpers */}
           {user && !user.is_helper && (
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+              className="ml-6"
+            >
               <Button
                 asChild
-                className="bg-clay-500 hover:bg-clay-600 text-white font-medium shadow-md hover:shadow-lg transition-all duration-200 focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                className="bg-clay-500 hover:bg-clay-600 text-white font-semibold shadow-md hover:shadow-lg transition-all duration-200 focus-visible:ring-2 focus-visible:ring-clay-500 focus-visible:ring-offset-2"
               >
                 <Link
                   href="/helper/register"
-                  className="flex items-center space-x-2"
+                  className="flex items-center gap-2"
                 >
                   <HeartHandshake className="h-4 w-4" />
                   <span>Helferin werden</span>
@@ -217,7 +195,7 @@ export function Header() {
         <div className="flex-1" />
 
         {/* Desktop Auth Section */}
-        <div className="hidden md:flex items-center space-x-2">
+        <div className="hidden md:flex items-center">
           {loading && !user && !isSigningOut ? (
             <div className="text-sm text-sage-600">Lade...</div>
           ) : user ? (
@@ -229,18 +207,16 @@ export function Header() {
                 >
                   <Button
                     variant="ghost"
-                    className="flex items-center space-x-2 text-sage-700 hover:bg-sage-50 hover:text-sage-800 px-3 py-2 focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                    className="flex items-center gap-2 text-sage-700 hover:bg-sage-50 hover:text-sage-800 px-3 py-2 focus-visible:ring-2 focus-visible:ring-sage-500"
                     aria-label="Benutzerprofil-Menü öffnen"
                   >
-                    <div className="flex items-center space-x-2">
-                      <div className="w-8 h-8 bg-sand-200 rounded-full flex items-center justify-center">
-                        <User2 className="h-4 w-4 text-sage-700" />
-                      </div>
-                      <span className="text-sm font-medium">
-                        {user.user_metadata?.vorname || "Mitglied"}
-                      </span>
-                      <ChevronDown className="h-4 w-4 text-sand-300" />
+                    <div className="w-8 h-8 bg-sand-200 rounded-full flex items-center justify-center">
+                      <User2 className="h-4 w-4 text-sage-700" />
                     </div>
+                    <span className="text-sm font-medium">
+                      {user.user_metadata?.vorname || "Mitglied"}
+                    </span>
+                    <ChevronDown className="h-4 w-4 text-sage-400" />
                   </Button>
                 </motion.div>
               </DropdownMenuTrigger>
@@ -265,7 +241,7 @@ export function Header() {
                 <DropdownMenuItem asChild>
                   <Link
                     href="/dashboard"
-                    className="flex items-center space-x-2 cursor-pointer focus-visible:ring-2 focus-visible:ring-sage-500"
+                    className="flex items-center gap-2 cursor-pointer focus-visible:ring-2 focus-visible:ring-sage-500"
                   >
                     <BarChart3 className="h-4 w-4" />
                     <span>Mein Dashboard</span>
@@ -275,7 +251,7 @@ export function Header() {
                 <DropdownMenuItem asChild>
                   <Link
                     href="/my-appointments"
-                    className="flex items-center space-x-2 cursor-pointer focus-visible:ring-2 focus-visible:ring-sage-500"
+                    className="flex items-center gap-2 cursor-pointer focus-visible:ring-2 focus-visible:ring-sage-500"
                   >
                     <Calendar className="h-4 w-4" />
                     <span>Meine Termine</span>
@@ -288,7 +264,7 @@ export function Header() {
                     <DropdownMenuItem asChild>
                       <Link
                         href="/helper/availability"
-                        className="flex items-center space-x-2 cursor-pointer focus-visible:ring-2 focus-visible:ring-sage-500"
+                        className="flex items-center gap-2 cursor-pointer focus-visible:ring-2 focus-visible:ring-sage-500"
                       >
                         <Clock className="h-4 w-4" />
                         <span>Verfügbarkeiten</span>
@@ -302,7 +278,7 @@ export function Header() {
                 <DropdownMenuItem asChild>
                   <Link
                     href="/profile"
-                    className="flex items-center space-x-2 cursor-pointer focus-visible:ring-2 focus-visible:ring-sage-500"
+                    className="flex items-center gap-2 cursor-pointer focus-visible:ring-2 focus-visible:ring-sage-500"
                   >
                     <User className="h-4 w-4" />
                     <span>Mein Profil</span>
@@ -318,7 +294,7 @@ export function Header() {
                     }
                   }}
                   disabled={isSigningOut}
-                  className="flex items-center space-x-2 cursor-pointer text-clay-600 focus:text-clay-700 hover:text-clay-700 hover:bg-clay-50 focus-visible:ring-2 focus-visible:ring-clay-500"
+                  className="flex items-center gap-2 cursor-pointer text-clay-600 focus:text-clay-700 hover:text-clay-700 hover:bg-clay-50 focus-visible:ring-2 focus-visible:ring-clay-500"
                 >
                   <LogOut className="h-4 w-4" />
                   <span>{isSigningOut ? "Abmelden..." : "Abmelden"}</span>
@@ -326,18 +302,13 @@ export function Header() {
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
-            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-              <Button
-                variant="ghost"
-                asChild
-                className="text-sage-700 hover:bg-sage-50 hover:text-sage-800 transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-              >
-                <Link href="/login" className="flex items-center space-x-2">
-                  <User className="h-4 w-4" />
-                  <span>Anmelden</span>
-                </Link>
-              </Button>
-            </motion.div>
+            <Link
+              href="/login"
+              className="flex items-center gap-2 text-sm font-medium text-charcoal-600 hover:text-sage-700 transition-colors px-3 py-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-500"
+            >
+              <User className="h-4 w-4" />
+              <span>Mitgliederbereich</span>
+            </Link>
           )}
         </div>
 
@@ -348,7 +319,7 @@ export function Header() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="text-sage-700 hover:bg-sage-50 focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                className="text-sage-700 hover:bg-sage-50 focus-visible:ring-2 focus-visible:ring-sage-500"
                 aria-label="Mobilmenü öffnen"
               >
                 <Menu className="h-5 w-5" />
@@ -357,7 +328,7 @@ export function Header() {
           </SheetTrigger>
           <SheetContent className="bg-sand-50 border-l-sage-300 overflow-y-auto">
             <SheetHeader>
-              <SheetTitle className="text-left flex items-center space-x-3">
+              <SheetTitle className="text-left flex items-center gap-3">
                 <Image
                   src="/images/muslimin-logo.svg"
                   alt="Muslimin e.V. Logo"
@@ -370,7 +341,7 @@ export function Header() {
                     Muslimin e.V.
                   </span>
                   <span className="text-xs text-charcoal-600">
-                    Vertrauliche Unterstützung
+                    Frauen- & Mädchenverein Berlin
                   </span>
                 </div>
               </SheetTitle>
@@ -395,19 +366,9 @@ export function Header() {
                     >
                       <Link
                         href={link.href}
-                        className={`block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors group ${
-                          "primary" in link && link.primary
-                            ? "hover:bg-clay-50 focus:bg-clay-50"
-                            : "hover:bg-sage-50 focus:bg-sage-50"
-                        }`}
+                        className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-sage-50 focus:bg-sage-50 group"
                       >
-                        <div
-                          className={`text-sm font-medium leading-none flex items-center space-x-2 ${
-                            "primary" in link && link.primary
-                              ? "group-hover:text-clay-700 text-clay-600 font-semibold"
-                              : "group-hover:text-sage-700"
-                          }`}
-                        >
+                        <div className="text-sm font-medium leading-none flex items-center text-charcoal-800 group-hover:text-sage-700">
                           <span>{link.label}</span>
                         </div>
                       </Link>
@@ -415,6 +376,7 @@ export function Header() {
                   ))}
                 </>
               )}
+
               {/* Member-only Navigation - Only visible when logged in */}
               {user && (
                 <>
@@ -434,7 +396,7 @@ export function Header() {
                         href={link.href}
                         className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-sage-100 focus:bg-sage-100 focus-visible:ring-2 focus-visible:ring-sage-500 group min-h-[44px]"
                       >
-                        <div className="text-sm font-medium leading-none text-charcoal-800 group-hover:text-sage-700 flex items-center space-x-2">
+                        <div className="text-sm font-medium leading-none text-charcoal-800 group-hover:text-sage-700 flex items-center gap-2">
                           {link.icon === "BookOpen" && (
                             <BookOpen className="h-4 w-4" />
                           )}
@@ -460,7 +422,7 @@ export function Header() {
                         href="/helper/register"
                         className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-clay-50 focus:bg-clay-50 focus-visible:ring-2 focus-visible:ring-clay-500 group min-h-[44px]"
                       >
-                        <div className="text-sm font-medium leading-none text-clay-700 group-hover:text-clay-800 flex items-center space-x-2">
+                        <div className="text-sm font-medium leading-none text-clay-700 group-hover:text-clay-800 flex items-center gap-2">
                           <HeartHandshake className="h-5 w-5 text-clay-500" />
                           <span>Helferin werden</span>
                         </div>
@@ -584,7 +546,7 @@ export function Header() {
                     >
                       <Link href="/login">
                         <User className="h-4 w-4 mr-2" />
-                        Anmelden
+                        Mitgliederbereich
                       </Link>
                     </Button>
                   </motion.div>

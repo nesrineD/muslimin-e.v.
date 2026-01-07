@@ -4,101 +4,165 @@ import { EventCard } from "@/components/landing/EventCard";
 import { SocialMediaSection } from "@/components/SocialMediaSection";
 import { motion } from "framer-motion";
 import { containerVariants, itemVariants } from "@/lib/animations";
-import { Sparkles } from "lucide-react";
+import {
+  Sparkles,
+  Mic,
+  Video,
+  Moon,
+  Flame,
+  BookOpen,
+  Library,
+} from "lucide-react";
+import { useState } from "react";
+import type { LucideIcon } from "lucide-react";
+import type { BadgeVariant, EventBadge } from "@/types/events";
+
+// -----------------------------
+// Types
+// -----------------------------
 
 type EventFormat = "Online" | "Präsenz";
 
 interface Event {
   id: string;
   name: string;
-  description: string;
   teaser: string;
+  description: string;
   regularity: string;
   targetAudience: string;
   format: EventFormat;
-  icon: string;
+  icon: LucideIcon;
+  badges: EventBadge[];
+  accessNote: string;
+  secondaryCtaLabel?: string;
 }
+
+// -----------------------------
+// Data
+// -----------------------------
 
 const EVENTS: Event[] = [
   {
     id: "monatsvortrag",
     name: "Monatsvortrag",
-    description:
-      "Jeden letzten Sonntag eines Monats lädt Muslimin e.V. zu einer offenen Runde ein. Frauen verschiedener Altersgruppen und Konfessionen treffen sich seit 2013, um am 'Monatsvortrag' teilzunehmen. Hierbei werden verschiedene Themen angesprochen, wobei der Vortrag als Input für die anschließende Diskussionsrunde dient. Wir möchten einen Raum für Dialoge zwischen Frauen schaffen. Es werden sowohl religiöse als auch nicht-religiöse Inhalte behandelt. Daher laden wir gerne neben islamischen Geistlichen auch Experten aus den jeweiligen Gebieten (z.B. Medizin, Naturwissenschaften, Ernährung usw.) als Rednerinnen ein.",
     teaser:
-      "Monatliche Vortragsreihe mit anschließender Diskussionsrunde. Vielfältige Themen von Expertinnen aus verschiedenen Fachgebieten.",
+      "Monatliche Vortragsreihe mit anschließender Diskussionsrunde – offen, vielfältig und dialogorientiert.",
+    description:
+      "Jeden letzten Sonntag eines Monats lädt Muslimin e.V. zu einer offenen Runde ein. Frauen verschiedener Altersgruppen und Konfessionen treffen sich seit 2013, um am 'Monatsvortrag' teilzunehmen. Hierbei werden verschiedene Themen angesprochen, wobei der Vortrag als Input für die anschließende Diskussionsrunde dient. Wir möchten einen Raum für Dialoge zwischen Frauen schaffen. Es werden sowohl religiöse als auch nicht-religiöse Inhalte behandelt. Daher laden wir gerne neben islamischen Geistlichen auch Expertinnen aus den jeweiligen Gebieten (z.B. Medizin, Naturwissenschaften, Ernährung usw.) als Rednerinnen ein.",
     regularity: "Jeden letzten Sonntag im Monat",
-    targetAudience: "Frauen aller Altersgruppen und Konfessionen",
+    targetAudience: "Frauen und Mädchen",
     format: "Präsenz",
-    icon: "🎤",
+    icon: Mic,
+    badges: [
+      { label: "Offen für alle Frauen & Mädchen", variant: "open" },
+      { label: "Präsenz", variant: "presence" },
+    ],
+    accessNote:
+      "Diese Veranstaltung ist offen für alle Frauen und Mädchen. Eine Mitgliedschaft ist nicht erforderlich.",
   },
   {
     id: "online-vortrag",
     name: "Online-Vortragsformat",
-    description:
-      "Besondere Zeiten erfordern besondere Formate. Angesichts der Corona-Pandemie sind wir mit unseren monatlichen Vorträgen zu Online-Veranstaltungen auf Zoom umgestiegen. Aufgrund der hohen, positiven Resonanz von Teilnehmerinnen auf bundesweiter Ebene bieten wir an jedem zweiten Dienstagabend eines Monats beginnend mit dem Bittgebet der Fürbitte (Dua Tawassul) einen lehrreichen Online-Vortrag an. Ein großer Vorteil: Gelehrte und Experten aus unterschiedlichen Ländern stehen uns als Redner zur Verfügung.",
     teaser:
-      "Wöchentliche Online-Vorträge mit internationalen Gästen. Spirituelle Impulse und Wissensvermittlung aus aller Welt.",
-    regularity: "Jeden 2. Dienstagabend im Monat",
-    targetAudience: "Bundesweit - Alle Interessierten",
+      "Monatlicher Online-Vortrag mit spirituellen Impulsen und internationalen Expertinnen.",
+    description:
+      "Besondere Zeiten erfordern besondere Formate. Angesichts der Corona-Pandemie sind wir mit unseren monatlichen Vorträgen zu Online-Veranstaltungen auf Zoom umgestiegen. Aufgrund der hohen, positiven Resonanz von Teilnehmerinnen auf bundesweiter Ebene bieten wir an jedem zweiten Dienstagabend eines Monats beginnend mit dem Bittgebet der Fürbitte (Dua Tawassul) einen lehrreichen Online-Vortrag an. Ein großer Vorteil: Gelehrte und Expertinnen aus unterschiedlichen Ländern stehen uns als Redner zur Verfügung.",
+    regularity: "Jeden 2. Dienstag im Monat",
+    targetAudience: "Frauen und Mädchen",
     format: "Online",
-    icon: "💻",
+    icon: Video,
+    badges: [
+      { label: "Offen für alle Frauen & Mädchen", variant: "open" },
+      { label: "Online", variant: "online" },
+    ],
+    accessNote:
+      "Der Online-Vortrag ist offen für alle Frauen und Mädchen und kann bundesweit besucht werden.",
   },
   {
     id: "ramadan-connects",
     name: "Ramadan Connects",
+    teaser:
+      "Gemeinsames Fastenbrechen im Ramadan mit kreativem Programm, Begegnung und Vernetzung.",
     description:
       "Der heilige Monat Ramadan ist der neunte Monat des islamischen Kalenders. Damit wir das Gemeinschaftsgefühl stärken, findet jährlich ein gemeinsames Fastenbrechen unter Schwestern statt. Häufig in Kooperation mit anderen Frauenvereinen Berlins planen wir diese Veranstaltung. Gesellschaftsrelevante Themen werden durch Vorträge, Sketches, Gedichte, Poetry Slams etc. kreativ umgesetzt. Musikalische Einlagen (Nasheeds) schaffen eine spirituelle Atmosphäre. Nach dem gemeinsamen Fastenbrechen können Gäste verschiedene Verkaufs- und Informationsstände besuchen und sich mit Schwestern aus unterschiedlichen Gemeinden Berlins vernetzen.",
-    teaser:
-      "Jährliches Fastenbrechen im Ramadan mit kreativem Programm. Vernetzung, Kultur und Gemeinschaft in Berlin.",
-    regularity: "Jährlich während Ramadan",
-    targetAudience: "Alle Schwestern - oft in Kooperation",
+    regularity: "Jährlich im Ramadan",
+    targetAudience: "Frauen und Mädchen",
     format: "Präsenz",
-    icon: "🌙",
+    icon: Moon,
+    badges: [
+      { label: "Anmeldung erforderlich", variant: "register" },
+      { label: "Präsenz", variant: "presence" },
+    ],
+    accessNote:
+      "Alle Frauen und Mädchen sind herzlich willkommen – unabhängig von einer Vereinsmitgliedschaft.",
   },
   {
     id: "aschura",
     name: "Aschura-Frauenveranstaltung",
-    description:
-      "Die jährliche Aschura-Veranstaltung für Frauen und Mädchen ist ein fester Bestandteil unserer Arbeit. Anlass der Trauerzeremonie ist der Todestag vom Enkel des Propheten (F.), Imam Husain (F.), der mit seiner Familie und seinen engsten Gefährten am 10. Muharram sein Leben auf heldenhafte Weise für den Erhalt des Glaubens und der Gerechtigkeit hingab. Lehreiche Vorträge, Trauergesänge (Latmiya), Audienzen (Ziyarat), Theaterstücke, Gedichte uvm. bilden den Inhalt des Programms und schaffen eine spirituelle Atmosphäre im Gedenken an den Herrn der Märtyrer (F.).",
     teaser:
-      "Jährliche Gedenkveranstaltung zur Aschura mit Trauerritualen, Vorträgen und kulturellen Darbietungen für Frauen und Mädchen.",
-    regularity: "Jährlich nach dem 10. Muharram",
+      "Jährliche Gedenkveranstaltung mit Vorträgen, Trauerritualen und kulturellen Beiträgen.",
+    description:
+      "Die jährliche Aschura-Veranstaltung für Frauen und Mädchen ist ein fester Bestandteil unserer Arbeit. Anlass der Trauerzeremonie ist der Todestag vom Enkel des Propheten (F.), Imam Husain (F.), der mit seiner Familie und seinen engsten Gefährten am 10. Muharram sein Leben auf heldenhafte Weise für den Erhalt des Glaubens und der Gerechtigkeit hingab. Lehrreiche Vorträge, Trauergesänge (Latmiya), Audienzen (Ziyarat), Theaterstücke, Gedichte uvm. bilden den Inhalt des Programms und schaffen eine spirituelle Atmosphäre im Gedenken an den Herrn der Märtyrer (F.).",
+    regularity: "Jährlich im Muharram",
     targetAudience: "Frauen und Mädchen",
     format: "Präsenz",
-    icon: "🕯️",
+    icon: Flame,
+    badges: [
+      { label: "Anmeldung erforderlich", variant: "register" },
+      { label: "Präsenz", variant: "presence" },
+    ],
+    accessNote:
+      "Die Veranstaltung ist offen für alle Frauen und Mädchen, die gemeinsam innehalten und gedenken möchten.",
   },
   {
     id: "koran",
     name: "Koranunterricht für Frauen und Mädchen",
-    description:
-      "Seit 2014 finden ein- bis zweimal jährlich Kurse des Koranunterrichts statt und erfreuen sich großer Beliebtheit. In vier verschiedenen Kursen mit unterschiedlichen Fähigkeitsstufen erlernen die Schülerinnen - je nach persönlichem Wissensniveau - das Lesen der arabischen Schrift bzw. die Tajweed-Regeln: Anfänger-Kurs (Arabisches Alphabet), A-Kurs (Fließendes Lesen), B-Kurs (Tajweed-Regeln), C-Kurs (Längen- und Pausenregeln). Der Kurs umfasst 12 Unterrichtseinheiten à 90 Minuten. Zum Abschluss legen die Schülerinnen eine kleine Prüfung ab und erhalten Urkunden und Geschenke. Ziel ist es, die Schülerinnen zu ermutigen, sich mit dem Koran in seiner Originalschrift auseinanderzusetzen.",
     teaser:
-      "Koranunterricht in vier Niveaustufen von Anfänger bis Fortgeschrittene. Systematisches Lernen der arabischen Schrift und Rezitationsregeln.",
-    regularity: "1-2x jährlich, 12 Wochen à 90 Min.",
-    targetAudience: "Frauen und Mädchen aller Levels",
+      "Strukturierter Koranunterricht in vier Niveaustufen – vom arabischen Alphabet bis Tajweed.",
+    description:
+      "Seit 2014 finden ein- bis zweimal jährlich Kurse des Koranunterrichts statt und erfreuen sich großer Beliebtheit. In vier verschiedenen Kursen mit unterschiedlichen Fähigkeitsstufen erlernen die Schülerinnen – je nach persönlichem Wissensniveau – das Lesen der arabischen Schrift bzw. die Tajweed-Regeln: Anfänger-Kurs (Arabisches Alphabet), A-Kurs (Fließendes Lesen), B-Kurs (Tajweed-Regeln), C-Kurs (Längen- und Pausenregeln). Der Kurs umfasst 12 Unterrichtseinheiten à 90 Minuten. Zum Abschluss legen die Schülerinnen eine kleine Prüfung ab und erhalten Urkunden und Geschenke. Ziel ist es, die Schülerinnen zu ermutigen, sich mit dem Koran in seiner Originalschrift auseinanderzusetzen.",
+    regularity: "1–2x jährlich",
+    targetAudience: "Frauen und Mädchen",
     format: "Präsenz",
-    icon: "📖",
+    icon: BookOpen,
+    badges: [
+      { label: "Anmeldung erforderlich", variant: "register" },
+      { label: "Begrenzte Plätze", variant: "limited" },
+    ],
+    accessNote:
+      "Die Teilnehmerinnenzahl ist begrenzt. Eine vorherige Anmeldung ist erforderlich.",
   },
   {
     id: "lesezirkel",
     name: "Lesezirkel",
+    teaser:
+      "Gemeinsames Lesen islamischer Literatur in kleinen Gruppen und familiärer Atmosphäre.",
     description:
       "Islamische Bücher werden in kleinen Gruppen von maximal 10 Mitgliedern gelesen und in regelmäßigen Sitzungen vor Ort in familiärer Atmosphäre diskutiert. Die Lesezirkel bieten Raum für tiefgehende Auseinandersetzung mit islamischer Literatur, gemeinsames Lernen und Austausch über spirituelle Themen. In entspannter Atmosphäre werden verschiedene Werke von islamischen Gelehrten, zeitgenössischen Autorinnen und spiritueller Literatur gemeinsam erarbeitet.",
-    teaser:
-      "Islamische Bücher in kleinen Gruppen lesen und diskutieren. Regelmäßige Sitzungen in familiärer Atmosphäre für gemeinsames Lernen.",
-    regularity: "Regelmäßige Sitzungen nach Absprache",
-    targetAudience: "Bildungsinteressierte Mitglieder",
+    regularity: "Regelmäßig",
+    targetAudience: "Mitglieder",
     format: "Präsenz",
-    icon: "📚",
+    icon: Library,
+    badges: [
+      { label: "Nur für Mitglieder", variant: "members" },
+      { label: "Kleine Gruppen", variant: "limited" },
+    ],
+    accessNote:
+      "Dieses Angebot richtet sich ausschließlich an Vereinsmitglieder.",
+    secondaryCtaLabel: "Mitglied werden",
   },
 ];
 
+// -----------------------------
+// Page
+// -----------------------------
+
 export default function VeranstaltungenPage() {
-  // Group events by category for better UX structure
-  const regularEvents = EVENTS.slice(0, 2); // Monatsvortrag & Online-Vortrag
-  const annualEvents = EVENTS.slice(2, 4); // Ramadan & Aschura
-  const educationEvents = EVENTS.slice(4); // Koranunterricht & Lesezirkel
+  const [activeSection, setActiveSection] = useState<string | null>(null);
+
+  const regularEvents = EVENTS.slice(0, 2);
+  const annualEvents = EVENTS.slice(2, 4);
+  const educationEvents = EVENTS.slice(4);
 
   return (
     <motion.main
@@ -108,127 +172,166 @@ export default function VeranstaltungenPage() {
       animate="visible"
     >
       <div className="container mx-auto px-4">
-        {/* Hero Section */}
-        <section className="py-20 md:py-24">
-          <motion.div
-            variants={itemVariants}
-            className="max-w-4xl mx-auto text-center"
-          >
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-sage-100 text-sage-800 rounded-full text-sm font-medium mb-6"
-            >
-              <Sparkles className="w-4 h-4" />
-              Gemeinschaft stärken
-            </motion.div>
+        {/* Hero */}
+        <section className="py-20 md:py-24 text-center max-w-4xl mx-auto">
+          <motion.div variants={itemVariants}>
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-sage-100 text-sage-800 rounded-full text-sm font-medium mb-6">
+              <Sparkles className="w-4 h-4" /> Gemeinschaft stärken
+            </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 text-charcoal-900">
               Unsere Veranstaltungen
             </h1>
-            <p className="text-lg md:text-xl text-charcoal-700 max-w-2xl mx-auto">
-              Entdecke die vielfältigen Möglichkeiten, Teil unserer Gemeinschaft
-              zu werden
+            <p className="text-lg md:text-xl text-charcoal-700 mb-8">
+              Unsere Angebote richten sich an Frauen und Mädchen. Viele
+              Veranstaltungen sind offen für alle – einige erfordern eine
+              Anmeldung oder Mitgliedschaft.
             </p>
-          </motion.div>
-        </section>
 
-        {/* Section: Regular Series */}
-        <section className="py-10 md:py-12">
-          <motion.div variants={itemVariants} className="max-w-7xl mx-auto">
-            <div className="mb-8 md:mb-10">
-              <h2 className="text-3xl font-bold text-charcoal-900 mb-3">
-                Regelmäßige Vortragsreihen
-              </h2>
-              <p className="text-lg text-charcoal-600 max-w-2xl">
-                Monatliche Impulse für Geist und Seele – ob vor Ort in Berlin
-                oder digital von überall.
-              </p>
-            </div>
-            <div className="grid md:grid-cols-2 gap-8">
-              {regularEvents.map((event) => (
-                <motion.div
-                  key={event.id}
-                  variants={itemVariants}
-                  className="h-full"
-                >
-                  <EventCard {...event} />
-                </motion.div>
-              ))}
+            {/* Quick Stats */}
+            <div className="flex flex-wrap justify-center gap-4 text-sm">
+              <div className="px-4 py-2 bg-white rounded-full shadow-sm border border-sand-200">
+                <span className="font-bold text-sage-600">6</span> Formate
+              </div>
+              <div className="px-4 py-2 bg-white rounded-full shadow-sm border border-sand-200">
+                <span className="font-bold text-sage-600">2</span>{" "}
+                Online-Optionen
+              </div>
+              <div className="px-4 py-2 bg-white rounded-full shadow-sm border border-sand-200">
+                <span className="font-bold text-sage-600">2</span> Offen für
+                alle
+              </div>
             </div>
           </motion.div>
         </section>
 
-        {/* Section: Annual Highlights */}
-        <section className="py-10 md:py-12">
-          <motion.div variants={itemVariants} className="max-w-7xl mx-auto">
-            <div className="mb-8 md:mb-10">
-              <h2 className="text-3xl font-bold text-charcoal-900 mb-3">
-                Jährliche Highlights
-              </h2>
-              <p className="text-lg text-charcoal-600 max-w-2xl">
-                Besondere Anlässe im Jahreskreis, die unsere Gemeinschaft
-                stärken und verbinden.
-              </p>
-            </div>
-            <div className="grid md:grid-cols-2 gap-8">
-              {annualEvents.map((event) => (
-                <motion.div
-                  key={event.id}
-                  variants={itemVariants}
-                  className="h-full"
-                >
-                  <EventCard {...event} />
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </section>
+        {/* Sticky Category Navigation */}
+        <motion.nav
+          variants={itemVariants}
+          className="sticky top-16 md:top-20 bg-white/95 backdrop-blur-sm shadow-sm z-40 py-4 mb-8 rounded-lg"
+        >
+          <div className="flex gap-2 overflow-x-auto px-4 scrollbar-hide">
+            <a
+              href="#regular-events"
+              onClick={() => setActiveSection("regular")}
+              className={`px-4 py-2 rounded-full whitespace-nowrap transition-colors ${
+                activeSection === "regular"
+                  ? "bg-sage-500 text-white"
+                  : "bg-sage-50 text-sage-700 hover:bg-sage-100"
+              }`}
+            >
+              Regelmäßig
+            </a>
+            <a
+              href="#annual-events"
+              onClick={() => setActiveSection("annual")}
+              className={`px-4 py-2 rounded-full whitespace-nowrap transition-colors ${
+                activeSection === "annual"
+                  ? "bg-sage-500 text-white"
+                  : "bg-sage-50 text-sage-700 hover:bg-sage-100"
+              }`}
+            >
+              Jährlich
+            </a>
+            <a
+              href="#education-events"
+              onClick={() => setActiveSection("education")}
+              className={`px-4 py-2 rounded-full whitespace-nowrap transition-colors ${
+                activeSection === "education"
+                  ? "bg-sage-500 text-white"
+                  : "bg-sage-50 text-sage-700 hover:bg-sage-100"
+              }`}
+            >
+              Bildung
+            </a>
+          </div>
+        </motion.nav>
 
-        {/* Section: Education */}
-        <section className="py-10 md:py-12 mb-12">
-          <motion.div variants={itemVariants} className="max-w-7xl mx-auto">
-            <div className="text-center mb-8 md:mb-10">
-              <h2 className="text-3xl font-bold text-charcoal-900 mb-3">
-                Bildung & Entwicklung
-              </h2>
-              <p className="text-lg text-charcoal-600">
-                Vertiefe dein Wissen durch Koranunterricht und Lesezirkel in
-                familiärer Atmosphäre.
-              </p>
-            </div>
-            <div className="grid md:grid-cols-2 gap-8">
-              {educationEvents.map((event) => (
-                <motion.div
-                  key={event.id}
-                  variants={itemVariants}
-                  className="h-full"
-                >
-                  <EventCard {...event} />
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </section>
+        {/* Regular */}
+        <Section
+          id="regular-events"
+          title="Regelmäßige Vortragsreihen"
+          subtitle="Monatliche Impulse – vor Ort oder online."
+          events={regularEvents}
+        />
+
+        {/* Annual */}
+        <Section
+          id="annual-events"
+          title="Jährliche Highlights"
+          subtitle="Besondere Anlässe, die Gemeinschaft stärken."
+          events={annualEvents}
+        />
+
+        {/* Education */}
+        <Section
+          id="education-events"
+          title="Bildung & Entwicklung"
+          subtitle="Vertiefe dein Wissen in familiärer Atmosphäre."
+          events={educationEvents}
+          centered
+        />
 
         {/* Social Media Section */}
         <motion.section
           variants={itemVariants}
-          className="py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-sage-50 via-cream-50 to-sage-50"
+          className="py-20 bg-gradient-to-br from-sage-50 via-cream-50 to-sage-50 rounded-2xl"
         >
-          <div className="container mx-auto">
-            <div className="text-center mb-8">
-              <h2 className="text-4xl font-bold text-sage-800 mb-4">
-                Folge uns auf Social Media! 📱
-              </h2>
-              <p className="text-lg text-sage-600 max-w-2xl mx-auto">
-                Bleib auf dem Laufenden mit aktuellen Flyern, Terminen und
-                Live-Updates
-              </p>
-            </div>
-            <SocialMediaSection variant="compact" showTitle={false} />
+          <div className="text-center mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-sage-800 mb-4">
+              Eindrücke von unseren Veranstaltungen 📸
+            </h2>
+            <p className="text-lg text-sage-600 max-w-2xl mx-auto">
+              Fotos, Videos und aktuelle Termine findest du auf unseren
+              Social-Media-Kanälen
+            </p>
           </div>
+          <SocialMediaSection variant="compact" showTitle={false} />
         </motion.section>
       </div>
     </motion.main>
+  );
+}
+
+// -----------------------------
+// Reusable Section
+// -----------------------------
+
+function Section({
+  id,
+  title,
+  subtitle,
+  events,
+  centered = false,
+}: {
+  id: string;
+  title: string;
+  subtitle: string;
+  events: Event[];
+  centered?: boolean;
+}) {
+  return (
+    <section id={id} className="py-10 md:py-12 scroll-mt-24">
+      <motion.div variants={itemVariants} className="max-w-7xl mx-auto">
+        <div className={centered ? "text-center mb-10" : "mb-10"}>
+          <h2 className="text-3xl font-bold text-charcoal-900 mb-3">{title}</h2>
+          <p className="text-lg text-charcoal-600 max-w-2xl mx-auto">
+            {subtitle}
+          </p>
+        </div>
+        <div
+          className={`grid gap-8 ${
+            events.length === 1
+              ? "md:grid-cols-1 max-w-2xl mx-auto"
+              : "md:grid-cols-2"
+          }`}
+        >
+          {events.map((event) => (
+            <motion.div key={event.id} variants={itemVariants}>
+              <EventCard {...event} />
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+    </section>
   );
 }
