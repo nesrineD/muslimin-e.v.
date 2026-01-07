@@ -82,7 +82,7 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 );
 
 interface SocialMediaSectionProps {
-  variant?: "card" | "compact" | "footer";
+  variant?: "card" | "compact" | "minimal" | "footer";
   title?: string;
   subtitle?: string;
   showTitle?: boolean;
@@ -100,52 +100,33 @@ const SOCIAL_MEDIA = [
     name: "Instagram",
     icon: InstagramIcon,
     url: "https://www.instagram.com/muslimin.de/",
-    bgGradient: "from-rose-50 via-pink-50 to-rose-100",
-    hoverGradient: "hover:from-rose-100 hover:via-pink-100 hover:to-rose-200",
-    iconColor: "text-pink-600",
-    textColor: "text-pink-700",
-    hoverTextColor: "group-hover:text-pink-800",
-    borderColor: "border-rose-200",
-    hoverBorderColor: "hover:border-rose-300",
+    color: "text-pink-600",
+    hoverColor: "hover:text-pink-700",
+    bgHover: "hover:bg-pink-50",
   },
   {
     name: "TikTok",
     icon: TikTokIcon,
     url: "https://www.tiktok.com/@muslimin.ev",
-    bgGradient: "from-purple-50 via-violet-50 to-purple-100",
-    hoverGradient:
-      "hover:from-purple-100 hover:via-violet-100 hover:to-purple-200",
-    iconColor: "text-gray-900",
-    textColor: "text-purple-700",
-    hoverTextColor: "group-hover:text-purple-800",
-    borderColor: "border-purple-200",
-    hoverBorderColor: "hover:border-purple-300",
+    color: "text-gray-900",
+    hoverColor: "hover:text-black",
+    bgHover: "hover:bg-gray-50",
   },
   {
     name: "YouTube",
     icon: YouTubeIcon,
     url: "https://www.youtube.com/@muslimin-ev",
-    bgGradient: "from-orange-50 via-red-50 to-orange-100",
-    hoverGradient:
-      "hover:from-orange-100 hover:via-red-100 hover:to-orange-200",
-    iconColor: "text-red-600",
-    textColor: "text-orange-700",
-    hoverTextColor: "group-hover:text-orange-800",
-    borderColor: "border-orange-200",
-    hoverBorderColor: "hover:border-orange-300",
+    color: "text-red-600",
+    hoverColor: "hover:text-red-700",
+    bgHover: "hover:bg-red-50",
   },
   {
     name: "WhatsApp",
     icon: WhatsAppIcon,
     url: "https://whatsapp.com/channel/0029VaN2y5qIt5rsURhd1o2Y",
-    bgGradient: "from-emerald-50 via-green-50 to-emerald-100",
-    hoverGradient:
-      "hover:from-emerald-100 hover:via-green-100 hover:to-emerald-200",
-    iconColor: "text-green-600",
-    textColor: "text-emerald-700",
-    hoverTextColor: "group-hover:text-emerald-800",
-    borderColor: "border-emerald-200",
-    hoverBorderColor: "hover:border-emerald-300",
+    color: "text-green-600",
+    hoverColor: "hover:text-green-700",
+    bgHover: "hover:bg-green-50",
   },
 ];
 
@@ -170,28 +151,19 @@ export function SocialMediaSection({
 
   type Social = (typeof SOCIAL_MEDIA)[number];
 
-  const getIconRotation = (name: string): number => {
-    const rotations: Record<string, number> = {
-      Instagram: 360,
-      TikTok: -360,
-      WhatsApp: 180,
-      YouTube: 180,
-    };
-    return rotations[name] || 0;
-  };
-
   function SocialButton({
     social,
     variant = "default",
   }: {
     social: Social;
-    variant?: "default" | "compact" | "footer" | "card";
+    variant?: "default" | "compact" | "minimal" | "footer" | "card";
   }) {
     const Icon = social.icon;
 
     const baseClasses =
       "inline-flex items-center justify-center transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:ring-offset-2";
 
+    // FOOTER VARIANT
     if (variant === "footer") {
       return (
         <a
@@ -202,67 +174,29 @@ export function SocialMediaSection({
           aria-label={`Folge uns auf ${social.name}`}
           title={social.name}
         >
-          {Icon ? (
-            <Icon className="h-4 w-4 text-sage-600 group-hover:text-sage-800 transition-colors" />
-          ) : (
-            <span className="text-[9px] font-semibold text-white bg-gray-800 rounded-sm px-1 py-0.5 leading-none group-hover:bg-black transition-colors">
-              TT
-            </span>
-          )}
+          <Icon className="h-4 w-4 text-sage-600 group-hover:text-sage-800 transition-colors" />
         </a>
       );
     }
 
-    if (variant === "compact") {
+    // MINIMAL VARIANT (NEW - for Veranstaltungen)
+    if (variant === "minimal") {
       return (
         <motion.a
           href={social.url}
           target="_blank"
           rel="noopener noreferrer"
-          whileHover={{
-            scale: 1.05,
-            y: -3,
-          }}
+          whileHover={{ scale: 1.05, y: -2 }}
           whileTap={{ scale: 0.95 }}
-          className={`${baseClasses} flex items-center justify-center px-6 py-3 rounded-2xl bg-gradient-to-br ${social.bgGradient} ${social.hoverGradient} shadow-sm hover:shadow-md transition-all duration-300 border ${social.borderColor} ${social.hoverBorderColor}`}
+          className={`${baseClasses} flex flex-col items-center gap-2 p-4 rounded-xl bg-white border-2 border-sand-200 ${social.bgHover} hover:border-sage-300 transition-all duration-200 group`}
           aria-label={`Folge uns auf ${social.name}`}
           title={social.name}
         >
-          {Icon ? (
-            <motion.div
-              whileHover={{
-                rotate: getIconRotation(social.name),
-                scale: 1.2,
-                y: -2,
-              }}
-              transition={{
-                rotate: { duration: 0.8, ease: "easeInOut" },
-                scale: { duration: 0.3, type: "spring", stiffness: 300 },
-                y: { duration: 0.3 },
-              }}
-              className="mr-3"
-            >
-              <Icon className={`h-8 w-8 ${social.iconColor}`} />
-            </motion.div>
-          ) : (
-            <motion.span
-              className="text-[12px] font-bold text-white bg-gradient-to-br from-gray-800 to-black rounded-lg px-2 py-1 shadow-sm mr-3"
-              whileHover={{
-                rotate: -360,
-                scale: 1.2,
-                y: -2,
-              }}
-              transition={{
-                rotate: { duration: 0.8, ease: "easeInOut" },
-                scale: { duration: 0.3, type: "spring", stiffness: 300 },
-                y: { duration: 0.3 },
-              }}
-            >
-              TT
-            </motion.span>
-          )}
+          <motion.div whileHover={{ rotate: 5 }} transition={{ duration: 0.3 }}>
+            <Icon className={`h-8 w-8 ${social.color} transition-colors`} />
+          </motion.div>
           <span
-            className={`font-bold ${social.textColor} ${social.hoverTextColor}`}
+            className={`text-sm font-semibold text-charcoal-700 ${social.hoverColor} transition-colors`}
           >
             {social.name}
           </span>
@@ -270,7 +204,32 @@ export function SocialMediaSection({
       );
     }
 
-    // card / default
+    // COMPACT VARIANT
+    if (variant === "compact") {
+      return (
+        <motion.a
+          href={social.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          whileHover={{ scale: 1.03, y: -2 }}
+          whileTap={{ scale: 0.97 }}
+          className={`${baseClasses} flex items-center gap-3 px-5 py-3 rounded-xl bg-white border-2 border-sand-200 hover:border-sage-300 shadow-sm hover:shadow-md transition-all duration-200 group`}
+          aria-label={`Folge uns auf ${social.name}`}
+          title={social.name}
+        >
+          <motion.div whileHover={{ rotate: 8 }} transition={{ duration: 0.3 }}>
+            <Icon className={`h-6 w-6 ${social.color}`} />
+          </motion.div>
+          <span
+            className={`font-semibold text-charcoal-700 ${social.hoverColor} transition-colors`}
+          >
+            {social.name}
+          </span>
+        </motion.a>
+      );
+    }
+
+    // CARD VARIANT (Default)
     return (
       <motion.a
         href={social.url}
@@ -278,34 +237,22 @@ export function SocialMediaSection({
         rel="noopener noreferrer"
         whileHover={{ scale: 1.02, y: -2 }}
         whileTap={{ scale: 0.98 }}
-        className={`flex items-center justify-center p-6 rounded-2xl bg-gradient-to-br ${social.bgGradient} ${social.hoverGradient} transition-all duration-300 group shadow-sm hover:shadow-md border ${social.borderColor} ${social.hoverBorderColor}`}
+        className={`flex items-center justify-center p-6 rounded-2xl bg-white border-2 border-sand-200 hover:border-sage-300 transition-all duration-300 group shadow-sm hover:shadow-md`}
         aria-label={`Folge uns auf ${social.name}`}
         title={social.name}
       >
-        {Icon ? (
-          <motion.div
-            whileHover={{ rotate: social.name === "Instagram" ? 8 : 0 }}
-            transition={{ type: "spring", stiffness: 300 }}
-          >
-            <Icon className={`w-8 h-8 ${social.iconColor} mr-3`} />
-          </motion.div>
-        ) : (
-          <motion.div
-            className={`w-8 h-8 ${social.iconColor} rounded-lg flex items-center justify-center mr-3`}
-            whileHover={{ rotate: 360 }}
-            transition={{ duration: 0.5 }}
-          >
-            <span className="text-white font-bold text-sm">TT</span>
-          </motion.div>
-        )}
-        {showLabels ? (
+        <motion.div
+          whileHover={{ rotate: 8 }}
+          transition={{ type: "spring", stiffness: 300 }}
+        >
+          <Icon className={`w-8 h-8 ${social.color} mr-3`} />
+        </motion.div>
+        {showLabels && (
           <span
-            className={`text-lg font-semibold ${social.textColor} ${social.hoverTextColor}`}
+            className={`text-lg font-semibold text-charcoal-700 ${social.hoverColor}`}
           >
             {social.name}
           </span>
-        ) : (
-          <span className="sr-only">{social.name}</span>
         )}
       </motion.a>
     );
@@ -313,28 +260,21 @@ export function SocialMediaSection({
 
   const computedTitle =
     title ??
-    (context === "public"
-      ? DEFAULT_TITLE
-      : context === "events"
-        ? "Event-Updates & Live-Ankündigungen"
-        : context === "about"
-          ? DEFAULT_TITLE
-          : context === "member"
-            ? "Mitglieder-Kanäle & Newsletter"
-            : DEFAULT_TITLE);
+    (context === "events"
+      ? "Eindrücke von unseren Veranstaltungen"
+      : context === "about"
+        ? DEFAULT_TITLE
+        : DEFAULT_TITLE);
 
   const computedSubtitle =
     subtitle ??
-    (context === "public"
-      ? DEFAULT_SUBTITLE
-      : context === "events"
-        ? "Live-Updates zu unseren Veranstaltungen"
-        : context === "about"
-          ? "Folge unseren Projekten und Berichten"
-          : context === "member"
-            ? "Exklusive Informationen für Mitglieder"
-            : DEFAULT_SUBTITLE);
+    (context === "events"
+      ? "Fotos, Videos und aktuelle Termine findest du auf unseren Social-Media-Kanälen"
+      : context === "about"
+        ? "Folge unseren Projekten und Berichten"
+        : DEFAULT_SUBTITLE);
 
+  // FOOTER VARIANT
   if (variant === "footer") {
     return (
       <ul
@@ -350,6 +290,30 @@ export function SocialMediaSection({
     );
   }
 
+  // MINIMAL VARIANT (for Veranstaltungen)
+  if (variant === "minimal") {
+    return (
+      <div className={`space-y-6 ${className}`}>
+        {showTitle && (
+          <div className="text-center">
+            <h3 className="text-2xl md:text-3xl font-bold text-charcoal-800 mb-2">
+              {computedTitle} 📸
+            </h3>
+            <p className="text-base text-charcoal-600 max-w-2xl mx-auto">
+              {computedSubtitle}
+            </p>
+          </div>
+        )}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+          {SOCIAL_MEDIA.map((social) => (
+            <SocialButton key={social.name} social={social} variant="minimal" />
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  // COMPACT VARIANT
   if (variant === "compact") {
     return (
       <div className={`space-y-4 ${className}`}>
@@ -372,6 +336,7 @@ export function SocialMediaSection({
     );
   }
 
+  // CARD VARIANT (Default)
   return (
     <motion.div
       variants={itemVariants}
