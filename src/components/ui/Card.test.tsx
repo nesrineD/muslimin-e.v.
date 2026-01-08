@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { axe, toHaveNoViolations } from "jest-axe";
-import { Card } from "./Card";
+import { Card } from "./card";
 
 expect.extend(toHaveNoViolations);
 
