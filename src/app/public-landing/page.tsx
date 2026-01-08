@@ -150,13 +150,13 @@ export default function PublicLandingPage() {
               Deine Stärke im Glauben.
             </h1>
 
-            <p className="text-xl md:text-2xl text-charcoal-700 mb-8 font-medium max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-charcoal-800 mb-8 font-medium max-w-3xl mx-auto">
               Werde Teil einer lebendigen Gemeinschaft muslimischer Frauen. Wir
               fördern islamische Bildung, spirituelles Wachstum und den
               Zusammenhalt.
             </p>
 
-            <p className="text-lg text-charcoal-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg text-charcoal-700 mb-10 max-w-2xl mx-auto leading-relaxed">
               🌟 Islamische Vorträge • Seminare • Begegnung
             </p>
 
@@ -193,17 +193,17 @@ export default function PublicLandingPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="flex flex-wrap items-center justify-center gap-4 text-sm text-charcoal-700 pt-2"
+                className="flex flex-wrap items-center justify-center gap-4 text-sm text-charcoal-800 pt-2"
               >
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-charcoal-600" />
+                  <CheckCircle className="w-4 h-4 text-charcoal-700" />
                   <span className="font-medium">
                     Muslimische Frauen-Community
                   </span>
                 </div>
                 <span className="hidden sm:inline">•</span>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-charcoal-600" />
+                  <CheckCircle className="w-4 h-4 text-charcoal-700" />
                   <span className="font-medium">Islamische Weiterbildung</span>
                 </div>
               </motion.div>
@@ -229,7 +229,7 @@ export default function PublicLandingPage() {
               >
                 Wer sind wir?
               </motion.h2>
-              <p className="text-lg text-charcoal-700 max-w-2xl mx-auto">
+              <p className="text-lg text-charcoal-800 max-w-2xl mx-auto">
                 Eine Gemeinschaft, die Frauen stärkt und unterstützt –
                 unabhängig davon, wo sie gerade stehen.
               </p>
@@ -320,7 +320,7 @@ export default function PublicLandingPage() {
               <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">
                 Was erwartet dich als Mitglied?
               </h2>
-              <p className="text-lg text-charcoal-700 max-w-2xl mx-auto">
+              <p className="text-lg text-charcoal-800 max-w-2xl mx-auto">
                 Deine Mitgliedschaft öffnet Türen zu einer starken Gemeinschaft
               </p>
             </div>
@@ -403,7 +403,7 @@ export default function PublicLandingPage() {
             <h2 className="text-4xl font-bold mb-4 text-center bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">
               Entdecke mehr über uns
             </h2>
-            <p className="text-lg text-charcoal-700 text-center mb-12 max-w-2xl mx-auto">
+            <p className="text-lg text-charcoal-800 text-center mb-12 max-w-2xl mx-auto">
               Wähle einen Bereich, der dich interessiert
             </p>
 
@@ -431,11 +431,11 @@ export default function PublicLandingPage() {
                           {card.title}
                         </h3>
 
-                        <p className="text-charcoal-700 leading-relaxed flex-1">
+                        <p className="text-charcoal-800 leading-relaxed flex-1">
                           {card.description}
                         </p>
 
-                        <div className="flex items-center gap-2 text-charcoal-700 font-semibold pt-4">
+                        <div className="flex items-center gap-2 text-charcoal-800 font-semibold pt-4">
                           Mehr erfahren
                           <ArrowRight className="w-4 h-4" />
                         </div>

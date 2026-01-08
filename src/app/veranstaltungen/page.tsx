@@ -181,7 +181,7 @@ export default function VeranstaltungenPage() {
             <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">
               Unsere Veranstaltungen
             </h1>
-            <p className="text-lg md:text-xl text-charcoal-700 mb-8">
+            <p className="text-lg md:text-xl text-charcoal-800 mb-8">
               Unsere Angebote richten sich an Frauen und Mädchen. Viele
               Veranstaltungen sind offen für alle – einige erfordern eine
               Anmeldung oder Mitgliedschaft.
@@ -313,8 +313,8 @@ function Section({
     <section id={id} className="py-10 md:py-12 scroll-mt-24">
       <motion.div variants={itemVariants} className="max-w-7xl mx-auto">
         <div className={centered ? "text-center mb-10" : "mb-10"}>
-          <h2 className="text-3xl font-bold text-charcoal-900 mb-3">{title}</h2>
-          <p className="text-lg text-charcoal-600 max-w-2xl mx-auto">
+          <h2 className="text-3xl font-bold mb-3 bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">{title}</h2>
+          <p className="text-lg text-charcoal-700 max-w-2xl mx-auto">
             {subtitle}
           </p>
         </div>
