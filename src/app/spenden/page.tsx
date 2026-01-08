@@ -13,8 +13,7 @@ import {
   ChevronUp,
   AlertCircle,
 } from "lucide-react";
-import { useState, useEffect } from "react";
-
+import { useState, useEffect } from "react";import { Button } from "@/components/ui/button";
 interface DonationCampaign {
   id: string;
   title: string;
@@ -151,12 +150,16 @@ export default function SpendenPage() {
             exit={{ opacity: 0, y: 100 }}
             className="fixed bottom-6 right-6 z-50"
           >
-            <a
-              href="#spenden"
-              className="flex items-center gap-2 px-6 py-4 bg-clay-500 hover:bg-clay-600 text-white rounded-full font-bold shadow-2xl hover:shadow-3xl transition-all focus-visible:ring-2 focus-visible:ring-clay-500 focus-visible:outline-none"
+            <Button
+              size="lg"
+              variant="secondary"
+              asChild
+              className="rounded-full shadow-2xl"
             >
-              💚 Jetzt spenden
-            </a>
+              <a href="#spenden" className="gap-2">
+                💚 Jetzt spenden
+              </a>
+            </Button>
           </motion.div>
         )}
       </AnimatePresence>
@@ -189,19 +192,25 @@ export default function SpendenPage() {
 
           {/* Primary CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <a
-              href="#spenden"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-clay-500 hover:bg-clay-600 text-white rounded-lg font-bold text-lg transition-all hover:shadow-lg focus-visible:ring-2 focus-visible:ring-clay-500 focus-visible:outline-none"
+            <Button
+              size="lg"
+              variant="primary"
+              asChild
             >
-              💚 Jetzt spenden
-              <ArrowRight className="w-5 h-5" />
-            </a>
-            <a
-              href="#spendenzwecke"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-clay-500 text-clay-500 rounded-lg font-bold text-lg hover:bg-clay-50 transition-all focus-visible:ring-2 focus-visible:ring-clay-500 focus-visible:outline-none"
+              <a href="#spenden" className="gap-2">
+                💚 Jetzt spenden
+                <ArrowRight className="w-5 h-5" />
+              </a>
+            </Button>
+            <Button
+              size="lg"
+              variant="secondary"
+              asChild
             >
-              Wofür wir spenden
-            </a>
+              <a href="#spendenzwecke" className="gap-2">
+                Wofür wir spenden
+              </a>
+            </Button>
           </div>
 
           {/* Trust Badges */}
@@ -544,16 +553,21 @@ export default function SpendenPage() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <a
-                href="/kontakt"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-clay-500 hover:bg-clay-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all focus-visible:ring-2 focus-visible:ring-clay-500 focus-visible:outline-none"
+              <Button
+                size="lg"
+                variant="secondary"
+                asChild
               >
-                Kontakt aufnehmen
-              </a>
-              <a
-                href="mailto:info@muslimin-ev.de"
-                className="inline-flex items-center gap-2 px-6 py-3 border-2 border-clay-500 text-clay-500 rounded-lg font-semibold hover:bg-clay-50 transition-all focus-visible:ring-2 focus-visible:ring-clay-500 focus-visible:outline-none"
+                <a href="/kontakt" className="gap-2">
+                  Kontakt aufnehmen
+                </a>
+              </Button>
+              <Button
+                size="lg"
+                variant="secondary"
+                asChild
               >
+                <a href="mailto:info@muslimin-ev.de" className="gap-2">
                 E-Mail schreiben
               </a>
             </div>
@@ -583,10 +597,12 @@ export default function SpendenPage() {
           <p className="text-lg text-charcoal-600 mb-8">
             Werde Teil unserer Mission und unterstütze Menschen in Not
           </p>
-          <a
-            href="#spenden"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-clay-500 hover:bg-clay-600 text-white rounded-lg font-bold text-lg hover:shadow-xl transition-all focus-visible:ring-2 focus-visible:ring-clay-500 focus-visible:outline-none"
+          <Button
+            size="lg"
+            variant="secondary"
+            asChild
           >
+            <a href="#spenden" className="gap-2">
             Jetzt spenden
             <ArrowRight className="w-5 h-5" />
           </a>
