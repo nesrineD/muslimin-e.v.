@@ -341,7 +341,7 @@ export default function ProfilePage() {
                         htmlFor="sichtbar-ja"
                         className="flex items-center gap-2"
                       >
-                        <Eye className="w-4 h-4 text-green-600" />
+                        <Eye className="w-4 h-4 text-sage-600" />
                         Ja - Vollständige Adresse anzeigen
                       </Label>
                     </div>

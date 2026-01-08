@@ -306,7 +306,7 @@ export default function MyAppointmentsPage() {
             <div className="flex items-center justify-between pt-2 border-t border-gray-200">
               <Badge
                 variant="outline"
-                className="text-green-700 border-green-300"
+                className="text-sage-700 border-sage-300"
               >
                 ✓ Abgeschlossen
               </Badge>

@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
 import type { BadgeVariant, EventBadge } from "@/types/events";
 import { Card, CardContent } from "@/components/ui/card";
@@ -160,14 +161,18 @@ export function EventCard({
 
               {/* Secondary CTA (optional) */}
               {secondaryCtaLabel && (
-                <motion.button
-                  className="px-6 py-2 border-2 border-sage-500 text-sage-700 hover:bg-sage-50 rounded-lg font-semibold text-sm transition-colors focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:outline-none"
+                <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  aria-label={`${secondaryCtaLabel} - ${name}`}
                 >
-                  {secondaryCtaLabel}
-                </motion.button>
+                  <Link
+                    href="/mitglied-werden"
+                    className="inline-flex items-center justify-center px-6 py-2 border-2 border-sage-500 text-sage-700 hover:bg-sage-50 rounded-lg font-semibold text-sm transition-colors focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:outline-none"
+                    aria-label={`${secondaryCtaLabel} - ${name}`}
+                  >
+                    {secondaryCtaLabel}
+                  </Link>
+                </motion.div>
               )}
             </div>
           </CardContent>

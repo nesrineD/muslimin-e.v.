@@ -74,11 +74,11 @@ export default function AboutPage() {
           className="py-20 lg:py-24 bg-sand-50"
         >
           <div className="container mx-auto px-4">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-sage-800">
+            <div className="text-center mb-16 max-w-3xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold text-sage-800 leading-tight">
                 Wer sind wir?
               </h2>
-              <p className="text-lg text-sage-600 mt-2">
+              <p className="text-lg text-sage-600 mt-3 max-w-2xl mx-auto leading-relaxed">
                 Ein aktiver muslimischer Mädchen- und Frauenverein im Herzen
                 Berlins.
               </p>
@@ -178,11 +178,11 @@ export default function AboutPage() {
           className="py-20 lg:py-24 bg-sand-50"
         >
           <div className="container mx-auto px-4">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-sage-800">
+            <div className="text-center mb-16 max-w-3xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold text-sage-800 leading-tight">
                 Unsere Kernziele
               </h2>
-              <p className="text-lg text-sage-600 mt-2">
+              <p className="text-lg text-sage-600 mt-3 max-w-2xl mx-auto leading-relaxed">
                 Die Säulen unserer Gemeinschaft.
               </p>
             </div>
@@ -222,8 +222,8 @@ export default function AboutPage() {
         >
           <div className="container mx-auto max-w-6xl">
             <div className="py-12 px-6 sm:px-8 bg-gradient-to-br from-sage-50 via-cream-50 to-sage-100/80 rounded-2xl shadow-lg border-2 border-sage-200">
-              <SocialMediaSection 
-                variant="compact" 
+              <SocialMediaSection
+                variant="compact"
                 showTitle={true}
                 title="Folge uns auf Social Media! 📱"
                 subtitle="Bleib auf dem Laufenden mit aktuellen Flyern, Terminen und Live-Updates"

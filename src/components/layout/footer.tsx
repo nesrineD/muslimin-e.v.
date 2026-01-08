@@ -55,7 +55,7 @@ export function Footer() {
           {/* Erkunden Column */}
           <nav aria-label="Footer Navigation Erkunden">
             <h3 className="text-xs font-bold text-sage-800 uppercase tracking-wider mb-3 flex items-center gap-2">
-              <span className="w-1 h-4 bg-sage-600 rounded-full" />
+              <span className="w-1 h-4 bg-charcoal-600 rounded-full" />
               Erkunden
             </h3>
             <ul className="space-y-2.5">
@@ -78,7 +78,7 @@ export function Footer() {
           {/* Unterstützen Column */}
           <nav aria-label="Footer Navigation Unterstützen">
             <h3 className="text-xs font-bold text-sage-800 uppercase tracking-wider mb-3 flex items-center gap-2">
-              <span className="w-1 h-4 bg-clay-600 rounded-full" />
+              <span className="w-1 h-4 bg-charcoal-600 rounded-full" />
               Unterstützen
             </h3>
             <ul className="space-y-2.5">
@@ -110,7 +110,7 @@ export function Footer() {
           {/* Kontakt Column */}
           <div>
             <h3 className="text-xs font-bold text-sage-800 uppercase tracking-wider mb-3 flex items-center gap-2">
-              <span className="w-1 h-4 bg-coral-600 rounded-full" />
+              <span className="w-1 h-4 bg-charcoal-600 rounded-full" />
               Kontakt
             </h3>
             <address className="not-italic space-y-2.5 text-sm mb-4">

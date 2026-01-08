@@ -176,7 +176,8 @@ export default function VeranstaltungenPage() {
         <section className="py-20 md:py-24 text-center max-w-4xl mx-auto">
           <motion.div variants={itemVariants}>
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-sage-100 to-cream-100 border-2 border-sage-200 text-charcoal-800 rounded-full text-sm font-medium mb-6 shadow-sm">
-              <Sparkles className="w-4 h-4 text-sage-700" /> Gemeinschaft stärken
+              <Sparkles className="w-4 h-4 text-sage-700" /> Gemeinschaft
+              stärken
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">
               Unsere Veranstaltungen
@@ -268,18 +269,14 @@ export default function VeranstaltungenPage() {
           title="Bildung & Entwicklung"
           subtitle="Vertiefe dein Wissen in familiärer Atmosphäre."
           events={educationEvents}
-          centered
         />
 
         {/* Social Media Section */}
-        <motion.section
-          variants={itemVariants}
-          className="py-16 px-4"
-        >
+        <motion.section variants={itemVariants} className="py-16 px-4">
           <div className="max-w-6xl mx-auto">
             <div className="py-12 px-6 sm:px-8 bg-gradient-to-br from-sage-50 via-cream-50 to-sage-100/80 rounded-2xl shadow-lg border-2 border-sage-200">
-              <SocialMediaSection 
-                variant="compact" 
+              <SocialMediaSection
+                variant="compact"
                 showTitle={true}
                 title="Eindrücke von unseren Veranstaltungen 📸"
                 subtitle="Fotos, Videos und aktuelle Termine findest du auf unseren Social-Media-Kanälen"
@@ -313,7 +310,9 @@ function Section({
     <section id={id} className="py-10 md:py-12 scroll-mt-24">
       <motion.div variants={itemVariants} className="max-w-7xl mx-auto">
         <div className={centered ? "text-center mb-10" : "mb-10"}>
-          <h2 className="text-3xl font-bold mb-3 bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">{title}</h2>
+          <h2 className="text-3xl font-bold mb-3 bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">
+            {title}
+          </h2>
           <p className="text-lg text-charcoal-700 max-w-2xl mx-auto">
             {subtitle}
           </p>

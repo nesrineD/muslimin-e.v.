@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+
 interface DonationCampaign {
   id: string;
   title: string;
@@ -182,8 +183,11 @@ export default function SpendenPage() {
             Jemen: Akute Hungersnot – jede Spende zählt
           </motion.div>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-charcoal-800">
-            Deine Spende bewirkt Großes 💚
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+            <span className="bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">
+              Deine Spende bewirkt Großes{" "}
+              <span className="text-coral-600">💚</span>
+            </span>
           </h1>
 
           <p className="text-xl md:text-2xl text-charcoal-700 mb-8 max-w-2xl mx-auto">
@@ -545,28 +549,23 @@ export default function SpendenPage() {
               sicherzustellen, dass Spenden zielgerichtet ankommen.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <div className="p-6 bg-gradient-to-r from-sage-50 to-warm-50 rounded-lg border border-sage-200 text-center mb-8">
+              <p className="text-charcoal-700 font-medium mb-2">
+                Fragen zur Spende oder zu unseren Projekten?
+              </p>
+              <p className="text-charcoal-600">
+                Wir beantworten gerne alle deine Fragen und informieren dich
+                über aktuelle Hilfsprojekte.
+              </p>
+            </div>
+
+            <div className="flex justify-center items-center">
               <Button size="lg" variant="secondary" asChild>
                 <a href="/kontakt" className="gap-2">
                   Kontakt aufnehmen
                 </a>
               </Button>
-              <Button size="lg" variant="secondary" asChild>
-                <a href="mailto:info@muslimin-ev.de" className="gap-2">
-                  E-Mail schreiben
-                </a>
-              </Button>
             </div>
-          </div>
-
-          <div className="p-6 bg-gradient-to-r from-sage-50 to-warm-50 rounded-lg border border-sage-200 text-center">
-            <p className="text-charcoal-700 font-medium mb-2">
-              Fragen zur Spende oder zu unseren Projekten?
-            </p>
-            <p className="text-charcoal-600">
-              Wir beantworten gerne alle deine Fragen und informieren dich über
-              aktuelle Hilfsprojekte.
-            </p>
           </div>
         </motion.div>
       </section>

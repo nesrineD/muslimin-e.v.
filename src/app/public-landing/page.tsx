@@ -35,21 +35,24 @@ const ctaCards: CTACard[] = [
     description:
       "Werde Teil unserer Gemeinschaft und unterstütze unsere Mission",
     href: "/mitglied-werden",
-    color: "from-coral-50 via-warm-100 to-coral-100 hover:from-coral-100 hover:to-warm-100",
+    color:
+      "from-coral-50 via-cream-100 to-coral-100 hover:from-coral-100 hover:to-cream-100",
   },
   {
     icon: <Users className="w-12 h-12" />,
     title: "Spenden",
     description: "Unterstütze unsere Arbeit mit einer Spende",
     href: "/spenden",
-    color: "from-clay-50 via-coral-100 to-clay-100 hover:from-clay-100 hover:to-coral-100",
+    color:
+      "from-clay-50 via-coral-100 to-clay-100 hover:from-clay-100 hover:to-coral-100",
   },
   {
     icon: <Calendar className="w-12 h-12" />,
     title: "Veranstaltungen",
     description: "Entdecke unsere vielfältigen Veranstaltungen und Aktivitäten",
     href: "/veranstaltungen",
-    color: "from-warm-50 via-coral-100 to-warm-100 hover:from-warm-100 hover:to-coral-100",
+    color:
+      "from-sand-50 via-coral-100 to-sand-100 hover:from-sand-100 hover:to-coral-100",
   },
   {
     icon: <BookOpen className="w-12 h-12" />,
@@ -57,7 +60,8 @@ const ctaCards: CTACard[] = [
     description:
       "Erfahre mehr über Muslimin e.V., unsere Geschichte und Philosophie",
     href: "/uber-uns",
-    color: "from-sage-50 via-coral-100 to-sage-100 hover:from-sage-100 hover:to-coral-100",
+    color:
+      "from-sage-50 via-coral-100 to-sage-100 hover:from-sage-100 hover:to-coral-100",
   },
 ];
 
@@ -91,7 +95,7 @@ export default function PublicLandingPage() {
 
   return (
     <motion.main
-      className="min-h-screen bg-gradient-to-br from-sage-50 via-cream-50 to-warm-50"
+      className="min-h-screen bg-gradient-to-br from-sage-50 via-cream-50 to-sand-50"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -102,32 +106,32 @@ export default function PublicLandingPage() {
           initial={{ y: 100 }}
           animate={{ y: showStickyBar ? 0 : 100 }}
           transition={{ duration: 0.3 }}
-          className="fixed bottom-0 left-0 right-0 z-41 bg-gradient-to-r from-clay-600 to-warm-600 shadow-2xl"
+          className="fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-r from-clay-700/95 to-coral-600/95 shadow-2xl border-t border-white/15"
         >
-          <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-            <span className="text-white font-semibold text-sm md:text-base">
+          <div className="container mx-auto px-4 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <span className="text-white font-semibold text-sm md:text-base text-center sm:text-left">
               💚 Werde jetzt Teil unserer Gemeinschaft!
             </span>
-            <div className="flex gap-2">
-              <Link
-                href="/mitglied-werden"
-                className="px-4 py-2 bg-transparent text-white border-2 border-white rounded-lg font-semibold text-sm hover:bg-white/10 transition-colors hidden sm:block"
-              >
-                Mitglied werden
-              </Link>
-              <Link
-                href="/spenden"
-                className="px-4 py-2 bg-transparent text-white border-2 border-white rounded-lg font-semibold text-sm hover:bg-white/10 transition-colors hidden sm:block"
-              >
-                Spenden
-              </Link>
+            <div className="flex items-center justify-center sm:justify-end gap-2">
+              <Button size="sm" variant="primary" asChild>
+                <Link href="/mitglied-werden" className="gap-2">
+                  <Heart className="w-4 h-4" />
+                  Mitglied werden
+                </Link>
+              </Button>
+              <Button size="sm" variant="secondary" asChild>
+                <Link href="/spenden" className="gap-2">
+                  <HeartHandshake className="w-4 h-4" />
+                  Jetzt unterstützen
+                </Link>
+              </Button>
             </div>
           </div>
         </motion.div>
 
         {/* Enhanced Hero Section */}
         <section className="relative py-20 md:py-24 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-sage-100/60 via-cream-100/40 to-warm-100/30" />
+          <div className="absolute inset-0 bg-gradient-to-br from-sage-100/60 via-cream-100/40 to-sand-100/30" />
 
           <motion.div
             variants={itemVariants}
@@ -138,9 +142,9 @@ export default function PublicLandingPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-sage-100 via-cream-100 to-sage-100 text-charcoal-800 rounded-full text-sm font-medium mb-6 border-2 border-sage-300 shadow-sm"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-sage-200 via-cream-200 to-sage-200 text-charcoal-900 rounded-full text-sm font-medium mb-6 border-2 border-sage-400 shadow-sm"
             >
-              <Shield className="w-4 h-4 text-sage-700" />
+              <Shield className="w-4 h-4 text-sage-800" />
               Gemeinnützig • DSGVO-konform • Seit 2011
             </motion.div>
 
@@ -156,7 +160,7 @@ export default function PublicLandingPage() {
               Zusammenhalt.
             </p>
 
-            <p className="text-lg text-charcoal-700 mb-10 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg text-charcoal-800 mb-10 max-w-2xl mx-auto leading-relaxed">
               🌟 Islamische Vorträge • Seminare • Begegnung
             </p>
 
@@ -196,14 +200,14 @@ export default function PublicLandingPage() {
                 className="flex flex-wrap items-center justify-center gap-4 text-sm text-charcoal-800 pt-2"
               >
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-charcoal-700" />
+                  <CheckCircle className="w-4 h-4 text-charcoal-800" />
                   <span className="font-medium">
                     Muslimische Frauen-Community
                   </span>
                 </div>
                 <span className="hidden sm:inline">•</span>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-charcoal-700" />
+                  <CheckCircle className="w-4 h-4 text-charcoal-800" />
                   <span className="font-medium">Islamische Weiterbildung</span>
                 </div>
               </motion.div>
@@ -278,7 +282,7 @@ export default function PublicLandingPage() {
                     className="h-full hover:shadow-lg transition-all duration-300 border-2 border-transparent hover:border-coral-200"
                   >
                     <CardContent className="flex items-start gap-4">
-                      <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-gradient-to-br from-coral-500 via-clay-500 to-warm-600 flex items-center justify-center text-white shadow-md">
+                      <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-gradient-to-br from-coral-500 to-clay-600 flex items-center justify-center text-white shadow-md">
                         {item.icon}
                       </div>
                       <div>
@@ -302,19 +306,18 @@ export default function PublicLandingPage() {
               transition={{ delay: 0.4 }}
               className="text-center mt-10"
             >
-              <Link
-                href="/uber-uns"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-coral-600 to-clay-600 text-white rounded-xl font-bold hover:shadow-xl transition-all hover:gap-3"
-              >
-                Mehr über uns erfahren
-                <ArrowRight className="w-5 h-5" />
-              </Link>
+              <Button variant="secondary" asChild>
+                <Link href="/uber-uns" className="gap-2">
+                  Mehr über uns erfahren
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+              </Button>
             </motion.div>
           </motion.div>
         </section>
 
         {/* Benefits Section */}
-        <section className="py-16 md:py-20 bg-gradient-to-br from-warm-50 via-coral-50 to-sand-50">
+        <section className="py-16 md:py-20 bg-gradient-to-br from-sand-50 via-coral-50 to-cream-50">
           <motion.div variants={itemVariants} className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">
@@ -355,7 +358,7 @@ export default function PublicLandingPage() {
                 <motion.div
                   key={idx}
                   variants={itemVariants}
-                  whileHover={{ y: -8 }}
+                  whileHover={{ y: -4 }}
                 >
                   <Card
                     variant="cream"
@@ -386,19 +389,23 @@ export default function PublicLandingPage() {
               transition={{ delay: 0.3 }}
               className="text-center mt-10"
             >
-              <Link
-                href="/mitglied-werden"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-coral-600 via-clay-600 to-warm-600 text-white rounded-xl font-bold hover:shadow-xl transition-all text-lg hover:scale-105"
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                Jetzt Mitglied werden
-                <ArrowRight className="w-5 h-5" />
-              </Link>
+                <Button size="lg" variant="primary" asChild>
+                  <Link href="/mitglied-werden" className="gap-3">
+                    Jetzt Mitglied werden
+                    <ArrowRight className="w-5 h-5" />
+                  </Link>
+                </Button>
+              </motion.div>
             </motion.div>
           </motion.div>
         </section>
 
         {/* CTA Cards Section - Explore More */}
-        <section className="py-20 md:py-24 bg-gradient-to-br from-sage-50 via-cream-50 to-warm-50">
+        <section className="py-20 md:py-24 bg-gradient-to-br from-sage-50 via-cream-50 to-sand-50">
           <motion.div variants={itemVariants} className="max-w-6xl mx-auto">
             <h2 className="text-4xl font-bold mb-4 text-center bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">
               Entdecke mehr über uns
@@ -407,43 +414,48 @@ export default function PublicLandingPage() {
               Wähle einen Bereich, der dich interessiert
             </p>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-max">
-              {ctaCards.map((card) => (
-                <motion.div
-                  key={card.title}
-                  variants={itemVariants}
-                  className="h-full"
-                  whileHover={{ y: -8 }}
-                >
-                  <Link href={card.href} className="h-full block">
-                    <Card
-                      variant="cream"
-                      className="h-full cursor-pointer transition-all duration-300 border-2 border-transparent hover:border-coral-200 hover:shadow-xl"
+            <div className="rounded-3xl border border-sage-200/60 bg-white/30 p-6 sm:p-8">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-max">
+                {ctaCards.map((card) => (
+                  <motion.div
+                    key={card.title}
+                    variants={itemVariants}
+                    className="h-full"
+                    whileHover={{ y: -4 }}
+                  >
+                    <Link
+                      href={card.href}
+                      className="h-full block rounded-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-sage focus-visible:outline-offset-2"
                     >
-                      <CardContent className="space-y-4 h-full flex flex-col">
-                        <div className="flex items-start gap-4">
-                          <div className="text-coral-600 flex-shrink-0">
-                            {card.icon}
+                      <Card
+                        variant="cream"
+                        className="h-full cursor-pointer transition-all duration-300 border-2 border-transparent hover:border-coral-200 hover:shadow-xl"
+                      >
+                        <CardContent className="space-y-4 h-full flex flex-col">
+                          <div className="flex items-start gap-4">
+                            <div className="text-coral-700 flex-shrink-0">
+                              {card.icon}
+                            </div>
                           </div>
-                        </div>
 
-                        <h3 className="text-2xl font-bold text-charcoal-800">
-                          {card.title}
-                        </h3>
+                          <h3 className="text-2xl font-bold text-charcoal-800">
+                            {card.title}
+                          </h3>
 
-                        <p className="text-charcoal-800 leading-relaxed flex-1">
-                          {card.description}
-                        </p>
+                          <p className="text-charcoal-800 leading-relaxed flex-1">
+                            {card.description}
+                          </p>
 
-                        <div className="flex items-center gap-2 text-charcoal-800 font-semibold pt-4">
-                          Mehr erfahren
-                          <ArrowRight className="w-4 h-4" />
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                </motion.div>
-              ))}
+                          <div className="flex items-center gap-2 text-charcoal-800 font-semibold pt-4">
+                            Mehr erfahren
+                            <ArrowRight className="w-4 h-4" />
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </motion.div>
         </section>
@@ -451,8 +463,8 @@ export default function PublicLandingPage() {
         <section className="py-16 px-4">
           <motion.div variants={itemVariants} className="max-w-6xl mx-auto">
             <div className="py-12 px-6 sm:px-8 bg-gradient-to-br from-sage-50 via-cream-50 to-sage-100/80 rounded-2xl shadow-lg border-2 border-sage-200">
-              <SocialMediaSection 
-                variant="compact" 
+              <SocialMediaSection
+                variant="compact"
                 showTitle={true}
                 title="Folge uns auf Social Media! 📱"
                 subtitle="Bleib auf dem Laufenden mit aktuellen Flyern, Terminen und Live-Updates"
@@ -464,7 +476,7 @@ export default function PublicLandingPage() {
         <section className="py-20 bg-gradient-to-br from-sage-50 via-cream-50 to-coral-50">
           <motion.div
             variants={itemVariants}
-            className="max-w-4xl mx-auto bg-gradient-to-r from-sage-700 via-sage-800 to-sage-900 rounded-3xl p-12 text-center text-white shadow-2xl"
+            className="max-w-4xl mx-auto bg-gradient-to-br from-cream-100 via-sage-50 to-coral-100 rounded-3xl p-12 text-center shadow-2xl border-2 border-sage-200"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -472,10 +484,10 @@ export default function PublicLandingPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">
                 Bereit für den nächsten Schritt?
               </h2>
-              <p className="text-xl mb-8 opacity-95 max-w-2xl mx-auto">
+              <p className="text-xl mb-8 text-charcoal-800 max-w-2xl mx-auto leading-relaxed">
                 Werde Teil einer Gemeinschaft, die dich versteht, unterstützt
                 und stärkt. Gemeinsam sind wir stärker! 💚
               </p>
@@ -484,8 +496,8 @@ export default function PublicLandingPage() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Button size="lg" variant="secondary" asChild>
-                    <Link href="/mitglied-werden" className="gap-2">
+                  <Button size="lg" variant="primary" asChild>
+                    <Link href="/mitglied-werden" className="gap-3">
                       <Heart className="w-6 h-6" />
                       Mitglied werden
                       <ArrowRight className="w-5 h-5" />
@@ -497,31 +509,32 @@ export default function PublicLandingPage() {
                   whileTap={{ scale: 0.95 }}
                 >
                   <Button size="lg" variant="secondary" asChild>
-                    <Link href="/spenden" className="gap-2">
-                      Jetzt spenden
+                    <Link href="/spenden" className="gap-3">
+                      <HeartHandshake className="w-6 h-6" />
+                      Jetzt unterstützen
                       <ArrowRight className="w-5 h-5" />
                     </Link>
                   </Button>
                 </motion.div>
               </div>
-              <div className="flex flex-wrap items-center justify-center gap-4 text-sm opacity-90 mt-8">
+              <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-charcoal-800 mt-8">
                 <Link
                   href="/uber-uns"
-                  className="underline underline-offset-4 hover:opacity-100"
+                  className="underline underline-offset-4 hover:text-charcoal-900 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-sage focus-visible:outline-offset-4 rounded"
                 >
                   Mehr über uns
                 </Link>
                 <span>•</span>
                 <Link
                   href="/impressum"
-                  className="underline underline-offset-4 hover:opacity-100"
+                  className="underline underline-offset-4 hover:text-charcoal-900 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-sage focus-visible:outline-offset-4 rounded"
                 >
                   Impressum
                 </Link>
                 <span>•</span>
                 <Link
                   href="/datenschutz"
-                  className="underline underline-offset-4 hover:opacity-100"
+                  className="underline underline-offset-4 hover:text-charcoal-900 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-sage focus-visible:outline-offset-4 rounded"
                 >
                   Datenschutz
                 </Link>

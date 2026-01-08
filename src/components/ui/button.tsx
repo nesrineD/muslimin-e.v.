@@ -12,9 +12,9 @@ const buttonVariants = cva(
         default:
           "bg-sage-600 text-white shadow-sm hover:bg-sage-700 active:bg-sage-800",
         primary:
-          "bg-gradient-to-r from-coral-600 via-clay-600 to-warm-600 text-white shadow-md hover:shadow-lg hover:brightness-110 active:brightness-95 hover:scale-105 transition-transform",
+          "bg-gradient-to-r from-sage-700 to-sage-600 text-white shadow-md hover:shadow-lg hover:from-sage-800 hover:to-sage-700 active:from-sage-900 active:to-sage-800",
         donation:
-          "bg-gradient-to-r from-clay-600 via-coral-600 to-warm-600 text-white shadow-md hover:shadow-lg hover:brightness-110 active:brightness-95 hover:scale-105 transition-transform",
+          "bg-gradient-to-r from-clay-700 to-coral-600 text-white shadow-md hover:shadow-lg hover:from-clay-800 hover:to-coral-700 active:from-clay-900 active:to-coral-800",
         secondary:
           "border-2 border-coral-200 bg-white/60 text-charcoal-800 shadow-sm backdrop-blur-sm hover:bg-coral-50 hover:border-coral-300 active:bg-coral-100",
         outline:

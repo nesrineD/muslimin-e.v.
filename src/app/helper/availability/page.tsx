@@ -286,7 +286,7 @@ export default function HelperAvailabilityPage() {
       case "available":
         return cn(
           baseClasses,
-          "bg-gradient-to-br from-green-100 to-green-50 text-green-800 hover:from-green-200 hover:to-green-100 border-green-400 shadow-sm hover:shadow-md"
+          "bg-gradient-to-br from-sage-100 to-sage-50 text-sage-800 hover:from-sage-200 hover:to-sage-100 border-sage-400 shadow-sm hover:shadow-md"
         );
       case "booked":
         return cn(
@@ -582,7 +582,7 @@ export default function HelperAvailabilityPage() {
                     {/* Legend */}
                     <div className="flex items-center justify-center space-x-4 mt-6 p-4 bg-gradient-to-r from-emerald-50 to-sage-50 rounded-lg border border-sage-200">
                       <div className="flex items-center space-x-2">
-                        <div className="w-5 h-5 bg-gradient-to-br from-green-200 to-green-100 border-2 border-green-500 rounded-sm flex items-center justify-center text-green-800 text-xs font-bold">
+                        <div className="w-5 h-5 bg-gradient-to-br from-sage-200 to-sage-100 border-2 border-sage-500 rounded-sm flex items-center justify-center text-sage-800 text-xs font-bold">
                           ✓
                         </div>
                         <span className="text-sm font-medium text-gray-700">
