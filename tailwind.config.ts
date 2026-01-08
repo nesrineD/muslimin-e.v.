@@ -146,7 +146,7 @@ const config: Config = {
         },
       },
       fontFamily: {
-        heading: ["var(--font-heading)", "Merriweather", "serif"],
+        heading: ["var(--font-heading)", "Newsreader", "serif"],
         body: ["var(--font-body)", "Inter", "sans-serif"],
       },
       boxShadow: {

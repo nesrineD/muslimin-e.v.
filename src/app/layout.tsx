@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Merriweather } from "next/font/google";
+import { Inter, Newsreader } from "next/font/google";
 import { MotionConfig } from "framer-motion";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
@@ -11,14 +11,13 @@ import { PWAPromptBanner } from "@/components/PWAPromptBanner";
 import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
   display: "swap",
   variable: "--font-body",
 });
 
-const merriweather = Merriweather({
-  subsets: ["latin"],
-  weight: ["400", "700"],
+const newsreader = Newsreader({
+  subsets: ["latin", "latin-ext"],
   display: "swap",
   variable: "--font-heading",
 });
@@ -59,7 +58,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html
       lang="de"
-      className={`${inter.variable} ${merriweather.variable}`}
+      className={`${inter.variable} ${newsreader.variable}`}
       suppressHydrationWarning
     >
       <head>
