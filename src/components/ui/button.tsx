@@ -15,6 +15,8 @@ const buttonVariants = cva(
           "bg-gradient-to-r from-clay-600 via-coral-600 to-warm-600 text-white shadow-md hover:shadow-lg hover:brightness-110 active:brightness-95 hover:scale-105 transition-transform",
         secondary:
           "border-2 border-coral-200 bg-white/60 text-charcoal-800 shadow-sm backdrop-blur-sm hover:bg-coral-50 hover:border-coral-300 active:bg-coral-100",
+        outline:
+          "border-2 border-sage-300 bg-transparent text-sage-700 hover:bg-sage-50 hover:border-sage-400 active:bg-sage-100",
         passive:
           "bg-warm-400 text-charcoal shadow-sm hover:brightness-105 active:brightness-95",
       },
