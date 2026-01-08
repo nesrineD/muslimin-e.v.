@@ -28,7 +28,8 @@ const Section = React.forwardRef<HTMLElement, SectionProps>(
           },
           className
         )}
-        ref={ref as React.Ref<HTMLElement>}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ref={ref as any}
         {...props}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
