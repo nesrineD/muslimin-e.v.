@@ -101,8 +101,6 @@ describe("Input Component", () => {
     it("has minimum 44px height for touch targets", () => {
       const { container } = render(<Input />);
       const input = container.querySelector("input") as HTMLElement;
-      const styles = window.getComputedStyle(input);
-      const height = parseFloat(styles.height);
 
       // Allow for jsdom limitations, check class instead
       expect(input.className).toMatch(/h-11|h-12|min-h-\[44px\]/);
