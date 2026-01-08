@@ -43,7 +43,7 @@ export default function AboutPage() {
   };
 
   return (
-    <div className="bg-sand-50">
+    <div className="bg-gradient-to-br from-warm-50 via-coral-50 to-sage-50">
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -53,10 +53,10 @@ export default function AboutPage() {
         {/* Hero Section */}
         <motion.section
           variants={itemVariants}
-          className="text-center py-20 lg:py-28 bg-gradient-to-b from-white to-sand-100"
+          className="text-center py-20 lg:py-28 bg-gradient-to-br from-coral-100/30 via-warm-100/20 to-sage-100/30"
         >
           <div className="container mx-auto px-4">
-            <h1 className="text-4xl md:text-6xl font-bold text-sage-800 mb-4">
+            <h1 className="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-sage-800 via-coral-700 to-sage-800 bg-clip-text text-transparent">
               Über{" "}
               <span className="bg-gradient-to-r from-sage-500 to-sage-600 bg-clip-text text-transparent">
                 Muslimin e.V.

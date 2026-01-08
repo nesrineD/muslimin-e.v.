@@ -166,7 +166,7 @@ export default function VeranstaltungenPage() {
 
   return (
     <motion.main
-      className="min-h-screen bg-gradient-to-br from-sand-50 via-white to-sage-50"
+      className="min-h-screen bg-gradient-to-br from-warm-50 via-coral-50 to-sage-50"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -175,10 +175,10 @@ export default function VeranstaltungenPage() {
         {/* Hero */}
         <section className="py-20 md:py-24 text-center max-w-4xl mx-auto">
           <motion.div variants={itemVariants}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-sage-100 text-sage-800 rounded-full text-sm font-medium mb-6">
-              <Sparkles className="w-4 h-4" /> Gemeinschaft stärken
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-coral-100 to-warm-100 border-2 border-coral-200 text-charcoal-800 rounded-full text-sm font-medium mb-6 shadow-sm">
+              <Sparkles className="w-4 h-4 text-coral-700" /> Gemeinschaft stärken
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-charcoal-900">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-sage-800 via-coral-700 to-sage-800 bg-clip-text text-transparent">
               Unsere Veranstaltungen
             </h1>
             <p className="text-lg md:text-xl text-charcoal-700 mb-8">
@@ -189,15 +189,15 @@ export default function VeranstaltungenPage() {
 
             {/* Quick Stats */}
             <div className="flex flex-wrap justify-center gap-4 text-sm">
-              <div className="px-4 py-2 bg-white rounded-full shadow-sm border border-sand-200">
-                <span className="font-bold text-sage-600">6</span> Formate
+              <div className="px-4 py-2 bg-white rounded-full shadow-sm border-2 border-coral-200">
+                <span className="font-bold text-coral-600">6</span> Formate
               </div>
-              <div className="px-4 py-2 bg-white rounded-full shadow-sm border border-sand-200">
-                <span className="font-bold text-sage-600">2</span>{" "}
+              <div className="px-4 py-2 bg-white rounded-full shadow-sm border-2 border-coral-200">
+                <span className="font-bold text-coral-600">2</span>{" "}
                 Online-Optionen
               </div>
-              <div className="px-4 py-2 bg-white rounded-full shadow-sm border border-sand-200">
-                <span className="font-bold text-sage-600">2</span> Offen für
+              <div className="px-4 py-2 bg-white rounded-full shadow-sm border-2 border-coral-200">
+                <span className="font-bold text-coral-600">2</span> Offen für
                 alle
               </div>
             </div>

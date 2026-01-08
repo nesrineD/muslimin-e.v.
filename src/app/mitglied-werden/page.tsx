@@ -28,26 +28,26 @@ export default function MitgliedWerdenPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-cream-50 via-white to-sage-50 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-coral-50 via-warm-50 to-sage-50 relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
           animate={{
             scale: [1, 1.2, 1],
-            opacity: [0.03, 0.06, 0.03],
+            opacity: [0.04, 0.08, 0.04],
             rotate: [0, 90, 0],
           }}
           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -top-1/4 -left-1/4 w-1/2 h-1/2 bg-gradient-to-br from-sage-300 to-sage-100 rounded-full blur-3xl"
+          className="absolute -top-1/4 -left-1/4 w-1/2 h-1/2 bg-gradient-to-br from-coral-300 to-warm-200 rounded-full blur-3xl"
         />
         <motion.div
           animate={{
             scale: [1, 1.3, 1],
-            opacity: [0.03, 0.05, 0.03],
+            opacity: [0.04, 0.06, 0.04],
             rotate: [0, -90, 0],
           }}
           transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-gradient-to-tl from-warm-200 to-cream-100 rounded-full blur-3xl"
+          className="absolute -bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-gradient-to-tl from-sage-300 to-coral-200 rounded-full blur-3xl"
         />
       </div>
 
