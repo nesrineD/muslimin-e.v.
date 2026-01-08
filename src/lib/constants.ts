@@ -167,7 +167,7 @@ export const LEGAL_LINKS = [
 /**
  * Trust Line (Footer) - DSGVO compliant, no false claims
  */
-export const TRUST_TEXT = "Gemeinnützig anerkannt • Seit 2011" as const;
+export const TRUST_TEXT = "Ehrenamtlich anerkannt • Seit 2011" as const;
 
 /**
  * Helpers für Social Links

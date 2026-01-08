@@ -215,7 +215,7 @@ export default function SpendenPage() {
             <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm border border-sand-200">
               <Shield className="w-4 h-4 text-sage-600" />
               <span className="font-semibold text-charcoal-800">
-                Gemeinnützig anerkannt
+                Ehrenamtlich & unabhängig
               </span>
             </div>
             <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm border border-sand-200">

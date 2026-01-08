@@ -145,7 +145,7 @@ export default function PublicLandingPage() {
               className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-sage-200 via-cream-200 to-sage-200 text-charcoal-900 rounded-full text-sm font-medium mb-6 border-2 border-sage-400 shadow-sm"
             >
               <Shield className="w-4 h-4 text-sage-800" />
-              Gemeinnützig • DSGVO-konform • Seit 2011
+              Ehrenamtlich • DSGVO-konform • Seit 2011
             </motion.div>
 
             <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">
@@ -250,9 +250,9 @@ export default function PublicLandingPage() {
                 },
                 {
                   icon: <Heart className="w-6 h-6" />,
-                  title: "Gemeinnützig & unabhängig",
+                  title: "Ehrenamtlich & unabhängig",
                   description:
-                    "Seit 2011 arbeiten wir gemeinnützig und setzen uns für Bildung und Gemeinschaft ein – mit vollem Herzen",
+                    "Seit 2011 arbeiten wir ehrenamtlich und setzen uns für Bildung und Gemeinschaft ein – mit vollem Herzen",
                   color: "from-coral-50 via-sage-50 to-coral-100",
                 },
                 {
