@@ -279,17 +279,13 @@ export default function Home() {
           transition={{ duration: 0.8, delay: 1.8 }}
           className="max-w-6xl mx-auto mt-16"
         >
-          <section className="py-8 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-clay-50 via-coral-50 to-warm-50 rounded-2xl shadow-xl border-2 border-coral-100">
-            <div className="text-center mb-8">
-              <h2 className="text-4xl font-bold bg-gradient-to-r from-sage-800 via-coral-700 to-clay-700 bg-clip-text text-transparent mb-4">
-                Folge uns auf Social Media! 📱
-              </h2>
-              <p className="text-lg text-sage-600 max-w-2xl mx-auto">
-                Bleib auf dem Laufenden mit aktuellen Flyern, Terminen und
-                Live-Updates
-              </p>
-            </div>
-            <SocialMediaSection variant="compact" showTitle={false} />
+          <section className="py-12 px-6 sm:px-8 bg-gradient-to-br from-coral-50 via-warm-50 to-sage-50 rounded-2xl shadow-lg border-2 border-coral-100">
+            <SocialMediaSection 
+              variant="compact" 
+              showTitle={true}
+              title="Folge uns auf Social Media! 📱"
+              subtitle="Bleib auf dem Laufenden mit aktuellen Flyern, Terminen und Live-Updates"
+            />
           </section>
         </motion.div>
       </div>

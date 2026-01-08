@@ -384,11 +384,15 @@ export default function MitgliedWerdenPage() {
         </motion.div>
 
         {/* Social Media Section */}
-        <motion.div variants={itemVariants} className="mt-20">
-          <SocialMediaSection
-            title="Bleib mit uns verbunden"
-            subtitle="Folge uns für Updates und Einblicke in unsere Gemeinschaft"
-          />
+        <motion.div variants={itemVariants} className="mt-20 px-4">
+          <div className="py-12 px-6 sm:px-8 bg-gradient-to-br from-coral-50 via-warm-50 to-sage-50 rounded-2xl shadow-lg border-2 border-coral-100 max-w-6xl mx-auto">
+            <SocialMediaSection
+              variant="compact"
+              showTitle={true}
+              title="Bleib mit uns verbunden 📱"
+              subtitle="Folge uns für Updates und Einblicke in unsere Gemeinschaft"
+            />
+          </div>
         </motion.div>
       </motion.div>
     </div>

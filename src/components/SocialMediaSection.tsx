@@ -211,17 +211,17 @@ export function SocialMediaSection({
           href={social.url}
           target="_blank"
           rel="noopener noreferrer"
-          whileHover={{ scale: 1.03, y: -2 }}
+          whileHover={{ scale: 1.05, y: -3 }}
           whileTap={{ scale: 0.97 }}
-          className={`${baseClasses} flex items-center gap-3 px-5 py-3 rounded-xl bg-white border-2 border-sand-200 hover:border-sage-300 shadow-sm hover:shadow-md transition-all duration-200 group`}
+          className={`${baseClasses} flex items-center gap-3 px-6 py-4 rounded-xl bg-white/90 backdrop-blur-sm border-2 border-coral-200 hover:border-coral-300 shadow-md hover:shadow-lg transition-all duration-300 group`}
           aria-label={`Folge uns auf ${social.name}`}
           title={social.name}
         >
           <motion.div whileHover={{ rotate: 8 }} transition={{ duration: 0.3 }}>
-            <Icon className={`h-6 w-6 ${social.color}`} />
+            <Icon className={`h-7 w-7 ${social.color}`} />
           </motion.div>
           <span
-            className={`font-semibold text-charcoal-700 ${social.hoverColor} transition-colors`}
+            className={`font-bold text-charcoal-800 ${social.hoverColor} transition-colors`}
           >
             {social.name}
           </span>
@@ -316,18 +316,18 @@ export function SocialMediaSection({
   // COMPACT VARIANT
   if (variant === "compact") {
     return (
-      <div className={`space-y-4 ${className}`}>
+      <div className={`space-y-6 ${className}`}>
         {showTitle && (
           <div className="text-center">
-            <h3 className="text-lg font-bold mb-2">
-              <span className="bg-gradient-to-r from-sage-600 via-sage-500 to-sage-600 bg-clip-text text-transparent">
+            <h3 className="text-2xl md:text-3xl font-bold mb-3">
+              <span className="bg-gradient-to-r from-sage-800 via-coral-700 to-sage-800 bg-clip-text text-transparent">
                 {computedTitle}
               </span>
             </h3>
-            <p className="text-sm text-charcoal-600">{computedSubtitle}</p>
+            <p className="text-base md:text-lg text-charcoal-700">{computedSubtitle}</p>
           </div>
         )}
-        <div className="flex justify-center gap-4 flex-wrap">
+        <div className="flex justify-center gap-4 flex-wrap max-w-3xl mx-auto">
           {SOCIAL_MEDIA.map((social) => (
             <SocialButton key={social.name} social={social} variant="compact" />
           ))}

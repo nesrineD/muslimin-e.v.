@@ -218,19 +218,17 @@ export default function AboutPage() {
         {/* Social Media Section */}
         <motion.section
           variants={itemVariants}
-          className="py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-sage-50 via-cream-50 to-sage-50"
+          className="py-16 px-4 bg-sand-50"
         >
-          <div className="container mx-auto">
-            <div className="text-center mb-8">
-              <h2 className="text-4xl font-bold text-sage-800 mb-4">
-                Folge uns auf Social Media! 📱
-              </h2>
-              <p className="text-lg text-sage-600 max-w-2xl mx-auto">
-                Bleib auf dem Laufenden mit aktuellen Flyern, Terminen und
-                Live-Updates
-              </p>
+          <div className="container mx-auto max-w-6xl">
+            <div className="py-12 px-6 sm:px-8 bg-gradient-to-br from-coral-50 via-warm-50 to-sage-50 rounded-2xl shadow-lg border-2 border-coral-100">
+              <SocialMediaSection 
+                variant="compact" 
+                showTitle={true}
+                title="Folge uns auf Social Media! 📱"
+                subtitle="Bleib auf dem Laufenden mit aktuellen Flyern, Terminen und Live-Updates"
+              />
             </div>
-            <SocialMediaSection variant="compact" showTitle={false} />
           </div>
         </motion.section>
 

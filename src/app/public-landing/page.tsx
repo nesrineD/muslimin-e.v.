@@ -448,18 +448,16 @@ export default function PublicLandingPage() {
           </motion.div>
         </section>
         {/* Social Media Section - Prominently Placed */}
-        <section className="py-16 bg-gradient-to-br from-coral-50 via-warm-50 to-clay-50">
+        <section className="py-16 px-4">
           <motion.div variants={itemVariants} className="max-w-6xl mx-auto">
-            <div className="text-center mb-8">
-              <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-sage-800 via-coral-700 to-sage-800 bg-clip-text text-transparent">
-                Folge uns auf Social Media! 📱
-              </h2>
-              <p className="text-lg text-charcoal-700 max-w-2xl mx-auto">
-                Bleib auf dem Laufenden mit aktuellen Flyern, Terminen und
-                Live-Updates
-              </p>
+            <div className="py-12 px-6 sm:px-8 bg-gradient-to-br from-coral-50 via-warm-50 to-sage-50 rounded-2xl shadow-lg border-2 border-coral-100">
+              <SocialMediaSection 
+                variant="compact" 
+                showTitle={true}
+                title="Folge uns auf Social Media! 📱"
+                subtitle="Bleib auf dem Laufenden mit aktuellen Flyern, Terminen und Live-Updates"
+              />
             </div>
-            <SocialMediaSection variant="compact" showTitle={false} />
           </motion.div>
         </section>
         {/* Final CTA Section */}

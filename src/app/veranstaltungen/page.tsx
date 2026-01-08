@@ -274,18 +274,18 @@ export default function VeranstaltungenPage() {
         {/* Social Media Section */}
         <motion.section
           variants={itemVariants}
-          className="py-20 bg-gradient-to-br from-sage-50 via-cream-50 to-sage-50 rounded-2xl"
+          className="py-16 px-4"
         >
-          <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-4xl font-bold text-sage-800 mb-4">
-              Eindrücke von unseren Veranstaltungen 📸
-            </h2>
-            <p className="text-lg text-sage-600 max-w-2xl mx-auto">
-              Fotos, Videos und aktuelle Termine findest du auf unseren
-              Social-Media-Kanälen
-            </p>
+          <div className="max-w-6xl mx-auto">
+            <div className="py-12 px-6 sm:px-8 bg-gradient-to-br from-coral-50 via-warm-50 to-sage-50 rounded-2xl shadow-lg border-2 border-coral-100">
+              <SocialMediaSection 
+                variant="compact" 
+                showTitle={true}
+                title="Eindrücke von unseren Veranstaltungen 📸"
+                subtitle="Fotos, Videos und aktuelle Termine findest du auf unseren Social-Media-Kanälen"
+              />
+            </div>
           </div>
-          <SocialMediaSection variant="compact" showTitle={false} />
         </motion.section>
       </div>
     </motion.main>
