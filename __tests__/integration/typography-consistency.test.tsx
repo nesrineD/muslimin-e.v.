@@ -97,9 +97,9 @@ describe("Typography Consistency Integration", () => {
       expect(h1Style).toMatch(/2\.5rem.*3rem/);
     });
 
-    it("h2 has size between 2rem and 2.5rem", () => {
-      const h2Style = "text-[clamp(2rem,3.5vw,2.5rem)]";
-      expect(h2Style).toMatch(/2rem.*2\.5rem/);
+    it("h2 has fixed size 2rem as defined in globals.css", () => {
+      const h2Style = "text-[2rem]";
+      expect(h2Style).toBe("text-[2rem]");
     });
 
     it("headings decrease in size progressively", () => {
