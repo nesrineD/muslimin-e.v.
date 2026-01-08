@@ -206,7 +206,7 @@ export function Header() {
                   whileTap={{ scale: 0.98 }}
                 >
                   <Button
-                    variant="ghost"
+                    variant="secondary"
                     className="flex items-center gap-2 text-sage-700 hover:bg-sage-50 hover:text-sage-800 px-3 py-2 focus-visible:ring-2 focus-visible:ring-sage-500"
                     aria-label="Benutzerprofil-Menü öffnen"
                   >
@@ -318,7 +318,7 @@ export function Header() {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
                 variant="ghost"
-                size="icon"
+                size="sm"
                 className="text-sage-700 hover:bg-sage-50 focus-visible:ring-2 focus-visible:ring-sage-500"
                 aria-label="Mobilmenü öffnen"
               >

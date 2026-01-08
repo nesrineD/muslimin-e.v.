@@ -508,7 +508,7 @@ export default function DashboardPage() {
             {userData.isHelper && (
               <div className="flex items-center space-x-2 bg-white/70 backdrop-blur-sm rounded-lg p-2">
                 <Button
-                  variant={activeRole === "member" ? "default" : "outline"}
+                  variant={activeRole === "member" ? "primary" : "secondary"}
                   onClick={() => setActiveRole("member")}
                   className="flex items-center space-x-2"
                 >
@@ -516,7 +516,7 @@ export default function DashboardPage() {
                   <span>Als Mitglied</span>
                 </Button>
                 <Button
-                  variant={activeRole === "helper" ? "default" : "outline"}
+                  variant={activeRole === "helper" ? "primary" : "secondary"}
                   onClick={() => setActiveRole("helper")}
                   className="flex items-center space-x-2"
                 >

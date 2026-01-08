@@ -133,8 +133,8 @@ export default function ProfilePage() {
         >
           <div className="flex items-center gap-4 mb-6">
             <Button
-              variant="ghost"
-              size="icon"
+              variant="secondary"
+              size="sm"
               onClick={() => router.back()}
               className="hover:bg-sage-100"
             >
