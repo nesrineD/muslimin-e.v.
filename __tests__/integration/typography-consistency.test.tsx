@@ -125,14 +125,14 @@ describe("Typography Consistency Integration", () => {
       expect(h1?.className).toMatch(/leading-\[1\.2\]|leading-tight/);
     });
 
-    it("h2-h3 have snug line-height (1.3)", () => {
+    it("h2-h3 have tight line-height (1.2)", () => {
       const { container } = render(<MockPage />);
 
       const h2 = container.querySelector("h2");
       const h3 = container.querySelector("h3");
 
-      expect(h2?.className).toMatch(/leading-\[1\.3\]|leading-snug/);
-      expect(h3?.className).toMatch(/leading-\[1\.3\]|leading-snug/);
+      expect(h2?.className).toMatch(/leading-\[1\.2\]|leading-tight/);
+      expect(h3?.className).toMatch(/leading-\[1\.2\]|leading-tight/);
     });
 
     it("body text has relaxed line-height (1.6)", () => {
