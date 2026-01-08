@@ -166,7 +166,7 @@ export default function VeranstaltungenPage() {
 
   return (
     <motion.main
-      className="min-h-screen bg-gradient-to-br from-warm-50 via-coral-50 to-sage-50"
+      className="min-h-screen bg-gradient-to-br from-sage-50 via-cream-50 to-warm-50"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -175,10 +175,10 @@ export default function VeranstaltungenPage() {
         {/* Hero */}
         <section className="py-20 md:py-24 text-center max-w-4xl mx-auto">
           <motion.div variants={itemVariants}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-coral-100 to-warm-100 border-2 border-coral-200 text-charcoal-800 rounded-full text-sm font-medium mb-6 shadow-sm">
-              <Sparkles className="w-4 h-4 text-coral-700" /> Gemeinschaft stärken
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-sage-100 to-cream-100 border-2 border-sage-200 text-charcoal-800 rounded-full text-sm font-medium mb-6 shadow-sm">
+              <Sparkles className="w-4 h-4 text-sage-700" /> Gemeinschaft stärken
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-sage-800 via-coral-700 to-sage-800 bg-clip-text text-transparent">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">
               Unsere Veranstaltungen
             </h1>
             <p className="text-lg md:text-xl text-charcoal-700 mb-8">
@@ -277,7 +277,7 @@ export default function VeranstaltungenPage() {
           className="py-16 px-4"
         >
           <div className="max-w-6xl mx-auto">
-            <div className="py-12 px-6 sm:px-8 bg-gradient-to-br from-coral-50 via-warm-50 to-sage-50 rounded-2xl shadow-lg border-2 border-coral-100">
+            <div className="py-12 px-6 sm:px-8 bg-gradient-to-br from-sage-50 via-cream-50 to-sage-100/80 rounded-2xl shadow-lg border-2 border-sage-200">
               <SocialMediaSection 
                 variant="compact" 
                 showTitle={true}

@@ -91,7 +91,7 @@ export default function Home() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-coral-50 via-warm-50 to-sage-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-sage-50 via-cream-50 to-sage-100 flex items-center justify-center">
         <div className="text-center">
           <div className="w-8 h-8 border-4 border-coral-300 border-t-coral-600 rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-sage-700">Lade...</p>
@@ -105,7 +105,7 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-coral-50 via-warm-50 to-sage-50">
+    <div className="min-h-screen bg-gradient-to-br from-sage-50 via-cream-50 to-sage-100">
       {/* Welcome Section */}
       <div className="container mx-auto px-4 py-12">
         <motion.div
@@ -114,9 +114,9 @@ export default function Home() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-sage-800 via-coral-700 to-sage-800 bg-clip-text text-transparent mb-6">
+          <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent mb-6">
             Salam{" "}
-            <span className="bg-gradient-to-r from-coral-600 via-warm-600 to-clay-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-clay-600 via-coral-600 to-warm-600 bg-clip-text text-transparent">
               {user.user_metadata?.vorname || "liebe Schwester"}
             </span>
             ! 👋
@@ -279,7 +279,7 @@ export default function Home() {
           transition={{ duration: 0.8, delay: 1.8 }}
           className="max-w-6xl mx-auto mt-16"
         >
-          <section className="py-12 px-6 sm:px-8 bg-gradient-to-br from-coral-50 via-warm-50 to-sage-50 rounded-2xl shadow-lg border-2 border-coral-100">
+          <section className="py-12 px-6 sm:px-8 bg-gradient-to-br from-sage-50 via-cream-50 to-sage-100/80 rounded-2xl shadow-lg border-2 border-sage-200">
             <SocialMediaSection 
               variant="compact" 
               showTitle={true}

@@ -28,7 +28,7 @@ export default function MitgliedWerdenPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-coral-50 via-warm-50 to-sage-50 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-sage-50 via-cream-50 to-warm-50 relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
@@ -38,7 +38,7 @@ export default function MitgliedWerdenPage() {
             rotate: [0, 90, 0],
           }}
           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -top-1/4 -left-1/4 w-1/2 h-1/2 bg-gradient-to-br from-coral-300 to-warm-200 rounded-full blur-3xl"
+          className="absolute -top-1/4 -left-1/4 w-1/2 h-1/2 bg-gradient-to-br from-sage-200 to-sage-100 rounded-full blur-3xl"
         />
         <motion.div
           animate={{
@@ -47,7 +47,7 @@ export default function MitgliedWerdenPage() {
             rotate: [0, -90, 0],
           }}
           transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-gradient-to-tl from-sage-300 to-coral-200 rounded-full blur-3xl"
+          className="absolute -bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-gradient-to-tl from-warm-200 to-cream-100 rounded-full blur-3xl"
         />
       </div>
 
@@ -64,7 +64,7 @@ export default function MitgliedWerdenPage() {
             whileHover={{ scale: 1.02 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            <span className="bg-gradient-to-r from-sage-600 via-sage-400 to-sage-500 bg-clip-text text-transparent animate-gradient">
+            <span className="bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">
               Willkommen, liebe Schwester!
             </span>
           </motion.h1>
@@ -385,7 +385,7 @@ export default function MitgliedWerdenPage() {
 
         {/* Social Media Section */}
         <motion.div variants={itemVariants} className="mt-20 px-4">
-          <div className="py-12 px-6 sm:px-8 bg-gradient-to-br from-coral-50 via-warm-50 to-sage-50 rounded-2xl shadow-lg border-2 border-coral-100 max-w-6xl mx-auto">
+          <div className="py-12 px-6 sm:px-8 bg-gradient-to-br from-sage-50 via-cream-50 to-sage-100/80 rounded-2xl shadow-lg border-2 border-sage-200 max-w-6xl mx-auto">
             <SocialMediaSection
               variant="compact"
               showTitle={true}

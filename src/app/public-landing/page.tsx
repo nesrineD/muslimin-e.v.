@@ -91,7 +91,7 @@ export default function PublicLandingPage() {
 
   return (
     <motion.main
-      className="min-h-screen bg-gradient-to-br from-warm-50 via-coral-50 to-sage-50"
+      className="min-h-screen bg-gradient-to-br from-sage-50 via-cream-50 to-warm-50"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -127,7 +127,7 @@ export default function PublicLandingPage() {
 
         {/* Enhanced Hero Section */}
         <section className="relative py-20 md:py-24 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-coral-100/50 via-warm-100/40 to-sage-100/50" />
+          <div className="absolute inset-0 bg-gradient-to-br from-sage-100/60 via-cream-100/40 to-warm-100/30" />
 
           <motion.div
             variants={itemVariants}
@@ -138,13 +138,13 @@ export default function PublicLandingPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-coral-100 via-warm-100 to-coral-100 text-charcoal-800 rounded-full text-sm font-medium mb-6 border-2 border-coral-300 shadow-sm"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-sage-100 via-cream-100 to-sage-100 text-charcoal-800 rounded-full text-sm font-medium mb-6 border-2 border-sage-300 shadow-sm"
             >
-              <Shield className="w-4 h-4 text-coral-700" />
+              <Shield className="w-4 h-4 text-sage-700" />
               Gemeinnützig • DSGVO-konform • Seit 2011
             </motion.div>
 
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-sage-800 via-coral-700 to-clay-700 bg-clip-text text-transparent">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">
               Deine Schwesternschaft.
               <br />
               Deine Stärke im Glauben.
@@ -225,7 +225,7 @@ export default function PublicLandingPage() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-sage-800 via-coral-700 to-sage-800 bg-clip-text text-transparent"
+                className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent"
               >
                 Wer sind wir?
               </motion.h2>
@@ -317,7 +317,7 @@ export default function PublicLandingPage() {
         <section className="py-16 md:py-20 bg-gradient-to-br from-warm-50 via-coral-50 to-sand-50">
           <motion.div variants={itemVariants} className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-sage-800 via-coral-700 to-sage-800 bg-clip-text text-transparent">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">
                 Was erwartet dich als Mitglied?
               </h2>
               <p className="text-lg text-charcoal-700 max-w-2xl mx-auto">
@@ -400,7 +400,7 @@ export default function PublicLandingPage() {
         {/* CTA Cards Section - Explore More */}
         <section className="py-20 md:py-24 bg-gradient-to-br from-sage-50 via-cream-50 to-warm-50">
           <motion.div variants={itemVariants} className="max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold mb-4 text-center bg-gradient-to-r from-sage-800 via-coral-700 to-sage-800 bg-clip-text text-transparent">
+            <h2 className="text-4xl font-bold mb-4 text-center bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">
               Entdecke mehr über uns
             </h2>
             <p className="text-lg text-charcoal-700 text-center mb-12 max-w-2xl mx-auto">
@@ -450,7 +450,7 @@ export default function PublicLandingPage() {
         {/* Social Media Section - Prominently Placed */}
         <section className="py-16 px-4">
           <motion.div variants={itemVariants} className="max-w-6xl mx-auto">
-            <div className="py-12 px-6 sm:px-8 bg-gradient-to-br from-coral-50 via-warm-50 to-sage-50 rounded-2xl shadow-lg border-2 border-coral-100">
+            <div className="py-12 px-6 sm:px-8 bg-gradient-to-br from-sage-50 via-cream-50 to-sage-100/80 rounded-2xl shadow-lg border-2 border-sage-200">
               <SocialMediaSection 
                 variant="compact" 
                 showTitle={true}

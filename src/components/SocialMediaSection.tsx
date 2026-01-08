@@ -213,7 +213,7 @@ export function SocialMediaSection({
           rel="noopener noreferrer"
           whileHover={{ scale: 1.05, y: -3 }}
           whileTap={{ scale: 0.97 }}
-          className={`${baseClasses} flex items-center gap-3 px-6 py-4 rounded-xl bg-white/90 backdrop-blur-sm border-2 border-coral-200 hover:border-coral-300 shadow-md hover:shadow-lg transition-all duration-300 group`}
+          className={`${baseClasses} flex items-center gap-3 px-6 py-4 rounded-xl bg-white/90 backdrop-blur-sm border-2 border-sage-200 hover:border-sage-300 shadow-md hover:shadow-lg transition-all duration-300 group`}
           aria-label={`Folge uns auf ${social.name}`}
           title={social.name}
         >
@@ -320,7 +320,7 @@ export function SocialMediaSection({
         {showTitle && (
           <div className="text-center">
             <h3 className="text-2xl md:text-3xl font-bold mb-3">
-              <span className="bg-gradient-to-r from-sage-800 via-coral-700 to-sage-800 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">
                 {computedTitle}
               </span>
             </h3>

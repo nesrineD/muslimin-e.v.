@@ -43,7 +43,7 @@ export default function AboutPage() {
   };
 
   return (
-    <div className="bg-gradient-to-br from-warm-50 via-coral-50 to-sage-50">
+    <div className="bg-gradient-to-br from-sage-50 via-cream-50 to-warm-50">
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -53,10 +53,10 @@ export default function AboutPage() {
         {/* Hero Section */}
         <motion.section
           variants={itemVariants}
-          className="text-center py-20 lg:py-28 bg-gradient-to-br from-coral-100/30 via-warm-100/20 to-sage-100/30"
+          className="text-center py-20 lg:py-28 bg-gradient-to-br from-sage-100/40 via-cream-100/30 to-sage-50"
         >
           <div className="container mx-auto px-4">
-            <h1 className="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-sage-800 via-coral-700 to-sage-800 bg-clip-text text-transparent">
+            <h1 className="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">
               Über{" "}
               <span className="bg-gradient-to-r from-sage-500 to-sage-600 bg-clip-text text-transparent">
                 Muslimin e.V.
@@ -221,7 +221,7 @@ export default function AboutPage() {
           className="py-16 px-4 bg-sand-50"
         >
           <div className="container mx-auto max-w-6xl">
-            <div className="py-12 px-6 sm:px-8 bg-gradient-to-br from-coral-50 via-warm-50 to-sage-50 rounded-2xl shadow-lg border-2 border-coral-100">
+            <div className="py-12 px-6 sm:px-8 bg-gradient-to-br from-sage-50 via-cream-50 to-sage-100/80 rounded-2xl shadow-lg border-2 border-sage-200">
               <SocialMediaSection 
                 variant="compact" 
                 showTitle={true}
