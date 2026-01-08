@@ -86,7 +86,7 @@ describe("Input Component", () => {
     });
 
     it("error message has clay color", () => {
-      const { container } = render(<Input error errorMessage="Error" />);
+      render(<Input error errorMessage="Error" />);
       const errorText = screen.getByText(/error/i);
       expect(errorText.className).toMatch(/text-clay/);
     });
