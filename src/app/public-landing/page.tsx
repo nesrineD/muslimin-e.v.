@@ -14,8 +14,7 @@ import {
   HeartHandshake,
 } from "lucide-react";
 import { containerVariants, itemVariants } from "@/lib/animations";
-import { SocialMediaSection } from "@/components/SocialMediaSection";
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { SocialMediaSection } from "@/components/SocialMediaSection";import { Button } from "@/components/ui/button";import { useState, useEffect, useCallback, useMemo } from "react";
 import { debounce } from "@/lib/utils";
 
 interface CTACard {
@@ -164,27 +163,33 @@ export default function PublicLandingPage() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Link
-                    href="/mitglied-werden"
-                    className="inline-flex w-full sm:w-auto items-center justify-center gap-3 px-10 py-5 bg-gradient-to-r from-sage-600 via-sage-700 to-coral-600 text-white rounded-xl font-bold hover:shadow-2xl transition-all text-lg shadow-lg"
+                  <Button
+                    size="lg"
+                    variant="primary"
+                    asChild
                   >
-                    <Heart className="w-6 h-6" />
-                    Mitglied werden
-                    <ArrowRight className="w-5 h-5" />
-                  </Link>
+                    <Link href="/mitglied-werden" className="gap-3">
+                      <Heart className="w-6 h-6" />
+                      Mitglied werden
+                      <ArrowRight className="w-5 h-5" />
+                    </Link>
+                  </Button>
                 </motion.div>
 
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Link
-                    href="/spenden"
-                    className="inline-flex w-full sm:w-auto items-center justify-center gap-3 px-10 py-5 border-2 border-sage-400 text-sage-700 rounded-xl font-semibold hover:bg-sage-50 transition-all text-lg"
+                  <Button
+                    size="lg"
+                    variant="secondary"
+                    asChild
                   >
-                    <HeartHandshake className="w-6 h-6" />
-                    Jetzt unterstützen
-                  </Link>
+                    <Link href="/spenden" className="gap-3">
+                      <HeartHandshake className="w-6 h-6" />
+                      Jetzt unterstützen
+                    </Link>
+                  </Button>
                 </motion.div>
               </div>
 
@@ -473,26 +478,32 @@ export default function PublicLandingPage() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Link
-                    href="/mitglied-werden"
-                    className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-coral-100 to-sage-100 text-charcoal-700 rounded-xl font-bold hover:shadow-2xl transition-all text-lg border-2 border-coral-300"
+                  <Button
+                    size="lg"
+                    variant="secondary"
+                    asChild
                   >
-                    <Heart className="w-6 h-6" />
-                    Mitglied werden
-                    <ArrowRight className="w-5 h-5" />
-                  </Link>
+                    <Link href="/mitglied-werden" className="gap-2">
+                      <Heart className="w-6 h-6" />
+                      Mitglied werden
+                      <ArrowRight className="w-5 h-5" />
+                    </Link>
+                  </Button>
                 </motion.div>
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Link
-                    href="/spenden"
-                    className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-coral-600 to-sage-600 text-white rounded-xl font-bold hover:shadow-2xl transition-all text-lg"
+                  <Button
+                    size="lg"
+                    variant="secondary"
+                    asChild
                   >
-                    Jetzt spenden
-                    <ArrowRight className="w-5 h-5" />
-                  </Link>
+                    <Link href="/spenden" className="gap-2">
+                      Jetzt spenden
+                      <ArrowRight className="w-5 h-5" />
+                    </Link>
+                  </Button>
                 </motion.div>
               </div>
               <div className="flex flex-wrap items-center justify-center gap-4 text-sm opacity-90 mt-8">
