@@ -13,7 +13,8 @@ import {
   ChevronUp,
   AlertCircle,
 } from "lucide-react";
-import { useState, useEffect } from "react";import { Button } from "@/components/ui/button";
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
 interface DonationCampaign {
   id: string;
   title: string;
@@ -136,7 +137,7 @@ export default function SpendenPage() {
 
   return (
     <motion.main
-      className="min-h-screen bg-gradient-to-br from-cream-50 via-sand-50 to-sage-50"
+      className="min-h-screen bg-gradient-to-br from-warm-50 via-cream-50 to-sage-50"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -152,7 +153,7 @@ export default function SpendenPage() {
           >
             <Button
               size="lg"
-              variant="secondary"
+              variant="primary"
               asChild
               className="rounded-full shadow-2xl"
             >
@@ -192,21 +193,13 @@ export default function SpendenPage() {
 
           {/* Primary CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <Button
-              size="lg"
-              variant="primary"
-              asChild
-            >
+            <Button size="lg" variant="primary" asChild>
               <a href="#spenden" className="gap-2">
                 💚 Jetzt spenden
                 <ArrowRight className="w-5 h-5" />
               </a>
             </Button>
-            <Button
-              size="lg"
-              variant="secondary"
-              asChild
-            >
+            <Button size="lg" variant="secondary" asChild>
               <a href="#spendenzwecke" className="gap-2">
                 Wofür wir spenden
               </a>
@@ -553,23 +546,16 @@ export default function SpendenPage() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button
-                size="lg"
-                variant="secondary"
-                asChild
-              >
+              <Button size="lg" variant="secondary" asChild>
                 <a href="/kontakt" className="gap-2">
                   Kontakt aufnehmen
                 </a>
               </Button>
-              <Button
-                size="lg"
-                variant="secondary"
-                asChild
-              >
+              <Button size="lg" variant="secondary" asChild>
                 <a href="mailto:info@muslimin-ev.de" className="gap-2">
-                E-Mail schreiben
-              </a>
+                  E-Mail schreiben
+                </a>
+              </Button>
             </div>
           </div>
 
@@ -597,15 +583,12 @@ export default function SpendenPage() {
           <p className="text-lg text-charcoal-600 mb-8">
             Werde Teil unserer Mission und unterstütze Menschen in Not
           </p>
-          <Button
-            size="lg"
-            variant="secondary"
-            asChild
-          >
+          <Button size="lg" variant="secondary" asChild>
             <a href="#spenden" className="gap-2">
-            Jetzt spenden
-            <ArrowRight className="w-5 h-5" />
-          </a>
+              Jetzt spenden
+              <ArrowRight className="w-5 h-5" />
+            </a>
+          </Button>
         </motion.div>
       </section>
     </motion.main>

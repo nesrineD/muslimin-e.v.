@@ -91,7 +91,7 @@ export default function Home() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-sand-50 via-white to-sage-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-warm-50 via-cream-50 to-sage-50 flex items-center justify-center">
         <div className="text-center">
           <div className="w-8 h-8 border-4 border-sage-300 border-t-sage-600 rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-sage-600">Lade...</p>
@@ -105,7 +105,7 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sand-50 via-white to-sage-50">
+    <div className="min-h-screen bg-gradient-to-br from-warm-50 via-cream-50 to-sage-50">
       {/* Welcome Section */}
       <div className="container mx-auto px-4 py-12">
         <motion.div
@@ -116,7 +116,7 @@ export default function Home() {
         >
           <h1 className="text-4xl md:text-6xl font-bold text-sage-800 mb-6">
             Salam{" "}
-            <span className="bg-gradient-to-r from-sage-500 to-sage-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-warm-500 via-coral-500 to-warm-600 bg-clip-text text-transparent">
               {user.user_metadata?.vorname || "liebe Schwester"}
             </span>
             ! 👋

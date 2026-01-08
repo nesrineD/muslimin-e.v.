@@ -102,7 +102,7 @@ export default function PublicLandingPage() {
           initial={{ y: 100 }}
           animate={{ y: showStickyBar ? 0 : 100 }}
           transition={{ duration: 0.3 }}
-          className="fixed bottom-0 left-0 right-0 z-41 bg-gradient-to-r from-sage-600 to-charcoal-700 shadow-2xl"
+          className="fixed bottom-0 left-0 right-0 z-41 bg-gradient-to-r from-warm-600 via-coral-600 to-warm-700 shadow-2xl"
         >
           <div className="container mx-auto px-4 py-3 flex items-center justify-between">
             <span className="text-white font-semibold text-sm md:text-base">
@@ -127,7 +127,7 @@ export default function PublicLandingPage() {
 
         {/* Enhanced Hero Section */}
         <section className="relative py-20 md:py-24 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-sage-100/30 via-coral-50/20 to-cream-100/30" />
+          <div className="absolute inset-0 bg-gradient-to-br from-warm-100/40 via-coral-50/30 to-sage-100/40" />
 
           <motion.div
             variants={itemVariants}
@@ -138,7 +138,7 @@ export default function PublicLandingPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-coral-100 to-sage-100 text-charcoal-800 rounded-full text-sm font-medium mb-6 border border-coral-200"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-warm-100 via-coral-100 to-warm-100 text-charcoal-800 rounded-full text-sm font-medium mb-6 border border-warm-300"
             >
               <Shield className="w-4 h-4" />
               Gemeinnützig • DSGVO-konform • Seit 2011
