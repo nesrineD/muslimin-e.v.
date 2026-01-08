@@ -484,7 +484,7 @@ export default function HelperDashboard() {
           >
             <div className="flex items-center space-x-2 bg-white/70 backdrop-blur-sm rounded-lg p-2">
               <Button
-                variant={activeRole === "member" ? "default" : "outline"}
+                variant={activeRole === "member" ? "primary" : "secondary"}
                 onClick={() => setActiveRole("member")}
                 className="flex items-center space-x-2"
               >
@@ -492,7 +492,7 @@ export default function HelperDashboard() {
                 <span>Als Mitglied</span>
               </Button>
               <Button
-                variant={activeRole === "helper" ? "default" : "outline"}
+                variant={activeRole === "helper" ? "primary" : "secondary"}
                 onClick={() => setActiveRole("helper")}
                 className="flex items-center space-x-2"
               >
@@ -914,7 +914,9 @@ export default function HelperDashboard() {
                         onClick={() =>
                           setIsEditingAvailability(!isEditingAvailability)
                         }
-                        variant={isEditingAvailability ? "default" : "outline"}
+                        variant={
+                          isEditingAvailability ? "primary" : "secondary"
+                        }
                         size="sm"
                       >
                         {isEditingAvailability ? "Speichern" : "Bearbeiten"}

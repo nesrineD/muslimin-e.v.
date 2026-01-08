@@ -48,22 +48,22 @@ const memberFeatures = [
     description:
       "Buche ganz einfach einen Beratungstermin in wenigen Schritten",
     href: "/book",
-    icon: <Calendar className="w-8 h-8 text-clay-500" />,
-    color: "bg-sand-50 hover:bg-warm-100",
+    icon: <Calendar className="w-8 h-8 text-coral-600" />,
+    color: "bg-gradient-to-br from-coral-50 via-warm-50 to-coral-100 hover:from-coral-100 hover:to-warm-100",
   },
   {
     title: "Beratungsstellen finden",
     description: "Finde externe Beratungsstellen in deiner Nähe",
     href: "/beratungsstellen",
-    icon: <MapPin className="w-8 h-8 text-sage-500" />,
-    color: "bg-sage-50 hover:bg-sage-100",
+    icon: <MapPin className="w-8 h-8 text-sage-600" />,
+    color: "bg-gradient-to-br from-sage-50 via-cream-50 to-sage-100 hover:from-sage-100 hover:to-sage-200",
   },
   {
     title: "Helferin werden",
     description: "Möchtest du anderen helfen? Registriere dich als Helferin",
     href: "/helper/register",
-    icon: <HeartHandshake className="w-12 h-12 text-sage-500" />,
-    color: "bg-sage-50 hover:bg-sage-100",
+    icon: <HeartHandshake className="w-12 h-12 text-clay-600" />,
+    color: "bg-gradient-to-br from-clay-50 via-coral-50 to-clay-100 hover:from-clay-100 hover:to-coral-100",
   },
 ];
 
@@ -91,10 +91,10 @@ export default function Home() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-warm-50 via-cream-50 to-sage-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-sage-50 via-cream-50 to-sage-100 flex items-center justify-center">
         <div className="text-center">
-          <div className="w-8 h-8 border-4 border-sage-300 border-t-sage-600 rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-sage-600">Lade...</p>
+          <div className="w-8 h-8 border-4 border-coral-300 border-t-coral-600 rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-sage-700">Lade...</p>
         </div>
       </div>
     );
@@ -105,7 +105,7 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-warm-50 via-cream-50 to-sage-50">
+    <div className="min-h-screen bg-gradient-to-br from-sage-50 via-cream-50 to-sage-100">
       {/* Welcome Section */}
       <div className="container mx-auto px-4 py-12">
         <motion.div
@@ -114,9 +114,9 @@ export default function Home() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h1 className="text-4xl md:text-6xl font-bold text-sage-800 mb-6">
+          <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent mb-6">
             Salam{" "}
-            <span className="bg-gradient-to-r from-warm-500 via-coral-500 to-warm-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-clay-600 via-coral-600 to-warm-600 bg-clip-text text-transparent">
               {user.user_metadata?.vorname || "liebe Schwester"}
             </span>
             ! 👋
@@ -184,7 +184,7 @@ export default function Home() {
                 className="text-center relative"
               >
                 <div className="relative z-10">
-                  <div className="w-16 h-16 bg-gradient-to-r from-sage-500 to-sage-600 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4 shadow-lg">
+                  <div className="w-16 h-16 bg-gradient-to-br from-coral-600 via-clay-600 to-warm-600 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4 shadow-lg">
                     {step.number}
                   </div>
                   <div className="flex justify-center mb-4">{step.icon}</div>
@@ -196,7 +196,7 @@ export default function Home() {
                   </p>
                 </div>
                 {index < bookingSteps.length - 1 && (
-                  <div className="hidden md:block absolute top-8 left-1/2 w-full h-0.5 bg-gradient-to-r from-sage-300 to-sage-400 transform translate-x-8" />
+                  <div className="hidden md:block absolute top-8 left-1/2 w-full h-0.5 bg-gradient-to-r from-coral-300 via-clay-300 to-warm-300 transform translate-x-8" />
                 )}
               </motion.div>
             ))}
@@ -210,7 +210,8 @@ export default function Home() {
           >
             <Button
               size="lg"
-              className="bg-gradient-to-r from-sage-500 to-sage-600 hover:from-sage-600 hover:to-sage-700 text-white font-medium px-8 py-3 shadow-lg hover:shadow-xl transition-all duration-300"
+              variant="donation"
+              className="shadow-lg hover:shadow-xl transition-all duration-300"
               asChild
             >
               <Link href="/book">
@@ -228,9 +229,9 @@ export default function Home() {
           transition={{ duration: 0.8, delay: 1.6 }}
           className="max-w-4xl mx-auto mt-16"
         >
-          <Card className="border-0 shadow-xl bg-gradient-to-r from-sage-50 to-sand-50 backdrop-blur-sm">
+          <Card className="border-0 shadow-xl bg-gradient-to-br from-coral-50 via-warm-50 to-cream-50 backdrop-blur-sm">
             <CardHeader className="text-center">
-              <CardTitle className="text-2xl font-bold text-sage-800">
+              <CardTitle className="text-2xl font-bold bg-gradient-to-r from-sage-800 via-coral-700 to-clay-700 bg-clip-text text-transparent">
                 🤗 Von Mitgliedern für Mitglieder
               </CardTitle>
             </CardHeader>
@@ -278,17 +279,13 @@ export default function Home() {
           transition={{ duration: 0.8, delay: 1.8 }}
           className="max-w-6xl mx-auto mt-16"
         >
-          <section className="py-8 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-sage-50 via-cream-50 to-sage-50 rounded-2xl shadow-xl">
-            <div className="text-center mb-8">
-              <h2 className="text-4xl font-bold text-sage-800 mb-4">
-                Folge uns auf Social Media! 📱
-              </h2>
-              <p className="text-lg text-sage-600 max-w-2xl mx-auto">
-                Bleib auf dem Laufenden mit aktuellen Flyern, Terminen und
-                Live-Updates
-              </p>
-            </div>
-            <SocialMediaSection variant="compact" showTitle={false} />
+          <section className="py-12 px-6 sm:px-8 bg-gradient-to-br from-sage-50 via-cream-50 to-sage-100/80 rounded-2xl shadow-lg border-2 border-sage-200">
+            <SocialMediaSection 
+              variant="compact" 
+              showTitle={true}
+              title="Folge uns auf Social Media! 📱"
+              subtitle="Bleib auf dem Laufenden mit aktuellen Flyern, Terminen und Live-Updates"
+            />
           </section>
         </motion.div>
       </div>

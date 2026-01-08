@@ -82,7 +82,7 @@ export function PWAPromptBanner() {
 
                 <Button
                   size="sm"
-                  variant="ghost"
+                  variant="secondary"
                   onClick={handleDismiss}
                   className="text-white/80 hover:text-white hover:bg-white/10 p-1"
                 >

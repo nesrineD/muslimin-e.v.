@@ -166,7 +166,7 @@ export default function VeranstaltungenPage() {
 
   return (
     <motion.main
-      className="min-h-screen bg-gradient-to-br from-sand-50 via-white to-sage-50"
+      className="min-h-screen bg-gradient-to-br from-sage-50 via-cream-50 to-warm-50"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -175,13 +175,13 @@ export default function VeranstaltungenPage() {
         {/* Hero */}
         <section className="py-20 md:py-24 text-center max-w-4xl mx-auto">
           <motion.div variants={itemVariants}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-sage-100 text-sage-800 rounded-full text-sm font-medium mb-6">
-              <Sparkles className="w-4 h-4" /> Gemeinschaft stärken
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-sage-100 to-cream-100 border-2 border-sage-200 text-charcoal-800 rounded-full text-sm font-medium mb-6 shadow-sm">
+              <Sparkles className="w-4 h-4 text-sage-700" /> Gemeinschaft stärken
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-charcoal-900">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">
               Unsere Veranstaltungen
             </h1>
-            <p className="text-lg md:text-xl text-charcoal-700 mb-8">
+            <p className="text-lg md:text-xl text-charcoal-800 mb-8">
               Unsere Angebote richten sich an Frauen und Mädchen. Viele
               Veranstaltungen sind offen für alle – einige erfordern eine
               Anmeldung oder Mitgliedschaft.
@@ -189,15 +189,15 @@ export default function VeranstaltungenPage() {
 
             {/* Quick Stats */}
             <div className="flex flex-wrap justify-center gap-4 text-sm">
-              <div className="px-4 py-2 bg-white rounded-full shadow-sm border border-sand-200">
-                <span className="font-bold text-sage-600">6</span> Formate
+              <div className="px-4 py-2 bg-white rounded-full shadow-sm border-2 border-coral-200">
+                <span className="font-bold text-coral-600">6</span> Formate
               </div>
-              <div className="px-4 py-2 bg-white rounded-full shadow-sm border border-sand-200">
-                <span className="font-bold text-sage-600">2</span>{" "}
+              <div className="px-4 py-2 bg-white rounded-full shadow-sm border-2 border-coral-200">
+                <span className="font-bold text-coral-600">2</span>{" "}
                 Online-Optionen
               </div>
-              <div className="px-4 py-2 bg-white rounded-full shadow-sm border border-sand-200">
-                <span className="font-bold text-sage-600">2</span> Offen für
+              <div className="px-4 py-2 bg-white rounded-full shadow-sm border-2 border-coral-200">
+                <span className="font-bold text-coral-600">2</span> Offen für
                 alle
               </div>
             </div>
@@ -274,18 +274,18 @@ export default function VeranstaltungenPage() {
         {/* Social Media Section */}
         <motion.section
           variants={itemVariants}
-          className="py-20 bg-gradient-to-br from-sage-50 via-cream-50 to-sage-50 rounded-2xl"
+          className="py-16 px-4"
         >
-          <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-4xl font-bold text-sage-800 mb-4">
-              Eindrücke von unseren Veranstaltungen 📸
-            </h2>
-            <p className="text-lg text-sage-600 max-w-2xl mx-auto">
-              Fotos, Videos und aktuelle Termine findest du auf unseren
-              Social-Media-Kanälen
-            </p>
+          <div className="max-w-6xl mx-auto">
+            <div className="py-12 px-6 sm:px-8 bg-gradient-to-br from-sage-50 via-cream-50 to-sage-100/80 rounded-2xl shadow-lg border-2 border-sage-200">
+              <SocialMediaSection 
+                variant="compact" 
+                showTitle={true}
+                title="Eindrücke von unseren Veranstaltungen 📸"
+                subtitle="Fotos, Videos und aktuelle Termine findest du auf unseren Social-Media-Kanälen"
+              />
+            </div>
           </div>
-          <SocialMediaSection variant="compact" showTitle={false} />
         </motion.section>
       </div>
     </motion.main>
@@ -313,8 +313,8 @@ function Section({
     <section id={id} className="py-10 md:py-12 scroll-mt-24">
       <motion.div variants={itemVariants} className="max-w-7xl mx-auto">
         <div className={centered ? "text-center mb-10" : "mb-10"}>
-          <h2 className="text-3xl font-bold text-charcoal-900 mb-3">{title}</h2>
-          <p className="text-lg text-charcoal-600 max-w-2xl mx-auto">
+          <h2 className="text-3xl font-bold mb-3 bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">{title}</h2>
+          <p className="text-lg text-charcoal-700 max-w-2xl mx-auto">
             {subtitle}
           </p>
         </div>

@@ -226,7 +226,7 @@ export default function MyAppointmentsPage() {
               </span>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="sm">
+                  <Button variant="secondary" size="sm">
                     <MoreVertical className="w-4 h-4" />
                   </Button>
                 </DropdownMenuTrigger>
@@ -326,7 +326,7 @@ export default function MyAppointmentsPage() {
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-4">
                 <Link href="/dashboard">
-                  <Button variant="ghost" size="sm">
+                  <Button variant="secondary" size="sm">
                     <ArrowLeft className="w-4 h-4 mr-2" />
                     Dashboard
                   </Button>
@@ -360,7 +360,7 @@ export default function MyAppointmentsPage() {
           >
             <div className="flex items-center space-x-2 bg-white/70 backdrop-blur-sm rounded-lg p-2">
               <Button
-                variant={activeTab === "all" ? "default" : "outline"}
+                variant={activeTab === "all" ? "primary" : "secondary"}
                 onClick={() => setActiveTab("all")}
                 className="flex items-center space-x-2"
               >
@@ -368,7 +368,7 @@ export default function MyAppointmentsPage() {
                 <span>Alle Termine ({appointments.length})</span>
               </Button>
               <Button
-                variant={activeTab === "member" ? "default" : "outline"}
+                variant={activeTab === "member" ? "primary" : "secondary"}
                 onClick={() => setActiveTab("member")}
                 className="flex items-center space-x-2"
               >
@@ -380,7 +380,7 @@ export default function MyAppointmentsPage() {
               </Button>
               {user?.is_helper && (
                 <Button
-                  variant={activeTab === "helper" ? "default" : "outline"}
+                  variant={activeTab === "helper" ? "primary" : "secondary"}
                   onClick={() => setActiveTab("helper")}
                   className="flex items-center space-x-2"
                 >

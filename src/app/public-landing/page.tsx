@@ -35,21 +35,21 @@ const ctaCards: CTACard[] = [
     description:
       "Werde Teil unserer Gemeinschaft und unterstütze unsere Mission",
     href: "/mitglied-werden",
-    color: "from-sage-50 via-sage-100 to-coral-50 hover:to-coral-100",
+    color: "from-coral-50 via-warm-100 to-coral-100 hover:from-coral-100 hover:to-warm-100",
   },
   {
     icon: <Users className="w-12 h-12" />,
     title: "Spenden",
     description: "Unterstütze unsere Arbeit mit einer Spende",
     href: "/spenden",
-    color: "from-coral-50 via-sage-50 to-sage-100 hover:to-sage-200",
+    color: "from-clay-50 via-coral-100 to-clay-100 hover:from-clay-100 hover:to-coral-100",
   },
   {
     icon: <Calendar className="w-12 h-12" />,
     title: "Veranstaltungen",
     description: "Entdecke unsere vielfältigen Veranstaltungen und Aktivitäten",
     href: "/veranstaltungen",
-    color: "from-sand-50 via-cream-50 to-sage-50 hover:to-sage-100",
+    color: "from-warm-50 via-coral-100 to-warm-100 hover:from-warm-100 hover:to-coral-100",
   },
   {
     icon: <BookOpen className="w-12 h-12" />,
@@ -57,7 +57,7 @@ const ctaCards: CTACard[] = [
     description:
       "Erfahre mehr über Muslimin e.V., unsere Geschichte und Philosophie",
     href: "/uber-uns",
-    color: "from-sage-50 via-coral-50 to-sage-100 hover:to-sage-200",
+    color: "from-sage-50 via-coral-100 to-sage-100 hover:from-sage-100 hover:to-coral-100",
   },
 ];
 
@@ -91,7 +91,7 @@ export default function PublicLandingPage() {
 
   return (
     <motion.main
-      className="min-h-screen bg-gradient-to-br from-cream-50 via-sand-50 to-sage-50"
+      className="min-h-screen bg-gradient-to-br from-sage-50 via-cream-50 to-warm-50"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -127,7 +127,7 @@ export default function PublicLandingPage() {
 
         {/* Enhanced Hero Section */}
         <section className="relative py-20 md:py-24 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-warm-100/40 via-coral-50/30 to-sage-100/40" />
+          <div className="absolute inset-0 bg-gradient-to-br from-sage-100/60 via-cream-100/40 to-warm-100/30" />
 
           <motion.div
             variants={itemVariants}
@@ -138,25 +138,25 @@ export default function PublicLandingPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-warm-100 via-coral-100 to-warm-100 text-charcoal-800 rounded-full text-sm font-medium mb-6 border border-warm-300"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-sage-100 via-cream-100 to-sage-100 text-charcoal-800 rounded-full text-sm font-medium mb-6 border-2 border-sage-300 shadow-sm"
             >
-              <Shield className="w-4 h-4" />
+              <Shield className="w-4 h-4 text-sage-700" />
               Gemeinnützig • DSGVO-konform • Seit 2011
             </motion.div>
 
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-charcoal-800 via-sage-700 to-coral-600 bg-clip-text text-transparent">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">
               Deine Schwesternschaft.
               <br />
               Deine Stärke im Glauben.
             </h1>
 
-            <p className="text-xl md:text-2xl text-charcoal-700 mb-8 font-medium max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-charcoal-800 mb-8 font-medium max-w-3xl mx-auto">
               Werde Teil einer lebendigen Gemeinschaft muslimischer Frauen. Wir
               fördern islamische Bildung, spirituelles Wachstum und den
               Zusammenhalt.
             </p>
 
-            <p className="text-lg text-charcoal-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg text-charcoal-700 mb-10 max-w-2xl mx-auto leading-relaxed">
               🌟 Islamische Vorträge • Seminare • Begegnung
             </p>
 
@@ -193,17 +193,17 @@ export default function PublicLandingPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="flex flex-wrap items-center justify-center gap-4 text-sm text-charcoal-700 pt-2"
+                className="flex flex-wrap items-center justify-center gap-4 text-sm text-charcoal-800 pt-2"
               >
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-charcoal-600" />
+                  <CheckCircle className="w-4 h-4 text-charcoal-700" />
                   <span className="font-medium">
                     Muslimische Frauen-Community
                   </span>
                 </div>
                 <span className="hidden sm:inline">•</span>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-charcoal-600" />
+                  <CheckCircle className="w-4 h-4 text-charcoal-700" />
                   <span className="font-medium">Islamische Weiterbildung</span>
                 </div>
               </motion.div>
@@ -212,7 +212,7 @@ export default function PublicLandingPage() {
         </section>
 
         {/* "Wer sind wir?" Section - Scannbare Bullet-Points (FR-005) */}
-        <section className="py-16 md:py-20 bg-gradient-to-br from-sand-50 via-white to-sage-50/30">
+        <section className="py-16 md:py-20 bg-gradient-to-br from-sage-50 via-cream-50 to-coral-50">
           <motion.div
             variants={itemVariants}
             initial="hidden"
@@ -225,11 +225,11 @@ export default function PublicLandingPage() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="text-3xl md:text-4xl font-bold mb-4 text-charcoal-800"
+                className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent"
               >
                 Wer sind wir?
               </motion.h2>
-              <p className="text-lg text-charcoal-700 max-w-2xl mx-auto">
+              <p className="text-lg text-charcoal-800 max-w-2xl mx-auto">
                 Eine Gemeinschaft, die Frauen stärkt und unterstützt –
                 unabhängig davon, wo sie gerade stehen.
               </p>
@@ -275,10 +275,10 @@ export default function PublicLandingPage() {
                 >
                   <Card
                     variant="cream"
-                    className="h-full hover:shadow-lg transition-all duration-300"
+                    className="h-full hover:shadow-lg transition-all duration-300 border-2 border-transparent hover:border-coral-200"
                   >
                     <CardContent className="flex items-start gap-4">
-                      <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-gradient-to-br from-coral-100 to-sage-200 flex items-center justify-center text-charcoal-700 shadow-sm">
+                      <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-gradient-to-br from-coral-500 via-clay-500 to-warm-600 flex items-center justify-center text-white shadow-md">
                         {item.icon}
                       </div>
                       <div>
@@ -304,7 +304,7 @@ export default function PublicLandingPage() {
             >
               <Link
                 href="/uber-uns"
-                className="inline-flex items-center gap-2 text-coral-700 font-semibold hover:text-coral-800 hover:gap-3 transition-all"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-coral-600 to-clay-600 text-white rounded-xl font-bold hover:shadow-xl transition-all hover:gap-3"
               >
                 Mehr über uns erfahren
                 <ArrowRight className="w-5 h-5" />
@@ -314,13 +314,13 @@ export default function PublicLandingPage() {
         </section>
 
         {/* Benefits Section */}
-        <section className="py-16 md:py-20">
+        <section className="py-16 md:py-20 bg-gradient-to-br from-warm-50 via-coral-50 to-sand-50">
           <motion.div variants={itemVariants} className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-charcoal-800 mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">
                 Was erwartet dich als Mitglied?
               </h2>
-              <p className="text-lg text-charcoal-700 max-w-2xl mx-auto">
+              <p className="text-lg text-charcoal-800 max-w-2xl mx-auto">
                 Deine Mitgliedschaft öffnet Türen zu einer starken Gemeinschaft
               </p>
             </div>
@@ -359,11 +359,11 @@ export default function PublicLandingPage() {
                 >
                   <Card
                     variant="cream"
-                    className="h-full border-2 border-transparent hover:border-coral-300 transition-all duration-300"
+                    className="h-full border-2 border-transparent hover:border-coral-300 transition-all duration-300 shadow-md hover:shadow-xl"
                   >
                     <CardContent className="space-y-4">
                       <div
-                        className={`inline-flex items-center justify-center w-14 h-14 rounded-xl ${benefit.iconBg} text-white`}
+                        className={`inline-flex items-center justify-center w-14 h-14 rounded-xl ${benefit.iconBg} text-white shadow-lg`}
                       >
                         {benefit.icon}
                       </div>
@@ -388,7 +388,7 @@ export default function PublicLandingPage() {
             >
               <Link
                 href="/mitglied-werden"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-sage-600 to-sage-700 text-white rounded-xl font-bold hover:shadow-xl transition-all text-lg"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-coral-600 via-clay-600 to-warm-600 text-white rounded-xl font-bold hover:shadow-xl transition-all text-lg hover:scale-105"
               >
                 Jetzt Mitglied werden
                 <ArrowRight className="w-5 h-5" />
@@ -398,12 +398,12 @@ export default function PublicLandingPage() {
         </section>
 
         {/* CTA Cards Section - Explore More */}
-        <section className="py-20 md:py-24">
+        <section className="py-20 md:py-24 bg-gradient-to-br from-sage-50 via-cream-50 to-warm-50">
           <motion.div variants={itemVariants} className="max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold text-charcoal-800 mb-4 text-center">
+            <h2 className="text-4xl font-bold mb-4 text-center bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">
               Entdecke mehr über uns
             </h2>
-            <p className="text-lg text-charcoal-700 text-center mb-12 max-w-2xl mx-auto">
+            <p className="text-lg text-charcoal-800 text-center mb-12 max-w-2xl mx-auto">
               Wähle einen Bereich, der dich interessiert
             </p>
 
@@ -418,11 +418,11 @@ export default function PublicLandingPage() {
                   <Link href={card.href} className="h-full block">
                     <Card
                       variant="cream"
-                      className="h-full cursor-pointer transition-all duration-300"
+                      className="h-full cursor-pointer transition-all duration-300 border-2 border-transparent hover:border-coral-200 hover:shadow-xl"
                     >
                       <CardContent className="space-y-4 h-full flex flex-col">
                         <div className="flex items-start gap-4">
-                          <div className="text-charcoal-600 flex-shrink-0">
+                          <div className="text-coral-600 flex-shrink-0">
                             {card.icon}
                           </div>
                         </div>
@@ -431,11 +431,11 @@ export default function PublicLandingPage() {
                           {card.title}
                         </h3>
 
-                        <p className="text-charcoal-700 leading-relaxed flex-1">
+                        <p className="text-charcoal-800 leading-relaxed flex-1">
                           {card.description}
                         </p>
 
-                        <div className="flex items-center gap-2 text-charcoal-700 font-semibold pt-4">
+                        <div className="flex items-center gap-2 text-charcoal-800 font-semibold pt-4">
                           Mehr erfahren
                           <ArrowRight className="w-4 h-4" />
                         </div>
@@ -448,25 +448,23 @@ export default function PublicLandingPage() {
           </motion.div>
         </section>
         {/* Social Media Section - Prominently Placed */}
-        <section className="py-16 bg-gradient-to-br from-sage-50 via-sand-50 to-sage-50">
+        <section className="py-16 px-4">
           <motion.div variants={itemVariants} className="max-w-6xl mx-auto">
-            <div className="text-center mb-8">
-              <h2 className="text-4xl font-bold text-charcoal-800 mb-4">
-                Folge uns auf Social Media! 📱
-              </h2>
-              <p className="text-lg text-charcoal-700 max-w-2xl mx-auto">
-                Bleib auf dem Laufenden mit aktuellen Flyern, Terminen und
-                Live-Updates
-              </p>
+            <div className="py-12 px-6 sm:px-8 bg-gradient-to-br from-sage-50 via-cream-50 to-sage-100/80 rounded-2xl shadow-lg border-2 border-sage-200">
+              <SocialMediaSection 
+                variant="compact" 
+                showTitle={true}
+                title="Folge uns auf Social Media! 📱"
+                subtitle="Bleib auf dem Laufenden mit aktuellen Flyern, Terminen und Live-Updates"
+              />
             </div>
-            <SocialMediaSection variant="compact" showTitle={false} />
           </motion.div>
         </section>
         {/* Final CTA Section */}
-        <section className="py-20">
+        <section className="py-20 bg-gradient-to-br from-sage-50 via-cream-50 to-coral-50">
           <motion.div
             variants={itemVariants}
-            className="max-w-4xl mx-auto bg-gradient-to-r from-sage-600 via-sage-700 to-sage-800 rounded-3xl p-12 text-center text-white shadow-2xl"
+            className="max-w-4xl mx-auto bg-gradient-to-r from-sage-700 via-sage-800 to-sage-900 rounded-3xl p-12 text-center text-white shadow-2xl"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}

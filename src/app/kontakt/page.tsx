@@ -18,7 +18,7 @@ import { Mail, MapPin } from "lucide-react";
 
 export default function KontaktPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-cream-50 via-white to-sage-50">
+    <div className="min-h-screen bg-gradient-to-br from-sage-50 via-cream-50 to-warm-50">
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -27,7 +27,7 @@ export default function KontaktPage() {
       >
         {/* Hero Section */}
         <motion.div variants={itemVariants} className="text-center mb-16">
-          <h1 className="text-4xl md:text-6xl font-bold text-charcoal-800 mb-6">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">
             Kontaktieren Sie uns
           </h1>
           <p className="text-xl text-charcoal-700 max-w-3xl mx-auto leading-relaxed">

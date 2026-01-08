@@ -43,7 +43,7 @@ export default function AboutPage() {
   };
 
   return (
-    <div className="bg-sand-50">
+    <div className="bg-gradient-to-br from-sage-50 via-cream-50 to-warm-50">
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -53,10 +53,10 @@ export default function AboutPage() {
         {/* Hero Section */}
         <motion.section
           variants={itemVariants}
-          className="text-center py-20 lg:py-28 bg-gradient-to-b from-white to-sand-100"
+          className="text-center py-20 lg:py-28 bg-gradient-to-br from-sage-100/40 via-cream-100/30 to-sage-50"
         >
           <div className="container mx-auto px-4">
-            <h1 className="text-4xl md:text-6xl font-bold text-sage-800 mb-4">
+            <h1 className="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">
               Über{" "}
               <span className="bg-gradient-to-r from-sage-500 to-sage-600 bg-clip-text text-transparent">
                 Muslimin e.V.
@@ -218,19 +218,17 @@ export default function AboutPage() {
         {/* Social Media Section */}
         <motion.section
           variants={itemVariants}
-          className="py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-sage-50 via-cream-50 to-sage-50"
+          className="py-16 px-4 bg-sand-50"
         >
-          <div className="container mx-auto">
-            <div className="text-center mb-8">
-              <h2 className="text-4xl font-bold text-sage-800 mb-4">
-                Folge uns auf Social Media! 📱
-              </h2>
-              <p className="text-lg text-sage-600 max-w-2xl mx-auto">
-                Bleib auf dem Laufenden mit aktuellen Flyern, Terminen und
-                Live-Updates
-              </p>
+          <div className="container mx-auto max-w-6xl">
+            <div className="py-12 px-6 sm:px-8 bg-gradient-to-br from-sage-50 via-cream-50 to-sage-100/80 rounded-2xl shadow-lg border-2 border-sage-200">
+              <SocialMediaSection 
+                variant="compact" 
+                showTitle={true}
+                title="Folge uns auf Social Media! 📱"
+                subtitle="Bleib auf dem Laufenden mit aktuellen Flyern, Terminen und Live-Updates"
+              />
             </div>
-            <SocialMediaSection variant="compact" showTitle={false} />
           </div>
         </motion.section>
 

@@ -122,8 +122,8 @@ export function CookieBanner() {
               </p>
             </div>
             <Button
-              variant="ghost"
-              size="icon"
+              variant="secondary"
+              size="sm"
               onClick={acceptNecessary}
               className="flex-shrink-0"
               aria-label="Banner schließen und nur notwendige Cookies akzeptieren"
