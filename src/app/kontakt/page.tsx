@@ -115,7 +115,9 @@ export default function KontaktPage() {
                   <div>
                     <Button
                       type="submit"
-                      className="w-full bg-clay-500 hover:bg-clay-600 text-white font-semibold px-8 py-3 text-lg transition-all duration-300 shadow-lg hover:shadow-xl"
+                      variant="primary"
+                      size="lg"
+                      className="w-full"
                     >
                       Nachricht senden
                     </Button>

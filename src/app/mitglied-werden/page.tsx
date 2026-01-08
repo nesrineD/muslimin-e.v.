@@ -361,16 +361,17 @@ export default function MitgliedWerdenPage() {
                 transition={{ type: "spring", stiffness: 400 }}
               >
                 <Button
+                  size="lg"
+                  variant="primary"
                   asChild
-                  className="bg-gradient-to-r from-coral-500 to-warm-500 hover:from-coral-600 hover:to-warm-600 text-white font-bold py-4 px-8 rounded-xl text-xl transition-all duration-300 shadow-xl hover:shadow-2xl"
                 >
                   <a
                     href="https://formular.vereinsplaner.com/b8fabab2-d21c-4ee4-bdbc-95aa517acbed"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center"
+                    className="flex items-center justify-center gap-3"
                   >
-                    <Heart className="w-6 h-6 mr-3" />
+                    <Heart className="w-6 h-6" />
                     Ja, ich möchte dabei sein! 🌟
                   </a>
                 </Button>
