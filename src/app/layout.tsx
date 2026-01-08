@@ -57,9 +57,9 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html 
-      lang="de" 
-      className={`${inter.variable} ${merriweather.variable}`} 
+    <html
+      lang="de"
+      className={`${inter.variable} ${merriweather.variable}`}
       suppressHydrationWarning
     >
       <head>

@@ -273,7 +273,10 @@ export default function PublicLandingPage() {
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
                 >
-                  <Card variant="cream" className="h-full hover:shadow-lg transition-all duration-300">
+                  <Card
+                    variant="cream"
+                    className="h-full hover:shadow-lg transition-all duration-300"
+                  >
                     <CardContent className="flex items-start gap-4">
                       <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-gradient-to-br from-coral-100 to-sage-200 flex items-center justify-center text-charcoal-700 shadow-sm">
                         {item.icon}
@@ -354,7 +357,10 @@ export default function PublicLandingPage() {
                   variants={itemVariants}
                   whileHover={{ y: -8 }}
                 >
-                  <Card variant="cream" className="h-full border-2 border-transparent hover:border-coral-300 transition-all duration-300">
+                  <Card
+                    variant="cream"
+                    className="h-full border-2 border-transparent hover:border-coral-300 transition-all duration-300"
+                  >
                     <CardContent className="space-y-4">
                       <div
                         className={`inline-flex items-center justify-center w-14 h-14 rounded-xl ${benefit.iconBg} text-white`}
@@ -407,34 +413,30 @@ export default function PublicLandingPage() {
                   key={card.title}
                   variants={itemVariants}
                   className="h-full"
+                  whileHover={{ y: -8 }}
                 >
                   <Link href={card.href} className="h-full block">
-                    <Card variant="cream" asChild>
-                      <motion.div
-                        whileHover={{ y: -8 }}
-                        className="h-full cursor-pointer transition-all duration-300"
-                      >
-                        <CardContent className="space-y-4 h-full flex flex-col">
-                          <div className="flex items-start gap-4">
-                            <div className="text-charcoal-600 flex-shrink-0">
-                              {card.icon}
-                            </div>
+                    <Card variant="cream" className="h-full cursor-pointer transition-all duration-300">
+                      <CardContent className="space-y-4 h-full flex flex-col">
+                        <div className="flex items-start gap-4">
+                          <div className="text-charcoal-600 flex-shrink-0">
+                            {card.icon}
                           </div>
+                        </div>
 
-                          <h3 className="text-2xl font-bold text-charcoal-800">
-                            {card.title}
-                          </h3>
+                        <h3 className="text-2xl font-bold text-charcoal-800">
+                          {card.title}
+                        </h3>
 
-                          <p className="text-charcoal-700 leading-relaxed flex-1">
-                            {card.description}
-                          </p>
+                        <p className="text-charcoal-700 leading-relaxed flex-1">
+                          {card.description}
+                        </p>
 
-                          <div className="flex items-center gap-2 text-charcoal-700 font-semibold pt-4">
-                            Mehr erfahren
-                            <ArrowRight className="w-4 h-4" />
-                          </div>
-                        </CardContent>
-                      </motion.div>
+                        <div className="flex items-center gap-2 text-charcoal-700 font-semibold pt-4">
+                          Mehr erfahren
+                          <ArrowRight className="w-4 h-4" />
+                        </div>
+                      </CardContent>
                     </Card>
                   </Link>
                 </motion.div>

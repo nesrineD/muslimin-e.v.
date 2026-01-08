@@ -43,15 +43,16 @@ export function EventCard({
   const contentId = `event-${name.replace(/\s+/g, "-").toLowerCase()}-content`;
 
   return (
-    <Card variant="white" asChild>
-      <motion.article layout>
-        {/* Top accent bar */}
-        <span
-          className="absolute inset-x-4 top-4 h-1 rounded-full bg-gradient-to-r from-clay-500/80 via-amber-400/60 to-clay-500/80"
-          aria-hidden="true"
-        />
+    <motion.div layout>
+      <Card variant="white" className="h-full">
+        <article className="relative">
+          {/* Top accent bar */}
+          <span
+            className="absolute inset-x-4 top-4 h-1 rounded-full bg-gradient-to-r from-clay-500/80 via-amber-400/60 to-clay-500/80"
+            aria-hidden="true"
+          />
 
-        <CardContent className="space-y-4 relative pt-8">
+          <CardContent className="space-y-4 relative pt-8">
           {/* Icon & Badges Row */}
           <div className="flex items-start justify-between gap-4">
             {/* Icon */}
@@ -80,9 +81,7 @@ export function EventCard({
           </div>
 
           {/* Title */}
-          <h3 className="text-2xl font-semibold text-charcoal-900">
-            {name}
-          </h3>
+          <h3 className="text-2xl font-semibold text-charcoal-900">{name}</h3>
 
           {/* Teaser / Description */}
           <motion.p
@@ -172,7 +171,8 @@ export function EventCard({
             )}
           </div>
         </CardContent>
-      </motion.article>
+      </article>
     </Card>
+    </motion.div>
   );
 }

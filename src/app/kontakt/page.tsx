@@ -43,7 +43,9 @@ export default function KontaktPage() {
                 <CardTitle className="text-2xl font-bold text-charcoal-800">
                   Kontaktinformationen
                 </CardTitle>
-                <CardDescription className="text-charcoal-600">So können Sie uns erreichen</CardDescription>
+                <CardDescription className="text-charcoal-600">
+                  So können Sie uns erreichen
+                </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6 text-lg">
                 <a
@@ -78,7 +80,11 @@ export default function KontaktPage() {
                     <Label htmlFor="name" className="text-charcoal-800">
                       Name
                     </Label>
-                    <Input id="name" placeholder="Ihr Name" className="mt-1 border-sand-300 focus:border-sage-500" />
+                    <Input
+                      id="name"
+                      placeholder="Ihr Name"
+                      className="mt-1 border-sand-300 focus:border-sage-500"
+                    />
                   </div>
                   <div>
                     <Label htmlFor="email" className="text-charcoal-800">

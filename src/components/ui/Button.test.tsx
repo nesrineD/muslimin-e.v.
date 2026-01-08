@@ -8,7 +8,9 @@ describe("Button Component", () => {
   describe("Rendering", () => {
     it("renders children correctly", () => {
       render(<Button>Click me</Button>);
-      expect(screen.getByRole("button", { name: /click me/i })).toBeInTheDocument();
+      expect(
+        screen.getByRole("button", { name: /click me/i })
+      ).toBeInTheDocument();
     });
 
     it("renders as button element by default", () => {
@@ -150,7 +152,9 @@ describe("Button Component", () => {
     });
 
     it("has no axe violations (secondary variant)", async () => {
-      const { container } = render(<Button variant="secondary">Secondary</Button>);
+      const { container } = render(
+        <Button variant="secondary">Secondary</Button>
+      );
       const results = await axe(container);
       expect(results).toHaveNoViolations();
     });
@@ -170,7 +174,9 @@ describe("Button Component", () => {
 
     it("supports aria-label for icon-only buttons", () => {
       render(<Button aria-label="Close dialog">×</Button>);
-      expect(screen.getByRole("button", { name: /close dialog/i })).toBeInTheDocument();
+      expect(
+        screen.getByRole("button", { name: /close dialog/i })
+      ).toBeInTheDocument();
     });
 
     it("has minimum 44px height for touch targets (WCAG)", () => {
@@ -233,14 +239,19 @@ describe("Button Component", () => {
 
   describe("Edge Cases", () => {
     it("handles very long text content", () => {
-      const longText = "This is a very long button text that might wrap to multiple lines";
+      const longText =
+        "This is a very long button text that might wrap to multiple lines";
       render(<Button>{longText}</Button>);
-      expect(screen.getByRole("button", { name: new RegExp(longText) })).toBeInTheDocument();
+      expect(
+        screen.getByRole("button", { name: new RegExp(longText) })
+      ).toBeInTheDocument();
     });
 
     it("handles empty children gracefully", () => {
       render(<Button aria-label="Empty button"> </Button>);
-      expect(screen.getByRole("button", { name: /empty button/i })).toBeInTheDocument();
+      expect(
+        screen.getByRole("button", { name: /empty button/i })
+      ).toBeInTheDocument();
     });
 
     it("handles multiple className props correctly", () => {

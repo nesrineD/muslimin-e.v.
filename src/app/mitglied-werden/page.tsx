@@ -360,11 +360,7 @@ export default function MitgliedWerdenPage() {
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 400 }}
               >
-                <Button
-                  size="lg"
-                  variant="primary"
-                  asChild
-                >
+                <Button size="lg" variant="primary" asChild>
                   <a
                     href="https://formular.vereinsplaner.com/b8fabab2-d21c-4ee4-bdbc-95aa517acbed"
                     target="_blank"

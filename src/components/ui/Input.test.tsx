@@ -57,7 +57,9 @@ describe("Input Component", () => {
 
   describe("State Icons", () => {
     it("error state shows error icon", () => {
-      const { container } = render(<Input error errorMessage="Error message" />);
+      const { container } = render(
+        <Input error errorMessage="Error message" />
+      );
       // Look for error icon (typically AlertCircle or XCircle)
       const icon = container.querySelector('[class*="text-clay"]');
       expect(icon).toBeInTheDocument();
@@ -72,7 +74,7 @@ describe("Input Component", () => {
 
     it("default state has no icon", () => {
       const { container } = render(<Input />);
-      const icons = container.querySelectorAll('svg');
+      const icons = container.querySelectorAll("svg");
       expect(icons.length).toBe(0);
     });
   });
@@ -101,7 +103,7 @@ describe("Input Component", () => {
       const input = container.querySelector("input") as HTMLElement;
       const styles = window.getComputedStyle(input);
       const height = parseFloat(styles.height);
-      
+
       // Allow for jsdom limitations, check class instead
       expect(input.className).toMatch(/h-11|h-12|min-h-\[44px\]/);
     });
@@ -235,7 +237,9 @@ describe("Input Component", () => {
   describe("Placeholder and Value", () => {
     it("displays placeholder text", () => {
       render(<Input placeholder="Enter your name" />);
-      expect(screen.getByPlaceholderText(/enter your name/i)).toBeInTheDocument();
+      expect(
+        screen.getByPlaceholderText(/enter your name/i)
+      ).toBeInTheDocument();
     });
 
     it("displays default value", () => {
@@ -245,7 +249,9 @@ describe("Input Component", () => {
     });
 
     it("displays controlled value", () => {
-      const { container } = render(<Input value="Controlled" onChange={() => {}} />);
+      const { container } = render(
+        <Input value="Controlled" onChange={() => {}} />
+      );
       const input = container.querySelector("input") as HTMLInputElement;
       expect(input.value).toBe("Controlled");
     });
@@ -382,7 +388,9 @@ describe("Input Component", () => {
   describe("Edge Cases", () => {
     it("handles very long input text", () => {
       const longText = "a".repeat(200);
-      const { container } = render(<Input value={longText} onChange={() => {}} />);
+      const { container } = render(
+        <Input value={longText} onChange={() => {}} />
+      );
       const input = container.querySelector("input") as HTMLInputElement;
       expect(input.value).toBe(longText);
     });
@@ -395,7 +403,9 @@ describe("Input Component", () => {
 
     it("handles special characters in value", () => {
       const specialChars = "!@#$%^&*()_+-=[]{}|;:,.<>?";
-      const { container } = render(<Input value={specialChars} onChange={() => {}} />);
+      const { container } = render(
+        <Input value={specialChars} onChange={() => {}} />
+      );
       const input = container.querySelector("input") as HTMLInputElement;
       expect(input.value).toBe(specialChars);
     });

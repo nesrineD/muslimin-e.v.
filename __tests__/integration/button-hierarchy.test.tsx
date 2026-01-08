@@ -5,13 +5,13 @@ expect.extend(toHaveNoViolations);
 
 /**
  * Integration Test: Button Hierarchy & Usage Patterns
- * 
+ *
  * Tests design system rules:
  * - Max 1 primary button (clay) per view/section
  * - Primary button for main CTA ("Mitglied werden", "Spenden", "Termin buchen")
  * - Secondary buttons (sage outline) for supporting actions
  * - Passive buttons (warm) only for passive membership
- * 
+ *
  * This ensures clear visual hierarchy and user focus on primary actions.
  */
 
@@ -19,7 +19,7 @@ describe("Button Hierarchy Integration", () => {
   describe("Primary Button Limit", () => {
     it("page has maximum 1 primary button (clay background)", () => {
       const { container } = render(<MockLandingPage />);
-      
+
       // Count primary buttons (bg-clay)
       const primaryButtons = container.querySelectorAll("[class*='bg-clay']");
       expect(primaryButtons.length).toBeLessThanOrEqual(1);
@@ -27,7 +27,7 @@ describe("Button Hierarchy Integration", () => {
 
     it("section has maximum 1 primary button", () => {
       const { container } = render(<MockHeroSection />);
-      
+
       const section = container.querySelector("section");
       const primaryButtons = section?.querySelectorAll("[class*='bg-clay']");
       expect(primaryButtons?.length || 0).toBeLessThanOrEqual(1);
@@ -35,7 +35,7 @@ describe("Button Hierarchy Integration", () => {
 
     it("card group has maximum 1 primary button across all cards", () => {
       const { container } = render(<MockMembershipCards />);
-      
+
       const primaryButtons = container.querySelectorAll("[class*='bg-clay']");
       expect(primaryButtons.length).toBeLessThanOrEqual(1);
     });
@@ -44,28 +44,32 @@ describe("Button Hierarchy Integration", () => {
   describe("Primary Button Usage (Clay)", () => {
     it("main CTA uses primary button", () => {
       render(<MockHeroSection />);
-      
-      const primaryCTA = screen.getByRole("button", { name: /mitglied werden/i });
+
+      const primaryCTA = screen.getByRole("button", {
+        name: /mitglied werden/i,
+      });
       expect(primaryCTA.className).toMatch(/bg-clay/);
     });
 
     it("donation button uses primary button", () => {
       render(<MockDonationSection />);
-      
-      const donateButton = screen.getByRole("button", { name: /jetzt spenden/i });
+
+      const donateButton = screen.getByRole("button", {
+        name: /jetzt spenden/i,
+      });
       expect(donateButton.className).toMatch(/bg-clay/);
     });
 
     it("booking CTA uses primary button", () => {
       render(<MockBookingSection />);
-      
+
       const bookButton = screen.getByRole("button", { name: /termin buchen/i });
       expect(bookButton.className).toMatch(/bg-clay/);
     });
 
     it("primary button has white text for contrast", () => {
       const { container } = render(<MockHeroSection />);
-      
+
       const primaryButton = container.querySelector("[class*='bg-clay']");
       expect(primaryButton?.className).toMatch(/text-white/);
     });
@@ -74,14 +78,16 @@ describe("Button Hierarchy Integration", () => {
   describe("Secondary Button Usage (Sage)", () => {
     it("supporting actions use secondary buttons", () => {
       render(<MockHeroSection />);
-      
-      const secondaryButton = screen.getByRole("button", { name: /mehr erfahren/i });
+
+      const secondaryButton = screen.getByRole("button", {
+        name: /mehr erfahren/i,
+      });
       expect(secondaryButton.className).toMatch(/bg-sage|border-sage/);
     });
 
     it("navigation links use secondary button style", () => {
       render(<MockNavigationSection />);
-      
+
       const navButtons = screen.getAllByRole("button");
       const secondaryButtons = navButtons.filter((btn) =>
         btn.className.match(/bg-sage|border-sage/)
@@ -91,10 +97,12 @@ describe("Button Hierarchy Integration", () => {
 
     it("secondary button has sage text or border", () => {
       const { container } = render(<MockHeroSection />);
-      
-      const secondaryButtons = container.querySelectorAll("[class*='border-sage']");
+
+      const secondaryButtons = container.querySelectorAll(
+        "[class*='border-sage']"
+      );
       expect(secondaryButtons.length).toBeGreaterThan(0);
-      
+
       secondaryButtons.forEach((btn) => {
         expect(btn.className).toMatch(/text-sage|border-sage/);
       });
@@ -104,30 +112,34 @@ describe("Button Hierarchy Integration", () => {
   describe("Passive Button Usage (Warm)", () => {
     it("passive membership uses warm-colored button", () => {
       render(<MockMembershipCards />);
-      
-      const passiveButton = screen.getByRole("button", { name: /passives mitglied/i });
+
+      const passiveButton = screen.getByRole("button", {
+        name: /passives mitglied/i,
+      });
       expect(passiveButton.className).toMatch(/bg-warm-400|bg-warm-500/);
     });
 
     it("warm button ONLY used for passive membership", () => {
       const { container } = render(<MockLandingPage />);
-      
+
       // Find all warm buttons
       const warmButtons = container.querySelectorAll("[class*='bg-warm']");
-      
+
       // Each warm button should be associated with "passiv" text
       warmButtons.forEach((btn) => {
         const btnText = btn.textContent?.toLowerCase() || "";
         const parentText = btn.parentElement?.textContent?.toLowerCase() || "";
-        
+
         expect(btnText + parentText).toMatch(/passiv|fördermitglied/);
       });
     });
 
     it("active membership does NOT use warm button", () => {
       render(<MockMembershipCards />);
-      
-      const activeButton = screen.getByRole("button", { name: /aktives mitglied/i });
+
+      const activeButton = screen.getByRole("button", {
+        name: /aktives mitglied/i,
+      });
       expect(activeButton.className).not.toMatch(/bg-warm/);
       expect(activeButton.className).toMatch(/bg-clay|bg-sage/);
     });
@@ -136,9 +148,9 @@ describe("Button Hierarchy Integration", () => {
   describe("Visual Hierarchy", () => {
     it("primary button is visually dominant (solid, high contrast)", () => {
       const { container } = render(<MockHeroSection />);
-      
+
       const primaryButton = container.querySelector("[class*='bg-clay']");
-      
+
       // Primary button should be solid (not outline)
       expect(primaryButton?.className).not.toMatch(/border-2/);
       expect(primaryButton?.className).toMatch(/bg-clay/);
@@ -147,20 +159,20 @@ describe("Button Hierarchy Integration", () => {
 
     it("secondary button is less dominant (outline or lighter)", () => {
       const { container } = render(<MockHeroSection />);
-      
+
       const secondaryButton = container.querySelector("[class*='border-sage']");
-      
+
       // Secondary button should be outline or lighter bg
       expect(secondaryButton?.className).toMatch(/border-sage|bg-transparent/);
     });
 
     it("buttons decrease in visual weight: primary > secondary > passive", () => {
       const { container } = render(<MockMembershipCards />);
-      
+
       const primaryBtn = container.querySelector("[class*='bg-clay']");
       const secondaryBtn = container.querySelector("[class*='border-sage']");
       const passiveBtn = container.querySelector("[class*='bg-warm']");
-      
+
       // Check that each exists and has appropriate styling
       expect(primaryBtn?.className).toMatch(/bg-clay/);
       expect(secondaryBtn?.className).toMatch(/border-sage/);
@@ -171,21 +183,21 @@ describe("Button Hierarchy Integration", () => {
   describe("Button Grouping", () => {
     it("button groups have consistent spacing", () => {
       const { container } = render(<MockHeroSection />);
-      
+
       const buttonGroup = container.querySelector("[class*='flex']");
       expect(buttonGroup?.className).toMatch(/gap-4|space-x-4/);
     });
 
     it("button groups are horizontally aligned", () => {
       const { container } = render(<MockHeroSection />);
-      
+
       const buttonGroup = container.querySelector("[class*='flex']");
       expect(buttonGroup?.className).toMatch(/flex-row|inline-flex/);
     });
 
     it("button groups wrap on mobile", () => {
       const { container } = render(<MockHeroSection />);
-      
+
       const buttonGroup = container.querySelector("[class*='flex']");
       expect(buttonGroup?.className).toMatch(/flex-wrap|flex-col/);
     });
@@ -194,15 +206,17 @@ describe("Button Hierarchy Integration", () => {
   describe("CTA Context", () => {
     it("hero section has primary CTA", () => {
       render(<MockHeroSection />);
-      
-      const primaryCTA = screen.getByRole("button", { name: /mitglied werden/i });
+
+      const primaryCTA = screen.getByRole("button", {
+        name: /mitglied werden/i,
+      });
       expect(primaryCTA).toBeInTheDocument();
       expect(primaryCTA.className).toMatch(/bg-clay/);
     });
 
     it("donation section has primary CTA", () => {
       render(<MockDonationSection />);
-      
+
       const donateCTA = screen.getByRole("button", { name: /jetzt spenden/i });
       expect(donateCTA).toBeInTheDocument();
       expect(donateCTA.className).toMatch(/bg-clay/);
@@ -210,7 +224,7 @@ describe("Button Hierarchy Integration", () => {
 
     it("booking section has primary CTA", () => {
       render(<MockBookingSection />);
-      
+
       const bookCTA = screen.getByRole("button", { name: /termin buchen/i });
       expect(bookCTA).toBeInTheDocument();
       expect(bookCTA.className).toMatch(/bg-clay/);
@@ -218,7 +232,7 @@ describe("Button Hierarchy Integration", () => {
 
     it("only ONE of hero/donation/booking CTA is primary on same page", () => {
       const { container } = render(<MockMultiCTAPage />);
-      
+
       const primaryButtons = container.querySelectorAll("[class*='bg-clay']");
       expect(primaryButtons.length).toBe(1);
     });
@@ -243,15 +257,17 @@ describe("Button Hierarchy Integration", () => {
 
     it("buttons are keyboard accessible", () => {
       render(<MockHeroSection />);
-      
-      const primaryButton = screen.getByRole("button", { name: /mitglied werden/i });
+
+      const primaryButton = screen.getByRole("button", {
+        name: /mitglied werden/i,
+      });
       primaryButton.focus();
       expect(primaryButton).toHaveFocus();
     });
 
     it("buttons have visible focus indicators", () => {
       const { container } = render(<MockHeroSection />);
-      
+
       const buttons = container.querySelectorAll("button");
       buttons.forEach((btn) => {
         expect(btn.className).toMatch(/focus:outline|focus:ring/);
@@ -262,26 +278,30 @@ describe("Button Hierarchy Integration", () => {
   describe("Hover States", () => {
     it("primary button has hover state (brightness increase)", () => {
       const { container } = render(<MockHeroSection />);
-      
+
       const primaryButton = container.querySelector("[class*='bg-clay']");
       expect(primaryButton?.className).toMatch(/hover:brightness|hover:bg-/);
     });
 
     it("secondary button has hover state (background fill)", () => {
       const { container } = render(<MockHeroSection />);
-      
+
       const secondaryButton = container.querySelector("[class*='border-sage']");
-      expect(secondaryButton?.className).toMatch(/hover:bg-sage|hover:brightness/);
+      expect(secondaryButton?.className).toMatch(
+        /hover:bg-sage|hover:brightness/
+      );
     });
   });
 
   describe("Edge Cases", () => {
     it("form submit button is treated as primary CTA", () => {
       const { container } = render(<MockContactForm />);
-      
-      const submitButton = screen.getByRole("button", { name: /absenden|senden/i });
+
+      const submitButton = screen.getByRole("button", {
+        name: /absenden|senden/i,
+      });
       expect(submitButton.className).toMatch(/bg-clay/);
-      
+
       // Form should have only 1 primary button (submit)
       const primaryButtons = container.querySelectorAll("[class*='bg-clay']");
       expect(primaryButtons.length).toBe(1);
@@ -293,7 +313,7 @@ describe("Button Hierarchy Integration", () => {
           Disabled Primary
         </button>
       );
-      
+
       const button = container.querySelector("button");
       expect(button?.className).toMatch(/bg-clay/);
       expect(button?.className).toMatch(/opacity-50|opacity-60/);
@@ -301,9 +321,11 @@ describe("Button Hierarchy Integration", () => {
 
     it("link styled as button follows hierarchy rules", () => {
       render(<MockHeroSection />);
-      
+
       // Links styled as buttons should follow same hierarchy
-      const primaryLink = screen.getByRole("link", { name: /mitglied werden/i });
+      const primaryLink = screen.getByRole("link", {
+        name: /mitglied werden/i,
+      });
       expect(primaryLink.className).toMatch(/bg-clay/);
     });
   });

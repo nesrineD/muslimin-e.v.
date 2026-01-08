@@ -92,7 +92,9 @@ describe("Card Component", () => {
 
     it("becomes interactive when onClick is provided", () => {
       const handleClick = jest.fn();
-      const { container } = render(<Card onClick={handleClick}>Clickable Card</Card>);
+      const { container } = render(
+        <Card onClick={handleClick}>Clickable Card</Card>
+      );
       const card = container.firstChild as HTMLElement;
       expect(card.className).toMatch(/hover:|-translate-y-/);
     });
@@ -110,13 +112,17 @@ describe("Card Component", () => {
     });
 
     it("applies translateY effect on hover when interactive", () => {
-      const { container } = render(<Card onClick={() => {}}>Transform Card</Card>);
+      const { container } = render(
+        <Card onClick={() => {}}>Transform Card</Card>
+      );
       const card = container.firstChild as HTMLElement;
       expect(card.className).toMatch(/hover:-translate-y-/);
     });
 
     it("shows pointer cursor when interactive", () => {
-      const { container } = render(<Card onClick={() => {}}>Pointer Card</Card>);
+      const { container } = render(
+        <Card onClick={() => {}}>Pointer Card</Card>
+      );
       const card = container.firstChild as HTMLElement;
       expect(card).toHaveClass("cursor-pointer");
     });
@@ -147,7 +153,9 @@ describe("Card Component", () => {
     });
 
     it("accepts custom className", () => {
-      const { container } = render(<Card className="custom-class">Custom</Card>);
+      const { container } = render(
+        <Card className="custom-class">Custom</Card>
+      );
       const card = container.firstChild as HTMLElement;
       expect(card).toHaveClass("custom-class");
     });
@@ -205,8 +213,12 @@ describe("Card Component", () => {
     it("all cards use same border-radius across pages", () => {
       const cards = [
         <Card key="1">Card 1</Card>,
-        <Card key="2" variant="cream">Card 2</Card>,
-        <Card key="3" padding="lg">Card 3</Card>,
+        <Card key="2" variant="cream">
+          Card 2
+        </Card>,
+        <Card key="3" padding="lg">
+          Card 3
+        </Card>,
       ];
 
       cards.forEach((card) => {
@@ -219,8 +231,12 @@ describe("Card Component", () => {
     it("all cards use standard shadow", () => {
       const cards = [
         <Card key="1">Card 1</Card>,
-        <Card key="2" variant="cream">Card 2</Card>,
-        <Card key="3" href="/test">Card 3</Card>,
+        <Card key="2" variant="cream">
+          Card 2
+        </Card>,
+        <Card key="3" href="/test">
+          Card 3
+        </Card>,
       ];
 
       cards.forEach((card) => {
@@ -270,7 +286,9 @@ describe("Card Component", () => {
       );
       expect(screen.getByText("Title")).toBeInTheDocument();
       expect(screen.getByText("Description")).toBeInTheDocument();
-      expect(screen.getByRole("button", { name: /action/i })).toBeInTheDocument();
+      expect(
+        screen.getByRole("button", { name: /action/i })
+      ).toBeInTheDocument();
     });
 
     it("handles empty content gracefully", () => {
