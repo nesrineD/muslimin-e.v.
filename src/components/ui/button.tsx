@@ -9,6 +9,8 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
+        default:
+          "bg-sage-600 text-white shadow-sm hover:bg-sage-700 active:bg-sage-800",
         primary:
           "bg-gradient-to-r from-coral-600 via-clay-600 to-warm-600 text-white shadow-md hover:shadow-lg hover:brightness-110 active:brightness-95 hover:scale-105 transition-transform",
         donation:
