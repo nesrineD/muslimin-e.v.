@@ -102,7 +102,7 @@ export default function PublicLandingPage() {
           initial={{ y: 100 }}
           animate={{ y: showStickyBar ? 0 : 100 }}
           transition={{ duration: 0.3 }}
-          className="fixed bottom-0 left-0 right-0 z-41 bg-gradient-to-r from-warm-600 via-coral-600 to-warm-700 shadow-2xl"
+          className="fixed bottom-0 left-0 right-0 z-41 bg-gradient-to-r from-clay-600 to-warm-600 shadow-2xl"
         >
           <div className="container mx-auto px-4 py-3 flex items-center justify-between">
             <span className="text-white font-semibold text-sm md:text-base">
