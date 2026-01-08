@@ -1,22 +1,66 @@
-import * as React from "react"
+import * as React from "react";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
-const Textarea = React.forwardRef<
-  HTMLTextAreaElement,
-  React.ComponentProps<"textarea">
->(({ className, ...props }, ref) => {
-  return (
-    <textarea
-      className={cn(
-        "flex min-h-[60px] w-full rounded-md border border-input bg-transparent px-3 py-2 text-base shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
-        className
-      )}
-      ref={ref}
-      {...props}
-    />
-  )
-})
-Textarea.displayName = "Textarea"
+interface TextareaProps extends React.ComponentProps<"textarea"> {
+  error?: boolean;
+  success?: boolean;
+  errorMessage?: string;
+}
 
-export { Textarea }
+const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
+  ({ className, error, success, errorMessage, ...props }, ref) => {
+    return (
+      <div className="w-full">
+        <div className="relative">
+          <textarea
+            className={cn(
+              "flex min-h-[88px] w-full rounded-lg border px-4 py-3 text-base text-charcoal bg-white shadow-sm transition-all resize-vertical",
+              "placeholder:text-gray-400",
+              "focus:outline-none focus:ring-2 focus:ring-sage/20",
+              "disabled:cursor-not-allowed disabled:opacity-50 disabled:border-gray-200",
+              {
+                "border-cream-300 focus:border-sage": !error && !success,
+                "border-clay focus:border-clay focus:ring-clay/20": error,
+                "border-sage focus:border-sage focus:ring-sage/20":
+                  success && !error,
+              },
+              className
+            )}
+            ref={ref}
+            aria-invalid={error ? "true" : undefined}
+            {...props}
+          />
+          {error && (
+            <span className="absolute right-3 top-3 text-clay">
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  fillRule="evenodd"
+                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </span>
+          )}
+          {success && !error && (
+            <span className="absolute right-3 top-3 text-sage">
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  fillRule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </span>
+          )}
+        </div>
+        {error && errorMessage && (
+          <p className="text-clay text-sm mt-1">{errorMessage}</p>
+        )}
+      </div>
+    );
+  }
+);
+Textarea.displayName = "Textarea";
+
+export { Textarea };

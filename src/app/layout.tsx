@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Newsreader } from "next/font/google";
 import { MotionConfig } from "framer-motion";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
@@ -11,9 +11,15 @@ import { PWAPromptBanner } from "@/components/PWAPromptBanner";
 import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
   display: "swap",
-  variable: "--font-inter",
+  variable: "--font-body",
+});
+
+const newsreader = Newsreader({
+  subsets: ["latin", "latin-ext"],
+  display: "swap",
+  variable: "--font-heading",
 });
 
 export const metadata: Metadata = {
@@ -50,7 +56,11 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="de" className={inter.variable} suppressHydrationWarning>
+    <html
+      lang="de"
+      className={`${inter.variable} ${newsreader.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link

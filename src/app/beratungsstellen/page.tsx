@@ -357,7 +357,7 @@ export default function CounselingCentersPage() {
       case "Schwangerschaft & Familie":
         return "bg-pink-100 text-pink-800";
       case "Beratung für Alleinerziehende":
-        return "bg-green-100 text-green-800";
+        return "bg-sage-100 text-sage-800";
       case "Rechtliches":
         return "bg-orange-100 text-orange-800";
       default:

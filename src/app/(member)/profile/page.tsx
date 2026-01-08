@@ -133,8 +133,8 @@ export default function ProfilePage() {
         >
           <div className="flex items-center gap-4 mb-6">
             <Button
-              variant="ghost"
-              size="icon"
+              variant="secondary"
+              size="sm"
               onClick={() => router.back()}
               className="hover:bg-sage-100"
             >
@@ -341,7 +341,7 @@ export default function ProfilePage() {
                         htmlFor="sichtbar-ja"
                         className="flex items-center gap-2"
                       >
-                        <Eye className="w-4 h-4 text-green-600" />
+                        <Eye className="w-4 h-4 text-sage-600" />
                         Ja - Vollständige Adresse anzeigen
                       </Label>
                     </div>

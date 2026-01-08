@@ -28,22 +28,22 @@ export default function MitgliedWerdenPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-cream-50 via-white to-sage-50 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-sage-50 via-cream-50 to-warm-50 relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
           animate={{
             scale: [1, 1.2, 1],
-            opacity: [0.03, 0.06, 0.03],
+            opacity: [0.04, 0.08, 0.04],
             rotate: [0, 90, 0],
           }}
           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -top-1/4 -left-1/4 w-1/2 h-1/2 bg-gradient-to-br from-sage-300 to-sage-100 rounded-full blur-3xl"
+          className="absolute -top-1/4 -left-1/4 w-1/2 h-1/2 bg-gradient-to-br from-sage-200 to-sage-100 rounded-full blur-3xl"
         />
         <motion.div
           animate={{
             scale: [1, 1.3, 1],
-            opacity: [0.03, 0.05, 0.03],
+            opacity: [0.04, 0.06, 0.04],
             rotate: [0, -90, 0],
           }}
           transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
@@ -64,7 +64,7 @@ export default function MitgliedWerdenPage() {
             whileHover={{ scale: 1.02 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            <span className="bg-gradient-to-r from-sage-600 via-sage-400 to-sage-500 bg-clip-text text-transparent animate-gradient">
+            <span className="bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">
               Willkommen, liebe Schwester!
             </span>
           </motion.h1>
@@ -102,8 +102,7 @@ export default function MitgliedWerdenPage() {
 
               <p className="text-lg text-charcoal-600 leading-relaxed mb-4">
                 Unsere Gemeinschaft ist ein Ort der Wärme, des Vertrauens und
-                der gegenseitigen Stärkung. Hier können Sie authentisch sein,
-                Ihre Sorgen teilen und Ihre Träume verfolgen.
+                der gegenseitigen Stärkung.
               </p>
 
               <p className="text-lg text-sage-700 font-semibold">
@@ -138,166 +137,173 @@ export default function MitgliedWerdenPage() {
 
         {/* Membership Types Section */}
         <motion.div variants={itemVariants} className="mb-16">
-          <motion.h2
-            className="text-3xl font-bold text-center mb-3"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <span className="bg-gradient-to-r from-sage-600 via-sage-400 to-sage-500 bg-clip-text text-transparent">
-              Mitgliedschaftstypen
-            </span>
-          </motion.h2>
-          <p className="text-center text-charcoal-500 mb-12 text-lg">
-            Wählen Sie die Mitgliedschaft, die zu Ihnen passt
-          </p>
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-12">
+              <motion.h2
+                className="text-3xl font-bold mb-4"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+              >
+                <span className="bg-gradient-to-r from-sage-600 via-sage-400 to-sage-500 bg-clip-text text-transparent">
+                  Mitgliedschaftstypen
+                </span>
+              </motion.h2>
+              <p className="text-charcoal-600 text-lg max-w-2xl mx-auto">
+                Wählen Sie die Mitgliedschaft, die zu Ihnen passt
+              </p>
+            </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {/* Active Membership */}
-            <motion.div
-              variants={itemVariants}
-              whileHover={{ y: -8, scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <Card className="h-full border-2 border-sage-300 shadow-xl bg-gradient-to-br from-white to-sage-50/30 hover:shadow-2xl hover:border-sage-400 transition-all duration-500 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-sage-300/20 to-transparent rounded-bl-full" />
-                <CardHeader className="relative">
-                  <div className="flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-sage-500 to-sage-400 text-white mb-4 mx-auto shadow-lg">
-                    <Users className="w-8 h-8" />
-                  </div>
-                  <CardTitle className="text-2xl font-bold text-center mb-2">
-                    <span className="bg-gradient-to-r from-sage-700 to-sage-500 bg-clip-text text-transparent">
-                      Aktive Mitgliedschaft
-                    </span>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="bg-sage-50 rounded-lg p-4 border-l-4 border-sage-500">
-                    <h4 className="font-semibold text-sage-800 mb-2">
-                      💡 Das solltest du mitbringen:
-                    </h4>
-                    <ul className="space-y-2 text-charcoal-600">
-                      <li className="flex items-start">
-                        <CheckCircle className="w-5 h-5 text-sage-500 mr-2 flex-shrink-0 mt-0.5" />
-                        <span>
-                          Engagement und Bereitschaft zur aktiven Mitgestaltung
-                        </span>
-                      </li>
-                      <li className="flex items-start">
-                        <CheckCircle className="w-5 h-5 text-sage-500 mr-2 flex-shrink-0 mt-0.5" />
-                        <span>
-                          Zeit für regelmäßige Teilnahme an Vereinsarbeit
-                        </span>
-                      </li>
-                      <li className="flex items-start">
-                        <CheckCircle className="w-5 h-5 text-sage-500 mr-2 flex-shrink-0 mt-0.5" />
-                        <span>Eigene Talente und Kompetenzen einbringen</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="bg-cream-50 rounded-lg p-4 border-l-4 border-warm-500">
-                    <h4 className="font-semibold text-sage-800 mb-2">
-                      ✨ Das erwartet dich:
-                    </h4>
-                    <ul className="space-y-2 text-charcoal-600">
-                      <li className="flex items-start">
-                        <Heart className="w-5 h-5 text-warm-500 mr-2 flex-shrink-0 mt-0.5" />
-                        <span>
-                          Mitgestaltung von Veranstaltungen und Projekten
-                        </span>
-                      </li>
-                      <li className="flex items-start">
-                        <Heart className="w-5 h-5 text-warm-500 mr-2 flex-shrink-0 mt-0.5" />
-                        <span>
-                          Persönliche Weiterentwicklung durch Verantwortung
-                        </span>
-                      </li>
-                      <li className="flex items-start">
-                        <Heart className="w-5 h-5 text-warm-500 mr-2 flex-shrink-0 mt-0.5" />
-                        <span>Stimmrecht bei Vereinsentscheidungen</span>
-                      </li>
-                      <li className="flex items-start">
-                        <Heart className="w-5 h-5 text-warm-500 mr-2 flex-shrink-0 mt-0.5" />
-                        <span>
-                          Enge Vernetzung mit anderen aktiven Mitgliedern
-                        </span>
-                      </li>
-                    </ul>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Active Membership */}
+              <motion.div
+                variants={itemVariants}
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <Card className="h-full border-2 border-sage-300 shadow-xl bg-gradient-to-br from-white to-sage-50/30 hover:shadow-2xl hover:border-sage-400 transition-all duration-500 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-sage-300/20 to-transparent rounded-bl-full" />
+                  <CardHeader className="relative">
+                    <div className="flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-sage-500 to-sage-400 text-white mb-4 mx-auto shadow-lg">
+                      <Users className="w-8 h-8" />
+                    </div>
+                    <CardTitle className="text-2xl font-bold text-center mb-2">
+                      <span className="bg-gradient-to-r from-sage-700 to-sage-500 bg-clip-text text-transparent">
+                        Aktive Mitgliedschaft
+                      </span>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="bg-sage-50 rounded-lg p-4 border-l-4 border-sage-500">
+                      <h4 className="font-semibold text-sage-800 mb-2">
+                        💡 Das solltest du mitbringen:
+                      </h4>
+                      <ul className="space-y-2 text-charcoal-600">
+                        <li className="flex items-start">
+                          <CheckCircle className="w-5 h-5 text-sage-500 mr-2 flex-shrink-0 mt-0.5" />
+                          <span>
+                            Engagement und Bereitschaft zur aktiven
+                            Mitgestaltung
+                          </span>
+                        </li>
+                        <li className="flex items-start">
+                          <CheckCircle className="w-5 h-5 text-sage-500 mr-2 flex-shrink-0 mt-0.5" />
+                          <span>
+                            Zeit für regelmäßige Teilnahme an Vereinsarbeit
+                          </span>
+                        </li>
+                        <li className="flex items-start">
+                          <CheckCircle className="w-5 h-5 text-sage-500 mr-2 flex-shrink-0 mt-0.5" />
+                          <span>Eigene Talente und Kompetenzen einbringen</span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="bg-cream-50 rounded-lg p-4 border-l-4 border-warm-500">
+                      <h4 className="font-semibold text-sage-800 mb-2">
+                        ✨ Das erwartet dich:
+                      </h4>
+                      <ul className="space-y-2 text-charcoal-600">
+                        <li className="flex items-start">
+                          <Heart className="w-5 h-5 text-warm-500 mr-2 flex-shrink-0 mt-0.5" />
+                          <span>
+                            Mitgestaltung von Veranstaltungen und Projekten
+                          </span>
+                        </li>
+                        <li className="flex items-start">
+                          <Heart className="w-5 h-5 text-warm-500 mr-2 flex-shrink-0 mt-0.5" />
+                          <span>
+                            Persönliche Weiterentwicklung durch Verantwortung
+                          </span>
+                        </li>
+                        <li className="flex items-start">
+                          <Heart className="w-5 h-5 text-warm-500 mr-2 flex-shrink-0 mt-0.5" />
+                          <span>Stimmrecht bei Vereinsentscheidungen</span>
+                        </li>
+                        <li className="flex items-start">
+                          <Heart className="w-5 h-5 text-warm-500 mr-2 flex-shrink-0 mt-0.5" />
+                          <span>
+                            Enge Vernetzung mit anderen aktiven Mitgliedern
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
 
-            {/* Passive Membership */}
-            <motion.div
-              variants={itemVariants}
-              whileHover={{ y: -8, scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <Card className="h-full border-2 border-cream-300 shadow-xl bg-gradient-to-br from-white to-cream-50/30 hover:shadow-2xl hover:border-warm-400 transition-all duration-500 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-cream-300/20 to-transparent rounded-bl-full" />
-                <CardHeader className="relative">
-                  <div className="flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-warm-500 to-warm-400 text-white mb-4 mx-auto shadow-lg">
-                    <Shield className="w-8 h-8" />
-                  </div>
-                  <CardTitle className="text-2xl font-bold text-center mb-2">
-                    <span className="bg-gradient-to-r from-warm-700 to-warm-500 bg-clip-text text-transparent">
-                      Passive Mitgliedschaft
-                    </span>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="bg-cream-50 rounded-lg p-4 border-l-4 border-warm-500">
-                    <h4 className="font-semibold text-sage-800 mb-2">
-                      💡 Das solltest du mitbringen:
-                    </h4>
-                    <ul className="space-y-2 text-charcoal-600">
-                      <li className="flex items-start">
-                        <CheckCircle className="w-5 h-5 text-warm-500 mr-2 flex-shrink-0 mt-0.5" />
-                        <span>Interesse an unserer Vereinsarbeit</span>
-                      </li>
-                      <li className="flex items-start">
-                        <CheckCircle className="w-5 h-5 text-warm-500 mr-2 flex-shrink-0 mt-0.5" />
-                        <span>Unterstützung unserer Ziele und Werte</span>
-                      </li>
-                      <li className="flex items-start">
-                        <CheckCircle className="w-5 h-5 text-warm-500 mr-2 flex-shrink-0 mt-0.5" />
-                        <span>Offenheit für gelegentliche Teilnahme</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="bg-sage-50 rounded-lg p-4 border-l-4 border-sage-500">
-                    <h4 className="font-semibold text-sage-800 mb-2">
-                      ✨ Das erwartet dich:
-                    </h4>
-                    <ul className="space-y-2 text-charcoal-600">
-                      <li className="flex items-start">
-                        <Heart className="w-5 h-5 text-sage-500 mr-2 flex-shrink-0 mt-0.5" />
-                        <span>
-                          Teilnahme an allen Veranstaltungen und Vorträgen
-                        </span>
-                      </li>
-                      <li className="flex items-start">
-                        <Heart className="w-5 h-5 text-sage-500 mr-2 flex-shrink-0 mt-0.5" />
-                        <span>
-                          Zugang zur Gemeinschaft ohne Verpflichtungen
-                        </span>
-                      </li>
-                      <li className="flex items-start">
-                        <Heart className="w-5 h-5 text-sage-500 mr-2 flex-shrink-0 mt-0.5" />
-                        <span>Regelmäßige Informationen über Aktivitäten</span>
-                      </li>
-                      <li className="flex items-start">
-                        <Heart className="w-5 h-5 text-sage-500 mr-2 flex-shrink-0 mt-0.5" />
-                        <span>
-                          Flexible Teilnahme je nach persönlicher Zeit
-                        </span>
-                      </li>
-                    </ul>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
+              {/* Passive Membership */}
+              <motion.div
+                variants={itemVariants}
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <Card className="h-full border-2 border-cream-300 shadow-xl bg-gradient-to-br from-white to-cream-50/30 hover:shadow-2xl hover:border-warm-400 transition-all duration-500 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-cream-300/20 to-transparent rounded-bl-full" />
+                  <CardHeader className="relative">
+                    <div className="flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-warm-500 to-warm-400 text-white mb-4 mx-auto shadow-lg">
+                      <Shield className="w-8 h-8" />
+                    </div>
+                    <CardTitle className="text-2xl font-bold text-center mb-2">
+                      <span className="bg-gradient-to-r from-warm-700 to-warm-500 bg-clip-text text-transparent">
+                        Passive Mitgliedschaft
+                      </span>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="bg-cream-50 rounded-lg p-4 border-l-4 border-warm-500">
+                      <h4 className="font-semibold text-sage-800 mb-2">
+                        💡 Das solltest du mitbringen:
+                      </h4>
+                      <ul className="space-y-2 text-charcoal-600">
+                        <li className="flex items-start">
+                          <CheckCircle className="w-5 h-5 text-warm-500 mr-2 flex-shrink-0 mt-0.5" />
+                          <span>Interesse an unserer Vereinsarbeit</span>
+                        </li>
+                        <li className="flex items-start">
+                          <CheckCircle className="w-5 h-5 text-warm-500 mr-2 flex-shrink-0 mt-0.5" />
+                          <span>Unterstützung unserer Ziele und Werte</span>
+                        </li>
+                        <li className="flex items-start">
+                          <CheckCircle className="w-5 h-5 text-warm-500 mr-2 flex-shrink-0 mt-0.5" />
+                          <span>Offenheit für gelegentliche Teilnahme</span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="bg-sage-50 rounded-lg p-4 border-l-4 border-sage-500">
+                      <h4 className="font-semibold text-sage-800 mb-2">
+                        ✨ Das erwartet dich:
+                      </h4>
+                      <ul className="space-y-2 text-charcoal-600">
+                        <li className="flex items-start">
+                          <Heart className="w-5 h-5 text-sage-500 mr-2 flex-shrink-0 mt-0.5" />
+                          <span>
+                            Teilnahme an allen Veranstaltungen und Vorträgen
+                          </span>
+                        </li>
+                        <li className="flex items-start">
+                          <Heart className="w-5 h-5 text-sage-500 mr-2 flex-shrink-0 mt-0.5" />
+                          <span>
+                            Zugang zur Gemeinschaft ohne Verpflichtungen
+                          </span>
+                        </li>
+                        <li className="flex items-start">
+                          <Heart className="w-5 h-5 text-sage-500 mr-2 flex-shrink-0 mt-0.5" />
+                          <span>
+                            Regelmäßige Informationen über Aktivitäten
+                          </span>
+                        </li>
+                        <li className="flex items-start">
+                          <Heart className="w-5 h-5 text-sage-500 mr-2 flex-shrink-0 mt-0.5" />
+                          <span>
+                            Flexible Teilnahme je nach persönlicher Zeit
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </div>
           </div>
 
           <motion.div
@@ -351,26 +357,23 @@ export default function MitgliedWerdenPage() {
                 </span>
               </CardTitle>
               <p className="text-lg text-charcoal-600 max-w-2xl mx-auto mb-6">
-                Wir können es kaum erwarten, Sie in unserer Familie willkommen
-                zu heißen! Teilen Sie uns etwas über sich mit – jede Geschichte
-                ist einzigartig und wertvoll.
+                Wir können es kaum erwarten, Sie in unserer Gemeinschaft
+                willkommen zu heißen! Über den Button unten gelangen Sie direkt
+                zum Anmeldeformular.
               </p>
 
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 400 }}
               >
-                <Button
-                  asChild
-                  className="bg-gradient-to-r from-coral-500 to-warm-500 hover:from-coral-600 hover:to-warm-600 text-white font-bold py-4 px-8 rounded-xl text-xl transition-all duration-300 shadow-xl hover:shadow-2xl"
-                >
+                <Button size="lg" variant="primary" asChild>
                   <a
                     href="https://formular.vereinsplaner.com/b8fabab2-d21c-4ee4-bdbc-95aa517acbed"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center"
+                    className="flex items-center justify-center gap-3"
                   >
-                    <Heart className="w-6 h-6 mr-3" />
+                    <Heart className="w-6 h-6" />
                     Ja, ich möchte dabei sein! 🌟
                   </a>
                 </Button>
@@ -378,7 +381,7 @@ export default function MitgliedWerdenPage() {
 
               <div className="text-center mt-6 space-y-2">
                 <div className="flex items-center justify-center gap-3 text-sm text-sage-600">
-                  <CheckCircle className="h-5 w-5 text-green-500" />
+                  <CheckCircle className="h-5 w-5 text-sage-600" />
                   <span>Antwort innerhalb von 2-3 Werktagen</span>
                 </div>
               </div>
@@ -387,11 +390,15 @@ export default function MitgliedWerdenPage() {
         </motion.div>
 
         {/* Social Media Section */}
-        <motion.div variants={itemVariants} className="mt-20">
-          <SocialMediaSection
-            title="Bleib mit uns verbunden"
-            subtitle="Folge uns für Updates und Einblicke in unsere Gemeinschaft"
-          />
+        <motion.div variants={itemVariants} className="mt-20 px-4">
+          <div className="py-12 px-6 sm:px-8 bg-gradient-to-br from-sage-50 via-cream-50 to-sage-100/80 rounded-2xl shadow-lg border-2 border-sage-200 max-w-6xl mx-auto">
+            <SocialMediaSection
+              variant="compact"
+              showTitle={true}
+              title="Bleib mit uns verbunden 📱"
+              subtitle="Folge uns für Updates und Einblicke in unsere Gemeinschaft"
+            />
+          </div>
         </motion.div>
       </motion.div>
     </div>

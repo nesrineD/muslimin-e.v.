@@ -14,6 +14,7 @@ import {
   AlertCircle,
 } from "lucide-react";
 import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
 
 interface DonationCampaign {
   id: string;
@@ -137,7 +138,7 @@ export default function SpendenPage() {
 
   return (
     <motion.main
-      className="min-h-screen bg-gradient-to-br from-cream-50 via-sand-50 to-sage-50"
+      className="min-h-screen bg-gradient-to-br from-warm-50 via-cream-50 to-sage-50"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -151,12 +152,16 @@ export default function SpendenPage() {
             exit={{ opacity: 0, y: 100 }}
             className="fixed bottom-6 right-6 z-50"
           >
-            <a
-              href="#spenden"
-              className="flex items-center gap-2 px-6 py-4 bg-clay-500 hover:bg-clay-600 text-white rounded-full font-bold shadow-2xl hover:shadow-3xl transition-all focus-visible:ring-2 focus-visible:ring-clay-500 focus-visible:outline-none"
+            <Button
+              size="lg"
+              variant="donation"
+              asChild
+              className="rounded-full shadow-2xl"
             >
-              💚 Jetzt spenden
-            </a>
+              <a href="#spenden" className="gap-2">
+                💚 Jetzt spenden
+              </a>
+            </Button>
           </motion.div>
         )}
       </AnimatePresence>
@@ -178,8 +183,11 @@ export default function SpendenPage() {
             Jemen: Akute Hungersnot – jede Spende zählt
           </motion.div>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-charcoal-800">
-            Deine Spende bewirkt Großes 💚
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+            <span className="bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">
+              Deine Spende bewirkt Großes{" "}
+              <span className="text-coral-600">💚</span>
+            </span>
           </h1>
 
           <p className="text-xl md:text-2xl text-charcoal-700 mb-8 max-w-2xl mx-auto">
@@ -189,19 +197,17 @@ export default function SpendenPage() {
 
           {/* Primary CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <a
-              href="#spenden"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-clay-500 hover:bg-clay-600 text-white rounded-lg font-bold text-lg transition-all hover:shadow-lg focus-visible:ring-2 focus-visible:ring-clay-500 focus-visible:outline-none"
-            >
-              💚 Jetzt spenden
-              <ArrowRight className="w-5 h-5" />
-            </a>
-            <a
-              href="#spendenzwecke"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-clay-500 text-clay-500 rounded-lg font-bold text-lg hover:bg-clay-50 transition-all focus-visible:ring-2 focus-visible:ring-clay-500 focus-visible:outline-none"
-            >
-              Wofür wir spenden
-            </a>
+            <Button size="lg" variant="donation" asChild>
+              <a href="#spenden" className="gap-2">
+                💚 Jetzt spenden
+                <ArrowRight className="w-5 h-5" />
+              </a>
+            </Button>
+            <Button size="lg" variant="secondary" asChild>
+              <a href="#spendenzwecke" className="gap-2">
+                Wofür wir spenden
+              </a>
+            </Button>
           </div>
 
           {/* Trust Badges */}
@@ -543,30 +549,23 @@ export default function SpendenPage() {
               sicherzustellen, dass Spenden zielgerichtet ankommen.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <a
-                href="/kontakt"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-clay-500 hover:bg-clay-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all focus-visible:ring-2 focus-visible:ring-clay-500 focus-visible:outline-none"
-              >
-                Kontakt aufnehmen
-              </a>
-              <a
-                href="mailto:info@muslimin-ev.de"
-                className="inline-flex items-center gap-2 px-6 py-3 border-2 border-clay-500 text-clay-500 rounded-lg font-semibold hover:bg-clay-50 transition-all focus-visible:ring-2 focus-visible:ring-clay-500 focus-visible:outline-none"
-              >
-                E-Mail schreiben
-              </a>
+            <div className="p-6 bg-gradient-to-r from-sage-50 to-warm-50 rounded-lg border border-sage-200 text-center mb-8">
+              <p className="text-charcoal-700 font-medium mb-2">
+                Fragen zur Spende oder zu unseren Projekten?
+              </p>
+              <p className="text-charcoal-600">
+                Wir beantworten gerne alle deine Fragen und informieren dich
+                über aktuelle Hilfsprojekte.
+              </p>
             </div>
-          </div>
 
-          <div className="p-6 bg-gradient-to-r from-sage-50 to-warm-50 rounded-lg border border-sage-200 text-center">
-            <p className="text-charcoal-700 font-medium mb-2">
-              Fragen zur Spende oder zu unseren Projekten?
-            </p>
-            <p className="text-charcoal-600">
-              Wir beantworten gerne alle deine Fragen und informieren dich über
-              aktuelle Hilfsprojekte.
-            </p>
+            <div className="flex justify-center items-center">
+              <Button size="lg" variant="secondary" asChild>
+                <a href="/kontakt" className="gap-2">
+                  Kontakt aufnehmen
+                </a>
+              </Button>
+            </div>
           </div>
         </motion.div>
       </section>
@@ -583,13 +582,12 @@ export default function SpendenPage() {
           <p className="text-lg text-charcoal-600 mb-8">
             Werde Teil unserer Mission und unterstütze Menschen in Not
           </p>
-          <a
-            href="#spenden"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-clay-500 hover:bg-clay-600 text-white rounded-lg font-bold text-lg hover:shadow-xl transition-all focus-visible:ring-2 focus-visible:ring-clay-500 focus-visible:outline-none"
-          >
-            Jetzt spenden
-            <ArrowRight className="w-5 h-5" />
-          </a>
+          <Button size="lg" variant="secondary" asChild>
+            <a href="#spenden" className="gap-2">
+              Jetzt spenden
+              <ArrowRight className="w-5 h-5" />
+            </a>
+          </Button>
         </motion.div>
       </section>
     </motion.main>

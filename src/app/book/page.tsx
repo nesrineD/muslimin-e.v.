@@ -4,6 +4,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
 export default function BookingFlow() {
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(1);
@@ -283,17 +285,14 @@ export default function BookingFlow() {
       </div>
 
       <div>
-        <label
-          htmlFor="beschreibung"
-          className="block text-sm font-medium text-gray-700 mb-2"
-        >
+        <Label htmlFor="beschreibung" className="text-gray-700 font-medium">
           Beschreibung Ihres Anliegens *
-        </label>
-        <textarea
+        </Label>
+        <Textarea
           id="beschreibung"
           rows={6}
           required
-          className="shadow-sm focus:ring-warm-500 focus:border-warm-500 block w-full sm:text-sm border-gray-300 rounded-md"
+          className="mt-1 border-gray-300 focus:border-warm-500 focus:ring-warm-500"
           placeholder="Beschreiben Sie kurz, wobei wir Ihnen helfen können. Diese Information hilft der Helferin, sich auf das Gespräch vorzubereiten."
           value={bookingData.beschreibung}
           onChange={(e) =>

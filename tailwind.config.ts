@@ -90,16 +90,16 @@ const config: Config = {
           "900": "#54342d",
           DEFAULT: "#9c604d",
         },
-        // Legacy warm tones - keep for backward compatibility
+        // Warm tones - ONLY for passive membership status
         warm: {
           "50": "#fefaf7",
           "100": "#fdf2e7",
           "200": "#fbe4c4",
           "300": "#f7d197",
-          "400": "#f2b968",
-          "500": "#eda145",
+          "400": "#E6A15C", // Passive membership
+          "500": "#D9893F", // Passive membership hover
           "600": "#de8b2a",
-          "700": "#b96f23",
+          "700": "#B86A2E", // Passive membership active
           "800": "#955925",
           "900": "#7a4b22",
         },
@@ -145,7 +145,12 @@ const config: Config = {
           "5": "hsl(var(--chart-5))",
         },
       },
+      fontFamily: {
+        heading: ["var(--font-heading)", "Newsreader", "serif"],
+        body: ["var(--font-body)", "Inter", "sans-serif"],
+      },
       boxShadow: {
+        "card-standard": "0 4px 12px rgba(0, 0, 0, 0.05)", // Standard card shadow
         "sage-sm": "0 1px 2px 0 rgb(91 105 96 / 0.05)",
         sage: "0 1px 3px 0 rgb(91 105 96 / 0.1), 0 1px 2px -1px rgb(91 105 96 / 0.1)",
         "sage-md":

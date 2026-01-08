@@ -110,7 +110,39 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-body;
+  }
+
+  /* Typography - Design System */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading text-charcoal;
+  }
+
+  h1 {
+    @apply text-[clamp(2.5rem,4vw,3rem)] leading-[1.2];
+    max-width: 60ch;
+  }
+
+  h2 {
+    @apply text-[2rem] leading-[1.2];
+    max-width: 60ch;
+  }
+
+  h3 {
+    @apply text-[1.5rem] leading-[1.2];
+    max-width: 60ch;
+  }
+
+  p,
+  li,
+  span {
+    @apply text-charcoal leading-[1.6];
+    max-width: 70ch;
   }
 
   /* Enhanced focus-visible styles for accessibility */

@@ -1,57 +1,60 @@
-import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
-import { cva, type VariantProps } from "class-variance-authority"
+import * as React from "react";
+import { Slot } from "@radix-ui/react-slot";
+import { cva, type VariantProps } from "class-variance-authority";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg font-medium transition-all focus:outline focus:outline-2 focus:outline-sage focus:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
         default:
-          "bg-primary text-primary-foreground shadow hover:bg-primary/90",
-        destructive:
-          "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
-        outline:
-          "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
+          "bg-sage-600 text-white shadow-sm hover:bg-sage-700 active:bg-sage-800",
+        primary:
+          "bg-gradient-to-r from-sage-700 to-sage-600 text-white shadow-md hover:shadow-lg hover:from-sage-800 hover:to-sage-700 active:from-sage-900 active:to-sage-800",
+        donation:
+          "bg-gradient-to-r from-clay-700 to-coral-600 text-white shadow-md hover:shadow-lg hover:from-clay-800 hover:to-coral-700 active:from-clay-900 active:to-coral-800",
         secondary:
-          "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
+          "border-2 border-coral-200 bg-white/60 text-charcoal-800 shadow-sm backdrop-blur-sm hover:bg-coral-50 hover:border-coral-300 active:bg-coral-100",
+        outline:
+          "border-2 border-sage-300 bg-transparent text-sage-700 hover:bg-sage-50 hover:border-sage-400 active:bg-sage-100",
+        ghost:
+          "bg-transparent text-sage-700 hover:bg-sage-50 hover:text-sage-800 active:bg-sage-100",
+        passive:
+          "bg-warm-400 text-charcoal shadow-sm hover:brightness-105 active:brightness-95",
       },
       size: {
-        default: "h-9 px-4 py-2",
-        sm: "h-8 rounded-md px-3 text-xs",
-        lg: "h-10 rounded-md px-8",
-        icon: "h-9 w-9",
+        sm: "h-9 min-h-[36px] px-4 text-sm",
+        md: "h-11 min-h-[44px] px-6 text-base",
+        lg: "h-13 min-h-[52px] px-8 text-lg",
       },
     },
     defaultVariants: {
-      variant: "default",
-      size: "default",
+      variant: "secondary",
+      size: "md",
     },
   }
-)
+);
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
-  asChild?: boolean
+  asChild?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Slot : "button"
+    const Comp = asChild ? Slot : "button";
     return (
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
         {...props}
       />
-    )
+    );
   }
-)
-Button.displayName = "Button"
+);
+Button.displayName = "Button";
 
-export { Button, buttonVariants }
+export { Button, buttonVariants };

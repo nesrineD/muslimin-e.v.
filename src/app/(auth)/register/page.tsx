@@ -322,7 +322,7 @@ export default function RegisterPage() {
                     />
                     <Button
                       type="button"
-                      variant="ghost"
+                      variant="secondary"
                       size="sm"
                       className="absolute right-0 top-0 h-full px-3 hover:bg-transparent"
                       onClick={() => setShowPassword(!showPassword)}
@@ -378,7 +378,7 @@ export default function RegisterPage() {
                     />
                     <Button
                       type="button"
-                      variant="ghost"
+                      variant="secondary"
                       size="sm"
                       className="absolute right-0 top-0 h-full px-3 hover:bg-transparent"
                       onClick={() =>
