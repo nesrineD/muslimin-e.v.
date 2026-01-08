@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { axe, toHaveNoViolations } from "jest-axe";
-import { Button } from "./Button";
+import { Button } from "./button";
 
 expect.extend(toHaveNoViolations);
 
@@ -26,7 +26,7 @@ describe("Button Component", () => {
       const button = screen.getByRole("button");
       expect(button).toHaveClass("bg-gradient-to-r");
       expect(button).toHaveClass("from-sage-700");
-      expect(button).toHaveClass("to-charcoal-900");
+      expect(button).toHaveClass("to-sage-600");
       expect(button).toHaveClass("text-white");
     });
 
@@ -34,16 +34,16 @@ describe("Button Component", () => {
       render(<Button variant="donation">Donate</Button>);
       const button = screen.getByRole("button");
       expect(button).toHaveClass("bg-gradient-to-r");
-      expect(button).toHaveClass("from-clay-600");
-      expect(button).toHaveClass("to-warm-600");
+      expect(button).toHaveClass("from-clay-700");
+      expect(button).toHaveClass("to-coral-600");
       expect(button).toHaveClass("text-white");
     });
 
     it("renders secondary variant with correct styling", () => {
       render(<Button variant="secondary">Secondary</Button>);
       const button = screen.getByRole("button");
-      expect(button).toHaveClass("border-sand-200");
-      expect(button).toHaveClass("bg-white/40");
+      expect(button).toHaveClass("border-coral-200");
+      expect(button).toHaveClass("bg-white/60");
       expect(button).toHaveClass("text-charcoal-800");
     });
 
@@ -211,25 +211,25 @@ describe("Button Component", () => {
   });
 
   describe("Design System Compliance", () => {
-    it("primary variant uses sage→charcoal gradient", () => {
+    it("primary variant uses sage→sage gradient", () => {
       render(<Button variant="primary">Primary</Button>);
       const button = screen.getByRole("button");
       expect(button).toHaveClass("from-sage-700");
-      expect(button).toHaveClass("to-charcoal-900");
+      expect(button).toHaveClass("to-sage-600");
     });
 
-    it("donation variant uses clay→warm gradient", () => {
+    it("donation variant uses clay→coral gradient", () => {
       render(<Button variant="donation">Donate</Button>);
       const button = screen.getByRole("button");
-      expect(button).toHaveClass("from-clay-600");
-      expect(button).toHaveClass("to-warm-600");
+      expect(button).toHaveClass("from-clay-700");
+      expect(button).toHaveClass("to-coral-600");
     });
 
     it("secondary variant is glass-outline", () => {
       render(<Button variant="secondary">Secondary</Button>);
       const button = screen.getByRole("button");
-      expect(button).toHaveClass("bg-white/40");
-      expect(button).toHaveClass("border-sand-200");
+      expect(button).toHaveClass("bg-white/60");
+      expect(button).toHaveClass("border-coral-200");
     });
 
     it("passive variant uses warm-400 color (#E6A15C)", () => {
