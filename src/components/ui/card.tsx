@@ -55,7 +55,8 @@ const Card = React.forwardRef<HTMLElement, CardProps>(
     const Component = as;
     return (
       <Component
-        ref={ref as React.Ref<HTMLElement>}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ref={ref as any}
         className={cn(
           baseClasses,
           onClick &&
