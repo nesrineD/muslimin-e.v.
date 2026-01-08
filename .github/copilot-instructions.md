@@ -33,11 +33,6 @@ Eine webbasierte PWA-Plattform für den Muslimin e.V., die Vereinsmitgliedern Zu
 - Warm: warm-400, warm-500, warm-700 (Orange-Töne für passive Mitgliedschaft)
 - Cream: cream-50, cream-300 (Creme-Töne für sanfte Akzente)
 
-**Regeln**
-
-- Genau **eine** dominante Action-Farbe nutzen (standardmäßig #1F6F5B) – besonders für „Mitglied werden“ & „Spenden“.
-- #9C604D (Clay/Coral) und #C8A24A (Gold) nur als Akzent (max. ca. 5–10% der UI), nicht als Fließtext.
-
 weitere Farben die zu dieser Palette passen:
 können verwendet werden, solange sie harmonisch mit den Primärfarben wirken.
 

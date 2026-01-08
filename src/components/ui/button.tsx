@@ -10,9 +10,11 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          "bg-gradient-to-r from-warm-500 via-coral-500 to-warm-600 text-white shadow-lg hover:shadow-xl hover:from-warm-600 hover:via-coral-600 hover:to-warm-700 active:scale-[0.98] transition-all duration-300",
+          "bg-gradient-to-r from-sage-700 to-charcoal-900 text-white shadow-md hover:shadow-lg hover:brightness-105 active:brightness-95",
+        donation:
+          "bg-gradient-to-r from-clay-600 to-warm-600 text-white shadow-md hover:shadow-lg hover:brightness-105 active:brightness-95",
         secondary:
-          "border-2 border-sage text-sage bg-transparent hover:bg-sage hover:text-white active:bg-sage/90",
+          "border border-sand-200 bg-white/40 text-charcoal-800 shadow-sm backdrop-blur-sm hover:bg-white/60 hover:border-sand-300 active:bg-white/70",
         passive:
           "bg-warm-400 text-charcoal shadow-sm hover:brightness-105 active:brightness-95",
       },

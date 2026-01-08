@@ -24,7 +24,7 @@ const Card = React.forwardRef<HTMLElement, CardProps>(
     ref
   ) => {
     const baseClasses = cn(
-      "rounded-xl shadow-card-standard transition-all",
+      "relative rounded-xl shadow-card-standard transition-all",
       {
         "bg-white": variant === "white",
         "bg-cream-50": variant === "cream",
@@ -32,6 +32,8 @@ const Card = React.forwardRef<HTMLElement, CardProps>(
         "p-6": padding === "md",
         "p-8": padding === "lg",
         "hover:-translate-y-1 hover:shadow-lg cursor-pointer": href || onClick,
+        "before:pointer-events-none before:absolute before:inset-0 before:rounded-xl before:bg-gradient-to-br before:from-sage-400/10 before:via-transparent before:to-charcoal-400/10 before:opacity-0 before:transition-opacity hover:before:opacity-100 focus-visible:before:opacity-100 after:pointer-events-none after:absolute after:inset-0 after:rounded-xl after:ring-1 after:ring-sand-200/60 after:opacity-0 after:transition-opacity hover:after:opacity-100 focus-visible:after:opacity-100":
+          href || onClick,
       },
       className
     );

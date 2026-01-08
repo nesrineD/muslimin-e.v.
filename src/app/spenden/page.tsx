@@ -153,7 +153,7 @@ export default function SpendenPage() {
           >
             <Button
               size="lg"
-              variant="primary"
+              variant="donation"
               asChild
               className="rounded-full shadow-2xl"
             >
@@ -193,7 +193,7 @@ export default function SpendenPage() {
 
           {/* Primary CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <Button size="lg" variant="primary" asChild>
+            <Button size="lg" variant="donation" asChild>
               <a href="#spenden" className="gap-2">
                 💚 Jetzt spenden
                 <ArrowRight className="w-5 h-5" />

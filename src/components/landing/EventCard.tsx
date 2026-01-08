@@ -48,7 +48,7 @@ export function EventCard({
         <article className="relative">
           {/* Top accent bar */}
           <span
-            className="absolute inset-x-4 top-4 h-1 rounded-full bg-gradient-to-r from-clay-500/80 via-amber-400/60 to-clay-500/80"
+            className="absolute inset-x-4 top-4 h-1 rounded-full bg-gradient-to-r from-sage-500/70 via-sand-200/40 to-charcoal-700/60"
             aria-hidden="true"
           />
 
@@ -144,7 +144,7 @@ export function EventCard({
                 onClick={() => setIsExpanded(!isExpanded)}
                 aria-expanded={isExpanded}
                 aria-controls={contentId}
-                className="flex items-center justify-center gap-2 text-sm font-semibold text-clay-600 hover:text-clay-700 transition-colors group flex-1"
+                className="flex items-center justify-center gap-2 text-sm font-semibold text-sage-700 hover:text-sage-800 transition-colors group flex-1"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -161,7 +161,7 @@ export function EventCard({
               {/* Secondary CTA (optional) */}
               {secondaryCtaLabel && (
                 <motion.button
-                  className="px-6 py-2 border-2 border-clay-500 text-clay-600 hover:bg-clay-50 rounded-lg font-semibold text-sm transition-colors focus-visible:ring-2 focus-visible:ring-clay-500 focus-visible:outline-none"
+                  className="px-6 py-2 border-2 border-sage-500 text-sage-700 hover:bg-sage-50 rounded-lg font-semibold text-sm transition-colors focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:outline-none"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   aria-label={`${secondaryCtaLabel} - ${name}`}

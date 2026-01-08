@@ -147,8 +147,8 @@ describe("Card Component", () => {
     it("calls onClick handler when clicked", () => {
       const handleClick = jest.fn();
       render(<Card onClick={handleClick}>Clickable</Card>);
-      const card = screen.getByText(/clickable/i).parentElement;
-      if (card) fireEvent.click(card);
+      const card = screen.getByText(/clickable/i);
+      fireEvent.click(card);
       expect(handleClick).toHaveBeenCalledTimes(1);
     });
 

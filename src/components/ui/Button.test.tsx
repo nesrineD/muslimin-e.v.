@@ -24,15 +24,27 @@ describe("Button Component", () => {
     it("renders primary variant with correct styling", () => {
       render(<Button variant="primary">Primary</Button>);
       const button = screen.getByRole("button");
-      expect(button).toHaveClass("bg-clay");
+      expect(button).toHaveClass("bg-gradient-to-r");
+      expect(button).toHaveClass("from-sage-700");
+      expect(button).toHaveClass("to-charcoal-900");
+      expect(button).toHaveClass("text-white");
+    });
+
+    it("renders donation variant with correct styling", () => {
+      render(<Button variant="donation">Donate</Button>);
+      const button = screen.getByRole("button");
+      expect(button).toHaveClass("bg-gradient-to-r");
+      expect(button).toHaveClass("from-clay-600");
+      expect(button).toHaveClass("to-warm-600");
       expect(button).toHaveClass("text-white");
     });
 
     it("renders secondary variant with correct styling", () => {
       render(<Button variant="secondary">Secondary</Button>);
       const button = screen.getByRole("button");
-      expect(button).toHaveClass("border-sage");
-      expect(button).toHaveClass("text-sage");
+      expect(button).toHaveClass("border-sand-200");
+      expect(button).toHaveClass("bg-white/40");
+      expect(button).toHaveClass("text-charcoal-800");
     });
 
     it("renders passive variant with correct styling", () => {
@@ -45,41 +57,33 @@ describe("Button Component", () => {
     it("defaults to secondary variant when no variant specified", () => {
       render(<Button>Default</Button>);
       const button = screen.getByRole("button");
-      expect(button).toHaveClass("text-sage");
+      expect(button).toHaveClass("text-charcoal-800");
     });
   });
 
   describe("Sizes", () => {
     it("renders small size correctly", () => {
-      const { container } = render(<Button size="sm">Small</Button>);
-      const button = container.firstChild as HTMLElement;
-      const styles = window.getComputedStyle(button);
-      const height = parseInt(styles.height);
-      expect(height).toBeGreaterThanOrEqual(36);
+      render(<Button size="sm">Small</Button>);
+      const button = screen.getByRole("button", { name: /small/i });
+      expect(button.className).toMatch(/min-h-\[36px\]/);
     });
 
     it("renders medium size with minimum 44px height (accessibility)", () => {
-      const { container } = render(<Button size="md">Medium</Button>);
-      const button = container.firstChild as HTMLElement;
-      const styles = window.getComputedStyle(button);
-      const height = parseInt(styles.height);
-      expect(height).toBeGreaterThanOrEqual(44);
+      render(<Button size="md">Medium</Button>);
+      const button = screen.getByRole("button", { name: /medium/i });
+      expect(button.className).toMatch(/min-h-\[44px\]/);
     });
 
     it("renders large size correctly", () => {
-      const { container } = render(<Button size="lg">Large</Button>);
-      const button = container.firstChild as HTMLElement;
-      const styles = window.getComputedStyle(button);
-      const height = parseInt(styles.height);
-      expect(height).toBeGreaterThanOrEqual(52);
+      render(<Button size="lg">Large</Button>);
+      const button = screen.getByRole("button", { name: /large/i });
+      expect(button.className).toMatch(/min-h-\[52px\]/);
     });
 
     it("defaults to medium size when no size specified", () => {
-      const { container } = render(<Button>Default</Button>);
-      const button = container.firstChild as HTMLElement;
-      const styles = window.getComputedStyle(button);
-      const height = parseInt(styles.height);
-      expect(height).toBeGreaterThanOrEqual(44);
+      render(<Button>Default</Button>);
+      const button = screen.getByRole("button", { name: /default/i });
+      expect(button.className).toMatch(/min-h-\[44px\]/);
     });
   });
 
@@ -100,7 +104,7 @@ describe("Button Component", () => {
       render(<Button disabled>Disabled</Button>);
       const button = screen.getByRole("button");
       expect(button).toBeDisabled();
-      expect(button).toHaveClass("opacity-50");
+      expect(button.className).toMatch(/disabled:opacity-50/);
     });
 
     it("prevents click when disabled", () => {
@@ -180,11 +184,9 @@ describe("Button Component", () => {
     });
 
     it("has minimum 44px height for touch targets (WCAG)", () => {
-      const { container } = render(<Button>Touch Target</Button>);
-      const button = container.firstChild as HTMLElement;
-      const styles = window.getComputedStyle(button);
-      const height = parseInt(styles.height);
-      expect(height).toBeGreaterThanOrEqual(44);
+      render(<Button>Touch Target</Button>);
+      const button = screen.getByRole("button", { name: /touch target/i });
+      expect(button.className).toMatch(/min-h-\[44px\]/);
     });
 
     it("activates with Enter key", () => {
@@ -209,16 +211,25 @@ describe("Button Component", () => {
   });
 
   describe("Design System Compliance", () => {
-    it("primary variant uses clay color (#9C604D)", () => {
+    it("primary variant uses sage→charcoal gradient", () => {
       render(<Button variant="primary">Primary</Button>);
       const button = screen.getByRole("button");
-      expect(button).toHaveClass("bg-clay");
+      expect(button).toHaveClass("from-sage-700");
+      expect(button).toHaveClass("to-charcoal-900");
     });
 
-    it("secondary variant uses sage color (#5B6960)", () => {
+    it("donation variant uses clay→warm gradient", () => {
+      render(<Button variant="donation">Donate</Button>);
+      const button = screen.getByRole("button");
+      expect(button).toHaveClass("from-clay-600");
+      expect(button).toHaveClass("to-warm-600");
+    });
+
+    it("secondary variant is glass-outline", () => {
       render(<Button variant="secondary">Secondary</Button>);
       const button = screen.getByRole("button");
-      expect(button).toHaveClass("text-sage");
+      expect(button).toHaveClass("bg-white/40");
+      expect(button).toHaveClass("border-sand-200");
     });
 
     it("passive variant uses warm-400 color (#E6A15C)", () => {

@@ -416,7 +416,10 @@ export default function PublicLandingPage() {
                   whileHover={{ y: -8 }}
                 >
                   <Link href={card.href} className="h-full block">
-                    <Card variant="cream" className="h-full cursor-pointer transition-all duration-300">
+                    <Card
+                      variant="cream"
+                      className="h-full cursor-pointer transition-all duration-300"
+                    >
                       <CardContent className="space-y-4 h-full flex flex-col">
                         <div className="flex items-start gap-4">
                           <div className="text-charcoal-600 flex-shrink-0">
