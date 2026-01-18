@@ -112,15 +112,9 @@ export const NAV_LINKS = [
   },
   {
     href: "/mitglied-werden",
-    label: "Mitglied werden",
+    label: "Mitgliedschaft",
     description: "Werden Sie Teil unserer Gemeinschaft",
     icon: "Sparkles",
-  },
-  {
-    href: "/spenden",
-    label: "Spenden",
-    description: "Unterstützen Sie unsere Arbeit",
-    icon: "Heart",
   },
   {
     href: "/kontakt",

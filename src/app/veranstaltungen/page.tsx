@@ -46,7 +46,7 @@ const EVENTS: Event[] = [
     id: "monatsvortrag",
     name: "Monatsvortrag",
     teaser:
-      "Monatliche Vortragsreihe mit anschließender Diskussionsrunde – offen, vielfältig und dialogorientiert.",
+      "Monatliche Vorträge mit anschließender Diskussionsrunde – offen, vielfältig und dialogorientiert.",
     description:
       "Jeden letzten Sonntag eines Monats lädt Muslimin e.V. zu einer offenen Runde ein. Frauen verschiedener Altersgruppen und Konfessionen treffen sich seit 2013, um am 'Monatsvortrag' teilzunehmen. Hierbei werden verschiedene Themen angesprochen, wobei der Vortrag als Input für die anschließende Diskussionsrunde dient. Wir möchten einen Raum für Dialoge zwischen Frauen schaffen. Es werden sowohl religiöse als auch nicht-religiöse Inhalte behandelt. Daher laden wir gerne neben islamischen Geistlichen auch Expertinnen aus den jeweiligen Gebieten (z.B. Medizin, Naturwissenschaften, Ernährung usw.) als Rednerinnen ein.",
     regularity: "Jeden letzten Sonntag im Monat",
@@ -54,8 +54,8 @@ const EVENTS: Event[] = [
     format: "Präsenz",
     icon: Mic,
     badges: [
-      { label: "Offen für alle Frauen & Mädchen", variant: "open" },
-      { label: "Präsenz", variant: "presence" },
+      { label: "ohne Anmeldung", variant: "open" },
+      { label: "vor Ort", variant: "presence" },
     ],
     accessNote:
       "Diese Veranstaltung ist offen für alle Frauen und Mädchen. Eine Mitgliedschaft ist nicht erforderlich.",
@@ -72,7 +72,7 @@ const EVENTS: Event[] = [
     format: "Online",
     icon: Video,
     badges: [
-      { label: "Offen für alle Frauen & Mädchen", variant: "open" },
+      { label: "ohne Anmeldung", variant: "open" },
       { label: "Online", variant: "online" },
     ],
     accessNote:
@@ -90,8 +90,8 @@ const EVENTS: Event[] = [
     format: "Präsenz",
     icon: Moon,
     badges: [
-      { label: "Anmeldung erforderlich", variant: "register" },
-      { label: "Präsenz", variant: "presence" },
+      { label: "mit Anmeldung", variant: "register" },
+      { label: "vor Ort", variant: "presence" },
     ],
     accessNote:
       "Alle Frauen und Mädchen sind herzlich willkommen – unabhängig von einer Vereinsmitgliedschaft.",
@@ -108,48 +108,11 @@ const EVENTS: Event[] = [
     format: "Präsenz",
     icon: Flame,
     badges: [
-      { label: "Anmeldung erforderlich", variant: "register" },
-      { label: "Präsenz", variant: "presence" },
+      { label: "mit Anmeldung", variant: "register" },
+      { label: "vor Ort", variant: "presence" },
     ],
     accessNote:
       "Die Veranstaltung ist offen für alle Frauen und Mädchen, die gemeinsam innehalten und gedenken möchten.",
-  },
-  {
-    id: "koran",
-    name: "Koranunterricht für Frauen und Mädchen",
-    teaser:
-      "Strukturierter Koranunterricht in vier Niveaustufen – vom arabischen Alphabet bis Tajweed.",
-    description:
-      "Seit 2014 finden ein- bis zweimal jährlich Kurse des Koranunterrichts statt und erfreuen sich großer Beliebtheit. In vier verschiedenen Kursen mit unterschiedlichen Fähigkeitsstufen erlernen die Schülerinnen – je nach persönlichem Wissensniveau – das Lesen der arabischen Schrift bzw. die Tajweed-Regeln: Anfänger-Kurs (Arabisches Alphabet), A-Kurs (Fließendes Lesen), B-Kurs (Tajweed-Regeln), C-Kurs (Längen- und Pausenregeln). Der Kurs umfasst 12 Unterrichtseinheiten à 90 Minuten. Zum Abschluss legen die Schülerinnen eine kleine Prüfung ab und erhalten Urkunden und Geschenke. Ziel ist es, die Schülerinnen zu ermutigen, sich mit dem Koran in seiner Originalschrift auseinanderzusetzen.",
-    regularity: "1–2x jährlich",
-    targetAudience: "Frauen und Mädchen",
-    format: "Präsenz",
-    icon: BookOpen,
-    badges: [
-      { label: "Anmeldung erforderlich", variant: "register" },
-      { label: "Begrenzte Plätze", variant: "limited" },
-    ],
-    accessNote:
-      "Die Teilnehmerinnenzahl ist begrenzt. Eine vorherige Anmeldung ist erforderlich.",
-  },
-  {
-    id: "lesezirkel",
-    name: "Lesezirkel",
-    teaser:
-      "Gemeinsames Lesen islamischer Literatur in kleinen Gruppen und familiärer Atmosphäre.",
-    description:
-      "Islamische Bücher werden in kleinen Gruppen von maximal 10 Mitgliedern gelesen und in regelmäßigen Sitzungen vor Ort in familiärer Atmosphäre diskutiert. Die Lesezirkel bieten Raum für tiefgehende Auseinandersetzung mit islamischer Literatur, gemeinsames Lernen und Austausch über spirituelle Themen. In entspannter Atmosphäre werden verschiedene Werke von islamischen Gelehrten, zeitgenössischen Autorinnen und spiritueller Literatur gemeinsam erarbeitet.",
-    regularity: "Regelmäßig",
-    targetAudience: "Mitglieder",
-    format: "Präsenz",
-    icon: Library,
-    badges: [
-      { label: "Nur für Mitglieder", variant: "members" },
-      { label: "Kleine Gruppen", variant: "limited" },
-    ],
-    accessNote:
-      "Dieses Angebot richtet sich ausschließlich an Vereinsmitglieder.",
-    secondaryCtaLabel: "Mitglied werden",
   },
 ];
 
@@ -162,7 +125,6 @@ export default function VeranstaltungenPage() {
 
   const regularEvents = EVENTS.slice(0, 2);
   const annualEvents = EVENTS.slice(2, 4);
-  const educationEvents = EVENTS.slice(4);
 
   return (
     <motion.main
@@ -175,10 +137,6 @@ export default function VeranstaltungenPage() {
         {/* Hero */}
         <section className="py-20 md:py-24 text-center max-w-4xl mx-auto">
           <motion.div variants={itemVariants}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-sage-100 to-cream-100 border-2 border-sage-200 text-charcoal-800 rounded-full text-sm font-medium mb-6 shadow-sm">
-              <Sparkles className="w-4 h-4 text-sage-700" /> Gemeinschaft
-              stärken
-            </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">
               Unsere Veranstaltungen
             </h1>
@@ -191,11 +149,11 @@ export default function VeranstaltungenPage() {
             {/* Quick Stats */}
             <div className="flex flex-wrap justify-center gap-4 text-sm">
               <div className="px-4 py-2 bg-white rounded-full shadow-sm border-2 border-coral-200">
-                <span className="font-bold text-coral-600">6</span> Formate
+                <span className="font-bold text-coral-600">4</span> Formate
               </div>
               <div className="px-4 py-2 bg-white rounded-full shadow-sm border-2 border-coral-200">
-                <span className="font-bold text-coral-600">2</span>{" "}
-                Online-Optionen
+                <span className="font-bold text-coral-600">1</span>{" "}
+                Online-Option
               </div>
               <div className="px-4 py-2 bg-white rounded-full shadow-sm border-2 border-coral-200">
                 <span className="font-bold text-coral-600">2</span> Offen für
@@ -233,24 +191,13 @@ export default function VeranstaltungenPage() {
             >
               Jährlich
             </a>
-            <a
-              href="#education-events"
-              onClick={() => setActiveSection("education")}
-              className={`px-4 py-2 rounded-full whitespace-nowrap transition-colors ${
-                activeSection === "education"
-                  ? "bg-sage-500 text-white"
-                  : "bg-sage-50 text-sage-700 hover:bg-sage-100"
-              }`}
-            >
-              Bildung
-            </a>
           </div>
         </motion.nav>
 
         {/* Regular */}
         <Section
           id="regular-events"
-          title="Regelmäßige Vortragsreihen"
+          title="Regelmäßige Veranstaltungen"
           subtitle="Monatliche Impulse – vor Ort oder online."
           events={regularEvents}
         />
@@ -261,14 +208,6 @@ export default function VeranstaltungenPage() {
           title="Jährliche Highlights"
           subtitle="Besondere Anlässe, die Gemeinschaft stärken."
           events={annualEvents}
-        />
-
-        {/* Education */}
-        <Section
-          id="education-events"
-          title="Bildung & Entwicklung"
-          subtitle="Vertiefe dein Wissen in familiärer Atmosphäre."
-          events={educationEvents}
         />
 
         {/* Social Media Section */}

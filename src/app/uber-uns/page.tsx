@@ -215,47 +215,59 @@ export default function AboutPage() {
           </div>
         </motion.section>
 
-        {/* Social Media Section */}
-        <motion.section
-          variants={itemVariants}
-          className="py-16 px-4 bg-sand-50"
-        >
-          <div className="container mx-auto max-w-6xl">
-            <div className="py-12 px-6 sm:px-8 bg-gradient-to-br from-sage-50 via-cream-50 to-sage-100/80 rounded-2xl shadow-lg border-2 border-sage-200">
-              <SocialMediaSection
-                variant="compact"
-                showTitle={true}
-                title="Folge uns auf Social Media! 📱"
-                subtitle="Bleib auf dem Laufenden mit aktuellen Flyern, Terminen und Live-Updates"
-              />
-            </div>
-          </div>
-        </motion.section>
-
-        {/* Call to Action */}
+        {/* Statistiken Section */}
         <motion.section
           variants={itemVariants}
           className="py-20 lg:py-24 bg-sand-50"
         >
           <div className="container mx-auto px-4">
-            <Card className="border-0 shadow-xl bg-clay-500 text-white">
-              <CardHeader className="text-center">
-                <CardTitle className="text-3xl font-bold mb-2">
-                  Werden Sie Teil unserer Gemeinschaft
-                </CardTitle>
-                <CardDescription className="text-lg text-white opacity-95">
-                  Engagieren Sie sich, lernen Sie und wachsen Sie mit uns.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="text-center">
-                <Button
-                  className="bg-white text-clay-600 hover:bg-sand-50 font-semibold px-8 py-3 text-lg transition-all duration-300 shadow-lg hover:shadow-xl"
-                  asChild
-                >
-                  <Link href="/mitglied-werden">Jetzt Mitglied werden</Link>
-                </Button>
-              </CardContent>
-            </Card>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-sage-800">
+                Unsere Erfolge
+              </h2>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
+              <Card className="text-center p-8 border-2 border-sage-200 hover:border-sage-300 hover:shadow-lg transition-all">
+                <CardContent className="pt-6">
+                  <div className="text-4xl md:text-5xl font-bold text-sage-600 mb-2">
+                    7 Jahre
+                  </div>
+                  <p className="text-sage-700 font-medium">
+                    eingetragener Verein
+                  </p>
+                  <p className="text-charcoal-600 text-sm mt-1">
+                    gegründet 2018
+                  </p>
+                </CardContent>
+              </Card>
+              <Card className="text-center p-8 border-2 border-sage-200 hover:border-sage-300 hover:shadow-lg transition-all">
+                <CardContent className="pt-6">
+                  <div className="text-4xl md:text-5xl font-bold text-sage-600 mb-2">
+                    60+
+                  </div>
+                  <p className="text-sage-700 font-medium">Mitglieder</p>
+                </CardContent>
+              </Card>
+              <Card className="text-center p-8 border-2 border-sage-200 hover:border-sage-300 hover:shadow-lg transition-all">
+                <CardContent className="pt-6">
+                  <div className="text-4xl md:text-5xl font-bold text-sage-600 mb-2">
+                    100+
+                  </div>
+                  <p className="text-sage-700 font-medium">Veranstaltungen</p>
+                </CardContent>
+              </Card>
+              <Card className="text-center p-8 border-2 border-sage-200 hover:border-sage-300 hover:shadow-lg transition-all">
+                <CardContent className="pt-6">
+                  <div className="text-4xl md:text-5xl font-bold text-sage-600 mb-2">
+                    500
+                  </div>
+                  <p className="text-sage-700 font-medium">Gäste</p>
+                  <p className="text-charcoal-600 text-sm mt-1">
+                    bei unserer größten Veranstaltung
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </motion.section>
       </motion.div>

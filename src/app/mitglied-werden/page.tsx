@@ -65,7 +65,7 @@ export default function MitgliedWerdenPage() {
             transition={{ type: "spring", stiffness: 300 }}
           >
             <span className="bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">
-              Willkommen, liebe Schwester!
+              Assalamu alaykum liebe Schwester!
             </span>
           </motion.h1>
 
@@ -76,62 +76,17 @@ export default function MitgliedWerdenPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
             >
-              💝 Werden Sie Teil unserer warmherzigen Schwesternschaft
+              💝 Werde Teil unserer Schwesternschaft.
             </motion.p>
 
             <motion.div
               className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 border-2 border-sage-300 shadow-xl hover:shadow-2xl transition-all duration-500 hover:border-sage-400"
               whileHover={{ y: -5 }}
             >
-              <p className="text-xl text-sage-800 leading-relaxed mb-6">
-                <motion.span
-                  className="text-2xl inline-block"
-                  animate={{ rotate: [0, 10, -10, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
-                >
-                  🌸
-                </motion.span>{" "}
-                Bei{" "}
-                <strong className="text-sage-600 font-bold">
-                  Muslimin e.V.
-                </strong>{" "}
-                finden Sie nicht nur Unterstützung, sondern echte
-                Schwesternschaft. Hier sind Sie verstanden, geschätzt und
-                niemals allein.
-              </p>
-
-              <p className="text-lg text-charcoal-600 leading-relaxed mb-4">
-                Unsere Gemeinschaft ist ein Ort der Wärme, des Vertrauens und
-                der gegenseitigen Stärkung.
-              </p>
-
-              <p className="text-lg text-sage-700 font-semibold">
-                <motion.span
-                  className="text-xl inline-block"
-                  animate={{ scale: [1, 1.2, 1] }}
-                  transition={{
-                    duration: 1.5,
-                    repeat: Infinity,
-                    repeatDelay: 2,
-                  }}
-                >
-                  ✨
-                </motion.span>{" "}
-                Lassen Sie uns gemeinsam wachsen, lachen und uns gegenseitig
-                inspirieren!
+              <p className="text-xl text-sage-800 leading-relaxed">
+                Wähle die Mitgliedschaft, die zu deiner aktuellen Lebenssituation passt. Ob Schülerin, Studentin, Angestellte, Mutter oder Selbständige. Hier hast du die Möglichkeit dich an unserer islamischen Arbeit zu beteiligen. Genug Zeit und Engagement? Dann werde aktives Mitglied! Keine Zeit aber genug finanzielle Mittel? Dann werde passives Mitglied!
               </p>
             </motion.div>
-
-            <motion.p
-              className="text-lg text-charcoal-600"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-            >
-              Füllen Sie einfach das Formular unten aus und beginnen Sie Ihre
-              Reise mit uns. Wir freuen uns so sehr darauf, Sie kennenzulernen!
-              🤗
-            </motion.p>
           </div>
         </motion.div>
 
@@ -353,14 +308,9 @@ export default function MitgliedWerdenPage() {
               </motion.div>
               <CardTitle className="text-3xl md:text-4xl font-bold mb-4">
                 <span className="bg-gradient-to-r from-sage-700 via-sage-500 to-sage-600 bg-clip-text text-transparent">
-                  🌟 Ihre Mitgliedschaftsanfrage
+                  Deine Mitgliedschaftsanfrage
                 </span>
               </CardTitle>
-              <p className="text-lg text-charcoal-600 max-w-2xl mx-auto mb-6">
-                Wir können es kaum erwarten, Sie in unserer Gemeinschaft
-                willkommen zu heißen! Über den Button unten gelangen Sie direkt
-                zum Anmeldeformular.
-              </p>
 
               <motion.div
                 whileHover={{ scale: 1.05 }}
@@ -374,17 +324,10 @@ export default function MitgliedWerdenPage() {
                     className="flex items-center justify-center gap-3"
                   >
                     <Heart className="w-6 h-6" />
-                    Ja, ich möchte dabei sein! 🌟
+                    Jetzt Mitglied werden
                   </a>
                 </Button>
               </motion.div>
-
-              <div className="text-center mt-6 space-y-2">
-                <div className="flex items-center justify-center gap-3 text-sm text-sage-600">
-                  <CheckCircle className="h-5 w-5 text-sage-600" />
-                  <span>Antwort innerhalb von 2-3 Werktagen</span>
-                </div>
-              </div>
             </CardHeader>
           </Card>
         </motion.div>

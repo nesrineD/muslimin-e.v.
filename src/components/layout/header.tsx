@@ -194,6 +194,21 @@ export function Header() {
 
         <div className="flex-1" />
 
+        {/* Desktop CTA Buttons */}
+        <div className="hidden md:flex items-center gap-3 mr-3">
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
+            <Button
+              asChild
+              className="bg-sage-700 hover:bg-sage-800 text-sand-100 font-semibold shadow-md hover:shadow-lg transition-all duration-200 focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:ring-offset-2"
+            >
+              <Link href="/spenden" className="flex items-center gap-2">
+                <HeartHandshake className="h-4 w-4" />
+                <span>Spenden</span>
+              </Link>
+            </Button>
+          </motion.div>
+        </div>
+
         {/* Desktop Auth Section */}
         <div className="hidden md:flex items-center">
           {loading && !user && !isSigningOut ? (
@@ -332,9 +347,9 @@ export function Header() {
                 <Image
                   src="/images/muslimin-logo.svg"
                   alt="Muslimin e.V. Logo"
-                  width={56}
-                  height={56}
-                  className="h-14 w-auto"
+                  width={72}
+                  height={72}
+                  className="h-18 w-auto"
                 />
                 <div className="flex flex-col">
                   <span className="text-lg font-bold text-sage-700">
@@ -535,21 +550,51 @@ export function Header() {
                     </motion.div>
                   </>
                 ) : (
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <Button
-                      variant="outline"
-                      className="w-full justify-start hover:bg-sage-100 hover:border-sage-300 min-h-[44px] focus-visible:ring-2 focus-visible:ring-sage-500"
-                      asChild
+                  <>
+                    <motion.div
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
                     >
-                      <Link href="/login">
-                        <User className="h-4 w-4 mr-2" />
-                        Mitgliederbereich
-                      </Link>
-                    </Button>
-                  </motion.div>
+                      <Button
+                        className="w-full justify-center bg-sage-700 hover:bg-sage-800 text-sand-100 min-h-[44px] focus-visible:ring-2 focus-visible:ring-sage-500"
+                        asChild
+                      >
+                        <Link href="/mitglied-werden">
+                          Mitglied werden
+                        </Link>
+                      </Button>
+                    </motion.div>
+
+                    <motion.div
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <Button
+                        className="w-full justify-center bg-sage-700 hover:bg-sage-800 text-sand-100 min-h-[44px] focus-visible:ring-2 focus-visible:ring-sage-500"
+                        asChild
+                      >
+                        <Link href="/spenden">
+                          Spenden
+                        </Link>
+                      </Button>
+                    </motion.div>
+
+                    <motion.div
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <Button
+                        variant="outline"
+                        className="w-full justify-start hover:bg-sage-100 hover:border-sage-300 min-h-[44px] focus-visible:ring-2 focus-visible:ring-sage-500"
+                        asChild
+                      >
+                        <Link href="/login">
+                          <User className="h-4 w-4 mr-2" />
+                          Mitgliederbereich
+                        </Link>
+                      </Button>
+                    </motion.div>
+                  </>
                 )}
               </div>
             </motion.div>
