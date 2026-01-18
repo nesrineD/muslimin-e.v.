@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
 import {
   Users,
   Baby,
@@ -11,15 +10,7 @@ import {
   Lightbulb,
   ShieldCheck,
 } from "lucide-react";
-import { SocialMediaSection } from "@/components/SocialMediaSection";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 
 export default function AboutPage() {
   const containerVariants = {

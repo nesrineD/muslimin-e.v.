@@ -5,17 +5,14 @@ import { SocialMediaSection } from "@/components/SocialMediaSection";
 import { motion } from "framer-motion";
 import { containerVariants, itemVariants } from "@/lib/animations";
 import {
-  Sparkles,
   Mic,
   Video,
   Moon,
   Flame,
-  BookOpen,
-  Library,
 } from "lucide-react";
 import { useState } from "react";
 import type { LucideIcon } from "lucide-react";
-import type { BadgeVariant, EventBadge } from "@/types/events";
+import type { EventBadge } from "@/types/events";
 
 // -----------------------------
 // Types

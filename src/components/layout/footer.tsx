@@ -4,16 +4,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronRight, Mail, MapPin } from "lucide-react";
+import { ChevronRight, MapPin } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { SocialMediaSection } from "@/components/SocialMediaSection";
-import {
-  CONTACT_INFO,
-  LEGAL_LINKS,
-  NAV_LINKS,
-  TRUST_TEXT,
-} from "@/lib/constants";
+import { NAV_LINKS, LEGAL_LINKS, TRUST_TEXT } from "@/lib/constants";
 
 export function Footer() {
   return (
