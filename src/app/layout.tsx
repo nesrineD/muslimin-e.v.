@@ -8,7 +8,7 @@ import { AuthProvider } from "@/hooks/useAuth";
 import { Toaster } from "@/components/ui/toaster";
 import { CookieBanner } from "@/components/layout/cookie-banner";
 import { PWAPromptBanner } from "@/components/PWAPromptBanner";
-import { Analytics } from "@vercel/analytics/react";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
