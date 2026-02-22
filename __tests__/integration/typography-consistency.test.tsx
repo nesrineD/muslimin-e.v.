@@ -1,5 +1,7 @@
 import { render } from "@testing-library/react";
 import { axe, toHaveNoViolations } from "jest-axe";
+import * as fs from "fs";
+import * as path from "path";
 
 expect.extend(toHaveNoViolations);
 
@@ -59,7 +61,7 @@ describe("Typography Consistency Integration", () => {
         // Body text inherits from body element or uses font-body class
         expect(
           p.className.includes("font-body") ||
-            document.body.className.includes("font-body")
+            document.body.className.includes("font-body"),
         ).toBe(true);
       });
     });
@@ -204,7 +206,7 @@ describe("Typography Consistency Integration", () => {
       const { container } = render(<MockPage />);
 
       const textElements = container.querySelectorAll(
-        "h1, h2, h3, p, span, div"
+        "h1, h2, h3, p, span, div",
       );
       textElements.forEach((el) => {
         expect(el.className).not.toMatch(/#[0-9A-Fa-f]{3,8}/);
@@ -255,7 +257,7 @@ describe("Typography Consistency Integration", () => {
         <div className="bg-white p-8">
           <h1 className="text-charcoal">Heading</h1>
           <p className="text-charcoal">Body text</p>
-        </div>
+        </div>,
       );
 
       const results = await axe(container);
@@ -267,7 +269,7 @@ describe("Typography Consistency Integration", () => {
         <div className="bg-sand p-8">
           <h1 className="text-charcoal">Heading</h1>
           <p className="text-charcoal">Body text</p>
-        </div>
+        </div>,
       );
 
       const results = await axe(container);
@@ -279,7 +281,7 @@ describe("Typography Consistency Integration", () => {
         <div className="bg-cream-50 p-8">
           <h1 className="text-charcoal">Heading</h1>
           <p className="text-charcoal">Body text</p>
-        </div>
+        </div>,
       );
 
       const results = await axe(container);
@@ -358,6 +360,40 @@ describe("Typography Consistency Integration", () => {
 
       const link = container.querySelector("a");
       expect(link?.className).toMatch(/hover:text-clay/);
+    });
+  });
+
+  // ─── T005: Subtitle token consistency (FR-004) ───────────────────────────
+  // Asserts that public page source files do not use text-sage-600 for
+  // subtitle/lead-paragraph text. The shared token is text-charcoal-700.
+  // These tests MUST FAIL initially (uber-uns has many text-sage-600 <p> tags).
+  // They pass after T009 (globals.css) and T013 (uber-uns).
+  describe("Subtitle token consistency — no text-sage-600 on <p> elements (FR-004)", () => {
+    const PAGES_DIR = path.resolve(process.cwd(), "src/app");
+
+    const PUBLIC_PAGES = [
+      "uber-uns/page.tsx",
+      "spenden/page.tsx",
+      "veranstaltungen/page.tsx",
+      "kontakt/page.tsx",
+      "mitglied-werden/page.tsx",
+      "public-landing/page.tsx",
+    ];
+
+    PUBLIC_PAGES.forEach((relativePath) => {
+      const pageName = relativePath.replace("/page.tsx", "");
+
+      it(`${pageName} has no <p> element with text-sage-600 class`, () => {
+        const source = fs.readFileSync(
+          path.join(PAGES_DIR, relativePath),
+          "utf-8",
+        );
+        // Match <p className="...text-sage-600..."> — body text violation
+        const hasViolation = /<p[^>]*className="[^"]*text-sage-600[^"]*"/.test(
+          source,
+        );
+        expect(hasViolation).toBe(false);
+      });
     });
   });
 });

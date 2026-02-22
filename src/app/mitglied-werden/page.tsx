@@ -5,69 +5,23 @@ import { Sparkles, Heart } from "lucide-react";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { SocialMediaSection } from "@/components/SocialMediaSection";
+import { containerVariants, itemVariants } from "@/lib/animations";
+import { PUBLIC_PAGE_WRAPPER_CLASS } from "@/lib/page-config";
 
 export default function MitgliedWerdenPage() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 },
-    },
-  };
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sage-50 via-cream-50 to-warm-50 relative overflow-hidden">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.04, 0.08, 0.04],
-            rotate: [0, 90, 0],
-          }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -top-1/4 -left-1/4 w-1/2 h-1/2 bg-gradient-to-br from-sage-200 to-sage-100 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.04, 0.06, 0.04],
-            rotate: [0, -90, 0],
-          }}
-          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-gradient-to-tl from-warm-200 to-cream-100 rounded-full blur-3xl"
-        />
-      </div>
-
+    <div className={PUBLIC_PAGE_WRAPPER_CLASS}>
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="container mx-auto px-4 py-12 relative z-10"
+        className="container mx-auto px-4 py-12"
       >
         {/* Hero Section with Warm Invitation */}
         <motion.div variants={itemVariants} className="text-center mb-16">
-          <motion.h1
-            className="text-4xl md:text-6xl font-bold mb-8"
-            whileHover={{ scale: 1.02 }}
-            transition={{ type: "spring", stiffness: 300 }}
-          >
-            <span className="bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">
-              Assalamu alaykum liebe Schwester!
-            </span>
-          </motion.h1>
+          <h1 className="text-4xl md:text-6xl font-bold mb-8 text-charcoal-800">
+            Assalamu alaykum liebe Schwester!
+          </h1>
 
           <div className="max-w-4xl mx-auto space-y-6">
             <motion.p
