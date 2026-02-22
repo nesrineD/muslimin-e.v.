@@ -340,7 +340,12 @@
   font-size: 0.875rem !important;
 }
 
-/* Custom Animations */
+/* ============================================================
+ * CUSTOM ANIMATIONS — Enhanced Motion Design System
+ * Phase 1 Enhancement: Gradient animations, ripples, scroll effects
+ * ============================================================ */
+
+/* Gradient shift animation for animated backgrounds */
 @keyframes gradient-shift {
   0%,
   100% {
@@ -348,6 +353,67 @@
   }
   50% {
     background-position: 100% 50%;
+  }
+}
+
+/* Enhanced ripple effect for buttons (Material Design inspired) */
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Glow effect for hero sections and CTAs */
+@keyframes glow {
+  0%,
+  100% {
+    box-shadow: 
+      0 0 20px rgba(91, 105, 96, 0.3),
+      0 0 40px rgba(91, 105, 96, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 0 30px rgba(91, 105, 96, 0.5),
+      0 0 60px rgba(91, 105, 96, 0.2);
+  }
+}
+
+/* Enhanced shimmer with smoother gradient */
+@keyframes shimmer-enhanced {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Scroll-triggered fade and slide animations */
+@keyframes scroll-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animated link underline (left to right growth) */
+@keyframes underline-grow {
+  from {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  to {
+    transform: scaleX(1);
+    transform-origin: left;
   }
 }
 
