@@ -264,7 +264,7 @@ function LoginContent() {
                   <CardTitle className="text-3xl font-bold text-sage-800">
                     Willkommen zurück
                   </CardTitle>
-                  <CardDescription className="text-gray-600 mt-2">
+                  <CardDescription className="text-charcoal-600 mt-2">
                     Melden Sie sich mit Ihren Zugangsdaten an
                   </CardDescription>
                 </motion.div>
@@ -294,14 +294,14 @@ function LoginContent() {
                   <motion.div variants={itemVariants} className="space-y-2">
                     <Label
                       htmlFor="email"
-                      className="text-gray-700 font-medium"
+                      className="text-charcoal-700 font-medium"
                     >
                       E-Mail-Adresse
                     </Label>
                     <div className="relative group">
                       <motion.div
                         whileHover={{ scale: 1.1 }}
-                        className="absolute left-3 top-3 text-gray-400 group-focus-within:text-sage-600 transition-colors duration-200"
+                        className="absolute left-3 top-3 text-charcoal-400 group-focus-within:text-sage-600 transition-colors duration-200"
                       >
                         <Mail className="h-4 w-4" />
                       </motion.div>
@@ -312,7 +312,7 @@ function LoginContent() {
                         placeholder="ihre@email.de"
                         value={formData.email}
                         onChange={handleChange}
-                        className="pl-10 border-gray-200 focus:border-sage-500 focus:ring-sage-500 transition-all duration-200 bg-white/50"
+                        className="pl-10 border-sand-200 focus:border-sage-500 focus:ring-sage-500 transition-all duration-200 bg-white/50"
                         required
                       />
                     </div>
@@ -322,14 +322,14 @@ function LoginContent() {
                   <motion.div variants={itemVariants} className="space-y-2">
                     <Label
                       htmlFor="password"
-                      className="text-gray-700 font-medium"
+                      className="text-charcoal-700 font-medium"
                     >
                       Passwort
                     </Label>
                     <div className="relative group">
                       <motion.div
                         whileHover={{ scale: 1.1 }}
-                        className="absolute left-3 top-3 text-gray-400 group-focus-within:text-sage-600 transition-colors duration-200"
+                        className="absolute left-3 top-3 text-charcoal-400 group-focus-within:text-sage-600 transition-colors duration-200"
                       >
                         <Lock className="h-4 w-4" />
                       </motion.div>
@@ -340,7 +340,7 @@ function LoginContent() {
                         placeholder="Ihr Passwort"
                         value={formData.password}
                         onChange={handleChange}
-                        className="pl-10 pr-10 border-gray-200 focus:border-sage-500 focus:ring-sage-500 transition-all duration-200 bg-white/50"
+                        className="pl-10 pr-10 border-sand-200 focus:border-sage-500 focus:ring-sage-500 transition-all duration-200 bg-white/50"
                         required
                       />
                       <motion.div
@@ -355,9 +355,9 @@ function LoginContent() {
                           onClick={() => setShowPassword(!showPassword)}
                         >
                           {showPassword ? (
-                            <EyeOff className="h-4 w-4 text-gray-400" />
+                            <EyeOff className="h-4 w-4 text-charcoal-400" />
                           ) : (
-                            <Eye className="h-4 w-4 text-gray-400" />
+                            <Eye className="h-4 w-4 text-charcoal-400" />
                           )}
                         </Button>
                       </motion.div>
@@ -379,11 +379,11 @@ function LoginContent() {
                           rememberMe: !!checked,
                         }))
                       }
-                      className="border-gray-300 data-[state=checked]:bg-sage-600 data-[state=checked]:border-sage-600"
+                      className="border-sand-300 data-[state=checked]:bg-sage-600 data-[state=checked]:border-sage-600"
                     />
                     <Label
                       htmlFor="rememberMe"
-                      className="text-sm font-normal text-gray-600"
+                      className="text-sm font-normal text-charcoal-600"
                     >
                       Angemeldet bleiben
                     </Label>
@@ -428,13 +428,13 @@ function LoginContent() {
                     <motion.div whileHover={{ scale: 1.05 }}>
                       <Link
                         href="/forgot-password"
-                        className="text-sm text-gray-600 hover:text-sage-600 underline-offset-4 hover:underline transition-colors duration-200"
+                        className="text-sm text-charcoal-600 hover:text-sage-600 underline-offset-4 hover:underline transition-colors duration-200"
                       >
                         Passwort vergessen?
                       </Link>
                     </motion.div>
 
-                    <div className="text-sm text-gray-600">
+                    <div className="text-sm text-charcoal-600">
                       Noch kein Konto?{" "}
                       <motion.span
                         whileHover={{ scale: 1.05 }}
@@ -449,7 +449,7 @@ function LoginContent() {
                       </motion.span>
                     </div>
 
-                    <div className="text-sm text-gray-600">
+                    <div className="text-sm text-charcoal-600">
                       Möchten Sie helfen?{" "}
                       <motion.span
                         whileHover={{ scale: 1.05 }}

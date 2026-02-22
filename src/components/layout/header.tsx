@@ -333,7 +333,7 @@ export function Header() {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
                 variant="ghost"
-                size="sm"
+                size="md"
                 className="text-sage-700 hover:bg-sage-50 focus-visible:ring-2 focus-visible:ring-sage-500"
                 aria-label="Mobilmenü öffnen"
               >

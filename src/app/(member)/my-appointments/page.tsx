@@ -126,7 +126,7 @@ export default function MyAppointmentsPage() {
       <Layout>
         <div className="flex items-center justify-center min-h-screen">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-600 mx-auto mb-4"></div>
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sage-600 mx-auto mb-4"></div>
             <p className="text-gray-600">Lade Termine...</p>
           </div>
         </div>
@@ -189,7 +189,7 @@ export default function MyAppointmentsPage() {
       className={cn(
         "transition-all duration-200 hover:shadow-md",
         appointment.role === "member" && "border-blue-200 bg-blue-50/50",
-        appointment.role === "helper" && "border-emerald-200 bg-emerald-50/50"
+        appointment.role === "helper" && "border-sage-200 bg-sage-50/50"
       )}
     >
       <CardContent className="p-6">
@@ -204,7 +204,7 @@ export default function MyAppointmentsPage() {
                 className={cn(
                   appointment.role === "member" && "bg-blue-100 text-blue-800",
                   appointment.role === "helper" &&
-                    "bg-emerald-100 text-emerald-800"
+                    "bg-sage-100 text-sage-800"
                 )}
               >
                 {appointment.role === "member" ? (
@@ -321,7 +321,7 @@ export default function MyAppointmentsPage() {
     <Layout className="bg-warm-50">
       <div className="min-h-screen">
         {/* Header */}
-        <header className="bg-white/80 backdrop-blur-sm shadow-sm border-b border-emerald-100">
+        <header className="bg-white/80 backdrop-blur-sm shadow-sm border-b border-sage-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-4">
@@ -342,7 +342,7 @@ export default function MyAppointmentsPage() {
               </div>
 
               <Link href="/book">
-                <Button className="bg-emerald-600 hover:bg-emerald-700">
+                <Button className="bg-sage-600 hover:bg-sage-700">
                   <Calendar className="w-4 h-4 mr-2" />
                   Neuen Termin buchen
                 </Button>
@@ -406,7 +406,7 @@ export default function MyAppointmentsPage() {
             {upcomingAppointments.length > 0 && (
               <section>
                 <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                  <Clock className="w-5 h-5 mr-2 text-emerald-600" />
+                  <Clock className="w-5 h-5 mr-2 text-sage-600" />
                   Anstehende Termine ({upcomingAppointments.length})
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -454,7 +454,7 @@ export default function MyAppointmentsPage() {
                         : "Sie haben derzeit keine Termine als Helferin."}
                   </p>
                   <Link href="/book">
-                    <Button className="bg-emerald-600 hover:bg-emerald-700">
+                    <Button className="bg-sage-600 hover:bg-sage-700">
                       <Calendar className="w-4 h-4 mr-2" />
                       Ersten Termin buchen
                     </Button>

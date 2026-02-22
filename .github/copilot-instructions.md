@@ -30,7 +30,7 @@ Eine webbasierte PWA-Plattform für den Muslimin e.V., die Vereinsmitgliedern Zu
 
 **Secondary Colors (harmonisch)**
 
-- Warm: warm-400, warm-500, warm-700 (Orange-Töne für passive Mitgliedschaft)
+- Warm: warm-400, warm-500, warm-700
 - Cream: cream-50, cream-300 (Creme-Töne für sanfte Akzente)
 
 weitere Farben die zu dieser Palette passen:
@@ -382,7 +382,7 @@ import { setupServer } from "msw/node";
 const server = setupServer(
   rest.post("https://*.supabase.co/rest/v1/bookings", (req, res, ctx) => {
     return res(ctx.json({ id: "123", ...req.body }));
-  })
+  }),
 );
 
 beforeAll(() => server.listen());

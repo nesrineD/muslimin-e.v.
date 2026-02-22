@@ -22,9 +22,9 @@ interface EventCardProps {
 
 const badgeStyles: Record<BadgeVariant, string> = {
   open: "bg-sage-100 text-sage-800 border-sage-300",
-  register: "bg-amber-100 text-amber-800 border-amber-300",
+  register: "bg-warm-100 text-warm-700 border-warm-300",
   members: "bg-clay-100 text-clay-800 border-clay-300",
-  online: "bg-blue-100 text-blue-800 border-blue-300",
+  online: "bg-sage-100 text-sage-800 border-sage-300",
   presence: "bg-sand-100 text-charcoal-800 border-sand-300",
   limited: "bg-coral-100 text-coral-800 border-coral-300",
 };

@@ -653,7 +653,7 @@ export default function HelperDashboard() {
                     mockMemberAppointments.length > 0 ? "Morgen" : "Keiner"
                   }
                   icon={Clock}
-                  color="text-emerald-600"
+                  color="text-sage-600"
                   description={
                     mockMemberAppointments.length > 0
                       ? "15:00 Uhr"
@@ -684,7 +684,7 @@ export default function HelperDashboard() {
                 <Card className="shadow-lg border-0 bg-white/70 backdrop-blur-sm">
                   <CardHeader>
                     <CardTitle className="text-lg font-bold text-gray-900 flex items-center">
-                      <Heart className="w-5 h-5 mr-2 text-emerald-600" />
+                      <Heart className="w-5 h-5 mr-2 text-sage-600" />
                       Mein Profil
                     </CardTitle>
                   </CardHeader>
@@ -741,7 +741,7 @@ export default function HelperDashboard() {
                               name="vorname"
                               value={profileFormData.vorname}
                               onChange={handleProfileInputChange}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-emerald-500 focus:border-emerald-500 text-sm"
+                              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-sage-500 focus:border-sage-500 text-sm"
                             />
                           </div>
                           <div>
@@ -753,7 +753,7 @@ export default function HelperDashboard() {
                               name="nachname"
                               value={profileFormData.nachname}
                               onChange={handleProfileInputChange}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-emerald-500 focus:border-emerald-500 text-sm"
+                              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-sage-500 focus:border-sage-500 text-sm"
                             />
                           </div>
                         </div>
@@ -767,7 +767,7 @@ export default function HelperDashboard() {
                             name="email"
                             value={profileFormData.email}
                             onChange={handleProfileInputChange}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-emerald-500 focus:border-emerald-500 text-sm"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-sage-500 focus:border-sage-500 text-sm"
                           />
                         </div>
 
@@ -792,7 +792,7 @@ export default function HelperDashboard() {
                                       e.target.checked
                                     )
                                   }
-                                  className="h-4 w-4 text-emerald-600 focus:ring-emerald-500 border-gray-300 rounded"
+                                  className="h-4 w-4 text-sage-600 focus:ring-sage-500 border-gray-300 rounded"
                                 />
                                 <span className="ml-2 text-sm text-gray-700">
                                   {category}
@@ -837,7 +837,7 @@ export default function HelperDashboard() {
                   <CardHeader>
                     <CardTitle className="text-lg font-bold text-gray-900 flex items-center justify-between">
                       <div className="flex items-center">
-                        <Calendar className="w-5 h-5 mr-2 text-emerald-600" />
+                        <Calendar className="w-5 h-5 mr-2 text-sage-600" />
                         Anstehende Beratungstermine
                       </div>
                       {appointments.length > 0 && (
@@ -907,7 +907,7 @@ export default function HelperDashboard() {
                   <CardHeader>
                     <CardTitle className="text-lg font-bold text-gray-900 flex items-center justify-between">
                       <div className="flex items-center">
-                        <Clock className="w-5 h-5 mr-2 text-emerald-600" />
+                        <Clock className="w-5 h-5 mr-2 text-sage-600" />
                         Verfügbarkeiten
                       </div>
                       <Button
@@ -950,17 +950,17 @@ export default function HelperDashboard() {
                 <Card className="shadow-lg border-0 bg-white/70 backdrop-blur-sm">
                   <CardHeader>
                     <CardTitle className="text-lg font-bold text-gray-900 flex items-center">
-                      <Calendar className="w-5 h-5 mr-2 text-emerald-600" />
+                      <Calendar className="w-5 h-5 mr-2 text-sage-600" />
                       Schnelle Terminbuchung
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="text-center py-8">
-                      <Calendar className="w-16 h-16 text-emerald-600 mx-auto mb-4" />
+                      <Calendar className="w-16 h-16 text-sage-600 mx-auto mb-4" />
                       <p className="text-gray-700 mb-4">
                         Buchen Sie einen Termin für Ihre Beratung
                       </p>
-                      <Button className="bg-emerald-600 hover:bg-emerald-700">
+                      <Button className="bg-sage-600 hover:bg-sage-700">
                         <Plus className="w-4 h-4 mr-2" />
                         Neuen Termin buchen
                       </Button>
@@ -980,7 +980,7 @@ export default function HelperDashboard() {
                   <CardHeader>
                     <CardTitle className="text-lg font-bold text-gray-900 flex items-center justify-between">
                       <div className="flex items-center">
-                        <Clock className="w-5 h-5 mr-2 text-emerald-600" />
+                        <Clock className="w-5 h-5 mr-2 text-sage-600" />
                         Meine Termine
                       </div>
                       {mockMemberAppointments.length > 0 && (
@@ -1010,7 +1010,7 @@ export default function HelperDashboard() {
                           >
                             <div className="flex items-center justify-between mb-2">
                               <div className="flex items-center">
-                                <div className="w-3 h-3 bg-emerald-500 rounded-full mr-3"></div>
+                                <div className="w-3 h-3 bg-sage-500 rounded-full mr-3"></div>
                                 <span className="font-medium text-gray-900">
                                   {appointment.category}
                                 </span>

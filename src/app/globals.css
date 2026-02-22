@@ -6,7 +6,7 @@
 @layer base {
   :root {
     /* Sage-dominant color system */
-    --sage: 142 8% 38%;
+    --sage: 162 8% 38%;
     --sage-50: 120 3% 96%;
     --sage-100: 120 5% 89%;
     --sage-200: 120 6% 79%;
@@ -50,7 +50,7 @@
     --coral: 14 35% 46%;
 
     /* Semantic aliases */
-    --background: 0 0% 100%;
+    --background: 40 33% 97%;
     --foreground: 200 9% 18%;
     --card: 0 0% 100%;
     --card-foreground: 200 9% 18%;
@@ -171,49 +171,49 @@
 }
 
 .fc-theme-standard .fc-scrollgrid {
-  border: 1px solid #e5e7eb;
+  border: 1px solid hsl(var(--border));
   border-radius: 0.5rem;
 }
 
 .fc-theme-standard td,
 .fc-theme-standard th {
-  border-color: #e5e7eb;
+  border-color: hsl(var(--border));
 }
 
 .fc-button-primary {
-  background-color: #5b6960 !important;
-  border-color: #5b6960 !important;
+  background-color: hsl(var(--primary)) !important;
+  border-color: hsl(var(--primary)) !important;
   color: white !important;
 }
 
 .fc-button-primary:hover {
-  background-color: #4f5d54 !important;
-  border-color: #4f5d54 !important;
+  background-color: hsl(var(--primary) / 0.85) !important;
+  border-color: hsl(var(--primary) / 0.85) !important;
 }
 
 .fc-button-primary:disabled {
-  background-color: #9ca3af !important;
-  border-color: #9ca3af !important;
+  background-color: hsl(var(--charcoal) / 0.4) !important;
+  border-color: hsl(var(--charcoal) / 0.4) !important;
 }
 
 .fc-today-button {
-  background-color: #6b7280 !important;
-  border-color: #6b7280 !important;
+  background-color: hsl(var(--charcoal) / 0.4) !important;
+  border-color: hsl(var(--charcoal) / 0.4) !important;
 }
 
 .fc-today-button:hover {
-  background-color: #4b5563 !important;
-  border-color: #4b5563 !important;
+  background-color: hsl(var(--charcoal) / 0.55) !important;
+  border-color: hsl(var(--charcoal) / 0.55) !important;
 }
 
 .fc-daygrid-day.fc-day-today {
-  background-color: #ecfdf5 !important;
+  background-color: hsl(var(--sage) / 0.08) !important;
 }
 
 .fc-col-header-cell {
-  background-color: #f9fafb !important;
+  background-color: hsl(var(--sand) / 0.4) !important;
   font-weight: 600 !important;
-  color: #374151 !important;
+  color: hsl(var(--charcoal)) !important;
 }
 
 .fc-event {
@@ -235,7 +235,7 @@
 }
 
 .fc-timegrid-axis-cushion {
-  color: #6b7280 !important;
+  color: hsl(var(--charcoal) / 0.4) !important;
   font-size: 0.875rem !important;
 }
 
@@ -293,4 +293,28 @@
   box-shadow:
     0 20px 40px rgba(0, 0, 0, 0.1),
     0 0 20px rgba(91, 105, 96, 0.1);
+}
+
+/* Respect user's motion preferences — WCAG 2.1 AA SC 2.3.3 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-gradient,
+  .animate-float,
+  .animate-pulse-glow {
+    animation: none !important;
+  }
+  .card-interactive {
+    transition: none !important;
+  }
+  .card-interactive:hover {
+    transform: none !important;
+    box-shadow: 0 4px 12px rgba(42, 47, 50, 0.08);
+  }
 }

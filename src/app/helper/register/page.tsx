@@ -143,8 +143,8 @@ export default function HelperRegistrationPage() {
       <div className="min-h-screen bg-warm-50 flex items-center justify-center">
         <Card className="max-w-md w-full mx-4">
           <CardContent className="p-8 text-center">
-            <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Check className="w-8 h-8 text-emerald-600" />
+            <div className="w-16 h-16 bg-sage-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Check className="w-8 h-8 text-sage-600" />
             </div>
             <CardTitle className="text-xl text-gray-900 mb-2">
               Registrierung erfolgreich!
@@ -153,7 +153,7 @@ export default function HelperRegistrationPage() {
               Sie werden in Kürze zu Ihrem Helferinnen-Dashboard
               weitergeleitet...
             </CardDescription>
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-600 mx-auto"></div>
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sage-600 mx-auto"></div>
           </CardContent>
         </Card>
       </div>
@@ -166,7 +166,7 @@ export default function HelperRegistrationPage() {
       <div className="min-h-screen bg-warm-50 flex items-center justify-center">
         <div className="bg-white rounded-2xl shadow-lg p-8 max-w-md w-full mx-4">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-600 mx-auto mb-4"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-sage-600 mx-auto mb-4"></div>
             <h2 className="text-xl font-bold text-gray-900 mb-2">
               Überprüfung der Anmeldung...
             </h2>
@@ -202,7 +202,7 @@ export default function HelperRegistrationPage() {
             <div className="space-y-3">
               <Link
                 href="/login?redirect=/helper/register"
-                className="block w-full bg-emerald-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-emerald-700 transition-colors"
+                className="block w-full bg-sage-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-sage-700 transition-colors"
               >
                 Als Mitglied anmelden
               </Link>
@@ -229,14 +229,14 @@ export default function HelperRegistrationPage() {
     <div className="min-h-screen bg-warm-50">
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Welcome Message for Authenticated Member */}
-        <div className="bg-emerald-50 rounded-2xl border border-emerald-200 p-6 mb-6">
+        <div className="bg-sage-50 rounded-2xl border border-sage-200 p-6 mb-6">
           <div className="flex items-center">
             <div className="text-4xl mr-4">👋</div>
             <div>
-              <h3 className="text-lg font-bold text-emerald-800">
+              <h3 className="text-lg font-bold text-sage-800">
                 Salam {user?.user_metadata?.vorname}!
               </h3>
-              <p className="text-emerald-700 text-sm">
+              <p className="text-sage-700 text-sm">
                 Schön, dass Sie als Vereinsmitglied ({user?.email}) anderen
                 helfen möchten. Nach der Registrierung können Sie sofort Ihre
                 Verfügbarkeiten im Dashboard eintragen.
@@ -247,8 +247,8 @@ export default function HelperRegistrationPage() {
 
         <Card className="shadow-lg">
           <CardHeader className="text-center">
-            <div className="mx-auto w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mb-4">
-              <UserCheck className="w-8 h-8 text-emerald-600" />
+            <div className="mx-auto w-16 h-16 bg-sage-100 rounded-full flex items-center justify-center mb-4">
+              <UserCheck className="w-8 h-8 text-sage-600" />
             </div>
             <CardTitle className="text-3xl text-gray-900">
               Als Helferin registrieren
@@ -280,8 +280,8 @@ export default function HelperRegistrationPage() {
                       className={cn(
                         "cursor-pointer transition-all duration-200 hover:shadow-md",
                         watchedCategories?.includes(category.id)
-                          ? "ring-2 ring-emerald-500 bg-emerald-50 border-emerald-200"
-                          : "border-gray-200 hover:border-emerald-300"
+                          ? "ring-2 ring-sage-500 bg-sage-50 border-sage-200"
+                          : "border-gray-200 hover:border-sage-300"
                       )}
                       onClick={() => handleCategoryToggle(category.id)}
                     >
@@ -296,7 +296,7 @@ export default function HelperRegistrationPage() {
                               {category.description}
                             </p>
                             {watchedCategories?.includes(category.id) && (
-                              <div className="flex items-center text-emerald-600">
+                              <div className="flex items-center text-sage-600">
                                 <Check className="w-4 h-4 mr-2" />
                                 <span className="text-sm font-medium">
                                   Ausgewählt
@@ -402,7 +402,7 @@ export default function HelperRegistrationPage() {
                     Ich stimme den{" "}
                     <Link
                       href="/helper-terms"
-                      className="text-emerald-600 hover:text-emerald-700 underline"
+                      className="text-sage-600 hover:text-sage-700 underline"
                       onClick={(e) => e.stopPropagation()}
                     >
                       Helferinnen-Richtlinien
