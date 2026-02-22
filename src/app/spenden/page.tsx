@@ -15,6 +15,8 @@ import {
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { containerVariants, itemVariants } from "@/lib/animations";
+import { PUBLIC_PAGE_WRAPPER_CLASS } from "@/lib/page-config";
 
 interface DonationCampaign {
   id: string;
@@ -103,19 +105,6 @@ Dass wir weiterhin qualitativ hochwertige Programme anbieten können, dass unser
   },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
-};
-
 export default function SpendenPage() {
   const [copied, setCopied] = useState<string | null>(null);
   const [expandedCampaign, setExpandedCampaign] = useState<string | null>(null);
@@ -138,7 +127,7 @@ export default function SpendenPage() {
 
   return (
     <motion.main
-      className="min-h-screen bg-gradient-to-br from-warm-50 via-cream-50 to-sage-50"
+      className={PUBLIC_PAGE_WRAPPER_CLASS}
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -183,11 +172,8 @@ export default function SpendenPage() {
             Jemen: Akute Hungersnot – jede Spende zählt
           </motion.div>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">
-              Deine Spende bewirkt Großes{" "}
-              <span className="text-coral-600">💚</span>
-            </span>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-charcoal-800">
+            Deine Spende bewirkt Großes
           </h1>
 
           <p className="text-xl md:text-2xl text-charcoal-700 mb-8 max-w-2xl mx-auto">
@@ -491,7 +477,7 @@ export default function SpendenPage() {
                     <button
                       onClick={() =>
                         setExpandedCampaign(
-                          expandedCampaign === campaign.id ? null : campaign.id
+                          expandedCampaign === campaign.id ? null : campaign.id,
                         )
                       }
                       className="flex items-center gap-2 text-sage-600 font-semibold hover:text-sage-700 transition-colors focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:outline-none rounded px-2 py-1"
@@ -577,12 +563,12 @@ export default function SpendenPage() {
           className="max-w-3xl mx-auto text-center"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-charcoal-800 mb-4">
-            Jede Spende macht einen Unterschied 💚
+            Jede Spende macht einen Unterschied
           </h2>
           <p className="text-lg text-charcoal-600 mb-8">
             Werde Teil unserer Mission und unterstütze Menschen in Not
           </p>
-          <Button size="lg" variant="secondary" asChild>
+          <Button size="lg" variant="donation" asChild>
             <a href="#spenden" className="gap-2">
               Jetzt spenden
               <ArrowRight className="w-5 h-5" />

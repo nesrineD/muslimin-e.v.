@@ -139,7 +139,7 @@ export default function DashboardPage() {
         <div className="flex items-center justify-center min-h-screen">
           <div className="text-center">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sage-600 mx-auto mb-4"></div>
-            <p className="text-gray-600">Lade Dashboard...</p>
+            <p className="text-charcoal-600">Lade Dashboard...</p>
           </div>
         </div>
       </Layout>
@@ -223,8 +223,8 @@ export default function DashboardPage() {
                   <Icon className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900">{title}</h3>
-                  <p className="text-sm text-gray-600">{subtitle}</p>
+                  <h3 className="font-semibold text-charcoal-800">{title}</h3>
+                  <p className="text-sm text-charcoal-600">{subtitle}</p>
                   {badge && (
                     <Badge variant="outline" className="mt-1">
                       {badge}
@@ -255,8 +255,8 @@ export default function DashboardPage() {
       <CardContent className="p-4">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm text-gray-600">{title}</p>
-            <p className="text-2xl font-bold text-gray-900">{value}</p>
+            <p className="text-sm text-charcoal-600">{title}</p>
+            <p className="text-2xl font-bold text-charcoal-800">{value}</p>
           </div>
           <Icon className={`w-8 h-8 ${color}`} />
         </div>
@@ -275,7 +275,7 @@ export default function DashboardPage() {
   }) => (
     <Card className="shadow-lg border-0 bg-white/70 backdrop-blur-sm">
       <CardHeader>
-        <CardTitle className="text-lg font-bold text-gray-900 flex items-center">
+        <CardTitle className="text-lg font-bold text-charcoal-800 flex items-center">
           <Calendar className="w-5 h-5 mr-2 text-sage-600" />
           {title}
         </CardTitle>
@@ -296,7 +296,7 @@ export default function DashboardPage() {
                   <Badge variant={type === "member" ? "secondary" : "default"}>
                     {appointment.type}
                   </Badge>
-                  <span className="text-sm text-gray-500">
+                  <span className="text-sm text-charcoal-500">
                     {formatDate(appointment.date)}
                   </span>
                 </div>
@@ -306,7 +306,7 @@ export default function DashboardPage() {
                       ? `Helferin: ${appointment.helperName}`
                       : `Mitglied: ${appointment.memberName}`}
                   </p>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-charcoal-600">
                     {appointment.description}
                   </p>
                 </div>
@@ -327,7 +327,7 @@ export default function DashboardPage() {
           </div>
         ) : (
           <div className="text-center py-6">
-            <p className="text-gray-600">
+            <p className="text-charcoal-600">
               Keine {type === "member" ? "gebuchten" : "Helfer-"} Termine
             </p>
           </div>
@@ -466,11 +466,11 @@ export default function DashboardPage() {
                   </AvatarFallback>
                 </Avatar>
                 <div>
-                  <h1 className="text-2xl font-bold text-gray-900">
+                  <h1 className="text-2xl font-bold text-charcoal-800">
                     Willkommen zurück,{" "}
                     {user?.user_metadata?.vorname || "Mitglied"}!
                   </h1>
-                  <p className="text-gray-600">
+                  <p className="text-charcoal-600">
                     {new Intl.DateTimeFormat("de-DE", {
                       weekday: "long",
                       day: "numeric",

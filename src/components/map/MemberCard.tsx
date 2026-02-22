@@ -16,19 +16,19 @@ export const MemberCard: React.FC<MemberCardProps> = ({
 }) => {
   return (
     <div
-      className={`bg-white rounded-lg shadow-lg border border-gray-200 p-4 max-w-sm ${className}`}
+      className={`bg-white rounded-lg shadow-lg border border-sand-200 p-4 max-w-sm ${className}`}
     >
       {/* Header with close button */}
       <div className="flex items-start justify-between mb-3">
         <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 bg-[#9c604d] text-white rounded-full flex items-center justify-center font-semibold">
+          <div className="w-10 h-10 bg-clay-500 text-white rounded-full flex items-center justify-center font-semibold">
             {member.first_name.charAt(0)}
           </div>
           <div>
-            <h3 className="font-semibold text-gray-900 text-sm">
+            <h3 className="font-semibold text-charcoal-800 text-sm">
               {member.display_name}
             </h3>
-            <div className="flex items-center space-x-2 text-xs text-gray-500">
+            <div className="flex items-center space-x-2 text-xs text-charcoal-500">
               <span>
                 {member.role === "member"
                   ? "Mitglied"
@@ -48,7 +48,7 @@ export const MemberCard: React.FC<MemberCardProps> = ({
         {onClose && (
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 transition-colors p-1"
+            className="text-charcoal-400 hover:text-charcoal-600 transition-colors p-1"
             aria-label="Schließen"
           >
             <svg
@@ -70,10 +70,10 @@ export const MemberCard: React.FC<MemberCardProps> = ({
 
       {/* Location info */}
       {member.coordinates && (
-        <div className="mb-3 p-3 bg-[#f1e9de] rounded-lg">
+        <div className="mb-3 p-3 bg-cream-50 rounded-lg">
           <div className="flex items-center space-x-2 text-sm">
             <svg
-              className="w-4 h-4 text-[#9c604d]"
+              className="w-4 h-4 text-clay-500"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -92,13 +92,13 @@ export const MemberCard: React.FC<MemberCardProps> = ({
               />
             </svg>
             <div>
-              <span className="font-medium text-[#9c604d]">
+              <span className="font-medium text-clay-500">
                 {member.coordinates.city}
               </span>
-              <span className="text-gray-600 ml-1">({member.postal_code})</span>
+              <span className="text-charcoal-600 ml-1">({member.postal_code})</span>
             </div>
           </div>
-          <div className="text-xs text-gray-500 mt-1">
+          <div className="text-xs text-charcoal-500 mt-1">
             {member.coordinates.state}
           </div>
         </div>
@@ -113,7 +113,7 @@ export const MemberCard: React.FC<MemberCardProps> = ({
                 ? "bg-green-100 text-green-800"
                 : member.role === "member+helper"
                   ? "bg-blue-100 text-blue-800"
-                  : "bg-gray-100 text-gray-800"
+                  : "bg-sand-100 text-gray-800"
             }`}
           >
             {member.role === "member" && "Mitglied"}
@@ -124,14 +124,14 @@ export const MemberCard: React.FC<MemberCardProps> = ({
 
         {/* Contact info (if applicable for helpers) */}
         {member.role !== "member" && (
-          <div className="text-xs text-gray-500">Verfügbar für Beratung</div>
+          <div className="text-xs text-charcoal-500">Verfügbar für Beratung</div>
         )}
       </div>
 
       {/* Action buttons for helpers */}
       {member.role !== "member" && (
         <div className="mt-4 pt-3 border-t border-gray-100">
-          <button className="w-full bg-[#9c604d] text-white text-sm font-medium py-2 px-4 rounded-lg hover:bg-[#7a4a3a] transition-colors">
+          <button className="w-full bg-clay-500 text-white text-sm font-medium py-2 px-4 rounded-lg hover:bg-clay-700 transition-colors">
             Termin anfragen
           </button>
         </div>

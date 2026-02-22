@@ -121,8 +121,8 @@ export default function HelperAvailabilityPage() {
       <Layout>
         <div className="flex items-center justify-center min-h-screen">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-600 mx-auto mb-4"></div>
-            <p className="text-gray-600">Lade Verfügbarkeiten...</p>
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sage-600 mx-auto mb-4"></div>
+            <p className="text-charcoal-600">Lade Verfügbarkeiten...</p>
           </div>
         </div>
       </Layout>
@@ -297,7 +297,7 @@ export default function HelperAvailabilityPage() {
       default:
         return cn(
           baseClasses,
-          "bg-white hover:bg-sage-50 text-gray-400 hover:text-sage-600 border-sage-200 hover:border-sage-300"
+          "bg-white hover:bg-sage-50 text-charcoal-400 hover:text-sage-600 border-sage-200 hover:border-sage-300"
         );
     }
   };
@@ -322,7 +322,7 @@ export default function HelperAvailabilityPage() {
     <Layout className="bg-warm-50">
       <div className="min-h-screen">
         {/* Header */}
-        <header className="bg-white/80 backdrop-blur-sm shadow-sm border-b border-emerald-100">
+        <header className="bg-white/80 backdrop-blur-sm shadow-sm border-b border-sage-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-4">
@@ -333,10 +333,10 @@ export default function HelperAvailabilityPage() {
                   </Button>
                 </Link>
                 <div>
-                  <h1 className="text-2xl font-bold text-gray-900">
+                  <h1 className="text-2xl font-bold text-charcoal-800">
                     Meine Verfügbarkeiten
                   </h1>
-                  <p className="text-gray-600">
+                  <p className="text-charcoal-600">
                     Legen Sie fest, wann Sie für Beratungen zur Verfügung stehen
                   </p>
                 </div>
@@ -351,7 +351,7 @@ export default function HelperAvailabilityPage() {
             <Card className="bg-white/70 backdrop-blur-sm">
               <CardHeader>
                 <CardTitle className="flex items-center">
-                  <Settings className="w-5 h-5 mr-2 text-emerald-600" />
+                  <Settings className="w-5 h-5 mr-2 text-sage-600" />
                   Schnell-Einstellungen
                 </CardTitle>
                 <CardDescription>
@@ -423,14 +423,14 @@ export default function HelperAvailabilityPage() {
 
                   {/* Toggle Mode */}
                   <div className="flex items-center space-x-2">
-                    <div className="flex bg-gray-100 rounded-lg p-1">
+                    <div className="flex bg-sand-100 rounded-lg p-1">
                       <button
                         onClick={() => setToggleMode("set")}
                         className={cn(
                           "px-3 py-1 text-sm rounded-md transition-colors",
                           toggleMode === "set"
-                            ? "bg-emerald-500 text-white"
-                            : "text-gray-600 hover:text-gray-800"
+                            ? "bg-sage-500 text-white"
+                            : "text-charcoal-600 hover:text-gray-800"
                         )}
                       >
                         Verfügbar setzen
@@ -441,7 +441,7 @@ export default function HelperAvailabilityPage() {
                           "px-3 py-1 text-sm rounded-md transition-colors",
                           toggleMode === "remove"
                             ? "bg-red-500 text-white"
-                            : "text-gray-600 hover:text-gray-800"
+                            : "text-charcoal-600 hover:text-gray-800"
                         )}
                       >
                         Entfernen
@@ -456,7 +456,7 @@ export default function HelperAvailabilityPage() {
                         <Button
                           size="sm"
                           onClick={applyToSelectedSlots}
-                          className="bg-emerald-600 hover:bg-emerald-700"
+                          className="bg-sage-600 hover:bg-sage-700"
                           disabled={selectedSlots.length === 0}
                         >
                           Anwenden ({selectedSlots.length})
@@ -509,7 +509,7 @@ export default function HelperAvailabilityPage() {
             <Card className="bg-white/70 backdrop-blur-sm">
               <CardHeader>
                 <CardTitle className="flex items-center">
-                  <Calendar className="w-5 h-5 mr-2 text-emerald-600" />
+                  <Calendar className="w-5 h-5 mr-2 text-sage-600" />
                   Wochenansicht
                 </CardTitle>
                 <CardDescription>
@@ -580,12 +580,12 @@ export default function HelperAvailabilityPage() {
                     </div>
 
                     {/* Legend */}
-                    <div className="flex items-center justify-center space-x-4 mt-6 p-4 bg-gradient-to-r from-emerald-50 to-sage-50 rounded-lg border border-sage-200">
+                    <div className="flex items-center justify-center space-x-4 mt-6 p-4 bg-gradient-to-r from-sage-50 to-sage-50 rounded-lg border border-sage-200">
                       <div className="flex items-center space-x-2">
                         <div className="w-5 h-5 bg-gradient-to-br from-sage-200 to-sage-100 border-2 border-sage-500 rounded-sm flex items-center justify-center text-sage-800 text-xs font-bold">
                           ✓
                         </div>
-                        <span className="text-sm font-medium text-gray-700">
+                        <span className="text-sm font-medium text-charcoal-700">
                           Verfügbar
                         </span>
                       </div>
@@ -593,55 +593,55 @@ export default function HelperAvailabilityPage() {
                         <div className="w-5 h-5 bg-gray-500 rounded-sm flex items-center justify-center text-white text-xs font-bold">
                           ●
                         </div>
-                        <span className="text-sm font-medium text-gray-700">
+                        <span className="text-sm font-medium text-charcoal-700">
                           Gebucht
                         </span>
                       </div>
                       <div className="flex items-center space-x-2">
                         <div className="w-5 h-5 bg-white border-2 border-dashed border-sage-300 rounded-sm"></div>
-                        <span className="text-sm font-medium text-gray-700">
+                        <span className="text-sm font-medium text-charcoal-700">
                           Nicht verfügbar
                         </span>
                       </div>
                     </div>
 
                     {/* Instructions */}
-                    <div className="mt-4 p-4 bg-gradient-to-r from-emerald-50 to-blue-50 rounded-lg border-l-4 border-emerald-500">
-                      <h4 className="text-sm font-bold text-emerald-800 mb-3 flex items-center">
+                    <div className="mt-4 p-4 bg-gradient-to-r from-sage-50 to-sage-100 rounded-lg border-l-4 border-sage-500">
+                      <h4 className="text-sm font-bold text-sage-800 mb-3 flex items-center">
                         <span className="text-lg mr-2">💡</span>
                         So funktioniert&apos;s:
                       </h4>
-                      <ul className="text-sm text-emerald-700 space-y-2">
+                      <ul className="text-sm text-sage-700 space-y-2">
                         <li className="flex items-start space-x-2">
-                          <span className="text-emerald-600 font-bold">•</span>
+                          <span className="text-sage-600 font-bold">•</span>
                           <span>
                             <strong>Einzeln klicken:</strong> Verfügbarkeit
                             direkt umschalten
                           </span>
                         </li>
                         <li className="flex items-start space-x-2">
-                          <span className="text-emerald-600 font-bold">•</span>
+                          <span className="text-sage-600 font-bold">•</span>
                           <span>
                             <strong>Mehrfachauswahl:</strong> Mehrere Slots
                             auswählen und gemeinsam ändern
                           </span>
                         </li>
                         <li className="flex items-start space-x-2">
-                          <span className="text-emerald-600 font-bold">•</span>
+                          <span className="text-sage-600 font-bold">•</span>
                           <span>
                             <strong>Schnell-Einstellungen:</strong> Typische
                             Muster mit einem Klick setzen
                           </span>
                         </li>
                         <li className="flex items-start space-x-2">
-                          <span className="text-emerald-600 font-bold">•</span>
+                          <span className="text-sage-600 font-bold">•</span>
                           <span>
                             <strong>Auto-Save:</strong> Änderungen werden
                             automatisch gespeichert
                           </span>
                         </li>
                         <li className="flex items-start space-x-2">
-                          <span className="text-emerald-600 font-bold">•</span>
+                          <span className="text-sage-600 font-bold">•</span>
                           <span>
                             <strong>Scrollen:</strong> Nach unten für weitere
                             Zeitslots (bis 20:00 Uhr)

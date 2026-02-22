@@ -87,7 +87,7 @@ export default function GridAvailabilityCalendar({
       case "available":
         return cn(
           baseClasses,
-          "bg-gradient-to-br from-green-100 to-green-50 text-green-800 hover:from-green-200 hover:to-green-100 border-green-400 shadow-sm hover:shadow-md"
+          "bg-gradient-to-br from-sage-100 to-sage-50 text-sage-800 hover:from-sage-200 hover:to-sage-100 border-sage-400 shadow-sm hover:shadow-md"
         );
       case "booked":
         return cn(
@@ -120,7 +120,7 @@ export default function GridAvailabilityCalendar({
   return (
     <div className="space-y-4">
       {/* Week Navigation Header */}
-      <div className="bg-gradient-to-r from-sage-100 to-emerald-50 rounded-xl p-5 border-2 border-sage-200 shadow-md">
+      <div className="bg-gradient-to-r from-sage-100 to-sage-50 rounded-xl p-5 border-2 border-sage-200 shadow-md">
         <div className="flex items-center justify-between mb-3">
           <div className="flex-1">
             <h3 className="text-base font-semibold text-sage-900 mb-1">
@@ -176,8 +176,8 @@ export default function GridAvailabilityCalendar({
         {/* Status badges */}
         <div className="flex flex-wrap gap-2 pt-2 border-t border-sage-300">
           {isCurrentWeek && (
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-emerald-100 text-emerald-800 text-xs font-semibold rounded-full">
-              <span className="w-2 h-2 bg-emerald-600 rounded-full"></span>
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-sage-100 text-sage-800 text-xs font-semibold rounded-full">
+              <span className="w-2 h-2 bg-sage-600 rounded-full"></span>
               Aktuelle Woche
             </span>
           )}
@@ -268,9 +268,9 @@ export default function GridAvailabilityCalendar({
           </div>
 
           {/* Legend */}
-          <div className="flex items-center justify-center space-x-4 mt-6 p-4 bg-gradient-to-r from-emerald-50 to-sage-50 rounded-lg border border-sage-200">
+          <div className="flex items-center justify-center space-x-4 mt-6 p-4 bg-gradient-to-r from-sage-50 to-sage-50 rounded-lg border border-sage-200">
             <div className="flex items-center space-x-2">
-              <div className="w-5 h-5 bg-gradient-to-br from-green-200 to-green-100 border-2 border-green-500 rounded-sm flex items-center justify-center text-green-800 text-xs font-bold">
+              <div className="w-5 h-5 bg-gradient-to-br from-sage-200 to-sage-100 border-2 border-sage-500 rounded-sm flex items-center justify-center text-sage-800 text-xs font-bold">
                 ✓
               </div>
               <span className="text-sm font-medium text-gray-700">
@@ -292,35 +292,35 @@ export default function GridAvailabilityCalendar({
           </div>
 
           {/* Instructions */}
-          <div className="mt-4 p-4 bg-gradient-to-r from-emerald-50 to-blue-50 rounded-lg border-l-4 border-emerald-500">
-            <h4 className="text-sm font-bold text-emerald-800 mb-3 flex items-center">
+          <div className="mt-4 p-4 bg-gradient-to-r from-sage-50 to-sage-100 rounded-lg border-l-4 border-sage-500">
+            <h4 className="text-sm font-bold text-sage-800 mb-3 flex items-center">
               <span className="text-lg mr-2">💡</span>
               So funktioniert&apos;s:
             </h4>
-            <ul className="text-sm text-emerald-700 space-y-2">
+            <ul className="text-sm text-sage-700 space-y-2">
               <li className="flex items-start space-x-2">
-                <span className="text-emerald-600 font-bold">•</span>
+                <span className="text-sage-600 font-bold">•</span>
                 <span>
                   <strong>Einzeln klicken:</strong> Verfügbarkeit direkt
                   umschalten
                 </span>
               </li>
               <li className="flex items-start space-x-2">
-                <span className="text-emerald-600 font-bold">•</span>
+                <span className="text-sage-600 font-bold">•</span>
                 <span>
                   <strong>Mehrfachauswahl:</strong> Mehrere Slots auswählen und
                   gemeinsam ändern
                 </span>
               </li>
               <li className="flex items-start space-x-2">
-                <span className="text-emerald-600 font-bold">•</span>
+                <span className="text-sage-600 font-bold">•</span>
                 <span>
                   <strong>Wochennavigation:</strong> Mit den Pfeilen zwischen
                   Wochen wechseln
                 </span>
               </li>
               <li className="flex items-start space-x-2">
-                <span className="text-emerald-600 font-bold">•</span>
+                <span className="text-sage-600 font-bold">•</span>
                 <span>
                   <strong>Scrollen:</strong> Nach unten für weitere Zeitslots
                   (bis 20:00 Uhr)

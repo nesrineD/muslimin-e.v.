@@ -33,10 +33,10 @@ export default function HelperRegistrationSuccess() {
     <div className="min-h-screen bg-warm-50 flex items-center justify-center p-4">
       <Card className="w-full max-w-lg">
         <CardHeader className="text-center">
-          <div className="mx-auto mb-4 w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center">
-            <Check className="h-8 w-8 text-emerald-600" />
+          <div className="mx-auto mb-4 w-16 h-16 bg-sage-100 rounded-full flex items-center justify-center">
+            <Check className="h-8 w-8 text-sage-600" />
           </div>
-          <CardTitle className="text-2xl font-bold text-emerald-800">
+          <CardTitle className="text-2xl font-bold text-sage-800">
             Registrierung erfolgreich!
           </CardTitle>
           <CardDescription className="text-gray-600">

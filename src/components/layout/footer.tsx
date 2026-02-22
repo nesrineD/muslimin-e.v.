@@ -8,13 +8,13 @@ import { ChevronRight, MapPin } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { SocialMediaSection } from "@/components/SocialMediaSection";
-import { NAV_LINKS, LEGAL_LINKS } from "@/lib/constants";
+import { LEGAL_LINKS } from "@/lib/constants";
 
 export function Footer() {
   return (
     <footer className="border-t-2 border-sage-400 bg-white" role="contentinfo">
       <div className="container mx-auto px-4 py-10">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {/* Brand Column */}
           <div className="space-y-3 lg:col-span-1">
             <Link href="/" className="inline-flex items-center gap-2.5 group">
@@ -30,29 +30,6 @@ export function Footer() {
               </span>
             </Link>
           </div>
-
-          {/* Erkunden Column */}
-          <nav aria-label="Footer Navigation Erkunden">
-            <h3 className="text-xs font-bold text-sage-800 uppercase tracking-wider mb-3 flex items-center gap-2">
-              <span className="w-1 h-4 bg-charcoal-600 rounded-full" />
-              Erkunden
-            </h3>
-            <ul className="space-y-2.5">
-              {NAV_LINKS.slice(0, 2).map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="flex items-center gap-2 text-sm text-sage-600 hover:text-sage-800 hover:translate-x-0.5 transition-all group"
-                  >
-                    <ChevronRight className="h-3.5 w-3.5 text-sage-400 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    <span className="group-hover:font-medium transition-all">
-                      {link.label}
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
 
           {/* Kontakt Column with Social Media */}
           <div>

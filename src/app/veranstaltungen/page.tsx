@@ -1,9 +1,11 @@
 "use client";
 
 import { EventCard } from "@/components/landing/EventCard";
-import { SocialMediaSection } from "@/components/SocialMediaSection";
 import { motion } from "framer-motion";
 import { containerVariants, itemVariants } from "@/lib/animations";
+import { PUBLIC_PAGE_WRAPPER_CLASS } from "@/lib/page-config";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import { Mic, Video, Moon, Flame } from "lucide-react";
 import { useState } from "react";
 import type { LucideIcon } from "lucide-react";
@@ -120,7 +122,7 @@ export default function VeranstaltungenPage() {
 
   return (
     <motion.main
-      className="min-h-screen bg-gradient-to-br from-sage-50 via-cream-50 to-warm-50"
+      className={PUBLIC_PAGE_WRAPPER_CLASS}
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -129,7 +131,7 @@ export default function VeranstaltungenPage() {
         {/* Hero */}
         <section className="py-20 md:py-24 text-center max-w-4xl mx-auto">
           <motion.div variants={itemVariants}>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-charcoal-800">
               Unsere Veranstaltungen
             </h1>
             <p className="text-lg md:text-xl text-charcoal-800 mb-8">
@@ -187,17 +189,21 @@ export default function VeranstaltungenPage() {
           events={annualEvents}
         />
 
-        {/* Social Media Section */}
+        {/* CTA Section */}
         <motion.section variants={itemVariants} className="py-16 px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="py-12 px-6 sm:px-8 bg-gradient-to-br from-sage-50 via-cream-50 to-sage-100/80 rounded-2xl shadow-lg border-2 border-sage-200">
-              <SocialMediaSection
-                variant="compact"
-                showTitle={true}
-                title="Eindrücke von unseren Veranstaltungen 📸"
-                subtitle="Fotos, Videos und aktuelle Termine findest du auf unseren Social-Media-Kanälen"
-              />
-            </div>
+          <div className="max-w-3xl mx-auto text-center bg-sage-50 rounded-2xl py-12 px-8 border-2 border-sage-200">
+            <h2 className="text-3xl font-bold text-charcoal-800 mb-4">
+              Teil unserer Gemeinschaft werden
+            </h2>
+            <p className="text-lg text-charcoal-700 mb-8">
+              Erlebe unsere Veranstaltungen als Mitglied und gestalte die
+              Gemeinschaft aktiv mit.
+            </p>
+            <Button variant="primary" size="lg" asChild>
+              <Link href="/mitglied-werden" data-cta="primary">
+                Mitglied werden
+              </Link>
+            </Button>
           </div>
         </motion.section>
       </div>
@@ -226,9 +232,7 @@ function Section({
     <section id={id} className="py-10 md:py-12 scroll-mt-24">
       <motion.div variants={itemVariants} className="max-w-7xl mx-auto">
         <div className={centered ? "text-center mb-10" : "mb-10"}>
-          <h2 className="text-3xl font-bold mb-3 bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">
-            {title}
-          </h2>
+          <h2 className="text-3xl font-bold mb-3 text-charcoal-800">{title}</h2>
           <p className="text-lg text-charcoal-700 max-w-2xl mx-auto">
             {subtitle}
           </p>

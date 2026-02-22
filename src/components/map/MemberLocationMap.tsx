@@ -232,7 +232,7 @@ export const MemberLocationMap: React.FC<MemberLocationMapProps> = ({
         className={`flex items-center justify-center bg-gray-50 rounded-lg min-h-96 ${className}`}
       >
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#9c604d] mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-clay-500 mx-auto mb-4"></div>
           <p className="text-gray-600">Mitgliederkarte wird geladen...</p>
         </div>
       </div>
@@ -332,7 +332,7 @@ export const MemberLocationMap: React.FC<MemberLocationMapProps> = ({
         {/* All Members List overlay */}
         {showMembersList && (
           <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-20 w-96 max-h-[80vh] bg-white rounded-lg shadow-xl border border-gray-200 overflow-hidden">
-            <div className="flex items-center justify-between p-4 bg-[#9c604d] text-white">
+            <div className="flex items-center justify-between p-4 bg-clay-500 text-white">
               <h3 className="font-semibold text-lg">
                 Alle sichtbaren Mitglieder ({filteredMembers.length})
               </h3>
@@ -352,10 +352,10 @@ export const MemberLocationMap: React.FC<MemberLocationMapProps> = ({
                       handleMemberClick(member);
                       setShowMembersList(false);
                     }}
-                    className="flex items-center gap-3 p-3 rounded-lg hover:bg-[#f1e9de] cursor-pointer transition-colors border border-gray-100"
+                    className="flex items-center gap-3 p-3 rounded-lg hover:bg-cream-50 cursor-pointer transition-colors border border-gray-100"
                   >
                     {/* Member Avatar */}
-                    <div className="w-10 h-10 rounded-full bg-[#9c604d] text-white text-sm font-semibold flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-full bg-clay-500 text-white text-sm font-semibold flex items-center justify-center">
                       {member.display_name
                         .split(" ")
                         .map((n) => n[0])
@@ -393,12 +393,12 @@ export const MemberLocationMap: React.FC<MemberLocationMapProps> = ({
       </div>
 
       {/* Footer info */}
-      <div className="mt-4 p-4 bg-[#f1e9de] rounded-lg">
+      <div className="mt-4 p-4 bg-cream-50 rounded-lg">
         <div className="flex items-center justify-between text-sm">
           <div className="flex items-center space-x-4">
             <button
               onClick={() => setShowMembersList(true)}
-              className="text-[#9c604d] hover:text-[#7a4a3a] font-medium underline cursor-pointer"
+              className="text-clay-500 hover:text-clay-700 font-medium underline cursor-pointer"
             >
               {memberCount} sichtbare{" "}
               {memberCount === 1 ? "Mitglied" : "Mitglieder"} anzeigen

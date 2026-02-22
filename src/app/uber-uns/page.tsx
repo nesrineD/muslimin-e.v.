@@ -11,30 +11,14 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { containerVariants, itemVariants } from "@/lib/animations";
+import { PUBLIC_PAGE_WRAPPER_CLASS } from "@/lib/page-config";
 
 export default function AboutPage() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 },
-    },
-  };
-
   return (
-    <div className="bg-gradient-to-br from-sage-50 via-cream-50 to-warm-50">
+    <div className={PUBLIC_PAGE_WRAPPER_CLASS}>
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -47,13 +31,10 @@ export default function AboutPage() {
           className="text-center py-20 lg:py-28 bg-gradient-to-br from-sage-100/40 via-cream-100/30 to-sage-50"
         >
           <div className="container mx-auto px-4">
-            <h1 className="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">
-              Über{" "}
-              <span className="bg-gradient-to-r from-sage-500 to-sage-600 bg-clip-text text-transparent">
-                Muslimin e.V.
-              </span>
+            <h1 className="text-4xl md:text-6xl font-bold mb-4 text-charcoal-800">
+              Über <span className="text-sage-700">Muslimin e.V.</span>
             </h1>
-            <p className="text-lg md:text-xl text-sage-600 max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-charcoal-700 max-w-3xl mx-auto">
               Gemeinschaft, Bildung & Hilfe für muslimische Frauen seit 2011.
             </p>
           </div>
@@ -69,7 +50,7 @@ export default function AboutPage() {
               <h2 className="text-3xl md:text-4xl font-bold text-sage-800 leading-tight">
                 Wer sind wir?
               </h2>
-              <p className="text-lg text-sage-600 mt-3 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-lg text-charcoal-700 mt-3 max-w-2xl mx-auto leading-relaxed">
                 Ein aktiver muslimischer Mädchen- und Frauenverein im Herzen
                 Berlins.
               </p>
@@ -80,7 +61,7 @@ export default function AboutPage() {
                 <h3 className="text-xl font-semibold text-sage-800 mb-2">
                   Vielfalt
                 </h3>
-                <p className="text-sage-600">
+                <p className="text-charcoal-700">
                   Mitglieder verschiedenster Herkünfte und Generationen.
                 </p>
               </div>
@@ -89,7 +70,7 @@ export default function AboutPage() {
                 <h3 className="text-xl font-semibold text-sage-800 mb-2">
                   Bildung
                 </h3>
-                <p className="text-sage-600">
+                <p className="text-charcoal-700">
                   Eine Plattform um religiöses Wissen zu erlangen.
                 </p>
               </div>
@@ -98,7 +79,7 @@ export default function AboutPage() {
                 <h3 className="text-xl font-semibold text-sage-800 mb-2">
                   Engagement
                 </h3>
-                <p className="text-sage-600">
+                <p className="text-charcoal-700">
                   Potenziale entfalten und die Gemeinde stärken.
                 </p>
               </div>
@@ -107,7 +88,7 @@ export default function AboutPage() {
                 <h3 className="text-xl font-semibold text-sage-800 mb-2">
                   Familienfreundlich
                 </h3>
-                <p className="text-sage-600">
+                <p className="text-charcoal-700">
                   Kinderbetreuung für eine kinderfreundliche Atmosphäre.
                 </p>
               </div>
@@ -133,7 +114,7 @@ export default function AboutPage() {
                 Frauen ihre spirituelle, intellektuelle und soziale Entwicklung
                 fördern können.&rdquo;
               </blockquote>
-              <div className="space-y-6 text-lg text-sage-600 leading-relaxed">
+              <div className="space-y-6 text-lg text-charcoal-700 leading-relaxed">
                 <p>
                   Unser Verein wurde 2011 gegründet, um muslimische Frauen in
                   Berlin und bundesweit zu vernetzen und ihnen eine Stimme zu
@@ -173,7 +154,7 @@ export default function AboutPage() {
               <h2 className="text-3xl md:text-4xl font-bold text-sage-800 leading-tight">
                 Unsere Kernziele
               </h2>
-              <p className="text-lg text-sage-600 mt-3 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-lg text-charcoal-700 mt-3 max-w-2xl mx-auto leading-relaxed">
                 Die Säulen unserer Gemeinschaft.
               </p>
             </div>
@@ -209,7 +190,7 @@ export default function AboutPage() {
         {/* Statistiken Section */}
         <motion.section
           variants={itemVariants}
-          className="py-20 lg:py-24 bg-sand-50"
+          className="py-20 lg:py-24 bg-white"
         >
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
@@ -259,6 +240,26 @@ export default function AboutPage() {
                 </CardContent>
               </Card>
             </div>
+          </div>
+        </motion.section>
+        {/* CTA Section */}
+        <motion.section
+          variants={itemVariants}
+          className="py-20 lg:py-24 bg-sage-50"
+        >
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-charcoal-800 mb-4">
+              Werde Teil unserer Gemeinschaft
+            </h2>
+            <p className="text-lg text-charcoal-700 max-w-2xl mx-auto mb-8">
+              Gemeinsam stärken wir muslimische Frauen und Mädchen in Berlin und
+              darüber hinaus.
+            </p>
+            <Button variant="primary" size="lg" asChild>
+              <Link href="/mitglied-werden" data-cta="primary">
+                Mitglied werden
+              </Link>
+            </Button>
           </div>
         </motion.section>
       </motion.div>

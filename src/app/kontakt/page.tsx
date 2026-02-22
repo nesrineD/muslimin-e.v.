@@ -14,24 +14,25 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { containerVariants, itemVariants } from "@/lib/animations";
+import { PUBLIC_PAGE_WRAPPER_CLASS } from "@/lib/page-config";
 import { Mail, MapPin } from "lucide-react";
 
 export default function KontaktPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sage-50 via-cream-50 to-warm-50">
+    <div className={PUBLIC_PAGE_WRAPPER_CLASS}>
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="container mx-auto px-4 py-12"
+        className="container mx-auto px-4 py-20"
       >
         {/* Hero Section */}
         <motion.div variants={itemVariants} className="text-center mb-16">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">
-            Kontaktieren Sie uns
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 text-charcoal-800">
+            Kontaktier uns
           </h1>
           <p className="text-xl text-charcoal-700 max-w-3xl mx-auto leading-relaxed">
-            Wir freuen uns auf Ihre Nachricht und sind für Sie da.
+            Wir freuen uns auf deine Nachricht und sind für dich da.
           </p>
         </motion.div>
 
@@ -44,7 +45,7 @@ export default function KontaktPage() {
                   Kontaktinformationen
                 </CardTitle>
                 <CardDescription className="text-charcoal-600">
-                  So können Sie uns erreichen
+                  So kannst du uns erreichen
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6 text-lg">
@@ -71,7 +72,7 @@ export default function KontaktPage() {
                   Schreiben Sie uns
                 </CardTitle>
                 <CardDescription className="text-charcoal-600">
-                  Wir werden uns so schnell wie möglich bei Ihnen melden.
+                  Wir melden uns so schnell wie möglich bei dir.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -82,7 +83,7 @@ export default function KontaktPage() {
                     </Label>
                     <Input
                       id="name"
-                      placeholder="Ihr Name"
+                      placeholder="Dein Name"
                       className="mt-1 border-sand-300 focus:border-sage-500"
                     />
                   </div>
@@ -93,7 +94,7 @@ export default function KontaktPage() {
                     <Input
                       id="email"
                       type="email"
-                      placeholder="ihre@email.de"
+                      placeholder="deine@email.de"
                       className="mt-1 border-sand-300 focus:border-sage-500"
                     />
                   </div>
@@ -103,7 +104,7 @@ export default function KontaktPage() {
                     </Label>
                     <Input
                       id="subject"
-                      placeholder="Betreff Ihrer Nachricht"
+                      placeholder="Betreff deiner Nachricht"
                       className="mt-1 border-sand-300 focus:border-sage-500"
                     />
                   </div>
@@ -113,7 +114,7 @@ export default function KontaktPage() {
                     </Label>
                     <Textarea
                       id="message"
-                      placeholder="Ihre Nachricht an uns..."
+                      placeholder="Deine Nachricht an uns..."
                       className="mt-1 border-sand-300 focus:border-sage-500"
                       rows={5}
                     />

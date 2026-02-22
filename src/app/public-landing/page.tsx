@@ -19,6 +19,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { debounce } from "@/lib/utils";
+import { PUBLIC_PAGE_WRAPPER_CLASS } from "@/lib/page-config";
 
 interface CTACard {
   icon: React.ReactNode;
@@ -80,7 +81,7 @@ export default function PublicLandingPage() {
   // 100ms provides a good balance between responsiveness and performance
   const debouncedHandleScroll = useMemo(
     () => debounce(handleScroll, 100),
-    [handleScroll]
+    [handleScroll],
   );
 
   useEffect(() => {
@@ -95,7 +96,7 @@ export default function PublicLandingPage() {
 
   return (
     <motion.main
-      className="min-h-screen bg-gradient-to-br from-sage-50 via-cream-50 to-sand-50"
+      className={PUBLIC_PAGE_WRAPPER_CLASS}
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -229,7 +230,7 @@ export default function PublicLandingPage() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent"
+                className="text-3xl md:text-4xl font-bold mb-4 text-charcoal-800"
               >
                 Wer sind wir?
               </motion.h2>
@@ -320,7 +321,7 @@ export default function PublicLandingPage() {
         <section className="py-16 md:py-20 bg-gradient-to-br from-sand-50 via-coral-50 to-cream-50">
           <motion.div variants={itemVariants} className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-charcoal-800">
                 Was erwartet dich als Mitglied?
               </h2>
               <p className="text-lg text-charcoal-800 max-w-2xl mx-auto">
@@ -407,7 +408,7 @@ export default function PublicLandingPage() {
         {/* CTA Cards Section - Explore More */}
         <section className="py-20 md:py-24 bg-gradient-to-br from-sage-50 via-cream-50 to-sand-50">
           <motion.div variants={itemVariants} className="max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold mb-4 text-center bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">
+            <h2 className="text-4xl font-bold mb-4 text-center text-charcoal-800">
               Entdecke mehr über uns
             </h2>
             <p className="text-lg text-charcoal-800 text-center mb-12 max-w-2xl mx-auto">
@@ -484,7 +485,7 @@ export default function PublicLandingPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-charcoal-800">
                 Bereit für den nächsten Schritt?
               </h2>
               <p className="text-xl mb-8 text-charcoal-800 max-w-2xl mx-auto leading-relaxed">

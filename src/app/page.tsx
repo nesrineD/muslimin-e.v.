@@ -15,7 +15,6 @@ import {
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { SocialMediaSection } from "@/components/SocialMediaSection";
 
 // Member dashboard steps for booking
 const bookingSteps = [
@@ -49,21 +48,24 @@ const memberFeatures = [
       "Buche ganz einfach einen Beratungstermin in wenigen Schritten",
     href: "/book",
     icon: <Calendar className="w-8 h-8 text-coral-600" />,
-    color: "bg-gradient-to-br from-coral-50 via-warm-50 to-coral-100 hover:from-coral-100 hover:to-warm-100",
+    color:
+      "bg-gradient-to-br from-coral-50 via-warm-50 to-coral-100 hover:from-coral-100 hover:to-warm-100",
   },
   {
     title: "Beratungsstellen finden",
     description: "Finde externe Beratungsstellen in deiner Nähe",
     href: "/beratungsstellen",
     icon: <MapPin className="w-8 h-8 text-sage-600" />,
-    color: "bg-gradient-to-br from-sage-50 via-cream-50 to-sage-100 hover:from-sage-100 hover:to-sage-200",
+    color:
+      "bg-gradient-to-br from-sage-50 via-cream-50 to-sage-100 hover:from-sage-100 hover:to-sage-200",
   },
   {
     title: "Helferin werden",
     description: "Möchtest du anderen helfen? Registriere dich als Helferin",
     href: "/helper/register",
     icon: <HeartHandshake className="w-12 h-12 text-clay-600" />,
-    color: "bg-gradient-to-br from-clay-50 via-coral-50 to-clay-100 hover:from-clay-100 hover:to-coral-100",
+    color:
+      "bg-gradient-to-br from-clay-50 via-coral-50 to-clay-100 hover:from-clay-100 hover:to-coral-100",
   },
 ];
 
@@ -210,7 +212,7 @@ export default function Home() {
           >
             <Button
               size="lg"
-              variant="donation"
+              variant="primary"
               className="shadow-lg hover:shadow-xl transition-all duration-300"
               asChild
             >
@@ -270,23 +272,6 @@ export default function Home() {
               </div>
             </CardContent>
           </Card>
-        </motion.div>
-
-        {/* Social Media CTA for Members */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.8 }}
-          className="max-w-6xl mx-auto mt-16"
-        >
-          <section className="py-12 px-6 sm:px-8 bg-gradient-to-br from-sage-50 via-cream-50 to-sage-100/80 rounded-2xl shadow-lg border-2 border-sage-200">
-            <SocialMediaSection 
-              variant="compact" 
-              showTitle={true}
-              title="Folge uns auf Social Media! 📱"
-              subtitle="Bleib auf dem Laufenden mit aktuellen Flyern, Terminen und Live-Updates"
-            />
-          </section>
         </motion.div>
       </div>
     </div>

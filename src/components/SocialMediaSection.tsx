@@ -102,7 +102,7 @@ const SOCIAL_MEDIA = [
     url: "https://www.instagram.com/muslimin.de/",
     color: "text-pink-600",
     hoverColor: "hover:text-pink-700",
-    bgHover: "hover:bg-pink-50",
+    bgHover: "hover:bg-sand-100",
   },
   {
     name: "TikTok",
@@ -110,7 +110,7 @@ const SOCIAL_MEDIA = [
     url: "https://www.tiktok.com/@muslimin.ev",
     color: "text-gray-900",
     hoverColor: "hover:text-black",
-    bgHover: "hover:bg-gray-50",
+    bgHover: "hover:bg-sand-100",
   },
   {
     name: "YouTube",
@@ -118,7 +118,7 @@ const SOCIAL_MEDIA = [
     url: "https://www.youtube.com/@muslimin-ev",
     color: "text-red-600",
     hoverColor: "hover:text-red-700",
-    bgHover: "hover:bg-red-50",
+    bgHover: "hover:bg-sand-100",
   },
   {
     name: "WhatsApp",
@@ -126,7 +126,7 @@ const SOCIAL_MEDIA = [
     url: "https://whatsapp.com/channel/0029VaN2y5qIt5rsURhd1o2Y",
     color: "text-green-600",
     hoverColor: "hover:text-green-700",
-    bgHover: "hover:bg-green-50",
+    bgHover: "hover:bg-sand-100",
   },
 ];
 
@@ -170,7 +170,7 @@ export function SocialMediaSection({
           href={social.url}
           target="_blank"
           rel="noopener noreferrer"
-          className={`${baseClasses} h-8 w-8 rounded-full bg-white/60 hover:bg-white shadow-sm hover:shadow-md ring-1 ring-sage-200/70 flex items-center justify-center group`}
+          className={`${baseClasses} h-11 w-11 rounded-full bg-white/60 hover:bg-white shadow-sm hover:shadow-md ring-1 ring-sage-200/70 flex items-center justify-center group`}
           aria-label={`Folge uns auf ${social.name}`}
           title={social.name}
         >

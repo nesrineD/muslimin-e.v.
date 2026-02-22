@@ -156,3 +156,17 @@ export const heroItemVariants: Variants = {
     transition: { duration: 0.6 },
   },
 };
+
+/**
+ * fadeUp — alias for itemVariants.
+ * Semantic name used by pages that import a "fade up" effect.
+ * Kept as a named export so pages do not define their own local copy.
+ */
+export const fadeUp: Variants = itemVariants;
+
+/**
+ * staggerContainer — alias for containerVariants.
+ * Semantic name used by pages that import a "stagger" wrapper.
+ * Kept as a named export so pages do not define their own local copy.
+ */
+export const staggerContainer: Variants = containerVariants;

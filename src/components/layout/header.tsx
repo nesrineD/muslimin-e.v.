@@ -196,11 +196,22 @@ export function Header() {
 
         {/* Desktop CTA Buttons */}
         <div className="hidden md:flex items-center gap-3 mr-3">
+          {/* Mitglied werden — primary conversion goal, visible only to visitors */}
+          {!user && (
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
+              <Button asChild variant="primary" size="sm">
+                <Link
+                  href="/mitglied-werden"
+                  className="flex items-center gap-2"
+                >
+                  <User className="h-4 w-4" />
+                  <span>Mitglied werden</span>
+                </Link>
+              </Button>
+            </motion.div>
+          )}
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
-            <Button
-              asChild
-              className="bg-sage-700 hover:bg-sage-800 text-sand-100 font-semibold shadow-md hover:shadow-lg transition-all duration-200 focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:ring-offset-2"
-            >
+            <Button asChild variant="outline" size="sm">
               <Link href="/spenden" className="flex items-center gap-2">
                 <HeartHandshake className="h-4 w-4" />
                 <span>Spenden</span>
@@ -333,7 +344,7 @@ export function Header() {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
                 variant="ghost"
-                size="sm"
+                size="md"
                 className="text-sage-700 hover:bg-sage-50 focus-visible:ring-2 focus-visible:ring-sage-500"
                 aria-label="Mobilmenü öffnen"
               >
@@ -556,12 +567,11 @@ export function Header() {
                       whileTap={{ scale: 0.98 }}
                     >
                       <Button
-                        className="w-full justify-center bg-sage-700 hover:bg-sage-800 text-sand-100 min-h-[44px] focus-visible:ring-2 focus-visible:ring-sage-500"
+                        variant="primary"
+                        className="w-full justify-center min-h-[44px]"
                         asChild
                       >
-                        <Link href="/mitglied-werden">
-                          Mitglied werden
-                        </Link>
+                        <Link href="/mitglied-werden">Mitglied werden</Link>
                       </Button>
                     </motion.div>
 
@@ -570,12 +580,11 @@ export function Header() {
                       whileTap={{ scale: 0.98 }}
                     >
                       <Button
-                        className="w-full justify-center bg-sage-700 hover:bg-sage-800 text-sand-100 min-h-[44px] focus-visible:ring-2 focus-visible:ring-sage-500"
+                        variant="outline"
+                        className="w-full justify-center min-h-[44px]"
                         asChild
                       >
-                        <Link href="/spenden">
-                          Spenden
-                        </Link>
+                        <Link href="/spenden">Spenden</Link>
                       </Button>
                     </motion.div>
 
