@@ -112,15 +112,9 @@ export const NAV_LINKS = [
   },
   {
     href: "/mitglied-werden",
-    label: "Mitglied werden",
+    label: "Mitgliedschaft",
     description: "Werden Sie Teil unserer Gemeinschaft",
     icon: "Sparkles",
-  },
-  {
-    href: "/spenden",
-    label: "Spenden",
-    description: "Unterstützen Sie unsere Arbeit",
-    icon: "Heart",
   },
   {
     href: "/kontakt",
@@ -163,11 +157,6 @@ export const LEGAL_LINKS = [
   { href: "/datenschutz", label: "Datenschutz" },
   { href: "/agb", label: "AGB" },
 ] as const;
-
-/**
- * Trust Line (Footer) - DSGVO compliant, no false claims
- */
-export const TRUST_TEXT = "Ehrenamtlich anerkannt • Seit 2011" as const;
 
 /**
  * Helpers für Social Links
