@@ -159,25 +159,25 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              <Card className="text-center p-8 border-2 border-transparent hover:border-sage-200 hover:shadow-lg transition-all">
+              <Card hover="lift" className="text-center p-8">
                 <Goal className="h-12 w-12 text-sage-500 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold text-sage-800 mb-2">
                   Religiöse Bildung
                 </h3>
               </Card>
-              <Card className="text-center p-8 border-2 border-transparent hover:border-sage-200 hover:shadow-lg transition-all">
+              <Card hover="lift" className="text-center p-8">
                 <Lightbulb className="h-12 w-12 text-sage-500 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold text-sage-800 mb-2">
                   Muslimische Identität
                 </h3>
               </Card>
-              <Card className="text-center p-8 border-2 border-transparent hover:border-sage-200 hover:shadow-lg transition-all">
+              <Card hover="lift" className="text-center p-8">
                 <Users className="h-12 w-12 text-sage-500 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold text-sage-800 mb-2">
                   Austausch & Dialog
                 </h3>
               </Card>
-              <Card className="text-center p-8 border-2 border-transparent hover:border-sage-200 hover:shadow-lg transition-all">
+              <Card hover="lift" className="text-center p-8">
                 <ShieldCheck className="h-12 w-12 text-sage-500 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold text-sage-800 mb-2">
                   Geschützter Raum
@@ -199,12 +199,15 @@ export default function AboutPage() {
               </h2>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
-              <Card className="text-center p-8 border-2 border-sage-200 hover:border-sage-300 hover:shadow-lg transition-all">
+              <Card
+                hover="lift"
+                className="text-center p-8 border-2 border-sage-200"
+              >
                 <CardContent className="pt-6">
                   <div className="text-4xl md:text-5xl font-bold text-sage-600 mb-2">
                     7 Jahre
                   </div>
-                  <p className="text-sage-700 font-medium">
+                  <p className="text-sage-700 font-semibold">
                     eingetragener Verein
                   </p>
                   <p className="text-charcoal-600 text-sm mt-1">
@@ -212,28 +215,37 @@ export default function AboutPage() {
                   </p>
                 </CardContent>
               </Card>
-              <Card className="text-center p-8 border-2 border-sage-200 hover:border-sage-300 hover:shadow-lg transition-all">
+              <Card
+                hover="lift"
+                className="text-center p-8 border-2 border-sage-200"
+              >
                 <CardContent className="pt-6">
                   <div className="text-4xl md:text-5xl font-bold text-sage-600 mb-2">
                     60+
                   </div>
-                  <p className="text-sage-700 font-medium">Mitglieder</p>
+                  <p className="text-sage-700 font-semibold">Mitglieder</p>
                 </CardContent>
               </Card>
-              <Card className="text-center p-8 border-2 border-sage-200 hover:border-sage-300 hover:shadow-lg transition-all">
+              <Card
+                hover="lift"
+                className="text-center p-8 border-2 border-sage-200"
+              >
                 <CardContent className="pt-6">
                   <div className="text-4xl md:text-5xl font-bold text-sage-600 mb-2">
                     100+
                   </div>
-                  <p className="text-sage-700 font-medium">Veranstaltungen</p>
+                  <p className="text-sage-700 font-semibold">Veranstaltungen</p>
                 </CardContent>
               </Card>
-              <Card className="text-center p-8 border-2 border-sage-200 hover:border-sage-300 hover:shadow-lg transition-all">
+              <Card
+                hover="lift"
+                className="text-center p-8 border-2 border-sage-200"
+              >
                 <CardContent className="pt-6">
                   <div className="text-4xl md:text-5xl font-bold text-sage-600 mb-2">
                     500
                   </div>
-                  <p className="text-sage-700 font-medium">Gäste</p>
+                  <p className="text-sage-700 font-semibold">Gäste</p>
                   <p className="text-charcoal-600 text-sm mt-1">
                     bei unserer größten Veranstaltung
                   </p>

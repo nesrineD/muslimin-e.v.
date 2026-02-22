@@ -5,7 +5,12 @@ import { Sparkles, Heart } from "lucide-react";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { SocialMediaSection } from "@/components/SocialMediaSection";
-import { containerVariants, itemVariants } from "@/lib/animations";
+import {
+  containerVariants,
+  itemVariants,
+  hoverButton,
+  hoverLift,
+} from "@/lib/animations";
 import { PUBLIC_PAGE_WRAPPER_CLASS } from "@/lib/page-config";
 
 export default function MitgliedWerdenPage() {
@@ -34,8 +39,8 @@ export default function MitgliedWerdenPage() {
             </motion.p>
 
             <motion.div
-              className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 border-2 border-sage-300 shadow-xl hover:shadow-2xl transition-all duration-500 hover:border-sage-400"
-              whileHover={{ y: -5 }}
+              className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 border-2 border-sage-300 shadow-xl transition-all duration-500 hover:border-sage-400"
+              {...hoverLift}
             >
               <p className="text-xl text-sage-800 leading-relaxed">
                 Wähle die Mitgliedschaft, die zu deiner aktuellen
@@ -77,7 +82,7 @@ export default function MitgliedWerdenPage() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <Card className="border-2 border-sage-300 shadow-2xl bg-white hover:shadow-3xl transition-shadow duration-500 relative overflow-hidden">
+          <Card className="border-2 border-sage-300 shadow-xl bg-white transition-shadow duration-500 relative overflow-hidden">
             {/* Decorative corner elements */}
             <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-sage-200/30 to-transparent rounded-bl-full" />
             <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-cream-200/30 to-transparent rounded-tr-full" />
@@ -98,10 +103,7 @@ export default function MitgliedWerdenPage() {
                 </span>
               </CardTitle>
 
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 400 }}
-              >
+              <motion.div {...hoverButton}>
                 <Button size="lg" variant="primary" asChild>
                   <a
                     href="https://formular.vereinsplaner.com/b8fabab2-d21c-4ee4-bdbc-95aa517acbed"

@@ -55,7 +55,7 @@ export const MapControls: React.FC<MapControlsProps> = ({
               placeholder="PLZ eingeben (z.B. 10115)"
               value={filters.searchPLZ}
               onChange={(e) => handleSearchChange(e.target.value)}
-              className="w-full pl-10 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#9c604d] focus:border-transparent text-sm"
+              className="w-full pl-10 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-clay-500 focus:border-transparent text-sm"
               maxLength={5}
             />
             <svg
@@ -101,7 +101,7 @@ export const MapControls: React.FC<MapControlsProps> = ({
           </div>
           <button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="text-[#9c604d] hover:text-[#7a4a3a] transition-colors text-xs flex items-center space-x-1"
+            className="text-clay-500 hover:text-clay-700 transition-colors text-xs flex items-center space-x-1"
           >
             <span>{isExpanded ? "Weniger" : "Mehr"}</span>
             <svg
@@ -127,7 +127,7 @@ export const MapControls: React.FC<MapControlsProps> = ({
               type="checkbox"
               checked={filters.showClusters}
               onChange={handleClusterToggle}
-              className="rounded border-gray-300 text-[#9c604d] focus:ring-[#9c604d]"
+              className="rounded border-gray-300 text-clay-500 focus:ring-clay-500"
             />
             <span className="text-gray-700">Gruppiert anzeigen</span>
           </label>
@@ -162,11 +162,11 @@ export const MapControls: React.FC<MapControlsProps> = ({
               </h4>
               <div className="space-y-2">
                 <div className="flex items-center space-x-2 text-xs">
-                  <div className="w-4 h-4 bg-[#d4cbb8] border border-[#9c604d] rounded-full"></div>
+                  <div className="w-4 h-4 bg-cream-200 border border-clay-500 rounded-full"></div>
                   <span className="text-gray-600">Mitglied</span>
                 </div>
                 <div className="flex items-center space-x-2 text-xs">
-                  <div className="w-4 h-4 bg-[#9c604d] border border-[#7a4a3a] rounded-full"></div>
+                  <div className="w-4 h-4 bg-clay-500 border border-clay-700 rounded-full"></div>
                   <span className="text-gray-600">Helferin / Ausgewählt</span>
                 </div>
               </div>
@@ -181,7 +181,7 @@ export const MapControls: React.FC<MapControlsProps> = ({
                   radius: 10,
                 })
               }
-              className="w-full text-sm text-[#9c604d] hover:text-[#7a4a3a] transition-colors py-2 border border-[#9c604d] rounded-lg hover:bg-[#f1e9de]"
+              className="w-full text-sm text-clay-500 hover:text-clay-700 transition-colors py-2 border border-clay-500 rounded-lg hover:bg-cream-50"
             >
               Filter zurücksetzen
             </button>

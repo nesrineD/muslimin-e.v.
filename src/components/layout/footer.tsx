@@ -13,8 +13,8 @@ import { LEGAL_LINKS } from "@/lib/constants";
 export function Footer() {
   return (
     <footer className="border-t-2 border-sage-400 bg-white" role="contentinfo">
-      <div className="container mx-auto px-4 py-10">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="container mx-auto px-6 py-12 md:px-8 md:py-16">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 md:gap-12">
           {/* Brand Column */}
           <div className="space-y-3 lg:col-span-1">
             <Link href="/" className="inline-flex items-center gap-2.5 group">
@@ -69,7 +69,7 @@ export function Footer() {
               <span className="w-1 h-4 bg-charcoal-600 rounded-full" />
               Rechtliches
             </h3>
-            <ul className="space-y-2.5">
+            <ul className="space-y-3 md:space-y-2.5">
               {LEGAL_LINKS.map((link) => (
                 <li key={link.href}>
                   <Link

@@ -3,6 +3,10 @@
 import React, { useEffect, useRef, useMemo } from "react";
 import { MemberLocationWithCoordinates } from "@/types/location";
 
+// Design-token color constants (mirrors tailwind.config.ts clay palette)
+const CLAY_500 = "#9c604d";
+const CLAY_700 = "#7d4c3b";
+
 interface PLZCircleMarkerProps {
   members: MemberLocationWithCoordinates[];
   map?: google.maps.Map;
@@ -29,7 +33,7 @@ export const PLZCircleMarker: React.FC<PLZCircleMarkerProps> = ({
             lng: firstMemberCoords.lng,
           }
         : null,
-    [firstMemberCoords]
+    [firstMemberCoords],
   );
   const plz = firstMember?.postal_code || "";
 
@@ -45,10 +49,10 @@ export const PLZCircleMarker: React.FC<PLZCircleMarkerProps> = ({
 
     // Create ONLY the outer circle - NO inner marker/pin!
     const circle = new google.maps.Circle({
-      strokeColor: isSelected ? "#7a4a3a" : "#9c604d",
+      strokeColor: isSelected ? CLAY_700 : CLAY_500,
       strokeOpacity: 0.8,
       strokeWeight: isSelected ? 3 : 2,
-      fillColor: "#9c604d",
+      fillColor: CLAY_500,
       fillOpacity: isSelected ? 0.25 : 0.15,
       map,
       center,
@@ -62,7 +66,7 @@ export const PLZCircleMarker: React.FC<PLZCircleMarkerProps> = ({
       circle.setOptions({
         fillOpacity: 0.3,
         strokeWeight: 3,
-        strokeColor: "#7a4a3a",
+        strokeColor: CLAY_700,
       });
     });
 
@@ -70,7 +74,7 @@ export const PLZCircleMarker: React.FC<PLZCircleMarkerProps> = ({
       circle.setOptions({
         fillOpacity: isSelected ? 0.25 : 0.15,
         strokeWeight: isSelected ? 3 : 2,
-        strokeColor: isSelected ? "#7a4a3a" : "#9c604d",
+        strokeColor: isSelected ? CLAY_700 : CLAY_500,
       });
     });
 
@@ -97,7 +101,7 @@ export const PLZCircleMarker: React.FC<PLZCircleMarkerProps> = ({
   useEffect(() => {
     if (circleRef.current) {
       circleRef.current.setOptions({
-        strokeColor: isSelected ? "#7a4a3a" : "#9c604d",
+        strokeColor: isSelected ? CLAY_700 : CLAY_500,
         strokeWeight: isSelected ? 3 : 2,
         fillOpacity: isSelected ? 0.25 : 0.15,
         zIndex: isSelected ? 1000 : 100,

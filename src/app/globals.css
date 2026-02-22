@@ -48,6 +48,8 @@
     --clay-400: 15 36% 66%;
     --clay-500: 14 35% 46%;
     --coral: 14 35% 46%;
+    /* clay-600 (#8d5644) — preferred for text on white/sand (contrast ≈ 6.5:1, WCAG AA+) */
+    --clay-text: 14 25% 40%;
 
     /* Semantic aliases */
     --background: 40 33% 97%;
@@ -113,7 +115,31 @@
     @apply bg-background text-foreground font-body;
   }
 
-  /* Typography - Design System */
+  /* ============================================================
+   * TYPOGRAPHY SYSTEM — Design System v1.0
+   * Scale: fluid clamp() for H1, fixed rem for H2–H6
+   * Weights: 700 (H1), 600 (H2–H4), 500 (H5–H6)
+   * Font: Newsreader (headings) / Inter (body)
+   * ============================================================ */
+
+  /* CSS Custom Properties for typography reuse */
+  :root {
+    --text-h1: clamp(2.5rem, 4vw, 3rem);
+    --text-h2: clamp(1.75rem, 2.5vw, 2rem);
+    --text-h3: clamp(1.25rem, 1.8vw, 1.5rem);
+    --text-h4: clamp(1.125rem, 1.5vw, 1.25rem);
+    --text-h5: clamp(1rem, 1.3vw, 1.125rem);
+    --text-h6: 1rem;
+    --text-body-lg: 1.125rem;
+    --text-body: 1rem;
+    --text-body-sm: 0.875rem;
+    --text-caption: 0.75rem;
+    --leading-tight: 1.2;
+    --leading-snug: 1.4;
+    --leading-body: 1.6;
+    --tracking-tight: -0.02em;
+  }
+
   h1,
   h2,
   h3,
@@ -123,19 +149,55 @@
     @apply font-heading text-charcoal;
   }
 
+  /* H1 — Page title: fluid, bold, tight tracking */
   h1 {
-    @apply text-[clamp(2.5rem,4vw,3rem)] leading-[1.2];
+    font-size: var(--text-h1);
+    font-weight: 700;
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tight);
     max-width: 60ch;
   }
 
+  /* H2 — Section title: fluid, semibold */
   h2 {
-    @apply text-[2rem] leading-[1.2];
+    font-size: var(--text-h2);
+    font-weight: 600;
+    line-height: var(--leading-tight);
+    letter-spacing: 0;
     max-width: 60ch;
   }
 
+  /* H3 — Subsection / card title: fluid, semibold */
   h3 {
-    @apply text-[1.5rem] leading-[1.2];
+    font-size: var(--text-h3);
+    font-weight: 600;
+    line-height: var(--leading-snug);
+    letter-spacing: 0;
     max-width: 60ch;
+  }
+
+  /* H4 — Minor heading: fluid, semibold */
+  h4 {
+    font-size: var(--text-h4);
+    font-weight: 600;
+    line-height: var(--leading-snug);
+    letter-spacing: 0;
+  }
+
+  /* H5 — Small title: fluid, medium */
+  h5 {
+    font-size: var(--text-h5);
+    font-weight: 500;
+    line-height: var(--leading-snug);
+    letter-spacing: 0;
+  }
+
+  /* H6 — Label / caption heading: fixed, medium */
+  h6 {
+    font-size: var(--text-h6);
+    font-weight: 500;
+    line-height: var(--leading-snug);
+    letter-spacing: 0.01em;
   }
 
   p,
@@ -143,6 +205,20 @@
   span {
     @apply text-charcoal leading-[1.6];
     max-width: 70ch;
+  }
+
+  /* Large body text for intros */
+  .text-body-lg {
+    font-size: var(--text-body-lg);
+    line-height: var(--leading-body);
+  }
+
+  /* Caption / micro text */
+  .text-caption {
+    font-size: var(--text-caption);
+    font-weight: 500;
+    line-height: var(--leading-snug);
+    letter-spacing: 0.02em;
   }
 
   /* Enhanced focus-visible styles for accessibility */
@@ -155,6 +231,15 @@
   a:focus-visible,
   [role="button"]:focus-visible {
     @apply outline-none ring-2 ring-sage-500 ring-offset-2 ring-offset-background;
+  }
+
+  /* Focus on primary (sage) backgrounds — use white ring for visibility */
+  .bg-sage-500 *:focus-visible,
+  .bg-sage-600 *:focus-visible,
+  .bg-sage-700 *:focus-visible,
+  .bg-sage-800 *:focus-visible,
+  .bg-sage-900 *:focus-visible {
+    @apply ring-white ring-offset-sage-700;
   }
 
   /* Input focus styles */
@@ -270,6 +355,16 @@
   }
 }
 
+/* Skeleton shimmer — left-to-right shine effect */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
 .animate-gradient {
   background-size: 200% 200%;
   animation: gradient-shift 6s ease infinite;
@@ -283,16 +378,17 @@
   animation: pulse-glow 2s ease-in-out infinite;
 }
 
-/* Hover effect for interactive cards */
+/* Hover effect for interactive cards
+   Standard: -translate-y-1 + shadow-lg | 300ms cubic-bezier */
 .card-interactive {
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card-interactive:hover {
-  transform: translateY(-8px) scale(1.02);
+  transform: translateY(-4px);
   box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.1),
-    0 0 20px rgba(91, 105, 96, 0.1);
+    0 10px 25px rgba(0, 0, 0, 0.1),
+    0 0 12px rgba(91, 105, 96, 0.08);
 }
 
 /* Respect user's motion preferences — WCAG 2.1 AA SC 2.3.3 */

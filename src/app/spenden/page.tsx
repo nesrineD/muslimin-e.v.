@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { containerVariants, itemVariants } from "@/lib/animations";
+import { containerVariants, itemVariants, hoverLift } from "@/lib/animations";
 import { PUBLIC_PAGE_WRAPPER_CLASS } from "@/lib/page-config";
 
 interface DonationCampaign {
@@ -236,7 +236,7 @@ export default function SpendenPage() {
             {/* PayPal */}
             <motion.div
               variants={itemVariants}
-              whileHover={{ y: -4 }}
+              {...hoverLift}
               className="relative p-8 bg-gradient-to-br from-white to-sage-50 rounded-xl border-2 border-sage-300 shadow-lg hover:shadow-xl transition-all"
             >
               <div className="absolute -top-3 right-4 px-3 py-1 bg-sage-500 text-white text-xs font-bold rounded-full shadow-md">
@@ -331,7 +331,7 @@ export default function SpendenPage() {
             {/* Bank Transfer */}
             <motion.div
               variants={itemVariants}
-              whileHover={{ y: -4 }}
+              {...hoverLift}
               className="p-8 bg-white rounded-xl border-2 border-sand-200 hover:border-sage-300 hover:shadow-lg transition-all"
             >
               <div className="mb-4 w-12 h-12 bg-gradient-to-br from-sage-100 to-sage-200 rounded-lg flex items-center justify-center">
@@ -438,7 +438,7 @@ export default function SpendenPage() {
               <motion.div
                 key={campaign.id}
                 variants={itemVariants}
-                whileHover={{ y: -4 }}
+                {...hoverLift}
                 className="p-8 bg-white rounded-xl border-2 border-sand-200 hover:border-sage-300 hover:shadow-lg transition-all"
               >
                 <div className="text-sage-600 mb-4">{campaign.icon}</div>

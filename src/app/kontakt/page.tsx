@@ -39,7 +39,7 @@ export default function KontaktPage() {
         <div className="grid md:grid-cols-2 gap-12">
           {/* Contact Info Section */}
           <motion.div variants={itemVariants}>
-            <Card className="h-full border-2 border-sand-200 shadow-xl bg-white">
+            <Card className="h-full border border-sand-200 shadow-md bg-white">
               <CardHeader>
                 <CardTitle className="text-2xl font-bold text-charcoal-800">
                   Kontaktinformationen
@@ -66,7 +66,7 @@ export default function KontaktPage() {
 
           {/* Contact Form Section */}
           <motion.div variants={itemVariants}>
-            <Card className="h-full border-2 border-sand-200 shadow-xl bg-white">
+            <Card className="h-full border border-sand-200 shadow-md bg-white">
               <CardHeader>
                 <CardTitle className="text-2xl font-bold text-charcoal-800">
                   Schreiben Sie uns

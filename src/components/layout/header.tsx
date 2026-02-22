@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import { hoverButton } from "@/lib/animations";
 import {
   User,
   Menu,
@@ -171,11 +172,7 @@ export function Header() {
 
           {/* Helper CTA for members who are NOT yet helpers */}
           {user && !user.is_helper && (
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-              className="ml-6"
-            >
+            <motion.div {...hoverButton} className="ml-6">
               <Button
                 asChild
                 className="bg-clay-500 hover:bg-clay-600 text-white font-semibold shadow-md hover:shadow-lg transition-all duration-200 focus-visible:ring-2 focus-visible:ring-clay-500 focus-visible:ring-offset-2"
@@ -198,7 +195,7 @@ export function Header() {
         <div className="hidden md:flex items-center gap-3 mr-3">
           {/* Mitglied werden — primary conversion goal, visible only to visitors */}
           {!user && (
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
+            <motion.div {...hoverButton}>
               <Button asChild variant="primary" size="sm">
                 <Link
                   href="/mitglied-werden"
@@ -210,7 +207,7 @@ export function Header() {
               </Button>
             </motion.div>
           )}
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
+          <motion.div {...hoverButton}>
             <Button asChild variant="outline" size="sm">
               <Link href="/spenden" className="flex items-center gap-2">
                 <HeartHandshake className="h-4 w-4" />
@@ -341,7 +338,7 @@ export function Header() {
         {/* Mobile Menu */}
         <Sheet>
           <SheetTrigger asChild className="md:hidden">
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <motion.div {...hoverButton}>
               <Button
                 variant="ghost"
                 size="md"
