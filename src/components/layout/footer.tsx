@@ -12,7 +12,10 @@ import { LEGAL_LINKS } from "@/lib/constants";
 
 export function Footer() {
   return (
-    <footer className="border-t-2 border-sage-400 bg-white" role="contentinfo">
+    <footer
+      className="border-t border-sage-200/80 bg-gradient-to-b from-sage-50/40 via-white to-white"
+      role="contentinfo"
+    >
       <div className="container mx-auto px-6 py-12 md:px-8 md:py-16">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 md:gap-12">
           {/* Brand Column */}

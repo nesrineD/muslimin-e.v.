@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { hoverButton } from "@/lib/animations";
@@ -43,6 +44,7 @@ import { NAV_LINKS, MEMBER_NAV_LINKS } from "@/lib/constants";
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSigningOut, setIsSigningOut] = useState(false);
+  const pathname = usePathname();
   const { user, loading, signOut } = useAuth();
   const { toast } = useToast();
 
@@ -92,8 +94,8 @@ export function Header() {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
         isScrolled
-          ? "bg-white border-b-2 border-sage-400 shadow-sm"
-          : "bg-white/95 backdrop-blur-sm border-b border-sage-300"
+          ? "bg-white border-b border-sage-200 shadow-md"
+          : "bg-gradient-to-r from-white via-sage-50/30 to-white backdrop-blur-sm border-b border-sage-100/80"
       }`}
       role="banner"
     >
@@ -140,7 +142,11 @@ export function Header() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="relative text-base font-semibold text-charcoal-700 transition-colors hover:text-coral-700 after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-coral-400 after:transition-all after:duration-200 hover:after:w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral-500 rounded-sm px-1"
+                    className={`relative text-base font-semibold transition-colors duration-200 after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:transition-all after:duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-500 rounded-sm px-1 ${
+                      pathname === link.href
+                        ? "text-sage-700 after:w-full after:bg-sage-500"
+                        : "text-charcoal-700 hover:text-coral-700 after:w-0 after:bg-coral-400 hover:after:w-full"
+                    }`}
                   >
                     {link.label}
                   </Link>
@@ -156,7 +162,11 @@ export function Header() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="relative flex items-center gap-2 text-base font-semibold text-charcoal-700 transition-colors hover:text-clay-700 after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-clay-400 after:transition-all after:duration-200 hover:after:w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clay-500 rounded-sm px-1"
+                    className={`relative flex items-center gap-2 text-base font-semibold transition-colors duration-200 after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:transition-all after:duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clay-500 rounded-sm px-1 ${
+                      pathname === link.href
+                        ? "text-clay-700 after:w-full after:bg-clay-500"
+                        : "text-charcoal-700 hover:text-clay-700 after:w-0 after:bg-clay-400 hover:after:w-full"
+                    }`}
                   >
                     {link.icon === "BookOpen" && (
                       <BookOpen className="h-4 w-4" />

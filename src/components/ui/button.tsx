@@ -32,18 +32,18 @@ import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
   // Base: rounded-md (6px) per design system — buttons use CORNER-MD
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium transition-all focus:outline focus:outline-2 focus:outline-sage focus:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium transition-all duration-300 focus:outline focus:outline-2 focus:outline-sage focus:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
         default:
           "bg-sage-600 text-white shadow-sm hover:bg-sage-700 active:bg-sage-800",
         primary:
-          "bg-gradient-to-r from-sage-700 to-sage-600 text-white shadow-md hover:shadow-lg hover:from-sage-800 hover:to-sage-700 active:from-sage-900 active:to-sage-800",
+          "bg-gradient-to-r from-sage-700 to-sage-600 text-white shadow-md hover:shadow-lg hover:from-sage-800 hover:to-sage-700 hover:-translate-y-0.5 active:translate-y-0 active:shadow-md active:from-sage-900 active:to-sage-800",
         donation:
-          "bg-gradient-to-r from-clay-700 to-coral-600 text-white shadow-md hover:shadow-lg hover:from-clay-800 hover:to-coral-700 active:from-clay-900 active:to-coral-800",
+          "bg-gradient-to-r from-clay-700 to-coral-600 text-white shadow-md hover:shadow-lg hover:from-clay-800 hover:to-coral-700 hover:-translate-y-0.5 active:translate-y-0 active:shadow-md active:from-clay-900 active:to-coral-800",
         secondary:
-          "border-2 border-coral-200 bg-white/60 text-charcoal-800 shadow-sm backdrop-blur-sm hover:bg-coral-50 hover:border-coral-300 active:bg-coral-100",
+          "border-2 border-clay-200 bg-clay-50 text-charcoal-800 shadow-sm hover:bg-clay-100 hover:border-clay-300 active:bg-clay-200",
         outline:
           "border-2 border-sage-300 bg-transparent text-sage-700 hover:bg-sage-50 hover:border-sage-400 active:bg-sage-100",
         ghost:

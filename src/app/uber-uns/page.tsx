@@ -28,7 +28,7 @@ export default function AboutPage() {
         {/* Hero Section */}
         <motion.section
           variants={itemVariants}
-          className="text-center py-20 lg:py-28 bg-gradient-to-br from-sage-100/40 via-cream-100/30 to-sage-50"
+          className="text-center py-20 lg:py-28 bg-gradient-to-br from-sage-100 via-sand-50/80 to-cream-100"
         >
           <div className="container mx-auto px-4">
             <h1 className="text-4xl md:text-6xl font-bold mb-4 text-charcoal-800">
@@ -103,6 +103,7 @@ export default function AboutPage() {
         >
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
+              <p className="section-label mb-3">Über uns</p>
               <h2 className="text-3xl md:text-4xl font-bold text-sage-800">
                 Unsere Philosophie
               </h2>
@@ -151,6 +152,7 @@ export default function AboutPage() {
         >
           <div className="container mx-auto px-4">
             <div className="text-center mb-16 max-w-3xl mx-auto">
+              <p className="section-label mb-3">Was uns antreibt</p>
               <h2 className="text-3xl md:text-4xl font-bold text-sage-800 leading-tight">
                 Unsere Kernziele
               </h2>
@@ -194,6 +196,7 @@ export default function AboutPage() {
         >
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
+              <p className="section-label mb-3">Zahlen &amp; Fakten</p>
               <h2 className="text-3xl md:text-4xl font-bold text-sage-800">
                 Unsere Erfolge
               </h2>

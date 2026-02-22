@@ -51,6 +51,19 @@
     /* clay-600 (#8d5644) — preferred for text on white/sand (contrast ≈ 6.5:1, WCAG AA+) */
     --clay-text: 14 25% 40%;
 
+    /* Semantic overlay colours (for glassmorphism / tinted surfaces) */
+    --sage-overlay: rgba(91, 105, 96, 0.07);
+    --clay-overlay: rgba(156, 96, 77, 0.07);
+    --sand-overlay: rgba(212, 203, 184, 0.3);
+
+    /* Shadow system */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md:
+      0 4px 12px rgba(0, 0, 0, 0.08), 0 0 1px rgba(91, 105, 96, 0.12);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1), 0 0 1px rgba(91, 105, 96, 0.1);
+    --shadow-lift:
+      0 10px 25px rgba(91, 105, 96, 0.15), 0 2px 8px rgba(0, 0, 0, 0.08);
+
     /* Semantic aliases */
     --background: 40 33% 97%;
     --foreground: 200 9% 18%;
@@ -156,6 +169,7 @@
     line-height: var(--leading-tight);
     letter-spacing: var(--tracking-tight);
     max-width: 60ch;
+    text-wrap: balance;
   }
 
   /* H2 — Section title: fluid, semibold */
@@ -165,6 +179,7 @@
     line-height: var(--leading-tight);
     letter-spacing: 0;
     max-width: 60ch;
+    text-wrap: balance;
   }
 
   /* H3 — Subsection / card title: fluid, semibold */
@@ -174,6 +189,7 @@
     line-height: var(--leading-snug);
     letter-spacing: 0;
     max-width: 60ch;
+    text-wrap: balance;
   }
 
   /* H4 — Minor heading: fluid, semibold */
@@ -365,6 +381,18 @@
   }
 }
 
+/* Content entrance animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .animate-gradient {
   background-size: 200% 200%;
   animation: gradient-shift 6s ease infinite;
@@ -376,6 +404,25 @@
 
 .animate-pulse-glow {
   animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease both;
+}
+
+/* Section label — uppercase eyebrow text above headings
+   Usage: <span className="section-label">Category</span> */
+.section-label {
+  @apply text-xs font-bold uppercase tracking-widest text-sage-600 inline-block mb-2;
+}
+
+/* Glassmorphism surface
+   Usage: <div className="glass"> for light frosted overlays */
+.glass {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(91, 105, 96, 0.1);
 }
 
 /* Hover effect for interactive cards
