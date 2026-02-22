@@ -159,11 +159,6 @@ export const LEGAL_LINKS = [
 ] as const;
 
 /**
- * Trust Line (Footer) - DSGVO compliant, no false claims
- */
-export const TRUST_TEXT = "Ehrenamtlich anerkannt • Seit 2011" as const;
-
-/**
  * Helpers für Social Links
  */
 export const hasAnySocialLink = () =>

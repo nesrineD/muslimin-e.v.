@@ -4,12 +4,7 @@ import { EventCard } from "@/components/landing/EventCard";
 import { SocialMediaSection } from "@/components/SocialMediaSection";
 import { motion } from "framer-motion";
 import { containerVariants, itemVariants } from "@/lib/animations";
-import {
-  Mic,
-  Video,
-  Moon,
-  Flame,
-} from "lucide-react";
+import { Mic, Video, Moon, Flame } from "lucide-react";
 import { useState } from "react";
 import type { LucideIcon } from "lucide-react";
 import type { EventBadge } from "@/types/events";
@@ -142,21 +137,6 @@ export default function VeranstaltungenPage() {
               Veranstaltungen sind offen für alle – einige erfordern eine
               Anmeldung oder Mitgliedschaft.
             </p>
-
-            {/* Quick Stats */}
-            <div className="flex flex-wrap justify-center gap-4 text-sm">
-              <div className="px-4 py-2 bg-white rounded-full shadow-sm border-2 border-coral-200">
-                <span className="font-bold text-coral-600">4</span> Formate
-              </div>
-              <div className="px-4 py-2 bg-white rounded-full shadow-sm border-2 border-coral-200">
-                <span className="font-bold text-coral-600">1</span>{" "}
-                Online-Option
-              </div>
-              <div className="px-4 py-2 bg-white rounded-full shadow-sm border-2 border-coral-200">
-                <span className="font-bold text-coral-600">2</span> Offen für
-                alle
-              </div>
-            </div>
           </motion.div>
         </section>
 

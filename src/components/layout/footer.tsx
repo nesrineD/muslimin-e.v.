@@ -8,7 +8,7 @@ import { ChevronRight, MapPin } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { SocialMediaSection } from "@/components/SocialMediaSection";
-import { NAV_LINKS, LEGAL_LINKS, TRUST_TEXT } from "@/lib/constants";
+import { NAV_LINKS, LEGAL_LINKS } from "@/lib/constants";
 
 export function Footer() {
   return (
@@ -118,9 +118,6 @@ export function Footer() {
           </span>
           <span className="flex items-center gap-2">
             <span className="hidden md:inline text-sage-400">•</span>
-            <span className="flex items-center gap-1.5 font-medium text-sage-600">
-              {TRUST_TEXT}
-            </span>
           </span>
         </div>
       </div>
