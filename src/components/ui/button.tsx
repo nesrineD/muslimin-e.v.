@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
@@ -112,9 +114,19 @@ export interface ButtonProps
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, enableRipple = true, onMouseDown, ...props }, ref) => {
+  ({ className, variant, size, asChild = false, enableRipple = true, ...props }, ref) => {
     const Comp = asChild ? Slot : "button";
     const rippleHandlers = useRipple();
+
+    const handleMouseDown = React.useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+      if (enableRipple && !asChild) {
+        rippleHandlers.onMouseDown(e as React.MouseEvent<HTMLElement>);
+      }
+      // Call original handler if it exists
+      if (props.onMouseDown) {
+        (props.onMouseDown as React.MouseEventHandler<HTMLButtonElement>)(e);
+      }
+    }, [enableRipple, asChild, rippleHandlers, props]);
 
     return (
       <Comp
@@ -123,12 +135,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           enableRipple && "relative overflow-hidden",
         )}
         ref={ref}
-        onMouseDown={(e: React.MouseEvent<HTMLElement>) => {
-          if (enableRipple && !asChild) {
-            rippleHandlers.onMouseDown(e);
-          }
-          onMouseDown?.(e as React.MouseEvent<HTMLButtonElement>);
-        }}
+        onMouseDown={handleMouseDown}
         {...props}
       />
     );
