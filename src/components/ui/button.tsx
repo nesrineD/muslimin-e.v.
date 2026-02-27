@@ -5,6 +5,46 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 /**
+ * Ripple Effect Hook
+ * Adds Material Design-style ripple effect to buttons
+ */
+const useRipple = () => {
+  const handleMouseDown = (e: React.MouseEvent<HTMLElement>) => {
+    const button = e.currentTarget;
+    const rect = button.getBoundingClientRect();
+    
+    // Calculate ripple position
+    const size = Math.max(rect.width, rect.height);
+    const x = e.clientX - rect.left - size / 2;
+    const y = e.clientY - rect.top - size / 2;
+
+    // Create ripple element
+    const ripple = document.createElement('span');
+    ripple.className = 'absolute rounded-full bg-white/40 pointer-events-none';
+    ripple.style.cssText = `
+      width: ${size}px;
+      height: ${size}px;
+      left: ${x}px;
+      top: ${y}px;
+      animation: ripple 0.6s ease-out;
+      position: absolute;
+    `;
+
+    // Ensure button has position relative
+    if (getComputedStyle(button).position === 'static') {
+      button.style.position = 'relative';
+    }
+
+    button.appendChild(ripple);
+    
+    // Clean up
+    setTimeout(() => ripple.remove(), 600);
+  };
+
+  return { onMouseDown: handleMouseDown };
+};
+
+/**
  * Button Component — Design System § CTA Hierarchy
  *
  * ┌─────────────────────────────────────────────────────────────┐
@@ -68,15 +108,27 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
+  enableRipple?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
+  ({ className, variant, size, asChild = false, enableRipple = true, onMouseDown, ...props }, ref) => {
     const Comp = asChild ? Slot : "button";
+    const rippleHandlers = useRipple();
+
     return (
       <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
+        className={cn(
+          buttonVariants({ variant, size, className }),
+          enableRipple && "relative overflow-hidden",
+        )}
         ref={ref}
+        onMouseDown={(e: React.MouseEvent<HTMLElement>) => {
+          if (enableRipple && !asChild) {
+            rippleHandlers.onMouseDown(e);
+          }
+          onMouseDown?.(e as React.MouseEvent<HTMLButtonElement>);
+        }}
         {...props}
       />
     );

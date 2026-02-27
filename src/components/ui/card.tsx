@@ -20,11 +20,12 @@ import { cn } from "@/lib/utils";
  *   Elevation 3 (prominent)— shadow-lg   → hover / featured content
  */
 interface CardProps extends React.HTMLAttributes<HTMLElement> {
-  variant?: "white" | "cream";
+  variant?: "white" | "cream" | "event" | "campaign" | "team" | "feature";
   padding?: "sm" | "md" | "lg";
   hover?: "lift" | "highlight";
   href?: string;
   as?: "div" | "article" | "section";
+  gradient?: boolean;
 }
 
 const Card = React.forwardRef<HTMLElement, CardProps>(
@@ -46,31 +47,41 @@ const Card = React.forwardRef<HTMLElement, CardProps>(
     const effectiveHover: "lift" | "highlight" =
       hover ?? (variant === "cream" ? "highlight" : "lift");
 
-    const baseClasses = cn(
-      "relative rounded-xl transition-all",
-      // Resting shadow based on variant
-      variant === "white" && "shadow-card-standard bg-white",
-      variant === "cream" && "shadow-sm bg-cream-50",
-      // Padding scale
-      padding === "sm" && "p-4",
-      padding === "md" && "p-6",
-      padding === "lg" && "p-8",
-      // Interactive hover states
-      isInteractive && "cursor-pointer",
-      // LIFT hover: card rises + shadow deepens (Content Card — Type A)
+  const baseClasses = cn(
+    "relative rounded-xl transition-all",
+    // Resting shadow and background based on variant
+    variant === "white" && "shadow-card-standard bg-white",
+    variant === "cream" && "shadow-sm bg-cream-50",
+    // Gradient variants
+    variant === "event" && "shadow-sm bg-gradient-to-br from-sage-100 to-sage-50",
+    variant === "campaign" && "shadow-sm bg-gradient-to-br from-clay-100 to-coral-50",
+    variant === "team" && "shadow-sm bg-gradient-to-br from-sage-50 to-sand-100",
+    variant === "feature" && "shadow-sm bg-gradient-to-br from-cream-100 to-transparent",
+    // Padding scale
+    padding === "sm" && "p-4",
+    padding === "md" && "p-6",
+    padding === "lg" && "p-8",
+    // Interactive hover states
+    isInteractive && "cursor-pointer",
+    // LIFT hover: card rises + shadow deepens (Content Card — Type A)
+    isInteractive &&
+      effectiveHover === "lift" &&
+      "hover:-translate-y-1 hover:shadow-lg focus-visible:-translate-y-1 focus-visible:shadow-lg",
+    // HIGHLIGHT hover: border highlight + shadow deepens (Feature Card — Type B)
+    isInteractive &&
+      effectiveHover === "highlight" &&
+      "border-2 border-transparent hover:border-coral-200 hover:shadow-md focus-visible:border-coral-200 focus-visible:shadow-md",
+    // Gradient overlay for lift cards only
+    isInteractive &&
+      effectiveHover === "lift" &&
+      "before:pointer-events-none before:absolute before:inset-0 before:rounded-xl before:bg-gradient-to-br before:from-sage-400/10 before:via-transparent before:to-charcoal-400/10 before:opacity-0 before:transition-opacity hover:before:opacity-100 focus-visible:before:opacity-100 after:pointer-events-none after:absolute after:inset-0 after:rounded-xl after:ring-1 after:ring-sand-200/60 after:opacity-0 after:transition-opacity hover:after:opacity-100 focus-visible:after:opacity-100",
+    // Enhanced gradient overlay for gradient variants
+    (variant === "event" || variant === "campaign" || variant === "team") &&
       isInteractive &&
-        effectiveHover === "lift" &&
-        "hover:-translate-y-1 hover:shadow-lg focus-visible:-translate-y-1 focus-visible:shadow-lg",
-      // HIGHLIGHT hover: border highlight + shadow deepens (Feature Card — Type B)
-      isInteractive &&
-        effectiveHover === "highlight" &&
-        "border-2 border-transparent hover:border-coral-200 hover:shadow-md focus-visible:border-coral-200 focus-visible:shadow-md",
-      // Gradient overlay for lift cards only
-      isInteractive &&
-        effectiveHover === "lift" &&
-        "before:pointer-events-none before:absolute before:inset-0 before:rounded-xl before:bg-gradient-to-br before:from-sage-400/10 before:via-transparent before:to-charcoal-400/10 before:opacity-0 before:transition-opacity hover:before:opacity-100 focus-visible:before:opacity-100 after:pointer-events-none after:absolute after:inset-0 after:rounded-xl after:ring-1 after:ring-sand-200/60 after:opacity-0 after:transition-opacity hover:after:opacity-100 focus-visible:after:opacity-100",
-      className,
-    );
+      effectiveHover === "lift" &&
+      "before:pointer-events-none before:absolute before:inset-0 before:rounded-xl before:bg-gradient-to-br before:opacity-0 before:transition-opacity hover:before:opacity-30 focus-visible:before:opacity-30",
+    className,
+  );
 
     if (href) {
       return (
