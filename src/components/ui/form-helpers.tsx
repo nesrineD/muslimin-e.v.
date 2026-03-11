@@ -127,7 +127,7 @@ export function FormField({
       {label && <FormLabel required={required}>{label}</FormLabel>}
       {children}
       {error && <FormError message={error} />}
-      {success && !error && <FormSuccess message="Looks good!" />}
+      {success && !error && <FormSuccess message="Sieht gut aus!" />}
       {hint && !error && <FormHint message={hint} />}
     </div>
   );
@@ -155,11 +155,11 @@ export function PasswordStrength({ password }: PasswordStrengthProps) {
 
   const strength = getStrength(password);
   const strengthMap = {
-    0: { label: 'Weak', color: 'bg-red-500' },
-    1: { label: 'Weak', color: 'bg-red-500' },
-    2: { label: 'Fair', color: 'bg-amber-500' },
-    3: { label: 'Good', color: 'bg-blue-500' },
-    4: { label: 'Strong', color: 'bg-emerald-500' },
+    0: { label: 'Schwach', color: 'bg-red-500' },
+    1: { label: 'Schwach', color: 'bg-red-500' },
+    2: { label: 'Mittel', color: 'bg-amber-500' },
+    3: { label: 'Gut', color: 'bg-blue-500' },
+    4: { label: 'Stark', color: 'bg-emerald-500' },
   };
 
   const current = strengthMap[strength as keyof typeof strengthMap];
@@ -178,7 +178,7 @@ export function PasswordStrength({ password }: PasswordStrengthProps) {
         ))}
       </div>
       <p className="text-xs text-charcoal-500">
-        Strength: <span className="font-semibold">{current.label}</span>
+        Passwortstärke: <span className="font-semibold">{current.label}</span>
       </p>
     </div>
   );

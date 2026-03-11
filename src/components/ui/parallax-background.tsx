@@ -30,16 +30,30 @@ export function ParallaxBackground({
   const [offset, setOffset] = useState(0);
 
   useEffect(() => {
+    // Disable parallax for users who prefer reduced motion
+    const prefersReducedMotion =
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
     // Reduce parallax effect on mobile devices
     const isMobile = window.innerWidth < 768;
     const effectiveSpeed = isMobile ? speed * 0.3 : speed;
 
+    let rafId: number | null = null;
+
     const handleScroll = () => {
-      setOffset(window.scrollY * effectiveSpeed);
+      if (rafId !== null) return;
+      rafId = requestAnimationFrame(() => {
+        setOffset(window.scrollY * effectiveSpeed);
+        rafId = null;
+      });
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (rafId !== null) cancelAnimationFrame(rafId);
+    };
   }, [speed]);
 
   return (

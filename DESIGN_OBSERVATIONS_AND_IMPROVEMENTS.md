@@ -403,8 +403,8 @@
   ```
   Text on Primary Backgrounds:
   ✓ Charcoal on Sand: 12.5:1 (excellent)
-  ✓ White on Sage: 8.2:1 (excellent)
-  ⚠️ White on Clay: 5.2:1 (adequate, increase to 7:1+)
+  ✓ White on Sage: 7.2:1 (AAA)
+  ⚠️ White on Clay: 5.5:1 (AA — adequate, increase to 7:1+ for AAA)
   ✓ Charcoal on Cream: 11.8:1 (excellent)
   
   Accent Text on Backgrounds:

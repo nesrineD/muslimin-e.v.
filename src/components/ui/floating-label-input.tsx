@@ -48,12 +48,15 @@ export const FloatingLabelInput = React.forwardRef<
       onFocus,
       onBlur,
       value,
+      id,
       ...props
     },
     ref,
   ) => {
     const [isFocused, setIsFocused] = useState(false);
-    const hasValue = value && value.toString().length > 0;
+    const generatedId = React.useId();
+    const inputId = id || generatedId;
+    const hasValue = value != null && String(value).length > 0;
     const isActive = isFocused || hasValue;
 
     const sizeClasses = {
@@ -91,6 +94,7 @@ export const FloatingLabelInput = React.forwardRef<
           {/* Input */}
           <input
             ref={ref}
+            id={inputId}
             value={value}
             onFocus={(e) => {
               setIsFocused(true);
@@ -114,6 +118,7 @@ export const FloatingLabelInput = React.forwardRef<
 
           {/* Floating Label */}
           <label
+            htmlFor={inputId}
             className={cn(
               'absolute left-4 origin-left transition-all duration-300 pointer-events-none',
               'font-body text-charcoal-700 font-medium',
@@ -173,12 +178,15 @@ export const FloatingLabelTextarea = React.forwardRef<
       onFocus,
       onBlur,
       value,
+      id,
       ...props
     },
     ref,
   ) => {
     const [isFocused, setIsFocused] = useState(false);
-    const hasValue = value && value.toString().length > 0;
+    const generatedId = React.useId();
+    const textareaId = id || generatedId;
+    const hasValue = value != null && String(value).length > 0;
     const isActive = isFocused || hasValue;
 
     const borderClass = {
@@ -195,6 +203,7 @@ export const FloatingLabelTextarea = React.forwardRef<
           {/* Textarea */}
           <textarea
             ref={ref}
+            id={textareaId}
             value={value}
             onFocus={(e) => {
               setIsFocused(true);
@@ -217,6 +226,7 @@ export const FloatingLabelTextarea = React.forwardRef<
 
           {/* Floating Label */}
           <label
+            htmlFor={textareaId}
             className={cn(
               'absolute left-4 origin-left transition-all duration-300 pointer-events-none',
               'font-body text-charcoal-700 font-medium',

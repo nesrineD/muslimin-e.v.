@@ -136,13 +136,13 @@ Deep neutral for text and high-contrast elements.
 
 ### Color Contrast & Accessibility
 
-**All color combinations meet WCAG AA+ standards:**
+**The following recommended color combinations meet WCAG contrast standards as indicated:**
 
 | Foreground | Background | Contrast Ratio | WCAG Level |
 |------------|-----------|---|---|
 | Charcoal 800 | Sand 400 (Cream) | 8.5:1 | AAA |
 | White | Sage 500 | 7.2:1 | AAA |
-| White | Clay 500 | 8.1:1 | AAA |
+| White | Clay 500 | 5.5:1 | AA |
 | Sage 700 | White | 9.2:1 | AAA |
 | Charcoal 900 | Sand 50 | 12.1:1 | AAA |
 
@@ -461,7 +461,7 @@ All components and pages must meet **WCAG 2.1 AA** standards minimum.
 }
 ```
 
-- **Ring color:** Sage 500 (provides 7.2:1 contrast on all backgrounds)
+- **Ring color:** Sage 500 (provides ~7.2:1 contrast on light backgrounds such as white and Sand/Cream)
 - **Ring offset:** 2px for clarity
 - **Never remove focus indicators** for aesthetics
 
