@@ -22,9 +22,9 @@ export function Footer() {
       role="contentinfo"
     >
       <div className="container mx-auto px-6 py-12 md:px-8 md:py-16">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 md:gap-12">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 md:gap-12">
           {/* Brand + Social Column */}
-          <div className="space-y-5 sm:col-span-2 lg:col-span-1">
+          <div className="space-y-5 lg:col-span-1">
             <Link href="/" className="inline-flex items-center gap-2.5 group">
               <Image
                 src="/images/muslimin-logo.svg"
@@ -67,25 +67,6 @@ export function Footer() {
             </h3>
             <ul className="space-y-2.5">
               {NAV_VEREIN.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-sand-300 hover:text-cream-50 transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Rechtliches Column */}
-          <div>
-            <h3 className="text-xs font-semibold text-sand-200 uppercase tracking-widest mb-4">
-              Rechtliches
-            </h3>
-            <ul className="space-y-2.5">
-              {LEGAL_LINKS.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
