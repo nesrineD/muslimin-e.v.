@@ -78,9 +78,9 @@ export const MemberLocationMap: React.FC<MemberLocationMapProps> = ({
                 (
                   member: MemberLocation & {
                     coordinates: PLZCoordinates | null;
-                  }
+                  },
                 ): member is MemberLocationWithCoordinates =>
-                  member.coordinates !== null
+                  member.coordinates !== null,
               );
 
           setMembers(membersWithCoordinates);
@@ -107,7 +107,7 @@ export const MemberLocationMap: React.FC<MemberLocationMapProps> = ({
         member.postal_code?.startsWith(filters.searchPLZ) ||
         member.coordinates?.city
           .toLowerCase()
-          .includes(filters.searchPLZ.toLowerCase())
+          .includes(filters.searchPLZ.toLowerCase()),
     );
   }, [members, filters.searchPLZ]);
 
@@ -130,7 +130,7 @@ export const MemberLocationMap: React.FC<MemberLocationMapProps> = ({
   // Statistics
   const memberCount = filteredMembers.length;
   const helperCount = filteredMembers.filter(
-    (member) => member.role !== "member"
+    (member) => member.role !== "member",
   ).length;
 
   // Handle map load
@@ -154,7 +154,7 @@ export const MemberLocationMap: React.FC<MemberLocationMapProps> = ({
         setMapZoom(12);
       }
     },
-    []
+    [],
   );
 
   // Handle PLZ group click (multiple members in same location)
@@ -175,7 +175,7 @@ export const MemberLocationMap: React.FC<MemberLocationMapProps> = ({
         }
       }
     },
-    [handleMemberClick]
+    [handleMemberClick],
   );
 
   // Handle map click (deselect)
@@ -191,7 +191,7 @@ export const MemberLocationMap: React.FC<MemberLocationMapProps> = ({
       if (searchPLZ && searchPLZ.length >= 2) {
         // Find first matching PLZ and center map
         const matchingMember = members.find((member) =>
-          member.postal_code?.startsWith(searchPLZ)
+          member.postal_code?.startsWith(searchPLZ),
         );
 
         if (matchingMember?.coordinates) {
@@ -203,7 +203,7 @@ export const MemberLocationMap: React.FC<MemberLocationMapProps> = ({
         }
       }
     },
-    [members]
+    [members],
   );
 
   // Update map center when search changes
@@ -222,7 +222,7 @@ export const MemberLocationMap: React.FC<MemberLocationMapProps> = ({
   const selectedPLZMembers = useMemo(() => {
     if (!selectedPLZ) return [];
     return filteredMembers.filter(
-      (member) => member.postal_code === selectedPLZ
+      (member) => member.postal_code === selectedPLZ,
     );
   }, [selectedPLZ, filteredMembers]);
 
@@ -398,7 +398,7 @@ export const MemberLocationMap: React.FC<MemberLocationMapProps> = ({
           <div className="flex items-center space-x-4">
             <button
               onClick={() => setShowMembersList(true)}
-              className="text-clay-500 hover:text-clay-700 font-medium underline cursor-pointer"
+              className="text-clay-600 hover:text-clay-700 font-medium underline cursor-pointer"
             >
               {memberCount} sichtbare{" "}
               {memberCount === 1 ? "Mitglied" : "Mitglieder"} anzeigen

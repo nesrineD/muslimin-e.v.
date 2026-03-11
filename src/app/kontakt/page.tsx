@@ -24,7 +24,7 @@ export default function KontaktPage() {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="container mx-auto px-4 py-20"
+        className="container mx-auto px-4 py-20 bg-gradient-to-b from-cream-50/40 via-white to-white rounded-2xl"
       >
         {/* Hero Section */}
         <motion.div variants={itemVariants} className="text-center mb-16">
@@ -39,7 +39,7 @@ export default function KontaktPage() {
         <div className="grid md:grid-cols-2 gap-12">
           {/* Contact Info Section */}
           <motion.div variants={itemVariants}>
-            <Card className="h-full border-2 border-sand-200 shadow-xl bg-white">
+            <Card className="h-full border border-sand-200 shadow-md bg-white">
               <CardHeader>
                 <CardTitle className="text-2xl font-bold text-charcoal-800">
                   Kontaktinformationen
@@ -66,7 +66,7 @@ export default function KontaktPage() {
 
           {/* Contact Form Section */}
           <motion.div variants={itemVariants}>
-            <Card className="h-full border-2 border-sand-200 shadow-xl bg-white">
+            <Card className="h-full border border-sand-200 shadow-md bg-white">
               <CardHeader>
                 <CardTitle className="text-2xl font-bold text-charcoal-800">
                   Schreiben Sie uns
@@ -84,7 +84,7 @@ export default function KontaktPage() {
                     <Input
                       id="name"
                       placeholder="Dein Name"
-                      className="mt-1 border-sand-300 focus:border-sage-500"
+                      className="mt-1 border-sand-300 focus:border-sage-500 focus:bg-sage-50 transition-colors duration-200"
                     />
                   </div>
                   <div>
@@ -95,7 +95,7 @@ export default function KontaktPage() {
                       id="email"
                       type="email"
                       placeholder="deine@email.de"
-                      className="mt-1 border-sand-300 focus:border-sage-500"
+                      className="mt-1 border-sand-300 focus:border-sage-500 focus:bg-sage-50 transition-colors duration-200"
                     />
                   </div>
                   <div>
@@ -105,7 +105,7 @@ export default function KontaktPage() {
                     <Input
                       id="subject"
                       placeholder="Betreff deiner Nachricht"
-                      className="mt-1 border-sand-300 focus:border-sage-500"
+                      className="mt-1 border-sand-300 focus:border-sage-500 focus:bg-sage-50 transition-colors duration-200"
                     />
                   </div>
                   <div>
@@ -115,7 +115,7 @@ export default function KontaktPage() {
                     <Textarea
                       id="message"
                       placeholder="Deine Nachricht an uns..."
-                      className="mt-1 border-sand-300 focus:border-sage-500"
+                      className="mt-1 border-sand-300 focus:border-sage-500 focus:bg-sage-50 transition-colors duration-200"
                       rows={5}
                     />
                   </div>

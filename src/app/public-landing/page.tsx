@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll } from "framer-motion";
+import { motion, useScroll, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -13,11 +13,16 @@ import {
   CheckCircle,
   HeartHandshake,
 } from "lucide-react";
-import { containerVariants, itemVariants } from "@/lib/animations";
+import {
+  containerVariants,
+  itemVariants,
+  hoverButton,
+  hoverLift,
+} from "@/lib/animations";
 import { SocialMediaSection } from "@/components/SocialMediaSection";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { debounce } from "@/lib/utils";
 import { PUBLIC_PAGE_WRAPPER_CLASS } from "@/lib/page-config";
 
@@ -69,10 +74,17 @@ const ctaCards: CTACard[] = [
 export default function PublicLandingPage() {
   const { scrollY } = useScroll();
   const [showStickyBar, setShowStickyBar] = useState(false);
+  // Track previous scroll position to detect scroll direction
+  const prevScrollY = useRef(0);
 
   const handleScroll = useCallback((latest: number) => {
+    const scrollingDown = latest > prevScrollY.current;
+    const pastThreshold = latest > 300;
+    prevScrollY.current = latest;
+
     setShowStickyBar((prev) => {
-      const next = latest > 800;
+      // Show when scrolling down past threshold; hide when scrolling back up
+      const next = pastThreshold && scrollingDown;
       return prev === next ? prev : next;
     });
   }, []);
@@ -101,34 +113,41 @@ export default function PublicLandingPage() {
       initial="hidden"
       animate="visible"
     >
-      <div className="container mx-auto px-4">
-        {/* Sticky CTA Bar */}
-        <motion.div
-          initial={{ y: 100 }}
-          animate={{ y: showStickyBar ? 0 : 100 }}
-          transition={{ duration: 0.3 }}
-          className="fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-r from-clay-700/95 to-coral-600/95 shadow-2xl border-t border-white/15"
-        >
-          <div className="container mx-auto px-4 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-            <span className="text-white font-semibold text-sm md:text-base text-center sm:text-left">
-              💚 Werde jetzt Teil unserer Gemeinschaft!
-            </span>
-            <div className="flex items-center justify-center sm:justify-end gap-2">
-              <Button size="sm" variant="primary" asChild>
-                <Link href="/mitglied-werden" className="gap-2">
-                  <Heart className="w-4 h-4" />
-                  Mitglied werden
-                </Link>
-              </Button>
-              <Button size="sm" variant="secondary" asChild>
-                <Link href="/spenden" className="gap-2">
-                  <HeartHandshake className="w-4 h-4" />
-                  Jetzt unterstützen
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </motion.div>
+      <div className="container mx-auto px-4 pb-24 sm:pb-0">
+        {/* Sticky CTA Bar — smart scroll-direction visibility:
+            Appears when scrolling down past 300px, hides when scrolling back up.
+            Bottom padding (pb-24) on mobile prevents content from being obscured. */}
+        <AnimatePresence>
+          {showStickyBar && (
+            <motion.div
+              initial={{ y: 100 }}
+              animate={{ y: 0 }}
+              exit={{ y: 100 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-r from-clay-700/95 to-coral-600/95 shadow-2xl border-t border-white/15"
+            >
+              <div className="container mx-auto px-4 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                <span className="text-white font-semibold text-sm md:text-base text-center sm:text-left">
+                  💚 Werde jetzt Teil unserer Gemeinschaft!
+                </span>
+                <div className="flex items-center justify-center sm:justify-end gap-2">
+                  <Button size="sm" variant="primary" asChild>
+                    <Link href="/mitglied-werden" className="gap-2">
+                      <Heart className="w-4 h-4" />
+                      Mitglied werden
+                    </Link>
+                  </Button>
+                  <Button size="sm" variant="secondary" asChild>
+                    <Link href="/spenden" className="gap-2">
+                      <HeartHandshake className="w-4 h-4" />
+                      Jetzt unterstützen
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Enhanced Hero Section */}
         <section className="relative py-20 md:py-24 overflow-hidden">
@@ -155,7 +174,7 @@ export default function PublicLandingPage() {
               Deine Stärke im Glauben.
             </h1>
 
-            <p className="text-xl md:text-2xl text-charcoal-800 mb-8 font-medium max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-charcoal-800 mb-8 font-semibold max-w-3xl mx-auto">
               Werde Teil einer lebendigen Gemeinschaft muslimischer Frauen. Wir
               fördern islamische Bildung, spirituelles Wachstum und den
               Zusammenhalt.
@@ -167,10 +186,7 @@ export default function PublicLandingPage() {
 
             <div className="flex flex-col items-center gap-5">
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 w-full sm:w-auto">
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
+                <motion.div {...hoverButton}>
                   <Button size="lg" variant="primary" asChild>
                     <Link href="/mitglied-werden" className="gap-3">
                       <Heart className="w-6 h-6" />
@@ -180,10 +196,7 @@ export default function PublicLandingPage() {
                   </Button>
                 </motion.div>
 
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
+                <motion.div {...hoverButton}>
                   <Button size="lg" variant="secondary" asChild>
                     <Link href="/spenden" className="gap-3">
                       <HeartHandshake className="w-6 h-6" />
@@ -202,14 +215,16 @@ export default function PublicLandingPage() {
               >
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-charcoal-800" />
-                  <span className="font-medium">
+                  <span className="font-semibold">
                     Muslimische Frauen-Community
                   </span>
                 </div>
                 <span className="hidden sm:inline">•</span>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-charcoal-800" />
-                  <span className="font-medium">Islamische Weiterbildung</span>
+                  <span className="font-semibold">
+                    Islamische Weiterbildung
+                  </span>
                 </div>
               </motion.div>
             </div>
@@ -226,6 +241,7 @@ export default function PublicLandingPage() {
             className="max-w-4xl mx-auto"
           >
             <div className="text-center mb-10">
+              <p className="section-label mb-3">Über uns</p>
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -356,15 +372,8 @@ export default function PublicLandingPage() {
                   iconBg: "bg-gradient-to-br from-coral-600 to-sage-700",
                 },
               ].map((benefit, idx) => (
-                <motion.div
-                  key={idx}
-                  variants={itemVariants}
-                  whileHover={{ y: -4 }}
-                >
-                  <Card
-                    variant="cream"
-                    className="h-full border-2 border-transparent hover:border-coral-300 transition-all duration-300 shadow-md hover:shadow-xl"
-                  >
+                <motion.div key={idx} variants={itemVariants} {...hoverLift}>
+                  <Card variant="cream" hover="highlight" className="h-full">
                     <CardContent className="space-y-4">
                       <div
                         className={`inline-flex items-center justify-center w-14 h-14 rounded-xl ${benefit.iconBg} text-white shadow-lg`}
@@ -390,10 +399,7 @@ export default function PublicLandingPage() {
               transition={{ delay: 0.3 }}
               className="text-center mt-10"
             >
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
+              <motion.div {...hoverButton}>
                 <Button size="lg" variant="primary" asChild>
                   <Link href="/mitglied-werden" className="gap-3">
                     Jetzt Mitglied werden
@@ -422,7 +428,7 @@ export default function PublicLandingPage() {
                     key={card.title}
                     variants={itemVariants}
                     className="h-full"
-                    whileHover={{ y: -4 }}
+                    {...hoverLift}
                   >
                     <Link
                       href={card.href}
@@ -430,7 +436,8 @@ export default function PublicLandingPage() {
                     >
                       <Card
                         variant="cream"
-                        className="h-full cursor-pointer transition-all duration-300 border-2 border-transparent hover:border-coral-200 hover:shadow-xl"
+                        hover="highlight"
+                        className="h-full cursor-pointer"
                       >
                         <CardContent className="space-y-4 h-full flex flex-col">
                           <div className="flex items-start gap-4">
@@ -493,10 +500,7 @@ export default function PublicLandingPage() {
                 und stärkt. Gemeinsam sind wir stärker! 💚
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
+                <motion.div {...hoverButton}>
                   <Button size="lg" variant="primary" asChild>
                     <Link href="/mitglied-werden" className="gap-3">
                       <Heart className="w-6 h-6" />
@@ -505,10 +509,7 @@ export default function PublicLandingPage() {
                     </Link>
                   </Button>
                 </motion.div>
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
+                <motion.div {...hoverButton}>
                   <Button size="lg" variant="secondary" asChild>
                     <Link href="/spenden" className="gap-3">
                       <HeartHandshake className="w-6 h-6" />

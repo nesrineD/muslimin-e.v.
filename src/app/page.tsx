@@ -144,7 +144,7 @@ export default function Home() {
             >
               <Link href={feature.href}>
                 <Card
-                  className={`border-0 shadow-xl ${feature.color} backdrop-blur-sm hover:shadow-2xl transition-all duration-300 group-hover:scale-105 cursor-pointer h-full`}
+                  className={`border-0 shadow-md ${feature.color} backdrop-blur-sm hover:-translate-y-1 hover:shadow-xl transition-all duration-300 cursor-pointer h-full`}
                 >
                   <CardContent className="p-8 text-center space-y-4">
                     <div className="flex justify-center mb-4">

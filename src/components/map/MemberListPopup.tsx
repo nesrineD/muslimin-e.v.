@@ -44,7 +44,7 @@ export const MemberListPopup: React.FC<MemberListPopupProps> = ({
         <div className="p-3 border-b border-gray-100">
           <button
             onClick={handleBackToList}
-            className="flex items-center space-x-2 text-[#9c604d] hover:text-[#7a4a3a] transition-colors text-sm"
+            className="flex items-center space-x-2 text-clay-500 hover:text-clay-700 transition-colors text-sm"
           >
             <svg
               className="w-4 h-4"
@@ -81,7 +81,7 @@ export const MemberListPopup: React.FC<MemberListPopupProps> = ({
           <div>
             <h3 className="font-semibold text-gray-900 text-lg flex items-center space-x-2">
               <svg
-                className="w-5 h-5 text-[#9c604d]"
+                className="w-5 h-5 text-clay-500"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -152,7 +152,7 @@ export const MemberListPopup: React.FC<MemberListPopupProps> = ({
             onClick={() => handleMemberClick(member)}
           >
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-[#9c604d] text-white rounded-full flex items-center justify-center text-sm font-semibold">
+              <div className="w-8 h-8 bg-clay-500 text-white rounded-full flex items-center justify-center text-sm font-semibold">
                 {member.first_name.charAt(0)}
               </div>
               <div className="flex-1 min-w-0">

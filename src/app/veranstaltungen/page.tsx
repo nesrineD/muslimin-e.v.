@@ -129,7 +129,7 @@ export default function VeranstaltungenPage() {
     >
       <div className="container mx-auto px-4">
         {/* Hero */}
-        <section className="py-20 md:py-24 text-center max-w-4xl mx-auto">
+        <section className="py-20 md:py-24 text-center max-w-4xl mx-auto bg-gradient-to-br from-sage-50 via-cream-50/50 to-white rounded-2xl px-6">
           <motion.div variants={itemVariants}>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 text-charcoal-800">
               Unsere Veranstaltungen

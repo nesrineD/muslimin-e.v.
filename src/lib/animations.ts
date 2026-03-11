@@ -170,3 +170,76 @@ export const fadeUp: Variants = itemVariants;
  * Kept as a named export so pages do not define their own local copy.
  */
 export const staggerContainer: Variants = containerVariants;
+
+// ============================================================
+// HOVER UTILITY LIBRARY — Design System § Hover States
+// Use these consistent Framer Motion props across all components
+// to ensure uniform hover behaviour throughout the site.
+// ============================================================
+
+/**
+ * hoverLift — Content Card hover (Card Type A: events, campaigns, articles)
+ * Effect: card rises 4px + shadow deepens
+ * Timing: 300ms cubic-bezier for natural lift sensation
+ *
+ * Usage:
+ *   <motion.div {...hoverLift}>…</motion.div>
+ */
+export const hoverLift = {
+  whileHover: { y: -4, transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] } },
+  whileTap: { y: 0, scale: 0.99 },
+} as const;
+
+/**
+ * hoverHighlight — Feature Card hover (Card Type B: value/info cards)
+ * Effect: subtle opacity shift + slight border glow (handled via CSS)
+ * Timing: 200ms for snappy feedback
+ *
+ * Usage:
+ *   <motion.div {...hoverHighlight}>…</motion.div>
+ */
+export const hoverHighlight = {
+  whileHover: { opacity: 0.96, transition: { duration: 0.2, ease: "easeOut" } },
+  whileTap: { scale: 0.99 },
+} as const;
+
+/**
+ * hoverButton — Standard button hover
+ * Effect: 2% scale up (desktop only; mobile uses color change via CSS)
+ * Timing: 200ms ease-out for quick tactile feedback
+ *
+ * Usage:
+ *   <motion.div {...hoverButton}>
+ *     <Button>…</Button>
+ *   </motion.div>
+ */
+export const hoverButton = {
+  whileHover: { scale: 1.02, transition: { duration: 0.2, ease: "easeOut" } },
+  whileTap: { scale: 0.97 },
+} as const;
+
+/**
+ * hoverIcon — Icon button hover
+ * Effect: 10% scale up for tactile feedback
+ * Timing: 150ms ease-out for snappiest feedback
+ *
+ * Usage:
+ *   <motion.div {...hoverIcon}>
+ *     <SomeIcon />
+ *   </motion.div>
+ */
+export const hoverIcon = {
+  whileHover: { scale: 1.1, transition: { duration: 0.15, ease: "easeOut" } },
+  whileTap: { scale: 0.95 },
+} as const;
+
+/**
+ * hoverLink — Inline link hover (underline animation handled by CSS)
+ * Keeps text stable while CSS underline grows left→right.
+ *
+ * Usage:
+ *   <motion.span {...hoverLink}>…</motion.span>
+ */
+export const hoverLink = {
+  whileHover: { transition: { duration: 0.08 } },
+} as const;

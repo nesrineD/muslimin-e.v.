@@ -331,4 +331,89 @@ describe("Card Component", () => {
       expect(card).toBeInTheDocument();
     });
   });
+
+  describe("Gradient Variants", () => {
+    it("renders event variant with sage gradient background", () => {
+      const { container } = render(<Card variant="event">Event Card</Card>);
+      const card = container.firstChild as HTMLElement;
+      expect(card.className).toMatch(/from-sage-100/);
+    });
+
+    it("renders campaign variant with clay gradient background", () => {
+      const { container } = render(
+        <Card variant="campaign">Campaign Card</Card>
+      );
+      const card = container.firstChild as HTMLElement;
+      expect(card.className).toMatch(/from-clay-100/);
+    });
+
+    it("renders team variant with sage gradient background", () => {
+      const { container } = render(<Card variant="team">Team Card</Card>);
+      const card = container.firstChild as HTMLElement;
+      expect(card.className).toMatch(/from-sage-50/);
+    });
+
+    it("renders feature variant with cream gradient background", () => {
+      const { container } = render(
+        <Card variant="feature">Feature Card</Card>
+      );
+      const card = container.firstChild as HTMLElement;
+      expect(card.className).toMatch(/from-cream-100/);
+    });
+
+    it("gradient variant cards apply shadow-sm by default", () => {
+      const { container } = render(<Card variant="event">Event</Card>);
+      const card = container.firstChild as HTMLElement;
+      expect(card).toHaveClass("shadow-sm");
+    });
+  });
+
+  describe("Hover Modes", () => {
+    it("applies lift hover by default on interactive white card", () => {
+      const { container } = render(
+        <Card onClick={() => {}}>Lift Card</Card>
+      );
+      const card = container.firstChild as HTMLElement;
+      expect(card.className).toMatch(/hover:-translate-y-/);
+      expect(card.className).toMatch(/hover:shadow-lg/);
+    });
+
+    it("applies highlight hover by default on interactive cream card", () => {
+      const { container } = render(
+        <Card variant="cream" onClick={() => {}}>
+          Highlight Card
+        </Card>
+      );
+      const card = container.firstChild as HTMLElement;
+      expect(card.className).toMatch(/hover:border-coral-200/);
+    });
+
+    it("respects explicit hover='highlight' override on white card", () => {
+      const { container } = render(
+        <Card hover="highlight" onClick={() => {}}>
+          Override Hover
+        </Card>
+      );
+      const card = container.firstChild as HTMLElement;
+      expect(card.className).toMatch(/hover:border-coral-200/);
+      expect(card.className).not.toMatch(/hover:-translate-y-/);
+    });
+
+    it("respects explicit hover='lift' override on cream card", () => {
+      const { container } = render(
+        <Card variant="cream" hover="lift" onClick={() => {}}>
+          Lift Override
+        </Card>
+      );
+      const card = container.firstChild as HTMLElement;
+      expect(card.className).toMatch(/hover:-translate-y-/);
+    });
+
+    it("has no hover classes when card is not interactive", () => {
+      const { container } = render(<Card>Static Card</Card>);
+      const card = container.firstChild as HTMLElement;
+      expect(card.className).not.toMatch(/hover:-translate-y-/);
+      expect(card.className).not.toMatch(/hover:border-coral/);
+    });
+  });
 });

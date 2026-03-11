@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { containerVariants, itemVariants } from "@/lib/animations";
+import { containerVariants, itemVariants, hoverLift } from "@/lib/animations";
 import { PUBLIC_PAGE_WRAPPER_CLASS } from "@/lib/page-config";
 
 interface DonationCampaign {
@@ -198,19 +198,19 @@ export default function SpendenPage() {
 
           {/* Trust Badges */}
           <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 text-sm">
-            <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm border border-sand-200">
+            <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-br from-sage-50/60 to-white rounded-lg shadow-sm border border-sand-200">
               <Shield className="w-4 h-4 text-sage-600" />
               <span className="font-semibold text-charcoal-800">
-                Ehrenamtlich & unabhängig
+                Ehrenamtlich &amp; unabhängig
               </span>
             </div>
-            <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm border border-sand-200">
+            <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-br from-sage-50/60 to-white rounded-lg shadow-sm border border-sand-200">
               <Heart className="w-4 h-4 text-sage-600" />
               <span className="font-semibold text-charcoal-800">
                 100% Transparenz
               </span>
             </div>
-            <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm border border-sand-200">
+            <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-br from-sage-50/60 to-white rounded-lg shadow-sm border border-sand-200">
               <Users className="w-4 h-4 text-charcoal-600" />
               <span className="font-semibold text-charcoal-800">
                 Seit 2011 aktiv
@@ -224,6 +224,7 @@ export default function SpendenPage() {
       <section id="spenden" className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
         <motion.div variants={itemVariants} className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
+            <p className="section-label mb-3">Spendenwege</p>
             <h2 className="text-3xl md:text-4xl font-bold text-charcoal-800 mb-4">
               So kannst du spenden
             </h2>
@@ -236,7 +237,7 @@ export default function SpendenPage() {
             {/* PayPal */}
             <motion.div
               variants={itemVariants}
-              whileHover={{ y: -4 }}
+              {...hoverLift}
               className="relative p-8 bg-gradient-to-br from-white to-sage-50 rounded-xl border-2 border-sage-300 shadow-lg hover:shadow-xl transition-all"
             >
               <div className="absolute -top-3 right-4 px-3 py-1 bg-sage-500 text-white text-xs font-bold rounded-full shadow-md">
@@ -331,8 +332,8 @@ export default function SpendenPage() {
             {/* Bank Transfer */}
             <motion.div
               variants={itemVariants}
-              whileHover={{ y: -4 }}
-              className="p-8 bg-white rounded-xl border-2 border-sand-200 hover:border-sage-300 hover:shadow-lg transition-all"
+              {...hoverLift}
+              className="p-8 bg-gradient-to-br from-white to-sage-50/50 rounded-xl border-2 border-sand-200 hover:border-sage-300 hover:shadow-lg transition-all"
             >
               <div className="mb-4 w-12 h-12 bg-gradient-to-br from-sage-100 to-sage-200 rounded-lg flex items-center justify-center">
                 <Landmark className="w-7 h-7 text-sage-700" />
@@ -438,8 +439,8 @@ export default function SpendenPage() {
               <motion.div
                 key={campaign.id}
                 variants={itemVariants}
-                whileHover={{ y: -4 }}
-                className="p-8 bg-white rounded-xl border-2 border-sand-200 hover:border-sage-300 hover:shadow-lg transition-all"
+                {...hoverLift}
+                className="p-8 bg-gradient-to-br from-white to-cream-50/60 rounded-xl border-2 border-sand-200 hover:border-sage-300 hover:shadow-lg transition-all"
               >
                 <div className="text-sage-600 mb-4">{campaign.icon}</div>
 

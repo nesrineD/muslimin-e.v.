@@ -92,10 +92,12 @@ export const MemberCard: React.FC<MemberCardProps> = ({
               />
             </svg>
             <div>
-              <span className="font-medium text-clay-500">
+              <span className="font-medium text-clay-600">
                 {member.coordinates.city}
               </span>
-              <span className="text-charcoal-600 ml-1">({member.postal_code})</span>
+              <span className="text-charcoal-600 ml-1">
+                ({member.postal_code})
+              </span>
             </div>
           </div>
           <div className="text-xs text-charcoal-500 mt-1">
@@ -124,7 +126,9 @@ export const MemberCard: React.FC<MemberCardProps> = ({
 
         {/* Contact info (if applicable for helpers) */}
         {member.role !== "member" && (
-          <div className="text-xs text-charcoal-500">Verfügbar für Beratung</div>
+          <div className="text-xs text-charcoal-500">
+            Verfügbar für Beratung
+          </div>
         )}
       </div>
 
