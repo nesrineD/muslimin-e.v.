@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useScroll, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -9,6 +10,7 @@ import {
   Users,
   Shield,
   Sparkles,
+  CheckCircle,
   HeartHandshake,
 } from "lucide-react";
 import {
@@ -22,7 +24,12 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { debounce } from "@/lib/utils";
-import { PUBLIC_PAGE_WRAPPER_CLASS } from "@/lib/page-config";
+import {
+  PUBLIC_PAGE_WRAPPER_CLASS,
+  SECTION_HERO_SPACING,
+  SECTION_CONTENT_SPACING,
+  SECTION_CTA_SPACING,
+} from "@/lib/page-config";
 
 export function PublicLandingContent() {
   const { scrollY } = useScroll();
@@ -60,8 +67,10 @@ export function PublicLandingContent() {
       initial="hidden"
       animate="visible"
     >
-      <div className="pb-24 sm:pb-0">
-        {/* Sticky CTA Bar — appears when scrolling down past 300 px */}
+      <div className="container mx-auto px-4 pb-24 sm:pb-0">
+        {/* Sticky CTA Bar — smart scroll-direction visibility:
+            Appears when scrolling down past 300px, hides when scrolling back up.
+            Bottom padding (pb-24) on mobile prevents content from being obscured. */}
         <AnimatePresence>
           {showStickyBar && (
             <motion.div
@@ -69,155 +78,153 @@ export function PublicLandingContent() {
               animate={{ y: 0 }}
               exit={{ y: 100 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-r from-clay-700/95 to-coral-600/95 shadow-2xl border-t border-white/15"
+              className="fixed bottom-0 left-0 right-0 z-50 bg-charcoal-800/95 shadow-2xl border-t border-sand-200/15 backdrop-blur-sm"
             >
               <div className="container mx-auto px-4 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-                <span className="text-white font-medium text-sm md:text-base text-center sm:text-left">
-                  Werde Teil unserer Gemeinschaft!
+                <span className="text-cream-50 font-semibold text-sm md:text-base text-center sm:text-left">
+                  Werde Teil unserer Gemeinschaft
                 </span>
-                <div className="flex items-center justify-center sm:justify-end gap-2">
-                  <Button size="sm" variant="primary" asChild>
-                    <Link href="/mitglied-werden" className="gap-2">
-                      <Heart className="w-4 h-4" />
-                      Mitglied werden
-                    </Link>
-                  </Button>
-                </div>
+                <Button size="sm" variant="primary" asChild>
+                  <Link href="/mitglied-werden" className="gap-2">
+                    <Heart className="w-4 h-4" />
+                    Mitglied werden
+                  </Link>
+                </Button>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
 
-        {/* ── Hero Section ─────────────────────────────────────────── */}
-        <section className="relative py-20 md:py-28 overflow-hidden px-4">
-          <div className="absolute inset-0 bg-gradient-to-br from-sage-100/60 via-cream-100/40 to-sand-100/30" />
-
+        {/* Hero Section */}
+        <section className={`relative ${SECTION_HERO_SPACING} overflow-hidden`}>
           <motion.div
             variants={itemVariants}
-            className="max-w-4xl mx-auto text-center relative z-10"
+            className="max-w-5xl mx-auto text-center relative z-10"
           >
-            {/* Trust Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-sage-200 via-cream-200 to-sage-200 text-charcoal-900 rounded-full text-sm font-medium mb-6 border border-sage-300 shadow-sm"
-            >
-              <Shield className="w-4 h-4 text-sage-700" aria-hidden="true" />
-              Ehrenamtlich · DSGVO-konform · Seit 2011
-            </motion.div>
-
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent leading-tight">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-charcoal-800 leading-tight">
               Deine Schwesternschaft.
               <br />
-              Deine Stärke im Glauben.
+              <span className="text-sage-700">Dein geschützter Raum.</span>
             </h1>
 
-            {/* Concrete value proposition — answers "what, where, since when?" */}
-            <p className="text-xl md:text-2xl text-charcoal-700 mb-10 max-w-2xl mx-auto leading-relaxed">
-              Islamische Vorträge, Beratung &amp; Gemeinschaft für muslimische
-              Frauen in Berlin – seit 2011.
+            <p className="text-xl md:text-2xl text-charcoal-700 mb-6 max-w-3xl mx-auto leading-relaxed">
+              Muslimin e.V. verbindet muslimische Frauen in Berlin durch
+              Gemeinschaft, religiöse Bildung und Angebote, die im Alltag
+              tragen.
             </p>
 
-            {/* Single primary CTA + one secondary text link */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <motion.div {...hoverButton}>
-                <Button size="lg" variant="primary" asChild>
-                  <Link href="/mitglied-werden" className="gap-3">
-                    <Heart className="w-5 h-5" aria-hidden="true" />
-                    Mitglied werden
-                    <ArrowRight className="w-4 h-4" aria-hidden="true" />
-                  </Link>
-                </Button>
-              </motion.div>
+            <p className="text-lg text-charcoal-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+              Seit 2011 ehrenamtlich, verlässlich und mit klarem Blick auf die
+              Bedürfnisse von Frauen und Familien.
+            </p>
 
-              <Link
-                href="/uber-uns"
-                className="text-sage-700 font-medium hover:text-sage-800 transition-colors underline underline-offset-4 decoration-sage-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-sage focus-visible:outline-offset-4 rounded"
-              >
-                Mehr erfahren
-              </Link>
+            <div className="flex flex-col items-center gap-5">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 w-full sm:w-auto">
+                <motion.div {...hoverButton}>
+                  <Button size="lg" variant="primary" asChild>
+                    <Link href="/mitglied-werden" className="gap-3">
+                      <Heart className="w-6 h-6" />
+                      Mitglied werden
+                      <ArrowRight className="w-5 h-5" />
+                    </Link>
+                  </Button>
+                </motion.div>
+
+                <motion.div {...hoverButton}>
+                  <Button size="lg" variant="secondary" asChild>
+                    <Link href="/spenden" className="gap-3">
+                      <HeartHandshake className="w-6 h-6" />
+                      Jetzt unterstützen
+                    </Link>
+                  </Button>
+                </motion.div>
+              </div>
             </div>
+
+            {/* Hero Image */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.6 }}
+              className="mt-14 max-w-4xl mx-auto"
+            >
+              <div className="relative aspect-[16/7] rounded-2xl overflow-hidden border border-sand-200 shadow-sm">
+                <Image
+                  src="/images/veranstaltungen/frauenkreis-juni-2025.jpeg"
+                  alt="Frauenkreis – Muslimin e.V. Gemeinschaft in Berlin"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 896px"
+                  priority
+                />
+              </div>
+            </motion.div>
           </motion.div>
         </section>
 
-        {/* ── Social Proof / Stats Strip ───────────────────────────── */}
-        <section className="py-10 md:py-12 px-4">
+        {/* About Teaser */}
+        <section className={SECTION_CONTENT_SPACING}>
           <motion.div
             variants={itemVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="relative mx-auto max-w-5xl overflow-hidden rounded-2xl bg-gradient-to-br from-charcoal-600 via-charcoal-600 to-sage-700 px-6 py-8 shadow-sage"
+            className="max-w-5xl mx-auto"
           >
-            <div
-              className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent"
-              aria-hidden="true"
-            />
-            <div className="grid grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-white/10">
-              {[
-                { value: "Seit 2011", label: "aktiv in Berlin" },
-                { value: "60+", label: "Mitglieder" },
-                { value: "100+", label: "Veranstaltungen" },
-                { value: "500", label: "Gäste beim größten Event" },
-              ].map((stat, i) => (
-                <div
-                  key={i}
-                  className="flex flex-col items-center justify-center py-6 px-4 text-center"
-                >
-                  <span className="text-3xl md:text-4xl font-bold text-cream-50 tracking-tight">
-                    {stat.value}
-                  </span>
-                  <span className="mt-1 text-sm text-sand-300 leading-snug">
-                    {stat.label}
-                  </span>
+            <div className="rounded-2xl border border-sand-200/70 bg-white/80 px-6 py-10 md:px-10 md:py-12">
+              <div className="grid md:grid-cols-2 gap-10 items-start">
+                <div>
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4 text-charcoal-800 leading-tight">
+                    Ein Verein, der Frauen stärkt und Gemeinschaft trägt
+                  </h2>
+                  <p className="text-lg text-charcoal-700 leading-relaxed">
+                    Muslimin e.V. schafft einen geschützten Raum, in dem Frauen
+                    ihre spirituelle, intellektuelle und soziale Entwicklung
+                    fördern können — durch religiöse Bildung, Vernetzung und
+                    aktive Mitgestaltung der Gesellschaft.
+                  </p>
                 </div>
-              ))}
+                <div className="space-y-5 pt-2">
+                  {[
+                    {
+                      icon: <BookOpen className="w-5 h-5" />,
+                      text: "Religiöse Bildung mit Praxisbezug",
+                    },
+                    {
+                      icon: <Shield className="w-5 h-5" />,
+                      text: "Geschützter Raum für Frauen und Mädchen",
+                    },
+                    {
+                      icon: <Users className="w-5 h-5" />,
+                      text: "Gemeinschaft über Generationen hinweg",
+                    },
+                  ].map((point, idx) => (
+                    <div key={idx} className="flex items-start gap-3">
+                      <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-sage-700 flex items-center justify-center text-white">
+                        {point.icon}
+                      </div>
+                      <p className="text-charcoal-700 text-lg leading-relaxed pt-1.5">
+                        {point.text}
+                      </p>
+                    </div>
+                  ))}
+                  <div className="pt-4">
+                    <Button variant="secondary" asChild>
+                      <Link href="/uber-uns" className="gap-2">
+                        Mehr über unsere Arbeit
+                        <ArrowRight className="w-5 h-5" />
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
+              </div>
             </div>
           </motion.div>
         </section>
 
-        {/* ── Wer sind wir? — condensed preview ───────────────────── */}
-        <section className="py-16 md:py-20 bg-white px-4">
-          <motion.div
-            variants={itemVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="max-w-3xl mx-auto text-center"
-          >
-            <p className="section-label mb-3">Über uns</p>
-            <h2 className="text-3xl md:text-4xl font-bold mb-5 text-charcoal-800">
-              Wer sind wir?
-            </h2>
-            <p className="text-lg text-charcoal-700 leading-relaxed mb-4">
-              Muslimin e.V. ist ein ehrenamtlicher Mädchen- und Frauenverein im
-              Herzen Berlins. Seit 2011 schaffen wir einen sicheren Raum für
-              islamische Bildung, gegenseitige Unterstützung und Gemeinschaft –
-              von Schwestern für Schwestern.
-            </p>
-            <p className="text-base text-charcoal-600 mb-8">
-              Mitglieder verschiedenster Herkünfte und Generationen finden hier
-              Austausch, Orientierung und ein offenes Herz.
-            </p>
-            <Button variant="secondary" asChild>
-              <Link href="/uber-uns" className="gap-2">
-                Mehr über uns erfahren
-                <ArrowRight className="w-4 h-4" aria-hidden="true" />
-              </Link>
-            </Button>
-          </motion.div>
-        </section>
-
-        {/* ── Benefits Section ─────────────────────────────────────── */}
-        <section className="py-16 md:py-20 bg-sand-50 px-4">
-          <motion.div
-            variants={itemVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="max-w-6xl mx-auto"
-          >
+        {/* Benefits Section */}
+        <section className={`${SECTION_CONTENT_SPACING} bg-white`}>
+          <motion.div variants={itemVariants} className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-4 text-charcoal-800">
                 Was erwartet dich als Mitglied?
@@ -230,37 +237,28 @@ export function PublicLandingContent() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
                 {
-                  icon: <Users className="w-8 h-8" aria-hidden="true" />,
+                  icon: <Users className="w-8 h-8" />,
                   title: "Starke Gemeinschaft",
                   description:
                     "Vernetzung mit Schwestern, die dich verstehen und unterstützen",
-                  iconBg: "bg-gradient-to-br from-sage-600 to-coral-600",
                 },
                 {
-                  icon: <BookOpen className="w-8 h-8" aria-hidden="true" />,
+                  icon: <BookOpen className="w-8 h-8" />,
                   title: "Bildungsangebote",
                   description:
-                    "Workshops, Vorträge und Seminare zu spirituellen und gesellschaftlichen Themen",
-                  iconBg: "bg-gradient-to-br from-sage-600 to-coral-600",
+                    "Workshops, Vorträge und Seminare zu spirituellen & gesellschaftlichen Themen",
                 },
                 {
-                  icon: <Sparkles className="w-8 h-8" aria-hidden="true" />,
+                  icon: <Sparkles className="w-8 h-8" />,
                   title: "Events & Aktivitäten",
                   description:
                     "Regelmäßige Veranstaltungen – von Vorträgen bis zu Wohltätigkeitsaktionen",
-                  iconBg: "bg-gradient-to-br from-coral-600 to-sage-700",
                 },
               ].map((benefit, idx) => (
                 <motion.div key={idx} variants={itemVariants} {...hoverLift}>
-                  <Card
-                    variant="white"
-                    hover="highlight"
-                    className="h-full shadow-card-standard"
-                  >
+                  <Card className="h-full rounded-xl border border-sand-200 bg-cream-50/60 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
                     <CardContent className="space-y-4">
-                      <div
-                        className={`inline-flex items-center justify-center w-14 h-14 rounded-xl ${benefit.iconBg} text-white shadow-lg`}
-                      >
+                      <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-sage-700 text-white">
                         {benefit.icon}
                       </div>
                       <h3 className="text-xl font-bold text-charcoal-800">
@@ -274,109 +272,112 @@ export function PublicLandingContent() {
                 </motion.div>
               ))}
             </div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="text-center mt-10"
-            >
-              <motion.div {...hoverButton}>
-                <Button size="lg" variant="primary" asChild>
-                  <Link href="/mitglied-werden" className="gap-3">
-                    Jetzt Mitglied werden
-                    <ArrowRight className="w-5 h-5" aria-hidden="true" />
-                  </Link>
-                </Button>
-              </motion.div>
-            </motion.div>
           </motion.div>
         </section>
 
-        {/* ── Social Media Section ─────────────────────────────────── */}
-        <section className="py-16 bg-white px-4">
+        {/* Proof Section — real image + trust metrics */}
+        <section className={SECTION_CONTENT_SPACING}>
           <motion.div
             variants={itemVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="max-w-6xl mx-auto"
+            className="max-w-5xl mx-auto"
           >
-            <div className="py-12 px-6 sm:px-8 bg-gradient-to-br from-sage-50 via-cream-50 to-sage-100/80 rounded-2xl shadow-sage-sm border border-sage-200">
+            <div className="rounded-2xl border border-sand-200 bg-white overflow-hidden shadow-sm">
+              <div className="grid md:grid-cols-2">
+                <div className="relative aspect-[4/3] md:aspect-auto">
+                  <Image
+                    src="/images/veranstaltungen/herbstkonferenz-september-2025.jpeg"
+                    alt="Herbstkonferenz September 2025 – Muslimin e.V."
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                </div>
+                <div className="p-8 md:p-10 flex flex-col justify-center">
+                  <h2 className="text-2xl md:text-3xl font-bold text-charcoal-800 mb-4 leading-tight">
+                    Veranstaltungen, die bewegen
+                  </h2>
+                  <p className="text-charcoal-700 leading-relaxed mb-8">
+                    Von Vorträgen und Workshops bis zu unserer jährlichen
+                    Herbstkonferenz — unsere Angebote schaffen Raum für echte
+                    Begegnung, gemeinsames Lernen und neue Verbindungen.
+                  </p>
+                  <div className="space-y-3">
+                    {[
+                      "100+ Veranstaltungen seit Gründung",
+                      "Bis zu 500 Gäste pro Event",
+                      "60+ aktive Mitglieder",
+                    ].map((metric, idx) => (
+                      <div key={idx} className="flex items-center gap-3">
+                        <CheckCircle className="w-5 h-5 text-sage-700 flex-shrink-0" />
+                        <span className="text-charcoal-700">{metric}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </section>
+
+        {/* Social Media Section */}
+        <section className={`${SECTION_CONTENT_SPACING} px-4`}>
+          <motion.div variants={itemVariants} className="max-w-6xl mx-auto">
+            <div className="py-12 px-6 sm:px-8 bg-white rounded-2xl shadow-sm border border-sand-200">
               <SocialMediaSection
                 variant="compact"
                 showTitle={true}
                 title="Folge uns auf Social Media"
-                subtitle="Bleib auf dem Laufenden mit aktuellen Flyern, Terminen und Live-Updates"
+                subtitle="Aktuelle Hinweise, Flyer und Einblicke in unsere Veranstaltungen"
               />
             </div>
           </motion.div>
         </section>
 
-        {/* ── Final CTA Section ────────────────────────────────────── */}
-        <section className="py-20 bg-sand-50 px-4">
+        {/* Final CTA Section */}
+        <section className={SECTION_CTA_SPACING}>
           <motion.div
             variants={itemVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="max-w-4xl mx-auto text-center"
+            className="max-w-4xl mx-auto rounded-2xl bg-charcoal-800 px-8 py-12 md:px-12 md:py-16 text-center"
           >
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="bg-gradient-to-br from-cream-100 via-sage-50 to-coral-100 rounded-3xl p-12 shadow-2xl border border-sage-200"
             >
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-charcoal-800">
+              <h2 className="text-3xl md:text-5xl font-bold mb-6 text-cream-50">
                 Bereit für den nächsten Schritt?
               </h2>
-              <p className="text-xl mb-8 text-charcoal-700 max-w-2xl mx-auto leading-relaxed">
-                Werde Teil einer Gemeinschaft, die dich versteht, unterstützt
-                und stärkt. Gemeinsam sind wir stärker.
+              <p className="text-lg mb-8 text-sand-200 max-w-2xl mx-auto leading-relaxed">
+                Wenn du eine Gemeinschaft suchst, die Bildung, Zugehörigkeit und
+                Unterstützung verbindet, freuen wir uns auf dich.
               </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <motion.div {...hoverButton}>
                   <Button size="lg" variant="primary" asChild>
                     <Link href="/mitglied-werden" className="gap-3">
-                      <Heart className="w-6 h-6" aria-hidden="true" />
+                      <Heart className="w-6 h-6" />
                       Mitglied werden
-                      <ArrowRight className="w-5 h-5" aria-hidden="true" />
+                      <ArrowRight className="w-5 h-5" />
                     </Link>
                   </Button>
                 </motion.div>
                 <motion.div {...hoverButton}>
-                  <Button size="lg" variant="secondary" asChild>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    asChild
+                    className="border-sand-200 text-cream-50 hover:bg-sand-200/10"
+                  >
                     <Link href="/spenden" className="gap-3">
-                      <HeartHandshake className="w-6 h-6" aria-hidden="true" />
-                      Jetzt unterstützen
+                      <HeartHandshake className="w-6 h-6" />
+                      Arbeit unterstützen
                     </Link>
                   </Button>
                 </motion.div>
-              </div>
-              <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-charcoal-600">
-                <Link
-                  href="/uber-uns"
-                  className="underline underline-offset-4 hover:text-charcoal-800 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-sage focus-visible:outline-offset-4 rounded"
-                >
-                  Mehr über uns
-                </Link>
-                <span aria-hidden="true">·</span>
-                <Link
-                  href="/impressum"
-                  className="underline underline-offset-4 hover:text-charcoal-800 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-sage focus-visible:outline-offset-4 rounded"
-                >
-                  Impressum
-                </Link>
-                <span aria-hidden="true">·</span>
-                <Link
-                  href="/datenschutz"
-                  className="underline underline-offset-4 hover:text-charcoal-800 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-sage focus-visible:outline-offset-4 rounded"
-                >
-                  Datenschutz
-                </Link>
               </div>
             </motion.div>
           </motion.div>
