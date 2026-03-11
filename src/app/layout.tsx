@@ -36,6 +36,17 @@ export const metadata: Metadata = {
     locale: "de_DE",
     url: "https://muslimin-ev.vercel.app",
     siteName: "Muslimin e.V.",
+    title: "Muslimin e.V. – Muslimischer Mädchen- und Frauenverein",
+    description:
+      "Islamische Vorträge, Beratung & Gemeinschaft für muslimische Frauen in Berlin – seit 2011. Werde Mitglied!",
+    images: [
+      {
+        url: "/images/muslimin-logo.svg",
+        width: 1200,
+        height: 630,
+        alt: "Muslimin e.V. – Muslimischer Mädchen- und Frauenverein seit 2011",
+      },
+    ],
   },
 };
 
