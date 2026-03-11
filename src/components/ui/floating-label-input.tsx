@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
 
 interface FloatingLabelInputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   label: string;
   size?: 'sm' | 'md' | 'lg';
   icon?: React.ReactNode;
