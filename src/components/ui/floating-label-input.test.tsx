@@ -211,7 +211,7 @@ describe("FloatingLabelTextarea", () => {
 
     it("label floats up for numeric value 0", () => {
       render(
-        <FloatingLabelTextarea label="Anzahl" value={0 as unknown as string} onChange={() => {}} />
+        <FloatingLabelTextarea label="Anzahl" value="0" onChange={() => {}} />
       );
       const label = screen.getByText("Anzahl");
       expect(label.className).toMatch(/scale-75/);
