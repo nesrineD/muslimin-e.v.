@@ -49,14 +49,6 @@ export function Header() {
   const { toast } = useToast();
 
   useEffect(() => {
-    if (user) {
-      setIsSigningOut(false);
-    } else {
-      setIsSigningOut(false);
-    }
-  }, [user]);
-
-  useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };

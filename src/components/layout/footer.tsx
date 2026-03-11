@@ -1,88 +1,78 @@
 // ============================================
-// OPTIMIZED FOOTER
+// OPTIMIZED FOOTER — e-impuls.de inspired layout
 // ============================================
 
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronRight, MapPin } from "lucide-react";
-import { Separator } from "@/components/ui/separator";
-import { Button } from "@/components/ui/button";
+import { MapPin } from "lucide-react";
 import { SocialMediaSection } from "@/components/SocialMediaSection";
 import { LEGAL_LINKS } from "@/lib/constants";
+
+const NAV_VEREIN = [
+  { href: "/uber-uns", label: "Über uns" },
+  { href: "/veranstaltungen", label: "Veranstaltungen" },
+  { href: "/mitglied-werden", label: "Mitglied werden" },
+  { href: "/spenden", label: "Spenden" },
+];
 
 export function Footer() {
   return (
     <footer
-      className="border-t border-sage-200/80 bg-gradient-to-b from-sage-50/40 via-white to-white"
+      className="border-t border-charcoal-600 bg-charcoal-800"
       role="contentinfo"
     >
       <div className="container mx-auto px-6 py-12 md:px-8 md:py-16">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 md:gap-12">
-          {/* Brand Column */}
-          <div className="space-y-3 lg:col-span-1">
+          {/* Brand + Social Column */}
+          <div className="space-y-5 lg:col-span-1">
             <Link href="/" className="inline-flex items-center gap-2.5 group">
               <Image
                 src="/images/muslimin-logo.svg"
                 alt="Muslimin e.V. Logo"
                 width={44}
                 height={44}
-                className="h-11 w-auto transition-all duration-300 group-hover:scale-105"
+                className="h-11 w-auto transition-all duration-300 group-hover:scale-105 brightness-0 invert"
               />
-              <span className="font-semibold text-base text-sage-800 group-hover:text-sage-700 transition-colors">
+              <span className="font-semibold text-base text-cream-50 group-hover:text-sand-200 transition-colors">
                 Muslimin e.V.
               </span>
             </Link>
+            <SocialMediaSection variant="footer" />
           </div>
 
-          {/* Kontakt Column with Social Media */}
+          {/* Kontakt Column */}
           <div>
-            <h3 className="text-xs font-bold text-sage-800 uppercase tracking-wider mb-3 flex items-center gap-2">
-              <span className="w-1 h-4 bg-charcoal-600 rounded-full" />
+            <h3 className="text-xs font-semibold text-sand-200 uppercase tracking-widest mb-4">
               Kontakt
             </h3>
-            <address className="not-italic space-y-2.5 text-sm mb-4">
-              <p className="flex items-start gap-2 text-sage-600">
-                <MapPin className="h-4 w-4 text-sage-500 mt-0.5 flex-shrink-0" />
+            <address className="not-italic space-y-2.5 text-sm text-sand-300">
+              <p>Muslimin e.V.</p>
+              <p className="flex items-start gap-2">
+                <MapPin className="h-4 w-4 text-sand-400 mt-0.5 flex-shrink-0" />
                 Berlin
               </p>
             </address>
-
-            <Button
-              asChild
-              variant="outline"
-              size="sm"
-              className="w-full border-sage-300 hover:bg-sage-50 hover:border-sage-400 transition-colors mb-4"
+            <Link
+              href="/kontakt"
+              className="inline-block mt-4 text-sm text-cream-50 hover:text-sand-200 underline underline-offset-2 transition-colors"
             >
-              <Link
-                href="/kontakt"
-                className="flex items-center justify-center gap-2"
-              >
-                Kontaktformular
-              </Link>
-            </Button>
-
-            <div className="pt-2">
-              <SocialMediaSection variant="footer" />
-            </div>
+              Kontaktformular
+            </Link>
           </div>
 
-          {/* Rechtliches Column */}
+          {/* Verein Column */}
           <div>
-            <h3 className="text-xs font-bold text-sage-800 uppercase tracking-wider mb-3 flex items-center gap-2">
-              <span className="w-1 h-4 bg-charcoal-600 rounded-full" />
-              Rechtliches
+            <h3 className="text-xs font-semibold text-sand-200 uppercase tracking-widest mb-4">
+              Verein
             </h3>
-            <ul className="space-y-3 md:space-y-2.5">
-              {LEGAL_LINKS.map((link) => (
+            <ul className="space-y-2.5">
+              {NAV_VEREIN.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="flex items-center gap-2 text-sm text-sage-600 hover:text-sage-800 hover:translate-x-0.5 transition-all group"
+                    className="text-sm text-sand-300 hover:text-cream-50 transition-colors"
                   >
-                    <ChevronRight className="h-3.5 w-3.5 text-sage-400 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    <span className="group-hover:font-medium transition-all">
-                      {link.label}
-                    </span>
+                    {link.label}
                   </Link>
                 </li>
               ))}
@@ -90,15 +80,22 @@ export function Footer() {
           </div>
         </div>
 
-        <Separator className="my-6 bg-sage-300" />
-
-        <div className="flex flex-col gap-2 text-xs text-sage-700 md:flex-row md:items-center md:justify-between">
-          <span>
+        {/* Bottom Bar */}
+        <div className="mt-12 border-t border-sand-200/15 pt-6 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+          <span className="text-xs text-sand-400">
             © {new Date().getFullYear()} Muslimin e.V. Alle Rechte vorbehalten.
           </span>
-          <span className="flex items-center gap-2">
-            <span className="hidden md:inline text-sage-400">•</span>
-          </span>
+          <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-sand-400">
+            {LEGAL_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="hover:text-cream-50 transition-colors"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </footer>
