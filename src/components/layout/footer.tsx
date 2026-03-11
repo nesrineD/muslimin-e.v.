@@ -18,7 +18,7 @@ const NAV_VEREIN = [
 export function Footer() {
   return (
     <footer
-      className="border-t border-charcoal-600 bg-charcoal-800"
+      className="border-t border-sage-700 bg-sage-800"
       role="contentinfo"
     >
       <div className="container mx-auto px-6 py-12 md:px-8 md:py-16">
