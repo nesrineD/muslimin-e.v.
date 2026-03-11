@@ -18,7 +18,7 @@ const NAV_VEREIN = [
 export function Footer() {
   return (
     <footer
-      className="border-t border-sand-200 bg-charcoal-800"
+      className="border-t border-sage-600/40 bg-sage-700"
       role="contentinfo"
     >
       <div className="container mx-auto px-6 py-12 md:px-8 md:py-16">
@@ -33,7 +33,7 @@ export function Footer() {
                 height={44}
                 className="h-11 w-auto transition-all duration-300 group-hover:scale-105 brightness-0 invert"
               />
-              <span className="font-semibold text-base text-cream-50 group-hover:text-sand-200 transition-colors">
+              <span className="font-semibold text-base text-sand-100 group-hover:text-white transition-colors">
                 Muslimin e.V.
               </span>
             </Link>
@@ -42,19 +42,19 @@ export function Footer() {
 
           {/* Kontakt Column */}
           <div>
-            <h3 className="text-xs font-semibold text-sand-200 uppercase tracking-widest mb-4">
+            <h3 className="text-xs font-semibold text-sand-100 uppercase tracking-widest mb-4">
               Kontakt
             </h3>
-            <address className="not-italic space-y-2.5 text-sm text-sand-300">
+            <address className="not-italic space-y-2.5 text-sm text-sand-200">
               <p>Muslimin e.V.</p>
               <p className="flex items-start gap-2">
-                <MapPin className="h-4 w-4 text-sand-400 mt-0.5 flex-shrink-0" />
+                <MapPin className="h-4 w-4 text-sand-300 mt-0.5 flex-shrink-0" />
                 Berlin
               </p>
             </address>
             <Link
               href="/kontakt"
-              className="inline-block mt-4 text-sm text-cream-50 hover:text-sand-200 underline underline-offset-2 transition-colors"
+              className="inline-block mt-4 text-sm text-sand-100 hover:text-white underline underline-offset-2 transition-colors"
             >
               Kontaktformular
             </Link>
@@ -62,7 +62,7 @@ export function Footer() {
 
           {/* Verein Column */}
           <div>
-            <h3 className="text-xs font-semibold text-sand-200 uppercase tracking-widest mb-4">
+            <h3 className="text-xs font-semibold text-sand-100 uppercase tracking-widest mb-4">
               Verein
             </h3>
             <ul className="space-y-2.5">
@@ -70,7 +70,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-sand-300 hover:text-cream-50 transition-colors"
+                    className="text-sm text-sand-200 hover:text-white transition-all duration-200 hover:translate-x-0.5 inline-flex"
                   >
                     {link.label}
                   </Link>
@@ -81,7 +81,7 @@ export function Footer() {
 
           {/* Rechtliches Column */}
           <div>
-            <h3 className="text-xs font-semibold text-sand-200 uppercase tracking-widest mb-4">
+            <h3 className="text-xs font-semibold text-sand-100 uppercase tracking-widest mb-4">
               Rechtliches
             </h3>
             <ul className="space-y-2.5">
@@ -89,7 +89,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-sand-300 hover:text-cream-50 transition-colors"
+                    className="text-sm text-sand-200 hover:text-white transition-all duration-200 hover:translate-x-0.5 inline-flex"
                   >
                     {link.label}
                   </Link>
@@ -100,16 +100,16 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 border-t border-sand-200/15 pt-6 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-          <span className="text-xs text-sand-400">
+        <div className="mt-12 border-t border-sage-600/40 pt-6 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+          <span className="text-xs text-sand-300">
             © {new Date().getFullYear()} Muslimin e.V. Alle Rechte vorbehalten.
           </span>
-          <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-sand-400">
+          <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-sand-300">
             {LEGAL_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="hover:text-cream-50 transition-colors"
+                className="hover:text-white transition-colors"
               >
                 {link.label}
               </Link>

@@ -170,11 +170,11 @@ export function SocialMediaSection({
           href={social.url}
           target="_blank"
           rel="noopener noreferrer"
-          className={`${baseClasses} h-11 w-11 rounded-full bg-white/60 hover:bg-white shadow-sm hover:shadow-md ring-1 ring-sage-200/70 flex items-center justify-center group`}
+          className={`${baseClasses} h-10 w-10 opacity-60 hover:opacity-100 transition-opacity duration-200`}
           aria-label={`Folge uns auf ${social.name}`}
           title={social.name}
         >
-          <Icon className="h-4 w-4 text-sage-600 group-hover:text-sage-800 transition-colors" />
+          <Icon className={`h-5 w-5 ${social.color}`} />
         </a>
       );
     }
