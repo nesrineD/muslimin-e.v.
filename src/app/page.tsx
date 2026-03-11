@@ -114,8 +114,7 @@ export default function Home() {
             Salam{" "}
             <span className="bg-gradient-to-r from-clay-600 via-coral-600 to-warm-600 bg-clip-text text-transparent">
               {user.user_metadata?.vorname || "liebe Schwester"}
-            </span>
-            ! 👋
+            </span>!
           </h1>
           <p className="text-xl text-sage-600 max-w-3xl mx-auto leading-relaxed">
             Schön, dass du da bist! Hier kannst du ganz einfach einen
@@ -228,21 +227,21 @@ export default function Home() {
           <Card className="border-0 shadow-xl bg-gradient-to-br from-coral-50 via-warm-50 to-cream-50 backdrop-blur-sm">
             <CardHeader className="text-center">
               <CardTitle className="text-2xl font-bold bg-gradient-to-r from-sage-800 via-coral-700 to-clay-700 bg-clip-text text-transparent">
-                🤗 Von Mitgliedern für Mitglieder
+                Von Mitgliedern für Mitglieder
               </CardTitle>
             </CardHeader>
             <CardContent className="text-center space-y-6">
               <p className="text-sage-700 leading-relaxed text-lg">
-                Liebe Schwester, du bist nicht allein! 💕 Unsere wundervolle
-                Gemeinschaft steht dir zur Seite, wann immer du Unterstützung
-                brauchst. Egal ob du dir Sorgen machst, Fragen hast oder einfach
-                jemanden zum Reden brauchst - wir sind für dich da.
+                Liebe Schwester, du bist nicht allein. Unsere Gemeinschaft
+                steht dir zur Seite, wann immer du Unterstützung brauchst. Egal
+                ob du dir Sorgen machst, Fragen hast oder einfach jemanden zum
+                Reden brauchst – wir sind für dich da.
               </p>
               <p className="text-sage-600 leading-relaxed">
                 Hier findest du ein offenes Ohr, warme Herzen und Schwestern,
                 die dich verstehen. Manchmal brauchen wir alle einen Moment der
-                Stille, ein ermutigendes Wort oder einfach das Gefühl, gehört zu
-                werden. Das ist völlig normal und okay!
+                Stille, ein ermutigendes Wort oder einfach das Gefühl, gehört
+                zu werden. Das ist völlig normal und okay.
               </p>
               <div className="flex flex-wrap justify-center gap-6 text-sm pt-4">
                 <div className="flex items-center gap-2 text-sage-600">
@@ -261,7 +260,7 @@ export default function Home() {
               <div className="bg-white/70 rounded-lg p-4 mt-6">
                 <p className="text-sage-700 italic text-sm">
                   &quot;Manchmal ist das schönste Geschenk, das wir einander
-                  machen können, einfach da zu sein und zuzuhören.&quot; 💖
+                  machen können, einfach da zu sein und zuzuhören.&quot;
                 </p>
               </div>
             </CardContent>

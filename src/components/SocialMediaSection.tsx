@@ -297,7 +297,7 @@ export function SocialMediaSection({
         {showTitle && (
           <div className="text-center">
             <h3 className="text-2xl md:text-3xl font-bold text-charcoal-800 mb-2">
-              {computedTitle} 📸
+              {computedTitle}
             </h3>
             <p className="text-base text-charcoal-600 max-w-2xl mx-auto">
               {computedSubtitle}
@@ -319,10 +319,8 @@ export function SocialMediaSection({
       <div className={`space-y-6 ${className}`}>
         {showTitle && (
           <div className="text-center">
-            <h3 className="text-2xl md:text-3xl font-bold mb-3">
-              <span className="bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">
-                {computedTitle}
-              </span>
+            <h3 className="text-2xl md:text-3xl font-bold mb-3 text-charcoal-800">
+              {computedTitle}
             </h3>
             <p className="text-base md:text-lg text-charcoal-700">{computedSubtitle}</p>
           </div>
@@ -353,10 +351,8 @@ export function SocialMediaSection({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <CardTitle className="text-3xl font-bold text-sage-800 mb-4">
-                <span className="bg-gradient-to-r from-sage-600 via-sage-500 to-sage-600 bg-clip-text text-transparent">
-                  {computedTitle}
-                </span>
+              <CardTitle className="text-3xl font-bold text-charcoal-800 mb-4">
+                {computedTitle}
               </CardTitle>
               <CardDescription className="text-lg text-charcoal-600">
                 {computedSubtitle}

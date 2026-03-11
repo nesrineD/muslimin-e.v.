@@ -69,7 +69,7 @@ export function PublicLandingContent() {
               animate={{ y: 0 }}
               exit={{ y: 100 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-r from-clay-700/95 to-coral-600/95 shadow-2xl border-t border-white/15"
+              className="fixed bottom-0 left-0 right-0 z-50 bg-clay-700 shadow-2xl border-t border-white/15"
             >
               <div className="container mx-auto px-4 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                 <span className="text-white font-medium text-sm md:text-base text-center sm:text-left">
@@ -89,28 +89,26 @@ export function PublicLandingContent() {
         </AnimatePresence>
 
         {/* ── Hero Section ─────────────────────────────────────────── */}
-        <section className="relative py-20 md:py-28 overflow-hidden px-4">
-          <div className="absolute inset-0 bg-gradient-to-br from-sage-100/60 via-cream-100/40 to-sand-100/30" />
-
+        <section className="py-20 md:py-28 bg-white px-4">
           <motion.div
             variants={itemVariants}
-            className="max-w-4xl mx-auto text-center relative z-10"
+            className="max-w-4xl mx-auto text-center"
           >
             {/* Trust Badge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-sage-200 via-cream-200 to-sage-200 text-charcoal-900 rounded-full text-sm font-medium mb-6 border border-sage-300 shadow-sm"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-sage-100 text-charcoal-800 rounded-full text-sm font-medium mb-6 border border-sage-200"
             >
               <Shield className="w-4 h-4 text-sage-700" aria-hidden="true" />
               Ehrenamtlich · DSGVO-konform · Seit 2011
             </motion.div>
 
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent leading-tight">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-charcoal-800 leading-tight">
               Deine Schwesternschaft.
               <br />
-              Deine Stärke im Glauben.
+              <em className="not-italic text-sage-700">Deine Stärke im Glauben.</em>
             </h1>
 
             {/* Concrete value proposition — answers "what, where, since when?" */}
@@ -234,21 +232,21 @@ export function PublicLandingContent() {
                   title: "Starke Gemeinschaft",
                   description:
                     "Vernetzung mit Schwestern, die dich verstehen und unterstützen",
-                  iconBg: "bg-gradient-to-br from-sage-600 to-coral-600",
+                  iconBg: "bg-sage-600",
                 },
                 {
                   icon: <BookOpen className="w-8 h-8" aria-hidden="true" />,
                   title: "Bildungsangebote",
                   description:
                     "Workshops, Vorträge und Seminare zu spirituellen und gesellschaftlichen Themen",
-                  iconBg: "bg-gradient-to-br from-sage-600 to-coral-600",
+                  iconBg: "bg-sage-600",
                 },
                 {
                   icon: <Sparkles className="w-8 h-8" aria-hidden="true" />,
                   title: "Events & Aktivitäten",
                   description:
                     "Regelmäßige Veranstaltungen – von Vorträgen bis zu Wohltätigkeitsaktionen",
-                  iconBg: "bg-gradient-to-br from-coral-600 to-sage-700",
+                  iconBg: "bg-clay-600",
                 },
               ].map((benefit, idx) => (
                 <motion.div key={idx} variants={itemVariants} {...hoverLift}>
@@ -303,7 +301,7 @@ export function PublicLandingContent() {
             viewport={{ once: true }}
             className="max-w-6xl mx-auto"
           >
-            <div className="py-12 px-6 sm:px-8 bg-gradient-to-br from-sage-50 via-cream-50 to-sage-100/80 rounded-2xl shadow-sage-sm border border-sage-200">
+            <div className="py-12 px-6 sm:px-8 bg-sand-50 rounded-2xl border border-sage-200">
               <SocialMediaSection
                 variant="compact"
                 showTitle={true}
@@ -328,7 +326,7 @@ export function PublicLandingContent() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="bg-gradient-to-br from-cream-100 via-sage-50 to-coral-100 rounded-3xl p-12 shadow-2xl border border-sage-200"
+              className="bg-white rounded-3xl p-12 shadow-md border border-sand-200"
             >
               <h2 className="text-4xl md:text-5xl font-bold mb-6 text-charcoal-800">
                 Bereit für den nächsten Schritt?

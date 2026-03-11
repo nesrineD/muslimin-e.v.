@@ -19,15 +19,8 @@ import { PUBLIC_PAGE_WRAPPER_CLASS } from "@/lib/page-config";
 export default function AboutPage() {
   return (
     <div
-      className={`${PUBLIC_PAGE_WRAPPER_CLASS} relative isolate overflow-hidden`}
+      className={`${PUBLIC_PAGE_WRAPPER_CLASS} relative isolate`}
     >
-      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute -left-24 top-0 h-80 w-80 rounded-full bg-clay-100/55 blur-3xl" />
-        <div className="absolute right-[-8rem] top-8 h-[28rem] w-[28rem] rounded-full bg-sage-100/80 blur-3xl" />
-        <div className="absolute right-[-6rem] top-1/3 h-80 w-80 rounded-full bg-sand-200/55 blur-3xl" />
-        <div className="absolute left-1/3 top-[32rem] h-72 w-72 rounded-full bg-sage-100/45 blur-3xl" />
-        <div className="absolute bottom-20 right-1/4 h-72 w-72 rounded-full bg-clay-100/35 blur-3xl" />
-      </div>
 
       <motion.div
         variants={containerVariants}
@@ -38,12 +31,10 @@ export default function AboutPage() {
         {/* Hero Section */}
         <motion.section
           variants={itemVariants}
-          className="pb-14 pt-20 text-center lg:pb-20 lg:pt-28"
+          className="pb-14 pt-20 text-center lg:pb-20 lg:pt-28 bg-white"
         >
           <div className="container mx-auto px-4">
-            <div className="relative mx-auto max-w-5xl overflow-hidden rounded-[2rem] bg-gradient-to-br from-cream-50/70 via-sand-50/80 to-sage-50/60 px-6 py-12 md:px-12 md:py-14">
-              <div className="absolute -left-10 top-0 h-32 w-32 rounded-full bg-clay-100/35 blur-3xl" />
-              <div className="absolute -right-8 bottom-0 h-36 w-36 rounded-full bg-sage-100/45 blur-3xl" />
+            <div className="relative mx-auto max-w-5xl px-6 py-12 md:px-12 md:py-14">
               <div className="relative lg:grid lg:grid-cols-[minmax(0,1.15fr)_minmax(18rem,0.85fr)] lg:items-end lg:gap-12">
                 <div className="text-center lg:text-left">
                   <h1 className="font-heading mb-4 text-4xl font-bold leading-[0.98] text-charcoal-800 md:text-6xl">
@@ -62,10 +53,9 @@ export default function AboutPage() {
         </motion.section>
 
         {/* Wer sind wir? Section */}
-        <motion.section variants={itemVariants} className="py-8 lg:py-10">
+        <motion.section variants={itemVariants} className="py-8 lg:py-10 bg-sand-50">
           <div className="container mx-auto px-4">
-            <div className="relative mx-auto max-w-5xl overflow-hidden rounded-[2rem] border border-sand-200/80 bg-gradient-to-br from-cream-50/95 via-sand-50/90 to-sage-50/75 px-6 py-8 shadow-sage-sm backdrop-blur-sm md:px-10 md:py-10">
-              <div className="absolute right-0 top-0 h-24 w-24 rounded-full bg-sage-100/35 blur-3xl" />
+            <div className="relative mx-auto max-w-5xl rounded-[2rem] border border-sand-200/80 bg-white px-6 py-8 shadow-sm md:px-10 md:py-10">
               <div className="relative">
                 <div className="mx-auto mb-12 max-w-3xl text-center">
                   <h2 className="font-heading text-3xl font-bold leading-tight text-sage-800 md:text-4xl">
@@ -180,10 +170,9 @@ export default function AboutPage() {
         </motion.section>
 
         {/* Kernziele Section */}
-        <motion.section variants={itemVariants} className="py-8 lg:py-10">
+        <motion.section variants={itemVariants} className="py-8 lg:py-10 bg-sand-50">
           <div className="container mx-auto px-4">
-            <div className="relative mx-auto max-w-5xl overflow-hidden rounded-[2rem] border border-sand-200/80 bg-gradient-to-br from-sage-50 via-cream-50 to-sand-100/85 px-6 py-8 shadow-sage-sm md:px-10 md:py-10">
-              <div className="absolute right-8 top-8 h-28 w-28 rounded-full bg-sage-100/35 blur-3xl" />
+            <div className="relative mx-auto max-w-5xl rounded-[2rem] border border-sand-200/80 bg-white px-6 py-8 shadow-sm md:px-10 md:py-10">
               <div className="relative">
                 <div className="mx-auto mb-12 max-w-3xl text-center">
                   <h2 className="font-heading text-3xl font-bold leading-tight text-sage-800 md:text-4xl">
@@ -320,12 +309,8 @@ export default function AboutPage() {
         {/* CTA Section */}
         <motion.section
           variants={itemVariants}
-          className="relative overflow-hidden border-y border-sand-200/70 bg-gradient-to-r from-sand-50/65 via-cream-50/70 to-sage-50/45 py-10 lg:py-12"
+          className="border-y border-sand-200/70 bg-sand-50 py-10 lg:py-12"
         >
-          <div className="pointer-events-none absolute inset-0">
-            <div className="absolute left-12 top-1/2 h-28 w-28 -translate-y-1/2 rounded-full bg-clay-100/25 blur-3xl" />
-            <div className="absolute right-16 top-1/2 h-32 w-32 -translate-y-1/2 rounded-full bg-sage-100/30 blur-3xl" />
-          </div>
           <div className="container mx-auto px-4">
             <div className="relative mx-auto max-w-5xl">
               <div className="flex flex-col items-center justify-between gap-6 text-center md:flex-row md:text-left">
