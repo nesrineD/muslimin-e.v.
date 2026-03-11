@@ -2,8 +2,6 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 import {
   Calendar,
   MapPin,
@@ -15,6 +13,7 @@ import {
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { PublicLandingContent } from "@/components/landing/PublicLandingContent";
 
 // Member dashboard steps for booking
 const bookingSteps = [
@@ -71,7 +70,6 @@ const memberFeatures = [
 
 export default function Home() {
   const { user, loading } = useAuth();
-  const router = useRouter();
 
   // Filter memberFeatures based on user status
   const filteredMemberFeatures = user
@@ -84,12 +82,7 @@ export default function Home() {
       })
     : memberFeatures;
 
-  // Redirect non-members to public landing page
-  useEffect(() => {
-    if (!loading && !user) {
-      router.push("/public-landing");
-    }
-  }, [user, loading, router]);
+  // No redirect needed — unauthenticated visitors see the public landing page
 
   if (loading) {
     return (
@@ -102,8 +95,9 @@ export default function Home() {
     );
   }
 
+  // Unauthenticated visitors see the public landing page at the canonical URL
   if (!user) {
-    return null; // Will redirect to public landing page
+    return <PublicLandingContent />;
   }
 
   return (
