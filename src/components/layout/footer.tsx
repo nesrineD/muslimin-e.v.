@@ -6,14 +6,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { MapPin } from "lucide-react";
 import { SocialMediaSection } from "@/components/SocialMediaSection";
-import { LEGAL_LINKS } from "@/lib/constants";
+import { LEGAL_LINKS, NAV_LINKS } from "@/lib/constants";
 
-const NAV_VEREIN = [
-  { href: "/uber-uns", label: "Über uns" },
-  { href: "/veranstaltungen", label: "Veranstaltungen" },
-  { href: "/mitglied-werden", label: "Mitglied werden" },
-  { href: "/spenden", label: "Spenden" },
-];
+const NAV_VEREIN = NAV_LINKS.filter((link) =>
+  ["/uber-uns", "/veranstaltungen", "/mitglied-werden", "/spenden"].includes(
+    link.href,
+  ),
+);
 
 export function Footer() {
   return (
