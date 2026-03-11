@@ -174,7 +174,7 @@ export function SocialMediaSection({
           aria-label={`Folge uns auf ${social.name}`}
           title={social.name}
         >
-          <Icon className={`h-5 w-5 ${social.color}`} />
+          <Icon className="h-5 w-5 text-cream-50" />
         </a>
       );
     }
