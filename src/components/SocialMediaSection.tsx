@@ -170,7 +170,7 @@ export function SocialMediaSection({
           href={social.url}
           target="_blank"
           rel="noopener noreferrer"
-          className={`${baseClasses} h-10 w-10 opacity-60 hover:opacity-100 transition-opacity duration-200`}
+          className={`${baseClasses} h-11 w-11 opacity-60 hover:opacity-100 transition-opacity duration-200`}
           aria-label={`Folge uns auf ${social.name}`}
           title={social.name}
         >
