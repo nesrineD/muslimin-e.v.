@@ -8,5 +8,4 @@
  * Shared background gradient applied to the root <div> of every public page.
  * Single source of truth — changing this value updates all 7 pages at once.
  */
-export const PUBLIC_PAGE_WRAPPER_CLASS =
-  "bg-gradient-to-br from-cream-50 via-white to-sage-50/30 min-h-screen";
+export const PUBLIC_PAGE_WRAPPER_CLASS = "min-h-screen bg-white";
