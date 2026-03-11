@@ -25,7 +25,6 @@ interface CardProps extends React.HTMLAttributes<HTMLElement> {
   hover?: "lift" | "highlight";
   href?: string;
   as?: "div" | "article" | "section";
-  gradient?: boolean;
 }
 
 const Card = React.forwardRef<HTMLElement, CardProps>(

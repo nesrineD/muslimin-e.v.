@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll } from "framer-motion";
+import { motion, useScroll, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -117,33 +117,37 @@ export default function PublicLandingPage() {
         {/* Sticky CTA Bar — smart scroll-direction visibility:
             Appears when scrolling down past 300px, hides when scrolling back up.
             Bottom padding (pb-24) on mobile prevents content from being obscured. */}
-        <motion.div
-          initial={{ y: 100 }}
-          animate={{ y: showStickyBar ? 0 : 100 }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
-          className="fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-r from-clay-700/95 to-coral-600/95 shadow-2xl border-t border-white/15"
-          aria-hidden={!showStickyBar}
-        >
-          <div className="container mx-auto px-4 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-            <span className="text-white font-semibold text-sm md:text-base text-center sm:text-left">
-              💚 Werde jetzt Teil unserer Gemeinschaft!
-            </span>
-            <div className="flex items-center justify-center sm:justify-end gap-2">
-              <Button size="sm" variant="primary" asChild>
-                <Link href="/mitglied-werden" className="gap-2">
-                  <Heart className="w-4 h-4" />
-                  Mitglied werden
-                </Link>
-              </Button>
-              <Button size="sm" variant="secondary" asChild>
-                <Link href="/spenden" className="gap-2">
-                  <HeartHandshake className="w-4 h-4" />
-                  Jetzt unterstützen
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </motion.div>
+        <AnimatePresence>
+          {showStickyBar && (
+            <motion.div
+              initial={{ y: 100 }}
+              animate={{ y: 0 }}
+              exit={{ y: 100 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-r from-clay-700/95 to-coral-600/95 shadow-2xl border-t border-white/15"
+            >
+              <div className="container mx-auto px-4 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                <span className="text-white font-semibold text-sm md:text-base text-center sm:text-left">
+                  💚 Werde jetzt Teil unserer Gemeinschaft!
+                </span>
+                <div className="flex items-center justify-center sm:justify-end gap-2">
+                  <Button size="sm" variant="primary" asChild>
+                    <Link href="/mitglied-werden" className="gap-2">
+                      <Heart className="w-4 h-4" />
+                      Mitglied werden
+                    </Link>
+                  </Button>
+                  <Button size="sm" variant="secondary" asChild>
+                    <Link href="/spenden" className="gap-2">
+                      <HeartHandshake className="w-4 h-4" />
+                      Jetzt unterstützen
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Enhanced Hero Section */}
         <section className="relative py-20 md:py-24 overflow-hidden">

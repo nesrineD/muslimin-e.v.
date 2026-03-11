@@ -45,9 +45,15 @@ export function AnimatedWrapper({
     // Skip if already animated and triggerOnce is true
     if (triggerOnce && hasAnimated) return;
 
-    // Skip animation on reduced motion preference
+    // Skip animation on reduced motion preference — render content immediately visible
     const prefersReducedMotion =
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReducedMotion) {
+      setIsVisible(true);
+      if (triggerOnce) setHasAnimated(true);
+      return;
+    }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -64,7 +70,7 @@ export function AnimatedWrapper({
       { threshold },
     );
 
-    if (ref.current && !prefersReducedMotion) {
+    if (ref.current) {
       observer.observe(ref.current);
     }
 

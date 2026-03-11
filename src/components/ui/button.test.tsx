@@ -272,4 +272,41 @@ describe("Button Component", () => {
       expect(button).toHaveClass("mb-2");
     });
   });
+
+  describe("Ripple Effect", () => {
+    it("adds overflow-hidden and relative when enableRipple is true (default)", () => {
+      render(<Button>Ripple Button</Button>);
+      const button = screen.getByRole("button");
+      expect(button).toHaveClass("relative");
+      expect(button).toHaveClass("overflow-hidden");
+    });
+
+    it("does not add overflow-hidden when enableRipple is false", () => {
+      render(<Button enableRipple={false}>No Ripple</Button>);
+      const button = screen.getByRole("button");
+      expect(button).not.toHaveClass("overflow-hidden");
+    });
+
+    it("still calls custom onMouseDown when enableRipple is true", () => {
+      const handleMouseDown = jest.fn();
+      render(
+        <Button onMouseDown={handleMouseDown}>Ripple + Handler</Button>
+      );
+      const button = screen.getByRole("button");
+      fireEvent.mouseDown(button);
+      expect(handleMouseDown).toHaveBeenCalledTimes(1);
+    });
+
+    it("still calls custom onMouseDown when enableRipple is false", () => {
+      const handleMouseDown = jest.fn();
+      render(
+        <Button enableRipple={false} onMouseDown={handleMouseDown}>
+          No Ripple + Handler
+        </Button>
+      );
+      const button = screen.getByRole("button");
+      fireEvent.mouseDown(button);
+      expect(handleMouseDown).toHaveBeenCalledTimes(1);
+    });
+  });
 });

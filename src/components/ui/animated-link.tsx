@@ -48,14 +48,20 @@ export const AnimatedLink = React.forwardRef<HTMLAnchorElement, AnimatedLinkProp
       charcoal: 'hover:text-charcoal-900 text-charcoal-700',
     };
 
+    const gradientColorMap: Record<NonNullable<AnimatedLinkProps['color']>, string> = {
+      sage: 'bg-gradient-to-r from-sage-600 to-sage-700',
+      clay: 'bg-gradient-to-r from-clay-600 to-clay-700',
+      charcoal: 'bg-gradient-to-r from-charcoal-700 to-charcoal-900',
+    };
+
     const variantClasses = {
       underline: `relative inline-block transition-colors duration-300 ${colorMap[color]}
         after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5
         after:bg-current after:transform after:scale-x-0 after:origin-left after:transition-transform
         after:duration-300 hover:after:scale-x-100`,
       
-      gradient: `inline-block transition-all duration-300 bg-gradient-to-r from-${color}-600
-        to-${color}-700 bg-clip-text text-transparent opacity-70 hover:opacity-100`,
+      gradient: `inline-block transition-all duration-300 ${gradientColorMap[color]}
+        bg-clip-text text-transparent opacity-70 hover:opacity-100`,
       
       glow: `inline-block transition-all duration-300 ${colorMap[color]} relative
         hover:drop-shadow-[0_0_8px_rgba(91,105,96,0.3)]`,
