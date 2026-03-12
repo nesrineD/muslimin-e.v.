@@ -11,6 +11,11 @@ import {
   FOOTER_BRIDGE_SURFACE_CLASS,
 } from "@/lib/page-config";
 import { SocialMediaSection } from "@/components/SocialMediaSection";
+import { PageHeading } from "@/components/ui/page-heading";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { SectionDivider } from "@/components/ui/section-divider";
+import { DecorativeAccents } from "@/components/ui/decorative-accents";
+import { AnimatedWrapper } from "@/components/ui/animated-wrapper";
 import { Mic, Video, Moon, Flame } from "lucide-react";
 import Image from "next/image";
 import type { LucideIcon } from "lucide-react";
@@ -60,7 +65,7 @@ const EVENTS: Event[] = [
     accessNote:
       "Diese Veranstaltung ist offen für alle Frauen und Mädchen. Eine Mitgliedschaft ist nicht erforderlich.",
     image: {
-      src: "/images/veranstaltungen/frauenkreis-juni-2025.jpeg",
+      src: "/images/veranstaltungen/gemeinschaft-gebet.jpg",
       alt: "Monatsvortrag – Muslimin e.V.",
     },
   },
@@ -82,7 +87,7 @@ const EVENTS: Event[] = [
     accessNote:
       "Der Online-Vortrag ist offen für alle Frauen und Mädchen und kann bundesweit besucht werden.",
     image: {
-      src: "/images/veranstaltungen/workshop-august-2025.jpeg",
+      src: "/images/veranstaltungen/gemeinschaft-vortrag.jpg",
       alt: "Online-Vortragsformat – Muslimin e.V.",
     },
   },
@@ -104,7 +109,7 @@ const EVENTS: Event[] = [
     accessNote:
       "Alle Frauen und Mädchen sind herzlich willkommen – unabhängig von einer Vereinsmitgliedschaft.",
     image: {
-      src: "/images/veranstaltungen/sommerfest-juni-2025.jpeg",
+      src: "/images/veranstaltungen/gemeinschaft-saal-1.jpg",
       alt: "Ramadan Connects – gemeinsames Fastenbrechen",
     },
   },
@@ -126,7 +131,7 @@ const EVENTS: Event[] = [
     accessNote:
       "Die Veranstaltung ist offen für alle Frauen und Mädchen, die gemeinsam innehalten und gedenken möchten.",
     image: {
-      src: "/images/veranstaltungen/herbstkonferenz-september-2025.jpeg",
+      src: "/images/veranstaltungen/gemeinschaft-aschura.jpg",
       alt: "Aschura-Frauenveranstaltung – Muslimin e.V.",
     },
   },
@@ -150,13 +155,16 @@ export default function VeranstaltungenPage() {
       <div className="container mx-auto px-4">
         {/* Hero */}
         <section className={`relative ${SECTION_HERO_SPACING} overflow-hidden`}>
+          <DecorativeAccents preset="hero" />
           <motion.div
             variants={itemVariants}
             className="max-w-5xl mx-auto text-center relative z-10"
           >
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-charcoal-800 leading-tight">
-              Unsere <span className="text-sage-700">Veranstaltungen</span>
-            </h1>
+            <PageHeading
+              title="Unsere Veranstaltungen"
+              accentWord="Veranstaltungen"
+              className="mb-6"
+            />
             <p className="text-xl md:text-2xl text-charcoal-700 mb-6 max-w-3xl mx-auto leading-relaxed">
               Unsere Angebote richten sich an Frauen und Mädchen. Viele
               Veranstaltungen sind offen für alle – einige erfordern eine
@@ -172,7 +180,7 @@ export default function VeranstaltungenPage() {
             >
               <div className="relative aspect-[16/7] rounded-2xl overflow-hidden border border-sand-200 shadow-sm">
                 <Image
-                  src="/images/veranstaltungen/herbstkonferenz-september-2025.jpeg"
+                  src="/images/veranstaltungen/gemeinschaft-saal-2.jpg"
                   alt="Veranstaltungen – Muslimin e.V. Gemeinschaft in Berlin"
                   fill
                   className="object-cover"
@@ -183,6 +191,8 @@ export default function VeranstaltungenPage() {
             </motion.div>
           </motion.div>
         </section>
+
+        <SectionDivider variant="wave" />
 
         {/* Regular */}
         <Section
@@ -206,8 +216,9 @@ export default function VeranstaltungenPage() {
           className={`${SECTION_CTA_SPACING} px-4`}
         >
           <div
-            className={`max-w-3xl mx-auto py-12 px-6 sm:px-8 ${FOOTER_BRIDGE_SURFACE_CLASS}`}
+            className={`relative overflow-hidden max-w-3xl mx-auto py-12 px-6 sm:px-8 ${FOOTER_BRIDGE_SURFACE_CLASS}`}
           >
+            <DecorativeAccents preset="closing" />
             <SocialMediaSection
               variant="compact"
               showTitle={true}
@@ -230,34 +241,30 @@ function Section({
   title,
   subtitle,
   events,
-  centered = false,
 }: {
   id: string;
   title: string;
   subtitle: string;
   events: Event[];
-  centered?: boolean;
 }) {
   return (
     <section id={id} className={`${SECTION_CONTENT_SPACING} scroll-mt-24`}>
-      <motion.div variants={itemVariants} className="max-w-7xl mx-auto">
-        <div className={centered ? "text-center mb-10" : "mb-10"}>
-          <h2 className="text-3xl font-bold mb-3 text-charcoal-800">{title}</h2>
-          <p className="text-lg text-charcoal-700 max-w-2xl mx-auto">
-            {subtitle}
-          </p>
+      <motion.div variants={itemVariants} className="max-w-5xl mx-auto">
+        <div className="mb-10">
+          <SectionHeading title={title} subtitle={subtitle} />
         </div>
-        <div
-          className={`grid gap-8 ${
-            events.length === 1
-              ? "md:grid-cols-1 max-w-2xl mx-auto"
-              : "md:grid-cols-2"
-          }`}
-        >
-          {events.map((event) => (
-            <motion.div key={event.id} variants={itemVariants}>
-              <div className="overflow-hidden rounded-xl border border-sand-200 shadow-sm">
-                <div className="relative aspect-[16/9]">
+        <div className="space-y-12">
+          {events.map((event, idx) => (
+            <AnimatedWrapper
+              key={event.id}
+              animation={idx % 2 === 0 ? "slide-in-left" : "slide-in-right"}
+            >
+              <div
+                className={`flex flex-col md:flex-row ${
+                  idx % 2 !== 0 ? "md:flex-row-reverse" : ""
+                } overflow-hidden rounded-xl border border-sand-200 shadow-sm`}
+              >
+                <div className="relative aspect-[4/3] md:aspect-auto md:w-1/2 flex-shrink-0">
                   <Image
                     src={event.image.src}
                     alt={event.image.alt}
@@ -266,11 +273,11 @@ function Section({
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
                 </div>
-                <div className="[&>div]:rounded-none [&>div]:border-0 [&>div]:shadow-none">
+                <div className="md:w-1/2 [&>div]:rounded-none [&>div]:border-0 [&>div]:shadow-none">
                   <EventCard {...event} />
                 </div>
               </div>
-            </motion.div>
+            </AnimatedWrapper>
           ))}
         </div>
       </motion.div>

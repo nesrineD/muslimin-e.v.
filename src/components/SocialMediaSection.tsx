@@ -163,18 +163,18 @@ export function SocialMediaSection({
     const baseClasses =
       "inline-flex items-center justify-center transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:ring-offset-2";
 
-    // FOOTER VARIANT
+    // FOOTER VARIANT — monochrome, elegant, unified tone
     if (variant === "footer") {
       return (
         <a
           href={social.url}
           target="_blank"
           rel="noopener noreferrer"
-          className={`${baseClasses} h-10 w-10 rounded-full border border-sand-300/80 bg-cream-50/85 shadow-sm transition-all duration-200 group hover:-translate-y-0.5 hover:border-sage-300 hover:bg-sage-50/85 hover:shadow-md`}
+          className={`${baseClasses} group p-2 rounded-md transition-all duration-200 hover:-translate-y-0.5 hover:bg-sand-200/40`}
           aria-label={`Folge uns auf ${social.name}`}
           title={social.name}
         >
-          <Icon className="h-4 w-4 text-sage-800/90 group-hover:text-charcoal-800 transition-colors" />
+          <Icon className="h-5 w-5 text-charcoal-600/70 group-hover:text-charcoal-800 transition-colors" />
         </a>
       );
     }
@@ -278,7 +278,7 @@ export function SocialMediaSection({
   if (variant === "footer") {
     return (
       <ul
-        className={`flex flex-wrap items-center gap-2 ${className}`}
+        className={`flex flex-wrap items-center gap-3 ${className}`}
         aria-label={computedTitle}
       >
         {SOCIAL_MEDIA.map((social) => (

@@ -13,13 +13,14 @@ import {
   CheckCircle,
   HeartHandshake,
 } from "lucide-react";
-import {
-  containerVariants,
-  itemVariants,
-  hoverButton,
-  hoverLift,
-} from "@/lib/animations";
+import { containerVariants, itemVariants, hoverButton } from "@/lib/animations";
 import { SocialMediaSection } from "@/components/SocialMediaSection";
+import { PageHeading } from "@/components/ui/page-heading";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { SectionDivider } from "@/components/ui/section-divider";
+import { SplitSection } from "@/components/ui/split-section";
+import { DecorativeAccents } from "@/components/ui/decorative-accents";
+import { AnimatedWrapper } from "@/components/ui/animated-wrapper";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useState, useEffect, useCallback, useMemo, useRef } from "react";
@@ -31,6 +32,7 @@ import {
   SECTION_CTA_SPACING,
   CLOSING_SECTION_SURFACE_CLASS,
   FOOTER_BRIDGE_SURFACE_CLASS,
+  STICKY_SCROLL_THRESHOLD,
 } from "@/lib/page-config";
 
 export function PublicLandingContent() {
@@ -40,7 +42,7 @@ export function PublicLandingContent() {
 
   const handleScroll = useCallback((latest: number) => {
     const scrollingDown = latest > prevScrollY.current;
-    const pastThreshold = latest > 300;
+    const pastThreshold = latest > STICKY_SCROLL_THRESHOLD;
     prevScrollY.current = latest;
 
     setShowStickyBar((prev) => {
@@ -99,15 +101,16 @@ export function PublicLandingContent() {
 
         {/* Hero Section */}
         <section className={`relative ${SECTION_HERO_SPACING} overflow-hidden`}>
+          <DecorativeAccents preset="hero" />
           <motion.div
             variants={itemVariants}
             className="max-w-5xl mx-auto text-center relative z-10"
           >
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-charcoal-800 leading-tight">
-              Deine Schwesternschaft.
-              <br />
-              <span className="text-sage-700">Dein geschützter Raum.</span>
-            </h1>
+            <PageHeading
+              title="Deine Schwesternschaft. Dein geschützter Raum."
+              accentWord="Dein geschützter Raum."
+              className="mb-6"
+            />
 
             <p className="text-xl md:text-2xl text-charcoal-700 mb-6 max-w-3xl mx-auto leading-relaxed">
               Muslimin e.V. verbindet muslimische Frauen in Berlin durch
@@ -150,7 +153,7 @@ export function PublicLandingContent() {
               transition={{ delay: 0.5, duration: 0.6 }}
               className="mt-14 max-w-4xl mx-auto"
             >
-              <div className="relative aspect-[16/7] rounded-2xl overflow-hidden border border-sand-200 shadow-sm">
+              <div className="relative aspect-[16/7] rounded-2xl overflow-hidden border border-sand-300/60 shadow-[0_4px_20px_-6px_rgba(156,96,77,0.12)]">
                 <Image
                   src="/images/veranstaltungen/frauenkreis-juni-2025.jpeg"
                   alt="Frauenkreis – Muslimin e.V. Gemeinschaft in Berlin"
@@ -164,6 +167,8 @@ export function PublicLandingContent() {
           </motion.div>
         </section>
 
+        <SectionDivider variant="wave" />
+
         {/* About Teaser */}
         <section className={SECTION_CONTENT_SPACING}>
           <motion.div
@@ -173,54 +178,56 @@ export function PublicLandingContent() {
             viewport={{ once: true }}
             className="max-w-5xl mx-auto"
           >
-            <div className="rounded-2xl border border-sand-200/70 bg-white/80 px-6 py-10 md:px-10 md:py-12">
-              <div className="grid md:grid-cols-2 gap-10 items-start">
-                <div>
-                  <h2 className="text-3xl md:text-4xl font-bold mb-4 text-charcoal-800 leading-tight">
-                    Ein Verein, der Frauen stärkt und Gemeinschaft trägt
-                  </h2>
-                  <p className="text-lg text-charcoal-700 leading-relaxed">
-                    Muslimin e.V. schafft einen geschützten Raum, in dem Frauen
-                    ihre spirituelle, intellektuelle und soziale Entwicklung
-                    fördern können — durch religiöse Bildung, Vernetzung und
-                    aktive Mitgestaltung der Gesellschaft.
-                  </p>
-                </div>
-                <div className="space-y-5 pt-2">
-                  {[
-                    {
-                      icon: <BookOpen className="w-5 h-5" />,
-                      text: "Religiöse Bildung mit Praxisbezug",
-                    },
-                    {
-                      icon: <Shield className="w-5 h-5" />,
-                      text: "Geschützter Raum für Frauen und Mädchen",
-                    },
-                    {
-                      icon: <Users className="w-5 h-5" />,
-                      text: "Gemeinschaft über Generationen hinweg",
-                    },
-                  ].map((point, idx) => (
-                    <div key={idx} className="flex items-start gap-3">
-                      <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-sage-700 flex items-center justify-center text-white">
-                        {point.icon}
-                      </div>
-                      <p className="text-charcoal-700 text-lg leading-relaxed pt-1.5">
-                        {point.text}
-                      </p>
+            <SplitSection
+              imageSrc="/images/veranstaltungen/gemeinschaft-juni-2025-1.jpg"
+              imageAlt="Muslimin e.V. Gemeinschaft – Berlin"
+            >
+              <SectionHeading
+                title="Ein Verein, der Frauen stärkt und Gemeinschaft trägt"
+                accentWord="Frauen stärkt"
+                centered={false}
+                className="mb-4"
+              />
+              <p className="text-lg text-charcoal-700 leading-relaxed">
+                Muslimin e.V. schafft einen geschützten Raum, in dem Frauen ihre
+                spirituelle, intellektuelle und soziale Entwicklung fördern
+                können — durch religiöse Bildung, Vernetzung und aktive
+                Mitgestaltung der Gesellschaft.
+              </p>
+              <div className="space-y-5 mt-6">
+                {[
+                  {
+                    icon: <BookOpen className="w-5 h-5" />,
+                    text: "Religiöse Bildung mit Praxisbezug",
+                  },
+                  {
+                    icon: <Shield className="w-5 h-5" />,
+                    text: "Geschützter Raum für Frauen und Mädchen",
+                  },
+                  {
+                    icon: <Users className="w-5 h-5" />,
+                    text: "Gemeinschaft über Generationen hinweg",
+                  },
+                ].map((point, idx) => (
+                  <div key={idx} className="flex items-start gap-3">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-sage-700 flex items-center justify-center text-white">
+                      {point.icon}
                     </div>
-                  ))}
-                  <div className="pt-4">
-                    <Button variant="secondary" asChild>
-                      <Link href="/uber-uns" className="gap-2">
-                        Mehr über unsere Arbeit
-                        <ArrowRight className="w-5 h-5" />
-                      </Link>
-                    </Button>
+                    <p className="text-charcoal-700 text-lg leading-relaxed pt-1.5">
+                      {point.text}
+                    </p>
                   </div>
+                ))}
+                <div className="pt-4">
+                  <Button variant="secondary" asChild>
+                    <Link href="/uber-uns" className="gap-2">
+                      Mehr über unsere Arbeit
+                      <ArrowRight className="w-5 h-5" />
+                    </Link>
+                  </Button>
                 </div>
               </div>
-            </div>
+            </SplitSection>
           </motion.div>
         </section>
 
@@ -228,12 +235,10 @@ export function PublicLandingContent() {
         <section className={`${SECTION_CONTENT_SPACING} bg-white`}>
           <motion.div variants={itemVariants} className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-charcoal-800">
-                Was erwartet dich als Mitglied?
-              </h2>
-              <p className="text-lg text-charcoal-700 max-w-2xl mx-auto">
-                Deine Mitgliedschaft öffnet Türen zu einer starken Gemeinschaft
-              </p>
+              <SectionHeading
+                title="Was erwartet dich als Mitglied?"
+                subtitle="Deine Mitgliedschaft öffnet Türen zu einer starken Gemeinschaft"
+              />
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -257,7 +262,11 @@ export function PublicLandingContent() {
                     "Regelmäßige Veranstaltungen – von Vorträgen bis zu Wohltätigkeitsaktionen",
                 },
               ].map((benefit, idx) => (
-                <motion.div key={idx} variants={itemVariants} {...hoverLift}>
+                <AnimatedWrapper
+                  key={idx}
+                  animation="fade-in-up"
+                  delay={idx * 100}
+                >
                   <Card className="h-full rounded-xl border border-sand-200 bg-cream-50/60 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
                     <CardContent className="space-y-4">
                       <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-sage-700 text-white">
@@ -271,7 +280,7 @@ export function PublicLandingContent() {
                       </p>
                     </CardContent>
                   </Card>
-                </motion.div>
+                </AnimatedWrapper>
               ))}
             </div>
           </motion.div>
@@ -286,7 +295,7 @@ export function PublicLandingContent() {
             viewport={{ once: true }}
             className="max-w-5xl mx-auto"
           >
-            <div className="rounded-2xl border border-sand-200 bg-white overflow-hidden shadow-sm">
+            <div className="rounded-2xl border border-sand-300/60 bg-white overflow-hidden shadow-[0_4px_20px_-6px_rgba(156,96,77,0.12)]">
               <div className="grid md:grid-cols-2">
                 <div className="relative aspect-[4/3] md:aspect-auto">
                   <Image
@@ -341,11 +350,13 @@ export function PublicLandingContent() {
         </section>
 
         {/* Final CTA Section */}
+        <SectionDivider variant="accent-line" className="mb-0" />
         <section className={SECTION_CTA_SPACING}>
           <motion.div
             variants={itemVariants}
-            className={`max-w-4xl mx-auto px-8 py-12 md:px-12 md:py-16 text-center ${CLOSING_SECTION_SURFACE_CLASS}`}
+            className={`max-w-4xl mx-auto px-8 py-12 md:px-12 md:py-16 text-center relative overflow-hidden ${CLOSING_SECTION_SURFACE_CLASS}`}
           >
+            <DecorativeAccents preset="closing" />
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}

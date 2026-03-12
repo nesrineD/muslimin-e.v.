@@ -262,10 +262,10 @@ function LoginContent() {
                   transition={{ delay: 0.3 }}
                 >
                   <CardTitle className="text-3xl font-bold text-sage-800">
-                    Willkommen zurück
+                    Willkommen, liebe Muslimin!
                   </CardTitle>
                   <CardDescription className="text-charcoal-600 mt-2">
-                    Melden Sie sich mit Ihren Zugangsdaten an
+                    Melde dich mit deinen Zugangsdaten an
                   </CardDescription>
                 </motion.div>
               </CardHeader>
@@ -309,7 +309,7 @@ function LoginContent() {
                         id="email"
                         name="email"
                         type="email"
-                        placeholder="ihre@email.de"
+                        placeholder="email"
                         value={formData.email}
                         onChange={handleChange}
                         className="pl-10 border-sand-200 focus:border-sage-500 focus:ring-sage-500 transition-all duration-200 bg-white/50"
@@ -337,7 +337,7 @@ function LoginContent() {
                         id="password"
                         name="password"
                         type={showPassword ? "text" : "password"}
-                        placeholder="Ihr Passwort"
+                        placeholder="passwort"
                         value={formData.password}
                         onChange={handleChange}
                         className="pl-10 pr-10 border-sand-200 focus:border-sage-500 focus:ring-sage-500 transition-all duration-200 bg-white/50"
@@ -406,16 +406,7 @@ function LoginContent() {
                           Anmeldung läuft...
                         </>
                       ) : (
-                        <>
-                          Anmelden
-                          <motion.span
-                            animate={{ x: [0, 2, 0] }}
-                            transition={{ duration: 1.5, repeat: Infinity }}
-                            className="ml-2"
-                          >
-                            →
-                          </motion.span>
-                        </>
+                        <>Anmelden</>
                       )}
                     </Button>
                   </motion.div>
