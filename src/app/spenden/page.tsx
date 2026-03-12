@@ -16,7 +16,11 @@ import {
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { containerVariants, itemVariants, hoverLift } from "@/lib/animations";
-import { PUBLIC_PAGE_WRAPPER_CLASS } from "@/lib/page-config";
+import {
+  CLOSING_SECTION_SURFACE_CLASS,
+  PUBLIC_PAGE_WRAPPER_CLASS,
+  FOOTER_BRIDGE_SURFACE_CLASS,
+} from "@/lib/page-config";
 
 interface DonationCampaign {
   id: string;
@@ -522,9 +526,11 @@ export default function SpendenPage() {
       </section>
 
       {/* Transparency + Contact Combined */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
         <motion.div variants={itemVariants} className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
+          <div
+            className={`px-8 py-10 text-center ${FOOTER_BRIDGE_SURFACE_CLASS}`}
+          >
             <h2 className="text-3xl md:text-4xl font-bold text-charcoal-800 mb-6">
               Transparenz & Vertrauen
             </h2>
@@ -536,8 +542,8 @@ export default function SpendenPage() {
               sicherzustellen, dass Spenden zielgerichtet ankommen.
             </p>
 
-            <div className="p-6 bg-gradient-to-r from-sage-50 to-warm-50 rounded-lg border border-sage-200 text-center mb-8">
-              <p className="text-charcoal-700 font-medium mb-2">
+            <div className="mb-8 rounded-2xl border border-sage-200/80 bg-gradient-to-r from-sage-50/80 to-warm-50/70 p-6 text-center">
+              <p className="mb-2 font-medium text-charcoal-700">
                 Fragen zur Spende oder zu unseren Projekten?
               </p>
               <p className="text-charcoal-600">
@@ -558,15 +564,15 @@ export default function SpendenPage() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-sage-100 to-warm-100">
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
         <motion.div
           variants={itemVariants}
-          className="max-w-3xl mx-auto text-center"
+          className={`max-w-3xl mx-auto text-center px-8 py-12 ${CLOSING_SECTION_SURFACE_CLASS}`}
         >
           <h2 className="text-3xl md:text-4xl font-bold text-charcoal-800 mb-4">
             Jede Spende macht einen Unterschied
           </h2>
-          <p className="text-lg text-charcoal-600 mb-8">
+          <p className="text-lg text-charcoal-700 mb-8">
             Werde Teil unserer Mission und unterstütze Menschen in Not
           </p>
           <Button size="lg" variant="donation" asChild>

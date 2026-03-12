@@ -170,11 +170,11 @@ export function SocialMediaSection({
           href={social.url}
           target="_blank"
           rel="noopener noreferrer"
-          className={`${baseClasses} h-11 w-11 rounded-full bg-white/60 hover:bg-white shadow-sm hover:shadow-md ring-1 ring-sage-200/70 flex items-center justify-center group`}
+          className={`${baseClasses} h-10 w-10 rounded-full border border-sand-300/80 bg-cream-50/85 shadow-sm transition-all duration-200 group hover:-translate-y-0.5 hover:border-sage-300 hover:bg-sage-50/85 hover:shadow-md`}
           aria-label={`Folge uns auf ${social.name}`}
           title={social.name}
         >
-          <Icon className="h-4 w-4 text-sage-600 group-hover:text-sage-800 transition-colors" />
+          <Icon className="h-4 w-4 text-sage-800/90 group-hover:text-charcoal-800 transition-colors" />
         </a>
       );
     }
@@ -324,7 +324,9 @@ export function SocialMediaSection({
                 {computedTitle}
               </span>
             </h3>
-            <p className="text-base md:text-lg text-charcoal-700">{computedSubtitle}</p>
+            <p className="text-base md:text-lg text-charcoal-700">
+              {computedSubtitle}
+            </p>
           </div>
         )}
         <div className="flex justify-center gap-4 flex-wrap max-w-3xl mx-auto">

@@ -1,15 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  Users,
-  Baby,
-  BookOpen,
-  Handshake,
-  Goal,
-  Lightbulb,
-  ShieldCheck,
-} from "lucide-react";
+import { Users, Goal, Lightbulb, ShieldCheck } from "lucide-react";
+import { WerSindWirSection } from "@/components/uber-uns/WerSindWirSection";
 import Image from "next/image";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -20,6 +13,7 @@ import {
   SECTION_HERO_SPACING,
   SECTION_CONTENT_SPACING,
   SECTION_CTA_SPACING,
+  CLOSING_SECTION_SURFACE_CLASS,
 } from "@/lib/page-config";
 
 export default function AboutPage() {
@@ -52,65 +46,7 @@ export default function AboutPage() {
           variants={itemVariants}
           className={SECTION_CONTENT_SPACING}
         >
-          <div className="relative mx-auto max-w-5xl overflow-hidden rounded-2xl border border-sand-200 bg-cream-50/70 px-6 py-8 shadow-sm md:px-10 md:py-10">
-            <div className="relative">
-              <div className="mx-auto mb-12 max-w-3xl text-center">
-                <h2 className="font-heading text-3xl font-bold leading-tight text-sage-800 md:text-4xl">
-                  Wer sind wir?
-                </h2>
-                <p className="mt-3 max-w-2xl mx-auto text-lg leading-relaxed text-charcoal-700">
-                  Ein aktiver muslimischer Mädchen- und Frauenverein im Herzen
-                  Berlins.
-                </p>
-              </div>
-              <div className="grid gap-px overflow-hidden rounded-xl bg-sand-200/70 text-center md:grid-cols-2">
-                <div className="bg-white p-6 md:p-7">
-                  <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-xl bg-sage-100/90 ring-1 ring-sage-200">
-                    <Users className="h-8 w-8 text-sage-600" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-charcoal-800 mb-2">
-                    Vielfalt
-                  </h3>
-                  <p className="text-charcoal-600">
-                    Mitglieder verschiedenster Herkünfte und Generationen.
-                  </p>
-                </div>
-                <div className="bg-white p-6 md:p-7">
-                  <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-xl bg-sage-100/90 ring-1 ring-sage-200">
-                    <BookOpen className="h-8 w-8 text-sage-600" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-charcoal-800 mb-2">
-                    Bildung
-                  </h3>
-                  <p className="text-charcoal-600">
-                    Eine Plattform um religiöses Wissen zu erlangen.
-                  </p>
-                </div>
-                <div className="bg-white p-6 md:p-7">
-                  <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-xl bg-sage-100/90 ring-1 ring-sage-200">
-                    <Handshake className="h-8 w-8 text-sage-600" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-charcoal-800 mb-2">
-                    Engagement
-                  </h3>
-                  <p className="text-charcoal-600">
-                    Potenziale entfalten und die Gemeinde stärken.
-                  </p>
-                </div>
-                <div className="bg-white p-6 md:p-7">
-                  <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-xl bg-sage-100/90 ring-1 ring-sage-200">
-                    <Baby className="h-8 w-8 text-sage-600" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-charcoal-800 mb-2">
-                    Familienfreundlich
-                  </h3>
-                  <p className="text-charcoal-600">
-                    Kinderbetreuung für eine kinderfreundliche Atmosphäre.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <WerSindWirSection />
         </motion.section>
 
         {/* Vereinsphilosophie Section */}
@@ -318,7 +254,9 @@ export default function AboutPage() {
 
         {/* CTA Section */}
         <motion.section variants={itemVariants} className={SECTION_CTA_SPACING}>
-          <div className="relative mx-auto max-w-5xl rounded-2xl border border-sand-200 bg-cream-50/70 px-8 py-10">
+          <div
+            className={`relative mx-auto max-w-5xl px-8 py-10 ${CLOSING_SECTION_SURFACE_CLASS}`}
+          >
             <div className="flex flex-col items-center justify-between gap-6 text-center md:flex-row md:text-left">
               <div className="max-w-2xl">
                 <h2 className="font-heading text-3xl font-bold text-charcoal-800 md:text-4xl">
@@ -336,7 +274,12 @@ export default function AboutPage() {
                     Mitglied werden
                   </Link>
                 </Button>
-                <Button variant="outline" size="lg" asChild>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  asChild
+                  className="border-sage-300 bg-cream-50/70 text-sage-800 hover:bg-sage-50"
+                >
                   <Link href="/veranstaltungen">Veranstaltungen</Link>
                 </Button>
               </div>

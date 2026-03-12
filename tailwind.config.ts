@@ -59,10 +59,10 @@ const config: Config = {
           "400": "#adb5bd",
           "500": "#6c757d",
           "600": "#495057",
-          "700": "#343a40",
-          "800": "#2a2f32", // Text/contrast
-          "900": "#212529",
-          DEFAULT: "#2a2f32",
+          "700": "#3d3834", // Warm charcoal border
+          "800": "#322e2a", // Warm charcoal — text/contrast
+          "900": "#292522",
+          DEFAULT: "#322e2a",
         },
         clay: {
           "50": "#faf5f2",

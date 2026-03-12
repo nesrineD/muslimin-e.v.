@@ -29,6 +29,8 @@ import {
   SECTION_HERO_SPACING,
   SECTION_CONTENT_SPACING,
   SECTION_CTA_SPACING,
+  CLOSING_SECTION_SURFACE_CLASS,
+  FOOTER_BRIDGE_SURFACE_CLASS,
 } from "@/lib/page-config";
 
 export function PublicLandingContent() {
@@ -325,7 +327,9 @@ export function PublicLandingContent() {
         {/* Social Media Section */}
         <section className={`${SECTION_CONTENT_SPACING} px-4`}>
           <motion.div variants={itemVariants} className="max-w-6xl mx-auto">
-            <div className="py-12 px-6 sm:px-8 bg-white rounded-2xl shadow-sm border border-sand-200">
+            <div
+              className={`py-12 px-6 sm:px-8 ${FOOTER_BRIDGE_SURFACE_CLASS}`}
+            >
               <SocialMediaSection
                 variant="compact"
                 showTitle={true}
@@ -340,7 +344,7 @@ export function PublicLandingContent() {
         <section className={SECTION_CTA_SPACING}>
           <motion.div
             variants={itemVariants}
-            className="max-w-4xl mx-auto rounded-2xl bg-charcoal-800 px-8 py-12 md:px-12 md:py-16 text-center"
+            className={`max-w-4xl mx-auto px-8 py-12 md:px-12 md:py-16 text-center ${CLOSING_SECTION_SURFACE_CLASS}`}
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
@@ -348,10 +352,10 @@ export function PublicLandingContent() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className="text-3xl md:text-5xl font-bold mb-6 text-cream-50">
+              <h2 className="text-3xl md:text-5xl font-bold mb-6 text-charcoal-800">
                 Bereit für den nächsten Schritt?
               </h2>
-              <p className="text-lg mb-8 text-sand-200 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-lg mb-8 text-charcoal-700 max-w-2xl mx-auto leading-relaxed">
                 Wenn du eine Gemeinschaft suchst, die Bildung, Zugehörigkeit und
                 Unterstützung verbindet, freuen wir uns auf dich.
               </p>
@@ -370,7 +374,7 @@ export function PublicLandingContent() {
                     size="lg"
                     variant="outline"
                     asChild
-                    className="border-sand-200 text-cream-50 hover:bg-sand-200/10"
+                    className="border-sage-300 text-sage-800 hover:bg-sage-50"
                   >
                     <Link href="/spenden" className="gap-3">
                       <HeartHandshake className="w-6 h-6" />

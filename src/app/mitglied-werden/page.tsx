@@ -17,7 +17,11 @@ import {
   itemVariants,
   hoverButton,
 } from "@/lib/animations";
-import { PUBLIC_PAGE_WRAPPER_CLASS } from "@/lib/page-config";
+import {
+  CLOSING_SECTION_SURFACE_CLASS,
+  PUBLIC_PAGE_WRAPPER_CLASS,
+  FOOTER_BRIDGE_SURFACE_CLASS,
+} from "@/lib/page-config";
 
 type MembershipOption = {
   title: string;
@@ -192,27 +196,33 @@ export default function MitgliedWerdenPage() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-40px" }}
-              className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-sage-600 via-sage-700 to-sage-800 p-10 text-center shadow-sage-xl md:p-14"
+              className={`relative overflow-hidden p-10 text-center md:p-14 ${CLOSING_SECTION_SURFACE_CLASS}`}
             >
-              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent" />
-              <div className="absolute -right-8 -top-8 h-40 w-40 rounded-full bg-white/10 blur-3xl" />
-              <div className="absolute -bottom-8 left-8 h-40 w-40 rounded-full bg-sage-300/20 blur-3xl" />
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/70 to-transparent" />
+              <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-sand-200/50 blur-3xl" />
+              <div className="absolute -bottom-10 left-10 h-40 w-40 rounded-full bg-sage-200/45 blur-3xl" />
 
               <div className="relative mx-auto max-w-lg">
-                <div className="mx-auto mb-6 flex h-12 w-12 items-center justify-center rounded-xl border border-white/20 bg-white/10">
-                  <Heart className="h-5 w-5 text-white" />
+                <div className="mx-auto mb-6 flex h-12 w-12 items-center justify-center rounded-xl border border-sage-200/80 bg-sage-700 text-white shadow-sm">
+                  <Heart className="h-5 w-5" />
                 </div>
 
-                <h2 className="mb-8 font-heading text-2xl font-bold text-white md:text-3xl">
+                <h2 className="mb-4 font-heading text-2xl font-bold text-charcoal-800 md:text-3xl">
                   Deine Mitgliedschaftsanfrage
                 </h2>
 
+                <p className="mb-8 text-base leading-relaxed text-charcoal-700 md:text-lg">
+                  Starte deinen Antrag in wenigen Minuten und werde Teil einer
+                  Gemeinschaft, die Bildung, Zugehörigkeit und Engagement
+                  zusammenführt.
+                </p>
+
                 <motion.div {...hoverButton} className="inline-block">
                   <Button
-                    variant="secondary"
+                    variant="primary"
                     size="lg"
                     asChild
-                    className="h-12 rounded-full bg-white text-sage-800 shadow-lg transition-all duration-300 hover:bg-sand-50 hover:text-sage-900"
+                    className="h-12 rounded-full px-8 shadow-lg"
                   >
                     <a
                       href="https://formular.vereinsplaner.com/b8fabab2-d21c-4ee4-bdbc-95aa517acbed"
@@ -239,7 +249,7 @@ export default function MitgliedWerdenPage() {
               whileInView="visible"
               viewport={{ once: true, margin: "-40px" }}
             >
-              <div className="rounded-[2rem] border border-white/70 bg-white/55 p-6 shadow-sage-sm backdrop-blur-sm md:p-8">
+              <div className={`${FOOTER_BRIDGE_SURFACE_CLASS} p-6 md:p-8`}>
                 <SocialMediaSection variant="compact" showTitle={true} />
               </div>
             </motion.div>

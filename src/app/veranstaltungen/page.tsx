@@ -8,6 +8,7 @@ import {
   SECTION_HERO_SPACING,
   SECTION_CONTENT_SPACING,
   SECTION_CTA_SPACING,
+  FOOTER_BRIDGE_SURFACE_CLASS,
 } from "@/lib/page-config";
 import { SocialMediaSection } from "@/components/SocialMediaSection";
 import { Mic, Video, Moon, Flame } from "lucide-react";
@@ -204,7 +205,9 @@ export default function VeranstaltungenPage() {
           variants={itemVariants}
           className={`${SECTION_CTA_SPACING} px-4`}
         >
-          <div className="max-w-3xl mx-auto bg-white rounded-2xl py-12 px-6 sm:px-8 border border-sand-200 shadow-sm">
+          <div
+            className={`max-w-3xl mx-auto py-12 px-6 sm:px-8 ${FOOTER_BRIDGE_SURFACE_CLASS}`}
+          >
             <SocialMediaSection
               variant="compact"
               showTitle={true}

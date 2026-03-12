@@ -522,12 +522,12 @@ headers: [
 
 **Bei neuen Features:**
 
-1. **IMMER Tests schreiben BEVOR Code implementiert wird** (TDD bevorzugt)
-2. Tests für Success + Error Cases
-3. Edge Cases abdecken (z.B. max 3 bookings limit, PLZ validation)
-4. Integration Tests für API Routes mit DB-Interaktion
-5. Component Tests für UI mit User-Interaktionen
-6. PWA-Features: Service Worker registration testen
+1. ~~**IMMER Tests schreiben BEVOR Code implementiert wird** (TDD bevorzugt)~~
+2. ~~Tests für Success + Error Cases~~
+3. ~~Edge Cases abdecken (z.B. max 3 bookings limit, PLZ validation)~~
+4. ~~Integration Tests für API Routes mit DB-Interaktion~~
+5. ~~Component Tests für UI mit User-Interaktionen~~
+6. ~~PWA-Features: Service Worker registration testen~~
 
 **Bei Bug Fixes:**
 

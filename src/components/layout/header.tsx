@@ -94,8 +94,8 @@ export function Header() {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
         isScrolled
-          ? "bg-white border-b border-sage-200 shadow-md"
-          : "bg-gradient-to-r from-white via-sage-50/30 to-white backdrop-blur-sm border-b border-sage-100/80"
+          ? "border-b border-sand-300/75 bg-cream-50/92 shadow-[0_12px_30px_-22px_rgba(50,46,42,0.38)] backdrop-blur-md"
+          : "border-b border-sand-200/70 bg-gradient-to-r from-sand-50/94 via-cream-50/92 to-sage-100/45 backdrop-blur-sm"
       }`}
       role="banner"
     >
@@ -123,7 +123,7 @@ export function Header() {
             <span className="font-bold text-xl text-sage-700 group-hover:text-coral-600 transition-colors duration-300">
               Muslimin e.V.
             </span>
-            <span className="text-xs text-charcoal-600">
+            <span className="text-xs text-charcoal-700/90">
               Frauen- & Mädchenverein Berlin
             </span>
           </div>
