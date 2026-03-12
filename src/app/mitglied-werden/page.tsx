@@ -111,8 +111,8 @@ export default function MitgliedWerdenPage() {
           <section className="px-6 pb-12">
             <div className="container mx-auto max-w-5xl">
               <SplitSection
-                imageSrc="/images/veranstaltungen/frauenkreis-juni-2025.jpeg"
-                imageAlt="Frauenkreis Muslimin e.V. – Gemeinschaft und Austausch"
+                imageSrc="/images/veranstaltungen/gemeinschaft-saal-1.jpg"
+                imageAlt="Muslimin e.V. – Gemeinschaft und Austausch"
                 reversed
               >
                 <h2 className="font-heading text-2xl md:text-3xl font-bold text-charcoal-800 mb-4">
