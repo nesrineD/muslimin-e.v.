@@ -309,7 +309,7 @@ function LoginContent() {
                         id="email"
                         name="email"
                         type="email"
-                        placeholder="email"
+                        placeholder="E-Mail-Adresse"
                         value={formData.email}
                         onChange={handleChange}
                         className="pl-10 border-sand-200 focus:border-sage-500 focus:ring-sage-500 transition-all duration-200 bg-white/50"
