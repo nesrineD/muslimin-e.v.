@@ -1,21 +1,21 @@
-Ziel ist eine bessere harmonische und elegante webseite zu verschalffen, anhand der farblischen aufteilung zwischen header, footer und body und leten elementen in den Seiten
+Ziel ist eine harmonische und elegante Webseite zu schaffen, anhand der farblichen Aufteilung zwischen Header, Footer und Body sowie den letzten Elementen auf den Seiten.
 Ich prüfe jetzt gezielt die letzten Sections der fünf Seiten plus Header, Body-Grundfläche und Footer, damit die Bewertung auf dem aktuellen Stand basiert und nicht auf dem letzten Entwurf.
 
-Read [](file:///Users/Nesrine.Doghri/muslimin-e.v./src/components/layout/header.tsx#75-75), lines 75 to 110
+Review: `src/components/layout/header.tsx`, lines 75 to 110
 
-Read [](file:///Users/Nesrine.Doghri/muslimin-e.v./src/lib/page-config.ts)
+Review: `src/lib/page-config.ts`
 
-Read [](file:///Users/Nesrine.Doghri/muslimin-e.v./src/components/layout/footer.tsx#1-1), lines 1 to 120
+Review: `src/components/layout/footer.tsx`, lines 1 to 120
 
-Read [](file:///Users/Nesrine.Doghri/muslimin-e.v./src/components/landing/PublicLandingContent.tsx#338-338), lines 338 to 390
+Review: `src/components/landing/PublicLandingContent.tsx`, lines 338 to 390
 
-Read [](file:///Users/Nesrine.Doghri/muslimin-e.v./src/app/uber-uns/page.tsx#318-318), lines 318 to 351
+Review: `src/app/uber-uns/page.tsx`, lines 318 to 351
 
-Read [](file:///Users/Nesrine.Doghri/muslimin-e.v./src/app/veranstaltungen/page.tsx#198-198), lines 198 to 226
+Review: `src/app/veranstaltungen/page.tsx`, lines 198 to 226
 
-Read [](file:///Users/Nesrine.Doghri/muslimin-e.v./src/app/mitglied-werden/page.tsx#176-176), lines 176 to 255
+Review: `src/app/mitglied-werden/page.tsx`, lines 176 to 255
 
-Read [](file:///Users/Nesrine.Doghri/muslimin-e.v./src/app/spenden/page.tsx#544-544), lines 544 to 586
+Review: `src/app/spenden/page.tsx`, lines 544 to 586
 
 **Findings**
 
