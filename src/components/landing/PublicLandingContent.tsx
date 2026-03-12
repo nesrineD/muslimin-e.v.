@@ -178,7 +178,7 @@ export function PublicLandingContent() {
             className="max-w-5xl mx-auto"
           >
             <SplitSection
-              imageSrc="/images/veranstaltungen/gemeinschaft-juni-2025-1.jpg"
+              imageSrc="/images/veranstaltungen/gemeinschaft-gebet.jpg"
               imageAlt="Muslimin e.V. Gemeinschaft – Berlin"
             >
               <SectionHeading
