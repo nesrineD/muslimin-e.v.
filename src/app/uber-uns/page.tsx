@@ -1,25 +1,25 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  Users,
-  Baby,
-  BookOpen,
-  Handshake,
-  Goal,
-  Lightbulb,
-  ShieldCheck,
-} from "lucide-react";
-import Image from "next/image";
+import { Users, Goal, Lightbulb, ShieldCheck } from "lucide-react";
+import { WerSindWirSection } from "@/components/uber-uns/WerSindWirSection";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { containerVariants, itemVariants } from "@/lib/animations";
+import { PageHeading } from "@/components/ui/page-heading";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { SectionDivider } from "@/components/ui/section-divider";
+import { SplitSection } from "@/components/ui/split-section";
+import { AnimatedCounter } from "@/components/ui/animated-counter";
+import { DecorativeAccents } from "@/components/ui/decorative-accents";
+import { SectionBand } from "@/components/ui/section-band";
 import {
   PUBLIC_PAGE_WRAPPER_CLASS,
   SECTION_HERO_SPACING,
   SECTION_CONTENT_SPACING,
   SECTION_CTA_SPACING,
+  CLOSING_SECTION_SURFACE_CLASS,
 } from "@/lib/page-config";
 
 export default function AboutPage() {
@@ -33,13 +33,16 @@ export default function AboutPage() {
       <div className="container mx-auto px-4">
         {/* Hero Section */}
         <section className={`relative ${SECTION_HERO_SPACING} overflow-hidden`}>
+          <DecorativeAccents preset="hero" />
           <motion.div
             variants={itemVariants}
             className="max-w-5xl mx-auto text-center relative z-10"
           >
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-charcoal-800 leading-tight">
-              Über <span className="text-sage-700">Muslimin e.V.</span>
-            </h1>
+            <PageHeading
+              title="Über Muslimin e.V."
+              accentWord="Muslimin e.V."
+              className="mb-6"
+            />
             <p className="text-xl md:text-2xl text-charcoal-700 max-w-3xl mx-auto leading-relaxed">
               Gemeinschaft, Bildung und verlässliche Unterstützung für
               muslimische Frauen in Berlin seit 2011.
@@ -48,112 +51,52 @@ export default function AboutPage() {
         </section>
 
         {/* Wer sind wir? Section */}
+        <SectionBand variant="alternate">
+          <motion.section
+            variants={itemVariants}
+            className={SECTION_CONTENT_SPACING}
+          >
+            <WerSindWirSection />
+          </motion.section>
+        </SectionBand>
+
+        <SectionDivider variant="accent-line" />
+
+        {/* Vereinsphilosophie Section — SplitSection */}
         <motion.section
           variants={itemVariants}
           className={SECTION_CONTENT_SPACING}
         >
-          <div className="relative mx-auto max-w-5xl overflow-hidden rounded-2xl border border-sand-200 bg-cream-50/70 px-6 py-8 shadow-sm md:px-10 md:py-10">
-            <div className="relative">
-              <div className="mx-auto mb-12 max-w-3xl text-center">
-                <h2 className="font-heading text-3xl font-bold leading-tight text-sage-800 md:text-4xl">
-                  Wer sind wir?
-                </h2>
-                <p className="mt-3 max-w-2xl mx-auto text-lg leading-relaxed text-charcoal-700">
-                  Ein aktiver muslimischer Mädchen- und Frauenverein im Herzen
-                  Berlins.
+          <div className="max-w-5xl mx-auto">
+            <SectionHeading title="Unsere Philosophie" className="mb-10" />
+            <SplitSection
+              imageSrc="/images/veranstaltungen/gemeinschaft-performance.jpg"
+              imageAlt="Muslimin e.V. – Gemeinschaft und Bildung"
+            >
+              <blockquote className="italic text-xl leading-relaxed text-sage-700 md:text-2xl mb-6 border-l-4 border-clay-300 pl-5">
+                &ldquo;Inspiriert von den großen Vorbildern Sayeda Fatima (a)
+                und Sayeda Zainab (a), möchten wir einen Raum schaffen, in dem
+                Frauen ihre spirituelle, intellektuelle und soziale Entwicklung
+                fördern können.&rdquo;
+              </blockquote>
+              <div className="space-y-4 text-lg text-charcoal-700 leading-8">
+                <p>
+                  Was 2011 als Initiative begann, wurde 2018 offiziell als
+                  eingetragener Verein gegründet — mit dem Ziel, muslimische
+                  Frauen in Berlin und bundesweit zu vernetzen und ihnen eine
+                  Stimme zu verleihen.
+                </p>
+                <p>
+                  Wir motivieren Frauen, sich aktiv in die Gemeindearbeit
+                  einzubringen, ihre Talente zu fördern und die Gesellschaft
+                  mitzugestalten.
                 </p>
               </div>
-              <div className="grid gap-px overflow-hidden rounded-xl bg-sand-200/70 text-center md:grid-cols-2">
-                <div className="bg-white p-6 md:p-7">
-                  <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-xl bg-sage-100/90 ring-1 ring-sage-200">
-                    <Users className="h-8 w-8 text-sage-600" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-charcoal-800 mb-2">
-                    Vielfalt
-                  </h3>
-                  <p className="text-charcoal-600">
-                    Mitglieder verschiedenster Herkünfte und Generationen.
-                  </p>
-                </div>
-                <div className="bg-white p-6 md:p-7">
-                  <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-xl bg-sage-100/90 ring-1 ring-sage-200">
-                    <BookOpen className="h-8 w-8 text-sage-600" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-charcoal-800 mb-2">
-                    Bildung
-                  </h3>
-                  <p className="text-charcoal-600">
-                    Eine Plattform um religiöses Wissen zu erlangen.
-                  </p>
-                </div>
-                <div className="bg-white p-6 md:p-7">
-                  <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-xl bg-sage-100/90 ring-1 ring-sage-200">
-                    <Handshake className="h-8 w-8 text-sage-600" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-charcoal-800 mb-2">
-                    Engagement
-                  </h3>
-                  <p className="text-charcoal-600">
-                    Potenziale entfalten und die Gemeinde stärken.
-                  </p>
-                </div>
-                <div className="bg-white p-6 md:p-7">
-                  <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-xl bg-sage-100/90 ring-1 ring-sage-200">
-                    <Baby className="h-8 w-8 text-sage-600" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-charcoal-800 mb-2">
-                    Familienfreundlich
-                  </h3>
-                  <p className="text-charcoal-600">
-                    Kinderbetreuung für eine kinderfreundliche Atmosphäre.
-                  </p>
-                </div>
-              </div>
-            </div>
+            </SplitSection>
           </div>
         </motion.section>
 
-        {/* Vereinsphilosophie Section */}
-        <motion.section
-          variants={itemVariants}
-          className={SECTION_CONTENT_SPACING}
-        >
-          <div className="mx-auto max-w-4xl px-2 md:px-0">
-            <div className="mx-auto mb-10 max-w-3xl text-center">
-              <h2 className="font-heading text-3xl font-bold text-sage-800 md:text-4xl">
-                Unsere Philosophie
-              </h2>
-            </div>
-            <div className="relative">
-              <div className="absolute left-0 top-0 h-full w-px bg-gradient-to-b from-clay-300 via-sand-200 to-transparent" />
-              <div className="max-w-4xl mx-auto pl-6 md:pl-10">
-                <blockquote className="my-5 max-w-3xl italic text-xl leading-relaxed text-sage-700 md:text-2xl">
-                  &ldquo;Inspiriert von den großen Vorbildern Sayeda Fatima (a)
-                  und Sayeda Zainab (a), möchten wir einen Raum schaffen, in dem
-                  Frauen ihre spirituelle, intellektuelle und soziale
-                  Entwicklung fördern können.&rdquo;
-                </blockquote>
-                <div className="space-y-5 text-lg text-charcoal-700 leading-8">
-                  <p>
-                    Was 2011 als Initiative begann, wurde 2018 offiziell als
-                    eingetragener Verein gegründet — mit dem Ziel, muslimische
-                    Frauen in Berlin und bundesweit zu vernetzen und ihnen eine
-                    Stimme zu verleihen. Unsere Arbeit dient der religiösen
-                    Bildung, der Stärkung der muslimisch-deutschen Identität und
-                    dem Austausch über gesellschaftlich relevante Themen.
-                  </p>
-                  <p>
-                    Wir motivieren Frauen, sich aktiv in die Gemeindearbeit
-                    einzubringen, ihre Talente zu fördern und die Gesellschaft
-                    mitzugestalten — und hoffen, unsere Projekte und
-                    Kooperationen stetig auszuweiten, um noch mehr Schwestern im
-                    Leben als Muslimin in Deutschland zu unterstützen.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.section>
+        <SectionDivider variant="accent-line" />
 
         {/* Kernziele Section */}
         <motion.section
@@ -163,12 +106,10 @@ export default function AboutPage() {
           <div className="relative mx-auto max-w-5xl overflow-hidden rounded-2xl border border-sand-200 bg-white px-6 py-8 shadow-sm md:px-10 md:py-10">
             <div className="relative">
               <div className="mx-auto mb-12 max-w-3xl text-center">
-                <h2 className="font-heading text-3xl font-bold leading-tight text-charcoal-800 md:text-4xl">
-                  Unsere Kernziele
-                </h2>
-                <p className="mt-3 max-w-2xl mx-auto text-lg leading-relaxed text-charcoal-700">
-                  Die Säulen unserer Gemeinschaft.
-                </p>
+                <SectionHeading
+                  title="Unsere Kernziele"
+                  subtitle="Die Säulen unserer Gemeinschaft."
+                />
               </div>
               <div className="grid gap-6 md:grid-cols-2">
                 <Card
@@ -232,111 +173,107 @@ export default function AboutPage() {
           </div>
         </motion.section>
 
-        {/* Statistiken Section */}
+        <SectionDivider variant="accent-line" />
+
+        {/* Statistiken Section — warm surface + AnimatedCounters */}
         <motion.section
           variants={itemVariants}
           className={SECTION_CONTENT_SPACING}
         >
-          <div className="relative mx-auto max-w-5xl overflow-hidden rounded-2xl border border-sand-200/15 bg-gradient-to-br from-charcoal-600 via-charcoal-600 to-sage-700 px-6 py-8 shadow-sm md:px-8 md:py-10">
-            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-            <div className="mx-auto mb-8 max-w-3xl text-center">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-clay-300">
+          <div className="relative mx-auto max-w-5xl overflow-hidden rounded-2xl border border-sand-200 bg-cream-50/70 px-6 py-10 shadow-sm md:px-10">
+            <div className="mx-auto mb-10 max-w-3xl text-center">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-[0.24em] text-sage-600">
                 Zahlen &amp; Fakten
               </p>
-              <h2 className="font-heading text-3xl font-bold text-sand-50 md:text-4xl">
-                Zahlen und Entwicklung
-              </h2>
-              <p className="mt-2 text-sand-200 text-base">
-                Ein Verein mit gewachsener Reichweite und beständiger Arbeit
-              </p>
+              <SectionHeading
+                title="Zahlen und Entwicklung"
+                subtitle="Ein Verein mit gewachsener Reichweite und beständiger Arbeit"
+              />
             </div>
-            <div className="mx-auto grid max-w-4xl grid-cols-2 overflow-hidden rounded-xl border border-sand-200/15 bg-sand-50/[0.05] lg:grid-cols-4">
+            <div className="mx-auto grid max-w-4xl grid-cols-2 gap-4 lg:grid-cols-4">
               {[
                 {
-                  value: "14+",
-                  unit: "Jahre",
-                  label: "aktive Gemeinschaft",
+                  target: 14,
+                  suffix: "+",
+                  label: "Jahre",
                   sub: "Initiative seit 2011, e.V. seit 2018",
                 },
-                { value: "60+", unit: "", label: "Mitglieder", sub: null },
+                { target: 60, suffix: "+", label: "Mitglieder", sub: null },
                 {
-                  value: "100+",
-                  unit: "",
+                  target: 100,
+                  suffix: "+",
                   label: "Veranstaltungen",
                   sub: null,
                 },
                 {
-                  value: "500",
-                  unit: "",
+                  target: 500,
+                  suffix: "",
                   label: "Gäste",
                   sub: "bei unserer größten Veranstaltung",
                 },
               ].map((stat, i) => (
                 <div
                   key={i}
-                  className="flex min-h-[11.5rem] flex-col items-center justify-center border-b border-sand-200/10 px-4 py-7 text-center transition-all duration-300 hover:bg-sand-50/[0.06] lg:border-b-0 lg:border-r lg:border-sand-200/10 last:border-r-0"
+                  className="flex flex-col items-center justify-center rounded-xl border border-sand-200 bg-white px-4 py-8 text-center shadow-sm"
                 >
-                  <div className="flex min-h-[4.25rem] items-end justify-center gap-1">
-                    <span className="text-4xl font-bold tracking-tight text-cream-50 lg:text-5xl">
-                      {stat.value}
-                    </span>
-                    {stat.unit && (
-                      <span className="pb-1 text-2xl font-semibold text-clay-300 lg:text-3xl">
-                        {stat.unit}
-                      </span>
-                    )}
-                  </div>
-                  <p className="mt-3 min-h-[2.5rem] text-sm font-semibold uppercase tracking-[0.06em] text-sand-100 lg:text-[15px]">
+                  <span className="text-4xl font-bold tracking-tight text-sage-800 lg:text-5xl">
+                    <AnimatedCounter
+                      target={stat.target}
+                      suffix={stat.suffix}
+                    />
+                  </span>
+                  <p className="mt-2 text-sm font-semibold uppercase tracking-wide text-charcoal-700">
                     {stat.label}
                   </p>
-                  <p className="mt-2 min-h-[2.25rem] max-w-[13rem] text-xs leading-relaxed text-sand-300">
-                    {stat.sub ?? "\u00A0"}
-                  </p>
+                  {stat.sub && (
+                    <p className="mt-1 max-w-[13rem] text-xs leading-relaxed text-charcoal-500">
+                      {stat.sub}
+                    </p>
+                  )}
                 </div>
               ))}
             </div>
           </div>
         </motion.section>
 
-        {/* Photo Section */}
-        <motion.section
-          variants={itemVariants}
-          className={SECTION_CONTENT_SPACING}
-        >
-          <div className="relative mx-auto max-w-5xl overflow-hidden rounded-2xl border border-sand-200 shadow-sm">
-            <div className="relative aspect-[16/7]">
-              <Image
-                src="/images/veranstaltungen/workshop-august-2025.jpeg"
-                alt="Workshop — Muslimin e.V. Gemeinschaft in Berlin"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 1024px"
-              />
-            </div>
-          </div>
-        </motion.section>
+        <SectionDivider variant="accent-line" />
 
         {/* CTA Section */}
-        <motion.section variants={itemVariants} className={SECTION_CTA_SPACING}>
-          <div className="relative mx-auto max-w-5xl rounded-2xl border border-sand-200 bg-cream-50/70 px-8 py-10">
+        <motion.section
+          variants={itemVariants}
+          className={`${SECTION_CTA_SPACING} relative overflow-hidden`}
+        >
+          <div
+            className={`relative mx-auto max-w-5xl px-8 py-10 ${CLOSING_SECTION_SURFACE_CLASS}`}
+          >
+            <DecorativeAccents preset="closing" />
             <div className="flex flex-col items-center justify-between gap-6 text-center md:flex-row md:text-left">
               <div className="max-w-2xl">
-                <h2 className="font-heading text-3xl font-bold text-charcoal-800 md:text-4xl">
+                <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">
                   Teil unserer Gemeinschaft werden
                 </h2>
-                <p className="mt-3 text-charcoal-700 leading-relaxed">
+                <p className="mt-3 text-cream-200 leading-relaxed">
                   Wenn du unsere Arbeit begleiten oder Mitglied werden möchtest,
                   findest du hier den nächsten Schritt. Oder entdecke unsere
                   Veranstaltungen.
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-3 shrink-0">
-                <Button variant="primary" size="lg" asChild>
+                <Button
+                  size="lg"
+                  asChild
+                  className="bg-clay-500 hover:bg-clay-600 text-white"
+                >
                   <Link href="/mitglied-werden" data-cta="primary">
                     Mitglied werden
                   </Link>
                 </Button>
-                <Button variant="outline" size="lg" asChild>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  asChild
+                  className="border-cream-200 text-cream-100 hover:bg-sage-600"
+                >
                   <Link href="/veranstaltungen">Veranstaltungen</Link>
                 </Button>
               </div>

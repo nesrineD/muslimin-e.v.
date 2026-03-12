@@ -26,8 +26,8 @@
     --sand-300: 35 30% 82%;
     --sand-400: 35 30% 82%;
 
-    /* Charcoal text/contrast */
-    --charcoal: 200 9% 18%;
+    /* Charcoal text/contrast — warm-shifted for sand/cream harmony */
+    --charcoal: 30 9% 18%;
     --charcoal-50: 210 17% 98%;
     --charcoal-100: 210 13% 92%;
     --charcoal-200: 210 12% 87%;
@@ -35,9 +35,9 @@
     --charcoal-400: 210 10% 68%;
     --charcoal-500: 210 10% 46%;
     --charcoal-600: 210 11% 31%;
-    --charcoal-700: 210 11% 25%;
-    --charcoal-800: 200 9% 18%;
-    --charcoal-900: 210 11% 15%;
+    --charcoal-700: 27 8% 22%;
+    --charcoal-800: 30 9% 18%;
+    --charcoal-900: 27 9% 15%;
 
     /* Clay/Coral CTA/accent */
     --clay: 14 35% 46%;
@@ -66,11 +66,11 @@
 
     /* Semantic aliases */
     --background: 40 33% 97%;
-    --foreground: 200 9% 18%;
+    --foreground: 30 9% 18%;
     --card: 0 0% 100%;
-    --card-foreground: 200 9% 18%;
+    --card-foreground: 30 9% 18%;
     --popover: 0 0% 100%;
-    --popover-foreground: 200 9% 18%;
+    --popover-foreground: 30 9% 18%;
     --primary: 142 8% 38%;
     --primary-foreground: 120 3% 96%;
     --secondary: 35 30% 82%;
@@ -93,24 +93,24 @@
   }
 
   .dark {
-    --background: 200 9% 18%;
+    --background: 30 9% 18%;
     --foreground: 40 33% 97%;
-    --card: 200 9% 18%;
+    --card: 30 9% 18%;
     --card-foreground: 40 33% 97%;
-    --popover: 200 9% 18%;
+    --popover: 30 9% 18%;
     --popover-foreground: 40 33% 97%;
     --primary: 142 8% 45%;
     --primary-foreground: 120 3% 96%;
-    --secondary: 200 10% 15%;
+    --secondary: 30 10% 15%;
     --secondary-foreground: 40 33% 97%;
-    --muted: 200 10% 15%;
+    --muted: 30 10% 15%;
     --muted-foreground: 35 20% 64%;
     --accent: 14 35% 46%;
     --accent-foreground: 40 33% 97%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 85.7% 97.3%;
-    --border: 200 10% 15%;
-    --input: 200 10% 15%;
+    --border: 30 10% 15%;
+    --input: 30 10% 15%;
     --ring: 142 8% 45%;
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
@@ -372,12 +372,12 @@
 @keyframes glow {
   0%,
   100% {
-    box-shadow: 
+    box-shadow:
       0 0 20px rgba(91, 105, 96, 0.3),
       0 0 40px rgba(91, 105, 96, 0.1);
   }
   50% {
-    box-shadow: 
+    box-shadow:
       0 0 30px rgba(91, 105, 96, 0.5),
       0 0 60px rgba(91, 105, 96, 0.2);
   }
@@ -461,7 +461,8 @@
 
 /* Pulse subtle for attention-drawing (non-intrusive) */
 @keyframes pulse-subtle {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
@@ -526,7 +527,7 @@
 }
 
 .ripple-effect::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -591,5 +592,39 @@
   .card-interactive:hover {
     transform: none !important;
     box-shadow: 0 4px 12px rgba(42, 47, 50, 0.08);
+  }
+  .animate-marquee-left,
+  .animate-marquee-right {
+    animation: none !important;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────
+ * MARQUEE — WerSindWirSection infinite scroll
+ * ────────────────────────────────────────────────────────────── */
+@keyframes marquee-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@layer utilities {
+  .animate-marquee-left {
+    animation: marquee-left 45s linear infinite;
+  }
+  .animate-marquee-right {
+    animation: marquee-right 45s linear infinite;
   }
 }

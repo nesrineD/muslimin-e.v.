@@ -9,50 +9,60 @@ import {
   Users,
 } from "lucide-react";
 
-import { SocialMediaSection } from "@/components/SocialMediaSection";
+import { PageHeading } from "@/components/ui/page-heading";
+import { SectionDivider } from "@/components/ui/section-divider";
+import { SplitSection } from "@/components/ui/split-section";
+import { DecorativeAccents } from "@/components/ui/decorative-accents";
+import { AnimatedWrapper } from "@/components/ui/animated-wrapper";
 import { Button } from "@/components/ui/button";
+import { containerVariants, itemVariants, hoverButton } from "@/lib/animations";
 import {
-  containerVariants,
-  hoverLift,
-  itemVariants,
-  hoverButton,
-} from "@/lib/animations";
-import { PUBLIC_PAGE_WRAPPER_CLASS } from "@/lib/page-config";
+  CLOSING_SECTION_SURFACE_CLASS,
+  PUBLIC_PAGE_WRAPPER_CLASS,
+} from "@/lib/page-config";
+import { SectionBand } from "@/components/ui/section-band";
 
 type MembershipOption = {
   title: string;
+  subtitle: string;
   description: string;
   Icon: LucideIcon;
-  accentClasses: {
-    topBar: string;
-    iconWrap: string;
-    icon: string;
-    glow: string;
+  accent: {
+    bar: string;
+    iconBg: string;
+    iconText: string;
+    border: string;
+    badge: string;
   };
 };
 
 const MEMBERSHIP_OPTIONS: MembershipOption[] = [
   {
     title: "Aktives Mitglied",
-    description: "Genug Zeit und Engagement? Dann werde aktives Mitglied!",
+    subtitle: "Gestalte aktiv mit",
+    description:
+      "Du hast Zeit und Engagement? Dann bringe dich aktiv in unsere Vereinsarbeit ein und gestalte unsere Gemeinschaft mit.",
     Icon: Users,
-    accentClasses: {
-      topBar: "bg-sage-400",
-      iconWrap: "bg-sage-100",
-      icon: "text-sage-600",
-      glow: "bg-sage-100/80",
+    accent: {
+      bar: "bg-sage-500",
+      iconBg: "bg-sage-50",
+      iconText: "text-sage-600",
+      border: "border-sage-200",
+      badge: "bg-sage-100 text-sage-700",
     },
   },
   {
     title: "Passives Mitglied",
+    subtitle: "Unterstütze von Herzen",
     description:
-      "Keine Zeit aber genug finanzielle Mittel? Dann werde passives Mitglied!",
+      "Wenig Zeit, aber du möchtest unsere Arbeit finanziell unterstützen? Als passives Mitglied bist du ein wichtiger Teil unserer Schwesternschaft.",
     Icon: Heart,
-    accentClasses: {
-      topBar: "bg-warm-400",
-      iconWrap: "bg-warm-100",
-      icon: "text-warm-600",
-      glow: "bg-warm-100/80",
+    accent: {
+      bar: "bg-clay-400",
+      iconBg: "bg-clay-50",
+      iconText: "text-clay-600",
+      border: "border-clay-200",
+      badge: "bg-clay-100 text-clay-700",
     },
   },
 ];
@@ -62,12 +72,8 @@ export default function MitgliedWerdenPage() {
     <div
       className={`${PUBLIC_PAGE_WRAPPER_CLASS} relative isolate overflow-hidden`}
     >
-      {/* Decorative ambient blobs */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[44rem] overflow-hidden">
-        <div className="absolute left-1/4 top-0 h-80 w-80 -translate-x-1/2 rounded-full bg-sage-100/60 blur-3xl" />
-        <div className="absolute right-1/4 top-32 h-96 w-96 translate-x-1/2 rounded-full bg-sand-200/50 blur-3xl" />
-        <div className="absolute left-1/2 top-64 h-72 w-72 -translate-x-1/2 rounded-full bg-clay-100/50 blur-3xl" />
-      </div>
+      {/* Decorative ambient blobs replaced by unified system */}
+      <DecorativeAccents preset="hero" />
 
       <motion.div
         variants={containerVariants}
@@ -81,10 +87,11 @@ export default function MitgliedWerdenPage() {
           className="px-6 pb-12 pt-20 text-center lg:pb-14 lg:pt-28"
         >
           <div className="container mx-auto max-w-2xl">
-            <h1 className="font-heading text-4xl font-bold leading-tight text-charcoal-800 md:text-5xl lg:text-6xl">
-              Assalamu alaykum liebe{" "}
-              <span className="text-sage-600">Schwester!</span>
-            </h1>
+            <PageHeading
+              title="Assalamu alaykum liebe Schwester!"
+              accentWord="Schwester!"
+              className="mb-0"
+            />
 
             <p className="mt-5 text-xl font-medium text-charcoal-700 md:text-2xl">
               Werde Teil unserer Schwesternschaft.
@@ -99,59 +106,86 @@ export default function MitgliedWerdenPage() {
           </div>
         </motion.section>
 
-        {/* ── Mitgliedschaftstypen ──────────────────────────────── */}
+        {/* ── Was dich erwartet — SplitSection ──────────────────── */}
+        <SectionBand variant="alternate">
+          <section className="px-6 pb-12">
+            <div className="container mx-auto max-w-5xl">
+              <SplitSection
+                imageSrc="/images/veranstaltungen/gemeinschaft-saal-1.jpg"
+                imageAlt="Muslimin e.V. – Gemeinschaft und Austausch"
+                reversed
+              >
+                <h2 className="font-heading text-2xl md:text-3xl font-bold text-charcoal-800 mb-4">
+                  Was <span className="text-sage-700">dich erwartet</span>
+                </h2>
+                <p className="text-base text-charcoal-700 leading-relaxed">
+                  Als Mitglied von Muslimin e.V. wirst du Teil einer warmen,
+                  lebendigen Schwesternschaft. Wir bieten dir Bildung,
+                  Vernetzung und einen Platz, an dem du du selbst sein kannst.
+                </p>
+              </SplitSection>
+            </div>
+          </section>
+        </SectionBand>
+
+        <SectionDivider variant="gradient-fade" />
+
+        {/* ── Mitgliedschaftstypen ─────────────────────── */}
         <section className="px-6 pb-12 lg:pb-14">
           <div className="container mx-auto max-w-4xl">
-            <div className="rounded-[2rem] border border-white/70 bg-white/55 p-6 shadow-sage-sm backdrop-blur-sm md:p-8 lg:p-10">
-              <div className="grid gap-6 md:grid-cols-2">
-                {MEMBERSHIP_OPTIONS.map((option) => {
-                  const { Icon } = option;
-                  return (
-                    <motion.div
-                      key={option.title}
-                      variants={itemVariants}
-                      initial="hidden"
-                      whileInView="visible"
-                      viewport={{ once: true, margin: "-40px" }}
-                      {...hoverLift}
+            <div className="grid gap-8 md:grid-cols-2">
+              {MEMBERSHIP_OPTIONS.map((option, idx) => {
+                const { Icon } = option;
+                return (
+                  <AnimatedWrapper
+                    key={option.title}
+                    animation="fade-in-up"
+                    delay={idx * 140}
+                  >
+                    <div
+                      className={`group relative flex h-full flex-col overflow-hidden rounded-2xl border ${option.accent.border} bg-white/90 shadow-sage-sm backdrop-blur-sm transition-all duration-300 hover:shadow-sage-md hover:-translate-y-1`}
                     >
-                      <div className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-sand-200/80 bg-white shadow-sage-md">
-                        {/* Colored top accent bar */}
-                        <div
-                          className={`h-1 w-full ${option.accentClasses.topBar}`}
-                        />
+                      {/* Accent bar */}
+                      <div className={`h-1.5 w-full ${option.accent.bar}`} />
 
-                        <div className="relative flex flex-1 flex-col p-8">
+                      <div className="flex flex-1 flex-col p-8 md:p-10">
+                        {/* Icon + Badge */}
+                        <div className="mb-6 flex items-center gap-4">
                           <div
-                            className={`absolute right-4 top-4 h-32 w-32 rounded-full blur-3xl ${option.accentClasses.glow}`}
-                          />
-
-                          <div
-                            className={`relative mb-6 flex h-12 w-12 items-center justify-center rounded-xl ${option.accentClasses.iconWrap}`}
+                            className={`flex h-14 w-14 items-center justify-center rounded-2xl ${option.accent.iconBg} transition-transform duration-300 group-hover:scale-105`}
                           >
                             <Icon
-                              className={`h-5 w-5 ${option.accentClasses.icon}`}
+                              className={`h-7 w-7 ${option.accent.iconText}`}
                             />
                           </div>
-
-                          <h2 className="relative font-heading text-xl font-semibold text-charcoal-800">
-                            {option.title}
-                          </h2>
-
-                          <p className="relative mt-3 text-sm leading-relaxed text-charcoal-600">
-                            {option.description}
-                          </p>
+                          <span
+                            className={`rounded-full px-3 py-1 text-xs font-medium ${option.accent.badge}`}
+                          >
+                            {option.subtitle}
+                          </span>
                         </div>
+
+                        {/* Title */}
+                        <h2 className="font-heading text-2xl font-bold text-charcoal-800">
+                          {option.title}
+                        </h2>
+
+                        {/* Description */}
+                        <p className="mt-3 flex-1 text-base leading-relaxed text-charcoal-600">
+                          {option.description}
+                        </p>
                       </div>
-                    </motion.div>
-                  );
-                })}
-              </div>
+                    </div>
+                  </AnimatedWrapper>
+                );
+              })}
             </div>
           </div>
         </section>
 
-        {/* ── Wichtig zu wissen ─────────────────────────────────── */}
+        <SectionDivider variant="gradient-fade" />
+
+        {/* ── Wichtig zu wissen ────────────────────────── */}
         <section className="px-6 pb-12 lg:pb-14">
           <div className="container mx-auto max-w-3xl">
             <motion.div
@@ -159,7 +193,7 @@ export default function MitgliedWerdenPage() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-40px" }}
-              className="relative overflow-hidden rounded-[2rem] border border-sand-200 bg-sand-50/95 p-6 shadow-sage-sm md:p-8"
+              className="relative overflow-hidden rounded-3xl-surface border border-sand-200 bg-sand-50/95 p-6 shadow-sage-sm md:p-8"
             >
               <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-clay-100/50 blur-3xl" />
               <div className="relative flex items-start gap-4">
@@ -184,7 +218,9 @@ export default function MitgliedWerdenPage() {
           </div>
         </section>
 
-        {/* ── CTA ──────────────────────────────────────────────── */}
+        <SectionDivider variant="accent-line" />
+
+        {/* ── CTA ───────────────────────────────────────── */}
         <section className="px-6 pb-16 lg:pb-20">
           <div className="container mx-auto max-w-3xl">
             <motion.div
@@ -192,27 +228,31 @@ export default function MitgliedWerdenPage() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-40px" }}
-              className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-sage-600 via-sage-700 to-sage-800 p-10 text-center shadow-sage-xl md:p-14"
+              className={`relative overflow-hidden p-10 text-center md:p-14 ${CLOSING_SECTION_SURFACE_CLASS}`}
             >
-              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent" />
-              <div className="absolute -right-8 -top-8 h-40 w-40 rounded-full bg-white/10 blur-3xl" />
-              <div className="absolute -bottom-8 left-8 h-40 w-40 rounded-full bg-sage-300/20 blur-3xl" />
+              <DecorativeAccents preset="closing" />
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/70 to-transparent" />
 
               <div className="relative mx-auto max-w-lg">
-                <div className="mx-auto mb-6 flex h-12 w-12 items-center justify-center rounded-xl border border-white/20 bg-white/10">
-                  <Heart className="h-5 w-5 text-white" />
+                <div className="mx-auto mb-6 flex h-12 w-12 items-center justify-center rounded-xl border border-cream-200/30 bg-sage-700 text-white shadow-sm">
+                  <Heart className="h-5 w-5" />
                 </div>
 
-                <h2 className="mb-8 font-heading text-2xl font-bold text-white md:text-3xl">
+                <h2 className="mb-4 font-heading text-2xl font-bold text-white md:text-3xl">
                   Deine Mitgliedschaftsanfrage
                 </h2>
 
+                <p className="mb-8 text-base leading-relaxed text-cream-200 md:text-lg">
+                  Starte deinen Antrag in wenigen Minuten und werde Teil einer
+                  Gemeinschaft, die Bildung, Zugehörigkeit und Engagement
+                  zusammenführt.
+                </p>
+
                 <motion.div {...hoverButton} className="inline-block">
                   <Button
-                    variant="secondary"
                     size="lg"
                     asChild
-                    className="h-12 rounded-full bg-white text-sage-800 shadow-lg transition-all duration-300 hover:bg-sand-50 hover:text-sage-900"
+                    className="h-12 rounded-full px-8 shadow-lg bg-clay-500 hover:bg-clay-600 text-white"
                   >
                     <a
                       href="https://formular.vereinsplaner.com/b8fabab2-d21c-4ee4-bdbc-95aa517acbed"
@@ -225,22 +265,6 @@ export default function MitgliedWerdenPage() {
                     </a>
                   </Button>
                 </motion.div>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* ── Social Media ──────────────────────────────────────── */}
-        <section className="px-6 pb-20">
-          <div className="container mx-auto max-w-3xl">
-            <motion.div
-              variants={itemVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-40px" }}
-            >
-              <div className="rounded-[2rem] border border-white/70 bg-white/55 p-6 shadow-sage-sm backdrop-blur-sm md:p-8">
-                <SocialMediaSection variant="compact" showTitle={true} />
               </div>
             </motion.div>
           </div>

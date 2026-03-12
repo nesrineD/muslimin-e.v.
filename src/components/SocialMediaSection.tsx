@@ -90,6 +90,7 @@ interface SocialMediaSectionProps {
   showLabels?: boolean;
   className?: string;
   context?: "public" | "about" | "events" | "member" | string;
+  theme?: "light" | "dark";
 }
 
 const DEFAULT_TITLE = "Folge uns auf Social Media";
@@ -139,6 +140,7 @@ export function SocialMediaSection({
   showLabels = true,
   className = "",
   context = "site",
+  theme = "light",
 }: SocialMediaSectionProps) {
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -163,18 +165,18 @@ export function SocialMediaSection({
     const baseClasses =
       "inline-flex items-center justify-center transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:ring-offset-2";
 
-    // FOOTER VARIANT
+    // FOOTER VARIANT — monochrome, elegant, unified tone
     if (variant === "footer") {
       return (
         <a
           href={social.url}
           target="_blank"
           rel="noopener noreferrer"
-          className={`${baseClasses} h-11 w-11 rounded-full bg-white/60 hover:bg-white shadow-sm hover:shadow-md ring-1 ring-sage-200/70 flex items-center justify-center group`}
+          className={`${baseClasses} group p-2 rounded-md transition-all duration-200 hover:-translate-y-0.5 hover:bg-sand-200/40`}
           aria-label={`Folge uns auf ${social.name}`}
           title={social.name}
         >
-          <Icon className="h-4 w-4 text-sage-600 group-hover:text-sage-800 transition-colors" />
+          <Icon className="h-5 w-5 text-charcoal-600/70 group-hover:text-charcoal-800 transition-colors" />
         </a>
       );
     }
@@ -206,6 +208,7 @@ export function SocialMediaSection({
 
     // COMPACT VARIANT
     if (variant === "compact") {
+      const isDark = theme === "dark";
       return (
         <motion.a
           href={social.url}
@@ -213,7 +216,11 @@ export function SocialMediaSection({
           rel="noopener noreferrer"
           whileHover={{ scale: 1.05, y: -3 }}
           whileTap={{ scale: 0.97 }}
-          className={`${baseClasses} flex items-center gap-3 px-6 py-4 rounded-xl bg-white/90 backdrop-blur-sm border-2 border-sage-200 hover:border-sage-300 shadow-md hover:shadow-lg transition-all duration-300 group`}
+          className={`${baseClasses} flex items-center gap-3 px-6 py-4 rounded-xl ${
+            isDark
+              ? "bg-white/10 border-2 border-cream-200/30 hover:bg-white/20 hover:border-cream-200/50"
+              : "bg-white/90 backdrop-blur-sm border-2 border-sage-200 hover:border-sage-300"
+          } shadow-md hover:shadow-lg transition-all duration-300 group`}
           aria-label={`Folge uns auf ${social.name}`}
           title={social.name}
         >
@@ -221,7 +228,7 @@ export function SocialMediaSection({
             <Icon className={`h-7 w-7 ${social.color}`} />
           </motion.div>
           <span
-            className={`font-bold text-charcoal-800 ${social.hoverColor} transition-colors`}
+            className={`font-bold ${isDark ? "text-white" : "text-charcoal-800"} ${social.hoverColor} transition-colors`}
           >
             {social.name}
           </span>
@@ -278,7 +285,7 @@ export function SocialMediaSection({
   if (variant === "footer") {
     return (
       <ul
-        className={`flex flex-wrap items-center gap-2 ${className}`}
+        className={`flex flex-wrap items-center gap-3 ${className}`}
         aria-label={computedTitle}
       >
         {SOCIAL_MEDIA.map((social) => (
@@ -315,16 +322,25 @@ export function SocialMediaSection({
 
   // COMPACT VARIANT
   if (variant === "compact") {
+    const isDark = theme === "dark";
     return (
       <div className={`space-y-6 ${className}`}>
         {showTitle && (
           <div className="text-center">
             <h3 className="text-2xl md:text-3xl font-bold mb-3">
-              <span className="bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">
-                {computedTitle}
-              </span>
+              {isDark ? (
+                <span className="text-white">{computedTitle}</span>
+              ) : (
+                <span className="bg-gradient-to-r from-sage-700 via-sage-600 to-sage-700 bg-clip-text text-transparent">
+                  {computedTitle}
+                </span>
+              )}
             </h3>
-            <p className="text-base md:text-lg text-charcoal-700">{computedSubtitle}</p>
+            <p
+              className={`text-base md:text-lg text-center max-w-2xl mx-auto ${isDark ? "text-cream-200" : "text-charcoal-700"}`}
+            >
+              {computedSubtitle}
+            </p>
           </div>
         )}
         <div className="flex justify-center gap-4 flex-wrap max-w-3xl mx-auto">

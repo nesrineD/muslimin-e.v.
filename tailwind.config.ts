@@ -59,10 +59,10 @@ const config: Config = {
           "400": "#adb5bd",
           "500": "#6c757d",
           "600": "#495057",
-          "700": "#343a40",
-          "800": "#2a2f32", // Text/contrast
-          "900": "#212529",
-          DEFAULT: "#2a2f32",
+          "700": "#3d3834", // Warm charcoal border
+          "800": "#322e2a", // Warm charcoal — text/contrast
+          "900": "#292522",
+          DEFAULT: "#322e2a",
         },
         clay: {
           "50": "#faf5f2",
@@ -151,6 +151,9 @@ const config: Config = {
       },
       boxShadow: {
         "card-standard": "0 4px 12px rgba(0, 0, 0, 0.05)", // Standard card shadow
+        "surface-sm": "0 2px 8px rgba(91, 105, 96, 0.06)",
+        "surface-md": "0 4px 16px rgba(91, 105, 96, 0.10)",
+        lift: "0 8px 24px rgba(91, 105, 96, 0.14), 0 2px 6px rgba(91, 105, 96, 0.08)",
         "sage-sm": "0 1px 2px 0 rgb(91 105 96 / 0.05)",
         sage: "0 1px 3px 0 rgb(91 105 96 / 0.1), 0 1px 2px -1px rgb(91 105 96 / 0.1)",
         "sage-md":
@@ -164,6 +167,8 @@ const config: Config = {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        "3xl-surface": "2rem",
+        "4xl-surface": "2.25rem",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -175,9 +180,9 @@ const config: Config = {
         "accordion-up": "accordion-up 0.2s ease-out",
         shimmer: "shimmer 1.5s infinite",
         "shimmer-enhanced": "shimmer-enhanced 2s infinite",
-        "ripple": "ripple 0.6s ease-out",
-        "glow": "glow 3s ease-in-out infinite",
-        "float": "float 3s ease-in-out infinite",
+        ripple: "ripple 0.6s ease-out",
+        glow: "glow 3s ease-in-out infinite",
+        float: "float 3s ease-in-out infinite",
         "pulse-subtle": "pulse-subtle 2s ease-in-out infinite",
         "fade-in-up": "scroll-fade-in 0.6s ease-out",
         "underline-grow": "underline-grow 0.3s ease-out forwards",
@@ -197,19 +202,21 @@ const config: Config = {
           "0%": { backgroundPosition: "-1000px 0" },
           "100%": { backgroundPosition: "1000px 0" },
         },
-        "ripple": {
+        ripple: {
           "0%": { transform: "scale(0)", opacity: "1" },
           "100%": { transform: "scale(4)", opacity: "0" },
         },
-        "glow": {
+        glow: {
           "0%, 100%": {
-            boxShadow: "0 0 20px rgba(91, 105, 96, 0.3), 0 0 40px rgba(91, 105, 96, 0.1)",
+            boxShadow:
+              "0 0 20px rgba(91, 105, 96, 0.3), 0 0 40px rgba(91, 105, 96, 0.1)",
           },
           "50%": {
-            boxShadow: "0 0 30px rgba(91, 105, 96, 0.5), 0 0 60px rgba(91, 105, 96, 0.2)",
+            boxShadow:
+              "0 0 30px rgba(91, 105, 96, 0.5), 0 0 60px rgba(91, 105, 96, 0.2)",
           },
         },
-        "float": {
+        float: {
           "0%, 100%": { transform: "translateY(0px)" },
           "50%": { transform: "translateY(-8px)" },
         },
@@ -234,19 +241,19 @@ const config: Config = {
           "0%": { transform: "rotate(0deg)" },
           "100%": { transform: "rotate(360deg)" },
         },
-        "fadeIn": {
+        fadeIn: {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
         },
-        "scaleIn": {
+        scaleIn: {
           "0%": { opacity: "0", transform: "scale(0.9)" },
           "100%": { opacity: "1", transform: "scale(1)" },
         },
-        "slideInLeft": {
+        slideInLeft: {
           "0%": { opacity: "0", transform: "translateX(-24px)" },
           "100%": { opacity: "1", transform: "translateX(0)" },
         },
-        "slideInRight": {
+        slideInRight: {
           "0%": { opacity: "0", transform: "translateX(24px)" },
           "100%": { opacity: "1", transform: "translateX(0)" },
         },

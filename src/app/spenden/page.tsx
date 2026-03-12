@@ -11,12 +11,26 @@ import {
   ArrowRight,
   ChevronDown,
   ChevronUp,
-  AlertCircle,
+  CheckCircle2,
+  Mail,
+  Info,
+  Lightbulb,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { containerVariants, itemVariants, hoverLift } from "@/lib/animations";
-import { PUBLIC_PAGE_WRAPPER_CLASS } from "@/lib/page-config";
+import { PageHeading } from "@/components/ui/page-heading";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { SectionDivider } from "@/components/ui/section-divider";
+import { SplitSection } from "@/components/ui/split-section";
+import { AnimatedCounter } from "@/components/ui/animated-counter";
+import { DecorativeAccents } from "@/components/ui/decorative-accents";
+import {
+  CLOSING_SECTION_SURFACE_CLASS,
+  PUBLIC_PAGE_WRAPPER_CLASS,
+  FOOTER_BRIDGE_SURFACE_CLASS,
+} from "@/lib/page-config";
+import { SectionBand } from "@/components/ui/section-band";
 
 interface DonationCampaign {
   id: string;
@@ -143,38 +157,27 @@ export default function SpendenPage() {
           >
             <Button
               size="lg"
-              variant="donation"
+              variant="primary"
               asChild
               className="rounded-full shadow-2xl"
             >
               <a href="#spenden" className="gap-2">
-                💚 Jetzt spenden
+                <Heart className="w-4 h-4" />
+                Jetzt spenden
               </a>
             </Button>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Hero Section - Simplified */}
-      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+        <DecorativeAccents preset="hero" />
         <motion.div
           variants={itemVariants}
           className="max-w-4xl mx-auto text-center"
         >
-          {/* Urgency Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-coral-100 text-coral-800 rounded-full text-sm font-semibold mb-6 border border-coral-300"
-          >
-            <AlertCircle className="w-4 h-4" />
-            Jemen: Akute Hungersnot – jede Spende zählt
-          </motion.div>
-
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-charcoal-800">
-            Deine Spende bewirkt Großes
-          </h1>
+          <PageHeading title="Deine Spende bewirkt Großes" className="mb-6" />
 
           <p className="text-xl md:text-2xl text-charcoal-700 mb-8 max-w-2xl mx-auto">
             Unterstütze humanitäre Hilfe im Jemen und Community-Programme in
@@ -183,9 +186,9 @@ export default function SpendenPage() {
 
           {/* Primary CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <Button size="lg" variant="donation" asChild>
+            <Button size="lg" variant="primary" asChild>
               <a href="#spenden" className="gap-2">
-                💚 Jetzt spenden
+                Jetzt spenden
                 <ArrowRight className="w-5 h-5" />
               </a>
             </Button>
@@ -196,41 +199,61 @@ export default function SpendenPage() {
             </Button>
           </div>
 
-          {/* Trust Badges */}
-          <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 text-sm">
-            <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-br from-sage-50/60 to-white rounded-lg shadow-sm border border-sand-200">
-              <Shield className="w-4 h-4 text-sage-600" />
-              <span className="font-semibold text-charcoal-800">
-                Ehrenamtlich &amp; unabhängig
-              </span>
-            </div>
-            <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-br from-sage-50/60 to-white rounded-lg shadow-sm border border-sand-200">
-              <Heart className="w-4 h-4 text-sage-600" />
-              <span className="font-semibold text-charcoal-800">
-                100% Transparenz
-              </span>
-            </div>
-            <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-br from-sage-50/60 to-white rounded-lg shadow-sm border border-sand-200">
-              <Users className="w-4 h-4 text-charcoal-600" />
-              <span className="font-semibold text-charcoal-800">
-                Seit 2011 aktiv
-              </span>
-            </div>
+          {/* Trust Indicators */}
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-charcoal-500">
+            <span className="flex items-center gap-1.5">
+              <Shield className="w-3.5 h-3.5" />
+              Ehrenamtlich &amp; unabhängig
+            </span>
+            <span className="hidden sm:inline text-sand-400">·</span>
+            <span className="flex items-center gap-1.5">
+              <Heart className="w-3.5 h-3.5" />
+              Transparente Mittelverwendung
+            </span>
+            <span className="hidden sm:inline text-sand-400">·</span>
+            <span className="flex items-center gap-1.5">
+              <Users className="w-3.5 h-3.5" />
+              Seit 2011 aktiv
+            </span>
           </div>
         </motion.div>
       </section>
+
+      {/* Impact Story — SplitSection */}
+      <SectionBand variant="alternate">
+        <section className="py-12 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-5xl mx-auto">
+            <SplitSection
+              imageSrc="/images/veranstaltungen/gemeinschaft-august-2025-2.jpg"
+              imageAlt="Muslimin e.V. — Spendenaktionen für den Jemen und Berlin"
+            >
+              <SectionHeading
+                title="Deine Spende — direkte Wirkung"
+                accentWord="Wirkung"
+                centered={false}
+                className="mb-4"
+              />
+              <p className="text-lg text-charcoal-700 leading-relaxed mb-6">
+                Seit 2018 organisieren wir Spendenaktionen für humanitäre Hilfe
+                im Jemen und finanzieren Community-Programme in Berlin. Jede
+                Spende kommt direkt an.
+              </p>
+            </SplitSection>
+          </div>
+        </section>
+      </SectionBand>
+
+      <SectionDivider variant="gradient-fade" />
 
       {/* Donation Methods */}
       <section id="spenden" className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
         <motion.div variants={itemVariants} className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
             <p className="section-label mb-3">Spendenwege</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-charcoal-800 mb-4">
-              So kannst du spenden
-            </h2>
-            <p className="text-lg text-charcoal-600">
-              Wähle die für dich passende Spendenmethode
-            </p>
+            <SectionHeading
+              title="So kannst du spenden"
+              subtitle="Wähle die für dich passende Spendenmethode"
+            />
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -240,11 +263,8 @@ export default function SpendenPage() {
               {...hoverLift}
               className="relative p-8 bg-gradient-to-br from-white to-sage-50 rounded-xl border-2 border-sage-300 shadow-lg hover:shadow-xl transition-all"
             >
-              <div className="absolute -top-3 right-4 px-3 py-1 bg-sage-500 text-white text-xs font-bold rounded-full shadow-md">
-                Schnell & Einfach
-              </div>
-
               <div className="mb-4">
+                {/* eslint-disable no-restricted-syntax */}
                 <svg
                   viewBox="0 0 124 33"
                   xmlns="http://www.w3.org/2000/svg"
@@ -278,6 +298,7 @@ export default function SpendenPage() {
                     d="M9.614 7.699a1.169 1.169 0 0 1 1.159-.991h7.352c.871 0 1.684.057 2.426.177a9.757 9.757 0 0 1 1.481.353c.365.121.704.264 1.017.429.368-2.347-.003-3.945-1.272-5.392C20.378.682 17.853 0 14.622 0h-9.38c-.66 0-1.223.48-1.325 1.133L.01 25.898a.806.806 0 0 0 .795.932h5.791l1.454-9.225 1.564-9.906z"
                   />
                 </svg>
+                {/* eslint-enable no-restricted-syntax */}
               </div>
 
               <h3 className="text-2xl font-bold text-charcoal-800 mb-3">
@@ -290,8 +311,9 @@ export default function SpendenPage() {
 
               <div className="space-y-4">
                 <div className="p-4 bg-sage-50 rounded-lg border border-sage-200">
-                  <p className="text-sm font-semibold text-charcoal-800 mb-2">
-                    📧 Sende an:
+                  <p className="text-sm font-semibold text-charcoal-800 mb-2 flex items-center gap-1.5">
+                    <Mail className="w-3.5 h-3.5 text-sage-600" />
+                    Sende an:
                   </p>
                   <button
                     onClick={() =>
@@ -312,8 +334,9 @@ export default function SpendenPage() {
                 </div>
 
                 <div className="p-4 bg-warm-50 rounded-lg border border-warm-200">
-                  <p className="text-sm font-semibold text-charcoal-800 mb-1">
-                    ⚠️ Wichtig:
+                  <p className="text-sm font-semibold text-charcoal-800 mb-1 flex items-center gap-1.5">
+                    <Info className="w-3.5 h-3.5 text-warm-600" />
+                    Wichtig:
                   </p>
                   <p className="text-sm text-charcoal-700 mb-2">
                     Bitte als{" "}
@@ -421,17 +444,51 @@ export default function SpendenPage() {
         </motion.div>
       </section>
 
+      <SectionDivider variant="gradient-fade" />
+
+      {/* Impact Statistics Row */}
+      <section className="py-10 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { target: 150000, prefix: "€ ", suffix: "", label: "gesammelt" },
+              { target: 50, prefix: "", suffix: "+", label: "Spendenaktionen" },
+              { target: 8, prefix: "", suffix: "+", label: "Jahre Hilfe" },
+              {
+                target: 60,
+                prefix: "",
+                suffix: "+",
+                label: "Mitglieder engagiert",
+              },
+            ].map(({ target, prefix, suffix, label }) => (
+              <div
+                key={label}
+                className="flex flex-col items-center text-center p-5 bg-sage-50 rounded-2xl shadow-sm border border-sage-100"
+              >
+                <span className="text-2xl md:text-3xl font-bold text-sage-800">
+                  <AnimatedCounter
+                    target={target}
+                    prefix={prefix}
+                    suffix={suffix}
+                  />
+                </span>
+                <span className="text-sm text-charcoal-600 mt-1">{label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider variant="gradient-fade" />
+
       {/* Project Showcase */}
       <section id="spendenzwecke" className="py-16 px-4 sm:px-6 lg:px-8">
         <motion.div variants={itemVariants} className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-charcoal-800 mb-4">
-              So setzen wir deine Spende ein
-            </h2>
-            <p className="text-lg text-charcoal-600 max-w-2xl mx-auto">
-              Transparente Mittelverwendung für humanitäre Hilfe und
-              Community-Arbeit
-            </p>
+            <SectionHeading
+              title="So setzen wir deine Spende ein"
+              subtitle="Transparente Mittelverwendung für humanitäre Hilfe und Community-Arbeit"
+            />
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -453,7 +510,7 @@ export default function SpendenPage() {
                 <div className="space-y-2 mb-6">
                   {campaign.details.map((detail, idx) => (
                     <div key={idx} className="flex items-start gap-2">
-                      <span className="text-sage-500 mt-1">✓</span>
+                      <CheckCircle2 className="w-4 h-4 text-sage-500 mt-0.5 flex-shrink-0" />
                       <p className="text-charcoal-600">{detail}</p>
                     </div>
                   ))}
@@ -461,8 +518,9 @@ export default function SpendenPage() {
 
                 {campaign.goal && (
                   <div className="p-4 bg-sage-50 rounded-lg mb-4 border border-sage-200">
-                    <p className="text-sm font-semibold text-charcoal-800">
-                      💡 {campaign.goal}
+                    <p className="text-sm font-semibold text-charcoal-800 flex items-start gap-2">
+                      <Lightbulb className="w-4 h-4 text-sage-600 mt-0.5 flex-shrink-0" />
+                      {campaign.goal}
                     </p>
                   </div>
                 )}
@@ -521,33 +579,44 @@ export default function SpendenPage() {
         </motion.div>
       </section>
 
-      {/* Transparency + Contact Combined */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-        <motion.div variants={itemVariants} className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-charcoal-800 mb-6">
-              Transparenz & Vertrauen
-            </h2>
+      <SectionDivider variant="gradient-fade" />
 
-            <p className="text-lg text-charcoal-600 max-w-2xl mx-auto mb-8">
+      {/* Transparency + Contact Combined */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
+        <motion.div variants={itemVariants} className="max-w-4xl mx-auto">
+          <div
+            className={`px-8 py-10 text-center ${FOOTER_BRIDGE_SURFACE_CLASS}`}
+          >
+            <div className="text-center mx-auto max-w-3xl mb-10">
+              <h2 className="font-heading text-3xl md:text-4xl font-bold leading-tight text-white text-wrap-balance">
+                Transparenz & <span className="text-cream-200">Vertrauen</span>
+              </h2>
+            </div>
+
+            <p className="text-lg text-cream-200 max-w-2xl mx-auto mb-8">
               Wir legen großen Wert auf transparente Mittelverwendung.
               Projektberichte und Belege stellen wir auf Anfrage zur Verfügung
               und arbeiten mit vertrauenswürdigen Partnern zusammen, um
               sicherzustellen, dass Spenden zielgerichtet ankommen.
             </p>
 
-            <div className="p-6 bg-gradient-to-r from-sage-50 to-warm-50 rounded-lg border border-sage-200 text-center mb-8">
-              <p className="text-charcoal-700 font-medium mb-2">
+            <div className="mb-8 rounded-2xl border border-cream-200/30 bg-white/10 p-6 text-center">
+              <p className="mb-2 font-medium text-white">
                 Fragen zur Spende oder zu unseren Projekten?
               </p>
-              <p className="text-charcoal-600">
+              <p className="text-cream-200">
                 Wir beantworten gerne alle deine Fragen und informieren dich
                 über aktuelle Hilfsprojekte.
               </p>
             </div>
 
             <div className="flex justify-center items-center">
-              <Button size="lg" variant="secondary" asChild>
+              <Button
+                size="lg"
+                variant="outline"
+                asChild
+                className="border-cream-200 text-cream-100 hover:bg-sage-600"
+              >
                 <a href="/kontakt" className="gap-2">
                   Kontakt aufnehmen
                 </a>
@@ -557,19 +626,26 @@ export default function SpendenPage() {
         </motion.div>
       </section>
 
+      <SectionDivider variant="accent-line" />
+
       {/* Final CTA */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-sage-100 to-warm-100">
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
         <motion.div
           variants={itemVariants}
-          className="max-w-3xl mx-auto text-center"
+          className={`relative overflow-hidden max-w-3xl mx-auto text-center px-8 py-12 ${CLOSING_SECTION_SURFACE_CLASS}`}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-charcoal-800 mb-4">
+          <DecorativeAccents preset="closing" />
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Jede Spende macht einen Unterschied
           </h2>
-          <p className="text-lg text-charcoal-600 mb-8">
+          <p className="text-lg text-cream-200 mb-8">
             Werde Teil unserer Mission und unterstütze Menschen in Not
           </p>
-          <Button size="lg" variant="donation" asChild>
+          <Button
+            size="lg"
+            asChild
+            className="bg-clay-500 hover:bg-clay-600 text-white px-10 py-4 text-lg"
+          >
             <a href="#spenden" className="gap-2">
               Jetzt spenden
               <ArrowRight className="w-5 h-5" />

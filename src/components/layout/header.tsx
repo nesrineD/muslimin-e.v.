@@ -94,16 +94,12 @@ export function Header() {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
         isScrolled
-          ? "bg-white border-b border-sage-200 shadow-md"
-          : "bg-gradient-to-r from-white via-sage-50/30 to-white backdrop-blur-sm border-b border-sage-100/80"
+          ? "border-b border-sand-300/75 bg-cream-50/92 shadow-[0_12px_30px_-22px_rgba(50,46,42,0.38)] backdrop-blur-md"
+          : "border-b border-sand-200/70 bg-gradient-to-r from-sand-50/94 via-cream-50/92 to-sage-100/45 backdrop-blur-sm"
       }`}
       role="banner"
     >
-      <div
-        className={`container mx-auto px-4 flex items-center transition-all duration-300 ${
-          isScrolled ? "h-16" : "h-20"
-        }`}
-      >
+      <div className="container mx-auto px-4 flex items-center h-20">
         {/* Logo with Shrinking Effect */}
         <Link
           href="/"
@@ -113,17 +109,15 @@ export function Header() {
           <Image
             src="/images/muslimin-logo.svg"
             alt="Muslimin e.V. Logo"
-            width={64}
-            height={64}
-            className={`w-auto transition-all duration-300 ${
-              isScrolled ? "h-12" : "h-16"
-            }`}
+            width={48}
+            height={48}
+            className="w-auto h-11"
           />
           <div className="hidden sm:flex flex-col">
             <span className="font-bold text-xl text-sage-700 group-hover:text-coral-600 transition-colors duration-300">
               Muslimin e.V.
             </span>
-            <span className="text-xs text-charcoal-600">
+            <span className="text-xs text-charcoal-700/90">
               Frauen- & Mädchenverein Berlin
             </span>
           </div>
@@ -203,22 +197,12 @@ export function Header() {
 
         {/* Desktop CTA Buttons */}
         <div className="hidden md:flex items-center gap-3 mr-3">
-          {/* Mitglied werden — primary conversion goal, visible only to visitors */}
-          {!user && (
-            <motion.div {...hoverButton}>
-              <Button asChild variant="primary" size="sm">
-                <Link
-                  href="/mitglied-werden"
-                  className="flex items-center gap-2"
-                >
-                  <User className="h-4 w-4" />
-                  <span>Mitglied werden</span>
-                </Link>
-              </Button>
-            </motion.div>
-          )}
           <motion.div {...hoverButton}>
-            <Button asChild variant="outline" size="sm">
+            <Button
+              asChild
+              size="sm"
+              className="border-2 border-clay-300 bg-clay-50/60 text-clay-700 font-semibold shadow-sm hover:bg-clay-100/80 hover:border-clay-400 hover:text-clay-800 hover:-translate-y-0.5 active:translate-y-0 focus-visible:ring-2 focus-visible:ring-clay-400 focus-visible:ring-offset-2"
+            >
               <Link href="/spenden" className="flex items-center gap-2">
                 <HeartHandshake className="h-4 w-4" />
                 <span>Spenden</span>
@@ -360,27 +344,16 @@ export function Header() {
             </motion.div>
           </SheetTrigger>
           <SheetContent className="bg-sand-50 border-l-sage-300 overflow-y-auto">
-            <SheetHeader>
-              <SheetTitle className="text-left flex items-center gap-3">
+            <SheetHeader className="pb-4 border-b border-sand-200">
+              <SheetTitle className="flex items-center">
                 <Image
                   src="/images/muslimin-logo.svg"
                   alt="Muslimin e.V. Logo"
-                  width={72}
-                  height={72}
-                  className="h-18 w-auto"
+                  width={48}
+                  height={48}
+                  className="h-12 w-auto"
                 />
-                <div className="flex flex-col">
-                  <span className="text-lg font-bold text-sage-700">
-                    Muslimin e.V.
-                  </span>
-                  <span className="text-xs text-charcoal-600">
-                    Frauen- & Mädchenverein Berlin
-                  </span>
-                </div>
               </SheetTitle>
-              <SheetDescription className="text-left text-charcoal-600">
-                Navigation & Services
-              </SheetDescription>
             </SheetHeader>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -574,7 +547,7 @@ export function Header() {
                       whileTap={{ scale: 0.98 }}
                     >
                       <Button
-                        variant="primary"
+                        variant="outline"
                         className="w-full justify-center min-h-[44px]"
                         asChild
                       >
@@ -587,8 +560,7 @@ export function Header() {
                       whileTap={{ scale: 0.98 }}
                     >
                       <Button
-                        variant="outline"
-                        className="w-full justify-center min-h-[44px]"
+                        className="w-full justify-center min-h-[44px] border-2 border-clay-300 bg-clay-50/60 text-clay-700 font-semibold shadow-sm hover:bg-clay-100/80 hover:border-clay-400 hover:text-clay-800 focus-visible:ring-2 focus-visible:ring-clay-400 focus-visible:ring-offset-2"
                         asChild
                       >
                         <Link href="/spenden">Spenden</Link>
