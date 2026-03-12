@@ -111,7 +111,7 @@ export function Header() {
             alt="Muslimin e.V. Logo"
             width={48}
             height={48}
-            className="w-auto h-11"
+            className="w-auto h-8 md:h-11"
           />
           <div className="hidden sm:flex flex-col">
             <span className="font-bold text-xl text-sage-700 group-hover:text-coral-600 transition-colors duration-300">
@@ -542,19 +542,6 @@ export function Header() {
                   </>
                 ) : (
                   <>
-                    <motion.div
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <Button
-                        variant="outline"
-                        className="w-full justify-center min-h-[44px]"
-                        asChild
-                      >
-                        <Link href="/mitglied-werden">Mitglied werden</Link>
-                      </Button>
-                    </motion.div>
-
                     <motion.div
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
