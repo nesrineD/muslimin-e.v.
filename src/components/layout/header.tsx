@@ -197,20 +197,6 @@ export function Header() {
 
         {/* Desktop CTA Buttons */}
         <div className="hidden md:flex items-center gap-3 mr-3">
-          {/* Mitglied werden — primary conversion goal, visible only to visitors */}
-          {!user && (
-            <motion.div {...hoverButton}>
-              <Button asChild variant="outline" size="sm">
-                <Link
-                  href="/mitglied-werden"
-                  className="flex items-center gap-2"
-                >
-                  <User className="h-4 w-4" />
-                  <span>Mitglied werden</span>
-                </Link>
-              </Button>
-            </motion.div>
-          )}
           <motion.div {...hoverButton}>
             <Button
               asChild

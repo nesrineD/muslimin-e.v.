@@ -74,7 +74,7 @@ export function DecorativeAccents({ preset }: DecorativeAccentsProps) {
     );
   }
 
-  // closing
+  // closing — dark-compatible colors for sage-700 backgrounds
   return (
     <div
       aria-hidden="true"
@@ -83,16 +83,16 @@ export function DecorativeAccents({ preset }: DecorativeAccentsProps) {
       <DecorativeElement
         type="blob"
         size="md"
-        color="sand"
+        color="sage"
         position={{ bottom: "-6%", left: "30%" }}
-        opacity={0.1}
+        opacity={0.2}
       />
       <DecorativeElement
         type="blob"
         size="sm"
-        color="clay"
+        color="sand"
         position={{ bottom: "-2%", right: "-3%" }}
-        opacity={0.07}
+        opacity={0.1}
       />
     </div>
   );

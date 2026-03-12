@@ -30,6 +30,7 @@ import {
   PUBLIC_PAGE_WRAPPER_CLASS,
   FOOTER_BRIDGE_SURFACE_CLASS,
 } from "@/lib/page-config";
+import { SectionBand } from "@/components/ui/section-band";
 
 interface DonationCampaign {
   id: string;
@@ -219,26 +220,28 @@ export default function SpendenPage() {
       </section>
 
       {/* Impact Story — SplitSection */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto">
-          <SplitSection
-            imageSrc="/images/veranstaltungen/gemeinschaft-august-2025-2.jpg"
-            imageAlt="Muslimin e.V. — Spendenaktionen für den Jemen und Berlin"
-          >
-            <SectionHeading
-              title="Deine Spende — direkte Wirkung"
-              accentWord="Wirkung"
-              centered={false}
-              className="mb-4"
-            />
-            <p className="text-lg text-charcoal-700 leading-relaxed mb-6">
-              Seit 2018 organisieren wir Spendenaktionen für humanitäre Hilfe im
-              Jemen und finanzieren Community-Programme in Berlin. Jede Spende
-              kommt direkt an.
-            </p>
-          </SplitSection>
-        </div>
-      </section>
+      <SectionBand variant="alternate">
+        <section className="py-12 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-5xl mx-auto">
+            <SplitSection
+              imageSrc="/images/veranstaltungen/gemeinschaft-august-2025-2.jpg"
+              imageAlt="Muslimin e.V. — Spendenaktionen für den Jemen und Berlin"
+            >
+              <SectionHeading
+                title="Deine Spende — direkte Wirkung"
+                accentWord="Wirkung"
+                centered={false}
+                className="mb-4"
+              />
+              <p className="text-lg text-charcoal-700 leading-relaxed mb-6">
+                Seit 2018 organisieren wir Spendenaktionen für humanitäre Hilfe
+                im Jemen und finanzieren Community-Programme in Berlin. Jede
+                Spende kommt direkt an.
+              </p>
+            </SplitSection>
+          </div>
+        </section>
+      </SectionBand>
 
       <SectionDivider variant="gradient-fade" />
 
@@ -584,30 +587,36 @@ export default function SpendenPage() {
           <div
             className={`px-8 py-10 text-center ${FOOTER_BRIDGE_SURFACE_CLASS}`}
           >
-            <SectionHeading
-              title="Transparenz & Vertrauen"
-              accentWord="Vertrauen"
-            />
+            <div className="text-center mx-auto max-w-3xl mb-10">
+              <h2 className="font-heading text-3xl md:text-4xl font-bold leading-tight text-white text-wrap-balance">
+                Transparenz & <span className="text-cream-200">Vertrauen</span>
+              </h2>
+            </div>
 
-            <p className="text-lg text-charcoal-600 max-w-2xl mx-auto mb-8">
+            <p className="text-lg text-cream-200 max-w-2xl mx-auto mb-8">
               Wir legen großen Wert auf transparente Mittelverwendung.
               Projektberichte und Belege stellen wir auf Anfrage zur Verfügung
               und arbeiten mit vertrauenswürdigen Partnern zusammen, um
               sicherzustellen, dass Spenden zielgerichtet ankommen.
             </p>
 
-            <div className="mb-8 rounded-2xl border border-sage-200/80 bg-gradient-to-r from-sage-50/80 to-warm-50/70 p-6 text-center">
-              <p className="mb-2 font-medium text-charcoal-700">
+            <div className="mb-8 rounded-2xl border border-cream-200/30 bg-white/10 p-6 text-center">
+              <p className="mb-2 font-medium text-white">
                 Fragen zur Spende oder zu unseren Projekten?
               </p>
-              <p className="text-charcoal-600">
+              <p className="text-cream-200">
                 Wir beantworten gerne alle deine Fragen und informieren dich
                 über aktuelle Hilfsprojekte.
               </p>
             </div>
 
             <div className="flex justify-center items-center">
-              <Button size="lg" variant="secondary" asChild>
+              <Button
+                size="lg"
+                variant="outline"
+                asChild
+                className="border-cream-200 text-cream-100 hover:bg-sage-600"
+              >
                 <a href="/kontakt" className="gap-2">
                   Kontakt aufnehmen
                 </a>
@@ -626,13 +635,17 @@ export default function SpendenPage() {
           className={`relative overflow-hidden max-w-3xl mx-auto text-center px-8 py-12 ${CLOSING_SECTION_SURFACE_CLASS}`}
         >
           <DecorativeAccents preset="closing" />
-          <h2 className="text-3xl md:text-4xl font-bold text-charcoal-800 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Jede Spende macht einen Unterschied
           </h2>
-          <p className="text-lg text-charcoal-700 mb-8">
+          <p className="text-lg text-cream-200 mb-8">
             Werde Teil unserer Mission und unterstütze Menschen in Not
           </p>
-          <Button size="lg" variant="primary" asChild>
+          <Button
+            size="lg"
+            asChild
+            className="bg-clay-500 hover:bg-clay-600 text-white px-10 py-4 text-lg"
+          >
             <a href="#spenden" className="gap-2">
               Jetzt spenden
               <ArrowRight className="w-5 h-5" />

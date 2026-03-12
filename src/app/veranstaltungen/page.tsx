@@ -8,7 +8,7 @@ import {
   SECTION_HERO_SPACING,
   SECTION_CONTENT_SPACING,
   SECTION_CTA_SPACING,
-  FOOTER_BRIDGE_SURFACE_CLASS,
+  CLOSING_SECTION_SURFACE_CLASS,
 } from "@/lib/page-config";
 import { SocialMediaSection } from "@/components/SocialMediaSection";
 import { PageHeading } from "@/components/ui/page-heading";
@@ -16,6 +16,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { SectionDivider } from "@/components/ui/section-divider";
 import { DecorativeAccents } from "@/components/ui/decorative-accents";
 import { AnimatedWrapper } from "@/components/ui/animated-wrapper";
+import { SectionBand } from "@/components/ui/section-band";
 import { Mic, Video, Moon, Flame } from "lucide-react";
 import Image from "next/image";
 import type { LucideIcon } from "lucide-react";
@@ -195,12 +196,14 @@ export default function VeranstaltungenPage() {
         <SectionDivider variant="wave" />
 
         {/* Regular */}
-        <Section
-          id="regular-events"
-          title="Regelmäßige Veranstaltungen"
-          subtitle="Monatliche Impulse – vor Ort oder online."
-          events={regularEvents}
-        />
+        <SectionBand variant="alternate">
+          <Section
+            id="regular-events"
+            title="Regelmäßige Veranstaltungen"
+            subtitle="Monatliche Impulse — vor Ort oder online."
+            events={regularEvents}
+          />
+        </SectionBand>
 
         {/* Annual */}
         <Section
@@ -213,10 +216,10 @@ export default function VeranstaltungenPage() {
         {/* CTA Section — Social Media */}
         <motion.section
           variants={itemVariants}
-          className={`${SECTION_CTA_SPACING} px-4`}
+          className={`${SECTION_CTA_SPACING} relative overflow-hidden`}
         >
           <div
-            className={`relative overflow-hidden max-w-3xl mx-auto py-12 px-6 sm:px-8 ${FOOTER_BRIDGE_SURFACE_CLASS}`}
+            className={`relative mx-auto max-w-5xl px-8 py-10 ${CLOSING_SECTION_SURFACE_CLASS}`}
           >
             <DecorativeAccents preset="closing" />
             <SocialMediaSection
@@ -224,6 +227,7 @@ export default function VeranstaltungenPage() {
               showTitle={true}
               title="Keine Veranstaltung verpassen"
               subtitle="Folge uns auf Social Media für aktuelle Termine, Flyer und Einblicke"
+              theme="dark"
             />
           </div>
         </motion.section>

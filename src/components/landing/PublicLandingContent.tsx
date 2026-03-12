@@ -14,7 +14,6 @@ import {
   HeartHandshake,
 } from "lucide-react";
 import { containerVariants, itemVariants, hoverButton } from "@/lib/animations";
-import { SocialMediaSection } from "@/components/SocialMediaSection";
 import { PageHeading } from "@/components/ui/page-heading";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { SectionDivider } from "@/components/ui/section-divider";
@@ -23,6 +22,7 @@ import { DecorativeAccents } from "@/components/ui/decorative-accents";
 import { AnimatedWrapper } from "@/components/ui/animated-wrapper";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { SectionBand } from "@/components/ui/section-band";
 import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { debounce } from "@/lib/utils";
 import {
@@ -31,7 +31,6 @@ import {
   SECTION_CONTENT_SPACING,
   SECTION_CTA_SPACING,
   CLOSING_SECTION_SURFACE_CLASS,
-  FOOTER_BRIDGE_SURFACE_CLASS,
   STICKY_SCROLL_THRESHOLD,
 } from "@/lib/page-config";
 
@@ -232,59 +231,61 @@ export function PublicLandingContent() {
         </section>
 
         {/* Benefits Section */}
-        <section className={`${SECTION_CONTENT_SPACING} bg-white`}>
-          <motion.div variants={itemVariants} className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
-              <SectionHeading
-                title="Was erwartet dich als Mitglied?"
-                subtitle="Deine Mitgliedschaft öffnet Türen zu einer starken Gemeinschaft"
-              />
-            </div>
+        <SectionBand variant="alternate">
+          <section className={`${SECTION_CONTENT_SPACING}`}>
+            <motion.div variants={itemVariants} className="max-w-6xl mx-auto">
+              <div className="text-center mb-12">
+                <SectionHeading
+                  title="Was erwartet dich als Mitglied?"
+                  subtitle="Deine Mitgliedschaft öffnet Türen zu einer starken Gemeinschaft"
+                />
+              </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[
-                {
-                  icon: <Users className="w-8 h-8" />,
-                  title: "Starke Gemeinschaft",
-                  description:
-                    "Vernetzung mit Schwestern, die dich verstehen und unterstützen",
-                },
-                {
-                  icon: <BookOpen className="w-8 h-8" />,
-                  title: "Bildungsangebote",
-                  description:
-                    "Workshops, Vorträge und Seminare zu spirituellen & gesellschaftlichen Themen",
-                },
-                {
-                  icon: <Sparkles className="w-8 h-8" />,
-                  title: "Events & Aktivitäten",
-                  description:
-                    "Regelmäßige Veranstaltungen – von Vorträgen bis zu Wohltätigkeitsaktionen",
-                },
-              ].map((benefit, idx) => (
-                <AnimatedWrapper
-                  key={idx}
-                  animation="fade-in-up"
-                  delay={idx * 100}
-                >
-                  <Card className="h-full rounded-xl border border-sand-200 bg-cream-50/60 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-                    <CardContent className="space-y-4">
-                      <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-sage-700 text-white">
-                        {benefit.icon}
-                      </div>
-                      <h3 className="text-xl font-bold text-charcoal-800">
-                        {benefit.title}
-                      </h3>
-                      <p className="text-charcoal-700 leading-relaxed">
-                        {benefit.description}
-                      </p>
-                    </CardContent>
-                  </Card>
-                </AnimatedWrapper>
-              ))}
-            </div>
-          </motion.div>
-        </section>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[
+                  {
+                    icon: <Users className="w-8 h-8" />,
+                    title: "Starke Gemeinschaft",
+                    description:
+                      "Vernetzung mit Schwestern, die dich verstehen und unterstützen",
+                  },
+                  {
+                    icon: <BookOpen className="w-8 h-8" />,
+                    title: "Bildungsangebote",
+                    description:
+                      "Workshops, Vorträge und Seminare zu spirituellen & gesellschaftlichen Themen",
+                  },
+                  {
+                    icon: <Sparkles className="w-8 h-8" />,
+                    title: "Events & Aktivitäten",
+                    description:
+                      "Regelmäßige Veranstaltungen – von Vorträgen bis zu Wohltätigkeitsaktionen",
+                  },
+                ].map((benefit, idx) => (
+                  <AnimatedWrapper
+                    key={idx}
+                    animation="fade-in-up"
+                    delay={idx * 100}
+                  >
+                    <Card className="h-full rounded-xl border border-sand-200 bg-cream-50/60 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+                      <CardContent className="space-y-4">
+                        <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-sage-700 text-white">
+                          {benefit.icon}
+                        </div>
+                        <h3 className="text-xl font-bold text-charcoal-800">
+                          {benefit.title}
+                        </h3>
+                        <p className="text-charcoal-700 leading-relaxed">
+                          {benefit.description}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </AnimatedWrapper>
+                ))}
+              </div>
+            </motion.div>
+          </section>
+        </SectionBand>
 
         {/* Proof Section — real image + trust metrics */}
         <section className={SECTION_CONTENT_SPACING}>
@@ -333,22 +334,6 @@ export function PublicLandingContent() {
           </motion.div>
         </section>
 
-        {/* Social Media Section */}
-        <section className={`${SECTION_CONTENT_SPACING} px-4`}>
-          <motion.div variants={itemVariants} className="max-w-6xl mx-auto">
-            <div
-              className={`py-12 px-6 sm:px-8 ${FOOTER_BRIDGE_SURFACE_CLASS}`}
-            >
-              <SocialMediaSection
-                variant="compact"
-                showTitle={true}
-                title="Folge uns auf Social Media"
-                subtitle="Aktuelle Hinweise, Flyer und Einblicke in unsere Veranstaltungen"
-              />
-            </div>
-          </motion.div>
-        </section>
-
         {/* Final CTA Section */}
         <SectionDivider variant="accent-line" className="mb-0" />
         <section className={SECTION_CTA_SPACING}>
@@ -363,19 +348,23 @@ export function PublicLandingContent() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className="text-3xl md:text-5xl font-bold mb-6 text-charcoal-800">
-                Bereit für den nächsten Schritt?
+              <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">
+                Werde Teil unserer Gemeinschaft
               </h2>
-              <p className="text-lg mb-8 text-charcoal-700 max-w-2xl mx-auto leading-relaxed">
-                Wenn du eine Gemeinschaft suchst, die Bildung, Zugehörigkeit und
-                Unterstützung verbindet, freuen wir uns auf dich.
+              <p className="text-lg mb-8 text-cream-200 max-w-2xl mx-auto leading-relaxed">
+                Schwesternschaft, die trägt. Glaube, der verbindet. Ein Raum für
+                dich und deine Entwicklung.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <motion.div {...hoverButton}>
-                  <Button size="lg" variant="primary" asChild>
+                  <Button
+                    size="lg"
+                    asChild
+                    className="bg-clay-500 hover:bg-clay-600 text-white"
+                  >
                     <Link href="/mitglied-werden" className="gap-3">
                       <Heart className="w-6 h-6" />
-                      Mitglied werden
+                      Jetzt Mitglied werden
                       <ArrowRight className="w-5 h-5" />
                     </Link>
                   </Button>
@@ -385,11 +374,11 @@ export function PublicLandingContent() {
                     size="lg"
                     variant="outline"
                     asChild
-                    className="border-sage-300 text-sage-800 hover:bg-sage-50"
+                    className="border-cream-200 text-cream-100 hover:bg-sage-600"
                   >
                     <Link href="/spenden" className="gap-3">
                       <HeartHandshake className="w-6 h-6" />
-                      Arbeit unterstützen
+                      Uns unterstützen
                     </Link>
                   </Button>
                 </motion.div>

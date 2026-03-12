@@ -13,6 +13,7 @@ import { SectionDivider } from "@/components/ui/section-divider";
 import { SplitSection } from "@/components/ui/split-section";
 import { AnimatedCounter } from "@/components/ui/animated-counter";
 import { DecorativeAccents } from "@/components/ui/decorative-accents";
+import { SectionBand } from "@/components/ui/section-band";
 import {
   PUBLIC_PAGE_WRAPPER_CLASS,
   SECTION_HERO_SPACING,
@@ -50,12 +51,14 @@ export default function AboutPage() {
         </section>
 
         {/* Wer sind wir? Section */}
-        <motion.section
-          variants={itemVariants}
-          className={SECTION_CONTENT_SPACING}
-        >
-          <WerSindWirSection />
-        </motion.section>
+        <SectionBand variant="alternate">
+          <motion.section
+            variants={itemVariants}
+            className={SECTION_CONTENT_SPACING}
+          >
+            <WerSindWirSection />
+          </motion.section>
+        </SectionBand>
 
         <SectionDivider variant="accent-line" />
 
@@ -246,17 +249,21 @@ export default function AboutPage() {
             <DecorativeAccents preset="closing" />
             <div className="flex flex-col items-center justify-between gap-6 text-center md:flex-row md:text-left">
               <div className="max-w-2xl">
-                <h2 className="font-heading text-3xl font-bold text-charcoal-800 md:text-4xl">
+                <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">
                   Teil unserer Gemeinschaft werden
                 </h2>
-                <p className="mt-3 text-charcoal-700 leading-relaxed">
+                <p className="mt-3 text-cream-200 leading-relaxed">
                   Wenn du unsere Arbeit begleiten oder Mitglied werden möchtest,
                   findest du hier den nächsten Schritt. Oder entdecke unsere
                   Veranstaltungen.
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-3 shrink-0">
-                <Button variant="primary" size="lg" asChild>
+                <Button
+                  size="lg"
+                  asChild
+                  className="bg-clay-500 hover:bg-clay-600 text-white"
+                >
                   <Link href="/mitglied-werden" data-cta="primary">
                     Mitglied werden
                   </Link>
@@ -265,7 +272,7 @@ export default function AboutPage() {
                   variant="outline"
                   size="lg"
                   asChild
-                  className="border-sage-300 bg-cream-50/70 text-sage-800 hover:bg-sage-50"
+                  className="border-cream-200 text-cream-100 hover:bg-sage-600"
                 >
                   <Link href="/veranstaltungen">Veranstaltungen</Link>
                 </Button>

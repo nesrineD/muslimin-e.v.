@@ -1,60 +1,140 @@
-'use client'
+"use client";
 
-import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
-import { Globe2, GraduationCap, Briefcase } from 'lucide-react'
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+import {
+  Globe2,
+  GraduationCap,
+  Briefcase,
+  Heart,
+  BookOpen,
+  Sparkles,
+  Baby,
+} from "lucide-react";
+
+// ─── Core Values ────────────────────────────────────────────────────────────
+const CORE_VALUES = [
+  {
+    icon: Heart,
+    title: "Vielfalt",
+    description: "Mitglieder verschiedenster Herkünfte und Generationen.",
+    accent: "bg-sage-100 text-sage-600 ring-sage-200",
+  },
+  {
+    icon: BookOpen,
+    title: "Bildung",
+    description: "Eine Plattform um religiöses Wissen zu erlangen.",
+    accent: "bg-sand-100 text-sand-700 ring-sand-300",
+  },
+  {
+    icon: Sparkles,
+    title: "Engagement",
+    description: "Potenziale entfalten und die Gemeinde stärken.",
+    accent: "bg-clay-100 text-clay-600 ring-clay-200",
+  },
+  {
+    icon: Baby,
+    title: "Familienfreundlich",
+    description: "Kinderbetreuung für eine kinderfreundliche Atmosphäre.",
+    accent: "bg-cream-100 text-charcoal-600 ring-cream-300",
+  },
+];
 
 // ─── Data ───────────────────────────────────────────────────────────────────
 const REGIONS = [
   {
-    label: 'Europa',
-    countries: ['Deutschland', 'Slowakei', 'Polen', 'Italien', 'Kosovo'],
-    tagClass: 'bg-sage-100 text-sage-700 ring-1 ring-sage-200',
-    dot: 'bg-sage-400',
-    labelClass: 'text-sage-600',
+    label: "Europa",
+    countries: ["Deutschland", "Slowakei", "Polen", "Italien", "Kosovo"],
+    tagClass: "bg-sage-100 text-sage-700 ring-1 ring-sage-200",
+    dot: "bg-sage-400",
+    labelClass: "text-sage-600",
   },
   {
-    label: 'Asien & Naher Osten',
-    countries: ['Aserbaidschan', 'Irak', 'Libanon', 'Iran', 'Türkei', 'Palästina', 'Syrien'],
-    tagClass: 'bg-sand-100 text-charcoal-700 ring-1 ring-sand-300',
-    dot: 'bg-sand-600',
-    labelClass: 'text-charcoal-500',
+    label: "Asien & Naher Osten",
+    countries: [
+      "Aserbaidschan",
+      "Irak",
+      "Libanon",
+      "Iran",
+      "Türkei",
+      "Palästina",
+      "Syrien",
+    ],
+    tagClass: "bg-sand-100 text-charcoal-700 ring-1 ring-sand-300",
+    dot: "bg-sand-600",
+    labelClass: "text-charcoal-500",
   },
   {
-    label: 'Afrika',
-    countries: ['Togo', 'Tunesien', 'Ghana'],
-    tagClass: 'bg-clay-100 text-clay-700 ring-1 ring-clay-200',
-    dot: 'bg-clay-400',
-    labelClass: 'text-clay-600',
+    label: "Afrika",
+    countries: ["Togo", "Tunesien", "Ghana"],
+    tagClass: "bg-clay-100 text-clay-700 ring-1 ring-clay-200",
+    dot: "bg-clay-400",
+    labelClass: "text-clay-600",
   },
   {
-    label: 'Südamerika',
-    countries: ['Brasilien'],
-    tagClass: 'bg-cream-100 text-charcoal-600 ring-1 ring-cream-300',
-    dot: 'bg-cream-500',
-    labelClass: 'text-charcoal-500',
+    label: "Südamerika",
+    countries: ["Brasilien"],
+    tagClass: "bg-cream-100 text-charcoal-600 ring-1 ring-cream-300",
+    dot: "bg-cream-500",
+    labelClass: "text-charcoal-500",
   },
-]
+];
 
 const PROFESSIONS_MARQUEE = [
-  'Ärztin', 'Dozentin', 'Hebamme', 'Psychotherapeutin', 'IT-Einkaufsmanagerin',
-  'Naturwissenschaftlerin', 'Geschäftsführerin', 'Fotografin', 'Verwaltungsfachwirtin',
-  'Erzieherin', 'Stadtsekretärin', 'Freiberuflerin', 'Mediendesignerin',
-  'Kauffrau für Büromanagement', 'Gesundheits- & Krankenpflegerin', 'Lehrkraft', 'Selbstständige',
-]
+  "Ärztin",
+  "Dozentin",
+  "Hebamme",
+  "Psychotherapeutin",
+  "IT-Einkaufsmanagerin",
+  "Naturwissenschaftlerin",
+  "Geschäftsführerin",
+  "Fotografin",
+  "Verwaltungsfachwirtin",
+  "Erzieherin",
+  "Stadtsekretärin",
+  "Freiberuflerin",
+  "Mediendesignerin",
+  "Kauffrau für Büromanagement",
+  "Gesundheits- & Krankenpflegerin",
+  "Lehrkraft",
+  "Selbstständige",
+];
 
 const STUDIES_MARQUEE = [
-  'Islamische Theologie', 'Psychologie', 'Rechtswissenschaft', 'Humanmedizin',
-  'Informatik', 'Biotechnologie', 'Arabistik', 'Soziologie', 'Philosophie',
-  'Politikwissenschaften', 'Kindheitspädagogik', 'International Business',
-  'Molekulare Medizin', 'Volkswirtschaftslehre', 'Islamwissenschaft',
-  'Medien- & Wirtschaftspsychologie', 'Chemie', 'Physik', 'Sozialpädagogik',
-  'Sprachwissenschaft', 'Bildungswissenschaften', 'Islamwissenschaft',
-]
+  "Islamische Theologie",
+  "Psychologie",
+  "Rechtswissenschaft",
+  "Humanmedizin",
+  "Informatik",
+  "Biotechnologie",
+  "Arabistik",
+  "Soziologie",
+  "Philosophie",
+  "Politikwissenschaften",
+  "Kindheitspädagogik",
+  "International Business",
+  "Molekulare Medizin",
+  "Volkswirtschaftslehre",
+  "Islamwissenschaft",
+  "Medien- & Wirtschaftspsychologie",
+  "Chemie",
+  "Physik",
+  "Sozialpädagogik",
+  "Sprachwissenschaft",
+  "Bildungswissenschaften",
+  "Islamwissenschaft",
+];
 
 const IDENTITIES = [
-  'Mama', 'Großmutter', 'Tochter', 'Schwester', 'Tante', 'Hausfrau', 'Schülerin', 'Studentin',
-]
+  "Mama",
+  "Großmutter",
+  "Tochter",
+  "Schwester",
+  "Tante",
+  "Hausfrau",
+  "Schülerin",
+  "Studentin",
+];
 
 // ─── Animation variants ──────────────────────────────────────────────────────
 const tagVariant = {
@@ -63,14 +143,59 @@ const tagVariant = {
     opacity: 1,
     scale: 1,
     y: 0,
-    transition: { duration: 0.38, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
+    transition: {
+      duration: 0.38,
+      ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+    },
   },
+};
+
+// ─── CoreValuesSection ───────────────────────────────────────────────────────
+function CoreValuesSection() {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 16 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      className="mb-10"
+    >
+      <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
+        {CORE_VALUES.map(({ icon: Icon, title, description, accent }, i) => (
+          <motion.div
+            key={title}
+            initial={{ opacity: 0, y: 12 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{
+              delay: i * 0.1,
+              duration: 0.4,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            className="flex flex-col items-center rounded-xl bg-white/80 px-4 py-5 text-center shadow-sm ring-1 ring-sand-200"
+          >
+            <div
+              className={`mb-3 flex h-10 w-10 items-center justify-center rounded-lg ring-1 ${accent}`}
+            >
+              <Icon className="h-5 w-5" />
+            </div>
+            <h3 className="text-sm font-semibold text-charcoal-800">{title}</h3>
+            <p className="mt-1 text-xs leading-relaxed text-charcoal-500">
+              {description}
+            </p>
+          </motion.div>
+        ))}
+      </div>
+    </motion.div>
+  );
 }
 
 // ─── CountriesSection ────────────────────────────────────────────────────────
 function CountriesSection() {
-  const ref = useRef<HTMLDivElement>(null)
-  const inView = useInView(ref, { once: true, margin: '-80px' })
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
     <div ref={ref} className="mb-10">
@@ -82,10 +207,17 @@ function CountriesSection() {
       </div>
       <div className="space-y-4">
         {REGIONS.map((region, ri) => (
-          <div key={region.label} className="flex flex-wrap items-start gap-x-3 gap-y-2">
+          <div
+            key={region.label}
+            className="flex flex-wrap items-start gap-x-3 gap-y-2"
+          >
             <div className="flex shrink-0 items-center gap-1.5 pt-0.5">
-              <span className={`inline-block h-1.5 w-1.5 rounded-full ${region.dot}`} />
-              <span className={`inline-block w-[140px] text-xs font-medium ${region.labelClass}`}>
+              <span
+                className={`inline-block h-1.5 w-1.5 rounded-full ${region.dot}`}
+              />
+              <span
+                className={`inline-block w-[140px] text-xs font-medium ${region.labelClass}`}
+              >
                 {region.label}
               </span>
             </div>
@@ -101,7 +233,7 @@ function CountriesSection() {
                 },
               }}
               initial="hidden"
-              animate={inView ? 'visible' : 'hidden'}
+              animate={inView ? "visible" : "hidden"}
             >
               {region.countries.map((country) => (
                 <motion.span
@@ -117,7 +249,7 @@ function CountriesSection() {
         ))}
       </div>
     </div>
-  )
+  );
 }
 
 // ─── MarqueeRow ──────────────────────────────────────────────────────────────
@@ -125,15 +257,19 @@ function MarqueeRow({
   items,
   direction,
 }: {
-  items: string[]
-  direction: 'left' | 'right'
+  items: string[];
+  direction: "left" | "right";
 }) {
-  const doubled = [...items, ...items]
+  const doubled = [...items, ...items];
   return (
     <div className="overflow-hidden py-1 [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]">
       <div
-        className={direction === 'left' ? 'animate-marquee-left' : 'animate-marquee-right'}
-        style={{ display: 'flex', gap: '0.625rem', width: 'max-content' }}
+        className={
+          direction === "left"
+            ? "animate-marquee-left"
+            : "animate-marquee-right"
+        }
+        style={{ display: "flex", gap: "0.625rem", width: "max-content" }}
       >
         {doubled.map((item, i) => (
           <span
@@ -146,13 +282,13 @@ function MarqueeRow({
         ))}
       </div>
     </div>
-  )
+  );
 }
 
 // ─── MarqueeSection ──────────────────────────────────────────────────────────
 function MarqueeSection() {
-  const ref = useRef<HTMLDivElement>(null)
-  const inView = useInView(ref, { once: true, margin: '-60px' })
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
     <motion.div
@@ -177,13 +313,13 @@ function MarqueeSection() {
       <div className="my-2" />
       <MarqueeRow items={STUDIES_MARQUEE} direction="right" />
     </motion.div>
-  )
+  );
 }
 
 // ─── IdentitiesSection ───────────────────────────────────────────────────────
 function IdentitiesSection() {
-  const ref = useRef<HTMLDivElement>(null)
-  const inView = useInView(ref, { once: true, margin: '-40px' })
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-40px" });
 
   return (
     <motion.div
@@ -207,9 +343,9 @@ function IdentitiesSection() {
               ease: [0.16, 1, 0.3, 1],
             }}
             className={`rounded-full px-5 py-2 font-semibold ring-1 ${
-              id === 'Mama'
-                ? 'bg-clay-100 text-clay-700 ring-clay-300 text-lg'
-                : 'bg-cream-50 text-charcoal-700 ring-sand-200 text-base'
+              id === "Mama"
+                ? "bg-clay-100 text-clay-700 ring-clay-300 text-lg"
+                : "bg-cream-50 text-charcoal-700 ring-sand-200 text-base"
             }`}
           >
             {id}
@@ -219,16 +355,18 @@ function IdentitiesSection() {
 
       <blockquote className="mx-auto max-w-2xl rounded-xl bg-sand-50 px-6 py-5 text-center ring-1 ring-sand-200">
         <p className="text-sm leading-relaxed text-charcoal-600">
-          Neben unseren Mitgliedern, die beruflich Fuß gefasst haben, sind wir besonders stolz auf
-          unsere <strong className="text-clay-700">Mamas</strong>. Sie widmen sich der wohl
-          wichtigsten Aufgabe überhaupt — der Zukunft unserer Gesellschaft: unseren Kindern.
+          Neben unseren Mitgliedern, die beruflich Fuß gefasst haben, sind wir
+          besonders stolz auf unsere{" "}
+          <strong className="text-clay-700">Mamas</strong>. Sie widmen sich der
+          wohl wichtigsten Aufgabe überhaupt — der Zukunft unserer Gesellschaft:
+          unseren Kindern.
         </p>
         <span className="mt-2 inline-block text-xs italic text-charcoal-400">
           Möge Gott euch belohnen!
         </span>
       </blockquote>
     </motion.div>
-  )
+  );
 }
 
 // ─── Main export ─────────────────────────────────────────────────────────────
@@ -243,9 +381,10 @@ export function WerSindWirSection() {
           Ein aktiver muslimischer Mädchen- und Frauenverein im Herzen Berlins.
         </p>
       </div>
+      <CoreValuesSection />
       <CountriesSection />
       <MarqueeSection />
       <IdentitiesSection />
     </div>
-  )
+  );
 }
