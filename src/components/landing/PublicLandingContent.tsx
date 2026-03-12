@@ -154,8 +154,8 @@ export function PublicLandingContent() {
             >
               <div className="relative aspect-[16/7] rounded-2xl overflow-hidden border border-sand-300/60 shadow-[0_4px_20px_-6px_rgba(156,96,77,0.12)]">
                 <Image
-                  src="/images/veranstaltungen/frauenkreis-juni-2025.jpeg"
-                  alt="Frauenkreis – Muslimin e.V. Gemeinschaft in Berlin"
+                  src="/images/veranstaltungen/gemeinschaft-saal-1.jpg"
+                  alt="Gemeinschaftsveranstaltung – Muslimin e.V. in Berlin"
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 896px"
@@ -300,8 +300,8 @@ export function PublicLandingContent() {
               <div className="grid md:grid-cols-2">
                 <div className="relative aspect-[4/3] md:aspect-auto">
                   <Image
-                    src="/images/veranstaltungen/herbstkonferenz-september-2025.jpeg"
-                    alt="Herbstkonferenz September 2025 – Muslimin e.V."
+                    src="/images/veranstaltungen/gemeinschaft-vortrag.jpg"
+                    alt="Vortrag und Begegnung – Muslimin e.V."
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, 50vw"
