@@ -337,7 +337,7 @@ function LoginContent() {
                         id="password"
                         name="password"
                         type={showPassword ? "text" : "password"}
-                        placeholder="passwort"
+                        placeholder="Passwort"
                         value={formData.password}
                         onChange={handleChange}
                         className="pl-10 pr-10 border-sand-200 focus:border-sage-500 focus:ring-sage-500 transition-all duration-200 bg-white/50"
