@@ -522,12 +522,11 @@ headers: [
 
 **Bei neuen Features:**
 
-1. ~~**IMMER Tests schreiben BEVOR Code implementiert wird** (TDD bevorzugt)~~
-2. ~~Tests für Success + Error Cases~~
-3. ~~Edge Cases abdecken (z.B. max 3 bookings limit, PLZ validation)~~
-4. ~~Integration Tests für API Routes mit DB-Interaktion~~
-5. ~~Component Tests für UI mit User-Interaktionen~~
-6. ~~PWA-Features: Service Worker registration testen~~
+1. Für jedes neue Feature angemessene Tests ergänzen (Unit-/Component-/Integration-Tests je nach Änderung).
+2. Success- und Error-Cases abdecken.
+3. Wichtige Edge Cases testen (z.B. Buchungslimits, PLZ-Validierung, Eingabegrenzen).
+4. Bei API-/DB-Änderungen Integrationstests für die betroffenen API-Routen hinzufügen.
+5. Bei UI-Änderungen Component-Tests für relevante User-Interaktionen schreiben; bei PWA-Änderungen Service-Worker-Registrierung und -Verhalten testen.
 
 **Bei Bug Fixes:**
 
