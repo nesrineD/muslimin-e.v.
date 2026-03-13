@@ -229,7 +229,7 @@ export default function SpendenPage() {
         <section className="py-12 px-4 sm:px-6 lg:px-8">
           <div className="max-w-5xl mx-auto">
             <SplitSection
-              imageSrc="/images/veranstaltungen/gemeinschaft-august-2025-2.jpg"
+              imageSrc="/images/spenden/image.png"
               imageAlt="Muslimin e.V. — Spendenaktionen für den Jemen und Berlin"
             >
               <SectionHeading
@@ -384,7 +384,7 @@ export default function SpendenPage() {
                   </div>
                   <button
                     onClick={() =>
-                      copyToClipboard("DE12301200000123456789", "iban")
+                      copyToClipboard("DE33 1005 0000 0190 7883 72", "iban")
                     }
                     aria-label="IBAN in Zwischenablage kopieren"
                     className="flex items-center justify-between w-full gap-2 px-3 py-2 bg-white rounded hover:bg-sand-100 transition-colors border border-sand-200 focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:outline-none"
@@ -407,7 +407,7 @@ export default function SpendenPage() {
                     </span>
                   </div>
                   <button
-                    onClick={() => copyToClipboard("DEUTDE33", "bic")}
+                    onClick={() => copyToClipboard("BELADEBEXXX", "bic")}
                     aria-label="BIC in Zwischenablage kopieren"
                     className="flex items-center justify-between w-full gap-2 px-3 py-2 bg-white rounded hover:bg-sand-100 transition-colors border border-sand-200 focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:outline-none"
                   >
