@@ -125,17 +125,6 @@ const STUDIES_MARQUEE = [
   "Islamwissenschaft",
 ];
 
-const IDENTITIES = [
-  "Mama",
-  "Großmutter",
-  "Tochter",
-  "Schwester",
-  "Tante",
-  "Hausfrau",
-  "Schülerin",
-  "Studentin",
-];
-
 // ─── Animation variants ──────────────────────────────────────────────────────
 const tagVariant = {
   hidden: { opacity: 0, scale: 0.82, y: 5 },
@@ -331,28 +320,6 @@ function IdentitiesSection() {
       <p className="mb-4 text-center text-xs font-semibold uppercase tracking-[0.2em] text-clay-600">
         Und vor allem…
       </p>
-      <div className="mb-6 flex flex-wrap justify-center gap-2.5">
-        {IDENTITIES.map((id, i) => (
-          <motion.span
-            key={id}
-            initial={{ opacity: 0, scale: 0.82 }}
-            animate={inView ? { opacity: 1, scale: 1 } : {}}
-            transition={{
-              delay: 0.05 + i * 0.085,
-              duration: 0.4,
-              ease: [0.16, 1, 0.3, 1],
-            }}
-            className={`rounded-full px-5 py-2 font-semibold ring-1 ${
-              id === "Mama"
-                ? "bg-clay-100 text-clay-700 ring-clay-300 text-lg"
-                : "bg-cream-50 text-charcoal-700 ring-sand-200 text-base"
-            }`}
-          >
-            {id}
-          </motion.span>
-        ))}
-      </div>
-
       <blockquote className="mx-auto max-w-2xl rounded-xl bg-sand-50 px-6 py-5 text-center ring-1 ring-sand-200">
         <p className="text-sm leading-relaxed text-charcoal-600">
           Neben unseren Mitgliedern, die beruflich Fuß gefasst haben, sind wir
@@ -381,10 +348,40 @@ export function WerSindWirSection() {
           Ein aktiver muslimischer Mädchen- und Frauenverein im Herzen Berlins.
         </p>
       </div>
-      <CoreValuesSection />
-      <CountriesSection />
-      <MarqueeSection />
-      <IdentitiesSection />
+
+      {/* ── Unsere Mitglieder ── */}
+      <section aria-labelledby="unsere-mitglieder">
+        <h3
+          id="unsere-mitglieder"
+          className="mb-6 text-center text-sm font-semibold uppercase tracking-[0.2em] text-sage-600"
+        >
+          Unsere Mitglieder
+        </h3>
+        <CountriesSection />
+        <MarqueeSection />
+        <IdentitiesSection />
+      </section>
+
+      {/* ── Verbindender Übergang ── */}
+      <div className="my-10 flex flex-col items-center gap-3">
+        <span className="block h-px w-16 bg-sand-300" />
+        <p className="max-w-md text-center text-base italic leading-relaxed text-charcoal-500">
+          Was all diese vielfältigen Frauen verbindet, sind unsere gemeinsamen
+          Werte.
+        </p>
+        <span className="block h-px w-16 bg-sand-300" />
+      </div>
+
+      {/* ── Unsere Werte ── */}
+      <section aria-labelledby="unsere-werte">
+        <h3
+          id="unsere-werte"
+          className="mb-6 text-center text-sm font-semibold uppercase tracking-[0.2em] text-clay-600"
+        >
+          Was uns verbindet
+        </h3>
+        <CoreValuesSection />
+      </section>
     </div>
   );
 }
