@@ -1,0 +1,16 @@
+# Muslimin e.V. — LLM-readable site index
+# See https://llmstxt.org for the specification
+
+# Muslimin e.V. is a Muslim women's association based in Berlin, Germany.
+# Founded in 2011, it provides community programmes, advisory services,
+# humanitarian aid fundraising (Yemen), and events for Muslim women and girls.
+
+## Pages
+
+- [Startseite](https://muslimin-ev.de/): Landing page with overview of the association
+- [Über uns](https://muslimin-ev.de/ueber-uns): About the association, mission and history
+- [Veranstaltungen](https://muslimin-ev.de/veranstaltungen): Events and community gatherings
+- [Beratung](https://muslimin-ev.de/beratung): Advisory services and booking
+- [Spenden](https://muslimin-ev.de/spenden): Donation page — Yemen humanitarian aid and Berlin programmes
+- [Mitgliedschaft](https://muslimin-ev.de/mitgliedschaft): Membership information
+- [Kontakt](https://muslimin-ev.de/kontakt): Contact form and details

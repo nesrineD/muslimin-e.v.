@@ -203,24 +203,6 @@ export default function SpendenPage() {
               </a>
             </Button>
           </div>
-
-          {/* Trust Indicators */}
-          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-charcoal-500">
-            <span className="flex items-center gap-1.5">
-              <Shield className="w-3.5 h-3.5" />
-              Ehrenamtlich &amp; unabhängig
-            </span>
-            <span className="hidden sm:inline text-sand-400">·</span>
-            <span className="flex items-center gap-1.5">
-              <Heart className="w-3.5 h-3.5" />
-              Transparente Mittelverwendung
-            </span>
-            <span className="hidden sm:inline text-sand-400">·</span>
-            <span className="flex items-center gap-1.5">
-              <Users className="w-3.5 h-3.5" />
-              Seit 2011 aktiv
-            </span>
-          </div>
         </motion.div>
       </section>
 
