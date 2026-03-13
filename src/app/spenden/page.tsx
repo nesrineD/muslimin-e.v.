@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Copy,
@@ -41,6 +42,8 @@ interface DonationCampaign {
   goal?: string;
   impact?: string;
   detailedText?: string;
+  imageSrc?: string;
+  imageAlt?: string;
 }
 
 const donationCampaigns: DonationCampaign[] = [
@@ -56,6 +59,8 @@ const donationCampaigns: DonationCampaign[] = [
       "Schulbildung für Kinder im Krisengebiet",
     ],
     icon: <Heart className="w-12 h-12" />,
+    imageSrc: "/images/spenden/image.png",
+    imageAlt: "Humanitäre Krise im Jemen – Muslimin e.V. Spendenaktionen",
     goal: "Deine Spende rettet Leben und bringt direkte Hilfe vor Ort",
     impact: "Seit 2018: Über 50 erfolgreiche Spendenaktionen durchgeführt",
     detailedText: `Die humanitäre Krise im Jemen
@@ -499,6 +504,18 @@ export default function SpendenPage() {
                 {...hoverLift}
                 className="p-8 bg-gradient-to-br from-white to-cream-50/60 rounded-xl border-2 border-sand-200 hover:border-sage-300 hover:shadow-lg transition-all"
               >
+                {campaign.imageSrc && (
+                  <div className="relative w-full aspect-[16/9] rounded-lg overflow-hidden mb-6 -mx-0">
+                    <Image
+                      src={campaign.imageSrc}
+                      alt={campaign.imageAlt ?? campaign.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  </div>
+                )}
+
                 <div className="text-sage-600 mb-4">{campaign.icon}</div>
 
                 <h3 className="text-2xl font-bold text-charcoal-800 mb-3">
