@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Users, Goal, Lightbulb, ShieldCheck, ArrowRight } from "lucide-react";
+import { Users, Goal, Lightbulb, ShieldCheck } from "lucide-react";
 import { WerSindWirSection } from "@/components/uber-uns/WerSindWirSection";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -172,33 +172,8 @@ export default function AboutPage() {
           </motion.section>
         </SectionBand>
 
-        {/* Mid-Page Soft CTA - earlier conversion touchpoint */}
-        <motion.section
-          variants={itemVariants}
-          className="py-8 md:py-12"
-        >
-          <div className="mx-auto max-w-3xl text-center">
-            <div className="inline-flex flex-col sm:flex-row items-center gap-4 rounded-2xl border border-sage-200/60 bg-gradient-to-r from-sage-50/80 via-cream-50 to-sage-50/80 px-6 py-5 shadow-sm backdrop-blur-sm">
-              <p className="text-charcoal-700 text-base">
-                Klingt das interessant?
-              </p>
-              <Button
-                variant="outline"
-                size="sm"
-                asChild
-                className="group border-sage-300 text-sage-700 hover:bg-sage-100 hover:border-sage-400"
-              >
-                <Link href="/veranstaltungen" className="flex items-center gap-2">
-                  Unsere Veranstaltungen entdecken
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </motion.section>
-
-        {/* Statistiken Section — Warm Sage surface for brand-aligned contrast */}
-        <section className="py-16 md:py-20 bg-gradient-to-br from-sage-600 via-sage-700 to-sage-600 relative overflow-hidden">
+        {/* Statistiken Section — Warm Clay surface for visual variety before sage CTA */}
+        <section className="py-16 md:py-20 bg-gradient-to-br from-clay-500 via-clay-600 to-clay-500 relative overflow-hidden">
           {/* Subtle texture overlay */}
           <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,_#fff_1px,_transparent_1px)] bg-[length:24px_24px]" />
@@ -207,7 +182,7 @@ export default function AboutPage() {
           <motion.section variants={itemVariants}>
             <div className="relative mx-auto max-w-5xl px-4">
               <div className="relative mx-auto mb-12 max-w-3xl text-center">
-                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-sage-200">
+                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-clay-200">
                   Zahlen &amp; Fakten
                 </p>
                 <h2 className="font-heading text-3xl font-bold text-white md:text-4xl mb-3">
@@ -259,7 +234,7 @@ export default function AboutPage() {
                       {stat.label}
                     </p>
                     {stat.sub && (
-                      <p className="mt-1.5 text-xs leading-relaxed text-sage-200/80">
+                      <p className="mt-1.5 text-xs leading-relaxed text-clay-200/80">
                         {stat.sub}
                       </p>
                     )}
