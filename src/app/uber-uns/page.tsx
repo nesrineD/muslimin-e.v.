@@ -6,7 +6,6 @@ import { WerSindWirSection } from "@/components/uber-uns/WerSindWirSection";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import Image from "next/image";
 import { containerVariants, itemVariants } from "@/lib/animations";
 import { PageHeading } from "@/components/ui/page-heading";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -21,7 +20,6 @@ import {
   SECTION_CONTENT_SPACING,
   SECTION_CTA_SPACING,
   CLOSING_SECTION_SURFACE_CLASS,
-  SECTION_DARK_FEATURE_CLASS,
 } from "@/lib/page-config";
 
 export default function AboutPage() {
@@ -199,24 +197,23 @@ export default function AboutPage() {
           </div>
         </motion.section>
 
-        {/* Statistiken Section — DARK FOCAL POINT for visual contrast */}
-        <SectionBand variant="dark-feature" className="py-16 md:py-20">
+        {/* Statistiken Section — Warm Sage surface for brand-aligned contrast */}
+        <section className="py-16 md:py-20 bg-gradient-to-br from-sage-600 via-sage-700 to-sage-600 relative overflow-hidden">
+          {/* Subtle texture overlay */}
+          <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,_#fff_1px,_transparent_1px)] bg-[length:24px_24px]" />
+          </div>
+          
           <motion.section variants={itemVariants}>
             <div className="relative mx-auto max-w-5xl px-4">
-              {/* Subtle background pattern */}
-              <div className="absolute inset-0 opacity-5">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.15)_0%,transparent_50%)]" />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(255,255,255,0.1)_0%,transparent_40%)]" />
-              </div>
-
               <div className="relative mx-auto mb-12 max-w-3xl text-center">
-                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-clay-400">
+                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-sage-200">
                   Zahlen &amp; Fakten
                 </p>
                 <h2 className="font-heading text-3xl font-bold text-white md:text-4xl mb-3">
                   Unsere Entwicklung
                 </h2>
-                <p className="text-cream-200/80 text-lg">
+                <p className="text-cream-100/90 text-lg">
                   Ein Verein mit gewachsener Reichweite und beständiger Arbeit
                 </p>
               </div>
@@ -250,7 +247,7 @@ export default function AboutPage() {
                 ].map((stat, i) => (
                   <div
                     key={i}
-                    className="group flex flex-col items-center justify-center rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm px-4 py-8 text-center transition-all duration-300 hover:bg-white/10 hover:border-white/20"
+                    className="group flex flex-col items-center justify-center rounded-2xl border border-white/15 bg-white/10 backdrop-blur-sm px-4 py-8 text-center transition-all duration-300 hover:bg-white/15 hover:border-white/25"
                   >
                     <span className="text-4xl font-bold tracking-tight text-white lg:text-5xl">
                       <AnimatedCounter
@@ -258,11 +255,11 @@ export default function AboutPage() {
                         suffix={stat.suffix}
                       />
                     </span>
-                    <p className="mt-2 text-sm font-semibold uppercase tracking-wider text-clay-300">
+                    <p className="mt-2 text-sm font-semibold uppercase tracking-wider text-cream-100">
                       {stat.label}
                     </p>
                     {stat.sub && (
-                      <p className="mt-1.5 text-xs leading-relaxed text-cream-200/60">
+                      <p className="mt-1.5 text-xs leading-relaxed text-sage-200/80">
                         {stat.sub}
                       </p>
                     )}
@@ -271,69 +268,7 @@ export default function AboutPage() {
               </div>
             </div>
           </motion.section>
-        </SectionBand>
-
-        {/* Vorstand / Team Section - with visual imagery */}
-        <motion.section
-          variants={itemVariants}
-          className={SECTION_CONTENT_SPACING}
-        >
-          <div className="mx-auto max-w-5xl">
-            <div className="mx-auto mb-10 max-w-3xl text-center">
-              <p className="mb-2 text-xs font-semibold uppercase tracking-[0.24em] text-sage-600">
-                Unser Vorstand
-              </p>
-              <SectionHeading
-                title="Die Frauen hinter Muslimin e.V."
-                subtitle="Ein engagiertes Team, das den Verein mit Herz und Verstand leitet."
-              />
-            </div>
-
-            {/* Image Gallery Grid - creates visual interest */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-10">
-              {[
-                { src: "/images/veranstaltungen/gemeinschaft-01.jpg", alt: "Gemeinschaft bei Muslimin e.V." },
-                { src: "/images/veranstaltungen/gemeinschaft-vortrag.jpg", alt: "Vortrag und Austausch" },
-                { src: "/images/veranstaltungen/gemeinschaft-saal-1.jpg", alt: "Veranstaltungssaal" },
-                { src: "/images/veranstaltungen/gemeinschaft-gebet.jpg", alt: "Spirituelle Momente" },
-              ].map((img, i) => (
-                <div
-                  key={i}
-                  className={`relative overflow-hidden rounded-2xl ${
-                    i === 0 ? "col-span-2 row-span-2 aspect-square" : "aspect-[4/3]"
-                  }`}
-                >
-                  <Image
-                    src={img.src}
-                    alt={img.alt}
-                    fill
-                    className="object-cover transition-transform duration-500 hover:scale-105"
-                    sizes={i === 0 ? "(max-width: 768px) 100vw, 50vw" : "(max-width: 768px) 50vw, 25vw"}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal-900/30 to-transparent" />
-                </div>
-              ))}
-            </div>
-
-            {/* Board Description */}
-            <div className="mx-auto max-w-3xl rounded-2xl border border-sand-200 bg-white/80 backdrop-blur-sm p-8 text-center shadow-sm">
-              <p className="text-lg leading-relaxed text-charcoal-700 mb-4">
-                Der Vorstand von Muslimin e.V. besteht aus engagierten Frauen verschiedener Fachrichtungen,
-                die ihre Expertise ehrenamtlich einbringen. Gemeinsam gestalten sie die strategische 
-                Ausrichtung des Vereins und sorgen für eine lebendige, wachsende Gemeinschaft.
-              </p>
-              <p className="text-sm text-charcoal-500">
-                Bei Fragen zum Vorstand oder zur Vereinsarbeit schreib uns gerne an{" "}
-                <a 
-                  href="mailto:kontakt@muslimin.de" 
-                  className="text-sage-600 hover:text-sage-700 underline underline-offset-2"
-                >
-                  kontakt@muslimin.de
-                </a>
-              </p>
-            </div>
-          </div>
-        </motion.section>
+        </section>
 
         {/* CTA Section */}
         <motion.section
