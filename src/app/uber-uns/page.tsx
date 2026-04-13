@@ -172,28 +172,33 @@ export default function AboutPage() {
           </motion.section>
         </SectionBand>
 
-        {/* Statistiken Section — Warm Clay surface for visual variety before sage CTA */}
-        <section className="py-16 md:py-20 bg-gradient-to-br from-clay-500 via-clay-600 to-clay-500 relative overflow-hidden">
-          {/* Subtle texture overlay */}
-          <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,_#fff_1px,_transparent_1px)] bg-[length:24px_24px]" />
-          </div>
-          
+        {/* Statistiken Section — Warm charcoal surface, distinct from sage CTA */}
+        <section className="py-16 md:py-20 bg-charcoal-800 relative overflow-hidden">
+          {/* Warm sand ambient glow — top left */}
+          <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-sand-400/10 blur-[80px] pointer-events-none" />
+          {/* Sage ambient glow — bottom right */}
+          <div className="absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-sage-600/15 blur-[80px] pointer-events-none" />
+
           <motion.section variants={itemVariants}>
             <div className="relative mx-auto max-w-5xl px-4">
-              <div className="relative mx-auto mb-12 max-w-3xl text-center">
-                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-clay-200">
+
+              {/* Heading */}
+              <div className="mx-auto mb-14 max-w-2xl text-center">
+                <span className="inline-block mb-3 text-[0.65rem] font-bold uppercase tracking-[0.35em] text-sand-300/70">
                   Zahlen &amp; Fakten
-                </p>
-                <h2 className="font-heading text-3xl font-bold text-white md:text-4xl mb-3">
+                </span>
+                <h2 className="font-heading text-3xl font-bold text-sand-100 md:text-4xl mb-3">
                   Unsere Entwicklung
                 </h2>
-                <p className="text-cream-100/90 text-lg">
+                <p className="text-sand-300/80 text-base leading-relaxed">
                   Ein Verein mit gewachsener Reichweite und beständiger Arbeit
                 </p>
+                {/* Decorative rule */}
+                <div className="mx-auto mt-6 h-px w-16 bg-gradient-to-r from-transparent via-sand-400/40 to-transparent" />
               </div>
 
-              <div className="relative mx-auto grid max-w-4xl grid-cols-2 gap-4 lg:grid-cols-4">
+              {/* Stat cards */}
+              <div className="mx-auto grid max-w-4xl grid-cols-2 gap-3 lg:grid-cols-4">
                 {[
                   {
                     target: 14,
@@ -222,25 +227,29 @@ export default function AboutPage() {
                 ].map((stat, i) => (
                   <div
                     key={i}
-                    className="group flex flex-col items-center justify-center rounded-2xl border border-white/15 bg-white/10 backdrop-blur-sm px-4 py-8 text-center transition-all duration-300 hover:bg-white/15 hover:border-white/25"
+                    className="group flex flex-col items-center justify-center rounded-2xl border border-sand-400/10 bg-charcoal-700/50 px-4 py-8 text-center transition-all duration-300 hover:border-sand-400/20 hover:bg-charcoal-700/80"
                   >
-                    <span className="text-4xl font-bold tracking-tight text-white lg:text-5xl">
+                    {/* Number */}
+                    <span className="text-4xl font-bold tracking-tight text-sand-100 lg:text-5xl">
                       <AnimatedCounter
                         target={stat.target}
                         suffix={stat.suffix}
                       />
                     </span>
-                    <p className="mt-2 text-sm font-semibold uppercase tracking-wider text-cream-100">
+                    {/* Label */}
+                    <p className="mt-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-sage-300">
                       {stat.label}
                     </p>
+                    {/* Sub */}
                     {stat.sub && (
-                      <p className="mt-1.5 text-xs leading-relaxed text-clay-200/80">
+                      <p className="mt-1.5 text-[0.7rem] leading-relaxed text-sand-400/60">
                         {stat.sub}
                       </p>
                     )}
                   </div>
                 ))}
               </div>
+
             </div>
           </motion.section>
         </section>
