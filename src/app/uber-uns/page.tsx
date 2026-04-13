@@ -172,77 +172,53 @@ export default function AboutPage() {
           </motion.section>
         </SectionBand>
 
-        {/* Statistiken Section — Warm charcoal surface, distinct from sage CTA */}
-        <section className="py-16 md:py-20 bg-charcoal-800 relative overflow-hidden">
-          {/* Warm sand ambient glow — top left */}
-          <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-sand-400/10 blur-[80px] pointer-events-none" />
-          {/* Sage ambient glow — bottom right */}
-          <div className="absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-sage-600/15 blur-[80px] pointer-events-none" />
+        {/* Statistiken Section — Warm sand-100 surface: light, distinct, on-palette */}
+        <section className="py-16 md:py-20 bg-sand-100 relative overflow-hidden">
+          {/* Soft sage tint — top right corner */}
+          <div className="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-sage-200/30 blur-[72px] pointer-events-none" />
+          {/* Soft clay tint — bottom left corner */}
+          <div className="absolute -bottom-24 -left-24 w-72 h-72 rounded-full bg-clay-200/20 blur-[64px] pointer-events-none" />
 
           <motion.section variants={itemVariants}>
             <div className="relative mx-auto max-w-5xl px-4">
 
               {/* Heading */}
-              <div className="mx-auto mb-14 max-w-2xl text-center">
-                <span className="inline-block mb-3 text-[0.65rem] font-bold uppercase tracking-[0.35em] text-sand-300/70">
+              <div className="mx-auto mb-12 max-w-2xl text-center">
+                <span className="inline-block mb-3 text-[0.65rem] font-bold uppercase tracking-[0.35em] text-sage-500">
                   Zahlen &amp; Fakten
                 </span>
-                <h2 className="font-heading text-3xl font-bold text-sand-100 md:text-4xl mb-3">
+                <h2 className="font-heading text-3xl font-bold text-charcoal-800 md:text-4xl mb-3">
                   Unsere Entwicklung
                 </h2>
-                <p className="text-sand-300/80 text-base leading-relaxed">
+                <p className="text-charcoal-600 text-base leading-relaxed">
                   Ein Verein mit gewachsener Reichweite und beständiger Arbeit
                 </p>
-                {/* Decorative rule */}
-                <div className="mx-auto mt-6 h-px w-16 bg-gradient-to-r from-transparent via-sand-400/40 to-transparent" />
+                <div className="mx-auto mt-5 h-px w-12 bg-gradient-to-r from-transparent via-sage-400/50 to-transparent" />
               </div>
 
               {/* Stat cards */}
-              <div className="mx-auto grid max-w-4xl grid-cols-2 gap-3 lg:grid-cols-4">
+              <div className="mx-auto grid max-w-4xl grid-cols-2 gap-4 lg:grid-cols-4">
                 {[
-                  {
-                    target: 14,
-                    suffix: "+",
-                    label: "Jahre",
-                    sub: "Initiative seit 2011",
-                  },
-                  {
-                    target: 60,
-                    suffix: "+",
-                    label: "Mitglieder",
-                    sub: "Aktive Frauen",
-                  },
-                  {
-                    target: 100,
-                    suffix: "+",
-                    label: "Veranstaltungen",
-                    sub: "Seit Gründung",
-                  },
-                  {
-                    target: 500,
-                    suffix: "",
-                    label: "Gäste",
-                    sub: "Größte Veranstaltung",
-                  },
+                  { target: 14, suffix: "+", label: "Jahre",          sub: "Initiative seit 2011" },
+                  { target: 60, suffix: "+", label: "Mitglieder",     sub: "Aktive Frauen"        },
+                  { target: 100, suffix: "+", label: "Veranstaltungen", sub: "Seit Gründung"      },
+                  { target: 500, suffix: "",  label: "Gäste",          sub: "Größte Veranstaltung" },
                 ].map((stat, i) => (
                   <div
                     key={i}
-                    className="group flex flex-col items-center justify-center rounded-2xl border border-sand-400/10 bg-charcoal-700/50 px-4 py-8 text-center transition-all duration-300 hover:border-sand-400/20 hover:bg-charcoal-700/80"
+                    className="group flex flex-col items-center justify-center rounded-2xl border border-sand-300 bg-white px-4 py-8 text-center shadow-sm transition-all duration-300 hover:shadow-sage-md hover:border-sage-200"
                   >
-                    {/* Number */}
-                    <span className="text-4xl font-bold tracking-tight text-sand-100 lg:text-5xl">
-                      <AnimatedCounter
-                        target={stat.target}
-                        suffix={stat.suffix}
-                      />
+                    {/* Number — charcoal-800 on white: ~11:1 contrast */}
+                    <span className="text-4xl font-bold tracking-tight text-charcoal-800 lg:text-5xl">
+                      <AnimatedCounter target={stat.target} suffix={stat.suffix} />
                     </span>
-                    {/* Label */}
-                    <p className="mt-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-sage-300">
+                    {/* Label — sage-600 for brand accent */}
+                    <p className="mt-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-sage-600">
                       {stat.label}
                     </p>
-                    {/* Sub */}
+                    {/* Sub — charcoal-500 for secondary readability */}
                     {stat.sub && (
-                      <p className="mt-1.5 text-[0.7rem] leading-relaxed text-sand-400/60">
+                      <p className="mt-1.5 text-[0.7rem] leading-relaxed text-charcoal-500">
                         {stat.sub}
                       </p>
                     )}
