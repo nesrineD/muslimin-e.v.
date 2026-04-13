@@ -1,11 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Users, Goal, Lightbulb, ShieldCheck } from "lucide-react";
+import { Users, Goal, Lightbulb, ShieldCheck, ArrowRight } from "lucide-react";
 import { WerSindWirSection } from "@/components/uber-uns/WerSindWirSection";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
 import { containerVariants, itemVariants } from "@/lib/animations";
 import { PageHeading } from "@/components/ui/page-heading";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -20,6 +21,7 @@ import {
   SECTION_CONTENT_SPACING,
   SECTION_CTA_SPACING,
   CLOSING_SECTION_SURFACE_CLASS,
+  SECTION_DARK_FEATURE_CLASS,
 } from "@/lib/page-config";
 
 export default function AboutPage() {
@@ -33,6 +35,10 @@ export default function AboutPage() {
       <div className="container mx-auto px-4">
         {/* Hero Section */}
         <section className={`relative ${SECTION_HERO_SPACING} overflow-hidden`}>
+          {/* Subtle geometric pattern for depth */}
+          <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,_#5b6960_1px,_transparent_1px)] bg-[length:32px_32px]" />
+          </div>
           <DecorativeAccents preset="hero" />
           <motion.div
             variants={itemVariants}
@@ -96,15 +102,10 @@ export default function AboutPage() {
           </div>
         </motion.section>
 
-        <SectionDivider variant="accent-line" />
-
-        {/* Kernziele Section */}
-        <motion.section
-          variants={itemVariants}
-          className={SECTION_CONTENT_SPACING}
-        >
-          <div className="relative mx-auto max-w-5xl overflow-hidden rounded-2xl border border-sand-200 bg-white px-6 py-8 shadow-sm md:px-10 md:py-10">
-            <div className="relative">
+        {/* Kernziele Section - wrapped in white band for contrast */}
+        <SectionBand variant="white" className="py-12 md:py-16">
+          <motion.section variants={itemVariants}>
+            <div className="relative mx-auto max-w-5xl px-4">
               <div className="mx-auto mb-12 max-w-3xl text-center">
                 <SectionHeading
                   title="Unsere Kernziele"
@@ -114,7 +115,7 @@ export default function AboutPage() {
               <div className="grid gap-6 md:grid-cols-2">
                 <Card
                   hover="lift"
-                  className="text-left p-8 rounded-xl border border-sand-200 bg-cream-50/50 shadow-sm"
+                  className="text-left p-8 rounded-xl border border-sand-200 bg-gradient-to-br from-cream-50 to-sand-50 shadow-sm"
                 >
                   <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-xl bg-sage-100/90 ring-1 ring-sage-200">
                     <Goal className="h-8 w-8 text-sage-600" />
@@ -128,7 +129,7 @@ export default function AboutPage() {
                 </Card>
                 <Card
                   hover="lift"
-                  className="text-left p-8 rounded-xl border border-sand-200 bg-cream-50/50 shadow-sm"
+                  className="text-left p-8 rounded-xl border border-sand-200 bg-gradient-to-br from-cream-50 to-sand-50 shadow-sm"
                 >
                   <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-xl bg-sage-100/90 ring-1 ring-sage-200">
                     <Lightbulb className="h-8 w-8 text-sage-600" />
@@ -142,7 +143,7 @@ export default function AboutPage() {
                 </Card>
                 <Card
                   hover="lift"
-                  className="text-left p-8 rounded-xl border border-sand-200 bg-cream-50/50 shadow-sm"
+                  className="text-left p-8 rounded-xl border border-sand-200 bg-gradient-to-br from-cream-50 to-sand-50 shadow-sm"
                 >
                   <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-xl bg-sage-100/90 ring-1 ring-sage-200">
                     <Users className="h-8 w-8 text-sage-600" />
@@ -156,7 +157,7 @@ export default function AboutPage() {
                 </Card>
                 <Card
                   hover="lift"
-                  className="text-left p-8 rounded-xl border border-sand-200 bg-cream-50/50 shadow-sm"
+                  className="text-left p-8 rounded-xl border border-sand-200 bg-gradient-to-br from-cream-50 to-sand-50 shadow-sm"
                 >
                   <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-xl bg-sage-100/90 ring-1 ring-sage-200">
                     <ShieldCheck className="h-8 w-8 text-sage-600" />
@@ -170,73 +171,169 @@ export default function AboutPage() {
                 </Card>
               </div>
             </div>
+          </motion.section>
+        </SectionBand>
+
+        {/* Mid-Page Soft CTA - earlier conversion touchpoint */}
+        <motion.section
+          variants={itemVariants}
+          className="py-8 md:py-12"
+        >
+          <div className="mx-auto max-w-3xl text-center">
+            <div className="inline-flex flex-col sm:flex-row items-center gap-4 rounded-2xl border border-sage-200/60 bg-gradient-to-r from-sage-50/80 via-cream-50 to-sage-50/80 px-6 py-5 shadow-sm backdrop-blur-sm">
+              <p className="text-charcoal-700 text-base">
+                Klingt das interessant?
+              </p>
+              <Button
+                variant="outline"
+                size="sm"
+                asChild
+                className="group border-sage-300 text-sage-700 hover:bg-sage-100 hover:border-sage-400"
+              >
+                <Link href="/veranstaltungen" className="flex items-center gap-2">
+                  Unsere Veranstaltungen entdecken
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                </Link>
+              </Button>
+            </div>
           </div>
         </motion.section>
 
-        <SectionDivider variant="accent-line" />
+        {/* Statistiken Section — DARK FOCAL POINT for visual contrast */}
+        <SectionBand variant="dark-feature" className="py-16 md:py-20">
+          <motion.section variants={itemVariants}>
+            <div className="relative mx-auto max-w-5xl px-4">
+              {/* Subtle background pattern */}
+              <div className="absolute inset-0 opacity-5">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.15)_0%,transparent_50%)]" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(255,255,255,0.1)_0%,transparent_40%)]" />
+              </div>
 
-        {/* Statistiken Section — warm surface + AnimatedCounters */}
+              <div className="relative mx-auto mb-12 max-w-3xl text-center">
+                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-clay-400">
+                  Zahlen &amp; Fakten
+                </p>
+                <h2 className="font-heading text-3xl font-bold text-white md:text-4xl mb-3">
+                  Unsere Entwicklung
+                </h2>
+                <p className="text-cream-200/80 text-lg">
+                  Ein Verein mit gewachsener Reichweite und beständiger Arbeit
+                </p>
+              </div>
+
+              <div className="relative mx-auto grid max-w-4xl grid-cols-2 gap-4 lg:grid-cols-4">
+                {[
+                  {
+                    target: 14,
+                    suffix: "+",
+                    label: "Jahre",
+                    sub: "Initiative seit 2011",
+                  },
+                  {
+                    target: 60,
+                    suffix: "+",
+                    label: "Mitglieder",
+                    sub: "Aktive Frauen",
+                  },
+                  {
+                    target: 100,
+                    suffix: "+",
+                    label: "Veranstaltungen",
+                    sub: "Seit Gründung",
+                  },
+                  {
+                    target: 500,
+                    suffix: "",
+                    label: "Gäste",
+                    sub: "Größte Veranstaltung",
+                  },
+                ].map((stat, i) => (
+                  <div
+                    key={i}
+                    className="group flex flex-col items-center justify-center rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm px-4 py-8 text-center transition-all duration-300 hover:bg-white/10 hover:border-white/20"
+                  >
+                    <span className="text-4xl font-bold tracking-tight text-white lg:text-5xl">
+                      <AnimatedCounter
+                        target={stat.target}
+                        suffix={stat.suffix}
+                      />
+                    </span>
+                    <p className="mt-2 text-sm font-semibold uppercase tracking-wider text-clay-300">
+                      {stat.label}
+                    </p>
+                    {stat.sub && (
+                      <p className="mt-1.5 text-xs leading-relaxed text-cream-200/60">
+                        {stat.sub}
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.section>
+        </SectionBand>
+
+        {/* Vorstand / Team Section - with visual imagery */}
         <motion.section
           variants={itemVariants}
           className={SECTION_CONTENT_SPACING}
         >
-          <div className="relative mx-auto max-w-5xl overflow-hidden rounded-2xl border border-sand-200 bg-cream-50/70 px-6 py-10 shadow-sm md:px-10">
+          <div className="mx-auto max-w-5xl">
             <div className="mx-auto mb-10 max-w-3xl text-center">
               <p className="mb-2 text-xs font-semibold uppercase tracking-[0.24em] text-sage-600">
-                Zahlen &amp; Fakten
+                Unser Vorstand
               </p>
               <SectionHeading
-                title="Zahlen und Entwicklung"
-                subtitle="Ein Verein mit gewachsener Reichweite und beständiger Arbeit"
+                title="Die Frauen hinter Muslimin e.V."
+                subtitle="Ein engagiertes Team, das den Verein mit Herz und Verstand leitet."
               />
             </div>
-            <div className="mx-auto grid max-w-4xl grid-cols-2 gap-4 lg:grid-cols-4">
+
+            {/* Image Gallery Grid - creates visual interest */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-10">
               {[
-                {
-                  target: 14,
-                  suffix: "+",
-                  label: "Jahre",
-                  sub: "Initiative seit 2011, e.V. seit 2018",
-                },
-                { target: 60, suffix: "+", label: "Mitglieder", sub: null },
-                {
-                  target: 100,
-                  suffix: "+",
-                  label: "Veranstaltungen",
-                  sub: null,
-                },
-                {
-                  target: 500,
-                  suffix: "",
-                  label: "Gäste",
-                  sub: "bei unserer größten Veranstaltung",
-                },
-              ].map((stat, i) => (
+                { src: "/images/veranstaltungen/gemeinschaft-01.jpg", alt: "Gemeinschaft bei Muslimin e.V." },
+                { src: "/images/veranstaltungen/gemeinschaft-vortrag.jpg", alt: "Vortrag und Austausch" },
+                { src: "/images/veranstaltungen/gemeinschaft-saal-1.jpg", alt: "Veranstaltungssaal" },
+                { src: "/images/veranstaltungen/gemeinschaft-gebet.jpg", alt: "Spirituelle Momente" },
+              ].map((img, i) => (
                 <div
                   key={i}
-                  className="flex flex-col items-center justify-center rounded-xl border border-sand-200 bg-white px-4 py-8 text-center shadow-sm"
+                  className={`relative overflow-hidden rounded-2xl ${
+                    i === 0 ? "col-span-2 row-span-2 aspect-square" : "aspect-[4/3]"
+                  }`}
                 >
-                  <span className="text-4xl font-bold tracking-tight text-sage-800 lg:text-5xl">
-                    <AnimatedCounter
-                      target={stat.target}
-                      suffix={stat.suffix}
-                    />
-                  </span>
-                  <p className="mt-2 text-sm font-semibold uppercase tracking-wide text-charcoal-700">
-                    {stat.label}
-                  </p>
-                  {stat.sub && (
-                    <p className="mt-1 max-w-[13rem] text-xs leading-relaxed text-charcoal-500">
-                      {stat.sub}
-                    </p>
-                  )}
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    fill
+                    className="object-cover transition-transform duration-500 hover:scale-105"
+                    sizes={i === 0 ? "(max-width: 768px) 100vw, 50vw" : "(max-width: 768px) 50vw, 25vw"}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal-900/30 to-transparent" />
                 </div>
               ))}
             </div>
+
+            {/* Board Description */}
+            <div className="mx-auto max-w-3xl rounded-2xl border border-sand-200 bg-white/80 backdrop-blur-sm p-8 text-center shadow-sm">
+              <p className="text-lg leading-relaxed text-charcoal-700 mb-4">
+                Der Vorstand von Muslimin e.V. besteht aus engagierten Frauen verschiedener Fachrichtungen,
+                die ihre Expertise ehrenamtlich einbringen. Gemeinsam gestalten sie die strategische 
+                Ausrichtung des Vereins und sorgen für eine lebendige, wachsende Gemeinschaft.
+              </p>
+              <p className="text-sm text-charcoal-500">
+                Bei Fragen zum Vorstand oder zur Vereinsarbeit schreib uns gerne an{" "}
+                <a 
+                  href="mailto:kontakt@muslimin.de" 
+                  className="text-sage-600 hover:text-sage-700 underline underline-offset-2"
+                >
+                  kontakt@muslimin.de
+                </a>
+              </p>
+            </div>
           </div>
         </motion.section>
-
-        <SectionDivider variant="accent-line" />
 
         {/* CTA Section */}
         <motion.section

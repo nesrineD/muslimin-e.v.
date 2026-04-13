@@ -340,7 +340,11 @@ function IdentitiesSection() {
 export function WerSindWirSection() {
   return (
     <div className="relative mx-auto max-w-5xl overflow-hidden rounded-2xl border border-sand-200 bg-cream-50/70 px-6 py-8 shadow-sm md:px-10 md:py-10">
-      <div className="mx-auto mb-10 max-w-3xl text-center">
+      {/* Subtle decorative gradient orbs for visual depth */}
+      <div className="absolute -top-24 -right-24 w-64 h-64 bg-sage-200/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-32 -left-32 w-80 h-80 bg-clay-200/15 rounded-full blur-3xl pointer-events-none" />
+      
+      <div className="relative mx-auto mb-10 max-w-3xl text-center">
         <h2 className="font-heading text-3xl font-bold leading-tight text-sage-800 md:text-4xl">
           Wer sind wir?
         </h2>
