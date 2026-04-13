@@ -34,7 +34,7 @@ export default function AboutPage() {
         {/* Hero Section */}
         <section className={`relative ${SECTION_HERO_SPACING} overflow-hidden`}>
           {/* Subtle geometric pattern for depth */}
-          <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
+          <div className="absolute inset-0 opacity-[0.03] pointer-events-none" aria-hidden="true">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,_#5b6960_1px,_transparent_1px)] bg-[length:32px_32px]" />
           </div>
           <DecorativeAccents preset="hero" />
@@ -175,9 +175,9 @@ export default function AboutPage() {
         {/* Statistiken Section — Warm sand-100 surface: light, distinct, on-palette */}
         <section className="py-16 md:py-20 bg-sand-100 relative overflow-hidden">
           {/* Soft sage tint — top right corner */}
-          <div className="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-sage-200/30 blur-[72px] pointer-events-none" />
+          <div className="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-sage-200/30 blur-[72px] pointer-events-none" aria-hidden="true" />
           {/* Soft clay tint — bottom left corner */}
-          <div className="absolute -bottom-24 -left-24 w-72 h-72 rounded-full bg-clay-200/20 blur-[64px] pointer-events-none" />
+          <div className="absolute -bottom-24 -left-24 w-72 h-72 rounded-full bg-clay-200/20 blur-[64px] pointer-events-none" aria-hidden="true" />
 
           <motion.section variants={itemVariants}>
             <div className="relative mx-auto max-w-5xl px-4">
