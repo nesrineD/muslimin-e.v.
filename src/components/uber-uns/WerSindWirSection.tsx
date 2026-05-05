@@ -257,7 +257,6 @@ function MarqueeRow({
       >
         {doubled.map((item, i) => (
           <span
-            // eslint-disable-next-line react/no-array-index-key
             key={i}
             className="whitespace-nowrap rounded-full bg-white/90 px-4 py-1.5 text-sm text-charcoal-600 shadow-sm ring-1 ring-sand-200"
           >
@@ -318,7 +317,7 @@ function IdentitiesSection() {
         className="absolute -top-2 left-6 font-heading text-8xl leading-none text-clay-200/60 select-none"
         aria-hidden="true"
       >
-        "
+        &ldquo;
       </div>
       <p className="mb-1 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-clay-500">
         Und vor allem…
