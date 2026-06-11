@@ -73,7 +73,9 @@ function LoginContent() {
   // Redirect if already logged in
   useEffect(() => {
     if (user && !authLoading) {
-      const destination = redirectUrl || "/dashboard";
+      const destination =
+        redirectUrl ||
+        (user.role === "event_admin" ? "/admin/ashura" : "/dashboard");
       router.push(destination);
     }
   }, [user, authLoading, router, redirectUrl]);
@@ -95,15 +97,19 @@ function LoginContent() {
     setIsLoading(true);
 
     try {
-      const success = await signIn(formData.email, formData.password);
+      const loggedInUser = await signIn(formData.email, formData.password);
 
-      if (success) {
+      if (loggedInUser) {
         // Login successful
         console.log("Login successful:", formData);
         setIsLoading(false);
 
-        // Redirect to the requested page or dashboard
-        const destination = redirectUrl || "/dashboard";
+        // Redirect to the requested page, or role-based default
+        const destination =
+          redirectUrl ||
+          (loggedInUser.role === "event_admin"
+            ? "/admin/ashura"
+            : "/dashboard");
         router.push(destination);
       } else {
         // Login failed

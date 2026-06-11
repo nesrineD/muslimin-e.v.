@@ -7,12 +7,67 @@ import {
   ReactNode,
   useEffect,
 } from "react";
-import { mockUsers, type User } from "@/lib/mock/users";
+import type { User as SupabaseUser } from "@supabase/supabase-js";
+import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 
+// ---------------------------------------------------------------------------
+// Local User type — kept compatible with the rest of the app.
+// role and is_helper are stored in Supabase user_metadata so they survive
+// across sessions without a separate profiles table.
+// ---------------------------------------------------------------------------
+export type User = {
+  id: string;
+  email: string;
+  role?: "member" | "helper" | "admin" | "event_admin";
+  is_helper: boolean;
+  user_metadata: {
+    full_name?: string;
+    avatar_url?: string;
+    vorname?: string;
+    nachname?: string;
+    telefon?: string;
+    adresse?: string;
+    plz?: string;
+    stadt?: string;
+    interessen?: string;
+    sichtbarkeit?: "ja" | "plz" | "nein";
+  };
+};
+
+function mapSupabaseUser(sbUser: SupabaseUser): User {
+  const meta = sbUser.user_metadata ?? {};
+  // role can be set server-side via app_metadata (more secure) or user_metadata
+  const role =
+    (sbUser.app_metadata?.role as User["role"]) ??
+    (meta.role as User["role"]) ??
+    "member";
+  return {
+    id: sbUser.id,
+    email: sbUser.email ?? "",
+    role,
+    is_helper: Boolean(meta.is_helper),
+    user_metadata: {
+      full_name: meta.full_name,
+      avatar_url: meta.avatar_url,
+      vorname: meta.vorname,
+      nachname: meta.nachname,
+      telefon: meta.telefon,
+      adresse: meta.adresse,
+      plz: meta.plz,
+      stadt: meta.stadt,
+      interessen: meta.interessen,
+      sichtbarkeit: meta.sichtbarkeit,
+    },
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Context
+// ---------------------------------------------------------------------------
 type AuthContextType = {
   user: User | null;
   loading: boolean;
-  signIn: (email: string, password: string) => Promise<boolean>;
+  signIn: (email: string, password: string) => Promise<User | null>;
   signOut: () => Promise<void>;
   registerAsHelper: (selectedCategories: string[]) => Promise<boolean>;
 };
@@ -22,102 +77,62 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const supabase = createSupabaseBrowserClient();
 
   useEffect(() => {
-    // Simulate checking auth status (e.g., from localStorage or cookies)
-    const timer = setTimeout(() => {
-      // Check if user was previously logged in (in real app, check localStorage/cookies)
-      const wasLoggedIn = localStorage.getItem("auth-status") === "logged-in";
-      const currentUserEmail = localStorage.getItem("current-user-email");
-
-      if (wasLoggedIn && currentUserEmail) {
-        const persona = mockUsers[currentUserEmail];
-        if (persona) {
-          setUser(persona);
-        }
-      }
+    // Load the current session on mount
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ? mapSupabaseUser(session.user) : null);
       setLoading(false);
-    }, 500); // 500ms delay to simulate network request
+    });
 
-    return () => clearTimeout(timer);
-  }, []);
+    // Keep state in sync with Supabase auth events (tab focus, token refresh, etc.)
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ? mapSupabaseUser(session.user) : null);
+      setLoading(false);
+    });
 
-  const signIn = async (email: string, password: string): Promise<boolean> => {
+    return () => subscription.unsubscribe();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const signIn = async (
+    email: string,
+    password: string,
+  ): Promise<User | null> => {
     setLoading(true);
-
-    // Simulate API call delay
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    // Mock login validation - accepts personas with correct password
-    if (password !== "pwd") {
-      setLoading(false);
-      return false; // Wrong password
-    }
-
-    // Find the persona by email
-    const persona = mockUsers[email.toLowerCase()];
-    if (!persona) {
-      setLoading(false);
-      return false; // User not found
-    }
-
-    // Set user as logged in and persist to localStorage
-    setUser(persona);
-    localStorage.setItem("auth-status", "logged-in");
-    localStorage.setItem("current-user-email", email.toLowerCase());
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
     setLoading(false);
-    return true; // Login successful
+    if (error || !data.user) return null;
+    const mappedUser = mapSupabaseUser(data.user);
+    setUser(mappedUser);
+    return mappedUser;
   };
 
   const signOut = async (): Promise<void> => {
-    console.log("signOut: Starting logout process...");
     setLoading(true);
-
-    try {
-      // Simulate API call delay
-      await new Promise((resolve) => setTimeout(resolve, 500));
-
-      // Clear user data
-      setUser(null);
-      localStorage.removeItem("auth-status");
-      localStorage.removeItem("current-user-email");
-
-      // Clear any other auth-related localStorage items
-      localStorage.removeItem("demo_current_user");
-
-      console.log(
-        "signOut: Logout completed successfully, localStorage cleared"
-      );
-    } catch (error) {
-      console.error("signOut: Error during logout:", error);
-    } finally {
-      setLoading(false);
-    }
+    await supabase.auth.signOut();
+    setUser(null);
+    setLoading(false);
   };
 
   const registerAsHelper = async (
-    selectedCategories: string[] // eslint-disable-line @typescript-eslint/no-unused-vars
+    selectedCategories: string[], // eslint-disable-line @typescript-eslint/no-unused-vars
   ): Promise<boolean> => {
     if (!user) return false;
-
     setLoading(true);
-
-    // Simulate API call delay
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    // Update the user to mark them as helper
-    const updatedUser = { ...user, is_helper: true };
-    setUser(updatedUser);
-
-    // Update localStorage with new user data
-    const currentEmail = localStorage.getItem("current-user-email");
-    if (currentEmail) {
-      // In a real app, this would update the database and save selectedCategories
-      mockUsers[currentEmail] = updatedUser;
+    const { data, error } = await supabase.auth.updateUser({
+      data: { is_helper: true },
+    });
+    if (!error && data.user) {
+      setUser(mapSupabaseUser(data.user));
     }
-
     setLoading(false);
-    return true; // Registration successful
+    return !error;
   };
 
   return (
@@ -137,5 +152,4 @@ export const useAuth = () => {
   return context;
 };
 
-// Re-export User type for use in other components
-export type { User };
+// User is already exported above as a named export — no re-export needed.
