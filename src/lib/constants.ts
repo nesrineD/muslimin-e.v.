@@ -111,6 +111,12 @@ export const NAV_LINKS = [
     icon: "Calendar",
   },
   {
+    href: "/veranstaltungen/ashura",
+    label: "Ashura 2026",
+    description: "Jetzt für die Ashura-Veranstaltung anmelden",
+    icon: "Star",
+  },
+  {
     href: "/mitglied-werden",
     label: "Mitgliedschaft",
     description: "Werden Sie Teil unserer Gemeinschaft",

@@ -1,0 +1,63 @@
+import { NextRequest, NextResponse } from "next/server";
+import { createServerClient } from "@supabase/ssr";
+
+export async function middleware(request: NextRequest) {
+  const pathname = request.nextUrl.pathname;
+
+  // Only run auth checks on admin routes
+  if (!pathname.startsWith("/admin")) {
+    return NextResponse.next();
+  }
+
+  // Build a response we can attach refreshed cookies to
+  let response = NextResponse.next({ request });
+
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll() {
+          return request.cookies.getAll();
+        },
+        setAll(cookiesToSet) {
+          cookiesToSet.forEach(({ name, value }) =>
+            request.cookies.set(name, value),
+          );
+          response = NextResponse.next({ request });
+          cookiesToSet.forEach(({ name, value, options }) =>
+            response.cookies.set(name, value, options),
+          );
+        },
+      },
+    },
+  );
+
+  // Refresh the session (rotates token if needed)
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  // Role-based access:
+  // - "admin"       → full access to all /admin/* routes
+  // - "event_admin" → restricted to /admin/ashura only
+  const role = user?.app_metadata?.role;
+  const isAdmin = role === "admin";
+  const isEventAdmin = role === "event_admin";
+
+  const isAshuraRoute = pathname.startsWith("/admin/ashura");
+  const hasAccess = isAdmin || (isEventAdmin && isAshuraRoute);
+
+  if (!hasAccess) {
+    const loginUrl = request.nextUrl.clone();
+    loginUrl.pathname = "/login";
+    loginUrl.searchParams.set("redirect", pathname);
+    return NextResponse.redirect(loginUrl);
+  }
+
+  return response;
+}
+
+export const config = {
+  matcher: ["/admin/:path*"],
+};
