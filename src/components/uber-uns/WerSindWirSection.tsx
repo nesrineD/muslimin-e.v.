@@ -262,7 +262,7 @@ function MarqueeRow({
       >
         {doubled.map((item, i) => (
           <span
-            // eslint-disable-next-line react/no-array-index-key
+             
             key={i}
             className="whitespace-nowrap rounded-full bg-white/80 px-4 py-1.5 text-sm text-charcoal-600 shadow-sm ring-1 ring-sand-200"
           >
