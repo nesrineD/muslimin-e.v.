@@ -1,38 +1,56 @@
 import { redirect } from "next/navigation";
-import { cookies } from "next/headers";
 import { RegistrationTable } from "@/components/ashura/admin/RegistrationTable";
+import { isAshuraAdmin } from "@/lib/auth/roles";
+import { getSupabaseServer } from "@/lib/supabase/server";
 import type { EventRegistration, CapacityInfo } from "@/types/ashura";
+
+const EVENT_ID = "ashura-2026";
+const CAPACITY = parseInt(process.env.EVENT_ASHURA_CAPACITY ?? "250", 10);
 
 async function getData(): Promise<{
   registrations: EventRegistration[];
   capacity: CapacityInfo;
 }> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
-  const cookieStore = await cookies();
+  if (!(await isAshuraAdmin())) redirect("/login");
 
-  const [regRes, capRes] = await Promise.all([
-    fetch(`${baseUrl}/api/events/ashura/registrations`, {
-      cache: "no-store",
-      headers: { Cookie: cookieStore.toString() },
-    }),
-    fetch(`${baseUrl}/api/events/ashura/capacity`, { cache: "no-store" }),
+  const supabase = getSupabaseServer();
+
+  const [regResult, capResult] = await Promise.all([
+    supabase
+      .from("event_registrations")
+      .select(
+        "id, vorname, nachname, email, anzahl_teilnehmer, status, checked_in, created_at",
+      )
+      .eq("event_id", EVENT_ID)
+      .order("created_at", { ascending: false }),
+    supabase
+      .from("event_registrations")
+      .select("anzahl_teilnehmer")
+      .eq("event_id", EVENT_ID)
+      .eq("status", "active"),
   ]);
 
-  if (regRes.status === 401) redirect("/login");
-
-  if (!regRes.ok || !capRes.ok) {
-    const regErr = !regRes.ok ? await regRes.text() : "";
-    const capErr = !capRes.ok ? await capRes.text() : "";
-    console.error("Admin page fetch error:", { regErr, capErr });
-    throw new Error(
-      "API nicht erreichbar. Bitte SUPABASE_SERVICE_ROLE_KEY und andere Umgebungsvariablen in .env.local prüfen.",
-    );
+  if (regResult.error || capResult.error) {
+    console.error("Admin page DB error:", {
+      regErr: regResult.error,
+      capErr: capResult.error,
+    });
+    throw new Error("Datenbankfehler beim Laden der Anmeldungen.");
   }
 
-  const { registrations } = await regRes.json();
-  const capacity: CapacityInfo = await capRes.json();
+  const registered = (capResult.data ?? []).reduce(
+    (sum, row) => sum + row.anzahl_teilnehmer,
+    0,
+  );
 
-  return { registrations, capacity };
+  const capacity: CapacityInfo = {
+    total_capacity: CAPACITY,
+    registered,
+    available: Math.max(0, CAPACITY - registered),
+    is_full: registered >= CAPACITY,
+  };
+
+  return { registrations: regResult.data as EventRegistration[], capacity };
 }
 
 export default async function AshuraAdminPage() {

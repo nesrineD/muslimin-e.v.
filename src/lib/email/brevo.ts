@@ -14,6 +14,8 @@ function createClient() {
   if (!apiKey) {
     console.error("[Brevo] BREVO_API_KEY is not set.");
     throw new Error("BREVO_API_KEY is not configured.");
+  } else {
+    console.log("[Brevo] Using Brevo API key from environment variable.");
   }
   return new BrevoClient({ apiKey });
 }
