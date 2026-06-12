@@ -10,7 +10,7 @@ export function getSupabaseServer() {
 
   if (!supabaseUrl || !supabaseServiceKey) {
     throw new Error(
-      "Supabase environment variables are not configured. Set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local",
+      "Supabase environment variables are not configured. Set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env",
     );
   }
 

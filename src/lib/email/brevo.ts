@@ -3,14 +3,19 @@ import { BrevoClient } from "@getbrevo/brevo";
 const EVENT_DATE = "15. Juni 2026";
 const EVENT_LOCATION = "Berlin (genaue Adresse folgt)";
 const SENDER_NAME = "Muslimin e.V.";
-const SENDER_EMAIL = "info@muslimin-ev.de";
+const SENDER_EMAIL = "ashura@muslimin-ev.de";
 
 function getBaseUrl() {
   return process.env.NEXT_PUBLIC_SITE_URL ?? "https://muslimin-ev.de";
 }
 
 function createClient() {
-  return new BrevoClient({ apiKey: process.env.BREVO_API_KEY! });
+  const apiKey = process.env.BREVO_API_KEY;
+  if (!apiKey) {
+    console.error("[Brevo] BREVO_API_KEY is not set.");
+    throw new Error("BREVO_API_KEY is not configured.");
+  }
+  return new BrevoClient({ apiKey });
 }
 
 export async function sendConfirmationEmail(opts: {
