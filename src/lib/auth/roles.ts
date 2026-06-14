@@ -13,10 +13,10 @@ export async function isFullAdmin(): Promise<boolean> {
 }
 
 /**
- * Checks whether the current request is from an Ashura event admin.
- * Both "admin" (full admin) and "event_admin" (Ashura-only) pass this check.
+ * Checks whether the current request is from an Aschura event admin.
+ * Both "admin" (full admin) and "event_admin" (Aschura-only) pass this check.
  */
-export async function isAshuraAdmin(): Promise<boolean> {
+export async function isAschuraAdmin(): Promise<boolean> {
   const supabase = await getSupabaseAuth();
   const {
     data: { user },

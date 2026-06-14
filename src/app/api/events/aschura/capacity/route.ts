@@ -4,7 +4,7 @@ import { getSupabaseServer } from "@/lib/supabase/server";
 export const dynamic = "force-dynamic";
 
 const EVENT_ID = "ashura-2026";
-const CAPACITY = parseInt(process.env.EVENT_ASHURA_CAPACITY ?? "250", 10);
+const CAPACITY = parseInt(process.env.EVENT_ASCHURA_CAPACITY ?? "250", 10);
 
 export async function GET() {
   try {

@@ -180,15 +180,15 @@ export function Header() {
             <ul className="flex items-center gap-6">
               <li>
                 <Link
-                  href="/admin/ashura"
+                  href="/admin/aschura"
                   className={`relative flex items-center gap-2 text-base font-semibold transition-colors duration-200 after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:transition-all after:duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-500 rounded-sm px-1 ${
-                    pathname.startsWith("/admin/ashura")
+                    pathname.startsWith("/admin/aschura")
                       ? "text-sage-700 after:w-full after:bg-sage-500"
                       : "text-charcoal-700 hover:text-sage-700 after:w-0 after:bg-sage-400 hover:after:w-full"
                   }`}
                 >
                   <BarChart3 className="h-4 w-4" />
-                  <span>Ashura Admin</span>
+                  <span>Aschura Admin</span>
                 </Link>
               </li>
             </ul>
@@ -278,11 +278,11 @@ export function Header() {
                 {isEventAdmin ? (
                   <DropdownMenuItem asChild>
                     <Link
-                      href="/admin/ashura"
+                      href="/admin/aschura"
                       className="flex items-center gap-2 cursor-pointer focus-visible:ring-2 focus-visible:ring-sage-500"
                     >
                       <BarChart3 className="h-4 w-4" />
-                      <span>Ashura Admin Dashboard</span>
+                      <span>Aschura Admin Dashboard</span>
                     </Link>
                   </DropdownMenuItem>
                 ) : (
@@ -498,9 +498,9 @@ export function Header() {
                           className="w-full justify-start hover:bg-sage-100 hover:border-sage-300 min-h-[44px] focus-visible:ring-2 focus-visible:ring-sage-500"
                           asChild
                         >
-                          <Link href="/admin/ashura">
+                          <Link href="/admin/aschura">
                             <BarChart3 className="h-4 w-4 mr-2" />
-                            Ashura Admin Dashboard
+                            Aschura Admin Dashboard
                           </Link>
                         </Button>
                       </motion.div>

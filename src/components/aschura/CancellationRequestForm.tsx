@@ -6,7 +6,7 @@ import { useState } from "react";
 import {
   cancelRequestSchema,
   type CancelRequestInput,
-} from "@/lib/validations/ashura";
+} from "@/lib/validations/aschura";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -23,7 +23,7 @@ export function CancellationRequestForm() {
   });
 
   async function onSubmit(data: CancelRequestInput) {
-    await fetch("/api/events/ashura/cancel-request", {
+    await fetch("/api/events/aschura/cancel-request", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),

@@ -1,4 +1,4 @@
-import type { CapacityInfo } from "@/types/ashura";
+import type { CapacityInfo } from "@/types/aschura";
 
 interface Props {
   capacity: CapacityInfo;
@@ -7,7 +7,7 @@ interface Props {
 
 export function StatsBar({ capacity, checkedIn }: Props) {
   const stats = [
-    { label: "Gesamtteilnehmerinnen", value: capacity.registered },
+    { label: "Gesamtgäste", value: capacity.registered },
     { label: "Eingecheckt", value: checkedIn },
     { label: "Noch verfügbar", value: capacity.available },
     { label: "Kapazität", value: capacity.total_capacity },

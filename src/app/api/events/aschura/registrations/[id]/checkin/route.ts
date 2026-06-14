@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseServer } from "@/lib/supabase/server";
-import { isAshuraAdmin } from "@/lib/auth/roles";
+import { isAschuraAdmin } from "@/lib/auth/roles";
 
 export async function PATCH(
   _request: NextRequest,
   { params }: { params: Promise<{ id: string }> },
 ) {
-  if (!(await isAshuraAdmin())) {
+  if (!(await isAschuraAdmin())) {
     return NextResponse.json({ error: "Nicht autorisiert." }, { status: 401 });
   }
 

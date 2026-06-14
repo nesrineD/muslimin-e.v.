@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, Suspense } from "react";
-import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -75,7 +74,7 @@ function LoginContent() {
     if (user && !authLoading) {
       const destination =
         redirectUrl ||
-        (user.role === "event_admin" ? "/admin/ashura" : "/dashboard");
+        (user.role === "event_admin" ? "/admin/aschura" : "/dashboard");
       router.push(destination);
     }
   }, [user, authLoading, router, redirectUrl]);
@@ -100,15 +99,13 @@ function LoginContent() {
       const loggedInUser = await signIn(formData.email, formData.password);
 
       if (loggedInUser) {
-        // Login successful
-        console.log("Login successful:", formData);
         setIsLoading(false);
 
         // Redirect to the requested page, or role-based default
         const destination =
           redirectUrl ||
           (loggedInUser.role === "event_admin"
-            ? "/admin/ashura"
+            ? "/admin/aschura"
             : "/dashboard");
         router.push(destination);
       } else {
@@ -422,6 +419,7 @@ function LoginContent() {
                     variants={itemVariants}
                     className="text-center space-y-3"
                   >
+                    {/* TODO: re-enable when password reset is implemented
                     <motion.div whileHover={{ scale: 1.05 }}>
                       <Link
                         href="/forgot-password"
@@ -430,7 +428,9 @@ function LoginContent() {
                         Passwort vergessen?
                       </Link>
                     </motion.div>
+                    */}
 
+                    {/* TODO: re-enable when registration is implemented
                     <div className="text-sm text-charcoal-600">
                       Noch kein Konto?{" "}
                       <motion.span
@@ -460,6 +460,7 @@ function LoginContent() {
                         </Link>
                       </motion.span>
                     </div>
+                    */}
                   </motion.div>
                 </form>
               </CardContent>

@@ -1,12 +1,12 @@
 "use client";
 
-import { useForm } from "react-hook-form";
+import { useForm, useFieldArray, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import {
   registrationSchema,
   type RegistrationInput,
-} from "@/lib/validations/ashura";
+} from "@/lib/validations/aschura";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -23,22 +23,42 @@ export function RegistrationForm({ isFull }: Props) {
 
   const {
     register,
+    control,
     handleSubmit,
     setValue,
     watch,
     formState: { errors, isSubmitting },
   } = useForm<RegistrationInput>({
     resolver: zodResolver(registrationSchema),
-    defaultValues: { anzahl_teilnehmer: 1 },
+    defaultValues: {
+      email: "",
+      guests: [{ vorname: "", nachname: "" }],
+    },
+  });
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "guests",
   });
 
   const datenschutz = watch("datenschutz");
+  const guestCount = fields.length;
 
-  async function onSubmit(data: RegistrationInput) {
+  function handleCountChange(newCount: number) {
+    const clamped = Math.max(1, Math.min(20, newCount));
+    const diff = clamped - fields.length;
+    if (diff > 0) {
+      for (let i = 0; i < diff; i++) append({ vorname: "", nachname: "" });
+    } else if (diff < 0) {
+      for (let i = 0; i < -diff; i++) remove(fields.length - 1 - i);
+    }
+  }
+
+  const onSubmit: SubmitHandler<RegistrationInput> = async (data) => {
     setServerError(null);
     setEmailDelayed(false);
 
-    const res = await fetch("/api/events/ashura/register", {
+    const res = await fetch("/api/events/aschura/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
@@ -52,7 +72,7 @@ export function RegistrationForm({ isFull }: Props) {
       setEmailDelayed(true);
       setSubmitted(true);
     }
-  }
+  };
 
   if (isFull && !submitted) {
     return (
@@ -75,8 +95,8 @@ export function RegistrationForm({ isFull }: Props) {
           </p>
         ) : (
           <p className="text-charcoal-600 text-sm">
-            Wir haben dir eine Bestätigungs-E-Mail geschickt. Bitte prüfe auch
-            deinen Spam-Ordner.
+            Wir haben dir eine Bestätigungs-E-Mail mit der Liste aller
+            angemeldeten Gäste geschickt. Bitte prüfe auch deinen Spam-Ordner.
           </p>
         )}
       </div>
@@ -84,37 +104,12 @@ export function RegistrationForm({ isFull }: Props) {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-5" noValidate>
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" noValidate>
       {serverError && (
         <p className="text-red-600 text-sm font-medium">{serverError}</p>
       )}
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="space-y-1">
-          <Label htmlFor="vorname">Vorname *</Label>
-          <Input
-            id="vorname"
-            {...register("vorname")}
-            autoComplete="given-name"
-          />
-          {errors.vorname && (
-            <p className="text-red-600 text-xs">{errors.vorname.message}</p>
-          )}
-        </div>
-
-        <div className="space-y-1">
-          <Label htmlFor="nachname">Nachname *</Label>
-          <Input
-            id="nachname"
-            {...register("nachname")}
-            autoComplete="family-name"
-          />
-          {errors.nachname && (
-            <p className="text-red-600 text-xs">{errors.nachname.message}</p>
-          )}
-        </div>
-      </div>
-
+      {/* E-Mail */}
       <div className="space-y-1">
         <Label htmlFor="email">E-Mail-Adresse *</Label>
         <Input
@@ -128,25 +123,83 @@ export function RegistrationForm({ isFull }: Props) {
         )}
       </div>
 
+      {/* Guest count stepper */}
       <div className="space-y-1">
-        <Label htmlFor="anzahl_teilnehmer">Anzahl der Teilnehmerinnen *</Label>
-        <Input
-          id="anzahl_teilnehmer"
-          type="number"
-          min={1}
-          max={20}
-          {...register("anzahl_teilnehmer", { valueAsNumber: true })}
-        />
+        <Label htmlFor="guestCount">Anzahl der Teilnehmerinnen *</Label>
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={() => handleCountChange(guestCount - 1)}
+            disabled={guestCount <= 1}
+            className="w-9 h-9 rounded-full border border-sage-300 text-charcoal-700 hover:bg-sage-50 disabled:opacity-40 disabled:cursor-not-allowed font-bold text-lg leading-none"
+            aria-label="Weniger Gäste"
+          >
+            −
+          </button>
+          <span className="w-6 text-center text-lg font-semibold text-charcoal-800">
+            {guestCount}
+          </span>
+          <button
+            type="button"
+            onClick={() => handleCountChange(guestCount + 1)}
+            disabled={guestCount >= 20}
+            className="w-9 h-9 rounded-full border border-sage-300 text-charcoal-700 hover:bg-sage-50 disabled:opacity-40 disabled:cursor-not-allowed font-bold text-lg leading-none"
+            aria-label="Mehr Gäste"
+          >
+            +
+          </button>
+        </div>
         <p className="text-charcoal-500 text-xs">
           Inklusive dir selbst. Maximal 20 pro Anmeldung.
         </p>
-        {errors.anzahl_teilnehmer && (
-          <p className="text-red-600 text-xs">
-            {errors.anzahl_teilnehmer.message}
-          </p>
+        {errors.guests?.root && (
+          <p className="text-red-600 text-xs">{errors.guests.root.message}</p>
         )}
       </div>
 
+      {/* Dynamic guest name fields */}
+      <div className="space-y-4">
+        {fields.map((field, index) => (
+          <div
+            key={field.id}
+            className="rounded-lg border border-sage-200 p-4 space-y-3"
+          >
+            <p className="text-xs font-medium text-charcoal-500 uppercase tracking-wide">
+              {index === 0 ? "Dein Name" : `Gast ${index + 1}`}
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="space-y-1">
+                <Label htmlFor={`guests.${index}.vorname`}>Vorname *</Label>
+                <Input
+                  id={`guests.${index}.vorname`}
+                  {...register(`guests.${index}.vorname`)}
+                  autoComplete={index === 0 ? "given-name" : "off"}
+                />
+                {errors.guests?.[index]?.vorname && (
+                  <p className="text-red-600 text-xs">
+                    {errors.guests[index]?.vorname?.message}
+                  </p>
+                )}
+              </div>
+              <div className="space-y-1">
+                <Label htmlFor={`guests.${index}.nachname`}>Nachname *</Label>
+                <Input
+                  id={`guests.${index}.nachname`}
+                  {...register(`guests.${index}.nachname`)}
+                  autoComplete={index === 0 ? "family-name" : "off"}
+                />
+                {errors.guests?.[index]?.nachname && (
+                  <p className="text-red-600 text-xs">
+                    {errors.guests[index]?.nachname?.message}
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Datenschutz */}
       <div className="flex items-start gap-3">
         <Checkbox
           id="datenschutz"

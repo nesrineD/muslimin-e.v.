@@ -1,25 +1,24 @@
 import { redirect } from "next/navigation";
-import { RegistrationTable } from "@/components/ashura/admin/RegistrationTable";
-import { isAshuraAdmin } from "@/lib/auth/roles";
+import { RegistrationTable } from "@/components/aschura/admin/RegistrationTable";
+import { GuestList } from "@/components/aschura/admin/GuestList";
+import { flattenGuests } from "@/lib/utils/aschura";
+import { isAschuraAdmin } from "@/lib/auth/roles";
 import { getSupabaseServer } from "@/lib/supabase/server";
-import type { EventRegistration, CapacityInfo } from "@/types/ashura";
+import type { EventRegistration, CapacityInfo } from "@/types/aschura";
 
 const EVENT_ID = "ashura-2026";
-const CAPACITY = parseInt(process.env.EVENT_ASHURA_CAPACITY ?? "250", 10);
+const CAPACITY = parseInt(process.env.EVENT_ASCHURA_CAPACITY ?? "250", 10);
 
-async function getData(): Promise<{
-  registrations: EventRegistration[];
-  capacity: CapacityInfo;
-}> {
-  if (!(await isAshuraAdmin())) redirect("/login");
+async function getData() {
+  if (!(await isAschuraAdmin())) redirect("/login");
 
   const supabase = getSupabaseServer();
 
-  const [regResult, capResult] = await Promise.all([
+  const [regResult, capResult, guestResult] = await Promise.all([
     supabase
       .from("event_registrations")
       .select(
-        "id, vorname, nachname, email, anzahl_teilnehmer, status, checked_in, created_at",
+        "id, event_id, email, anzahl_teilnehmer, status, checked_in, cancellation_token, token_expires_at, token_used, created_at, event_guests(id, vorname, nachname, checked_in)",
       )
       .eq("event_id", EVENT_ID)
       .order("created_at", { ascending: false }),
@@ -28,13 +27,17 @@ async function getData(): Promise<{
       .select("anzahl_teilnehmer")
       .eq("event_id", EVENT_ID)
       .eq("status", "active"),
+    supabase
+      .from("event_guests")
+      .select(
+        "id, vorname, nachname, checked_in, event_registrations!inner(email, event_id, status)",
+      )
+      .eq("event_registrations.event_id", EVENT_ID)
+      .eq("event_registrations.status", "active")
+      .order("vorname", { ascending: true }),
   ]);
 
   if (regResult.error || capResult.error) {
-    console.error("Admin page DB error:", {
-      regErr: regResult.error,
-      capErr: capResult.error,
-    });
     throw new Error("Datenbankfehler beim Laden der Anmeldungen.");
   }
 
@@ -50,11 +53,18 @@ async function getData(): Promise<{
     is_full: registered >= CAPACITY,
   };
 
-  return { registrations: regResult.data as EventRegistration[], capacity };
+  return {
+    registrations: regResult.data as EventRegistration[],
+    capacity,
+    guestRows: guestResult.data ?? [],
+  };
 }
 
-export default async function AshuraAdminPage() {
-  const { registrations, capacity } = await getData();
+export default async function AschuraAdminPage() {
+  const { registrations, capacity, guestRows } = await getData();
+  const guests = flattenGuests(
+    guestRows as Parameters<typeof flattenGuests>[0],
+  );
 
   return (
     <main className="min-h-screen bg-white">
@@ -68,10 +78,26 @@ export default async function AshuraAdminPage() {
           </p>
         </div>
 
-        <RegistrationTable
-          initialRegistrations={registrations}
-          capacity={capacity}
-        />
+        {/* Tab-like section headers */}
+        <section className="mb-12">
+          <h2 className="text-lg font-semibold text-charcoal-800 mb-4 pb-2 border-b border-sage-200">
+            Anmeldungsübersicht
+          </h2>
+          <RegistrationTable
+            initialRegistrations={registrations}
+            capacity={capacity}
+          />
+        </section>
+
+        <section>
+          <h2 className="text-lg font-semibold text-charcoal-800 mb-1 pb-2 border-b border-sage-200">
+            Gesamtgästeliste
+          </h2>
+          <p className="text-charcoal-500 text-xs mb-4">
+            Eine Zeile pro Gast · Check-in pro Person · sortiert A–Z
+          </p>
+          <GuestList initialGuests={guests} />
+        </section>
       </div>
     </main>
   );

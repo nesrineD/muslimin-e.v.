@@ -1,29 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
+import type { Guest } from "@/types/aschura";
 
 interface RegistrationData {
   id: string;
-  vorname: string;
-  nachname: string;
-  anzahl_teilnehmer: number;
   email: string;
+  anzahl_teilnehmer: number;
+  guests: Guest[];
 }
-
-const reduceSchema = z.object({
-  neue_anzahl: z
-    .number()
-    .int("Bitte gib eine ganze Zahl ein.")
-    .min(1, "Mindestens 1 Teilnehmerin."),
-});
-
-type ReduceInput = z.infer<typeof reduceSchema>;
 
 interface Props {
   token: string;
@@ -35,25 +23,24 @@ export function CancellationConfirmForm({ token, registration }: Props) {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [showReduce, setShowReduce] = useState(false);
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<ReduceInput>({
-    resolver: zodResolver(reduceSchema),
-    defaultValues: {
-      neue_anzahl:
-        registration.anzahl_teilnehmer > 1
-          ? registration.anzahl_teilnehmer - 1
-          : 1,
-    },
-  });
+  function toggleGuest(id: string) {
+    setSelectedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
+      return next;
+    });
+  }
 
   async function cancelFull() {
     setLoading(true);
     setError(null);
-    const res = await fetch("/api/events/ashura/cancel", {
+    const res = await fetch("/api/events/aschura/cancel", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ token, action: "full" }),
@@ -63,33 +50,38 @@ export function CancellationConfirmForm({ token, registration }: Props) {
       setResult("full");
     } else {
       const data = await res.json();
-      setError(
-        data.error ?? "Ein Fehler ist aufgetreten. Bitte versuche es erneut.",
-      );
+      setError(data.error ?? "Ein Fehler ist aufgetreten. Bitte versuche es erneut.");
     }
   }
 
-  async function onReduce(data: ReduceInput) {
+  async function cancelSelected() {
+    if (selectedIds.size === 0) {
+      setError("Bitte wähle mindestens eine Person aus.");
+      return;
+    }
+    if (selectedIds.size >= registration.guests.length) {
+      setError(
+        "Wenn alle Personen entfernt werden, nutze bitte 'Gesamte Anmeldung stornieren'.",
+      );
+      return;
+    }
     setLoading(true);
     setError(null);
-    const res = await fetch("/api/events/ashura/cancel", {
+    const res = await fetch("/api/events/aschura/cancel", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         token,
         action: "reduce",
-        neue_anzahl: data.neue_anzahl,
+        guest_ids_to_remove: Array.from(selectedIds),
       }),
     });
     setLoading(false);
     if (res.ok) {
       setResult("reduce");
     } else {
-      const responseData = await res.json();
-      setError(
-        responseData.error ??
-          "Ein Fehler ist aufgetreten. Bitte versuche es erneut.",
-      );
+      const data = await res.json();
+      setError(data.error ?? "Ein Fehler ist aufgetreten. Bitte versuche es erneut.");
     }
   }
 
@@ -110,8 +102,8 @@ export function CancellationConfirmForm({ token, registration }: Props) {
       <div className="rounded-xl bg-cream-50 border border-sage-200 p-6 text-center space-y-2">
         <p className="font-semibold text-charcoal-800">Änderung gespeichert.</p>
         <p className="text-sm text-charcoal-600">
-          Die Anzahl deiner Teilnehmerinnen wurde angepasst. Eine Bestätigung
-          wurde an <strong>{registration.email}</strong> gesendet.
+          Die ausgewählten Personen wurden aus deiner Anmeldung entfernt. Eine
+          Bestätigung wurde an <strong>{registration.email}</strong> gesendet.
         </p>
       </div>
     );
@@ -119,19 +111,18 @@ export function CancellationConfirmForm({ token, registration }: Props) {
 
   return (
     <div className="space-y-6">
-      {/* Current registration summary */}
-      <div className="rounded-lg bg-cream-50 border border-sage-200 p-4 space-y-1 text-sm">
+      {/* Guest list summary */}
+      <div className="rounded-lg bg-cream-50 border border-sage-200 p-4 space-y-2 text-sm">
         <p className="text-charcoal-500 text-xs uppercase tracking-wide font-medium mb-2">
-          Deine Anmeldung
+          Angemeldete Personen ({registration.guests.length})
         </p>
-        <p className="text-charcoal-800">
-          <strong>Name:</strong> {registration.vorname} {registration.nachname}
-        </p>
-        <p className="text-charcoal-800">
+        {registration.guests.map((g) => (
+          <p key={g.id} className="text-charcoal-800">
+            {g.vorname} {g.nachname}
+          </p>
+        ))}
+        <p className="text-charcoal-600 pt-1">
           <strong>E-Mail:</strong> {registration.email}
-        </p>
-        <p className="text-charcoal-800">
-          <strong>Teilnehmerinnen:</strong> {registration.anzahl_teilnehmer}
         </p>
       </div>
 
@@ -144,52 +135,73 @@ export function CancellationConfirmForm({ token, registration }: Props) {
         variant="default"
         className="w-full min-h-[44px] bg-red-600 hover:bg-red-700 text-white"
       >
-        {loading ? "Wird verarbeitet…" : "Gesamte Anmeldung stornieren"}
+        {loading && !showReduce ? "Wird verarbeitet…" : "Gesamte Anmeldung stornieren"}
       </Button>
 
-      {/* Option B: Reduce count */}
-      {!showReduce ? (
-        <Button
-          onClick={() => setShowReduce(true)}
-          variant="outline"
-          className="w-full min-h-[44px] border-sage-300 text-sage-700 hover:bg-sage-50"
-          disabled={registration.anzahl_teilnehmer <= 1}
-        >
-          Anzahl der Teilnehmerinnen reduzieren
-        </Button>
-      ) : (
-        <form onSubmit={handleSubmit(onReduce)} className="space-y-3">
-          <div className="space-y-1">
-            <Label htmlFor="neue_anzahl">Neue Anzahl der Teilnehmerinnen</Label>
-            <Input
-              id="neue_anzahl"
-              type="number"
-              min={1}
-              max={registration.anzahl_teilnehmer - 1}
-              {...register("neue_anzahl", { valueAsNumber: true })}
-            />
-            {errors.neue_anzahl && (
-              <p className="text-red-600 text-xs">
-                {errors.neue_anzahl.message}
+      {/* Option B: Remove specific guests */}
+      {registration.guests.length > 1 && (
+        <>
+          {!showReduce ? (
+            <Button
+              onClick={() => setShowReduce(true)}
+              variant="outline"
+              className="w-full min-h-[44px] border-sage-300 text-sage-700 hover:bg-sage-50"
+            >
+              Einzelne Personen entfernen
+            </Button>
+          ) : (
+            <div className="space-y-4">
+              <p className="text-sm font-medium text-charcoal-700">
+                Welche Personen sollen entfernt werden?
               </p>
-            )}
-          </div>
-          <Button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-sage-600 hover:bg-sage-700 text-white min-h-[44px]"
-          >
-            {loading ? "Wird gespeichert…" : "Änderung bestätigen"}
-          </Button>
-          <Button
-            type="button"
-            variant="ghost"
-            className="w-full text-charcoal-500"
-            onClick={() => setShowReduce(false)}
-          >
-            Abbrechen
-          </Button>
-        </form>
+              <div className="space-y-3 rounded-lg border border-sage-200 p-4">
+                {registration.guests.map((g) => (
+                  <div key={g.id} className="flex items-center gap-3">
+                    <Checkbox
+                      id={`guest-${g.id}`}
+                      checked={selectedIds.has(g.id)}
+                      onCheckedChange={() => toggleGuest(g.id)}
+                    />
+                    <Label
+                      htmlFor={`guest-${g.id}`}
+                      className="text-sm text-charcoal-800 cursor-pointer"
+                    >
+                      {g.vorname} {g.nachname}
+                    </Label>
+                  </div>
+                ))}
+              </div>
+              <p className="text-xs text-charcoal-500">
+                Mindestens 1 Person muss verbleiben.{" "}
+                {selectedIds.size > 0 && (
+                  <span className="text-charcoal-700 font-medium">
+                    {selectedIds.size} ausgewählt,{" "}
+                    {registration.guests.length - selectedIds.size} verbleibend.
+                  </span>
+                )}
+              </p>
+              <Button
+                onClick={cancelSelected}
+                disabled={loading || selectedIds.size === 0}
+                className="w-full bg-sage-600 hover:bg-sage-700 text-white min-h-[44px]"
+              >
+                {loading ? "Wird gespeichert…" : `${selectedIds.size} Person(en) entfernen`}
+              </Button>
+              <Button
+                type="button"
+                variant="ghost"
+                className="w-full text-charcoal-500"
+                onClick={() => {
+                  setShowReduce(false);
+                  setSelectedIds(new Set());
+                  setError(null);
+                }}
+              >
+                Abbrechen
+              </Button>
+            </div>
+          )}
+        </>
       )}
     </div>
   );

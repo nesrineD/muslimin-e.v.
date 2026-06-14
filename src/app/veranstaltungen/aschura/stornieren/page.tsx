@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { CancellationRequestForm } from "@/components/ashura/CancellationRequestForm";
+import { CancellationRequestForm } from "@/components/aschura/CancellationRequestForm";
 
 export default function StornierungPage() {
   return (
@@ -28,7 +28,7 @@ export default function StornierungPage() {
 
         <p className="text-center text-sm text-charcoal-500 mt-6">
           <a
-            href="/veranstaltungen/ashura"
+            href="/veranstaltungen/aschura"
             className="underline text-sage-700 hover:text-sage-800"
           >
             ← Zurück zur Veranstaltung

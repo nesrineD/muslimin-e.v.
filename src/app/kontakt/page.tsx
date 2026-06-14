@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 import { CONTACT_INFO } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
@@ -17,7 +19,47 @@ import { containerVariants, itemVariants } from "@/lib/animations";
 import { PUBLIC_PAGE_WRAPPER_CLASS } from "@/lib/page-config";
 import { Mail, MapPin } from "lucide-react";
 
+interface FormValues {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
+
 export default function KontaktPage() {
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<FormValues>();
+
+  async function onSubmit(data: FormValues) {
+    setStatus("loading");
+    setErrorMsg("");
+    try {
+      const res = await fetch("/api/kontakt", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const json = await res.json();
+      if (!res.ok) {
+        setErrorMsg(json.error ?? "Ein Fehler ist aufgetreten.");
+        setStatus("error");
+        return;
+      }
+      setStatus("success");
+      reset();
+    } catch {
+      setErrorMsg("Netzwerkfehler. Bitte versuche es später erneut.");
+      setStatus("error");
+    }
+  }
+
   return (
     <div className={PUBLIC_PAGE_WRAPPER_CLASS}>
       <motion.div
@@ -76,60 +118,105 @@ export default function KontaktPage() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <form className="space-y-6">
-                  <div>
-                    <Label htmlFor="name" className="text-charcoal-800">
-                      Name
-                    </Label>
-                    <Input
-                      id="name"
-                      placeholder="Dein Name"
-                      className="mt-1 border-sand-300 focus:border-sage-500 focus:bg-sage-50 transition-colors duration-200"
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="email" className="text-charcoal-800">
-                      Email
-                    </Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder="deine@email.de"
-                      className="mt-1 border-sand-300 focus:border-sage-500 focus:bg-sage-50 transition-colors duration-200"
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="subject" className="text-charcoal-800">
-                      Betreff
-                    </Label>
-                    <Input
-                      id="subject"
-                      placeholder="Betreff deiner Nachricht"
-                      className="mt-1 border-sand-300 focus:border-sage-500 focus:bg-sage-50 transition-colors duration-200"
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="message" className="text-charcoal-800">
-                      Nachricht
-                    </Label>
-                    <Textarea
-                      id="message"
-                      placeholder="Deine Nachricht an uns..."
-                      className="mt-1 border-sand-300 focus:border-sage-500 focus:bg-sage-50 transition-colors duration-200"
-                      rows={5}
-                    />
-                  </div>
-                  <div>
-                    <Button
-                      type="submit"
-                      variant="primary"
-                      size="lg"
-                      className="w-full"
+                {status === "success" ? (
+                  <div className="rounded-xl bg-sage-50 border border-sage-200 px-6 py-8 text-center space-y-2">
+                    <p className="text-sage-700 font-semibold text-lg">
+                      Nachricht gesendet!
+                    </p>
+                    <p className="text-charcoal-600 text-sm">
+                      Vielen Dank – wir melden uns so bald wie möglich bei dir.
+                    </p>
+                    <button
+                      onClick={() => setStatus("idle")}
+                      className="mt-2 text-sm text-sage-600 underline underline-offset-2 hover:text-sage-800"
                     >
-                      Nachricht senden
-                    </Button>
+                      Weitere Nachricht senden
+                    </button>
                   </div>
-                </form>
+                ) : (
+                  <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" noValidate>
+                    <div>
+                      <Label htmlFor="name" className="text-charcoal-800">
+                        Name
+                      </Label>
+                      <Input
+                        id="name"
+                        placeholder="Dein Name"
+                        className="mt-1 border-sand-300 focus:border-sage-500 focus:bg-sage-50 transition-colors duration-200"
+                        {...register("name", { required: "Name ist erforderlich." })}
+                      />
+                      {errors.name && (
+                        <p className="mt-1 text-xs text-red-600">{errors.name.message}</p>
+                      )}
+                    </div>
+                    <div>
+                      <Label htmlFor="email" className="text-charcoal-800">
+                        Email
+                      </Label>
+                      <Input
+                        id="email"
+                        type="email"
+                        placeholder="deine@email.de"
+                        className="mt-1 border-sand-300 focus:border-sage-500 focus:bg-sage-50 transition-colors duration-200"
+                        {...register("email", {
+                          required: "E-Mail ist erforderlich.",
+                          pattern: {
+                            value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                            message: "Bitte eine gültige E-Mail-Adresse eingeben.",
+                          },
+                        })}
+                      />
+                      {errors.email && (
+                        <p className="mt-1 text-xs text-red-600">{errors.email.message}</p>
+                      )}
+                    </div>
+                    <div>
+                      <Label htmlFor="subject" className="text-charcoal-800">
+                        Betreff
+                      </Label>
+                      <Input
+                        id="subject"
+                        placeholder="Betreff deiner Nachricht"
+                        className="mt-1 border-sand-300 focus:border-sage-500 focus:bg-sage-50 transition-colors duration-200"
+                        {...register("subject", { required: "Betreff ist erforderlich." })}
+                      />
+                      {errors.subject && (
+                        <p className="mt-1 text-xs text-red-600">{errors.subject.message}</p>
+                      )}
+                    </div>
+                    <div>
+                      <Label htmlFor="message" className="text-charcoal-800">
+                        Nachricht
+                      </Label>
+                      <Textarea
+                        id="message"
+                        placeholder="Deine Nachricht an uns..."
+                        className="mt-1 border-sand-300 focus:border-sage-500 focus:bg-sage-50 transition-colors duration-200"
+                        rows={5}
+                        {...register("message", { required: "Nachricht ist erforderlich." })}
+                      />
+                      {errors.message && (
+                        <p className="mt-1 text-xs text-red-600">{errors.message.message}</p>
+                      )}
+                    </div>
+                    {status === "error" && (
+                      <p className="rounded-lg bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-700">
+                        {errorMsg}
+                      </p>
+                    )}
+                    <div>
+                      <Button
+                        type="submit"
+                        variant="primary"
+                        size="lg"
+                        className="w-full"
+                        disabled={status === "loading"}
+                      >
+                        {status === "loading" ? "Wird gesendet…" : "Nachricht senden"}
+                      </Button>
+                    </div>
+                  </form>
+                )}
               </CardContent>
             </Card>
           </motion.div>

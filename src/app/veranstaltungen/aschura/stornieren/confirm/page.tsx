@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { CancellationConfirmForm } from "@/components/ashura/CancellationConfirmForm";
+import { CancellationConfirmForm } from "@/components/aschura/CancellationConfirmForm";
 
 interface Props {
   searchParams: Promise<{ token?: string }>;
@@ -8,7 +8,7 @@ interface Props {
 async function getRegistration(token: string) {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
   const res = await fetch(
-    `${baseUrl}/api/events/ashura/cancel?token=${encodeURIComponent(token)}`,
+    `${baseUrl}/api/events/aschura/cancel?token=${encodeURIComponent(token)}`,
     { cache: "no-store" },
   );
   if (!res.ok) return null;
@@ -25,7 +25,7 @@ export default async function StornierungConfirmPage({ searchParams }: Props) {
         <p className="text-charcoal-600 text-center">
           Kein Stornierungslink angegeben.{" "}
           <a
-            href="/veranstaltungen/ashura/stornieren"
+            href="/veranstaltungen/aschura/stornieren"
             className="underline text-sage-700"
           >
             Neuen Link anfordern
@@ -48,7 +48,7 @@ export default async function StornierungConfirmPage({ searchParams }: Props) {
             Bitte fordere einen neuen Stornierungslink an.
           </p>
           <a
-            href="/veranstaltungen/ashura/stornieren"
+            href="/veranstaltungen/aschura/stornieren"
             className="inline-block underline text-sage-700 text-sm"
           >
             Neuen Link anfordern
