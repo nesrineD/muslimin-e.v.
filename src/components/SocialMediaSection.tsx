@@ -172,11 +172,11 @@ export function SocialMediaSection({
           href={social.url}
           target="_blank"
           rel="noopener noreferrer"
-          className={`${baseClasses} group p-2 rounded-md transition-all duration-200 hover:-translate-y-0.5 hover:bg-sand-200/40`}
+          className={`${baseClasses} group rounded-md p-2 text-sand-100/85 transition-all duration-200 hover:-translate-y-0.5 hover:bg-sand-100/10 hover:text-white focus-visible:ring-offset-charcoal-800`}
           aria-label={`Folge uns auf ${social.name}`}
           title={social.name}
         >
-          <Icon className="h-5 w-5 text-charcoal-600/70 group-hover:text-charcoal-800 transition-colors" />
+          <Icon className="h-5 w-5 text-current transition-colors" />
         </a>
       );
     }

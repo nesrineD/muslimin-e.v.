@@ -17,8 +17,9 @@ import { SectionDivider } from "@/components/ui/section-divider";
 import { DecorativeAccents } from "@/components/ui/decorative-accents";
 import { AnimatedWrapper } from "@/components/ui/animated-wrapper";
 import { SectionBand } from "@/components/ui/section-band";
-import { Mic, Video, Moon, Flame } from "lucide-react";
+import { Mic, Moon, Flame } from "lucide-react";
 import Image from "next/image";
+import { useState } from "react";
 import type { LucideIcon } from "lucide-react";
 import type { EventBadge } from "@/types/events";
 
@@ -27,6 +28,12 @@ import type { EventBadge } from "@/types/events";
 // -----------------------------
 
 type EventFormat = "Online" | "Präsenz";
+type EventImage = {
+  src: string;
+  alt: string;
+  fit?: "cover" | "contain";
+  objectPosition?: string;
+};
 
 interface Event {
   id: string;
@@ -40,7 +47,8 @@ interface Event {
   badges: EventBadge[];
   accessNote: string;
   secondaryCtaLabel?: string;
-  image: { src: string; alt: string };
+  image: EventImage;
+  gallery?: EventImage[];
 }
 
 // -----------------------------
@@ -52,44 +60,22 @@ const EVENTS: Event[] = [
     id: "monatsvortrag",
     name: "Monatsvortrag",
     teaser:
-      "Monatliche Vorträge mit anschließender Diskussionsrunde – offen, vielfältig und dialogorientiert.",
+      "Monatliche Vorträge mit anschließender Diskussionsrunde – meist vor Ort, bei passenden Formaten auch online.",
     description:
-      "Jeden letzten Sonntag eines Monats lädt Muslimin e.V. zu einer offenen Runde ein. Frauen verschiedener Altersgruppen und Konfessionen treffen sich seit 2013, um am 'Monatsvortrag' teilzunehmen. Hierbei werden verschiedene Themen angesprochen, wobei der Vortrag als Input für die anschließende Diskussionsrunde dient. Wir möchten einen Raum für Dialoge zwischen Frauen schaffen. Es werden sowohl religiöse als auch nicht-religiöse Inhalte behandelt. Daher laden wir gerne neben islamischen Geistlichen auch Expertinnen aus den jeweiligen Gebieten (z.B. Medizin, Naturwissenschaften, Ernährung usw.) als Rednerinnen ein.",
-    regularity: "Jeden letzten Sonntag im Monat",
+      "Jeden letzten Sonntag eines Monats lädt Muslimin e.V. zu einer offenen Runde ein. Frauen verschiedener Altersgruppen und Konfessionen treffen sich seit 2013, um am 'Monatsvortrag' teilzunehmen. Hierbei werden verschiedene Themen angesprochen, wobei der Vortrag als Input für die anschließende Diskussionsrunde dient. Wir möchten einen Raum für Dialoge zwischen Frauen schaffen. Es werden sowohl religiöse als auch nicht-religiöse Inhalte behandelt. Daher laden wir gerne neben islamischen Geistlichen auch Expertinnen aus den jeweiligen Gebieten (z.B. Medizin, Naturwissenschaften, Ernährung usw.) als Rednerinnen ein. Besondere Zeiten erfordern besondere Formate: Deshalb finden einzelne Vorträge auch online über Zoom statt. Durch die positive Resonanz von Teilnehmerinnen auf bundesweiter Ebene können so auch Gelehrte und Expertinnen aus unterschiedlichen Ländern als Rednerinnen eingebunden werden.",
+    regularity: "Monatlich, meist vor Ort",
     targetAudience: "Frauen und Mädchen",
     format: "Präsenz",
     icon: Mic,
     badges: [
       { label: "ohne Anmeldung", variant: "open" },
-      { label: "vor Ort", variant: "presence" },
+      { label: "vor Ort / online", variant: "online" },
     ],
     accessNote:
-      "Diese Veranstaltung ist offen für alle Frauen und Mädchen. Eine Mitgliedschaft ist nicht erforderlich.",
+      "Diese Veranstaltung ist offen für alle Frauen und Mädchen. Eine Mitgliedschaft ist nicht erforderlich. Wenn der Vortrag online stattfindet, kann er bundesweit besucht werden.",
     image: {
-      src: "/images/veranstaltungen/gemeinschaft-gebet.jpg",
-      alt: "Monatsvortrag – Muslimin e.V.",
-    },
-  },
-  {
-    id: "online-vortrag",
-    name: "Online-Vortragsformat",
-    teaser:
-      "Monatlicher Online-Vortrag mit spirituellen Impulsen und internationalen Expertinnen.",
-    description:
-      "Besondere Zeiten erfordern besondere Formate. Angesichts der Corona-Pandemie sind wir mit unseren monatlichen Vorträgen zu Online-Veranstaltungen auf Zoom umgestiegen. Aufgrund der hohen, positiven Resonanz von Teilnehmerinnen auf bundesweiter Ebene bieten wir an jedem zweiten Dienstagabend eines Monats beginnend mit dem Bittgebet der Fürbitte (Dua Tawassul) einen lehrreichen Online-Vortrag an. Ein großer Vorteil: Gelehrte und Expertinnen aus unterschiedlichen Ländern stehen uns als Redner zur Verfügung.",
-    regularity: "Jeden 2. Dienstag im Monat",
-    targetAudience: "Frauen und Mädchen",
-    format: "Online",
-    icon: Video,
-    badges: [
-      { label: "ohne Anmeldung", variant: "open" },
-      { label: "Online", variant: "online" },
-    ],
-    accessNote:
-      "Der Online-Vortrag ist offen für alle Frauen und Mädchen und kann bundesweit besucht werden.",
-    image: {
-      src: "/images/veranstaltungen/gemeinschaft-vortrag.jpg",
-      alt: "Online-Vortragsformat – Muslimin e.V.",
+      src: "/images/veranstaltungen/Fatimiyya.jpg",
+      alt: "Fatimiyya-Veranstaltung – Monatsvortrag bei Muslimin e.V.",
     },
   },
   {
@@ -110,9 +96,37 @@ const EVENTS: Event[] = [
     accessNote:
       "Alle Frauen und Mädchen sind herzlich willkommen – unabhängig von einer Vereinsmitgliedschaft.",
     image: {
-      src: "/images/veranstaltungen/gemeinschaft-saal-1.jpg",
-      alt: "Ramadan Connects – gemeinsames Fastenbrechen",
+      src: "/images/veranstaltungen/Ramadan%20Connects/IMG_0057%20(2025-03-16T12_08_32.433).JPG",
+      alt: "Ramadan Connects – dekorierter Veranstaltungsbereich",
     },
+    gallery: [
+      {
+        src: "/images/veranstaltungen/Ramadan%20Connects/IMG_0057%20(2025-03-16T12_08_32.433).JPG",
+        alt: "Ramadan Connects – dekorierter Veranstaltungsbereich",
+      },
+      {
+        src: "/images/veranstaltungen/Ramadan%20Connects/IMG_0784%20(2025-03-16T12_00_11.127)%202.jpg",
+        alt: "Ramadan Connects – grün-weiße Festtorte",
+        fit: "contain",
+      },
+      {
+        src: "/images/veranstaltungen/Ramadan%20Connects/veranstaltung-maerz-2025-3.jpg",
+        alt: "Ramadan Connects – Bühnenmoment mit Daf und Publikum",
+      },
+      {
+        src: "/images/veranstaltungen/Ramadan%20Connects/IMG_0886%20(2025-03-16T12_03_21.725).JPG",
+        alt: "Ramadan Connects – gemeinsamer Bühnenmoment",
+      },
+      {
+        src: "/images/veranstaltungen/Ramadan%20Connects/IMG_0162%20(2025-03-16T12_11_52.773).JPG",
+        alt: "Ramadan Connects – Kinder malen gemeinsam",
+        fit: "contain",
+      },
+      {
+        src: "/images/veranstaltungen/Ramadan%20Connects/IMG_0388%20(2025-03-16T11_47_36.232).JPG",
+        alt: "Ramadan Connects – Willkommensschild und Dekoration",
+      },
+    ],
   },
   {
     id: "aschura",
@@ -132,8 +146,8 @@ const EVENTS: Event[] = [
     accessNote:
       "Die Veranstaltung ist offen für alle Frauen und Mädchen, die gemeinsam innehalten und gedenken möchten.",
     image: {
-      src: "/images/veranstaltungen/gemeinschaft-aschura.jpg",
-      alt: "Aschura-Frauenveranstaltung – Muslimin e.V.",
+      src: "/images/veranstaltungen/Aschura/Flagge.jpg",
+      alt: "Aschura-Frauenveranstaltung – rote Fahne im Veranstaltungssaal",
     },
   },
 ];
@@ -143,8 +157,8 @@ const EVENTS: Event[] = [
 // -----------------------------
 
 export default function VeranstaltungenPage() {
-  const regularEvents = EVENTS.slice(0, 2);
-  const annualEvents = EVENTS.slice(2, 4);
+  const regularEvents = EVENTS.slice(0, 1);
+  const annualEvents = EVENTS.slice(1, 3);
 
   return (
     <motion.main
@@ -179,10 +193,10 @@ export default function VeranstaltungenPage() {
               transition={{ delay: 0.5, duration: 0.6 }}
               className="mt-14 max-w-4xl mx-auto"
             >
-              <div className="relative aspect-[16/7] rounded-2xl overflow-hidden border border-sand-200 shadow-sm">
+              <div className="relative aspect-[16/8] rounded-2xl overflow-hidden border border-sand-200 shadow-sm">
                 <Image
-                  src="/images/veranstaltungen/gemeinschaft-saal-2.jpg"
-                  alt="Veranstaltungen – Muslimin e.V. Gemeinschaft in Berlin"
+                  src="/images/veranstaltungen/gemeinschaft-performance.jpg"
+                  alt="Veranstaltungen – Muslimin e.V. Programmmoment in Gemeinschaft"
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 896px"
@@ -268,16 +282,23 @@ function Section({
                   idx % 2 !== 0 ? "md:flex-row-reverse" : ""
                 } overflow-hidden rounded-xl border border-sand-200 shadow-sm`}
               >
-                <div className="relative aspect-[4/3] md:aspect-auto md:w-1/2 flex-shrink-0">
-                  <Image
-                    src={event.image.src}
-                    alt={event.image.alt}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
+                <div className="relative aspect-[4/3] flex-shrink-0 md:aspect-auto md:w-1/2">
+                  {event.gallery ? (
+                    <EventImageGallery
+                      images={event.gallery}
+                      eventName={event.name}
+                    />
+                  ) : (
+                    <Image
+                      src={event.image.src}
+                      alt={event.image.alt}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  )}
                 </div>
-                <div className="md:w-1/2 [&>div]:rounded-none [&>div]:border-0 [&>div]:shadow-none">
+                <div className="md:w-1/2 [&>div]:h-full [&>div>article]:h-full [&>div>article]:rounded-none [&>div>article]:border-0 [&>div>article]:shadow-none">
                   <EventCard {...event} />
                 </div>
               </div>
@@ -286,5 +307,58 @@ function Section({
         </div>
       </motion.div>
     </section>
+  );
+}
+
+function EventImageGallery({
+  images,
+  eventName,
+}: {
+  images: EventImage[];
+  eventName: string;
+}) {
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const selectedImage = images[selectedIndex];
+
+  return (
+    <div className="flex h-full min-h-[420px] flex-col bg-sand-100 p-1">
+      <div className="relative min-h-0 flex-1 overflow-hidden bg-sand-50 p-2">
+        <Image
+          src={selectedImage.src}
+          alt={selectedImage.alt}
+          fill
+          className={selectedImage.fit === "contain" ? "object-contain p-2" : "object-cover"}
+          style={{ objectPosition: selectedImage.objectPosition }}
+          sizes="(max-width: 768px) 100vw, 50vw"
+        />
+      </div>
+      <div
+        className="flex gap-1.5 overflow-x-auto bg-sand-100 pt-1.5"
+        aria-label={`${eventName} Bilder auswählen`}
+      >
+        {images.map((image, imageIndex) => (
+          <button
+            key={image.src}
+            type="button"
+            onClick={() => setSelectedIndex(imageIndex)}
+            className={`relative h-16 w-24 flex-shrink-0 overflow-hidden rounded-md border-2 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:ring-offset-2 ${
+              selectedIndex === imageIndex
+                ? "border-sage-700"
+                : "border-white/80 opacity-80 hover:border-sage-300 hover:opacity-100"
+            }`}
+            aria-label={`${imageIndex + 1}. Bild für ${eventName} anzeigen`}
+            aria-current={selectedIndex === imageIndex ? "true" : undefined}
+          >
+            <Image
+              src={image.src}
+              alt=""
+              fill
+              className="object-cover"
+              sizes="96px"
+            />
+          </button>
+        ))}
+      </div>
+    </div>
   );
 }

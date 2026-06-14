@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -23,46 +23,15 @@ import { AnimatedWrapper } from "@/components/ui/animated-wrapper";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { SectionBand } from "@/components/ui/section-band";
-import { useState, useEffect, useCallback, useMemo, useRef } from "react";
-import { debounce } from "@/lib/utils";
 import {
   PUBLIC_PAGE_WRAPPER_CLASS,
   SECTION_HERO_SPACING,
   SECTION_CONTENT_SPACING,
   SECTION_CTA_SPACING,
   CLOSING_SECTION_SURFACE_CLASS,
-  STICKY_SCROLL_THRESHOLD,
 } from "@/lib/page-config";
 
 export function PublicLandingContent() {
-  const { scrollY } = useScroll();
-  const [showStickyBar, setShowStickyBar] = useState(false);
-  const prevScrollY = useRef(0);
-
-  const handleScroll = useCallback((latest: number) => {
-    const scrollingDown = latest > prevScrollY.current;
-    const pastThreshold = latest > STICKY_SCROLL_THRESHOLD;
-    prevScrollY.current = latest;
-
-    setShowStickyBar((prev) => {
-      const next = pastThreshold && scrollingDown;
-      return prev === next ? prev : next;
-    });
-  }, []);
-
-  const debouncedHandleScroll = useMemo(
-    () => debounce(handleScroll, 100),
-    [handleScroll],
-  );
-
-  useEffect(() => {
-    const unsubscribe = scrollY.on("change", debouncedHandleScroll);
-    return () => {
-      debouncedHandleScroll.cancel();
-      unsubscribe();
-    };
-  }, [scrollY, debouncedHandleScroll]);
-
   return (
     <motion.main
       className={PUBLIC_PAGE_WRAPPER_CLASS}
@@ -70,34 +39,7 @@ export function PublicLandingContent() {
       initial="hidden"
       animate="visible"
     >
-      <div className="container mx-auto px-4 pb-24 sm:pb-0">
-        {/* Sticky CTA Bar — smart scroll-direction visibility:
-            Appears when scrolling down past 300px, hides when scrolling back up.
-            Bottom padding (pb-24) on mobile prevents content from being obscured. */}
-        <AnimatePresence>
-          {showStickyBar && (
-            <motion.div
-              initial={{ y: 100 }}
-              animate={{ y: 0 }}
-              exit={{ y: 100 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="fixed bottom-0 left-0 right-0 z-50 bg-charcoal-800/95 shadow-2xl border-t border-sand-200/15 backdrop-blur-sm"
-            >
-              <div className="container mx-auto px-4 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-                <span className="text-cream-50 font-semibold text-sm md:text-base text-center sm:text-left">
-                  Werde Teil unserer Gemeinschaft
-                </span>
-                <Button size="sm" variant="primary" asChild>
-                  <Link href="/mitglied-werden" className="gap-2">
-                    <Heart className="w-4 h-4" />
-                    Mitglied werden
-                  </Link>
-                </Button>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
+      <div className="container mx-auto px-4">
         {/* Hero Section */}
         <section className={`relative ${SECTION_HERO_SPACING} overflow-hidden`}>
           <DecorativeAccents preset="hero" />
@@ -267,15 +209,15 @@ export function PublicLandingContent() {
                     animation="fade-in-up"
                     delay={idx * 100}
                   >
-                    <Card className="h-full rounded-xl border border-sand-200 bg-cream-50/60 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-                      <CardContent className="space-y-4">
-                        <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-sage-700 text-white">
+                    <Card className="relative h-full overflow-hidden rounded-lg border-2 border-sand-300/90 bg-gradient-to-br from-cream-50 via-sand-50 to-sand-100/70 shadow-[0_8px_24px_-18px_rgba(50,46,42,0.5)] transition-all duration-300 before:absolute before:inset-x-0 before:top-0 before:h-1 before:bg-sage-600/45 hover:-translate-y-1 hover:border-sage-300 hover:shadow-[0_16px_34px_-22px_rgba(50,46,42,0.55)]">
+                      <CardContent className="space-y-5 p-7">
+                        <div className="inline-flex h-14 w-14 items-center justify-center rounded-lg bg-sage-700 text-white shadow-sm ring-1 ring-sage-800/20">
                           {benefit.icon}
                         </div>
                         <h3 className="text-xl font-bold text-charcoal-800">
                           {benefit.title}
                         </h3>
-                        <p className="text-charcoal-700 leading-relaxed">
+                        <p className="leading-relaxed text-charcoal-700">
                           {benefit.description}
                         </p>
                       </CardContent>
@@ -300,8 +242,8 @@ export function PublicLandingContent() {
               <div className="grid md:grid-cols-2">
                 <div className="relative aspect-[4/3] md:aspect-auto">
                   <Image
-                    src="/images/veranstaltungen/gemeinschaft-vortrag.jpg"
-                    alt="Vortrag und Begegnung – Muslimin e.V."
+                    src="/images/veranstaltungen/veranstaltung-januar-2026-2.jpg"
+                    alt="Veranstaltung und Begegnung – Muslimin e.V."
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, 50vw"
