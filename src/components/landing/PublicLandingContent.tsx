@@ -48,8 +48,8 @@ export function PublicLandingContent() {
             className="max-w-5xl mx-auto text-center relative z-10"
           >
             <PageHeading
-              title="Deine Schwesternschaft. Dein geschützter Raum."
-              accentWord="Dein geschützter Raum."
+              title="Deine Schwesternschaft. Im Glauben verbunden."
+              accentWord="Im Glauben verbunden."
               className="mb-6"
             />
 

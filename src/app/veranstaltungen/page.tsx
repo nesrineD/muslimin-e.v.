@@ -183,7 +183,7 @@ export default function VeranstaltungenPage() {
             <p className="text-xl md:text-2xl text-charcoal-700 mb-6 max-w-3xl mx-auto leading-relaxed">
               Unsere Angebote richten sich an Frauen und Mädchen. Viele
               Veranstaltungen sind offen für alle – einige erfordern eine
-              Anmeldung oder Mitgliedschaft.
+              Anmeldung.
             </p>
 
             {/* Hero Image */}
@@ -327,7 +327,11 @@ function EventImageGallery({
           src={selectedImage.src}
           alt={selectedImage.alt}
           fill
-          className={selectedImage.fit === "contain" ? "object-contain p-2" : "object-cover"}
+          className={
+            selectedImage.fit === "contain"
+              ? "object-contain p-2"
+              : "object-cover"
+          }
           style={{ objectPosition: selectedImage.objectPosition }}
           sizes="(max-width: 768px) 100vw, 50vw"
         />
