@@ -48,8 +48,8 @@ export function PublicLandingContent() {
             className="max-w-5xl mx-auto text-center relative z-10"
           >
             <PageHeading
-              title="Deine Schwesternschaft. Im Glauben verbunden."
-              accentWord="Im Glauben verbunden."
+              title="Deine Schwesternschaft · Im Glauben verbunden"
+              accentWord="Im Glauben verbunden"
               className="mb-6"
             />
 

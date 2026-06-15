@@ -76,8 +76,8 @@ const REGIONS = [
   {
     label: "Afrika",
     countries: ["Togo", "Tunesien", "Ghana"],
-    tagClass: "bg-[#fbf2e6] text-warm-500 ring-1 ring-warm-300",
-    cardBg: "bg-[#fbf3e8]",
+    tagClass: "bg-warm-50 text-warm-600 ring-1 ring-warm-300",
+    cardBg: "bg-warm-50",
     dot: "bg-warm-500",
     labelClass: "text-warm-500",
     borderAccent: "border-l-warm-500",

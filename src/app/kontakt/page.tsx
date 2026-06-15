@@ -69,7 +69,7 @@ export default function KontaktPage() {
             <Card className="h-full border border-sand-200 shadow-md bg-white">
               <CardHeader>
                 <CardTitle className="text-2xl font-bold text-charcoal-800">
-                  Schreiben Sie uns
+                  Schreib uns
                 </CardTitle>
                 <CardDescription className="text-charcoal-600">
                   Wir melden uns so schnell wie möglich bei dir.
