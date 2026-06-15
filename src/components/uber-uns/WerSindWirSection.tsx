@@ -50,10 +50,10 @@ const REGIONS = [
     label: "Europa",
     countries: ["Deutschland", "Slowakei", "Polen", "Italien", "Kosovo"],
     tagClass: "bg-sage-50 text-sage-700 ring-1 ring-sage-200",
-    cardBg: "bg-sage-50/60 border-sage-100",
-    dot: "bg-sage-400",
+    cardBg: "bg-sage-50",
+    dot: "bg-sage-500",
     labelClass: "text-sage-700",
-    borderAccent: "border-l-sage-400",
+    borderAccent: "border-l-sage-500",
   },
   {
     label: "Asien & Naher Osten",
@@ -66,29 +66,29 @@ const REGIONS = [
       "Palästina",
       "Syrien",
     ],
-    tagClass: "bg-sand-100 text-charcoal-700 ring-1 ring-sand-300",
-    cardBg: "bg-sand-50/80 border-sand-200",
-    dot: "bg-sand-500",
-    labelClass: "text-charcoal-600",
-    borderAccent: "border-l-sand-400",
+    tagClass: "bg-clay-50 text-clay-700 ring-1 ring-clay-200",
+    cardBg: "bg-clay-50",
+    dot: "bg-clay-500",
+    labelClass: "text-clay-700",
+    borderAccent: "border-l-clay-500",
   },
   {
     label: "Afrika",
     countries: ["Togo", "Tunesien", "Ghana"],
-    tagClass: "bg-clay-50 text-clay-700 ring-1 ring-clay-200",
-    cardBg: "bg-clay-50/60 border-clay-100",
-    dot: "bg-clay-400",
-    labelClass: "text-clay-700",
-    borderAccent: "border-l-clay-300",
+    tagClass: "bg-[#fbf2e6] text-warm-500 ring-1 ring-warm-300",
+    cardBg: "bg-[#fbf3e8]",
+    dot: "bg-warm-500",
+    labelClass: "text-warm-500",
+    borderAccent: "border-l-warm-500",
   },
   {
     label: "Südamerika",
     countries: ["Brasilien"],
-    tagClass: "bg-cream-100 text-charcoal-600 ring-1 ring-cream-300",
-    cardBg: "bg-cream-50/70 border-cream-200",
-    dot: "bg-cream-400",
-    labelClass: "text-charcoal-500",
-    borderAccent: "border-l-cream-300",
+    tagClass: "bg-sand-100 text-charcoal-600 ring-1 ring-sand-300",
+    cardBg: "bg-cream-50",
+    dot: "bg-sand-600",
+    labelClass: "text-charcoal-600",
+    borderAccent: "border-l-sand-600",
   },
 ];
 
@@ -181,7 +181,7 @@ function RegionCard({
       initial={{ opacity: 0, y: 14 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ delay: index * 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-      className={`rounded-xl border border-l-4 p-5 ${region.cardBg} ${region.borderAccent}`}
+      className={`rounded-2xl border-l-[3px] p-5 shadow-soft ${region.cardBg} ${region.borderAccent}`}
     >
       <div className="mb-3 flex items-center gap-2">
         <span className={`inline-block h-2 w-2 rounded-full ${region.dot}`} />
@@ -258,7 +258,7 @@ function MarqueeRow({
         {doubled.map((item, i) => (
           <span
             key={i}
-            className="whitespace-nowrap rounded-full bg-white/90 px-4 py-1.5 text-sm text-charcoal-600 shadow-sm ring-1 ring-sand-200"
+            className="whitespace-nowrap rounded-full bg-sand-50 px-4 py-1.5 text-sm text-charcoal-700 ring-1 ring-sand-200"
           >
             {item}
           </span>
@@ -279,7 +279,7 @@ function ExpertiseSection() {
       initial={{ opacity: 0 }}
       animate={inView ? { opacity: 1 } : {}}
       transition={{ duration: 0.7 }}
-      className="overflow-hidden rounded-2xl bg-gradient-to-br from-sand-50 to-cream-50 pb-5 pt-6 ring-1 ring-sand-200/70"
+      className="overflow-hidden rounded-2xl bg-white pb-5 pt-6 shadow-soft"
     >
       <div className="mb-4 flex items-center justify-center gap-5 px-4">
         <span className="flex items-center gap-1.5 text-[0.68rem] font-bold uppercase tracking-[0.2em] text-charcoal-400">
@@ -310,7 +310,7 @@ function IdentitiesSection() {
       initial={{ opacity: 0, y: 16 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-clay-50 to-cream-50 px-8 py-10 ring-1 ring-clay-100 text-center"
+      className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-clay-50 to-cream-50 px-8 py-10 text-center shadow-[0_10px_26px_rgba(124,76,59,0.12),0_1px_3px_rgba(60,68,60,0.05)]"
     >
       {/* Decorative quotation mark */}
       <div
@@ -349,13 +349,13 @@ function CoreValuesSection() {
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
     >
       <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-        {CORE_VALUES.map(({ icon: Icon, title, description, iconBg, border }, i) => (
+        {CORE_VALUES.map(({ icon: Icon, title, description, iconBg }, i) => (
           <motion.div
             key={title}
             initial={{ opacity: 0, y: 12 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: i * 0.08, duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-            className={`flex flex-col items-center rounded-xl border bg-white/70 px-4 py-6 text-center shadow-sm ${border}`}
+            className="flex flex-col items-center rounded-2xl bg-white px-4 py-6 text-center shadow-soft"
           >
             <div
               className={`mb-3 flex h-11 w-11 items-center justify-center rounded-xl ${iconBg}`}
@@ -376,7 +376,7 @@ function CoreValuesSection() {
 // ─── Main export ─────────────────────────────────────────────────────────────
 export function WerSindWirSection() {
   return (
-    <div className="mx-auto max-w-5xl space-y-12">
+    <div className="mx-auto max-w-[74rem] space-y-12 rounded-3xl bg-white/40 px-6 py-12 shadow-sm md:px-12 md:py-14">
       {/* ── Chapter header ── */}
       <div className="text-center">
         <h2 className="font-heading text-3xl font-bold leading-tight text-sage-800 md:text-4xl">

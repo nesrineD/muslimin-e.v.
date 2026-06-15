@@ -34,7 +34,6 @@ import {
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -94,16 +93,16 @@ export function Header() {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
         isScrolled
-          ? "border-b border-sand-300/75 bg-cream-50/92 shadow-[0_12px_30px_-22px_rgba(50,46,42,0.38)] backdrop-blur-md"
-          : "border-b border-sand-200/70 bg-gradient-to-r from-sand-50/94 via-cream-50/92 to-sage-100/45 backdrop-blur-sm"
+          ? "border-b border-sand-300 bg-sand-50/95 shadow-[0_12px_30px_-20px_rgba(50,46,42,0.42)] backdrop-blur-md"
+          : "border-b border-sand-200 bg-sand-50/96 shadow-[0_6px_20px_-18px_rgba(50,46,42,0.28)] backdrop-blur-sm"
       }`}
       role="banner"
     >
-      <div className="container mx-auto px-4 flex items-center h-20">
+      <div className="container mx-auto flex h-20 items-center px-4">
         {/* Logo with Shrinking Effect */}
         <Link
           href="/"
-          className="flex items-center gap-3 mr-10 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:ring-offset-2 rounded-lg"
+          className="group mr-10 flex items-center gap-3 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-600 focus-visible:ring-offset-2"
           aria-label="Zur Startseite"
         >
           <Image
@@ -111,13 +110,13 @@ export function Header() {
             alt="Muslimin e.V. Logo"
             width={48}
             height={48}
-            className="w-auto h-8 md:h-11"
+            className="h-9 w-auto md:h-12"
           />
           <div className="hidden sm:flex flex-col">
-            <span className="font-bold text-xl text-sage-700 group-hover:text-coral-600 transition-colors duration-300">
+            <span className="text-xl font-bold leading-tight text-sage-800 transition-colors duration-300 group-hover:text-clay-700">
               Muslimin e.V.
             </span>
-            <span className="text-xs text-charcoal-700/90">
+            <span className="text-xs font-medium leading-snug text-charcoal-700">
               Frauen- & Mädchenverein Berlin
             </span>
           </div>
@@ -138,8 +137,8 @@ export function Header() {
                     href={link.href}
                     className={`relative text-base font-semibold transition-colors duration-200 after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:transition-all after:duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-500 rounded-sm px-1 ${
                       pathname === link.href
-                        ? "text-sage-700 after:w-full after:bg-sage-500"
-                        : "text-charcoal-700 hover:text-coral-700 after:w-0 after:bg-coral-400 hover:after:w-full"
+                        ? "text-sage-900 after:w-full after:h-[3px] after:bg-clay-600"
+                        : "text-charcoal-800 hover:text-clay-700 after:w-0 after:bg-clay-500 hover:after:w-full"
                     }`}
                   >
                     {link.label}
@@ -158,8 +157,8 @@ export function Header() {
                     href={link.href}
                     className={`relative flex items-center gap-2 text-base font-semibold transition-colors duration-200 after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:transition-all after:duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clay-500 rounded-sm px-1 ${
                       pathname === link.href
-                        ? "text-clay-700 after:w-full after:bg-clay-500"
-                        : "text-charcoal-700 hover:text-clay-700 after:w-0 after:bg-clay-400 hover:after:w-full"
+                        ? "text-clay-800 after:w-full after:bg-clay-600"
+                        : "text-charcoal-800 hover:text-clay-700 after:w-0 after:bg-clay-500 hover:after:w-full"
                     }`}
                   >
                     {link.icon === "BookOpen" && (
@@ -201,7 +200,7 @@ export function Header() {
             <Button
               asChild
               size="sm"
-              className="border-2 border-clay-300 bg-clay-50/60 text-clay-700 font-semibold shadow-sm hover:bg-clay-100/80 hover:border-clay-400 hover:text-clay-800 hover:-translate-y-0.5 active:translate-y-0 focus-visible:ring-2 focus-visible:ring-clay-400 focus-visible:ring-offset-2"
+              className="border border-clay-400 bg-clay-200 text-charcoal-900 font-semibold shadow-sm hover:bg-clay-300 hover:text-charcoal-900 hover:shadow-md focus-visible:ring-2 focus-visible:ring-clay-500 focus-visible:ring-offset-2"
             >
               <Link href="/spenden" className="flex items-center gap-2">
                 <HeartHandshake className="h-4 w-4" />
@@ -321,7 +320,7 @@ export function Header() {
           ) : (
             <Link
               href="/login"
-              className="flex items-center gap-2 text-sm font-medium text-charcoal-600 hover:text-sage-700 transition-colors px-3 py-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-500"
+              className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-semibold text-charcoal-700 transition-colors hover:bg-sage-100/70 hover:text-sage-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-600"
             >
               <User className="h-4 w-4" />
               <span>Mitgliederbereich</span>
@@ -336,7 +335,7 @@ export function Header() {
               <Button
                 variant="ghost"
                 size="md"
-                className="text-sage-700 hover:bg-sage-50 focus-visible:ring-2 focus-visible:ring-sage-500"
+                className="text-sage-800 hover:bg-sage-100 focus-visible:ring-2 focus-visible:ring-sage-600"
                 aria-label="Mobilmenü öffnen"
               >
                 <Menu className="h-5 w-5" />
@@ -547,7 +546,7 @@ export function Header() {
                       whileTap={{ scale: 0.98 }}
                     >
                       <Button
-                        className="w-full justify-center min-h-[44px] border-2 border-clay-300 bg-clay-50/60 text-clay-700 font-semibold shadow-sm hover:bg-clay-100/80 hover:border-clay-400 hover:text-clay-800 focus-visible:ring-2 focus-visible:ring-clay-400 focus-visible:ring-offset-2"
+                        className="min-h-[44px] w-full justify-center border border-clay-400 bg-clay-200 text-charcoal-900 font-semibold shadow-sm hover:bg-clay-300 hover:text-charcoal-900 focus-visible:ring-2 focus-visible:ring-clay-500 focus-visible:ring-offset-2"
                         asChild
                       >
                         <Link href="/spenden">Spenden</Link>

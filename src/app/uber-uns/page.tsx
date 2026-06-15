@@ -74,8 +74,10 @@ export default function AboutPage() {
           <div className="max-w-5xl mx-auto">
             <SectionHeading title="Unsere Philosophie" className="mb-10" />
             <SplitSection
-              imageSrc="/images/veranstaltungen/gemeinschaft-performance.jpg"
-              imageAlt="Muslimin e.V. – Gemeinschaft und Bildung"
+              imageSrc="/images/philosophie.jpg"
+              imageAlt="Muslimin e.V. – Frauen auf dem Weg zur Moschee"
+              aspectRatio="1:1"
+              imagePosition="top"
             >
               <blockquote className="italic text-xl leading-relaxed text-sage-700 md:text-2xl mb-6 border-l-4 border-clay-300 pl-5">
                 &ldquo;Inspiriert von den großen Vorbildern Sayeda Fatima (a)
@@ -206,12 +208,17 @@ export default function AboutPage() {
                 ].map((stat, i) => (
                   <div
                     key={i}
-                    className="group flex flex-col items-center justify-center rounded-2xl border border-sand-300 bg-white px-4 py-8 text-center shadow-sm transition-all duration-300 hover:shadow-sage-md hover:border-sage-200"
+                    className="group flex flex-col items-center justify-center rounded-2xl border border-sand-300 bg-white px-4 py-8 text-center shadow-sage-md transition-all duration-300 hover:-translate-y-1 hover:border-sage-300 hover:shadow-lift"
                   >
-                    {/* Number — charcoal-800 on white: ~11:1 contrast */}
-                    <span className="text-4xl font-bold tracking-tight text-charcoal-800 lg:text-5xl">
-                      <AnimatedCounter target={stat.target} suffix={stat.suffix} />
+                    <span className="text-4xl font-bold tracking-tight text-sage-700 lg:text-5xl">
+                      <AnimatedCounter target={stat.target} />
+                      {stat.suffix && (
+                        <span className="ml-0.5 text-clay-500">
+                          {stat.suffix}
+                        </span>
+                      )}
                     </span>
+                    <div className="mt-3 h-0.5 w-8 rounded-full bg-clay-500/60 transition-all duration-300 group-hover:w-10 group-hover:bg-clay-500" />
                     {/* Label — sage-600 for brand accent */}
                     <p className="mt-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-sage-600">
                       {stat.label}

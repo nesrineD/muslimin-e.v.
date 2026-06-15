@@ -111,8 +111,8 @@ export default function MitgliedWerdenPage() {
           <section className="px-6 pb-12">
             <div className="container mx-auto max-w-5xl">
               <SplitSection
-                imageSrc="/images/veranstaltungen/gemeinschaft-saal-1.jpg"
-                imageAlt="Muslimin e.V. – Gemeinschaft und Austausch"
+                imageSrc="/images/veranstaltungen/gemeinschaft-vortrag.jpg"
+                imageAlt="Muslimin e.V. – herzlicher Empfang in der Gemeinschaft"
                 reversed
               >
                 <h2 className="font-heading text-2xl md:text-3xl font-bold text-charcoal-800 mb-4">
@@ -234,10 +234,6 @@ export default function MitgliedWerdenPage() {
               <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/70 to-transparent" />
 
               <div className="relative mx-auto max-w-lg">
-                <div className="mx-auto mb-6 flex h-12 w-12 items-center justify-center rounded-xl border border-cream-200/30 bg-sage-700 text-white shadow-sm">
-                  <Heart className="h-5 w-5" />
-                </div>
-
                 <h2 className="mb-4 font-heading text-2xl font-bold text-white md:text-3xl">
                   Deine Mitgliedschaftsanfrage
                 </h2>

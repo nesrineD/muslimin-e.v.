@@ -8,8 +8,10 @@ import { slideInLeftVariants, slideInRightVariants } from "@/lib/animations";
 interface SplitSectionProps {
   imageSrc: string;
   imageAlt: string;
-  /** 4:3 (default) or '3:2' */
-  aspectRatio?: "4:3" | "3:2";
+  /** 4:3 (default), '3:2', '1:1' (square), or '3:4' (portrait) */
+  aspectRatio?: "4:3" | "3:2" | "1:1" | "3:4";
+  /** CSS object-position value, e.g. "top", "center", "bottom" */
+  imagePosition?: string;
   /** When true, text is on the left and image on the right */
   reversed?: boolean;
   className?: string;
@@ -20,6 +22,7 @@ export function SplitSection({
   imageSrc,
   imageAlt,
   aspectRatio = "4:3",
+  imagePosition = "center",
   reversed = false,
   className = "",
   children,
@@ -27,7 +30,14 @@ export function SplitSection({
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px 0px" });
 
-  const paddingClass = aspectRatio === "4:3" ? "pb-[75%]" : "pb-[66.67%]";
+  const paddingClass =
+    aspectRatio === "4:3"
+      ? "pb-[75%]"
+      : aspectRatio === "3:2"
+        ? "pb-[66.67%]"
+        : aspectRatio === "1:1"
+          ? "pb-[100%]"
+          : "pb-[133.33%]";
 
   const textVariants = reversed ? slideInLeftVariants : slideInRightVariants;
   const imageVariants = reversed ? slideInRightVariants : slideInLeftVariants;
@@ -47,6 +57,7 @@ export function SplitSection({
           alt={imageAlt}
           fill
           className="object-cover"
+          style={{ objectPosition: imagePosition }}
           sizes="(max-width: 768px) 100vw, 50vw"
         />
       </div>
