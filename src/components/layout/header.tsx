@@ -107,6 +107,7 @@ export function Header() {
             width={48}
             height={48}
             className="h-7 w-auto md:h-9"
+            style={{ width: "auto" }}
           />
           <div className="hidden sm:flex flex-col">
             <span className="text-lg font-bold leading-tight text-charcoal-800 transition-colors duration-300 group-hover:text-clay-700">
@@ -344,6 +345,7 @@ export function Header() {
                   width={36}
                   height={36}
                   className="h-9 w-auto"
+                  style={{ width: "auto" }}
                 />
                 <span className="text-base font-bold text-charcoal-800">Muslimin e.V.</span>
               </SheetTitle>

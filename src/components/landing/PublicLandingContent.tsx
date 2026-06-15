@@ -17,7 +17,6 @@ import { containerVariants, itemVariants, hoverButton } from "@/lib/animations";
 import { PageHeading } from "@/components/ui/page-heading";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { SectionDivider } from "@/components/ui/section-divider";
-import { SplitSection } from "@/components/ui/split-section";
 import { DecorativeAccents } from "@/components/ui/decorative-accents";
 import { AnimatedWrapper } from "@/components/ui/animated-wrapper";
 import { Button } from "@/components/ui/button";
@@ -48,8 +47,9 @@ export function PublicLandingContent() {
             className="max-w-5xl mx-auto text-center relative z-10"
           >
             <PageHeading
-              title="Deine Schwesternschaft · Im Glauben verbunden"
+              title="Deine Schwesternschaft Im Glauben verbunden"
               accentWord="Im Glauben verbunden"
+              breakBeforeAccent
               className="mb-6"
             />
 
@@ -111,7 +111,7 @@ export function PublicLandingContent() {
         <SectionDivider variant="wave" />
 
         {/* About Teaser */}
-        <section className={SECTION_CONTENT_SPACING}>
+        <section className="relative z-10 pt-10 pb-12 md:pt-14 md:pb-16">
           <motion.div
             variants={itemVariants}
             initial="hidden"
@@ -119,56 +119,58 @@ export function PublicLandingContent() {
             viewport={{ once: true }}
             className="max-w-5xl mx-auto"
           >
-            <SplitSection
-              imageSrc="/images/veranstaltungen/gemeinschaft-gebet.jpg"
-              imageAlt="Muslimin e.V. Gemeinschaft – Berlin"
-            >
-              <SectionHeading
-                title="Ein Verein, der Frauen stärkt und Gemeinschaft trägt"
-                accentWord="Frauen stärkt"
-                centered={false}
-                className="mb-4"
-              />
-              <p className="text-lg text-charcoal-700 leading-relaxed">
-                Muslimin e.V. schafft einen geschützten Raum, in dem Frauen ihre
-                spirituelle, intellektuelle und soziale Entwicklung fördern
-                können — durch religiöse Bildung, Vernetzung und aktive
-                Mitgestaltung der Gesellschaft.
-              </p>
-              <div className="space-y-5 mt-6">
-                {[
-                  {
-                    icon: <BookOpen className="w-5 h-5" />,
-                    text: "Religiöse Bildung mit Praxisbezug",
-                  },
-                  {
-                    icon: <Shield className="w-5 h-5" />,
-                    text: "Geschützter Raum für Frauen und Mädchen",
-                  },
-                  {
-                    icon: <Users className="w-5 h-5" />,
-                    text: "Gemeinschaft über Generationen hinweg",
-                  },
-                ].map((point, idx) => (
-                  <div key={idx} className="flex items-start gap-3">
-                    <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-sage-700 flex items-center justify-center text-white">
-                      {point.icon}
-                    </div>
-                    <p className="text-charcoal-700 text-lg leading-relaxed pt-1.5">
-                      {point.text}
-                    </p>
+            <div className="rounded-2xl border border-sand-300/70 bg-white/82 px-6 py-8 shadow-[0_14px_40px_-28px_rgba(50,46,42,0.45)] backdrop-blur-sm md:px-10 md:py-9">
+              <div className="grid gap-8 md:grid-cols-[1.1fr_0.9fr] md:items-center">
+                <div>
+                  <SectionHeading
+                    title="Ein Verein, der Frauen stärkt und Gemeinschaft trägt"
+                    accentWord="Frauen stärkt"
+                    centered={false}
+                    className="mb-4"
+                  />
+                  <p className="text-lg leading-relaxed text-charcoal-700">
+                    Muslimin e.V. schafft einen geschützten Raum, in dem Frauen
+                    ihre spirituelle, intellektuelle und soziale Entwicklung
+                    fördern können — durch religiöse Bildung, Vernetzung und
+                    aktive Mitgestaltung der Gesellschaft.
+                  </p>
+                  <div className="mt-7">
+                    <Button variant="secondary" asChild>
+                      <Link href="/uber-uns" className="gap-2">
+                        Mehr über unsere Arbeit
+                        <ArrowRight className="w-5 h-5" />
+                      </Link>
+                    </Button>
                   </div>
-                ))}
-                <div className="pt-4">
-                  <Button variant="secondary" asChild>
-                    <Link href="/uber-uns" className="gap-2">
-                      Mehr über unsere Arbeit
-                      <ArrowRight className="w-5 h-5" />
-                    </Link>
-                  </Button>
+                </div>
+
+                <div className="space-y-4">
+                  {[
+                    {
+                      icon: <BookOpen className="w-5 h-5" />,
+                      text: "Religiöse Bildung mit Praxisbezug",
+                    },
+                    {
+                      icon: <Shield className="w-5 h-5" />,
+                      text: "Geschützter Raum für Frauen und Mädchen",
+                    },
+                    {
+                      icon: <Users className="w-5 h-5" />,
+                      text: "Gemeinschaft über Generationen hinweg",
+                    },
+                  ].map((point, idx) => (
+                    <div key={idx} className="flex items-start gap-3">
+                      <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-sage-700 text-white">
+                        {point.icon}
+                      </div>
+                      <p className="pt-1.5 text-base leading-relaxed text-charcoal-700">
+                        {point.text}
+                      </p>
+                    </div>
+                  ))}
                 </div>
               </div>
-            </SplitSection>
+            </div>
           </motion.div>
         </section>
 
