@@ -33,6 +33,10 @@ export default function AboutPage() {
       <div className="container mx-auto px-4">
         {/* Hero Section */}
         <section className={`relative ${SECTION_HERO_SPACING} overflow-hidden`}>
+          {/* Subtle geometric pattern for depth */}
+          <div className="absolute inset-0 opacity-[0.03] pointer-events-none" aria-hidden="true">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,_#5b6960_1px,_transparent_1px)] bg-[length:32px_32px]" />
+          </div>
           <DecorativeAccents preset="hero" />
           <motion.div
             variants={itemVariants}
@@ -70,8 +74,10 @@ export default function AboutPage() {
           <div className="max-w-5xl mx-auto">
             <SectionHeading title="Unsere Philosophie" className="mb-10" />
             <SplitSection
-              imageSrc="/images/veranstaltungen/gemeinschaft-performance.jpg"
-              imageAlt="Muslimin e.V. – Gemeinschaft und Bildung"
+              imageSrc="/images/philosophie.jpg"
+              imageAlt="Muslimin e.V. – Frauen auf dem Weg zur Moschee"
+              aspectRatio="1:1"
+              imagePosition="top"
             >
               <blockquote className="italic text-xl leading-relaxed text-sage-700 md:text-2xl mb-6 border-l-4 border-clay-300 pl-5">
                 &ldquo;Inspiriert von den großen Vorbildern Sayeda Fatima (a)
@@ -98,13 +104,10 @@ export default function AboutPage() {
 
         <SectionDivider variant="accent-line" />
 
-        {/* Kernziele Section */}
-        <motion.section
-          variants={itemVariants}
-          className={SECTION_CONTENT_SPACING}
-        >
-          <div className="relative mx-auto max-w-5xl overflow-hidden rounded-2xl border border-sand-200 bg-white px-6 py-8 shadow-sm md:px-10 md:py-10">
-            <div className="relative">
+        {/* Kernziele Section - wrapped in white band for contrast */}
+        <SectionBand variant="white" className="py-12 md:py-16">
+          <motion.section variants={itemVariants}>
+            <div className="relative mx-auto max-w-5xl px-4">
               <div className="mx-auto mb-12 max-w-3xl text-center">
                 <SectionHeading
                   title="Unsere Kernziele"
@@ -114,7 +117,7 @@ export default function AboutPage() {
               <div className="grid gap-6 md:grid-cols-2">
                 <Card
                   hover="lift"
-                  className="text-left p-8 rounded-xl border border-sand-200 bg-cream-50/50 shadow-sm"
+                  className="text-left p-8 rounded-xl border border-sand-200 bg-gradient-to-br from-cream-50 to-sand-50 shadow-sm"
                 >
                   <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-xl bg-sage-100/90 ring-1 ring-sage-200">
                     <Goal className="h-8 w-8 text-sage-600" />
@@ -128,7 +131,7 @@ export default function AboutPage() {
                 </Card>
                 <Card
                   hover="lift"
-                  className="text-left p-8 rounded-xl border border-sand-200 bg-cream-50/50 shadow-sm"
+                  className="text-left p-8 rounded-xl border border-sand-200 bg-gradient-to-br from-cream-50 to-sand-50 shadow-sm"
                 >
                   <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-xl bg-sage-100/90 ring-1 ring-sage-200">
                     <Lightbulb className="h-8 w-8 text-sage-600" />
@@ -142,7 +145,7 @@ export default function AboutPage() {
                 </Card>
                 <Card
                   hover="lift"
-                  className="text-left p-8 rounded-xl border border-sand-200 bg-cream-50/50 shadow-sm"
+                  className="text-left p-8 rounded-xl border border-sand-200 bg-gradient-to-br from-cream-50 to-sand-50 shadow-sm"
                 >
                   <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-xl bg-sage-100/90 ring-1 ring-sage-200">
                     <Users className="h-8 w-8 text-sage-600" />
@@ -156,7 +159,7 @@ export default function AboutPage() {
                 </Card>
                 <Card
                   hover="lift"
-                  className="text-left p-8 rounded-xl border border-sand-200 bg-cream-50/50 shadow-sm"
+                  className="text-left p-8 rounded-xl border border-sand-200 bg-gradient-to-br from-cream-50 to-sand-50 shadow-sm"
                 >
                   <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-xl bg-sage-100/90 ring-1 ring-sage-200">
                     <ShieldCheck className="h-8 w-8 text-sage-600" />
@@ -170,73 +173,71 @@ export default function AboutPage() {
                 </Card>
               </div>
             </div>
-          </div>
-        </motion.section>
+          </motion.section>
+        </SectionBand>
 
-        <SectionDivider variant="accent-line" />
+        {/* Statistiken Section — Warm sand-100 surface: light, distinct, on-palette */}
+        <section className="py-16 md:py-20 bg-sand-100 relative overflow-hidden">
+          {/* Soft sage tint — top right corner */}
+          <div className="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-sage-200/30 blur-[72px] pointer-events-none" aria-hidden="true" />
+          {/* Soft clay tint — bottom left corner */}
+          <div className="absolute -bottom-24 -left-24 w-72 h-72 rounded-full bg-clay-200/20 blur-[64px] pointer-events-none" aria-hidden="true" />
 
-        {/* Statistiken Section — warm surface + AnimatedCounters */}
-        <motion.section
-          variants={itemVariants}
-          className={SECTION_CONTENT_SPACING}
-        >
-          <div className="relative mx-auto max-w-5xl overflow-hidden rounded-2xl border border-sand-200 bg-cream-50/70 px-6 py-10 shadow-sm md:px-10">
-            <div className="mx-auto mb-10 max-w-3xl text-center">
-              <p className="mb-2 text-xs font-semibold uppercase tracking-[0.24em] text-sage-600">
-                Zahlen &amp; Fakten
-              </p>
-              <SectionHeading
-                title="Zahlen und Entwicklung"
-                subtitle="Ein Verein mit gewachsener Reichweite und beständiger Arbeit"
-              />
-            </div>
-            <div className="mx-auto grid max-w-4xl grid-cols-2 gap-4 lg:grid-cols-4">
-              {[
-                {
-                  target: 14,
-                  suffix: "+",
-                  label: "Jahre",
-                  sub: "Initiative seit 2011, e.V. seit 2018",
-                },
-                { target: 60, suffix: "+", label: "Mitglieder", sub: null },
-                {
-                  target: 100,
-                  suffix: "+",
-                  label: "Veranstaltungen",
-                  sub: null,
-                },
-                {
-                  target: 500,
-                  suffix: "",
-                  label: "Gäste",
-                  sub: "bei unserer größten Veranstaltung",
-                },
-              ].map((stat, i) => (
-                <div
-                  key={i}
-                  className="flex flex-col items-center justify-center rounded-xl border border-sand-200 bg-white px-4 py-8 text-center shadow-sm"
-                >
-                  <span className="text-4xl font-bold tracking-tight text-sage-800 lg:text-5xl">
-                    <AnimatedCounter
-                      target={stat.target}
-                      suffix={stat.suffix}
-                    />
-                  </span>
-                  <p className="mt-2 text-sm font-semibold uppercase tracking-wide text-charcoal-700">
-                    {stat.label}
-                  </p>
-                  {stat.sub && (
-                    <p className="mt-1 max-w-[13rem] text-xs leading-relaxed text-charcoal-500">
-                      {stat.sub}
+          <motion.section variants={itemVariants}>
+            <div className="relative mx-auto max-w-5xl px-4">
+
+              {/* Heading */}
+              <div className="mx-auto mb-12 max-w-2xl text-center">
+                <span className="inline-block mb-3 text-[0.65rem] font-bold uppercase tracking-[0.35em] text-sage-500">
+                  Zahlen &amp; Fakten
+                </span>
+                <h2 className="font-heading text-3xl font-bold text-charcoal-800 md:text-4xl mb-3">
+                  Unsere Entwicklung
+                </h2>
+                <p className="text-charcoal-600 text-base leading-relaxed">
+                  Ein Verein mit gewachsener Reichweite und beständiger Arbeit
+                </p>
+                <div className="mx-auto mt-5 h-px w-12 bg-gradient-to-r from-transparent via-sage-400/50 to-transparent" />
+              </div>
+
+              {/* Stat cards */}
+              <div className="mx-auto grid max-w-4xl grid-cols-2 gap-4 lg:grid-cols-4">
+                {[
+                  { target: 14, suffix: "+", label: "Jahre",          sub: "Initiative seit 2011, e.V. seit 2018" },
+                  { target: 60, suffix: "+", label: "Mitglieder",     sub: "Aktive Frauen"                          },
+                  { target: 100, suffix: "+", label: "Veranstaltungen", sub: "Seit Gründung"                        },
+                  { target: 500, suffix: "",  label: "Gäste",          sub: "Bei unserer größten Veranstaltung"     },
+                ].map((stat, i) => (
+                  <div
+                    key={i}
+                    className="group flex flex-col items-center justify-center rounded-2xl border border-sand-300 bg-white px-4 py-8 text-center shadow-sage-md transition-all duration-300 hover:-translate-y-1 hover:border-sage-300 hover:shadow-lift"
+                  >
+                    <span className="text-4xl font-bold tracking-tight text-sage-700 lg:text-5xl">
+                      <AnimatedCounter target={stat.target} />
+                      {stat.suffix && (
+                        <span className="ml-0.5 text-clay-500">
+                          {stat.suffix}
+                        </span>
+                      )}
+                    </span>
+                    <div className="mt-3 h-0.5 w-8 rounded-full bg-clay-500/60 transition-all duration-300 group-hover:w-10 group-hover:bg-clay-500" />
+                    {/* Label — sage-600 for brand accent */}
+                    <p className="mt-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-sage-600">
+                      {stat.label}
                     </p>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        </motion.section>
+                    {/* Sub — charcoal-500 for secondary readability */}
+                    {stat.sub && (
+                      <p className="mt-1.5 text-[0.7rem] leading-relaxed text-charcoal-500">
+                        {stat.sub}
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </div>
 
-        <SectionDivider variant="accent-line" />
+            </div>
+          </motion.section>
+        </section>
 
         {/* CTA Section */}
         <motion.section

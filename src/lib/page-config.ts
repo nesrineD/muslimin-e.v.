@@ -23,6 +23,14 @@ export const CLOSING_SECTION_SURFACE_CLASS =
 export const SECTION_ALTERNATE_SURFACE_CLASS =
   "bg-sand-100/50 border-y border-sand-200/40";
 
+/** White surface for contrast in alternating rhythm. */
+export const SECTION_WHITE_SURFACE_CLASS =
+  "bg-white border-y border-sand-100/60";
+
+/** Dark featured section for statistics and key highlights. */
+export const SECTION_DARK_FEATURE_CLASS =
+  "bg-gradient-to-br from-sage-800 via-sage-800 to-charcoal-800 text-white";
+
 /** CTA button classes for dark surfaces. */
 export const DARK_CTA_PRIMARY_BUTTON_CLASS =
   "bg-clay-500 hover:bg-clay-600 text-white";

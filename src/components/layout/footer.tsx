@@ -11,46 +11,49 @@ import { LEGAL_LINKS } from "@/lib/constants";
 export function Footer() {
   return (
     <footer
-      className="relative overflow-hidden border-t border-sand-300/50 bg-gradient-to-b from-sand-300/80 via-sand-200/92 to-sage-100/72"
+      className="relative overflow-hidden border-t border-sage-600/40 bg-charcoal-800"
       role="contentinfo"
     >
       <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-10 bg-gradient-to-b from-cream-50/60 via-cream-50/25 to-transparent"
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-sage-500/35"
         aria-hidden="true"
       />
-      <div className="container mx-auto max-w-screen-xl px-8 py-8 md:px-16 md:py-10">
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-[1.8fr_1fr_1fr] sm:gap-x-16 sm:gap-y-8">
+      <div className="container mx-auto max-w-screen-xl px-8 py-10 md:px-16 md:py-12">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-[1.8fr_1fr_1fr] sm:gap-x-16 sm:gap-y-8">
           {/* Brand + Social Column */}
-          <div className="space-y-3">
+          <div className="space-y-4">
             <Link href="/" className="inline-block group">
               <Image
                 src="/images/muslimin-logo.svg"
                 alt="Muslimin e.V. Logo"
                 width={40}
                 height={40}
-                className="h-10 w-auto transition-all duration-300 group-hover:scale-105"
+                className="h-10 w-auto brightness-0 invert opacity-90 transition-all duration-300 group-hover:scale-105 group-hover:opacity-100"
+                style={{ width: "auto" }}
               />
             </Link>
-            <p className="text-[13px] leading-relaxed text-charcoal-600/90">
+            <p className="max-w-xs text-[13px] leading-relaxed text-sand-100">
               Im Glauben vereint. Füreinander da.
             </p>
-            <SocialMediaSection variant="footer" />
+            <div>
+              <SocialMediaSection variant="footer" />
+            </div>
           </div>
 
           {/* Kontakt Column */}
           <div className="sm:justify-self-center">
-            <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-charcoal-800">
+            <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-sand-50">
               Kontakt
             </h3>
-            <address className="not-italic space-y-2 text-[13px] text-charcoal-700/90">
-              <p className="flex items-start gap-2">
-                <MapPin className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-sage-700/80" />
-                Berlin
+            <address className="not-italic space-y-2">
+              <p className="inline-flex items-center gap-2 text-sm font-semibold leading-none text-white">
+                <MapPin className="h-4 w-4 flex-shrink-0 text-sand-100" />
+                <span className="text-white">Berlin</span>
               </p>
             </address>
             <Link
               href="/kontakt"
-              className="mt-3 inline-block text-[13px] text-sage-800 transition-colors hover:text-charcoal-800"
+              className="mt-3 inline-block text-[13px] font-medium text-sand-100 transition-colors hover:text-white hover:underline hover:underline-offset-4"
             >
               Kontaktformular
             </Link>
@@ -58,7 +61,7 @@ export function Footer() {
 
           {/* Rechtliches Column */}
           <div className="sm:justify-self-end">
-            <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-charcoal-800">
+            <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-sand-50">
               Rechtliches
             </h3>
             <ul className="space-y-2">
@@ -66,7 +69,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-[13px] text-charcoal-700/92 transition-colors hover:text-sage-800"
+                    className="text-[13px] font-medium text-sand-100 transition-colors hover:text-white hover:underline hover:underline-offset-4"
                   >
                     {link.label}
                   </Link>
@@ -77,11 +80,11 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar — Copyright only */}
-        <div className="mt-8 flex items-center justify-between border-t border-sand-300/70 pt-4">
-          <span className="text-xs text-charcoal-500/80">
+        <div className="mt-10 flex min-h-10 flex-col gap-2 border-t border-sage-500/60 pt-5 sm:flex-row sm:items-center sm:justify-between">
+          <span className="block text-sm font-semibold leading-relaxed text-white">
             © {new Date().getFullYear()} Muslimin e.V.
           </span>
-          <span className="text-xs text-charcoal-500/60">
+          <span className="block text-sm font-semibold leading-relaxed text-white">
             Alle Rechte vorbehalten.
           </span>
         </div>

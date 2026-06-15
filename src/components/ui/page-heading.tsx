@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 interface PageHeadingProps {
   title: string;
   accentWord?: string;
+  breakBeforeAccent?: boolean;
   subtitle?: string;
   className?: string;
 }
@@ -18,11 +19,12 @@ interface PageHeadingProps {
 export function PageHeading({
   title,
   accentWord,
+  breakBeforeAccent = false,
   subtitle,
   className,
 }: PageHeadingProps) {
   const titleNode = accentWord
-    ? buildTitleWithAccent(title, accentWord)
+    ? buildTitleWithAccent(title, accentWord, breakBeforeAccent)
     : title;
 
   return (
@@ -39,12 +41,14 @@ export function PageHeading({
   );
 }
 
-function buildTitleWithAccent(title: string, accentWord: string) {
+function buildTitleWithAccent(title: string, accentWord: string, breakBefore: boolean) {
   const idx = title.indexOf(accentWord);
   if (idx === -1) return title;
   return (
     <>
-      {title.slice(0, idx)}
+      {title.slice(0, idx).trim()}
+      {breakBefore && <br />}
+      {!breakBefore && " "}
       <span className="text-sage-700">{accentWord}</span>
       {title.slice(idx + accentWord.length)}
     </>

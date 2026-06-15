@@ -44,16 +44,20 @@ export function EventCard({
   const contentId = `event-${name.replace(/\s+/g, "-").toLowerCase()}-content`;
 
   return (
-    <motion.div layout>
+    <motion.div layout className="h-full">
       <Card variant="white" className="h-full">
-        <article className="relative">
+        <article className="relative h-full">
           {/* Top accent bar */}
           <span
             className="absolute inset-x-4 top-4 h-1 rounded-full bg-gradient-to-r from-sage-500/70 via-sand-200/40 to-charcoal-700/60"
             aria-hidden="true"
           />
 
-          <CardContent className="space-y-4 relative pt-8">
+          <CardContent
+            className={`relative flex h-full flex-col space-y-4 pt-8 ${
+              isExpanded ? "" : "justify-center"
+            }`}
+          >
             {/* Icon & Badges Row */}
             <div className="flex items-start justify-between gap-4">
               {/* Icon */}
@@ -92,6 +96,26 @@ export function EventCard({
               {isExpanded ? description : teaser}
             </motion.p>
 
+            {/* Key details stay visible so collapsed cards keep visual weight. */}
+            <div className="grid grid-cols-2 gap-4 rounded-lg border border-sand-200 bg-sand-50 p-4">
+              <div>
+                <p className="mb-1 text-xs uppercase tracking-[0.2em] text-charcoal-500">
+                  Regelmäßigkeit
+                </p>
+                <p className="text-sm font-semibold text-charcoal-900">
+                  {regularity}
+                </p>
+              </div>
+              <div>
+                <p className="mb-1 text-xs uppercase tracking-[0.2em] text-charcoal-500">
+                  Zielgruppe
+                </p>
+                <p className="text-sm font-semibold text-charcoal-900">
+                  {targetAudience}
+                </p>
+              </div>
+            </div>
+
             {/* Expanded Content */}
             <AnimatePresence>
               {isExpanded && (
@@ -105,26 +129,6 @@ export function EventCard({
                   transition={{ duration: 0.3 }}
                   className="space-y-4"
                 >
-                  {/* Details Grid */}
-                  <div className="grid grid-cols-2 gap-4 p-4 bg-sand-50 rounded-lg border border-sand-200">
-                    <div>
-                      <p className="text-xs uppercase tracking-[0.2em] text-charcoal-500 mb-1">
-                        Regelmäßigkeit
-                      </p>
-                      <p className="text-sm font-semibold text-charcoal-900">
-                        {regularity}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-xs uppercase tracking-[0.2em] text-charcoal-500 mb-1">
-                        Zielgruppe
-                      </p>
-                      <p className="text-sm font-semibold text-charcoal-900">
-                        {targetAudience}
-                      </p>
-                    </div>
-                  </div>
-
                   {/* Access Note */}
                   <div className="p-4 bg-sage-50 rounded-lg border border-sage-200">
                     <p className="text-xs uppercase tracking-[0.2em] text-sage-700 font-semibold mb-2">

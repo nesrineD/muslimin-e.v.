@@ -6,7 +6,6 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { AuthProvider } from "@/hooks/useAuth";
 import { Toaster } from "@/components/ui/toaster";
-import { CookieBanner } from "@/components/layout/cookie-banner";
 import { PWAPromptBanner } from "@/components/PWAPromptBanner";
 import { Analytics } from "@vercel/analytics/next";
 
@@ -95,7 +94,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
               <Footer />
             </div>
             <Toaster />
-            <CookieBanner />
           </AuthProvider>
         </MotionConfig>
         <Analytics />
