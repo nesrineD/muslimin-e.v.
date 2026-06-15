@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { SectionDivider } from "@/components/ui/section-divider";
 import {
   Globe2,
   GraduationCap,
@@ -151,20 +152,6 @@ const tagVariant = {
   },
 };
 
-// ─── Divider ─────────────────────────────────────────────────────────────────
-function SectionDividerLine({ label }: { label?: string }) {
-  return (
-    <div className="flex items-center gap-4 py-2">
-      <span className="h-px flex-1 bg-gradient-to-r from-transparent to-sand-200" />
-      {label && (
-        <span className="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-charcoal-400">
-          {label}
-        </span>
-      )}
-      <span className="h-px flex-1 bg-gradient-to-l from-transparent to-sand-200" />
-    </div>
-  );
-}
 
 // ─── Region Card ─────────────────────────────────────────────────────────────
 function RegionCard({
@@ -399,7 +386,7 @@ export function WerSindWirSection() {
         <OriginsSection />
       </section>
 
-      <SectionDividerLine label="ihre Vielfalt" />
+      <SectionDivider variant="accent-line" label="ihre Vielfalt" />
 
       {/* ── Expertise marquee ── */}
       <section aria-labelledby="expertise-label">
@@ -412,12 +399,15 @@ export function WerSindWirSection() {
         <ExpertiseSection />
       </section>
 
-      <SectionDividerLine />
+      <SectionDivider variant="accent-line" />
 
       {/* ── Identities / Mamas ── */}
-      <IdentitiesSection />
+      <section aria-labelledby="identitaeten-label">
+        <h3 id="identitaeten-label" className="sr-only">Unsere Mamas</h3>
+        <IdentitiesSection />
+      </section>
 
-      <SectionDividerLine label="was uns vereint" />
+      <SectionDivider variant="accent-line" label="was uns vereint" />
 
       {/* ── Core Values ── */}
       <section aria-labelledby="unsere-werte">

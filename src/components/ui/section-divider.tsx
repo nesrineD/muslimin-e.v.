@@ -15,11 +15,14 @@ interface SectionDividerProps {
   variant: "wave" | "gradient-fade" | "accent-line";
   /** Only used with gradient-fade: top color (Tailwind bg class). Defaults to transparent → sand blend. */
   className?: string;
+  /** Only used with accent-line: optional centred label text. */
+  label?: string;
 }
 
 export function SectionDivider({
   variant,
   className = "",
+  label,
 }: SectionDividerProps) {
   if (variant === "wave") {
     return (
@@ -59,9 +62,15 @@ export function SectionDivider({
   return (
     <div
       aria-hidden="true"
-      className={`flex items-center justify-center py-4 ${className}`}
+      className={`flex items-center gap-4 py-4 ${className}`}
     >
-      <div className="h-px w-full max-w-2xl bg-gradient-to-r from-transparent via-sage-300 to-transparent" />
+      <div className="h-px flex-1 bg-gradient-to-r from-transparent to-sand-200" />
+      {label && (
+        <span className="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-charcoal-400">
+          {label}
+        </span>
+      )}
+      <div className="h-px flex-1 bg-gradient-to-l from-transparent to-sand-200" />
     </div>
   );
 }

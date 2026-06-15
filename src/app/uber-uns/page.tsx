@@ -102,6 +102,8 @@ export default function AboutPage() {
           </div>
         </motion.section>
 
+        <SectionDivider variant="accent-line" />
+
         {/* Kernziele Section - wrapped in white band for contrast */}
         <SectionBand variant="white" className="py-12 md:py-16">
           <motion.section variants={itemVariants}>
@@ -201,10 +203,10 @@ export default function AboutPage() {
               {/* Stat cards */}
               <div className="mx-auto grid max-w-4xl grid-cols-2 gap-4 lg:grid-cols-4">
                 {[
-                  { target: 14, suffix: "+", label: "Jahre",          sub: "Initiative seit 2011" },
-                  { target: 60, suffix: "+", label: "Mitglieder",     sub: "Aktive Frauen"        },
-                  { target: 100, suffix: "+", label: "Veranstaltungen", sub: "Seit Gründung"      },
-                  { target: 500, suffix: "",  label: "Gäste",          sub: "Größte Veranstaltung" },
+                  { target: 14, suffix: "+", label: "Jahre",          sub: "Initiative seit 2011, e.V. seit 2018" },
+                  { target: 60, suffix: "+", label: "Mitglieder",     sub: "Aktive Frauen"                          },
+                  { target: 100, suffix: "+", label: "Veranstaltungen", sub: "Seit Gründung"                        },
+                  { target: 500, suffix: "",  label: "Gäste",          sub: "Bei unserer größten Veranstaltung"     },
                 ].map((stat, i) => (
                   <div
                     key={i}
