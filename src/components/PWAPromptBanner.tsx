@@ -2,8 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Smartphone, Download } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { X, Download } from "lucide-react";
 import Link from "next/link";
 
 export function PWAPromptBanner() {
@@ -11,7 +10,6 @@ export function PWAPromptBanner() {
   const [isDismissed, setIsDismissed] = useState(false);
 
   useEffect(() => {
-    // Check if user is on mobile and hasn't dismissed the banner
     const isMobile =
       /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
         navigator.userAgent
@@ -20,10 +18,9 @@ export function PWAPromptBanner() {
       localStorage.getItem("pwa-banner-dismissed") === "true";
 
     if (isMobile && !isDismissedStored) {
-      // Show banner after 3 seconds
       const timer = setTimeout(() => {
         setIsVisible(true);
-      }, 3000);
+      }, 5000);
 
       return () => clearTimeout(timer);
     }
@@ -36,7 +33,6 @@ export function PWAPromptBanner() {
   };
 
   const handleInstallClick = () => {
-    // Track click and then navigate
     localStorage.setItem("pwa-banner-clicked", "true");
   };
 
@@ -46,48 +42,48 @@ export function PWAPromptBanner() {
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          initial={{ y: 100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 100, opacity: 0 }}
-          transition={{ type: "spring", damping: 25, stiffness: 200 }}
-          className="fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-r from-sage-600 to-warm-600 text-white shadow-lg"
+          initial={{ y: "100%" }}
+          animate={{ y: 0 }}
+          exit={{ y: "100%" }}
+          transition={{ type: "spring", damping: 30, stiffness: 250 }}
+          className="fixed bottom-0 left-0 right-0 z-50"
         >
-          <div className="container mx-auto px-4 py-3">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <div className="flex-shrink-0">
-                  <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
-                    <Smartphone className="w-4 h-4" />
-                  </div>
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium">📱 Als App installieren</p>
-                  <p className="text-xs text-white/90">
-                    Schnellerer Zugriff & Offline-Funktionen
-                  </p>
-                </div>
+          {/* Sage accent line at top */}
+          <div className="h-0.5 bg-gradient-to-r from-sage-400 via-sage-500 to-sage-400" />
+
+          <div className="rounded-t-2xl bg-white/95 px-5 py-4 shadow-[0_-4px_24px_rgba(0,0,0,0.10)] backdrop-blur-md">
+            <div className="flex items-center gap-4">
+              {/* Icon */}
+              <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-sage-50 border border-sage-100">
+                <span className="text-xl leading-none">🕌</span>
               </div>
 
-              <div className="flex items-center space-x-2">
+              {/* Text */}
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-semibold text-charcoal-800">
+                  Als App installieren
+                </p>
+                <p className="text-xs text-charcoal-500 leading-snug">
+                  Schnellerer Zugriff & Offline-Nutzung
+                </p>
+              </div>
+
+              {/* Actions */}
+              <div className="flex items-center gap-2 flex-shrink-0">
                 <Link href="/pwa-guide" onClick={handleInstallClick}>
-                  <Button
-                    size="sm"
-                    variant="secondary"
-                    className="bg-white/20 hover:bg-white/30 text-white border-white/30 text-xs px-3"
-                  >
-                    <Download className="w-3 h-3 mr-1" />
+                  <button className="flex items-center gap-1.5 rounded-xl bg-sage-600 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-sage-700 active:bg-sage-800">
+                    <Download className="h-3 w-3" />
                     Anleitung
-                  </Button>
+                  </button>
                 </Link>
 
-                <Button
-                  size="sm"
-                  variant="secondary"
+                <button
                   onClick={handleDismiss}
-                  className="text-white/80 hover:text-white hover:bg-white/10 p-1"
+                  aria-label="Schließen"
+                  className="flex h-7 w-7 items-center justify-center rounded-lg text-charcoal-400 transition-colors hover:bg-sand-100 hover:text-charcoal-600"
                 >
-                  <X className="w-4 h-4" />
-                </Button>
+                  <X className="h-4 w-4" />
+                </button>
               </div>
             </div>
           </div>

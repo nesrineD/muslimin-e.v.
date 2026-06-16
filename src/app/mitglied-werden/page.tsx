@@ -244,7 +244,7 @@ export default function MitgliedWerdenPage() {
                   zusammenführt.
                 </p>
 
-                <motion.div {...hoverButton} className="inline-block">
+                <motion.div {...hoverButton} className="flex justify-center">
                   <Button
                     size="lg"
                     asChild
@@ -255,7 +255,6 @@ export default function MitgliedWerdenPage() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <Heart className="h-4 w-4" />
                       Jetzt Mitglied werden
                       <ArrowUpRight className="h-4 w-4" />
                     </a>
