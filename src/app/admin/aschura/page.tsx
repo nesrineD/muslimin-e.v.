@@ -67,22 +67,30 @@ export default async function AschuraAdminPage() {
   );
 
   return (
-    <main className="min-h-screen bg-white">
-      <div className="container mx-auto px-4 py-10 max-w-6xl">
-        <div className="mb-8">
-          <h1 className="text-2xl font-bold text-charcoal-800">
-            Admin — Aschura-Veranstaltung 2026
+    <main className="min-h-screen bg-cream-50">
+      {/* Header Band */}
+      <div className="bg-charcoal-900 border-b border-charcoal-700">
+        <div className="container mx-auto px-4 py-8 max-w-6xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-charcoal-400 mb-1">
+            Admin · Muslimin e.V.
+          </p>
+          <h1 className="text-2xl font-bold text-cream-50">
+            Aschura-Veranstaltung 2026
           </h1>
-          <p className="text-charcoal-500 text-sm mt-1">
+          <p className="text-charcoal-400 text-sm mt-1">
             Gästeliste und Check-in-Verwaltung
           </p>
         </div>
+      </div>
 
-        {/* Tab-like section headers */}
+      <div className="container mx-auto px-4 py-10 max-w-6xl">
         <section className="mb-12">
-          <h2 className="text-lg font-semibold text-charcoal-800 mb-4 pb-2 border-b border-sage-200">
-            Anmeldungsübersicht
-          </h2>
+          <div className="flex items-center gap-3 mb-6 pb-3 border-b border-charcoal-200">
+            <div className="w-1 h-5 rounded-full bg-charcoal-800" />
+            <h2 className="text-base font-bold text-charcoal-800 uppercase tracking-wide">
+              Anmeldungsübersicht
+            </h2>
+          </div>
           <RegistrationTable
             initialRegistrations={registrations}
             capacity={capacity}
@@ -90,11 +98,14 @@ export default async function AschuraAdminPage() {
         </section>
 
         <section>
-          <h2 className="text-lg font-semibold text-charcoal-800 mb-1 pb-2 border-b border-sage-200">
-            Gesamtgästeliste
-          </h2>
-          <p className="text-charcoal-500 text-xs mb-4">
-            Eine Zeile pro Gast · Check-in pro Person · sortiert A–Z
+          <div className="flex items-center gap-3 mb-2 pb-3 border-b border-charcoal-200">
+            <div className="w-1 h-5 rounded-full bg-sage-600" />
+            <h2 className="text-base font-bold text-charcoal-800 uppercase tracking-wide">
+              Gesamtgästeliste
+            </h2>
+          </div>
+          <p className="text-charcoal-400 text-xs mb-5">
+            Eine Zeile pro Gast · Check-in pro Person · sortiert nach Nachname A–Z
           </p>
           <GuestList initialGuests={guests} />
         </section>

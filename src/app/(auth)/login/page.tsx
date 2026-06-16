@@ -349,12 +349,13 @@ function LoginContent() {
                       <motion.div
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.95 }}
+                        className="absolute right-0 top-0 h-full flex items-center"
                       >
                         <Button
                           type="button"
-                          variant="secondary"
+                          variant="ghost"
                           size="sm"
-                          className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                          className="h-full px-3 py-2 hover:bg-transparent"
                           onClick={() => setShowPassword(!showPassword)}
                         >
                           {showPassword ? (

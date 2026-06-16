@@ -75,12 +75,19 @@ export function GuestList({ initialGuests }: Props) {
   const [toggling, setToggling] = useState<string | null>(null);
 
   const filtered = useMemo(() => {
-    if (!search.trim()) return guests;
-    const q = search.toLowerCase();
-    return guests.filter(
-      (g) =>
-        g.vorname.toLowerCase().includes(q) ||
-        g.nachname.toLowerCase().includes(q),
+    const base = search.trim()
+      ? guests.filter((g) => {
+          const q = search.toLowerCase();
+          return (
+            g.vorname.toLowerCase().includes(q) ||
+            g.nachname.toLowerCase().includes(q)
+          );
+        })
+      : guests;
+    return [...base].sort(
+      (a, b) =>
+        a.nachname.localeCompare(b.nachname, "de") ||
+        a.vorname.localeCompare(b.vorname, "de"),
     );
   }, [guests, search]);
 
@@ -116,7 +123,15 @@ export function GuestList({ initialGuests }: Props) {
             {filtered.length} von {guests.length} Gästen
           </p>
           <button
-            onClick={() => exportToPdf(guests)}
+            onClick={() =>
+          exportToPdf(
+            [...guests].sort(
+              (a, b) =>
+                a.nachname.localeCompare(b.nachname, "de") ||
+                a.vorname.localeCompare(b.vorname, "de"),
+            ),
+          )
+        }
             className="flex items-center gap-1.5 rounded-lg border border-sage-300 bg-white px-3 py-1.5 text-sm font-medium text-sage-700 shadow-sm transition-colors hover:bg-sage-50"
           >
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -127,41 +142,48 @@ export function GuestList({ initialGuests }: Props) {
         </div>
       </div>
 
-      <div className="overflow-x-auto rounded-xl border border-sage-200">
+      <div className="overflow-x-auto rounded-xl border border-charcoal-200 shadow-sm">
         <table className="w-full text-sm">
-          <thead className="bg-cream-50 text-charcoal-600 text-xs uppercase tracking-wide">
+          <thead className="bg-charcoal-800 text-cream-50 text-xs uppercase tracking-wide">
             <tr>
-              <th className="px-4 py-3 text-left">Vorname</th>
-              <th className="px-4 py-3 text-left">Nachname</th>
-              <th className="px-4 py-3 text-left">E-Mail Anmeldung</th>
-              <th className="px-4 py-3 text-center">Check-in</th>
+              <th className="px-4 py-3 text-left font-semibold">Nachname</th>
+              <th className="px-4 py-3 text-left font-semibold">Vorname</th>
+              <th className="px-4 py-3 text-left font-semibold">E-Mail Anmeldung</th>
+              <th className="px-4 py-3 text-center font-semibold">Check-in</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-sage-100">
+          <tbody className="divide-y divide-sand-200 bg-white">
             {filtered.length === 0 && (
               <tr>
-                <td colSpan={4} className="px-4 py-8 text-center text-charcoal-400">
+                <td colSpan={4} className="px-4 py-10 text-center text-charcoal-400">
                   Keine Ergebnisse.
                 </td>
               </tr>
             )}
             {filtered.map((g) => (
-              <tr key={g.id} className={g.checked_in ? "bg-sage-50/40" : ""}>
-                <td className="px-4 py-3 font-medium text-charcoal-800">
-                  {g.vorname}
+              <tr
+                key={g.id}
+                className={`transition-colors ${
+                  g.checked_in
+                    ? "bg-sage-50 hover:bg-sage-100/60"
+                    : "hover:bg-sand-50"
+                }`}
+              >
+                <td className="px-4 py-3 font-semibold text-charcoal-800">
+                  {g.nachname}
                 </td>
-                <td className="px-4 py-3 text-charcoal-800">{g.nachname}</td>
-                <td className="px-4 py-3 text-charcoal-500 text-xs">
+                <td className="px-4 py-3 text-charcoal-700">{g.vorname}</td>
+                <td className="px-4 py-3 text-charcoal-400 text-xs">
                   {g.registration_email}
                 </td>
                 <td className="px-4 py-3 text-center">
                   <button
                     onClick={() => toggleCheckin(g)}
                     disabled={toggling === g.id}
-                    className={`w-8 h-8 rounded-full border-2 transition-colors ${
+                    className={`w-9 h-9 rounded-full border-2 transition-all ${
                       g.checked_in
-                        ? "bg-sage-600 border-sage-600"
-                        : "border-sage-300 hover:border-sage-500"
+                        ? "bg-sage-600 border-sage-600 shadow-sm"
+                        : "border-charcoal-300 hover:border-sage-500 hover:bg-sage-50"
                     } disabled:opacity-40 disabled:cursor-not-allowed`}
                     title={
                       g.checked_in

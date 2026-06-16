@@ -56,11 +56,6 @@ export function PublicLandingContent() {
               tragen.
             </p>
 
-            <p className="text-lg text-charcoal-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-              Seit 2011 ehrenamtlich, verlässlich und mit klarem Blick auf die
-              Bedürfnisse von Frauen und Familien.
-            </p>
-
             <div className="flex flex-col items-center gap-5">
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 w-full sm:w-auto">
                 <motion.div {...hoverButton}>

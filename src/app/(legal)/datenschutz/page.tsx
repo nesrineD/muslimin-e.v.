@@ -36,9 +36,7 @@ export default function DatenschutzPage() {
         {/* Header */}
         <motion.div variants={itemVariants} className="text-center mb-16">
           <h1 className="text-4xl md:text-6xl font-bold text-sage-800 mb-6">
-            <span className="bg-gradient-to-r from-coral-500 to-warm-500 bg-clip-text text-transparent">
-              Datenschutz
-            </span>
+            Datenschutz
           </h1>
           <p className="text-xl text-sage-600 max-w-3xl mx-auto leading-relaxed">
             Informationen zur Verarbeitung Ihrer personenbezogenen Daten

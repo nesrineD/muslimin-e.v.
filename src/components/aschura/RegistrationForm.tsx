@@ -76,7 +76,7 @@ export function RegistrationForm({ isFull }: Props) {
 
   if (isFull && !submitted) {
     return (
-      <p className="text-center text-sage-700 font-medium py-6">
+      <p className="text-center text-red-600 font-medium py-6">
         Anmeldung geschlossen — alle Plätze sind vergeben.
       </p>
     );
@@ -84,17 +84,17 @@ export function RegistrationForm({ isFull }: Props) {
 
   if (submitted) {
     return (
-      <div className="rounded-xl bg-cream-50 border border-sage-200 p-6 text-center space-y-2">
-        <p className="font-semibold text-charcoal-800">
+      <div className="rounded-xl bg-charcoal-700 border border-charcoal-600 p-6 text-center space-y-2">
+        <p className="font-semibold text-cream-50">
           Vielen Dank für deine Anmeldung!
         </p>
         {emailDelayed ? (
-          <p className="text-charcoal-600 text-sm">
+          <p className="text-charcoal-300 text-sm">
             Deine Anmeldung wurde gespeichert. Die Bestätigungs-E-Mail kann
             einige Minuten dauern. Bitte prüfe auch deinen Spam-Ordner.
           </p>
         ) : (
-          <p className="text-charcoal-600 text-sm">
+          <p className="text-charcoal-300 text-sm">
             Wir haben dir eine Bestätigungs-E-Mail mit der Liste aller
             angemeldeten Gäste geschickt. Bitte prüfe auch deinen Spam-Ordner.
           </p>
@@ -106,54 +106,55 @@ export function RegistrationForm({ isFull }: Props) {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" noValidate>
       {serverError && (
-        <p className="text-red-600 text-sm font-medium">{serverError}</p>
+        <p role="alert" className="text-red-600 text-sm font-medium">{serverError}</p>
       )}
 
       {/* E-Mail */}
       <div className="space-y-1">
-        <Label htmlFor="email">E-Mail-Adresse *</Label>
+        <Label htmlFor="email" className="text-charcoal-200">E-Mail-Adresse *</Label>
         <Input
           id="email"
           type="email"
           {...register("email")}
           autoComplete="email"
+          className="bg-charcoal-700 border-charcoal-600 text-cream-50 placeholder:text-charcoal-500 focus-visible:ring-red-500"
         />
         {errors.email && (
-          <p className="text-red-600 text-xs">{errors.email.message}</p>
+          <p className="text-red-500 text-xs">{errors.email.message}</p>
         )}
       </div>
 
       {/* Guest count stepper */}
       <div className="space-y-1">
-        <Label htmlFor="guestCount">Anzahl der Teilnehmerinnen *</Label>
-        <div className="flex items-center gap-3">
+        <Label className="text-charcoal-200">Anzahl der Teilnehmerinnen *</Label>
+        <div className="flex items-center gap-3" role="group" aria-label="Anzahl der Teilnehmerinnen">
           <button
             type="button"
             onClick={() => handleCountChange(guestCount - 1)}
             disabled={guestCount <= 1}
-            className="w-9 h-9 rounded-full border border-sage-300 text-charcoal-700 hover:bg-sage-50 disabled:opacity-40 disabled:cursor-not-allowed font-bold text-lg leading-none"
+            className="w-11 h-11 rounded-full border border-charcoal-600 text-charcoal-200 hover:bg-charcoal-700 disabled:opacity-40 disabled:cursor-not-allowed font-bold text-lg leading-none"
             aria-label="Weniger Gäste"
           >
             −
           </button>
-          <span className="w-6 text-center text-lg font-semibold text-charcoal-800">
+          <span aria-live="polite" className="w-6 text-center text-lg font-semibold text-cream-50">
             {guestCount}
           </span>
           <button
             type="button"
             onClick={() => handleCountChange(guestCount + 1)}
             disabled={guestCount >= 20}
-            className="w-9 h-9 rounded-full border border-sage-300 text-charcoal-700 hover:bg-sage-50 disabled:opacity-40 disabled:cursor-not-allowed font-bold text-lg leading-none"
+            className="w-11 h-11 rounded-full border border-charcoal-600 text-charcoal-200 hover:bg-charcoal-700 disabled:opacity-40 disabled:cursor-not-allowed font-bold text-lg leading-none"
             aria-label="Mehr Gäste"
           >
             +
           </button>
         </div>
-        <p className="text-charcoal-500 text-xs">
+        <p className="text-charcoal-400 text-xs">
           Inklusive dir selbst. Maximal 20 pro Anmeldung.
         </p>
         {errors.guests?.root && (
-          <p className="text-red-600 text-xs">{errors.guests.root.message}</p>
+          <p className="text-red-500 text-xs">{errors.guests.root.message}</p>
         )}
       </div>
 
@@ -162,34 +163,36 @@ export function RegistrationForm({ isFull }: Props) {
         {fields.map((field, index) => (
           <div
             key={field.id}
-            className="rounded-lg border border-sage-200 p-4 space-y-3"
+            className="rounded-lg border border-charcoal-600 p-4 space-y-3"
           >
-            <p className="text-xs font-medium text-charcoal-500 uppercase tracking-wide">
+            <p className="text-xs font-medium text-charcoal-400 uppercase tracking-wide">
               {index === 0 ? "Dein Name" : `Gast ${index + 1}`}
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div className="space-y-1">
-                <Label htmlFor={`guests.${index}.vorname`}>Vorname *</Label>
+                <Label htmlFor={`guests.${index}.vorname`} className="text-charcoal-200">Vorname *</Label>
                 <Input
                   id={`guests.${index}.vorname`}
                   {...register(`guests.${index}.vorname`)}
                   autoComplete={index === 0 ? "given-name" : "off"}
+                  className="bg-charcoal-700 border-charcoal-600 text-cream-50 placeholder:text-charcoal-500 focus-visible:ring-red-500"
                 />
                 {errors.guests?.[index]?.vorname && (
-                  <p className="text-red-600 text-xs">
+                  <p className="text-red-500 text-xs">
                     {errors.guests[index]?.vorname?.message}
                   </p>
                 )}
               </div>
               <div className="space-y-1">
-                <Label htmlFor={`guests.${index}.nachname`}>Nachname *</Label>
+                <Label htmlFor={`guests.${index}.nachname`} className="text-charcoal-200">Nachname *</Label>
                 <Input
                   id={`guests.${index}.nachname`}
                   {...register(`guests.${index}.nachname`)}
                   autoComplete={index === 0 ? "family-name" : "off"}
+                  className="bg-charcoal-700 border-charcoal-600 text-cream-50 placeholder:text-charcoal-500 focus-visible:ring-red-500"
                 />
                 {errors.guests?.[index]?.nachname && (
-                  <p className="text-red-600 text-xs">
+                  <p className="text-red-500 text-xs">
                     {errors.guests[index]?.nachname?.message}
                   </p>
                 )}
@@ -212,14 +215,14 @@ export function RegistrationForm({ isFull }: Props) {
         />
         <Label
           htmlFor="datenschutz"
-          className="text-sm leading-snug cursor-pointer"
+          className="text-sm leading-snug cursor-pointer text-charcoal-200"
         >
           Ich habe die{" "}
           <a
             href="/datenschutz"
-            className="underline text-sage-700"
+            className="underline text-red-600 hover:text-red-500"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
           >
             Datenschutzhinweise
           </a>{" "}
@@ -228,7 +231,7 @@ export function RegistrationForm({ isFull }: Props) {
         </Label>
       </div>
       {errors.datenschutz && (
-        <p className="text-red-600 text-xs -mt-3">
+        <p className="text-red-500 text-xs -mt-3">
           {errors.datenschutz.message}
         </p>
       )}
@@ -236,7 +239,7 @@ export function RegistrationForm({ isFull }: Props) {
       <Button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-sage-600 hover:bg-sage-700 text-white min-h-[44px]"
+        className="w-full bg-red-900 hover:bg-red-800 text-white min-h-[44px]"
       >
         {isSubmitting ? "Wird gesendet…" : "Jetzt anmelden"}
       </Button>
