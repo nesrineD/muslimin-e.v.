@@ -1,0 +1,198 @@
+"use client";
+
+import { useState, useMemo } from "react";
+import { Input } from "@/components/ui/input";
+import type { Guest } from "@/types/aschura";
+
+interface GuestRow extends Guest {
+  registration_email: string;
+}
+
+interface Props {
+  initialGuests: GuestRow[];
+}
+
+function exportToPdf(guests: GuestRow[]) {
+  const rows = guests
+    .map(
+      (g, i) => `
+      <tr class="${i % 2 === 0 ? "even" : ""}">
+        <td>${i + 1}</td>
+        <td>${g.vorname}</td>
+        <td>${g.nachname}</td>
+        <td>${g.registration_email}</td>
+        <td>${g.checked_in ? "✓" : ""}</td>
+      </tr>`,
+    )
+    .join("");
+
+  const html = `<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gästeliste — Aschura 2026</title>
+  <style>
+    body { font-family: Arial, sans-serif; font-size: 11px; color: #1a1a1a; margin: 24px; }
+    h1 { font-size: 16px; margin-bottom: 4px; }
+    p.subtitle { color: #666; font-size: 10px; margin-bottom: 16px; }
+    table { width: 100%; border-collapse: collapse; }
+    th { background: #f4f0ea; text-align: left; padding: 6px 8px; font-size: 9px; text-transform: uppercase; letter-spacing: .05em; border-bottom: 2px solid #ccc; }
+    td { padding: 5px 8px; border-bottom: 1px solid #e8e8e8; vertical-align: middle; }
+    tr.even td { background: #fafaf8; }
+    td:first-child { color: #888; width: 32px; }
+    td:last-child { text-align: center; color: #4a7c59; font-weight: bold; }
+    @media print { body { margin: 12mm; } }
+  </style>
+  <script>window.onload = function() { window.print(); }</script>
+</head>
+<body>
+  <h1>Gästeliste — Aschura-Veranstaltung 2026</h1>
+  <p class="subtitle">Exportiert am ${new Date().toLocaleDateString("de-DE", { day: "2-digit", month: "long", year: "numeric" })} · ${guests.length} Gäste</p>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Vorname</th>
+        <th>Nachname</th>
+        <th>E-Mail Anmeldung</th>
+        <th>Check-in</th>
+      </tr>
+    </thead>
+    <tbody>${rows}</tbody>
+  </table>
+</body>
+</html>`;
+
+  const blob = new Blob([html], { type: "text/html;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const win = window.open(url, "_blank", "width=900,height=700");
+  if (win) win.addEventListener("load", () => URL.revokeObjectURL(url));
+}
+
+export function GuestList({ initialGuests }: Props) {
+  const [guests, setGuests] = useState(initialGuests);
+  const [search, setSearch] = useState("");
+  const [toggling, setToggling] = useState<string | null>(null);
+
+  const filtered = useMemo(() => {
+    if (!search.trim()) return guests;
+    const q = search.toLowerCase();
+    return guests.filter(
+      (g) =>
+        g.vorname.toLowerCase().includes(q) ||
+        g.nachname.toLowerCase().includes(q),
+    );
+  }, [guests, search]);
+
+  async function toggleCheckin(guest: GuestRow) {
+    setToggling(guest.id);
+    const res = await fetch(
+      `/api/events/aschura/guests/${guest.id}/checkin`,
+      {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ checked_in: !guest.checked_in }),
+      },
+    );
+    setToggling(null);
+    if (!res.ok) return;
+    const { checked_in } = await res.json();
+    setGuests((prev) =>
+      prev.map((g) => (g.id === guest.id ? { ...g, checked_in } : g)),
+    );
+  }
+
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center justify-between gap-4">
+        <Input
+          placeholder="Nach Name suchen…"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="max-w-sm"
+        />
+        <div className="flex items-center gap-3 shrink-0">
+          <p className="text-sm text-charcoal-500">
+            {filtered.length} von {guests.length} Gästen
+          </p>
+          <button
+            onClick={() => exportToPdf(guests)}
+            className="flex items-center gap-1.5 rounded-lg border border-sage-300 bg-white px-3 py-1.5 text-sm font-medium text-sage-700 shadow-sm transition-colors hover:bg-sage-50"
+          >
+            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17a4 4 0 004 4h10a4 4 0 004-4V7a4 4 0 00-4-4H9L3 9v8z" />
+            </svg>
+            PDF exportieren
+          </button>
+        </div>
+      </div>
+
+      <div className="overflow-x-auto rounded-xl border border-sage-200">
+        <table className="w-full text-sm">
+          <thead className="bg-cream-50 text-charcoal-600 text-xs uppercase tracking-wide">
+            <tr>
+              <th className="px-4 py-3 text-left">Vorname</th>
+              <th className="px-4 py-3 text-left">Nachname</th>
+              <th className="px-4 py-3 text-left">E-Mail Anmeldung</th>
+              <th className="px-4 py-3 text-center">Check-in</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-sage-100">
+            {filtered.length === 0 && (
+              <tr>
+                <td colSpan={4} className="px-4 py-8 text-center text-charcoal-400">
+                  Keine Ergebnisse.
+                </td>
+              </tr>
+            )}
+            {filtered.map((g) => (
+              <tr key={g.id} className={g.checked_in ? "bg-sage-50/40" : ""}>
+                <td className="px-4 py-3 font-medium text-charcoal-800">
+                  {g.vorname}
+                </td>
+                <td className="px-4 py-3 text-charcoal-800">{g.nachname}</td>
+                <td className="px-4 py-3 text-charcoal-500 text-xs">
+                  {g.registration_email}
+                </td>
+                <td className="px-4 py-3 text-center">
+                  <button
+                    onClick={() => toggleCheckin(g)}
+                    disabled={toggling === g.id}
+                    className={`w-8 h-8 rounded-full border-2 transition-colors ${
+                      g.checked_in
+                        ? "bg-sage-600 border-sage-600"
+                        : "border-sage-300 hover:border-sage-500"
+                    } disabled:opacity-40 disabled:cursor-not-allowed`}
+                    title={
+                      g.checked_in
+                        ? "Eingecheckt — klicken zum Rückgängigmachen"
+                        : "Einchecken"
+                    }
+                    aria-label={`Check-in für ${g.vorname} ${g.nachname}`}
+                  >
+                    {g.checked_in && (
+                      <svg
+                        className="w-4 h-4 text-white mx-auto"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={3}
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
+                    )}
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
