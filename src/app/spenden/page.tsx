@@ -9,7 +9,6 @@ import {
   Shield,
   Users,
   Landmark,
-  ArrowRight,
   ChevronDown,
   ChevronUp,
   CheckCircle2,
@@ -192,13 +191,12 @@ export default function SpendenPage() {
           {/* Primary CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <Button size="lg" variant="primary" asChild>
-              <a href="#spenden" className="gap-2">
+              <a href="#spenden">
                 Jetzt spenden
-                <ArrowRight className="w-5 h-5" />
               </a>
             </Button>
             <Button size="lg" variant="secondary" asChild>
-              <a href="#spendenzwecke" className="gap-2">
+              <a href="#spendenzwecke">
                 Wofür wir spenden
               </a>
             </Button>
@@ -645,9 +643,8 @@ export default function SpendenPage() {
             asChild
             className="bg-clay-500 hover:bg-clay-600 text-white px-10 py-4 text-lg"
           >
-            <a href="#spenden" className="gap-2">
+            <a href="#spenden">
               Jetzt spenden
-              <ArrowRight className="w-5 h-5" />
             </a>
           </Button>
         </motion.div>

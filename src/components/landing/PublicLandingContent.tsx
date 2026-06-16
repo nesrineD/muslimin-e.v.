@@ -4,14 +4,11 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import {
-  ArrowRight,
   BookOpen,
-  Heart,
   Users,
   Shield,
   Sparkles,
   CheckCircle,
-  HeartHandshake,
 } from "lucide-react";
 import { containerVariants, itemVariants, hoverButton } from "@/lib/animations";
 import { PageHeading } from "@/components/ui/page-heading";
@@ -68,18 +65,15 @@ export function PublicLandingContent() {
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 w-full sm:w-auto">
                 <motion.div {...hoverButton}>
                   <Button size="lg" variant="primary" asChild>
-                    <Link href="/mitglied-werden" className="gap-3">
-                      <Heart className="w-6 h-6" />
+                    <Link href="/mitglied-werden">
                       Mitglied werden
-                      <ArrowRight className="w-5 h-5" />
                     </Link>
                   </Button>
                 </motion.div>
 
                 <motion.div {...hoverButton}>
                   <Button size="lg" variant="secondary" asChild>
-                    <Link href="/spenden" className="gap-3">
-                      <HeartHandshake className="w-6 h-6" />
+                    <Link href="/spenden">
                       Jetzt unterstützen
                     </Link>
                   </Button>
@@ -136,9 +130,8 @@ export function PublicLandingContent() {
                   </p>
                   <div className="mt-7">
                     <Button variant="secondary" asChild>
-                      <Link href="/uber-uns" className="gap-2">
+                      <Link href="/uber-uns">
                         Mehr über unsere Arbeit
-                        <ArrowRight className="w-5 h-5" />
                       </Link>
                     </Button>
                   </div>
@@ -306,10 +299,8 @@ export function PublicLandingContent() {
                     asChild
                     className="bg-clay-500 hover:bg-clay-600 text-white"
                   >
-                    <Link href="/mitglied-werden" className="gap-3">
-                      <Heart className="w-6 h-6" />
+                    <Link href="/mitglied-werden">
                       Jetzt Mitglied werden
-                      <ArrowRight className="w-5 h-5" />
                     </Link>
                   </Button>
                 </motion.div>
@@ -320,8 +311,7 @@ export function PublicLandingContent() {
                     asChild
                     className="border-cream-200 text-cream-100 hover:bg-sage-600"
                   >
-                    <Link href="/spenden" className="gap-3">
-                      <HeartHandshake className="w-6 h-6" />
+                    <Link href="/spenden">
                       Uns unterstützen
                     </Link>
                   </Button>

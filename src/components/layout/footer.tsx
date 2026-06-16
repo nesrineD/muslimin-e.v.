@@ -11,17 +11,22 @@ import { LEGAL_LINKS } from "@/lib/constants";
 export function Footer() {
   return (
     <footer
-      className="relative overflow-hidden border-t border-sage-600/40 bg-charcoal-800"
+      className="relative overflow-hidden border-t border-sage-700/30 bg-charcoal-900"
       role="contentinfo"
     >
+      {/* Warm clay tint to soften the dark tone */}
       <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-sage-500/35"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-br from-clay-900/20 via-transparent to-transparent"
+        aria-hidden="true"
+      />
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-sage-500/50 to-transparent"
         aria-hidden="true"
       />
       <div className="container mx-auto max-w-screen-xl px-8 py-10 md:px-16 md:py-12">
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-[1.8fr_1fr_1fr] sm:gap-x-16 sm:gap-y-8">
+        <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-[1.8fr_1fr_1fr] sm:gap-x-16 sm:gap-y-8">
           {/* Brand + Social Column */}
-          <div className="space-y-4">
+          <div className="col-span-2 space-y-4 sm:col-span-1">
             <Link href="/" className="inline-block group">
               <Image
                 src="/images/muslimin-logo.svg"

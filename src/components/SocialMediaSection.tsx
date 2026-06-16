@@ -165,18 +165,20 @@ export function SocialMediaSection({
     const baseClasses =
       "inline-flex items-center justify-center transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:ring-offset-2";
 
-    // FOOTER VARIANT — monochrome, elegant, unified tone
+    // FOOTER VARIANT — brand icons in consistent boxes
     if (variant === "footer") {
       return (
         <a
           href={social.url}
           target="_blank"
           rel="noopener noreferrer"
-          className={`${baseClasses} group rounded-md p-2 text-sand-100/85 transition-all duration-200 hover:-translate-y-0.5 hover:bg-sand-100/10 hover:text-white focus-visible:ring-offset-charcoal-800`}
+          className={`${baseClasses} group transition-all duration-200 hover:-translate-y-0.5 focus-visible:ring-offset-charcoal-800`}
           aria-label={`Folge uns auf ${social.name}`}
           title={social.name}
         >
-          <Icon className="h-5 w-5 text-current transition-colors" />
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/10 transition-colors duration-200 group-hover:bg-white/20">
+            <Icon className="h-5 w-5 text-white" />
+          </div>
         </a>
       );
     }
@@ -216,7 +218,7 @@ export function SocialMediaSection({
           rel="noopener noreferrer"
           whileHover={{ scale: 1.05, y: -3 }}
           whileTap={{ scale: 0.97 }}
-          className={`${baseClasses} flex items-center gap-3 px-6 py-4 rounded-xl ${
+          className={`${baseClasses} w-full flex items-center gap-3 px-6 py-4 rounded-xl ${
             isDark
               ? "bg-white/10 border-2 border-cream-200/30 hover:bg-white/20 hover:border-cream-200/50"
               : "bg-white/90 backdrop-blur-sm border-2 border-sage-200 hover:border-sage-300"
@@ -343,7 +345,7 @@ export function SocialMediaSection({
             </p>
           </div>
         )}
-        <div className="flex justify-center gap-4 flex-wrap max-w-3xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
           {SOCIAL_MEDIA.map((social) => (
             <SocialButton key={social.name} social={social} variant="compact" />
           ))}

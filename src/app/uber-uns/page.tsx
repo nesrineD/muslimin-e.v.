@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Users, Goal, Lightbulb, ShieldCheck } from "lucide-react";
+import { BookOpen, Heart, ShieldCheck, MessageCircle } from "lucide-react";
 import { WerSindWirSection } from "@/components/uber-uns/WerSindWirSection";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -117,10 +117,10 @@ export default function AboutPage() {
               <div className="grid gap-6 md:grid-cols-2">
                 <Card
                   hover="lift"
-                  className="text-left p-8 rounded-xl border border-sand-200 bg-gradient-to-br from-cream-50 to-sand-50 shadow-sm"
+                  className="text-left p-8 rounded-xl border border-sage-200 bg-gradient-to-br from-sage-50 to-cream-50 shadow-sm"
                 >
-                  <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-xl bg-sage-100/90 ring-1 ring-sage-200">
-                    <Goal className="h-8 w-8 text-sage-600" />
+                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-sage-100 ring-1 ring-sage-200">
+                    <BookOpen className="h-6 w-6 text-sage-600" />
                   </div>
                   <h3 className="text-xl font-semibold text-charcoal-800 mb-2">
                     Religiöse Bildung
@@ -131,10 +131,10 @@ export default function AboutPage() {
                 </Card>
                 <Card
                   hover="lift"
-                  className="text-left p-8 rounded-xl border border-sand-200 bg-gradient-to-br from-cream-50 to-sand-50 shadow-sm"
+                  className="text-left p-8 rounded-xl border border-clay-200 bg-gradient-to-br from-clay-50 to-cream-50 shadow-sm"
                 >
-                  <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-xl bg-sage-100/90 ring-1 ring-sage-200">
-                    <Lightbulb className="h-8 w-8 text-sage-600" />
+                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-clay-100 ring-1 ring-clay-200">
+                    <Heart className="h-6 w-6 text-clay-600" />
                   </div>
                   <h3 className="text-xl font-semibold text-charcoal-800 mb-2">
                     Muslimische Identität
@@ -145,10 +145,10 @@ export default function AboutPage() {
                 </Card>
                 <Card
                   hover="lift"
-                  className="text-left p-8 rounded-xl border border-sand-200 bg-gradient-to-br from-cream-50 to-sand-50 shadow-sm"
+                  className="text-left p-8 rounded-xl border border-warm-200 bg-gradient-to-br from-warm-50 to-cream-50 shadow-sm"
                 >
-                  <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-xl bg-sage-100/90 ring-1 ring-sage-200">
-                    <Users className="h-8 w-8 text-sage-600" />
+                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-warm-100 ring-1 ring-warm-200">
+                    <MessageCircle className="h-6 w-6 text-warm-600" />
                   </div>
                   <h3 className="text-xl font-semibold text-charcoal-800 mb-2">
                     Austausch & Dialog
@@ -159,10 +159,10 @@ export default function AboutPage() {
                 </Card>
                 <Card
                   hover="lift"
-                  className="text-left p-8 rounded-xl border border-sand-200 bg-gradient-to-br from-cream-50 to-sand-50 shadow-sm"
+                  className="text-left p-8 rounded-xl border border-sand-300 bg-gradient-to-br from-sand-50 to-cream-50 shadow-sm"
                 >
-                  <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-xl bg-sage-100/90 ring-1 ring-sage-200">
-                    <ShieldCheck className="h-8 w-8 text-sage-600" />
+                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-sand-100 ring-1 ring-sand-200">
+                    <ShieldCheck className="h-6 w-6 text-charcoal-500" />
                   </div>
                   <h3 className="text-xl font-semibold text-charcoal-800 mb-2">
                     Geschützter Raum
@@ -210,7 +210,7 @@ export default function AboutPage() {
                 ].map((stat, i) => (
                   <div
                     key={i}
-                    className="group flex flex-col items-center justify-center rounded-2xl border border-sand-300 bg-white px-4 py-8 text-center shadow-sage-md transition-all duration-300 hover:-translate-y-1 hover:border-sage-300 hover:shadow-lift"
+                    className="group flex flex-col items-center justify-center rounded-2xl border border-sand-300 bg-white px-2 py-8 text-center shadow-sage-md transition-all duration-300 hover:-translate-y-1 hover:border-sage-300 hover:shadow-lift sm:px-4"
                   >
                     <span className="text-4xl font-bold tracking-tight text-sage-700 lg:text-5xl">
                       <AnimatedCounter target={stat.target} />
@@ -222,7 +222,7 @@ export default function AboutPage() {
                     </span>
                     <div className="mt-3 h-0.5 w-8 rounded-full bg-clay-500/60 transition-all duration-300 group-hover:w-10 group-hover:bg-clay-500" />
                     {/* Label — sage-600 for brand accent */}
-                    <p className="mt-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-sage-600">
+                    <p className="mt-2.5 text-xs font-semibold uppercase tracking-[0.06em] text-sage-600 sm:tracking-[0.18em]">
                       {stat.label}
                     </p>
                     {/* Sub — charcoal-500 for secondary readability */}
