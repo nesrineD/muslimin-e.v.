@@ -59,7 +59,7 @@ export default async function AschuraPage() {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button
                 asChild
-                className="min-h-[46px] bg-red-900 px-6 text-white hover:bg-red-800"
+                className="min-h-[46px] bg-[#631313] px-6 text-white hover:bg-[#7a1818]"
               >
                 <Link href="#anmeldung">Jetzt anmelden</Link>
               </Button>
@@ -87,14 +87,14 @@ export default async function AschuraPage() {
             <div className="flex items-center gap-4 rounded-xl bg-charcoal-700/70 p-4">
               <Calendar className="h-6 w-6 flex-shrink-0 text-red-400" />
               <div>
-                <p className="text-xs uppercase tracking-[0.16em] text-charcoal-400">Datum</p>
+                <p className="text-xs uppercase tracking-[0.16em] text-charcoal-300">Datum</p>
                 <p className="font-semibold text-cream-50">Samstag, 11. Juli 2026</p>
               </div>
             </div>
             <div className="flex items-start gap-4 rounded-xl bg-charcoal-700/70 p-4">
               <MapPin className="mt-0.5 h-6 w-6 flex-shrink-0 text-red-400" />
               <div>
-                <p className="text-xs uppercase tracking-[0.16em] text-charcoal-400">Ort</p>
+                <p className="text-xs uppercase tracking-[0.16em] text-charcoal-300">Ort</p>
                 <a
                   href="https://maps.google.com/?q=Queen+Palace+Skalitzer+Straße+130,+10999+Berlin"
                   target="_blank"
@@ -178,7 +178,7 @@ export default async function AschuraPage() {
                 <CardTitle className="font-heading text-cream-50">
                   Anmeldung zur Aschura-Frauenveranstaltung
                 </CardTitle>
-                <p className="mt-2 text-sm text-charcoal-400">
+                <p className="mt-2 text-sm text-charcoal-300">
                   Alle mit * markierten Felder sind Pflichtfelder.
                 </p>
               </div>
@@ -199,7 +199,7 @@ export default async function AschuraPage() {
           Bereits angemeldet?{" "}
           <a
             href="/veranstaltungen/aschura/stornieren"
-            className="text-red-500 underline underline-offset-2 transition-colors hover:text-red-400"
+            className="text-red-400 underline underline-offset-2 transition-colors hover:text-red-300"
           >
             Anmeldung stornieren oder ändern
           </a>

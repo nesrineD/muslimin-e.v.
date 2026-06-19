@@ -122,7 +122,7 @@ export function RegistrationForm({ isFull }: Props) {
           type="email"
           {...register("email")}
           autoComplete="email"
-          className="bg-charcoal-700 border-charcoal-600 text-cream-50 placeholder:text-charcoal-500 focus-visible:ring-red-500"
+          className="bg-charcoal-700 border-charcoal-600 text-cream-50 placeholder:text-charcoal-400 focus-visible:ring-red-900"
         />
         {errors.email && (
           <p className="text-red-500 text-xs">{errors.email.message}</p>
@@ -157,7 +157,7 @@ export function RegistrationForm({ isFull }: Props) {
             +
           </button>
         </div>
-        <p className="text-charcoal-400 text-xs">
+        <p className="text-charcoal-300 text-xs">
           Inklusive dir selbst. Maximal 20 pro Anmeldung.
         </p>
         {errors.guests?.root && (
@@ -170,9 +170,9 @@ export function RegistrationForm({ isFull }: Props) {
         {fields.map((field, index) => (
           <div
             key={field.id}
-            className="rounded-lg border border-charcoal-600 p-4 space-y-3"
+            className="rounded-lg border border-charcoal-700 bg-charcoal-900/40 p-4 space-y-3"
           >
-            <p className="text-xs font-medium text-charcoal-400 uppercase tracking-wide">
+            <p className="text-xs font-medium text-charcoal-300 uppercase tracking-wide">
               {index === 0 ? "Dein Name" : `Gast ${index + 1}`}
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -187,7 +187,7 @@ export function RegistrationForm({ isFull }: Props) {
                   id={`guests.${index}.vorname`}
                   {...register(`guests.${index}.vorname`)}
                   autoComplete={index === 0 ? "given-name" : "off"}
-                  className="bg-charcoal-700 border-charcoal-600 text-cream-50 placeholder:text-charcoal-500 focus-visible:ring-red-500"
+                  className="bg-charcoal-700 border-charcoal-600 text-cream-50 placeholder:text-charcoal-400 focus-visible:ring-red-900"
                 />
                 {errors.guests?.[index]?.vorname && (
                   <p className="text-red-500 text-xs">
@@ -206,7 +206,7 @@ export function RegistrationForm({ isFull }: Props) {
                   id={`guests.${index}.nachname`}
                   {...register(`guests.${index}.nachname`)}
                   autoComplete={index === 0 ? "family-name" : "off"}
-                  className="bg-charcoal-700 border-charcoal-600 text-cream-50 placeholder:text-charcoal-500 focus-visible:ring-red-500"
+                  className="bg-charcoal-700 border-charcoal-600 text-cream-50 placeholder:text-charcoal-400 focus-visible:ring-red-900"
                 />
                 {errors.guests?.[index]?.nachname && (
                   <p className="text-red-500 text-xs">
@@ -237,7 +237,7 @@ export function RegistrationForm({ isFull }: Props) {
           Ich habe die{" "}
           <a
             href="/datenschutz"
-            className="underline text-red-600 hover:text-red-500"
+            className="underline text-[#a52020] hover:text-[#7a1818]"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -256,7 +256,7 @@ export function RegistrationForm({ isFull }: Props) {
       <Button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-red-900 hover:bg-red-800 text-white min-h-[44px]"
+        className="w-full bg-[#631313] hover:bg-[#7a1818] text-white min-h-[44px]"
       >
         {isSubmitting ? "Wird gesendet…" : "Jetzt anmelden"}
       </Button>
