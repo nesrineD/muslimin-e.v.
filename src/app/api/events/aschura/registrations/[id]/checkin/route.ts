@@ -3,7 +3,7 @@ import { getSupabaseServer } from "@/lib/supabase/server";
 import { isAschuraAdmin } from "@/lib/auth/roles";
 
 export async function PATCH(
-  _request: NextRequest,
+  request: NextRequest,
   { params }: { params: Promise<{ id: string }> },
 ) {
   if (!(await isAschuraAdmin())) {
@@ -12,28 +12,31 @@ export async function PATCH(
 
   const { id } = await params;
 
-  // Toggle checked_in status
-  const { data: current } = await getSupabaseServer()
-    .from("event_registrations")
-    .select("checked_in")
-    .eq("id", id)
-    .single();
+  const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+  if (!UUID_RE.test(id)) {
+    return NextResponse.json({ error: "Ungültige ID." }, { status: 400 });
+  }
 
-  if (!current) {
+  let checked_in: boolean;
+  try {
+    const body = await request.json();
+    if (typeof body?.checked_in !== "boolean") throw new Error();
+    checked_in = body.checked_in;
+  } catch {
     return NextResponse.json(
-      { error: "Anmeldung nicht gefunden." },
-      { status: 404 },
+      { error: "Ungültige Anfrage. Erwartet: { checked_in: boolean }" },
+      { status: 400 },
     );
   }
 
   const { error } = await getSupabaseServer()
     .from("event_registrations")
-    .update({ checked_in: !current.checked_in })
+    .update({ checked_in })
     .eq("id", id);
 
   if (error) {
     return NextResponse.json({ error: "Datenbankfehler." }, { status: 500 });
   }
 
-  return NextResponse.json({ checked_in: !current.checked_in });
+  return NextResponse.json({ checked_in });
 }

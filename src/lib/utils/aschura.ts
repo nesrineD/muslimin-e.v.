@@ -7,6 +7,7 @@ interface GuestRow extends Guest {
 export function flattenGuests(
   data: Array<{
     id: string;
+    registration_id: string;
     vorname: string;
     nachname: string;
     checked_in: boolean;
@@ -19,7 +20,7 @@ export function flattenGuests(
       : g.event_registrations;
     return {
       id: g.id,
-      registration_id: "",
+      registration_id: g.registration_id,
       vorname: g.vorname,
       nachname: g.nachname,
       checked_in: g.checked_in,

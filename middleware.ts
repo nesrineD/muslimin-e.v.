@@ -4,8 +4,12 @@ import { createServerClient } from "@supabase/ssr";
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
-  // Only run auth checks on admin routes
-  if (!pathname.startsWith("/admin")) {
+  const isAdminPage = pathname.startsWith("/admin");
+  const isAdminApi =
+    pathname.startsWith("/api/events/aschura/registrations") ||
+    pathname.startsWith("/api/events/aschura/guests");
+
+  if (!isAdminPage && !isAdminApi) {
     return NextResponse.next();
   }
 
@@ -40,15 +44,18 @@ export async function middleware(request: NextRequest) {
 
   // Role-based access:
   // - "admin"       → full access to all /admin/* routes
-  // - "event_admin" → restricted to /admin/ashura only
+  // - "event_admin" → restricted to /admin/aschura only
   const role = user?.app_metadata?.role;
   const isAdmin = role === "admin";
   const isEventAdmin = role === "event_admin";
 
-  const isAshuraRoute = pathname.startsWith("/admin/ashura");
+  const isAshuraRoute = pathname.startsWith("/admin/aschura");
   const hasAccess = isAdmin || (isEventAdmin && isAshuraRoute);
 
   if (!hasAccess) {
+    if (isAdminApi) {
+      return NextResponse.json({ error: "Nicht autorisiert." }, { status: 401 });
+    }
     const loginUrl = request.nextUrl.clone();
     loginUrl.pathname = "/login";
     loginUrl.searchParams.set("redirect", pathname);
@@ -59,5 +66,9 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*"],
+  matcher: [
+    "/admin/:path*",
+    "/api/events/aschura/registrations/:path*",
+    "/api/events/aschura/guests/:path*",
+  ],
 };

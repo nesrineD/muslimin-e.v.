@@ -2,14 +2,23 @@
 
 import { useState, useMemo } from "react";
 import { Input } from "@/components/ui/input";
-import type { Guest } from "@/types/aschura";
+import { StatsBar } from "@/components/aschura/admin/StatsBar";
+import type { Guest, CapacityInfo } from "@/types/aschura";
 
 interface GuestRow extends Guest {
   registration_email: string;
 }
 
 interface Props {
-  initialGuests: GuestRow[];
+  guests: GuestRow[];
+  capacity: CapacityInfo;
+  checkedIn: number;
+  onGuestCancelled: (id: string) => void;
+  onCheckinToggled: (id: string, checked_in: boolean) => void;
+}
+
+function escHtml(s: string): string {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 
 function exportToPdf(guests: GuestRow[]) {
@@ -18,9 +27,9 @@ function exportToPdf(guests: GuestRow[]) {
       (g, i) => `
       <tr class="${i % 2 === 0 ? "even" : ""}">
         <td>${i + 1}</td>
-        <td>${g.vorname}</td>
-        <td>${g.nachname}</td>
-        <td>${g.registration_email}</td>
+        <td>${escHtml(g.nachname)}</td>
+        <td>${escHtml(g.vorname)}</td>
+        <td>${escHtml(g.registration_email)}</td>
         <td>${g.checked_in ? "✓" : ""}</td>
       </tr>`,
     )
@@ -52,8 +61,8 @@ function exportToPdf(guests: GuestRow[]) {
     <thead>
       <tr>
         <th>#</th>
-        <th>Vorname</th>
         <th>Nachname</th>
+        <th>Vorname</th>
         <th>E-Mail Anmeldung</th>
         <th>Check-in</th>
       </tr>
@@ -69,10 +78,11 @@ function exportToPdf(guests: GuestRow[]) {
   if (win) win.addEventListener("load", () => URL.revokeObjectURL(url));
 }
 
-export function GuestList({ initialGuests }: Props) {
-  const [guests, setGuests] = useState(initialGuests);
+export function GuestList({ guests, capacity, checkedIn, onGuestCancelled, onCheckinToggled }: Props) {
   const [search, setSearch] = useState("");
   const [toggling, setToggling] = useState<string | null>(null);
+  const [confirmCancelId, setConfirmCancelId] = useState<string | null>(null);
+  const [cancelling, setCancelling] = useState<string | null>(null);
 
   const filtered = useMemo(() => {
     const base = search.trim()
@@ -91,26 +101,33 @@ export function GuestList({ initialGuests }: Props) {
     );
   }, [guests, search]);
 
+  async function cancelGuest(id: string) {
+    setCancelling(id);
+    const res = await fetch(`/api/events/aschura/guests/${id}/cancel`, {
+      method: "DELETE",
+    });
+    setCancelling(null);
+    setConfirmCancelId(null);
+    if (!res.ok) return;
+    onGuestCancelled(id);
+  }
+
   async function toggleCheckin(guest: GuestRow) {
     setToggling(guest.id);
-    const res = await fetch(
-      `/api/events/aschura/guests/${guest.id}/checkin`,
-      {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ checked_in: !guest.checked_in }),
-      },
-    );
+    const res = await fetch(`/api/events/aschura/guests/${guest.id}/checkin`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ checked_in: !guest.checked_in }),
+    });
     setToggling(null);
     if (!res.ok) return;
     const { checked_in } = await res.json();
-    setGuests((prev) =>
-      prev.map((g) => (g.id === guest.id ? { ...g, checked_in } : g)),
-    );
+    onCheckinToggled(guest.id, checked_in);
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
+      <StatsBar capacity={capacity} checkedIn={checkedIn} />
       <div className="flex items-center justify-between gap-4">
         <Input
           placeholder="Nach Name suchen…"
@@ -124,14 +141,14 @@ export function GuestList({ initialGuests }: Props) {
           </p>
           <button
             onClick={() =>
-          exportToPdf(
-            [...guests].sort(
-              (a, b) =>
-                a.nachname.localeCompare(b.nachname, "de") ||
-                a.vorname.localeCompare(b.vorname, "de"),
-            ),
-          )
-        }
+              exportToPdf(
+                [...guests].sort(
+                  (a, b) =>
+                    a.nachname.localeCompare(b.nachname, "de") ||
+                    a.vorname.localeCompare(b.vorname, "de"),
+                ),
+              )
+            }
             className="flex items-center gap-1.5 rounded-lg border border-sage-300 bg-white px-3 py-1.5 text-sm font-medium text-sage-700 shadow-sm transition-colors hover:bg-sage-50"
           >
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -150,12 +167,13 @@ export function GuestList({ initialGuests }: Props) {
               <th className="px-4 py-3 text-left font-semibold">Vorname</th>
               <th className="px-4 py-3 text-left font-semibold">E-Mail Anmeldung</th>
               <th className="px-4 py-3 text-center font-semibold">Check-in</th>
+              <th className="px-4 py-3 text-center font-semibold">Aktion</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-sand-200 bg-white">
             {filtered.length === 0 && (
               <tr>
-                <td colSpan={4} className="px-4 py-10 text-center text-charcoal-400">
+                <td colSpan={5} className="px-4 py-10 text-center text-charcoal-400">
                   Keine Ergebnisse.
                 </td>
               </tr>
@@ -169,13 +187,9 @@ export function GuestList({ initialGuests }: Props) {
                     : "hover:bg-sand-50"
                 }`}
               >
-                <td className="px-4 py-3 font-semibold text-charcoal-800">
-                  {g.nachname}
-                </td>
+                <td className="px-4 py-3 font-semibold text-charcoal-800">{g.nachname}</td>
                 <td className="px-4 py-3 text-charcoal-700">{g.vorname}</td>
-                <td className="px-4 py-3 text-charcoal-400 text-xs">
-                  {g.registration_email}
-                </td>
+                <td className="px-4 py-3 text-charcoal-400 text-xs">{g.registration_email}</td>
                 <td className="px-4 py-3 text-center">
                   <button
                     onClick={() => toggleCheckin(g)}
@@ -185,29 +199,44 @@ export function GuestList({ initialGuests }: Props) {
                         ? "bg-sage-600 border-sage-600 shadow-sm"
                         : "border-charcoal-300 hover:border-sage-500 hover:bg-sage-50"
                     } disabled:opacity-40 disabled:cursor-not-allowed`}
-                    title={
-                      g.checked_in
-                        ? "Eingecheckt — klicken zum Rückgängigmachen"
-                        : "Einchecken"
-                    }
+                    title={g.checked_in ? "Eingecheckt — klicken zum Rückgängigmachen" : "Einchecken"}
                     aria-label={`Check-in für ${g.vorname} ${g.nachname}`}
                   >
                     {g.checked_in && (
-                      <svg
-                        className="w-4 h-4 text-white mx-auto"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={3}
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M5 13l4 4L19 7"
-                        />
+                      <svg className="w-4 h-4 text-white mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                       </svg>
                     )}
                   </button>
+                </td>
+                <td className="px-4 py-3 text-center">
+                  {confirmCancelId === g.id ? (
+                    <span className="flex items-center justify-center gap-2">
+                      <button
+                        onClick={() => cancelGuest(g.id)}
+                        disabled={cancelling === g.id}
+                        className="text-xs font-semibold text-red-600 hover:text-red-700 disabled:opacity-40"
+                      >
+                        {cancelling === g.id ? "…" : "Ja"}
+                      </button>
+                      <span className="text-charcoal-300">|</span>
+                      <button
+                        onClick={() => setConfirmCancelId(null)}
+                        className="text-xs text-charcoal-500 hover:text-charcoal-700"
+                      >
+                        Nein
+                      </button>
+                    </span>
+                  ) : (
+                    <button
+                      onClick={() => setConfirmCancelId(g.id)}
+                      disabled={cancelling === g.id}
+                      className="text-xs font-medium text-red-600 hover:text-red-700 hover:underline disabled:opacity-40"
+                      aria-label={`${g.nachname} ${g.vorname} stornieren`}
+                    >
+                      Stornieren
+                    </button>
+                  )}
                 </td>
               </tr>
             ))}
@@ -217,4 +246,3 @@ export function GuestList({ initialGuests }: Props) {
     </div>
   );
 }
-

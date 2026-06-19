@@ -12,6 +12,11 @@ export async function PATCH(
 
   const { guestId } = await params;
 
+  const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+  if (!UUID_RE.test(guestId)) {
+    return NextResponse.json({ error: "Ungültige ID." }, { status: 400 });
+  }
+
   let checked_in: boolean;
   try {
     const body = await request.json();

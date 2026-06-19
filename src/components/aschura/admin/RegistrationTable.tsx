@@ -1,10 +1,9 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import type { EventRegistration, CapacityInfo } from "@/types/aschura";
+import { useState } from "react";
+import type { EventRegistration } from "@/types/aschura";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { StatsBar } from "@/components/aschura/admin/StatsBar";
 import {
   Dialog,
   DialogContent,
@@ -15,8 +14,8 @@ import {
 } from "@/components/ui/dialog";
 
 interface Props {
-  initialRegistrations: EventRegistration[];
-  capacity: CapacityInfo;
+  registrations: EventRegistration[];
+  onCancelled: (id: string) => void;
 }
 
 function MainGuest({ r }: { r: EventRegistration }) {
@@ -35,20 +34,10 @@ function MainGuest({ r }: { r: EventRegistration }) {
   );
 }
 
-export function RegistrationTable({ initialRegistrations, capacity }: Props) {
-  const [registrations, setRegistrations] = useState(initialRegistrations);
+export function RegistrationTable({ registrations, onCancelled }: Props) {
   const [search, setSearch] = useState("");
   const [cancelTarget, setCancelTarget] = useState<EventRegistration | null>(null);
   const [cancelling, setCancelling] = useState(false);
-
-  const checkedIn = useMemo(
-    () =>
-      registrations
-        .filter((r) => r.status === "active")
-        .flatMap((r) => r.guests ?? [])
-        .filter((g) => g.checked_in).length,
-    [registrations],
-  );
 
   const filtered = registrations.filter((r) => {
     const q = search.toLowerCase();
@@ -70,19 +59,13 @@ export function RegistrationTable({ initialRegistrations, capacity }: Props) {
     );
     setCancelling(false);
     if (res.ok) {
-      setRegistrations((prev) =>
-        prev.map((r) =>
-          r.id === cancelTarget.id ? { ...r, status: "cancelled" as const } : r,
-        ),
-      );
+      onCancelled(cancelTarget.id);
     }
     setCancelTarget(null);
   }
 
   return (
     <>
-      <StatsBar capacity={capacity} checkedIn={checkedIn} />
-
       <Input
         placeholder="Nach Name oder E-Mail suchen…"
         value={search}

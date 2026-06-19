@@ -12,6 +12,12 @@ export async function PATCH(
   }
 
   const { id } = await params;
+
+  const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+  if (!UUID_RE.test(id)) {
+    return NextResponse.json({ error: "Ungültige ID." }, { status: 400 });
+  }
+
   const supabase = getSupabaseServer();
 
   const { data: registration, error: fetchError } = await supabase
@@ -33,7 +39,7 @@ export async function PATCH(
 
   const { error } = await supabase
     .from("event_registrations")
-    .update({ status: "cancelled" })
+    .update({ status: "cancelled", token_used: true })
     .eq("id", id);
 
   if (error) {

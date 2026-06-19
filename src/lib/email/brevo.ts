@@ -2,8 +2,8 @@ import { BrevoClient } from "@getbrevo/brevo";
 import type { GuestInput } from "@/types/aschura";
 
 const EVENT_DATE = "Samstag, 11. Juli 2026";
-const EVENT_EINLASS = "14:30 Uhr";
-const EVENT_BEGINN = "15:00 Uhr";
+const EVENT_EINLASS = "17:15Uhr";
+const EVENT_BEGINN = "18:00 Uhr";
 const EVENT_LOCATION = "Queen Palace, Skalitzer Str. 130, 10999 Berlin";
 const SENDER_NAME = "Muslimin e.V.";
 const SENDER_EMAIL = "aschura@muslimin-ev.de";
@@ -19,6 +19,14 @@ function createClient() {
     throw new Error("BREVO_API_KEY is not configured.");
   }
   return new BrevoClient({ apiKey });
+}
+
+function esc(s: string): string {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
 }
 
 // ---------------------------------------------------------------------------
@@ -126,7 +134,7 @@ function guestListHtml(guests: GuestInput[]): string {
       <tr>
         <td style="padding:10px 16px;border-bottom:1px solid #3d3835;">
           <span style="font-size:11px;color:#a8a29e;margin-right:10px;">${String(i + 1).padStart(2, "0")}</span>
-          <span style="font-size:14px;color:#e7e5e4;">${g.vorname} ${g.nachname}</span>
+          <span style="font-size:14px;color:#e7e5e4;">${esc(g.vorname)} ${esc(g.nachname)}</span>
         </td>
       </tr>`,
     )
@@ -160,7 +168,7 @@ export async function sendConfirmationEmail(opts: {
   const manageLink = `${getBaseUrl()}/veranstaltungen/aschura/stornieren/confirm?token=${opts.cancellationToken}`;
 
   const content = `
-    ${bodyText(`As-salamu alaykum Liebe ${opts.vorname},`)}
+    ${bodyText(`As-salamu alaykum Liebe ${esc(opts.vorname)},`)}
     ${bodyText('vielen Dank für deine Anmeldung zur <strong style="color:#fdf8f0;">Aschura-Frauenveranstaltung – ein Abend der Andacht</strong>. Wir freuen uns sehr, dass du an dieser besonderen Veranstaltung teilnehmen wirst.')}
 
     ${infoBox([
@@ -205,13 +213,13 @@ export async function sendCancellationRequestEmail(opts: {
   const cancelLink = `${getBaseUrl()}/veranstaltungen/aschura/stornieren/confirm?token=${opts.token}`;
 
   const content = `
-    ${bodyText(`As-salamu alaykum ${opts.vorname},`)}
+    ${bodyText(`As-salamu alaykum ${esc(opts.vorname)},`)}
     ${bodyText("du hast einen Stornierungslink für deine Anmeldung zur Aschura-Frauenveranstaltung angefordert. Über den folgenden Link kannst du deine Anmeldung verwalten oder stornieren.")}
 
     ${ctaButton(cancelLink, "Anmeldung verwalten")}
 
     <p style="margin:20px 0 0 0;font-size:13px;color:#a8a29e;line-height:1.7;">
-      Dieser Link ist <strong style="color:#d6d3d1;">15 Tage</strong> gültig und kann nur einmal verwendet werden.
+      Dieser Link ist <strong style="color:#d6d3d1;">72 Stunden</strong> gültig und kann nur einmal verwendet werden.
     </p>
     <p style="margin:12px 0 0 0;font-size:12px;color:#78716c;line-height:1.6;">
       Falls du keinen Stornierungslink angefordert hast, kannst du diese E-Mail ignorieren. Deine Anmeldung bleibt unverändert.
@@ -284,10 +292,10 @@ export async function sendKontaktEmail(opts: {
     replyTo: { email: opts.email, name: opts.name },
     subject: `Kontaktformular: ${opts.subject}`,
     htmlContent: `
-      <p><strong>Von:</strong> ${opts.name} &lt;${opts.email}&gt;</p>
-      <p><strong>Betreff:</strong> ${opts.subject}</p>
+      <p><strong>Von:</strong> ${esc(opts.name)} &lt;${esc(opts.email)}&gt;</p>
+      <p><strong>Betreff:</strong> ${esc(opts.subject)}</p>
       <hr/>
-      <p>${opts.message.replace(/\n/g, "<br/>")}</p>
+      <p>${esc(opts.message).replace(/\n/g, "<br/>")}</p>
     `,
   });
 }

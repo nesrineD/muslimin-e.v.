@@ -95,7 +95,7 @@ export function Header() {
       }`}
       role="banner"
     >
-      <div className="container mx-auto flex h-20 items-center px-4 md:h-[72px]">
+      <div className="container mx-auto flex h-16 items-center px-4 lg:h-[72px]">
         {/* Logo with Shrinking Effect */}
         <Link
           href="/"
@@ -108,7 +108,7 @@ export function Header() {
             width={48}
             height={48}
             className="h-7 w-auto md:h-9"
-            style={{ width: "auto" }}
+            unoptimized
           />
           <div className="hidden sm:flex flex-col">
             <span className="text-lg font-bold leading-tight text-charcoal-800 transition-colors duration-300 group-hover:text-clay-700">
@@ -122,7 +122,7 @@ export function Header() {
 
         {/* Desktop Navigation */}
         <nav
-          className="hidden md:flex"
+          className="hidden lg:flex"
           role="navigation"
           aria-label="Hauptnavigation"
         >
@@ -212,7 +212,7 @@ export function Header() {
         <div className="flex-1" />
 
         {/* Desktop CTA Buttons */}
-        <div className="hidden md:flex items-center gap-3 mr-3">
+        <div className="hidden lg:flex items-center gap-3 mr-3">
           <motion.div {...hoverButton}>
             <Link
               href="/spenden"
@@ -225,7 +225,7 @@ export function Header() {
         </div>
 
         {/* Desktop Auth Section */}
-        <div className="hidden md:flex items-center">
+        <div className="hidden lg:flex items-center">
           {loading && !user && !isSigningOut ? (
             <div className="text-sm text-sage-600">Lade...</div>
           ) : user ? (
@@ -358,7 +358,7 @@ export function Header() {
 
         {/* Mobile Menu */}
         <Sheet>
-          <SheetTrigger asChild className="md:hidden">
+          <SheetTrigger asChild className="lg:hidden">
             <motion.div {...hoverButton}>
               <Button
                 variant="ghost"
@@ -379,7 +379,7 @@ export function Header() {
                   width={36}
                   height={36}
                   className="h-9 w-auto"
-                  style={{ width: "auto" }}
+                  unoptimized
                 />
                 <span className="text-base font-bold text-charcoal-800">Muslimin e.V.</span>
               </SheetTitle>

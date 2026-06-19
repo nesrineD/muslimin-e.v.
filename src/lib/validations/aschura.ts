@@ -1,8 +1,8 @@
 import { z } from "zod";
 
 export const guestSchema = z.object({
-  vorname: z.string().min(2, { message: "Vorname muss mindestens 2 Zeichen lang sein." }),
-  nachname: z.string().min(2, { message: "Nachname muss mindestens 2 Zeichen lang sein." }),
+  vorname: z.string().min(2, { message: "Vorname muss mindestens 2 Zeichen lang sein." }).max(100, { message: "Vorname darf maximal 100 Zeichen lang sein." }),
+  nachname: z.string().min(2, { message: "Nachname muss mindestens 2 Zeichen lang sein." }).max(100, { message: "Nachname darf maximal 100 Zeichen lang sein." }),
 });
 
 export type GuestInput = z.infer<typeof guestSchema>;

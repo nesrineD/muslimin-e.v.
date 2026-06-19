@@ -18,6 +18,7 @@ interface Props {
 
 export function RegistrationForm({ isFull }: Props) {
   const [submitted, setSubmitted] = useState(false);
+  const [submittedEmail, setSubmittedEmail] = useState("");
   const [serverError, setServerError] = useState<string | null>(null);
   const [emailDelayed, setEmailDelayed] = useState(false);
 
@@ -65,12 +66,12 @@ export function RegistrationForm({ isFull }: Props) {
     });
 
     if (res.ok) {
+      setSubmittedEmail(data.email);
       setSubmitted(true);
     } else if (res.status === 409) {
       setServerError("Leider sind alle Plätze bereits vergeben.");
     } else {
-      setEmailDelayed(true);
-      setSubmitted(true);
+      setServerError("Ein Fehler ist aufgetreten. Bitte versuche es erneut.");
     }
   };
 
@@ -90,13 +91,15 @@ export function RegistrationForm({ isFull }: Props) {
         </p>
         {emailDelayed ? (
           <p className="text-charcoal-300 text-sm">
-            Deine Anmeldung wurde gespeichert. Die Bestätigungs-E-Mail kann
-            einige Minuten dauern. Bitte prüfe auch deinen Spam-Ordner.
+            Deine Anmeldung wurde gespeichert. Die Bestätigungs-E-Mail an{" "}
+            <span className="text-cream-100 font-medium">{submittedEmail}</span>{" "}
+            kann einige Minuten dauern. Bitte prüfe auch deinen Spam-Ordner.
           </p>
         ) : (
           <p className="text-charcoal-300 text-sm">
-            Wir haben dir eine Bestätigungs-E-Mail mit der Liste aller
-            angemeldeten Gäste geschickt. Bitte prüfe auch deinen Spam-Ordner.
+            Wir haben dir eine Bestätigungs-E-Mail an{" "}
+            <span className="text-cream-100 font-medium">{submittedEmail}</span>{" "}
+            mit der Liste aller angemeldeten Gäste geschickt. Bitte prüfe auch deinen Spam-Ordner.
           </p>
         )}
       </div>
@@ -111,7 +114,9 @@ export function RegistrationForm({ isFull }: Props) {
 
       {/* E-Mail */}
       <div className="space-y-1">
-        <Label htmlFor="email" className="text-charcoal-200">E-Mail-Adresse *</Label>
+        <Label htmlFor="email" className="text-charcoal-200">
+          E-Mail-Adresse *
+        </Label>
         <Input
           id="email"
           type="email"
@@ -126,7 +131,9 @@ export function RegistrationForm({ isFull }: Props) {
 
       {/* Guest count stepper */}
       <div className="space-y-1">
-        <Label className="text-charcoal-200">Anzahl der Teilnehmerinnen *</Label>
+        <Label className="text-charcoal-200">
+          Anzahl der Teilnehmerinnen *
+        </Label>
         <div className="flex items-center gap-3" role="group" aria-label="Anzahl der Teilnehmerinnen">
           <button
             type="button"
@@ -170,7 +177,12 @@ export function RegistrationForm({ isFull }: Props) {
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div className="space-y-1">
-                <Label htmlFor={`guests.${index}.vorname`} className="text-charcoal-200">Vorname *</Label>
+                <Label
+                  htmlFor={`guests.${index}.vorname`}
+                  className="text-charcoal-200"
+                >
+                  Vorname *
+                </Label>
                 <Input
                   id={`guests.${index}.vorname`}
                   {...register(`guests.${index}.vorname`)}
@@ -184,7 +196,12 @@ export function RegistrationForm({ isFull }: Props) {
                 )}
               </div>
               <div className="space-y-1">
-                <Label htmlFor={`guests.${index}.nachname`} className="text-charcoal-200">Nachname *</Label>
+                <Label
+                  htmlFor={`guests.${index}.nachname`}
+                  className="text-charcoal-200"
+                >
+                  Nachname *
+                </Label>
                 <Input
                   id={`guests.${index}.nachname`}
                   {...register(`guests.${index}.nachname`)}

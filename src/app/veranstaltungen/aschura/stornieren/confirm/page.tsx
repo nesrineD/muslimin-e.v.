@@ -1,18 +1,36 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CancellationConfirmForm } from "@/components/aschura/CancellationConfirmForm";
+import { getSupabaseServer } from "@/lib/supabase/server";
+import type { Guest } from "@/types/aschura";
 
 interface Props {
   searchParams: Promise<{ token?: string }>;
 }
 
 async function getRegistration(token: string) {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
-  const res = await fetch(
-    `${baseUrl}/api/events/aschura/cancel?token=${encodeURIComponent(token)}`,
-    { cache: "no-store" },
-  );
-  if (!res.ok) return null;
-  return res.json();
+  const { data, error } = await getSupabaseServer()
+    .from("event_registrations")
+    .select(
+      "id, email, anzahl_teilnehmer, status, token_used, token_expires_at, event_guests(id, vorname, nachname, checked_in)",
+    )
+    .eq("cancellation_token", token)
+    .single();
+
+  if (error || !data) return null;
+  if (
+    data.token_used ||
+    data.status === "cancelled" ||
+    new Date(data.token_expires_at) < new Date()
+  ) {
+    return null;
+  }
+
+  return {
+    id: data.id,
+    email: data.email,
+    anzahl_teilnehmer: data.anzahl_teilnehmer,
+    guests: data.event_guests as Guest[],
+  };
 }
 
 export default async function StornierungConfirmPage({ searchParams }: Props) {

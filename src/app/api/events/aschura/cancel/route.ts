@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseServer } from "@/lib/supabase/server";
 import { cancelSchema } from "@/lib/validations/aschura";
 import { sendCancellationConfirmationEmail } from "@/lib/email/brevo";
+import { checkRateLimit, getClientIp } from "@/lib/utils/rate-limit";
 import type { Guest } from "@/types/aschura";
 
 const INVALID_TOKEN_RESPONSE = NextResponse.json(
@@ -14,6 +15,14 @@ const INVALID_TOKEN_RESPONSE = NextResponse.json(
 
 // GET /api/events/aschura/cancel?token=<uuid>
 export async function GET(request: NextRequest) {
+  // 20 token lookups per IP per 5 minutes
+  if (!checkRateLimit(`cancel-get:${getClientIp(request.headers)}`, 20, 5 * 60_000)) {
+    return NextResponse.json(
+      { error: "Zu viele Anfragen. Bitte versuche es später erneut." },
+      { status: 429 },
+    );
+  }
+
   const token = request.nextUrl.searchParams.get("token");
 
   if (!token) {
@@ -106,10 +115,27 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { data: result } = await supabase.rpc("cancel_guests", {
+    // M4: ensure every supplied ID actually belongs to this registration
+    const ownedIds = new Set(allGuests.map((g) => g.id));
+    if (!guest_ids_to_remove.every((id) => ownedIds.has(id))) {
+      return NextResponse.json({ error: "Ungültige Gast-IDs." }, { status: 400 });
+    }
+
+    const { data: result, error: rpcError } = await supabase.rpc("cancel_guests", {
       p_registration_id: registration.id,
       p_guest_ids: guest_ids_to_remove,
     });
+
+    if (rpcError) {
+      console.error("[cancel_guests] RPC error:", rpcError);
+      return NextResponse.json({ error: "Stornierung fehlgeschlagen." }, { status: 500 });
+    }
+
+    // H3: invalidate the token so the same link cannot be reused
+    await supabase
+      .from("event_registrations")
+      .update({ token_used: true })
+      .eq("id", registration.id);
 
     const row = (result as Array<{ remaining_count: number; is_full_cancel: boolean }>)?.[0];
     const cancelledGuests = allGuests.filter((g) => guest_ids_to_remove.includes(g.id));
