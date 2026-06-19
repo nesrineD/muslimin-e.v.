@@ -95,7 +95,7 @@ export function Header() {
       }`}
       role="banner"
     >
-      <div className="container mx-auto flex h-16 items-center px-4 lg:h-[72px]">
+      <div className="container mx-auto flex h-16 items-center px-4 xl:h-[72px]">
         {/* Logo with Shrinking Effect */}
         <Link
           href="/"
@@ -122,7 +122,7 @@ export function Header() {
 
         {/* Desktop Navigation */}
         <nav
-          className="hidden lg:flex"
+          className="hidden xl:flex"
           role="navigation"
           aria-label="Hauptnavigation"
         >
@@ -212,7 +212,7 @@ export function Header() {
         <div className="flex-1" />
 
         {/* Desktop CTA Buttons */}
-        <div className="hidden lg:flex items-center gap-3 mr-3">
+        <div className="hidden xl:flex items-center gap-3 mr-3">
           <motion.div {...hoverButton}>
             <Link
               href="/spenden"
@@ -225,7 +225,7 @@ export function Header() {
         </div>
 
         {/* Desktop Auth Section */}
-        <div className="hidden lg:flex items-center">
+        <div className="hidden xl:flex items-center">
           {loading && !user && !isSigningOut ? (
             <div className="text-sm text-sage-600">Lade...</div>
           ) : user ? (
@@ -358,7 +358,7 @@ export function Header() {
 
         {/* Mobile Menu */}
         <Sheet>
-          <SheetTrigger asChild className="lg:hidden">
+          <SheetTrigger asChild className="xl:hidden">
             <motion.div {...hoverButton}>
               <Button
                 variant="ghost"
