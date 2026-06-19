@@ -10,20 +10,7 @@ export function PWAPromptBanner() {
   const [isDismissed, setIsDismissed] = useState(false);
 
   useEffect(() => {
-    const isMobile =
-      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-        navigator.userAgent
-      );
-    const isDismissedStored =
-      localStorage.getItem("pwa-banner-dismissed") === "true";
-
-    if (isMobile && !isDismissedStored) {
-      const timer = setTimeout(() => {
-        setIsVisible(true);
-      }, 5000);
-
-      return () => clearTimeout(timer);
-    }
+    // PWA-Banner auf mobilen Geräten deaktiviert
   }, []);
 
   const handleDismiss = () => {
