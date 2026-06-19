@@ -58,10 +58,13 @@ export async function POST(request: NextRequest) {
   }
 
   // L1: record GDPR consent timestamp for audit trail
-  await getSupabaseServer()
+  const { error: gdprError } = await getSupabaseServer()
     .from("event_registrations")
     .update({ datenschutz_accepted_at: new Date().toISOString() })
     .eq("id", registration.registration_id);
+  if (gdprError) {
+    console.error("[register] GDPR consent timestamp not recorded:", gdprError);
+  }
 
   try {
     await sendConfirmationEmail({

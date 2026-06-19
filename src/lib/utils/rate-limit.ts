@@ -41,9 +41,11 @@ export function checkRateLimit(key: string, limit: number, windowMs: number): bo
 }
 
 export function getClientIp(headers: Headers): string {
+  // x-real-ip is set by Vercel's edge and cannot be spoofed by clients;
+  // fall back to the leftmost x-forwarded-for entry in other environments.
   return (
-    headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
     headers.get("x-real-ip") ??
+    headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
     "unknown"
   );
 }

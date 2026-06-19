@@ -49,7 +49,9 @@ export async function middleware(request: NextRequest) {
   const isAdmin = role === "admin";
   const isEventAdmin = role === "event_admin";
 
-  const isAshuraRoute = pathname.startsWith("/admin/aschura");
+  const isAshuraRoute =
+    pathname.startsWith("/admin/aschura") ||
+    pathname.startsWith("/api/events/aschura");
   const hasAccess = isAdmin || (isEventAdmin && isAshuraRoute);
 
   if (!hasAccess) {

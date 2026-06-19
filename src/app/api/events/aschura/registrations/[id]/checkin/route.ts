@@ -32,7 +32,8 @@ export async function PATCH(
   const { error } = await getSupabaseServer()
     .from("event_registrations")
     .update({ checked_in })
-    .eq("id", id);
+    .eq("id", id)
+    .eq("event_id", "ashura-2026");
 
   if (error) {
     return NextResponse.json({ error: "Datenbankfehler." }, { status: 500 });

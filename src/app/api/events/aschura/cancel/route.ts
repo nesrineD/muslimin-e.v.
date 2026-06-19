@@ -60,6 +60,14 @@ export async function GET(request: NextRequest) {
 
 // POST /api/events/aschura/cancel
 export async function POST(request: NextRequest) {
+  // 10 cancellation attempts per IP per 5 minutes
+  if (!checkRateLimit(`cancel-post:${getClientIp(request.headers)}`, 10, 5 * 60_000)) {
+    return NextResponse.json(
+      { error: "Zu viele Anfragen. Bitte versuche es später erneut." },
+      { status: 429 },
+    );
+  }
+
   let body: unknown;
   try {
     body = await request.json();
@@ -79,6 +87,7 @@ export async function POST(request: NextRequest) {
 
   const supabase = getSupabaseServer();
 
+  // Fetch registration and guest list for input validation before claiming the token.
   const { data: registration } = await supabase
     .from("event_registrations")
     .select(
@@ -120,10 +129,25 @@ export async function POST(request: NextRequest) {
     if (!guest_ids_to_remove.every((id) => ownedIds.has(id))) {
       return NextResponse.json({ error: "Ungültige Gast-IDs." }, { status: 400 });
     }
+  }
 
+  // Atomically claim the token: only the first concurrent request succeeds.
+  // The WHERE token_used = false condition means a second simultaneous POST
+  // with the same token finds no matching row and gets INVALID_TOKEN_RESPONSE.
+  const { data: claimed } = await supabase
+    .from("event_registrations")
+    .update({ token_used: true })
+    .eq("id", registration.id)
+    .eq("token_used", false)
+    .select("id")
+    .single();
+
+  if (!claimed) return INVALID_TOKEN_RESPONSE;
+
+  if (action === "reduce") {
     const { data: result, error: rpcError } = await supabase.rpc("cancel_guests", {
       p_registration_id: registration.id,
-      p_guest_ids: guest_ids_to_remove,
+      p_guest_ids: guest_ids_to_remove!,
     });
 
     if (rpcError) {
@@ -131,15 +155,9 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Stornierung fehlgeschlagen." }, { status: 500 });
     }
 
-    // H3: invalidate the token so the same link cannot be reused
-    await supabase
-      .from("event_registrations")
-      .update({ token_used: true })
-      .eq("id", registration.id);
-
     const row = (result as Array<{ remaining_count: number; is_full_cancel: boolean }>)?.[0];
-    const cancelledGuests = allGuests.filter((g) => guest_ids_to_remove.includes(g.id));
-    const remainingGuests = allGuests.filter((g) => !guest_ids_to_remove.includes(g.id));
+    const cancelledGuests = allGuests.filter((g) => guest_ids_to_remove!.includes(g.id));
+    const remainingGuests = allGuests.filter((g) => !guest_ids_to_remove!.includes(g.id));
 
     try {
       await sendCancellationConfirmationEmail({
@@ -151,10 +169,17 @@ export async function POST(request: NextRequest) {
       console.error("[Brevo] Stornierungsbestätigung konnte nicht gesendet werden.");
     }
   } else {
-    await supabase
-      .from("event_registrations")
-      .update({ status: "cancelled", token_used: true })
-      .eq("id", registration.id);
+    // Full cancel: use cancel_guests RPC so event_guests rows are deleted atomically
+    // alongside the registration status update (direct UPDATE leaves guests orphaned).
+    const { error: rpcError } = await supabase.rpc("cancel_guests", {
+      p_registration_id: registration.id,
+      p_guest_ids: allGuests.map((g) => g.id),
+    });
+
+    if (rpcError) {
+      console.error("[cancel_guests] Full cancel RPC error:", rpcError);
+      return NextResponse.json({ error: "Stornierung fehlgeschlagen." }, { status: 500 });
+    }
 
     try {
       await sendCancellationConfirmationEmail({

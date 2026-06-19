@@ -3,6 +3,8 @@ import { getSupabaseServer } from "@/lib/supabase/server";
 import { sendCancellationConfirmationEmail } from "@/lib/email/brevo";
 import { isAschuraAdmin } from "@/lib/auth/roles";
 
+const EVENT_ID = "ashura-2026";
+
 export async function PATCH(
   _request: NextRequest,
   { params }: { params: Promise<{ id: string }> },
@@ -24,6 +26,7 @@ export async function PATCH(
     .from("event_registrations")
     .select("email, status, event_guests(id, vorname, nachname)")
     .eq("id", id)
+    .eq("event_id", EVENT_ID)
     .single();
 
   if (fetchError || !registration) {
@@ -37,22 +40,28 @@ export async function PATCH(
     return NextResponse.json({ error: "Bereits storniert." }, { status: 409 });
   }
 
-  const { error } = await supabase
-    .from("event_registrations")
-    .update({ status: "cancelled", token_used: true })
-    .eq("id", id);
+  const guests = registration.event_guests as Array<{ id: string; vorname: string; nachname: string }>;
 
-  if (error) {
+  // Use cancel_guests RPC so event_guests rows are deleted alongside the
+  // registration status update — a direct UPDATE leaves guests orphaned.
+  const { error: rpcError } = await supabase.rpc("cancel_guests", {
+    p_registration_id: id,
+    p_guest_ids: guests.map((g) => g.id),
+  });
+
+  if (rpcError) {
     return NextResponse.json({ error: "Datenbankfehler." }, { status: 500 });
   }
 
-  const guests = registration.event_guests as Array<{ vorname: string; nachname: string }>;
-
-  sendCancellationConfirmationEmail({
-    to: registration.email,
-    cancelledGuests: guests,
-    remainingGuests: [],
-  }).catch((err) => console.error("Stornierungsmail fehlgeschlagen:", err));
+  try {
+    await sendCancellationConfirmationEmail({
+      to: registration.email,
+      cancelledGuests: guests,
+      remainingGuests: [],
+    });
+  } catch (err) {
+    console.error("Stornierungsmail fehlgeschlagen:", err);
+  }
 
   return NextResponse.json({ success: true, isFullCancel: true });
 }

@@ -12,7 +12,7 @@ const neutralResponse = () => NextResponse.json({ message: NEUTRAL_MESSAGE });
 export async function POST(request: NextRequest) {
   // 5 cancel-link requests per IP per hour
   if (!checkRateLimit(`cancel-request:${getClientIp(request.headers)}`, 5, 60 * 60_000)) {
-    return neutralResponse();
+    return NextResponse.json({ message: NEUTRAL_MESSAGE }, { status: 429 });
   }
 
   let body: unknown;
