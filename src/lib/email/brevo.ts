@@ -5,6 +5,9 @@ const EVENT_DATE = "Samstag, 11. Juli 2026";
 const EVENT_EINLASS = "17:15Uhr";
 const EVENT_BEGINN = "18:00 Uhr";
 const EVENT_LOCATION = "Queen Palace, Skalitzer Str. 130, 10999 Berlin";
+const EVENT_LOCATION_MAPS_URL =
+  "https://www.google.com/maps/search/?api=1&query=Queen+Palace+Skalitzer+Str.+130+10999+Berlin";
+const EVENT_LOCATION_HTML = `<a href="${EVENT_LOCATION_MAPS_URL}" style="color:#fca5a5;text-decoration:none;">${EVENT_LOCATION}</a>`;
 const SENDER_NAME = "Muslimin e.V.";
 const SENDER_EMAIL = "aschura@muslimin-ev.de";
 
@@ -175,7 +178,7 @@ export async function sendConfirmationEmail(opts: {
       { label: "Datum", value: EVENT_DATE },
       { label: "Einlass", value: EVENT_EINLASS },
       { label: "Beginn", value: EVENT_BEGINN },
-      { label: "Ort", value: EVENT_LOCATION },
+      { label: "Ort", value: EVENT_LOCATION_HTML },
     ])}
 
     ${sectionLabel(`Angemeldete Personen (${opts.guests.length})`)}
