@@ -4,6 +4,7 @@
 export type User = {
   id: string;
   email: string;
+  role?: "member" | "helper" | "admin";
   is_helper: boolean; // Whether user has registered as helper
   user_metadata: {
     full_name?: string;
@@ -90,6 +91,17 @@ export const mockUsers: Record<string, User> = {
       stadt: "Berlin Neukölln",
       interessen: "Sprachkurse, Kulturelle Veranstaltungen, Kinderbetreuung",
       sichtbarkeit: "nein",
+    },
+  },
+  "admin@muslimin-ev.de": {
+    id: "admin-001",
+    email: "admin@muslimin-ev.de",
+    role: "admin",
+    is_helper: false,
+    user_metadata: {
+      full_name: "Admin Muslimin e.V.",
+      vorname: "Admin",
+      nachname: "Muslimin",
     },
   },
 };

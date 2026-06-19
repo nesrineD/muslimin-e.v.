@@ -46,6 +46,7 @@ export function Header() {
   const pathname = usePathname();
   const { user, loading, signOut } = useAuth();
   const { toast } = useToast();
+  const isEventAdmin = user?.role === "event_admin";
 
   useEffect(() => {
     setIsSigningOut(false);
@@ -94,7 +95,7 @@ export function Header() {
       }`}
       role="banner"
     >
-      <div className="container mx-auto flex h-20 items-center px-4 md:h-[72px]">
+      <div className="container mx-auto flex h-16 items-center px-4 lg:h-[72px]">
         {/* Logo with Shrinking Effect */}
         <Link
           href="/"
@@ -107,7 +108,7 @@ export function Header() {
             width={48}
             height={48}
             className="h-7 w-auto md:h-9"
-            style={{ width: "auto" }}
+            unoptimized
           />
           <div className="hidden sm:flex flex-col">
             <span className="text-lg font-bold leading-tight text-charcoal-800 transition-colors duration-300 group-hover:text-clay-700">
@@ -121,7 +122,7 @@ export function Header() {
 
         {/* Desktop Navigation */}
         <nav
-          className="hidden md:flex"
+          className="hidden lg:flex"
           role="navigation"
           aria-label="Hauptnavigation"
         >
@@ -145,8 +146,8 @@ export function Header() {
             </ul>
           )}
 
-          {/* Member-only Navigation - Only visible when logged in */}
-          {user && (
+          {/* Member-only Navigation - Only visible when logged in (not event_admin) */}
+          {user && !isEventAdmin && (
             <ul className="flex items-center gap-6">
               {MEMBER_NAV_LINKS.map((link) => (
                 <li key={link.href}>
@@ -170,8 +171,27 @@ export function Header() {
             </ul>
           )}
 
+          {/* Event Admin Navigation */}
+          {isEventAdmin && (
+            <ul className="flex items-center gap-6">
+              <li>
+                <Link
+                  href="/admin/aschura"
+                  className={`relative flex items-center gap-2 text-base font-semibold transition-colors duration-200 after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:transition-all after:duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-500 rounded-sm px-1 ${
+                    pathname.startsWith("/admin/aschura")
+                      ? "text-sage-700 after:w-full after:bg-sage-500"
+                      : "text-charcoal-700 hover:text-sage-700 after:w-0 after:bg-sage-400 hover:after:w-full"
+                  }`}
+                >
+                  <BarChart3 className="h-4 w-4" />
+                  <span>Aschura Admin</span>
+                </Link>
+              </li>
+            </ul>
+          )}
+
           {/* Helper CTA for members who are NOT yet helpers */}
-          {user && !user.is_helper && (
+          {user && !isEventAdmin && !user.is_helper && (
             <motion.div {...hoverButton} className="ml-6">
               <Button
                 asChild
@@ -192,7 +212,7 @@ export function Header() {
         <div className="flex-1" />
 
         {/* Desktop CTA Buttons */}
-        <div className="hidden md:flex items-center gap-3 mr-3">
+        <div className="hidden lg:flex items-center gap-3 mr-3">
           <motion.div {...hoverButton}>
             <Link
               href="/spenden"
@@ -205,7 +225,7 @@ export function Header() {
         </div>
 
         {/* Desktop Auth Section */}
-        <div className="hidden md:flex items-center">
+        <div className="hidden lg:flex items-center">
           {loading && !user && !isSigningOut ? (
             <div className="text-sm text-sage-600">Lade...</div>
           ) : user ? (
@@ -248,52 +268,66 @@ export function Header() {
                 </div>
                 <DropdownMenuSeparator className="bg-sage-200" />
 
-                <DropdownMenuItem asChild>
-                  <Link
-                    href="/dashboard"
-                    className="flex items-center gap-2 cursor-pointer focus-visible:ring-2 focus-visible:ring-sage-500"
-                  >
-                    <BarChart3 className="h-4 w-4" />
-                    <span>Mein Dashboard</span>
-                  </Link>
-                </DropdownMenuItem>
-
-                <DropdownMenuItem asChild>
-                  <Link
-                    href="/my-appointments"
-                    className="flex items-center gap-2 cursor-pointer focus-visible:ring-2 focus-visible:ring-sage-500"
-                  >
-                    <Calendar className="h-4 w-4" />
-                    <span>Meine Termine</span>
-                  </Link>
-                </DropdownMenuItem>
-
-                {user.is_helper && (
+                {isEventAdmin ? (
+                  <DropdownMenuItem asChild>
+                    <Link
+                      href="/admin/aschura"
+                      className="flex items-center gap-2 cursor-pointer focus-visible:ring-2 focus-visible:ring-sage-500"
+                    >
+                      <BarChart3 className="h-4 w-4" />
+                      <span>Aschura Admin Dashboard</span>
+                    </Link>
+                  </DropdownMenuItem>
+                ) : (
                   <>
-                    <DropdownMenuSeparator className="bg-sage-200" />
                     <DropdownMenuItem asChild>
                       <Link
-                        href="/helper/availability"
+                        href="/dashboard"
                         className="flex items-center gap-2 cursor-pointer focus-visible:ring-2 focus-visible:ring-sage-500"
                       >
-                        <Clock className="h-4 w-4" />
-                        <span>Verfügbarkeiten</span>
+                        <BarChart3 className="h-4 w-4" />
+                        <span>Mein Dashboard</span>
+                      </Link>
+                    </DropdownMenuItem>
+
+                    <DropdownMenuItem asChild>
+                      <Link
+                        href="/my-appointments"
+                        className="flex items-center gap-2 cursor-pointer focus-visible:ring-2 focus-visible:ring-sage-500"
+                      >
+                        <Calendar className="h-4 w-4" />
+                        <span>Meine Termine</span>
+                      </Link>
+                    </DropdownMenuItem>
+
+                    {user.is_helper && (
+                      <>
+                        <DropdownMenuSeparator className="bg-sage-200" />
+                        <DropdownMenuItem asChild>
+                          <Link
+                            href="/helper/availability"
+                            className="flex items-center gap-2 cursor-pointer focus-visible:ring-2 focus-visible:ring-sage-500"
+                          >
+                            <Clock className="h-4 w-4" />
+                            <span>Verfügbarkeiten</span>
+                          </Link>
+                        </DropdownMenuItem>
+                      </>
+                    )}
+
+                    <DropdownMenuSeparator className="bg-sage-200" />
+
+                    <DropdownMenuItem asChild>
+                      <Link
+                        href="/profile"
+                        className="flex items-center gap-2 cursor-pointer focus-visible:ring-2 focus-visible:ring-sage-500"
+                      >
+                        <User className="h-4 w-4" />
+                        <span>Mein Profil</span>
                       </Link>
                     </DropdownMenuItem>
                   </>
                 )}
-
-                <DropdownMenuSeparator className="bg-sage-200" />
-
-                <DropdownMenuItem asChild>
-                  <Link
-                    href="/profile"
-                    className="flex items-center gap-2 cursor-pointer focus-visible:ring-2 focus-visible:ring-sage-500"
-                  >
-                    <User className="h-4 w-4" />
-                    <span>Mein Profil</span>
-                  </Link>
-                </DropdownMenuItem>
 
                 <DropdownMenuItem
                   onClick={(event) => {
@@ -324,7 +358,7 @@ export function Header() {
 
         {/* Mobile Menu */}
         <Sheet>
-          <SheetTrigger asChild className="md:hidden">
+          <SheetTrigger asChild className="lg:hidden">
             <motion.div {...hoverButton}>
               <Button
                 variant="ghost"
@@ -345,7 +379,7 @@ export function Header() {
                   width={36}
                   height={36}
                   className="h-9 w-auto"
-                  style={{ width: "auto" }}
+                  unoptimized
                 />
                 <span className="text-base font-bold text-charcoal-800">Muslimin e.V.</span>
               </SheetTitle>
@@ -378,8 +412,8 @@ export function Header() {
                 </>
               )}
 
-              {/* Member-only Navigation - Only visible when logged in */}
-              {user && (
+              {/* Member-only Navigation - Only visible when logged in (not event_admin) */}
+              {user && !isEventAdmin && (
                 <>
                   <div className="border-t border-sage-200 pt-4">
                     <p className="text-xs font-medium text-charcoal-600 mb-3">
@@ -444,81 +478,103 @@ export function Header() {
                 ) : user ? (
                   <>
                     <div className="text-sm text-charcoal-700 text-center mb-4 font-medium">
-                      Willkommen, {user.user_metadata?.vorname || "Mitglied"}
+                      Willkommen,{" "}
+                      {user.user_metadata?.vorname ||
+                        (isEventAdmin ? "Admin" : "Mitglied")}
                     </div>
 
-                    <motion.div
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <Button
-                        variant="outline"
-                        className="w-full justify-start hover:bg-sage-100 hover:border-sage-300 min-h-[44px] focus-visible:ring-2 focus-visible:ring-sage-500"
-                        asChild
+                    {isEventAdmin ? (
+                      <motion.div
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
                       >
-                        <Link href="/dashboard">
-                          <BarChart3 className="h-4 w-4 mr-2" />
-                          Mein Dashboard
-                        </Link>
-                      </Button>
-                    </motion.div>
-
-                    <motion.div
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <Button
-                        variant="outline"
-                        className="w-full justify-start hover:bg-sage-100 hover:border-sage-300 min-h-[44px] focus-visible:ring-2 focus-visible:ring-sage-500"
-                        asChild
-                      >
-                        <Link href="/my-appointments">
-                          <Calendar className="h-4 w-4 mr-2" />
-                          Meine Termine
-                        </Link>
-                      </Button>
-                    </motion.div>
-
-                    {user.is_helper && (
+                        <Button
+                          variant="outline"
+                          className="w-full justify-start hover:bg-sage-100 hover:border-sage-300 min-h-[44px] focus-visible:ring-2 focus-visible:ring-sage-500"
+                          asChild
+                        >
+                          <Link href="/admin/aschura">
+                            <BarChart3 className="h-4 w-4 mr-2" />
+                            Aschura Admin Dashboard
+                          </Link>
+                        </Button>
+                      </motion.div>
+                    ) : (
                       <>
-                        <div className="border-t border-sage-200 pt-2 mt-2">
-                          <div className="text-xs text-charcoal-600 text-center mb-2 font-medium">
-                            Helferin-Bereich
-                          </div>
-                          <motion.div
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
+                        <motion.div
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                        >
+                          <Button
+                            variant="outline"
+                            className="w-full justify-start hover:bg-sage-100 hover:border-sage-300 min-h-[44px] focus-visible:ring-2 focus-visible:ring-sage-500"
+                            asChild
                           >
-                            <Button
-                              variant="outline"
-                              className="w-full justify-start hover:bg-sage-100 hover:border-sage-300 min-h-[44px] focus-visible:ring-2 focus-visible:ring-sage-500"
-                              asChild
-                            >
-                              <Link href="/helper/availability">
-                                <Clock className="h-4 w-4 mr-2" />
-                                Verfügbarkeiten
-                              </Link>
-                            </Button>
-                          </motion.div>
-                        </div>
+                            <Link href="/dashboard">
+                              <BarChart3 className="h-4 w-4 mr-2" />
+                              Mein Dashboard
+                            </Link>
+                          </Button>
+                        </motion.div>
+
+                        <motion.div
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                        >
+                          <Button
+                            variant="outline"
+                            className="w-full justify-start hover:bg-sage-100 hover:border-sage-300 min-h-[44px] focus-visible:ring-2 focus-visible:ring-sage-500"
+                            asChild
+                          >
+                            <Link href="/my-appointments">
+                              <Calendar className="h-4 w-4 mr-2" />
+                              Meine Termine
+                            </Link>
+                          </Button>
+                        </motion.div>
+
+                        {user.is_helper && (
+                          <>
+                            <div className="border-t border-sage-200 pt-2 mt-2">
+                              <div className="text-xs text-charcoal-600 text-center mb-2 font-medium">
+                                Helferin-Bereich
+                              </div>
+                              <motion.div
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
+                              >
+                                <Button
+                                  variant="outline"
+                                  className="w-full justify-start hover:bg-sage-100 hover:border-sage-300 min-h-[44px] focus-visible:ring-2 focus-visible:ring-sage-500"
+                                  asChild
+                                >
+                                  <Link href="/helper/availability">
+                                    <Clock className="h-4 w-4 mr-2" />
+                                    Verfügbarkeiten
+                                  </Link>
+                                </Button>
+                              </motion.div>
+                            </div>
+                          </>
+                        )}
+
+                        <motion.div
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                        >
+                          <Button
+                            variant="outline"
+                            className="w-full justify-start hover:bg-sage-100 hover:border-sage-300 min-h-[44px] focus-visible:ring-2 focus-visible:ring-sage-500"
+                            asChild
+                          >
+                            <Link href="/profile">
+                              <User className="h-4 w-4 mr-2" />
+                              Mein Profil
+                            </Link>
+                          </Button>
+                        </motion.div>
                       </>
                     )}
-
-                    <motion.div
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <Button
-                        variant="outline"
-                        className="w-full justify-start hover:bg-sage-100 hover:border-sage-300 min-h-[44px] focus-visible:ring-2 focus-visible:ring-sage-500"
-                        asChild
-                      >
-                        <Link href="/profile">
-                          <User className="h-4 w-4 mr-2" />
-                          Mein Profil
-                        </Link>
-                      </Button>
-                    </motion.div>
 
                     <motion.div
                       whileHover={{ scale: 1.02 }}

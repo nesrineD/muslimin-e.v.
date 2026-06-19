@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
@@ -70,6 +72,14 @@ const memberFeatures = [
 
 export default function Home() {
   const { user, loading } = useAuth();
+  const router = useRouter();
+
+  // event_admin has no business on the member landing page — send to their dashboard
+  useEffect(() => {
+    if (!loading && user?.role === "event_admin") {
+      router.replace("/admin/aschura");
+    }
+  }, [user, loading, router]);
 
   // Filter memberFeatures based on user status
   const filteredMemberFeatures = user
