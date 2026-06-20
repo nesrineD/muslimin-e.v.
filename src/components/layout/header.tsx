@@ -105,7 +105,7 @@ export function Header() {
           <Image
             src="/images/muslimin-logo.svg"
             alt="Muslimin e.V. Logo"
-            width={48}
+            width={71}
             height={48}
             className="h-7 w-auto md:h-9"
             unoptimized
@@ -376,7 +376,7 @@ export function Header() {
                 <Image
                   src="/images/muslimin-logo.svg"
                   alt=""
-                  width={36}
+                  width={53}
                   height={36}
                   className="h-9 w-auto"
                   unoptimized
