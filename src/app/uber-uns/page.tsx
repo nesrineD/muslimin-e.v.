@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { BookOpen, Heart, ShieldCheck, MessageCircle } from "lucide-react";
 import { WerSindWirSection } from "@/components/uber-uns/WerSindWirSection";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -119,9 +118,6 @@ export default function AboutPage() {
                   hover="lift"
                   className="text-left p-8 rounded-xl border border-sage-200 bg-gradient-to-br from-sage-50 to-cream-50 shadow-sm"
                 >
-                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-sage-100 ring-1 ring-sage-200">
-                    <BookOpen className="h-6 w-6 text-sage-600" />
-                  </div>
                   <h3 className="text-xl font-semibold text-charcoal-800 mb-2">
                     Religiöse Bildung
                   </h3>
@@ -133,9 +129,6 @@ export default function AboutPage() {
                   hover="lift"
                   className="text-left p-8 rounded-xl border border-clay-200 bg-gradient-to-br from-clay-50 to-cream-50 shadow-sm"
                 >
-                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-clay-100 ring-1 ring-clay-200">
-                    <Heart className="h-6 w-6 text-clay-600" />
-                  </div>
                   <h3 className="text-xl font-semibold text-charcoal-800 mb-2">
                     Muslimische Identität
                   </h3>
@@ -147,9 +140,6 @@ export default function AboutPage() {
                   hover="lift"
                   className="text-left p-8 rounded-xl border border-warm-200 bg-gradient-to-br from-warm-50 to-cream-50 shadow-sm"
                 >
-                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-warm-100 ring-1 ring-warm-200">
-                    <MessageCircle className="h-6 w-6 text-warm-600" />
-                  </div>
                   <h3 className="text-xl font-semibold text-charcoal-800 mb-2">
                     Austausch & Dialog
                   </h3>
@@ -161,9 +151,6 @@ export default function AboutPage() {
                   hover="lift"
                   className="text-left p-8 rounded-xl border border-sand-300 bg-gradient-to-br from-sand-50 to-cream-50 shadow-sm"
                 >
-                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-sand-100 ring-1 ring-sand-200">
-                    <ShieldCheck className="h-6 w-6 text-charcoal-500" />
-                  </div>
                   <h3 className="text-xl font-semibold text-charcoal-800 mb-2">
                     Geschützter Raum
                   </h3>

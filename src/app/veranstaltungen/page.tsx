@@ -278,7 +278,7 @@ function Section({
               animation={idx % 2 === 0 ? "slide-in-left" : "slide-in-right"}
             >
               <div
-                className={`flex flex-col md:flex-row ${
+                className={`flex flex-col-reverse md:flex-row ${
                   idx % 2 !== 0 ? "md:flex-row-reverse" : ""
                 } overflow-hidden rounded-xl border border-sand-200 shadow-sm`}
               >

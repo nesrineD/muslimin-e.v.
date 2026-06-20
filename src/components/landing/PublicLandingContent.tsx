@@ -6,7 +6,6 @@ import Link from "next/link";
 import {
   BookOpen,
   Users,
-  Shield,
   Sparkles,
   CheckCircle,
 } from "lucide-react";
@@ -58,16 +57,16 @@ export function PublicLandingContent() {
 
             <div className="flex flex-col items-center gap-5">
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 w-full sm:w-auto">
-                <motion.div {...hoverButton}>
-                  <Button size="lg" variant="primary" asChild>
+                <motion.div {...hoverButton} className="w-full sm:w-auto">
+                  <Button size="lg" variant="primary" asChild className="w-full sm:w-auto">
                     <Link href="/mitglied-werden">
                       Mitglied werden
                     </Link>
                   </Button>
                 </motion.div>
 
-                <motion.div {...hoverButton}>
-                  <Button size="lg" variant="secondary" asChild>
+                <motion.div {...hoverButton} className="w-full sm:w-auto">
+                  <Button size="lg" variant="secondary" asChild className="w-full sm:w-auto">
                     <Link href="/spenden">
                       Jetzt unterstützen
                     </Link>
@@ -132,31 +131,6 @@ export function PublicLandingContent() {
                   </div>
                 </div>
 
-                <div className="space-y-4">
-                  {[
-                    {
-                      icon: <BookOpen className="w-5 h-5" />,
-                      text: "Religiöse Bildung mit Praxisbezug",
-                    },
-                    {
-                      icon: <Shield className="w-5 h-5" />,
-                      text: "Geschützter Raum für Frauen und Mädchen",
-                    },
-                    {
-                      icon: <Users className="w-5 h-5" />,
-                      text: "Gemeinschaft über Generationen hinweg",
-                    },
-                  ].map((point, idx) => (
-                    <div key={idx} className="flex items-start gap-3">
-                      <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-sage-700 text-white">
-                        {point.icon}
-                      </div>
-                      <p className="pt-1.5 text-base leading-relaxed text-charcoal-700">
-                        {point.text}
-                      </p>
-                    </div>
-                  ))}
-                </div>
               </div>
             </div>
           </motion.div>
@@ -287,24 +261,24 @@ export function PublicLandingContent() {
                 Schwesternschaft, die trägt. Glaube, der verbindet. Ein Raum für
                 dich und deine Entwicklung.
               </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <motion.div {...hoverButton}>
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 w-full sm:w-auto">
+                <motion.div {...hoverButton} className="w-full sm:w-auto">
                   <Button
                     size="lg"
                     asChild
-                    className="bg-clay-500 hover:bg-clay-600 text-white"
+                    className="w-full sm:w-auto bg-clay-500 hover:bg-clay-600 text-white"
                   >
                     <Link href="/mitglied-werden">
                       Jetzt Mitglied werden
                     </Link>
                   </Button>
                 </motion.div>
-                <motion.div {...hoverButton}>
+                <motion.div {...hoverButton} className="w-full sm:w-auto">
                   <Button
                     size="lg"
                     variant="outline"
                     asChild
-                    className="border-cream-200 text-cream-100 hover:bg-sage-600"
+                    className="w-full sm:w-auto border-cream-200 text-cream-100 hover:bg-sage-600"
                   >
                     <Link href="/spenden">
                       Uns unterstützen

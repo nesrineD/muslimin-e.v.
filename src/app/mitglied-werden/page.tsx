@@ -234,7 +234,7 @@ export default function MitgliedWerdenPage() {
               <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/70 to-transparent" />
 
               <div className="relative mx-auto max-w-lg">
-                <h2 className="mb-4 font-heading text-2xl font-bold text-white md:text-3xl">
+                <h2 className="mb-4 font-heading text-xl font-bold text-white break-words hyphens-auto md:text-3xl" lang="de">
                   Deine Mitgliedschaftsanfrage
                 </h2>
 
@@ -255,7 +255,7 @@ export default function MitgliedWerdenPage() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Jetzt Mitglied werden
+                      Mitglied werden
                       <ArrowUpRight className="h-4 w-4" />
                     </a>
                   </Button>
