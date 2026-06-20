@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Calendar, ClipboardList, MapPin } from "lucide-react";
+import { Calendar, MapPin } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { RegistrationForm } from "@/components/aschura/RegistrationForm";
 import { AschuraGallery } from "@/components/aschura/AschuraGallery";
@@ -51,9 +51,9 @@ export default async function AschuraPage() {
               Gemeinsam erinnern. Gemeinsam wachsen.
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-charcoal-100 md:text-lg">
-              As-Salamu Alaikum liebe Schwestern, bald ist es wieder soweit:
-              Wir erinnern uns, wir trauern, wir lassen die Lehren von Karbala
-              in unseren Herzen lebendig werden.
+              As-Salamu Alaikum liebe Schwestern, bald ist es wieder soweit: Wir
+              erinnern uns, wir trauern, wir lassen die Lehren von Karbala in
+              unseren Herzen lebendig werden.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -62,13 +62,6 @@ export default async function AschuraPage() {
                 className="min-h-[46px] bg-[#631313] px-6 text-white hover:bg-[#7a1818]"
               >
                 <Link href="#anmeldung">Jetzt anmelden</Link>
-              </Button>
-              <Button
-                asChild
-                variant="outline"
-                className="min-h-[46px] border-cream-100/40 bg-charcoal-900/55 px-6 text-cream-50 hover:bg-charcoal-800"
-              >
-                <Link href="#hinweise">Hinweise lesen</Link>
               </Button>
             </div>
           </div>
@@ -87,14 +80,20 @@ export default async function AschuraPage() {
             <div className="flex items-center gap-4 rounded-xl bg-charcoal-700/70 p-4">
               <Calendar className="h-6 w-6 flex-shrink-0 text-red-400" />
               <div>
-                <p className="text-xs uppercase tracking-[0.16em] text-charcoal-300">Datum</p>
-                <p className="font-semibold text-cream-50">Samstag, 11. Juli 2026</p>
+                <p className="text-xs uppercase tracking-[0.16em] text-charcoal-400">
+                  Datum
+                </p>
+                <p className="font-semibold text-cream-50">
+                  Samstag, 11. Juli 2026
+                </p>
               </div>
             </div>
             <div className="flex items-start gap-4 rounded-xl bg-charcoal-700/70 p-4">
               <MapPin className="mt-0.5 h-6 w-6 flex-shrink-0 text-red-400" />
               <div>
-                <p className="text-xs uppercase tracking-[0.16em] text-charcoal-300">Ort</p>
+                <p className="text-xs uppercase tracking-[0.16em] text-charcoal-400">
+                  Ort
+                </p>
                 <a
                   href="https://maps.google.com/?q=Queen+Palace+Skalitzer+Straße+130,+10999+Berlin"
                   target="_blank"
@@ -110,62 +109,6 @@ export default async function AschuraPage() {
 
         {/* Impressionen */}
         <AschuraGallery />
-
-        {/* Wichtige Hinweise */}
-        <section
-          id="hinweise"
-          className="mb-10 rounded-2xl border border-red-950/60 bg-gradient-to-br from-charcoal-800 to-charcoal-900 px-6 py-6 shadow-sm md:px-7"
-        >
-          <div className="mb-5 flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-red-950/70 text-red-200 ring-1 ring-red-900/60">
-              <ClipboardList className="h-5 w-5" />
-            </div>
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-red-300">
-                Bitte beachte
-              </p>
-              <h2 className="font-heading text-xl font-semibold text-cream-50">
-                Hinweise zur Teilnahme
-              </h2>
-            </div>
-          </div>
-          <ul className="grid gap-3 text-sm leading-relaxed md:grid-cols-2">
-            <li className="rounded-xl border border-charcoal-700 bg-charcoal-900/45 p-4">
-              <strong className="block text-charcoal-100">
-                Schwestern und Mädchen ab 9 Jahren
-              </strong>
-              <span className="mt-1 block text-charcoal-300">
-                Es gibt keine Kinderbetreuung. Säuglinge bis 2 Jahre dürfen bei
-                der Mutter bleiben.
-              </span>
-            </li>
-            <li className="rounded-xl border border-charcoal-700 bg-charcoal-900/45 p-4">
-              <strong className="block text-charcoal-100">
-                Verbindliche Anmeldung
-              </strong>
-              <span className="mt-1 block text-charcoal-300">
-                Bitte nutze bei Verhinderung den Abmeldelink, damit
-                Wartelistenplätze frei werden.
-              </span>
-            </li>
-            <li className="rounded-xl border border-charcoal-700 bg-charcoal-900/45 p-4">
-              <strong className="block text-charcoal-100">
-                Keine Foto- und Videoaufnahmen
-              </strong>
-              <span className="mt-1 block text-charcoal-300">
-                Während der gesamten Veranstaltung bitten wir um Rücksicht und
-                Einhaltung dieser Regel.
-              </span>
-            </li>
-            <li className="rounded-xl border border-charcoal-700 bg-charcoal-900/45 p-4">
-              <strong className="block text-charcoal-100">Datenschutz</strong>
-              <span className="mt-1 block text-charcoal-300">
-                Mit dem Absenden des Formulars stimmst du der Verarbeitung für
-                die Veranstaltungsorganisation zu.
-              </span>
-            </li>
-          </ul>
-        </section>
 
         {/* Registration form */}
         <Card
@@ -199,12 +142,11 @@ export default async function AschuraPage() {
           Bereits angemeldet?{" "}
           <a
             href="/veranstaltungen/aschura/stornieren"
-            className="text-red-400 underline underline-offset-2 transition-colors hover:text-red-300"
+            className="text-red-300 underline underline-offset-2 transition-colors hover:text-red-200 focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-300"
           >
             Anmeldung stornieren oder ändern
           </a>
         </p>
-
       </div>
     </main>
   );

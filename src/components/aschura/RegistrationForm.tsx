@@ -77,7 +77,7 @@ export function RegistrationForm({ isFull }: Props) {
 
   if (isFull && !submitted) {
     return (
-      <p className="text-center text-red-600 font-medium py-6">
+      <p className="py-6 text-center font-medium text-red-300">
         Anmeldung geschlossen — alle Plätze sind vergeben.
       </p>
     );
@@ -99,7 +99,8 @@ export function RegistrationForm({ isFull }: Props) {
           <p className="text-charcoal-300 text-sm">
             Wir haben dir eine Bestätigungs-E-Mail an{" "}
             <span className="text-cream-100 font-medium">{submittedEmail}</span>{" "}
-            mit der Liste aller angemeldeten Gäste geschickt. Bitte prüfe auch deinen Spam-Ordner.
+            mit der Liste aller angemeldeten Gäste geschickt. Bitte prüfe auch
+            deinen Spam-Ordner.
           </p>
         )}
       </div>
@@ -109,7 +110,9 @@ export function RegistrationForm({ isFull }: Props) {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" noValidate>
       {serverError && (
-        <p role="alert" className="text-red-600 text-sm font-medium">{serverError}</p>
+        <p role="alert" className="text-sm font-medium text-red-300">
+          {serverError}
+        </p>
       )}
 
       {/* E-Mail */}
@@ -122,10 +125,14 @@ export function RegistrationForm({ isFull }: Props) {
           type="email"
           {...register("email")}
           autoComplete="email"
-          className="bg-charcoal-700 border-charcoal-600 text-cream-50 placeholder:text-charcoal-400 focus-visible:ring-red-900"
+          error={!!errors.email}
+          aria-describedby={errors.email ? "email-error" : undefined}
+          className={`${errors.email ? "border-red-300" : "border-charcoal-500"} bg-charcoal-700 text-cream-50 placeholder:text-charcoal-400 focus:border-red-300 focus:ring-red-300/30`}
         />
         {errors.email && (
-          <p className="text-red-500 text-xs">{errors.email.message}</p>
+          <p id="email-error" className="text-xs text-red-300">
+            {errors.email.message}
+          </p>
         )}
       </div>
 
@@ -134,24 +141,31 @@ export function RegistrationForm({ isFull }: Props) {
         <Label className="text-charcoal-200">
           Anzahl der Teilnehmerinnen *
         </Label>
-        <div className="flex items-center gap-3" role="group" aria-label="Anzahl der Teilnehmerinnen">
+        <div
+          className="flex items-center gap-3"
+          role="group"
+          aria-label="Anzahl der Teilnehmerinnen"
+        >
           <button
             type="button"
             onClick={() => handleCountChange(guestCount - 1)}
             disabled={guestCount <= 1}
-            className="w-11 h-11 rounded-full border border-charcoal-600 text-charcoal-200 hover:bg-charcoal-700 disabled:opacity-40 disabled:cursor-not-allowed font-bold text-lg leading-none"
+            className="h-11 w-11 rounded-full border border-charcoal-500 text-lg font-bold leading-none text-charcoal-200 transition-colors hover:border-charcoal-400 hover:bg-charcoal-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-300 focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal-800 disabled:cursor-not-allowed disabled:opacity-40"
             aria-label="Weniger Gäste"
           >
             −
           </button>
-          <span aria-live="polite" className="w-6 text-center text-lg font-semibold text-cream-50">
+          <span
+            aria-live="polite"
+            className="w-6 text-center text-lg font-semibold text-cream-50"
+          >
             {guestCount}
           </span>
           <button
             type="button"
             onClick={() => handleCountChange(guestCount + 1)}
             disabled={guestCount >= 20}
-            className="w-11 h-11 rounded-full border border-charcoal-600 text-charcoal-200 hover:bg-charcoal-700 disabled:opacity-40 disabled:cursor-not-allowed font-bold text-lg leading-none"
+            className="h-11 w-11 rounded-full border border-charcoal-500 text-lg font-bold leading-none text-charcoal-200 transition-colors hover:border-charcoal-400 hover:bg-charcoal-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-300 focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal-800 disabled:cursor-not-allowed disabled:opacity-40"
             aria-label="Mehr Gäste"
           >
             +
@@ -161,7 +175,7 @@ export function RegistrationForm({ isFull }: Props) {
           Inklusive dir selbst. Maximal 20 pro Anmeldung.
         </p>
         {errors.guests?.root && (
-          <p className="text-red-500 text-xs">{errors.guests.root.message}</p>
+          <p className="text-xs text-red-300">{errors.guests.root.message}</p>
         )}
       </div>
 
@@ -170,7 +184,7 @@ export function RegistrationForm({ isFull }: Props) {
         {fields.map((field, index) => (
           <div
             key={field.id}
-            className="rounded-lg border border-charcoal-700 bg-charcoal-900/40 p-4 space-y-3"
+            className="space-y-3 rounded-lg border border-charcoal-600 bg-charcoal-900/40 p-4"
           >
             <p className="text-xs font-medium text-charcoal-300 uppercase tracking-wide">
               {index === 0 ? "Dein Name" : `Gast ${index + 1}`}
@@ -187,10 +201,19 @@ export function RegistrationForm({ isFull }: Props) {
                   id={`guests.${index}.vorname`}
                   {...register(`guests.${index}.vorname`)}
                   autoComplete={index === 0 ? "given-name" : "off"}
-                  className="bg-charcoal-700 border-charcoal-600 text-cream-50 placeholder:text-charcoal-400 focus-visible:ring-red-900"
+                  error={!!errors.guests?.[index]?.vorname}
+                  aria-describedby={
+                    errors.guests?.[index]?.vorname
+                      ? `guests-${index}-vorname-error`
+                      : undefined
+                  }
+                  className={`${errors.guests?.[index]?.vorname ? "border-red-300" : "border-charcoal-500"} bg-charcoal-700 text-cream-50 placeholder:text-charcoal-400 focus:border-red-300 focus:ring-red-300/30`}
                 />
                 {errors.guests?.[index]?.vorname && (
-                  <p className="text-red-500 text-xs">
+                  <p
+                    id={`guests-${index}-vorname-error`}
+                    className="text-xs text-red-300"
+                  >
                     {errors.guests[index]?.vorname?.message}
                   </p>
                 )}
@@ -206,10 +229,19 @@ export function RegistrationForm({ isFull }: Props) {
                   id={`guests.${index}.nachname`}
                   {...register(`guests.${index}.nachname`)}
                   autoComplete={index === 0 ? "family-name" : "off"}
-                  className="bg-charcoal-700 border-charcoal-600 text-cream-50 placeholder:text-charcoal-400 focus-visible:ring-red-900"
+                  error={!!errors.guests?.[index]?.nachname}
+                  aria-describedby={
+                    errors.guests?.[index]?.nachname
+                      ? `guests-${index}-nachname-error`
+                      : undefined
+                  }
+                  className={`${errors.guests?.[index]?.nachname ? "border-red-300" : "border-charcoal-500"} bg-charcoal-700 text-cream-50 placeholder:text-charcoal-400 focus:border-red-300 focus:ring-red-300/30`}
                 />
                 {errors.guests?.[index]?.nachname && (
-                  <p className="text-red-500 text-xs">
+                  <p
+                    id={`guests-${index}-nachname-error`}
+                    className="text-xs text-red-300"
+                  >
                     {errors.guests[index]?.nachname?.message}
                   </p>
                 )}
@@ -224,6 +256,11 @@ export function RegistrationForm({ isFull }: Props) {
         <Checkbox
           id="datenschutz"
           checked={!!datenschutz}
+          aria-describedby={
+            errors.datenschutz ? "datenschutz-error" : undefined
+          }
+          aria-invalid={errors.datenschutz ? "true" : undefined}
+          className="h-5 w-5 border-charcoal-400 focus-visible:ring-2 focus-visible:ring-red-300 focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal-800 data-[state=checked]:border-red-300 data-[state=checked]:bg-red-950 data-[state=checked]:text-white"
           onCheckedChange={(checked) =>
             setValue("datenschutz", (checked === true) as true, {
               shouldValidate: true,
@@ -237,7 +274,7 @@ export function RegistrationForm({ isFull }: Props) {
           Ich habe die{" "}
           <a
             href="/datenschutz"
-            className="underline text-[#a52020] hover:text-[#7a1818]"
+            className="text-red-300 underline underline-offset-2 transition-colors hover:text-red-200 focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-300"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -248,15 +285,52 @@ export function RegistrationForm({ isFull }: Props) {
         </Label>
       </div>
       {errors.datenschutz && (
-        <p className="text-red-500 text-xs -mt-3">
+        <p id="datenschutz-error" className="-mt-3 text-xs text-red-300">
           {errors.datenschutz.message}
         </p>
       )}
 
+      {/* Hinweise zur Teilnahme */}
+      <div className="rounded-xl border border-red-800/70 bg-charcoal-900/60 px-5 py-4">
+        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-red-300">
+          Bitte beachte
+        </p>
+        <ul className="divide-y divide-charcoal-700 text-sm">
+          <li className="py-3 first:pt-0">
+            <strong className="block text-cream-50">
+              Schwestern und Mädchen ab 9 Jahren
+            </strong>
+            <span className="mt-1 block text-white/80">
+              Es gibt keine Kinderbetreuung. Säuglinge bis 2 Jahre dürfen bei
+              der Mutter bleiben.
+            </span>
+          </li>
+          <li className="py-3">
+            <strong className="block text-cream-50">
+              Verbindliche Anmeldung
+            </strong>
+            <span className="mt-1 block text-white/80">
+              Bitte nutze bei Verhinderung den Abmeldelink, damit
+              Wartelistenplätze frei werden.
+            </span>
+          </li>
+          <li className="py-3 last:pb-0">
+            <strong className="block text-cream-50">
+              Keine Foto- und Videoaufnahmen
+            </strong>
+            <span className="mt-1 block text-white/80">
+              Während der gesamten Veranstaltung bitten wir um Rücksicht und
+              Einhaltung dieser Regel.
+            </span>
+          </li>
+        </ul>
+      </div>
+
       <Button
+        variant="default"
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-[#631313] hover:bg-[#7a1818] text-white min-h-[44px]"
+        className="min-h-[44px] w-full border-0 bg-red-950 text-white hover:bg-red-900 active:bg-red-950 focus-visible:outline-red-300"
       >
         {isSubmitting ? "Wird gesendet…" : "Jetzt anmelden"}
       </Button>
