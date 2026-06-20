@@ -162,6 +162,7 @@ export async function POST(request: NextRequest) {
     try {
       await sendCancellationConfirmationEmail({
         to: registration.email,
+        vorname: allGuests[0]?.vorname ?? "Schwester",
         cancelledGuests,
         remainingGuests: row?.is_full_cancel ? [] : remainingGuests,
       });
@@ -184,6 +185,7 @@ export async function POST(request: NextRequest) {
     try {
       await sendCancellationConfirmationEmail({
         to: registration.email,
+        vorname: allGuests[0]?.vorname ?? "Schwester",
         cancelledGuests: allGuests,
         remainingGuests: [],
       });

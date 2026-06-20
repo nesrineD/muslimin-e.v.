@@ -222,9 +222,6 @@ export async function sendCancellationRequestEmail(opts: {
 
     ${ctaButton(cancelLink, "Anmeldung verwalten")}
 
-    <p style="margin:20px 0 0 0;font-size:13px;color:#a8a29e;line-height:1.7;">
-      Dieser Link ist <strong style="color:#d6d3d1;">72 Stunden</strong> gültig und kann nur einmal verwendet werden.
-    </p>
     <p style="margin:12px 0 0 0;font-size:12px;color:#78716c;line-height:1.6;">
       Falls du keinen Stornierungslink angefordert hast, kannst du diese E-Mail ignorieren. Deine Anmeldung bleibt unverändert.
     </p>
@@ -240,11 +237,15 @@ export async function sendCancellationRequestEmail(opts: {
 
 export async function sendCancellationConfirmationEmail(opts: {
   to: string;
+  vorname: string;
   cancelledGuests: GuestInput[];
   remainingGuests: GuestInput[];
 }): Promise<void> {
   const client = createClient();
   const isFullCancel = opts.remainingGuests.length === 0;
+  const cancellationMessage = isFullCancel
+    ? "Deine Stornierungsanfrage wurde bearbeitet und deine gesamte Anmeldung wurde entfernt."
+    : "Deine Stornierungsanfrage wurde bearbeitet. Die folgenden Personen wurden aus deiner Anmeldung entfernt.";
 
   const remainingSection = isFullCancel
     ? bodyText(
@@ -256,12 +257,8 @@ export async function sendCancellationConfirmationEmail(opts: {
     `;
 
   const content = `
-    ${bodyText("As-salamu alaykum,")}
-    ${bodyText(
-      isFullCancel
-        ? "deine Stornierungsanfrage wurde bearbeitet und deine gesamte Anmeldung wurde entfernt."
-        : "deine Stornierungsanfrage wurde bearbeitet. Die folgenden Personen wurden aus deiner Anmeldung entfernt.",
-    )}
+    ${bodyText(`As-salamu alaykum Liebe ${esc(opts.vorname)},`)}
+    ${bodyText(cancellationMessage)}
 
     ${sectionLabel(`Stornierte Personen (${opts.cancelledGuests.length})`)}
     ${guestListHtml(opts.cancelledGuests)}
@@ -274,11 +271,28 @@ export async function sendCancellationConfirmationEmail(opts: {
     </p>
   `;
 
+  const cancelledGuestsText = opts.cancelledGuests
+    .map((guest) => `- ${guest.vorname} ${guest.nachname}`)
+    .join("\n");
+  const remainingGuestsText = opts.remainingGuests
+    .map((guest) => `- ${guest.vorname} ${guest.nachname}`)
+    .join("\n");
+  const textContent = [
+    `As-salamu alaykum Liebe ${opts.vorname},`,
+    cancellationMessage,
+    `Stornierte Personen (${opts.cancelledGuests.length}):\n${cancelledGuestsText}`,
+    isFullCancel
+      ? "Deine gesamte Anmeldung wurde erfolgreich storniert. Wir hoffen, dich bei einem zukünftigen Anlass begrüßen zu dürfen."
+      : `Verbleibende Personen (${opts.remainingGuests.length}):\n${remainingGuestsText}`,
+    `Bei Fragen erreichst du uns unter ${SENDER_EMAIL}.`,
+  ].join("\n\n");
+
   await client.transactionalEmails.sendTransacEmail({
     sender: { name: SENDER_NAME, email: SENDER_EMAIL },
     to: [{ email: opts.to }],
     subject: "Stornierungsbestätigung – Aschura-Frauenveranstaltung",
     htmlContent: baseTemplate(content),
+    textContent,
   });
 }
 

@@ -61,9 +61,10 @@ export function CancellationRequestForm() {
       </div>
 
       <Button
+        variant="default"
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-sage-600 hover:bg-sage-700 text-white min-h-[44px]"
+        className="min-h-[44px] w-full border-0 bg-red-950 text-white hover:bg-red-900 active:bg-red-950 focus-visible:outline-red-300"
       >
         {isSubmitting ? "Wird gesendet…" : "Stornierungslink anfordern"}
       </Button>

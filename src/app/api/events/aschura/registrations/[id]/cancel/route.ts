@@ -56,6 +56,7 @@ export async function PATCH(
   try {
     await sendCancellationConfirmationEmail({
       to: registration.email,
+      vorname: guests[0]?.vorname ?? "Schwester",
       cancelledGuests: guests,
       remainingGuests: [],
     });
