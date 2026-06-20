@@ -2,7 +2,7 @@ import { BrevoClient } from "@getbrevo/brevo";
 import type { GuestInput } from "@/types/aschura";
 
 const EVENT_DATE = "Samstag, 11. Juli 2026";
-const EVENT_EINLASS = "17:15Uhr";
+const EVENT_EINLASS = "17:15 Uhr";
 const EVENT_BEGINN = "18:00 Uhr";
 const EVENT_LOCATION = "Queen Palace, Skalitzer Str. 130, 10999 Berlin";
 const EVENT_LOCATION_MAPS_URL =
@@ -184,6 +184,7 @@ export async function sendConfirmationEmail(opts: {
     ${sectionLabel(`Angemeldete Personen (${opts.guests.length})`)}
     ${guestListHtml(opts.guests)}
 
+    <div style="height:16px;line-height:16px;">&nbsp;</div>
     ${bodyText("Falls du Fragen hast oder weitere Informationen benötigst, zögere bitte nicht, uns zu kontaktieren – wir sind gerne für dich da.")}
     ${bodyText("Wir freuen uns auf dein Kommen und wünschen dir eine segensreiche Zeit.")}
 
