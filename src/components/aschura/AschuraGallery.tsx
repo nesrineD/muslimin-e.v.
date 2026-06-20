@@ -38,7 +38,7 @@ const GALLERY_IMAGES: GalleryImage[] = [
     alt: "Teilnehmerinnen beim gemeinsamen Aschura-Gedenken",
   },
   {
-    src: "/images/veranstaltungen/Aschura/IMG_5953%20%282025-07-12T10_36_45.806%29.jpg",
+    src: "/images/veranstaltungen/Aschura/IMG_5953%20%282025-07-12T10_36_45.806%29.JPG",
     alt: "Geschmückter Bereich der Aschura-Veranstaltung",
   },
   {
