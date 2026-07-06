@@ -94,7 +94,9 @@ export default function Home() {
 
   // No redirect needed — unauthenticated visitors see the public landing page
 
-  if (loading) {
+  // While auth is loading — or an event_admin is being redirected away —
+  // show the spinner instead of flashing the member landing page
+  if (loading || user?.role === "event_admin") {
     return (
       <div className="min-h-screen bg-gradient-to-br from-sage-50 via-cream-50 to-sage-100 flex items-center justify-center">
         <div className="text-center">

@@ -6,7 +6,6 @@ import {
   Copy,
   Check,
   Heart,
-  Shield,
   Users,
   Landmark,
   ChevronDown,

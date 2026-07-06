@@ -27,7 +27,7 @@ export default function MemberMapPage() {
                 </p>
               </div>
               <div className="mt-4 flex md:mt-0 md:ml-4">
-                <span className="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#9c604d]">
+                <span className="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-clay-500">
                   <svg
                     className="w-4 h-4 mr-2"
                     fill="none"
@@ -58,7 +58,7 @@ export default function MemberMapPage() {
               <div className="flex items-center">
                 <div className="flex-shrink-0">
                   <svg
-                    className="h-6 w-6 text-[#9c604d]"
+                    className="h-6 w-6 text-clay-500"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -196,8 +196,8 @@ export default function MemberMapPage() {
         </div>
 
         {/* Instructions */}
-        <div className="mt-8 bg-[#f1e9de] border border-[#d4cbb8] rounded-lg p-6">
-          <h3 className="text-lg font-medium text-[#9c604d] mb-4">
+        <div className="mt-8 bg-cream-50 border border-cream-200 rounded-lg p-6">
+          <h3 className="text-lg font-medium text-clay-500 mb-4">
             So nutzen Sie die Mitgliederkarte
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

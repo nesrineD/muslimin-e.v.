@@ -34,7 +34,7 @@ export default function AboutPage() {
         <section className={`relative ${SECTION_HERO_SPACING} overflow-hidden`}>
           {/* Subtle geometric pattern for depth */}
           <div className="absolute inset-0 opacity-[0.03] pointer-events-none" aria-hidden="true">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,_#5b6960_1px,_transparent_1px)] bg-[length:32px_32px]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,_theme(colors.sage.500)_1px,_transparent_1px)] bg-[length:32px_32px]" />
           </div>
           <DecorativeAccents preset="hero" />
           <motion.div

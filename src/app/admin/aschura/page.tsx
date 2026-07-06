@@ -17,7 +17,7 @@ async function getData() {
     supabase
       .from("event_registrations")
       .select(
-        "id, event_id, email, anzahl_teilnehmer, status, checked_in, cancellation_token, token_expires_at, token_used, created_at, event_guests(id, vorname, nachname, checked_in)",
+        "id, event_id, email, anzahl_teilnehmer, status, checked_in, cancellation_token, token_expires_at, token_used, created_at, reminder_sent_at, event_guests(id, vorname, nachname, checked_in)",
       )
       .eq("event_id", EVENT_ID)
       .order("created_at", { ascending: false }),
@@ -56,7 +56,7 @@ export default async function AschuraAdminPage() {
     <main className="min-h-screen bg-cream-50">
       {/* Header Band */}
       <div className="bg-charcoal-900 border-b border-charcoal-700">
-        <div className="container mx-auto px-4 py-8 max-w-6xl">
+        <div className="container mx-auto px-4 py-5 md:py-8 max-w-6xl">
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-charcoal-400 mb-1">
             Admin · Muslimin e.V.
           </p>
@@ -69,7 +69,7 @@ export default async function AschuraAdminPage() {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-10 max-w-6xl">
+      <div className="container mx-auto px-4 py-6 md:py-10 max-w-6xl">
         <AdminDashboard
           initialRegistrations={registrations}
           initialGuests={guests}

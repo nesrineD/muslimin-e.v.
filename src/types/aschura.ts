@@ -24,6 +24,7 @@ export interface EventRegistration {
   token_expires_at: string;
   token_used: boolean;
   created_at: string;
+  reminder_sent_at?: string | null;
   guests?: Guest[];
 }
 

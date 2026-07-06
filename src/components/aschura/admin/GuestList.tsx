@@ -128,17 +128,32 @@ export function GuestList({ guests, capacity, checkedIn, onGuestCancelled, onChe
   return (
     <div className="space-y-6">
       <StatsBar capacity={capacity} checkedIn={checkedIn} />
-      <div className="flex items-center justify-between gap-4">
-        <Input
-          placeholder="Nach Name suchen…"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="max-w-sm"
-        />
-        <div className="flex items-center gap-3 shrink-0">
-          <p className="text-sm text-charcoal-500">
-            {filtered.length} von {guests.length} Gästen
-          </p>
+      {/* Search toolbar — sticky on mobile so it stays reachable while
+          scrolling the guest list during check-in */}
+      <div className="sticky top-0 z-10 -mx-4 bg-cream-50/95 px-4 py-3 backdrop-blur-sm md:static md:mx-0 md:bg-transparent md:p-0 md:backdrop-blur-none">
+        <div className="flex items-center gap-2">
+          <div className="relative flex-1">
+            <Input
+              type="search"
+              enterKeyHint="search"
+              autoComplete="off"
+              placeholder="Nach Name suchen…"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="pr-11 [&::-webkit-search-cancel-button]:hidden"
+            />
+            {search && (
+              <button
+                onClick={() => setSearch("")}
+                className="absolute right-2 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full text-charcoal-400 transition-colors hover:bg-sand-100 hover:text-charcoal-600"
+                aria-label="Suche löschen"
+              >
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            )}
+          </div>
           <button
             onClick={() =>
               exportToPdf(
@@ -149,17 +164,97 @@ export function GuestList({ guests, capacity, checkedIn, onGuestCancelled, onChe
                 ),
               )
             }
-            className="flex items-center gap-1.5 rounded-lg border border-sage-300 bg-white px-3 py-1.5 text-sm font-medium text-sage-700 shadow-sm transition-colors hover:bg-sage-50"
+            className="flex h-11 shrink-0 items-center gap-1.5 rounded-lg border border-sage-300 bg-white px-3 text-sm font-medium text-sage-700 shadow-sm transition-colors hover:bg-sage-50"
+            title="Gästeliste als PDF exportieren"
+            aria-label="PDF exportieren"
           >
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17a4 4 0 004 4h10a4 4 0 004-4V7a4 4 0 00-4-4H9L3 9v8z" />
             </svg>
-            PDF exportieren
+            <span className="hidden md:inline">PDF</span>
           </button>
         </div>
+        <p className="mt-2 text-xs text-charcoal-500">
+          {filtered.length} von {guests.length} Gästen
+        </p>
       </div>
 
-      <div className="overflow-x-auto rounded-xl border border-charcoal-200 shadow-sm">
+      {/* Mobile: card list with large touch targets for door check-in */}
+      <div className="space-y-2 md:hidden">
+        {filtered.length === 0 && (
+          <p className="rounded-xl border border-charcoal-200 bg-white px-4 py-10 text-center text-sm text-charcoal-400">
+            Keine Ergebnisse.
+          </p>
+        )}
+        {filtered.map((g) => (
+          <div
+            key={g.id}
+            className={`flex items-center gap-3 rounded-xl border p-3 shadow-sm transition-colors ${
+              g.checked_in
+                ? "border-sage-300 bg-sage-50"
+                : "border-charcoal-200 bg-white"
+            }`}
+          >
+            <div className="min-w-0 flex-1">
+              <p className="truncate font-semibold text-charcoal-800">
+                {g.nachname}, {g.vorname}
+              </p>
+              <p className="truncate text-xs text-charcoal-400">
+                {g.registration_email}
+              </p>
+              <div className="mt-1.5">
+                {confirmCancelId === g.id ? (
+                  <span className="flex items-center gap-3 text-xs">
+                    <span className="text-charcoal-600">Wirklich stornieren?</span>
+                    <button
+                      onClick={() => cancelGuest(g.id)}
+                      disabled={cancelling === g.id}
+                      className="min-h-[32px] px-1 font-semibold text-red-600 disabled:opacity-40"
+                    >
+                      {cancelling === g.id ? "…" : "Ja"}
+                    </button>
+                    <button
+                      onClick={() => setConfirmCancelId(null)}
+                      className="min-h-[32px] px-1 text-charcoal-500"
+                    >
+                      Nein
+                    </button>
+                  </span>
+                ) : (
+                  <button
+                    onClick={() => setConfirmCancelId(g.id)}
+                    disabled={cancelling === g.id}
+                    className="min-h-[32px] text-xs font-medium text-red-600 disabled:opacity-40"
+                    aria-label={`${g.nachname} ${g.vorname} stornieren`}
+                  >
+                    Stornieren
+                  </button>
+                )}
+              </div>
+            </div>
+            <button
+              onClick={() => toggleCheckin(g)}
+              disabled={toggling === g.id}
+              className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 transition-all ${
+                g.checked_in
+                  ? "border-sage-600 bg-sage-600 shadow-sm"
+                  : "border-charcoal-300 bg-white active:bg-sage-50"
+              } disabled:cursor-not-allowed disabled:opacity-40`}
+              aria-label={`Check-in für ${g.vorname} ${g.nachname}`}
+              aria-pressed={g.checked_in}
+            >
+              {g.checked_in && (
+                <svg className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              )}
+            </button>
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop: full table */}
+      <div className="hidden overflow-x-auto rounded-xl border border-charcoal-200 shadow-sm md:block">
         <table className="w-full text-sm">
           <thead className="bg-charcoal-800 text-cream-50 text-xs uppercase tracking-wide">
             <tr>
@@ -201,6 +296,7 @@ export function GuestList({ guests, capacity, checkedIn, onGuestCancelled, onChe
                     } disabled:opacity-40 disabled:cursor-not-allowed`}
                     title={g.checked_in ? "Eingecheckt — klicken zum Rückgängigmachen" : "Einchecken"}
                     aria-label={`Check-in für ${g.vorname} ${g.nachname}`}
+                    aria-pressed={g.checked_in}
                   >
                     {g.checked_in && (
                       <svg className="w-4 h-4 text-white mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>

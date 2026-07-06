@@ -232,7 +232,7 @@ describe("Button Component", () => {
       expect(button).toHaveClass("border-coral-200");
     });
 
-    it("passive variant uses warm-400 color (#E6A15C)", () => {
+    it("passive variant uses warm-400 color token", () => {
       render(<Button variant="passive">Passive</Button>);
       const button = screen.getByRole("button");
       expect(button).toHaveClass("bg-warm-400");

@@ -254,7 +254,7 @@ describe("Card Component", () => {
       expect(card).toHaveClass("bg-white");
     });
 
-    it("cream variant uses cream-50 (#F7F5EF)", () => {
+    it("cream variant uses cream-50 token", () => {
       const { container } = render(<Card variant="cream">Cream</Card>);
       const card = container.firstChild as HTMLElement;
       expect(card).toHaveClass("bg-cream-50");
