@@ -15,7 +15,11 @@ interface Props {
   totalCapacity: number;
 }
 
-export function AdminDashboard({ initialRegistrations, initialGuests, totalCapacity }: Props) {
+export function AdminDashboard({
+  initialRegistrations,
+  initialGuests,
+  totalCapacity,
+}: Props) {
   const [registrations, setRegistrations] = useState(initialRegistrations);
   const [guests, setGuests] = useState(initialGuests);
 
@@ -29,7 +33,10 @@ export function AdminDashboard({ initialRegistrations, initialGuests, totalCapac
     };
   }, [guests, totalCapacity]);
 
-  const checkedIn = useMemo(() => guests.filter((g) => g.checked_in).length, [guests]);
+  const checkedIn = useMemo(
+    () => guests.filter((g) => g.checked_in).length,
+    [guests],
+  );
 
   function handleGuestCancelled(guestId: string) {
     const guest = guests.find((g) => g.id === guestId);
@@ -56,7 +63,19 @@ export function AdminDashboard({ initialRegistrations, initialGuests, totalCapac
         r.id === registrationId ? { ...r, status: "cancelled" as const } : r,
       ),
     );
-    setGuests((prev) => prev.filter((g) => g.registration_id !== registrationId));
+    setGuests((prev) =>
+      prev.filter((g) => g.registration_id !== registrationId),
+    );
+  }
+
+  function handleReminded(registrationIds: string[], sentAt: string) {
+    setRegistrations((prev) =>
+      prev.map((r) =>
+        registrationIds.includes(r.id)
+          ? { ...r, reminder_sent_at: sentAt }
+          : r,
+      ),
+    );
   }
 
   function handleCheckinToggled(guestId: string, checked_in: boolean) {
@@ -67,19 +86,6 @@ export function AdminDashboard({ initialRegistrations, initialGuests, totalCapac
 
   return (
     <>
-      <section className="mb-12">
-        <div className="flex items-center gap-3 mb-6 pb-3 border-b border-charcoal-200">
-          <div className="w-1 h-5 rounded-full bg-charcoal-800" />
-          <h2 className="text-base font-bold text-charcoal-800 uppercase tracking-wide">
-            Anmeldungsübersicht
-          </h2>
-        </div>
-        <RegistrationTable
-          registrations={registrations}
-          onCancelled={handleRegistrationCancelled}
-        />
-      </section>
-
       <section>
         <div className="flex items-center gap-3 mb-2 pb-3 border-b border-charcoal-200">
           <div className="w-1 h-5 rounded-full bg-sage-600" />
@@ -96,6 +102,19 @@ export function AdminDashboard({ initialRegistrations, initialGuests, totalCapac
           checkedIn={checkedIn}
           onGuestCancelled={handleGuestCancelled}
           onCheckinToggled={handleCheckinToggled}
+        />
+      </section>
+      <section className="mb-12">
+        <div className="flex items-center gap-3 mb-6 pb-3 border-b border-charcoal-200">
+          <div className="w-1 h-5 rounded-full bg-charcoal-800" />
+          <h2 className="text-base font-bold text-charcoal-800 uppercase tracking-wide">
+            Anmeldungsübersicht
+          </h2>
+        </div>
+        <RegistrationTable
+          registrations={registrations}
+          onCancelled={handleRegistrationCancelled}
+          onReminded={handleReminded}
         />
       </section>
     </>

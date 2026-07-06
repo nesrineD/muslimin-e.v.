@@ -59,7 +59,11 @@ export default async function AschuraPage() {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button
                 asChild
-                className="min-h-[46px] bg-[#631313] px-6 text-white hover:bg-[#7a1818]"
+                className={
+                  // Aschura event brand red — deliberate one-off, no palette token
+                  // eslint-disable-next-line no-restricted-syntax
+                  "min-h-[46px] bg-[#631313] px-6 text-white hover:bg-[#7a1818]"
+                }
               >
                 <Link href="#anmeldung">Jetzt anmelden</Link>
               </Button>

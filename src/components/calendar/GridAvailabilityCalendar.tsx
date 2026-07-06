@@ -230,8 +230,10 @@ export default function GridAvailabilityCalendar({
                     {day.short}
                   </div>
                   <div
-                    className="text-xs font-semibold mt-1"
-                    style={{ color: isToday ? "#1f2937" : "#e5e7eb" }}
+                    className={cn(
+                      "text-xs font-semibold mt-1",
+                      isToday ? "text-gray-800" : "text-gray-200",
+                    )}
                   >
                     {date.getDate().toString().padStart(2, "0")}.
                     {(date.getMonth() + 1).toString().padStart(2, "0")}
@@ -251,7 +253,7 @@ export default function GridAvailabilityCalendar({
                 <div className="p-3 text-xs font-bold text-sage-800 bg-gradient-to-r from-sage-50 to-sage-100 border border-sage-200 rounded min-w-[70px] text-center">
                   {timeSlot}
                 </div>
-                {daysOfWeek.map((day, dayIndex) => (
+                {daysOfWeek.map((_day, dayIndex) => (
                   <div
                     key={`${dayIndex}-${timeSlot}`}
                     className={cn(

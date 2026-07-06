@@ -42,16 +42,16 @@ export function StatsBar({ capacity, checkedIn }: Props) {
   ];
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
+    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 mb-6 sm:mb-8">
       {stats.map((stat) => (
         <div
           key={stat.label}
-          className={`rounded-xl border p-5 text-center ${stat.card}`}
+          className={`rounded-xl border p-3 sm:p-5 text-center ${stat.card}`}
         >
-          <p className={`text-3xl font-bold tabular-nums ${stat.value_class}`}>
+          <p className={`text-2xl sm:text-3xl font-bold tabular-nums ${stat.value_class}`}>
             {stat.value}
           </p>
-          <p className={`text-xs font-medium mt-1.5 ${stat.label_class}`}>
+          <p className={`text-xs font-medium mt-1 sm:mt-1.5 ${stat.label_class}`}>
             {stat.label}
           </p>
         </div>

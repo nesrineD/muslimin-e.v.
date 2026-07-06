@@ -11,6 +11,12 @@ const EVENT_LOCATION_HTML = `<a href="${EVENT_LOCATION_MAPS_URL}" style="color:#
 const SENDER_NAME = "Muslimin e.V.";
 const SENDER_EMAIL = "aschura@muslimin-ev.de";
 
+// Donation details — kept in sync with the Aschura donation flyer
+const DONATION_PAYPAL_EMAIL = "info@muslimin-ev.de";
+const DONATION_ACCOUNT_HOLDER = "Muslimin e.V.";
+const DONATION_IBAN = "DE33 1005 0000 0190 7883 72";
+const DONATION_REFERENCE = "Aschura";
+
 function getBaseUrl() {
   return process.env.NEXT_PUBLIC_SITE_URL ?? "https://muslimin-ev.de";
 }
@@ -341,6 +347,84 @@ export async function sendWaitlistPromotionEmail(opts: {
     to: [{ email: opts.to }],
     subject: `Du bist dabei! Platz freigeworden – Aschura-Frauenveranstaltung ${EVENT_DATE}`,
     htmlContent: baseTemplate(content),
+  });
+}
+
+export async function sendReminderEmail(opts: {
+  to: string;
+  vorname: string;
+  guests: GuestInput[];
+  cancellationToken: string;
+}): Promise<void> {
+  const client = createClient();
+  const manageLink = `${getBaseUrl()}/veranstaltungen/aschura/stornieren/confirm?token=${opts.cancellationToken}`;
+
+  const content = `
+    ${bodyText(`As-salamu alaykum Liebe ${esc(opts.vorname)},`)}
+    ${bodyText('bald ist es so weit: Die <strong style="color:#fdf8f0;">Aschura-Frauenveranstaltung – ein Abend der Andacht</strong> steht bevor. Wir möchten dich herzlich an deine Anmeldung erinnern und freuen uns auf dein Kommen.')}
+
+    ${infoBox([
+      { label: "Datum", value: EVENT_DATE },
+      { label: "Einlass", value: EVENT_EINLASS },
+      { label: "Beginn", value: EVENT_BEGINN },
+      { label: "Ort", value: EVENT_LOCATION_HTML },
+    ])}
+
+    ${sectionLabel(`Angemeldete Personen (${opts.guests.length})`)}
+    ${guestListHtml(opts.guests)}
+
+    <div style="height:16px;line-height:16px;">&nbsp;</div>
+    <p style="margin:0 0 8px 0;font-size:13px;color:#a8a29e;line-height:1.7;">
+      <strong style="color:#d6d3d1;">Hinweis:</strong> Solltest du verhindert sein, bitten wir dich herzlich, deine Anmeldung rechtzeitig zu stornieren, damit Schwestern auf der Warteliste nachrücken können.
+    </p>
+
+    ${ctaButton(manageLink, "Anmeldung verwalten oder stornieren")}
+
+    ${sectionLabel("Mit deinem Herzensbeitrag")}
+    ${bodyText('Durch deine Spende machen wir unsere Veranstaltungen überhaupt möglich! Wenn du unsere <strong style="color:#fdf8f0;">Aschura-Frauenveranstaltung</strong> unterstützen möchtest, dann spende jetzt und leiste deinen Herzensbeitrag!')}
+
+    ${infoBox([
+      {
+        label: "PayPal*",
+        value: `${DONATION_PAYPAL_EMAIL}<br/><span style="font-weight:400;color:#a8a29e;">über Freunde und Familie · Nachricht: ${DONATION_REFERENCE}</span>`,
+      },
+      {
+        label: "Banküberweisung",
+        value: `Kontoinhaber: ${DONATION_ACCOUNT_HOLDER}<br/>IBAN: ${DONATION_IBAN}<br/><span style="font-weight:400;color:#a8a29e;">Betreff: ${DONATION_REFERENCE}</span>`,
+      },
+    ])}
+
+    <p style="margin:0 0 8px 0;font-size:12px;color:#78716c;line-height:1.6;">
+      * Für die Spende über PayPal ist kein Beleg möglich, bitte kontaktiere uns vorher, wenn du einen Spendenbeleg benötigst.
+    </p>
+
+    <p style="margin:32px 0 0 0;font-size:14px;color:#d6d3d1;line-height:1.7;">
+      Gesegnete Grüße<br/>
+      <strong style="color:#fdf8f0;">Euer Muslimin e.V.-Team</strong>
+    </p>
+  `;
+
+  const guestsText = opts.guests
+    .map((g) => `- ${g.vorname} ${g.nachname}`)
+    .join("\n");
+  const textContent = [
+    `As-salamu alaykum Liebe ${opts.vorname},`,
+    "bald ist es so weit: Die Aschura-Frauenveranstaltung – ein Abend der Andacht steht bevor. Wir möchten dich herzlich an deine Anmeldung erinnern und freuen uns auf dein Kommen.",
+    `Datum: ${EVENT_DATE}\nEinlass: ${EVENT_EINLASS}\nBeginn: ${EVENT_BEGINN}\nOrt: ${EVENT_LOCATION}`,
+    `Angemeldete Personen (${opts.guests.length}):\n${guestsText}`,
+    "Solltest du verhindert sein, bitten wir dich herzlich, deine Anmeldung rechtzeitig zu stornieren, damit Schwestern auf der Warteliste nachrücken können.",
+    `Anmeldung verwalten oder stornieren: ${manageLink}`,
+    "Mit deinem Herzensbeitrag: Durch deine Spende machen wir unsere Veranstaltungen überhaupt möglich! Wenn du unsere Aschura-Frauenveranstaltung unterstützen möchtest, dann spende jetzt und leiste deinen Herzensbeitrag!",
+    `PayPal*: ${DONATION_PAYPAL_EMAIL} (über Freunde und Familie, Nachricht: ${DONATION_REFERENCE})\nBanküberweisung: Kontoinhaber ${DONATION_ACCOUNT_HOLDER}, IBAN ${DONATION_IBAN}, Betreff: ${DONATION_REFERENCE}`,
+    "* Für die Spende über PayPal ist kein Beleg möglich, bitte kontaktiere uns vorher, wenn du einen Spendenbeleg benötigst.",
+  ].join("\n\n");
+
+  await client.transactionalEmails.sendTransacEmail({
+    sender: { name: SENDER_NAME, email: SENDER_EMAIL },
+    to: [{ email: opts.to }],
+    subject: `Erinnerung – Aschura-Frauenveranstaltung am ${EVENT_DATE}`,
+    htmlContent: baseTemplate(content),
+    textContent,
   });
 }
 
