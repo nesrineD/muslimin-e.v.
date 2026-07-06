@@ -31,3 +31,6 @@ export const cancelSchema = z.object({
 });
 
 export type CancelInput = z.infer<typeof cancelSchema>;
+
+export const waitlistSchema = registrationSchema;
+export type WaitlistInput = RegistrationInput;

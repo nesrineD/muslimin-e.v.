@@ -30,15 +30,22 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const { email } = parsed.data;
+  const email = parsed.data.email.trim().toLowerCase();
 
-  const { data: registration } = await getSupabaseServer()
+  const { data: registration, error: lookupError } = await getSupabaseServer()
     .from("event_registrations")
     .select("id, cancellation_token, token_used, token_expires_at, event_guests(vorname)")
     .eq("event_id", EVENT_ID)
-    .eq("email", email)
+    .ilike("email", email)
     .eq("status", "active")
-    .single();
+    .order("created_at", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  if (lookupError) {
+    console.error("[cancel-request] Registration lookup failed:", lookupError.message);
+    return neutralResponse();
+  }
 
   if (!registration) return neutralResponse();
 
@@ -82,8 +89,11 @@ export async function POST(request: NextRequest) {
       vorname,
       token: activeToken,
     });
-  } catch {
-    console.error("[Brevo] Stornierungslink-E-Mail konnte nicht gesendet werden.");
+  } catch (error) {
+    console.error(
+      "[Brevo] Stornierungslink-E-Mail konnte nicht gesendet werden:",
+      error instanceof Error ? error.message : "Unbekannter Fehler",
+    );
   }
 
   return neutralResponse();

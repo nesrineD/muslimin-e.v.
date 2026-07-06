@@ -13,6 +13,7 @@ import { Label } from "@/components/ui/label";
 
 export function CancellationRequestForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [serverError, setServerError] = useState<string | null>(null);
 
   const {
     register,
@@ -23,13 +24,36 @@ export function CancellationRequestForm() {
   });
 
   async function onSubmit(data: CancelRequestInput) {
-    await fetch("/api/events/aschura/cancel-request", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
-    // Always show neutral message regardless of result (DSGVO)
-    setSubmitted(true);
+    setServerError(null);
+
+    try {
+      const response = await fetch("/api/events/aschura/cancel-request", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (response.status === 429) {
+        setServerError(
+          "Zu viele Anfragen. Bitte versuche es in einer Stunde erneut.",
+        );
+        return;
+      }
+
+      if (!response.ok) {
+        setServerError(
+          "Die Anfrage konnte nicht gesendet werden. Bitte versuche es erneut.",
+        );
+        return;
+      }
+
+      // Always show a neutral message for successful requests (DSGVO).
+      setSubmitted(true);
+    } catch {
+      setServerError(
+        "Die Anfrage konnte nicht gesendet werden. Prüfe deine Verbindung und versuche es erneut.",
+      );
+    }
   }
 
   if (submitted) {
@@ -46,6 +70,12 @@ export function CancellationRequestForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-5" noValidate>
+      {serverError && (
+        <p role="alert" className="text-sm font-medium text-red-300">
+          {serverError}
+        </p>
+      )}
+
       <div className="space-y-1">
         <Label htmlFor="email">E-Mail-Adresse deiner Anmeldung *</Label>
         <Input

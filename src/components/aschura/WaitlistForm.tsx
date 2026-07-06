@@ -4,23 +4,18 @@ import { useForm, useFieldArray, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import {
-  registrationSchema,
-  type RegistrationInput,
+  waitlistSchema,
+  type WaitlistInput,
 } from "@/lib/validations/aschura";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 
-interface Props {
-  isFull: boolean;
-}
-
-export function RegistrationForm({ isFull }: Props) {
+export function WaitlistForm() {
   const [submitted, setSubmitted] = useState(false);
   const [submittedEmail, setSubmittedEmail] = useState("");
   const [serverError, setServerError] = useState<string | null>(null);
-  const [emailDelayed, setEmailDelayed] = useState(false);
 
   const {
     register,
@@ -29,8 +24,8 @@ export function RegistrationForm({ isFull }: Props) {
     setValue,
     watch,
     formState: { errors, isSubmitting },
-  } = useForm<RegistrationInput>({
-    resolver: zodResolver(registrationSchema),
+  } = useForm<WaitlistInput>({
+    resolver: zodResolver(waitlistSchema),
     defaultValues: {
       email: "",
       guests: [{ vorname: "", nachname: "" }],
@@ -55,11 +50,10 @@ export function RegistrationForm({ isFull }: Props) {
     }
   }
 
-  const onSubmit: SubmitHandler<RegistrationInput> = async (data) => {
+  const onSubmit: SubmitHandler<WaitlistInput> = async (data) => {
     setServerError(null);
-    setEmailDelayed(false);
 
-    const res = await fetch("/api/events/aschura/register", {
+    const res = await fetch("/api/events/aschura/waitlist", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
@@ -69,52 +63,25 @@ export function RegistrationForm({ isFull }: Props) {
       setSubmittedEmail(data.email);
       setSubmitted(true);
     } else if (res.status === 409) {
-      setServerError("Leider sind alle Plätze bereits vergeben.");
+      setServerError(
+        "Diese E-Mail-Adresse ist bereits auf der Warteliste eingetragen.",
+      );
     } else {
       setServerError("Ein Fehler ist aufgetreten. Bitte versuche es erneut.");
     }
   };
 
-  if (isFull && !submitted) {
-    return (
-      <div className="flex flex-col items-center rounded-xl bg-charcoal-700 border border-charcoal-600 p-6 text-center space-y-3">
-        <p className="w-full text-center font-semibold text-cream-50">
-          Alle Plätze sind vergeben.
-        </p>
-        <p className="mx-auto w-full max-w-md text-center text-sm text-charcoal-300">
-          Du kannst dich auf die Warteliste eintragen und wirst benachrichtigt,
-          sobald ein Platz frei wird.
-        </p>
-        <a
-          href="/veranstaltungen/aschura/warteliste"
-          className="mt-2 inline-flex min-h-[44px] items-center justify-center rounded-md bg-red-950 px-6 text-sm font-medium text-white transition-colors hover:bg-red-900 focus-visible:outline-red-300"
-        >
-          Zur Warteliste anmelden
-        </a>
-      </div>
-    );
-  }
-
   if (submitted) {
     return (
       <div className="rounded-xl bg-charcoal-700 border border-charcoal-600 p-6 text-center space-y-2">
         <p className="font-semibold text-cream-50">
-          Vielen Dank für deine Anmeldung!
+          Du bist auf der Warteliste!
         </p>
-        {emailDelayed ? (
-          <p className="text-charcoal-300 text-sm">
-            Deine Anmeldung wurde gespeichert. Die Bestätigungs-E-Mail an{" "}
-            <span className="text-cream-100 font-medium">{submittedEmail}</span>{" "}
-            kann einige Minuten dauern. Bitte prüfe auch deinen Spam-Ordner.
-          </p>
-        ) : (
-          <p className="text-charcoal-300 text-sm">
-            Wir haben dir eine Bestätigungs-E-Mail an{" "}
-            <span className="text-cream-100 font-medium">{submittedEmail}</span>{" "}
-            mit der Liste aller angemeldeten Gäste geschickt. Bitte prüfe auch
-            deinen Spam-Ordner.
-          </p>
-        )}
+        <p className="text-charcoal-300 text-sm">
+          Wir haben deine Daten gespeichert und melden uns unter{" "}
+          <span className="text-cream-100 font-medium">{submittedEmail}</span>,
+          sobald ein Platz für dich frei wird.
+        </p>
       </div>
     );
   }
@@ -292,8 +259,7 @@ export function RegistrationForm({ isFull }: Props) {
           >
             Datenschutzhinweise
           </a>{" "}
-          gelesen und stimme der Verarbeitung meiner Daten für die Veranstaltung
-          zu. *
+          gelesen und stimme der Verarbeitung meiner Daten zu. *
         </Label>
       </div>
       {errors.datenschutz && (
@@ -302,49 +268,13 @@ export function RegistrationForm({ isFull }: Props) {
         </p>
       )}
 
-      {/* Hinweise zur Teilnahme */}
-      <div className="rounded-xl border border-red-800/70 bg-charcoal-900/60 px-5 py-4">
-        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-red-300">
-          Bitte beachte
-        </p>
-        <ul className="divide-y divide-charcoal-700 text-sm">
-          <li className="py-3 first:pt-0">
-            <strong className="block text-cream-50">
-              Schwestern und Mädchen ab 9 Jahren
-            </strong>
-            <span className="mt-1 block text-white/80">
-              Es gibt keine Kinderbetreuung. Säuglinge bis 2 Jahre dürfen bei
-              der Mutter bleiben.
-            </span>
-          </li>
-          <li className="py-3">
-            <strong className="block text-cream-50">
-              Verbindliche Anmeldung
-            </strong>
-            <span className="mt-1 block text-white/80">
-              Bitte nutze bei Verhinderung den Abmeldelink, damit
-              Wartelistenplätze frei werden.
-            </span>
-          </li>
-          <li className="py-3 last:pb-0">
-            <strong className="block text-cream-50">
-              Keine Foto- und Videoaufnahmen
-            </strong>
-            <span className="mt-1 block text-white/80">
-              Während der gesamten Veranstaltung bitten wir um Rücksicht und
-              Einhaltung dieser Regel.
-            </span>
-          </li>
-        </ul>
-      </div>
-
       <Button
         variant="default"
         type="submit"
         disabled={isSubmitting}
         className="min-h-[44px] w-full border-0 bg-red-950 text-white hover:bg-red-900 active:bg-red-950 focus-visible:outline-red-300"
       >
-        {isSubmitting ? "Wird gesendet…" : "Jetzt anmelden"}
+        {isSubmitting ? "Wird gesendet…" : "Zur Warteliste anmelden"}
       </Button>
     </form>
   );

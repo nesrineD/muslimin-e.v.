@@ -1,9 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseServer } from "@/lib/supabase/server";
 import { cancelSchema } from "@/lib/validations/aschura";
-import { sendCancellationConfirmationEmail } from "@/lib/email/brevo";
+import {
+  sendCancellationConfirmationEmail,
+  sendWaitlistPromotionEmail,
+} from "@/lib/email/brevo";
 import { checkRateLimit, getClientIp } from "@/lib/utils/rate-limit";
-import type { Guest } from "@/types/aschura";
+import type { Guest, GuestInput } from "@/types/aschura";
+
+const EVENT_ID = "ashura-2026";
+const CAPACITY = parseInt(process.env.EVENT_ASCHURA_CAPACITY ?? "250", 10);
 
 const INVALID_TOKEN_RESPONSE = NextResponse.json(
   {
@@ -77,10 +83,7 @@ export async function POST(request: NextRequest) {
 
   const parsed = cancelSchema.safeParse(body);
   if (!parsed.success) {
-    return NextResponse.json(
-      { error: "Ungültige Anfrage.", details: parsed.error.flatten() },
-      { status: 400 },
-    );
+    return NextResponse.json({ error: "Ungültige Anfrage." }, { status: 400 });
   }
 
   const { token, action, guest_ids_to_remove } = parsed.data;
@@ -194,5 +197,43 @@ export async function POST(request: NextRequest) {
     }
   }
 
+  // After every successful cancellation, promote the oldest waitlist entry that fits.
+  void promoteFromWaitlist(supabase);
+
   return NextResponse.json({ success: true });
+}
+
+type SupabaseClient = ReturnType<typeof getSupabaseServer>;
+
+async function promoteFromWaitlist(supabase: SupabaseClient): Promise<void> {
+  const { data, error } = await supabase.rpc("promote_from_waitlist", {
+    p_event_id: EVENT_ID,
+    p_capacity: CAPACITY,
+  });
+
+  if (error) {
+    console.error("[promote_from_waitlist] RPC error:", error);
+    return;
+  }
+
+  const row = (
+    data as Array<{
+      out_email: string;
+      out_guests: GuestInput[];
+      out_cancellation_token: string;
+    }>
+  )?.[0];
+
+  if (!row) return;
+
+  try {
+    await sendWaitlistPromotionEmail({
+      to: row.out_email,
+      vorname: row.out_guests[0]?.vorname ?? "Schwester",
+      guests: row.out_guests,
+      cancellationToken: row.out_cancellation_token,
+    });
+  } catch {
+    console.error("[Brevo] Wartelisten-Hochstufungs-E-Mail konnte nicht gesendet werden.");
+  }
 }
