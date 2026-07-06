@@ -98,6 +98,8 @@ export async function POST(request: NextRequest) {
     const { error: updateError } = await supabase
       .from("event_registrations")
       .update({ reminder_sent_at: reminderSentAt })
+      .eq("event_id", EVENT_ID)
+      .eq("status", "active")
       .in("id", sentIds);
     if (updateError) {
       console.error("[remind] reminder_sent_at nicht gespeichert:", updateError);
