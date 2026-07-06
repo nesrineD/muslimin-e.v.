@@ -104,7 +104,7 @@ export function RegistrationTable({ registrations, onCancelled, onReminded }: Pr
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ registrationIds: ids }),
       });
-      const data = await res.json();
+      const data: any = await res.json().catch(() => ({}));
       if (!res.ok) {
         setRemindResult({ error: data.error ?? "Fehler beim Senden." });
       } else {
@@ -113,7 +113,11 @@ export function RegistrationTable({ registrations, onCancelled, onReminded }: Pr
           failed: data.failed,
           failedEmails: data.failedEmails ?? [],
         });
-        if (data.sentIds?.length) {
+        if (
+          Array.isArray(data.sentIds) &&
+          data.sentIds.length > 0 &&
+          typeof data.reminderSentAt === "string"
+        ) {
           onReminded(data.sentIds, data.reminderSentAt);
         }
         setSelected(new Set());
