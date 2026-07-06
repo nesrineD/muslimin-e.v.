@@ -59,23 +59,38 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  // Send sequentially — one email per registration (each has its own guest
+  // Send in small batches — one email per registration (each has its own guest
   // list and cancellation link). Failures are collected, not fatal.
   const sentIds: string[] = [];
   const failedEmails: string[] = [];
-  for (const r of registrations) {
-    try {
-      await sendReminderEmail({
-        to: r.email,
-        vorname: r.event_guests[0]?.vorname ?? "Schwester",
-        guests: r.event_guests,
-        cancellationToken: r.cancellation_token,
-      });
-      sentIds.push(r.id);
-    } catch (err) {
-      console.error(`[remind] Erinnerung an ${r.email} fehlgeschlagen:`, err);
-      failedEmails.push(r.email);
-    }
+  const BATCH_SIZE = 10;
+
+  for (let i = 0; i < registrations.length; i += BATCH_SIZE) {
+    const batch = registrations.slice(i, i + BATCH_SIZE);
+    const results = await Promise.allSettled(
+      batch.map(async (r) => {
+        await sendReminderEmail({
+          to: r.email,
+          vorname: r.event_guests[0]?.vorname ?? "Schwester",
+          guests: r.event_guests,
+          cancellationToken: r.cancellation_token,
+        });
+        return r;
+      }),
+    );
+
+    results.forEach((result, idx) => {
+      const r = batch[idx];
+      if (result.status === "fulfilled") {
+        sentIds.push(r.id);
+      } else {
+        console.error(
+          `[remind] Erinnerung an ${r.email} fehlgeschlagen:`,
+          result.reason,
+        );
+        failedEmails.push(r.email);
+      }
+    });
   }
 
   const reminderSentAt = new Date().toISOString();
