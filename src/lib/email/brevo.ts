@@ -199,7 +199,6 @@ export async function sendConfirmationEmail(opts: {
       <strong style="color:#fdf8f0;">Euer Muslimin e.V.-Team</strong>
     </p>
   `;
-
   await client.transactionalEmails.sendTransacEmail({
     sender: { name: SENDER_NAME, email: SENDER_EMAIL },
     to: [{ email: opts.to }],
@@ -226,12 +225,19 @@ export async function sendCancellationRequestEmail(opts: {
       Falls du keinen Stornierungslink angefordert hast, kannst du diese E-Mail ignorieren. Deine Anmeldung bleibt unverändert.
     </p>
   `;
+  const textContent = [
+    `As-salamu alaykum ${opts.vorname},`,
+    "Du hast einen Stornierungslink für deine Anmeldung zur Aschura-Frauenveranstaltung angefordert.",
+    `Anmeldung verwalten: ${cancelLink}`,
+    "Falls du keinen Stornierungslink angefordert hast, kannst du diese E-Mail ignorieren. Deine Anmeldung bleibt unverändert.",
+  ].join("\n\n");
 
   await client.transactionalEmails.sendTransacEmail({
     sender: { name: SENDER_NAME, email: SENDER_EMAIL },
     to: [{ email: opts.to }],
     subject: "Stornierungslink – Aschura-Frauenveranstaltung",
     htmlContent: baseTemplate(content),
+    textContent,
   });
 }
 
@@ -293,6 +299,48 @@ export async function sendCancellationConfirmationEmail(opts: {
     subject: "Stornierungsbestätigung – Aschura-Frauenveranstaltung",
     htmlContent: baseTemplate(content),
     textContent,
+  });
+}
+
+export async function sendWaitlistPromotionEmail(opts: {
+  to: string;
+  vorname: string;
+  guests: GuestInput[];
+  cancellationToken: string;
+}): Promise<void> {
+  const client = createClient();
+  const manageLink = `${getBaseUrl()}/veranstaltungen/aschura/stornieren/confirm?token=${opts.cancellationToken}`;
+
+  const content = `
+    ${bodyText(`As-salamu alaykum Liebe ${esc(opts.vorname)},`)}
+    ${bodyText('wir haben gute Neuigkeiten für dich: Ein Platz ist freigeworden und du bist jetzt <strong style="color:#fdf8f0;">offiziell zur Aschura-Frauenveranstaltung angemeldet!</strong>')}
+
+    ${infoBox([
+      { label: "Datum", value: EVENT_DATE },
+      { label: "Einlass", value: EVENT_EINLASS },
+      { label: "Beginn", value: EVENT_BEGINN },
+      { label: "Ort", value: EVENT_LOCATION_HTML },
+    ])}
+
+    ${sectionLabel(`Angemeldete Personen (${opts.guests.length})`)}
+    ${guestListHtml(opts.guests)}
+
+    <div style="height:16px;line-height:16px;">&nbsp;</div>
+    ${bodyText("Falls du nun doch verhindert bist, bitten wir dich herzlich, dich rechtzeitig abzumelden, damit die nächste Person auf der Warteliste nachrücken kann.")}
+
+    ${ctaButton(manageLink, "Anmeldung verwalten oder stornieren")}
+
+    <p style="margin:32px 0 0 0;font-size:14px;color:#d6d3d1;line-height:1.7;">
+      Gesegnete Grüße<br/>
+      <strong style="color:#fdf8f0;">Euer Muslimin e.V.-Team</strong>
+    </p>
+  `;
+
+  await client.transactionalEmails.sendTransacEmail({
+    sender: { name: SENDER_NAME, email: SENDER_EMAIL },
+    to: [{ email: opts.to }],
+    subject: `Du bist dabei! Platz freigeworden – Aschura-Frauenveranstaltung ${EVENT_DATE}`,
+    htmlContent: baseTemplate(content),
   });
 }
 

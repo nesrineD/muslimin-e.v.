@@ -121,11 +121,17 @@ export default async function AschuraPage() {
                 <CardTitle className="font-heading text-cream-50">
                   Anmeldung zur Aschura-Frauenveranstaltung
                 </CardTitle>
-                <p className="mt-2 text-sm text-charcoal-300">
-                  Alle mit * markierten Felder sind Pflichtfelder.
-                </p>
+                {!capacity.is_full && (
+                  <p className="mt-2 text-sm text-charcoal-300">
+                    Alle mit * markierten Felder sind Pflichtfelder.
+                  </p>
+                )}
               </div>
-              {!capacity.is_full && (
+              {capacity.is_full ? (
+                <span className="inline-flex w-fit rounded-full border border-red-900/60 bg-red-950/45 px-3 py-1 text-xs font-semibold text-red-200">
+                  Ausgebucht
+                </span>
+              ) : (
                 <span className="inline-flex w-fit rounded-full border border-red-900/60 bg-red-950/45 px-3 py-1 text-xs font-semibold text-red-200">
                   {capacity.available} Plätze verfügbar
                 </span>
